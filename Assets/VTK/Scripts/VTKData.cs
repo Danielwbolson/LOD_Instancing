@@ -87,7 +87,38 @@ public class VTKData : MonoBehaviour {
 			gameObject.transform.localScale = new Vector3(1f/extremum,1f/extremum,1f/extremum);
 			data_size = size;
 			data_center = center;
-			//print ("loaded " + get_number_of_vertices (handle) + " vertices");
+            //print ("loaded " + get_number_of_vertices (handle) + " vertices");
+
+            Vector3[] corners = new Vector3[8];
+            corners[0] = new Vector3(-1, 1, -1);
+            corners[1] = new Vector3(1, 1, -1);
+            corners[2] = new Vector3(-1, -1, -1);
+            corners[3] = new Vector3(1, -1, -1); 
+
+
+            corners[4] = new Vector3(-1, 1, 1);
+            corners[5] = new Vector3(1, 1, 1);
+            corners[6] = new Vector3(-1, -1, 1);
+            corners[7] = new Vector3(1, -1, 1);
+
+            Vector3[] linePositions = new Vector3[14];
+            linePositions[0] = (data_center + Vector3.Scale(data_size,corners[0])*0.5f);
+            linePositions[1] = (data_center + Vector3.Scale(data_size, corners[2]) * 0.5f);
+            linePositions[2] = (data_center + Vector3.Scale(data_size, corners[3]) * 0.5f);
+            linePositions[3] = (data_center + Vector3.Scale(data_size, corners[1]) * 0.5f);
+            linePositions[4] = (data_center + Vector3.Scale(data_size, corners[0]) * 0.5f);
+            linePositions[5] = (data_center + Vector3.Scale(data_size, corners[4]) * 0.5f);
+            linePositions[6] = (data_center + Vector3.Scale(data_size, corners[5]) * 0.5f);
+            linePositions[7] = (data_center + Vector3.Scale(data_size, corners[1]) * 0.5f);
+            linePositions[8] = (data_center + Vector3.Scale(data_size, corners[3]) * 0.5f);
+            linePositions[9] = (data_center + Vector3.Scale(data_size, corners[7]) * 0.5f);
+            linePositions[10] = (data_center + Vector3.Scale(data_size, corners[5]) * 0.5f);
+            linePositions[11] = (data_center + Vector3.Scale(data_size, corners[4]) * 0.5f);
+            linePositions[12] = (data_center + Vector3.Scale(data_size, corners[6]) * 0.5f);
+            linePositions[13] = (data_center + Vector3.Scale(data_size, corners[2]) * 0.5f);
+
+
+            gameObject.GetComponent<LineRenderer>().SetPositions(linePositions);
 		
 			gameObject.transform.GetChild (0).gameObject.GetComponent<VTKContour> ().vtkContour ();
 		}
