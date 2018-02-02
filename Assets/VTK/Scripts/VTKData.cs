@@ -27,7 +27,6 @@ public class VTKData : MonoBehaviour {
 
 	void Start () {
 		filename = Application.dataPath + "/data/test.vti";
-		LoadData( );
 	}
 
 	// Update is called once per frame
@@ -44,14 +43,12 @@ public class VTKData : MonoBehaviour {
 	{
 		unsafe{
 			if (handle != null) {
-				print ("GIZMO");
 
 				Gizmos.color = Color.yellow;
 
 			
 				//print (center.x + ", " + size.x);
 				Gizmos.matrix = transform.localToWorldMatrix;
-				print (data_size);
 				Gizmos.DrawWireCube (data_center, data_size);
 			}
 		}
@@ -59,7 +56,6 @@ public class VTKData : MonoBehaviour {
 
 	public void LoadData()
 	{
-		print(answer());
 		print ("Loading " + filename);
 
 		unsafe{
@@ -92,6 +88,8 @@ public class VTKData : MonoBehaviour {
 			data_size = size;
 			data_center = center;
 			//print ("loaded " + get_number_of_vertices (handle) + " vertices");
+		
+			gameObject.transform.GetChild (0).gameObject.GetComponent<VTKContour> ().vtkContour ();
 		}
 	}
 
