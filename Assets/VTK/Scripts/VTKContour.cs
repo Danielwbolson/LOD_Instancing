@@ -42,13 +42,11 @@ public class VTKContour : MonoBehaviour {
 		if (vtkData.handle != null) 
 		{
 
-			print ("Hello");
 			int np = 0;
 			int nt = 0;
 			float* p = null;
 			float* n = null;
 			int *t = null;
-			print ((int)(void*)vtkData.handle);
 
 			contour ((void*)vtkData.handle, isovalue, &np, &p, &n, &nt, &t);
 
@@ -94,7 +92,7 @@ public class VTKContour : MonoBehaviour {
 			mesh.RecalculateNormals ();
 			//
 			//print ("YY " + isovalue + " " + np + " " + nt );
-		} else
-			print ("not!");
+		} //else
+			//print ("not!");
 	}
 }

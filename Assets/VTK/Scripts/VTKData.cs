@@ -27,6 +27,8 @@ public class VTKData : MonoBehaviour {
 
 	void Start () {
 		filename = Application.dataPath + "/data/test.vti";
+		gameObject.GetComponent<LineRenderer> ().enabled = false;
+
 	}
 
 	// Update is called once per frame
@@ -41,17 +43,7 @@ public class VTKData : MonoBehaviour {
 
 	public void OnDrawGizmos()
 	{
-		unsafe{
-			if (handle != null) {
-
-				Gizmos.color = Color.yellow;
-
-			
-				//print (center.x + ", " + size.x);
-				Gizmos.matrix = transform.localToWorldMatrix;
-				Gizmos.DrawWireCube (data_center, data_size);
-			}
-		}
+		
 	}
 
 	public void LoadData()
@@ -101,7 +93,7 @@ public class VTKData : MonoBehaviour {
             corners[6] = new Vector3(-1, -1, 1);
             corners[7] = new Vector3(1, -1, 1);
 
-            Vector3[] linePositions = new Vector3[14];
+            Vector3[] linePositions = new Vector3[16];
             linePositions[0] = (data_center + Vector3.Scale(data_size,corners[0])*0.5f);
             linePositions[1] = (data_center + Vector3.Scale(data_size, corners[2]) * 0.5f);
             linePositions[2] = (data_center + Vector3.Scale(data_size, corners[3]) * 0.5f);
@@ -116,10 +108,12 @@ public class VTKData : MonoBehaviour {
             linePositions[11] = (data_center + Vector3.Scale(data_size, corners[4]) * 0.5f);
             linePositions[12] = (data_center + Vector3.Scale(data_size, corners[6]) * 0.5f);
             linePositions[13] = (data_center + Vector3.Scale(data_size, corners[2]) * 0.5f);
+			linePositions[14] = (data_center + Vector3.Scale(data_size, corners[6]) * 0.5f);
+			linePositions[15] = (data_center + Vector3.Scale(data_size, corners[7]) * 0.5f);
 
 
             gameObject.GetComponent<LineRenderer>().SetPositions(linePositions);
-		
+			gameObject.GetComponent<LineRenderer> ().enabled = true;
 			gameObject.transform.GetChild (0).gameObject.GetComponent<VTKContour> ().vtkContour ();
 		}
 	}
