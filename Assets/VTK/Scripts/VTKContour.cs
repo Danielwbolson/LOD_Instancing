@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.InteropServices;
-using NUnit.Framework;
 
 public class VTKContour : MonoBehaviour {
 	public VTKData vtkData;

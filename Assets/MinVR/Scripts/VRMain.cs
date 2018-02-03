@@ -156,7 +156,7 @@ namespace MinVR {
 				int h = Int32.Parse (vals [3]);
 
 				if (x >= 0 && y >= 0 && w >= 0 && h >= 0) {
-					WindowUtility.SetPosition (x, y, w, h);
+					//WindowUtility.SetPosition (x, y, w, h);
 				}
 			}
 		}
@@ -201,7 +201,7 @@ namespace MinVR {
 			}
 
 			// set the window title
-			WindowUtility.SetWindowTitle(argValue);
+			//WindowUtility.SetWindowTitle(argValue);
 		}
 	}
 

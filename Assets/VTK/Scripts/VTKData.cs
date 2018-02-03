@@ -26,7 +26,7 @@ public class VTKData : MonoBehaviour {
 	private Vector3 data_size;
 
 	void Start () {
-		filename = Application.dataPath + "/data/test.vti";
+		filename = Application.streamingAssetsPath + "/example_data/test.vti";
 		gameObject.GetComponent<LineRenderer> ().enabled = false;
 
 	}
