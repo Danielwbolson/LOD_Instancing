@@ -26,7 +26,6 @@ public class VTKData : MonoBehaviour {
 	private Vector3 data_size;
 
 	void Start () {
-		filename = Application.streamingAssetsPath + "/example_data/test.vti";
 		gameObject.GetComponent<LineRenderer> ().enabled = false;
 
 	}
@@ -48,19 +47,19 @@ public class VTKData : MonoBehaviour {
 
 	public void LoadData()
 	{
-		print ("Loading " + filename);
+		print ("Loading " + Application.streamingAssetsPath + "/" + filename);
 
 		unsafe{
 			if (handle != null)
 				close_data (handle);
 			// char* s = ;
 			print("opening..");
-			handle = open_data (new StringBuilder(filename));
+			handle = open_data (new StringBuilder(Application.streamingAssetsPath + "/" + filename));
 
 			if (handle == null)
-				print ("Could not open " + filename);
+				print ("Could not open " + Application.streamingAssetsPath + "/" + filename);
 			else
-				print("Opened " + filename);
+				print("Opened " + Application.streamingAssetsPath + "/" + filename);
 
 
 
