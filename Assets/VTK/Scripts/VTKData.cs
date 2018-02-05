@@ -14,6 +14,8 @@ public class VTKData : MonoBehaviour {
 	public string filename;
 	unsafe public void* handle = null;
 
+
+
 	[DllImport("vtkplugin", EntryPoint = "answer")]  private static extern int answer();
 	[DllImport("vtkplugin", EntryPoint = "open_data")]  unsafe private static extern void* open_data (StringBuilder sb);
 	[DllImport("vtkplugin", EntryPoint = "close_data")]  unsafe private static extern void   close_data (void* h);
@@ -24,6 +26,13 @@ public class VTKData : MonoBehaviour {
 
 	private Vector3 data_center;
 	private Vector3 data_size;
+
+	public Vector3 getBoundingCenter () {
+		return data_center;
+	}
+	public Vector3 getBoundingSize() {
+		return data_size;
+	}
 
 	void Start () {
 		gameObject.GetComponent<LineRenderer> ().enabled = false;
@@ -114,6 +123,8 @@ public class VTKData : MonoBehaviour {
             gameObject.GetComponent<LineRenderer>().SetPositions(linePositions);
 			gameObject.GetComponent<LineRenderer> ().enabled = true;
 			gameObject.transform.GetChild (0).gameObject.GetComponent<VTKContour> ().vtkContour ();
+			gameObject.transform.GetChild (1).gameObject.GetComponent<VTKSampleSet> ().vtkSample ();
+
 		}
 	}
 
