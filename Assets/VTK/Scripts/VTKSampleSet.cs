@@ -8,12 +8,15 @@ public class VTKSampleSet : MonoBehaviour {
 
 	public int sampleCount;
 	public VTKData vtkData;
-
+	
 	public Vector3[] positions = null;
 
+	public bool is_valid;
 	// Use this for initialization
 	void Start () {
 		//vtkSample ();
+		Vector3[] positions = null;
+		is_valid = false;
 	}
 	
 	// Update is called once per frame
@@ -23,14 +26,15 @@ public class VTKSampleSet : MonoBehaviour {
 
 	void OnDrawGizmos() {
 			Gizmos.color = Color.blue;
-			if(positions == null)
-				return;
-		Gizmos.matrix = transform.parent.transform.localToWorldMatrix;
+		if (is_valid) {
+			Gizmos.matrix = transform.parent.transform.localToWorldMatrix;
 
 			for(int i = 0; i < sampleCount; i++){
 				Gizmos.DrawSphere(positions[i], 0.1f);
 
 			}
+		}
+
 
 	}
 
@@ -44,6 +48,7 @@ public class VTKSampleSet : MonoBehaviour {
 
 		if (vtkData.handle != null) 
 		{
+			UnityEngine.Random.seed = 42;
 			positions = new Vector3[sampleCount];
 			Vector3 bMin = vtkData.getBoundingCenter () - vtkData.getBoundingSize () / 2;
 			Vector3 bMax = vtkData.getBoundingCenter () + vtkData.getBoundingSize () / 2;
@@ -53,8 +58,9 @@ public class VTKSampleSet : MonoBehaviour {
 				Vector3 randV = new Vector3 (UnityEngine.Random.Range (bMin.x, bMax.x), UnityEngine.Random.Range (bMin.y, bMax.y), UnityEngine.Random.Range (bMin.z, bMax.z));
 				positions [i] = randV;
 
-				print (randV);
 			}
+			is_valid = true;
 		}
+		transform.GetChild (0).gameObject.GetComponent<VTKGlyphField> ().UpdateBuffers ();
 	}
 }
