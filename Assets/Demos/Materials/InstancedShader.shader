@@ -45,7 +45,7 @@
 
 	 void vert (inout appdata_full v) {
 	 	#ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
-	 		v.vertex.xyz*=0.01;
+	 		v.vertex.xyz*=0.05;
 	 		v.vertex.xyz += mul(_DataTransform,positionBuffer[unity_InstanceID]).xyz;
 
         #endif

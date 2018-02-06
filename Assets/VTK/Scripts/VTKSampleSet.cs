@@ -26,7 +26,7 @@ public class VTKSampleSet : MonoBehaviour {
 
 	void OnDrawGizmos() {
 			Gizmos.color = Color.blue;
-		if (is_valid) {
+		if (false) {
 			Gizmos.matrix = transform.parent.transform.localToWorldMatrix;
 
 			for(int i = 0; i < sampleCount; i++){
@@ -37,7 +37,17 @@ public class VTKSampleSet : MonoBehaviour {
 
 
 	}
+	public void setSampleMag (float n){
+		if (n == 0)
+			setSampleMag (0);
+		else
+			setSampleCount((float)(Math.Pow(10,n-1)));
+	}
 
+	public void setSampleCount (float n){
+		sampleCount = (int)(n);
+		vtkSample ();
+	}
 	unsafe public void vtkSample()
 	{
 		print ("VTK Sample...");
@@ -61,6 +71,6 @@ public class VTKSampleSet : MonoBehaviour {
 			}
 			is_valid = true;
 		}
-		transform.GetChild (0).gameObject.GetComponent<VTKGlyphField> ().UpdateBuffers ();
+		transform.GetChild (0).gameObject.GetComponent<VTKGlyphField> ().setSampleCount (sampleCount);
 	}
 }

@@ -16,7 +16,7 @@ public class VTKContour : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		print ("starting");
-		isovalue = 0.6f;
+		isovalue = 0.001f;
 		vtkContour ();
 
 
@@ -88,7 +88,7 @@ public class VTKContour : MonoBehaviour {
 			mesh.vertices = vertices;
 			mesh.triangles = triangles;
 			mesh.normals = normals;
-			mesh.RecalculateNormals ();
+			//mesh.RecalculateNormals ();
 			//
 			//print ("YY " + isovalue + " " + np + " " + nt );
 		} //else

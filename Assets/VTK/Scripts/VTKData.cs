@@ -8,13 +8,16 @@ using System;
 using System.Linq;
 
 
-
 public class VTKData : MonoBehaviour {
 	private IntPtr NULL = IntPtr.Zero;
 	public string filename;
 	unsafe public void* handle = null;
+	public bool shouldNormalize = true;
 
+	public void setShouldNormalize(bool n) {
+		shouldNormalize = n;
 
+	}
 
 	[DllImport("vtkplugin", EntryPoint = "answer")]  private static extern int answer();
 	[DllImport("vtkplugin", EntryPoint = "open_data")]  unsafe private static extern void* open_data (StringBuilder sb);
@@ -40,8 +43,22 @@ public class VTKData : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () {
 
+	static float t = 0.0f;
+	public float scaleFactor = 1;
+	void Update () {
+		if (!shouldNormalize) {
+			t -= 0.5f * Time.deltaTime;
+		} else
+			t += 0.5f * Time.deltaTime;
+		t = Mathf.Clamp (t, 0f, 1f);
+		float[] sizes = { data_size.x, data_size.y, data_size.z };
+		float extremum = sizes.Max ();
+		scaleFactor = Mathf.SmoothStep(1f, 1f / extremum, t);
+
+
+		gameObject.transform.localScale = new Vector3(scaleFactor,scaleFactor,scaleFactor);
+		
 	}
 
 	public void SetFileName(string f)
@@ -71,7 +88,6 @@ public class VTKData : MonoBehaviour {
 				print("Opened " + Application.streamingAssetsPath + "/" + filename);
 
 
-
 			IntPtr bbox_buff;
 			double[] bbox = new double[6];
 
@@ -82,11 +98,13 @@ public class VTKData : MonoBehaviour {
 
 			Vector3 center = (mm + MM) / 2;
 			Vector3 size = MM - mm;
-			float[] sizes = { size.x, size.y, size.z };
-			float extremum = sizes.Max ();
-			gameObject.transform.localScale = new Vector3(1f/extremum,1f/extremum,1f/extremum);
 			data_size = size;
 			data_center = center;
+
+			float[] sizes = { data_size.x, data_size.y, data_size.z };
+			float extremum = sizes.Max ();
+			gameObject.transform.localScale = new Vector3(1f/extremum,1f/extremum,1f/extremum);
+
             //print ("loaded " + get_number_of_vertices (handle) + " vertices");
 
             Vector3[] corners = new Vector3[8];
@@ -123,7 +141,12 @@ public class VTKData : MonoBehaviour {
             gameObject.GetComponent<LineRenderer>().SetPositions(linePositions);
 			gameObject.GetComponent<LineRenderer> ().enabled = true;
 			gameObject.transform.GetChild (0).gameObject.GetComponent<VTKContour> ().vtkContour ();
-			gameObject.transform.GetChild (1).gameObject.GetComponent<VTKSampleSet> ().vtkSample ();
+
+			gameObject.transform.GetChild (1).gameObject.GetComponent<VTKContour> ().vtkContour ();
+			gameObject.transform.GetChild (2).gameObject.GetComponent<VTKContour> ().vtkContour ();
+
+			gameObject.transform.GetChild (3).gameObject.GetComponent<VTKSampleSet> ().vtkSample ();
+			return;
 
 		}
 	}
