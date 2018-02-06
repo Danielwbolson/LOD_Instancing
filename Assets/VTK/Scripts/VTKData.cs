@@ -47,14 +47,23 @@ public class VTKData : MonoBehaviour {
 	static float t = 0.0f;
 	public float scaleFactor = 1;
 	void Update () {
+		scaleFactor = 1f;
 		if (!shouldNormalize) {
 			t -= 0.5f * Time.deltaTime;
-		} else
+		} else {
 			t += 0.5f * Time.deltaTime;
+		}
 		t = Mathf.Clamp (t, 0f, 1f);
-		float[] sizes = { data_size.x, data_size.y, data_size.z };
-		float extremum = sizes.Max ();
-		scaleFactor = Mathf.SmoothStep(1f, 1f / extremum, t);
+		unsafe{
+			if (handle != null) {
+
+				float[] sizes = { data_size.x, data_size.y, data_size.z };
+				float extremum = sizes.Max ();
+				scaleFactor = Mathf.SmoothStep (1f, 1f / extremum, t);
+
+			}
+		}
+
 
 
 		gameObject.transform.localScale = new Vector3(scaleFactor,scaleFactor,scaleFactor);
