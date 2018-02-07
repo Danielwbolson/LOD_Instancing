@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.InteropServices;
-
+using UnityEngine.UI;
 public class VTKSampleSet : MonoBehaviour {
+	public Text countOutput;
 
 	public int sampleCount;
 	public VTKData vtkData;
@@ -39,14 +40,16 @@ public class VTKSampleSet : MonoBehaviour {
 	}
 	public void setSampleMag (float n){
 		if (n == 0)
-			setSampleMag (0);
+			setSampleCount (0);
 		else
 			setSampleCount((float)(Math.Pow(10,n-1)));
 	}
 
 	public void setSampleCount (float n){
 		sampleCount = (int)(n);
-		vtkSample ();
+		if(n > 0)
+			vtkSample ();
+		countOutput.text = "" + sampleCount + " glyphs";
 	}
 	unsafe public void vtkSample()
 	{

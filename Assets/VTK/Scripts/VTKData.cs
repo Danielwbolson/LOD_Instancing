@@ -44,7 +44,7 @@ public class VTKData : MonoBehaviour {
 
 	// Update is called once per frame
 
-	static float t = 0.0f;
+	static float t = 1.0f;
 	public float scaleFactor = 1;
 	void Update () {
 		scaleFactor = 1f;
