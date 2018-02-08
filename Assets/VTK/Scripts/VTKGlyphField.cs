@@ -119,12 +119,12 @@ public class VTKGlyphField : MonoBehaviour {
 
 		if (is_valid) {
 			if(renderBillboards)
-				Graphics.DrawMeshInstancedIndirect(billboardMesh, 0, billboardMaterial, new Bounds(Vector3.zero, new Vector3(100.0f, 100.0f, 100.0f)), billboardArgsBuffer);
+				Graphics.DrawMeshInstancedIndirect(billboardMesh, 0, billboardMaterial, new Bounds(Vector3.zero, new Vector3(100.0f, 100.0f, 100.0f)), billboardArgsBuffer,0,null, UnityEngine.Rendering.ShadowCastingMode.Off);
 
 			if(renderMeshes)
-				Graphics.DrawMeshInstancedIndirect(glyphMesh, 0, meshMaterial, new Bounds(Vector3.zero, new Vector3(100.0f, 100.0f, 100.0f)), meshArgsBuffer);
-			
-		}
+				Graphics.DrawMeshInstancedIndirect(glyphMesh, 0, meshMaterial, new Bounds(Vector3.zero, new Vector3(100.0f, 100.0f, 100.0f)), meshArgsBuffer,0,null, UnityEngine.Rendering.ShadowCastingMode.Off);
+
+        }
 
 	}
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028353, g: 0.2257137, b: 0.30692255, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -4518,7 +4518,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   instanceCount: 10000
   billboardMesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
-  glyphMesh: {fileID: 4300000, guid: b76766db894ba4bb7aea15b3f6ca8196, type: 3}
+  glyphMesh: {fileID: 4300000, guid: 5a858954c431ce14a82281dca846a928, type: 3}
   billboardMaterial: {fileID: 2100000, guid: 1a1d2f428fe834374ba7ab1d17d3cfc1, type: 2}
   meshMaterial: {fileID: 2100000, guid: f39a84da155624cd581aae16bfe5381c, type: 2}
   renderBillboards: 0
