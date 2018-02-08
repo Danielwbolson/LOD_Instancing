@@ -8,16 +8,11 @@ using System;
 using System.Linq;
 
 
-public class VTKData : MonoBehaviour {
+public class VTKData : Data {
 	private IntPtr NULL = IntPtr.Zero;
-	public string filename;
+
 	unsafe public void* handle = null;
-	public bool shouldNormalize = true;
 
-	public void setShouldNormalize(bool n) {
-		shouldNormalize = n;
-
-	}
 
 	[DllImport("vtkplugin", EntryPoint = "answer")]  private static extern int answer();
 	[DllImport("vtkplugin", EntryPoint = "open_data")]  unsafe private static extern void* open_data (StringBuilder sb);
@@ -26,59 +21,6 @@ public class VTKData : MonoBehaviour {
 	[DllImport("vtkplugin", EntryPoint = "get_bounds")]  unsafe private static extern IntPtr get_bounds (void* h);
 
 
-
-	private Vector3 data_center;
-	private Vector3 data_size;
-
-	public Vector3 getBoundingCenter () {
-		return data_center;
-	}
-	public Vector3 getBoundingSize() {
-		return data_size;
-	}
-
-	void Start () {
-		gameObject.GetComponent<LineRenderer> ().enabled = false;
-
-	}
-
-	// Update is called once per frame
-
-	static float t = 1.0f;
-	public float scaleFactor = 1;
-	void Update () {
-		scaleFactor = 1f;
-		if (!shouldNormalize) {
-			t -= 0.5f * Time.deltaTime;
-		} else {
-			t += 0.5f * Time.deltaTime;
-		}
-		t = Mathf.Clamp (t, 0f, 1f);
-		unsafe{
-			if (handle != null) {
-
-				float[] sizes = { data_size.x, data_size.y, data_size.z };
-				float extremum = sizes.Max ();
-				scaleFactor = Mathf.SmoothStep (1f, 1f / extremum, t);
-
-			}
-		}
-
-
-
-		gameObject.transform.localScale = new Vector3(scaleFactor,scaleFactor,scaleFactor);
-		
-	}
-
-	public void SetFileName(string f)
-	{
-		filename = f;
-	}
-
-	public void OnDrawGizmos()
-	{
-		
-	}
 
 	public void LoadData()
 	{
@@ -116,39 +58,10 @@ public class VTKData : MonoBehaviour {
 
             //print ("loaded " + get_number_of_vertices (handle) + " vertices");
 
-            Vector3[] corners = new Vector3[8];
-            corners[0] = new Vector3(-1, 1, -1);
-            corners[1] = new Vector3(1, 1, -1);
-            corners[2] = new Vector3(-1, -1, -1);
-            corners[3] = new Vector3(1, -1, -1); 
+			updateBounds ();
+			is_valid = true;
+			
 
-
-            corners[4] = new Vector3(-1, 1, 1);
-            corners[5] = new Vector3(1, 1, 1);
-            corners[6] = new Vector3(-1, -1, 1);
-            corners[7] = new Vector3(1, -1, 1);
-
-            Vector3[] linePositions = new Vector3[16];
-            linePositions[0] = (data_center + Vector3.Scale(data_size,corners[0])*0.5f);
-            linePositions[1] = (data_center + Vector3.Scale(data_size, corners[2]) * 0.5f);
-            linePositions[2] = (data_center + Vector3.Scale(data_size, corners[3]) * 0.5f);
-            linePositions[3] = (data_center + Vector3.Scale(data_size, corners[1]) * 0.5f);
-            linePositions[4] = (data_center + Vector3.Scale(data_size, corners[0]) * 0.5f);
-            linePositions[5] = (data_center + Vector3.Scale(data_size, corners[4]) * 0.5f);
-            linePositions[6] = (data_center + Vector3.Scale(data_size, corners[5]) * 0.5f);
-            linePositions[7] = (data_center + Vector3.Scale(data_size, corners[1]) * 0.5f);
-            linePositions[8] = (data_center + Vector3.Scale(data_size, corners[3]) * 0.5f);
-            linePositions[9] = (data_center + Vector3.Scale(data_size, corners[7]) * 0.5f);
-            linePositions[10] = (data_center + Vector3.Scale(data_size, corners[5]) * 0.5f);
-            linePositions[11] = (data_center + Vector3.Scale(data_size, corners[4]) * 0.5f);
-            linePositions[12] = (data_center + Vector3.Scale(data_size, corners[6]) * 0.5f);
-            linePositions[13] = (data_center + Vector3.Scale(data_size, corners[2]) * 0.5f);
-			linePositions[14] = (data_center + Vector3.Scale(data_size, corners[6]) * 0.5f);
-			linePositions[15] = (data_center + Vector3.Scale(data_size, corners[7]) * 0.5f);
-
-
-            gameObject.GetComponent<LineRenderer>().SetPositions(linePositions);
-			gameObject.GetComponent<LineRenderer> ().enabled = true;
 			gameObject.transform.GetChild (0).gameObject.GetComponent<VTKContour> ().vtkContour ();
 
 			gameObject.transform.GetChild (1).gameObject.GetComponent<VTKContour> ().vtkContour ();
