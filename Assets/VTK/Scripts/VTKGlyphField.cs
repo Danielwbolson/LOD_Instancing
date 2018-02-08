@@ -5,15 +5,32 @@ using UnityEngine.UI;
 
 public class VTKGlyphField : MonoBehaviour {
 	public int instanceCount = 3;
-	public Mesh instanceMesh;
-	public Material instanceMaterial;
+	public Mesh billboardMesh;
+	public Mesh glyphMesh;
+
+	public Material billboardMaterial;
+	public Material meshMaterial;
 
 	private int cachedInstanceCount = -1;
 	private ComputeBuffer positionBuffer;
-	private ComputeBuffer argsBuffer;
+	private ComputeBuffer billboardArgsBuffer;
+	private ComputeBuffer meshArgsBuffer;
+
 	private ComputeBuffer colorBuffer;
 	private bool is_valid = false;
-	private uint[] args = new uint[5] { 0, 0, 0, 0, 0 };
+	private uint[] billboardArgs = new uint[5] { 0, 0, 0, 0, 0 };
+	private uint[] meshArgs = new uint[5] { 0, 0, 0, 0, 0 };
+
+	public bool renderBillboards = false;
+	public bool renderMeshes = false;
+
+	public void shouldRenderBillboards(bool b){
+		renderBillboards = b;
+	}
+
+	public void shouldRenderMeshes(bool b){
+		renderMeshes = b;
+	}
 
 	private int SampleCount;
 
@@ -24,8 +41,9 @@ public class VTKGlyphField : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		is_valid = false;
+		meshArgsBuffer = new ComputeBuffer(1, meshArgs.Length * sizeof(uint), ComputeBufferType.IndirectArguments);
 
-		argsBuffer = new ComputeBuffer(1, args.Length * sizeof(uint), ComputeBufferType.IndirectArguments);
+		billboardArgsBuffer = new ComputeBuffer(1, billboardArgs.Length * sizeof(uint), ComputeBufferType.IndirectArguments);
 		SampleCount = transform.parent.transform.gameObject.GetComponent<VTKSampleSet> ().positions.Length;
 		if(SampleCount > 0)
 			UpdateBuffers();
@@ -37,11 +55,20 @@ public class VTKGlyphField : MonoBehaviour {
 		if (SampleCount < 1)
 			return;
 		instanceCount = SampleCount;
-		uint numIndices = (instanceMesh != null) ? (uint)instanceMesh.GetIndexCount(0) : 0;
-		args[0] = numIndices;
-		args[1] = (uint)instanceCount;
+		uint numIndices_billboard = (billboardMesh != null) ? (uint)billboardMesh.GetIndexCount(0) : 0;
+		uint numIndices_mesh = (glyphMesh != null) ? (uint)glyphMesh.GetIndexCount(0) : 0;
 
-		argsBuffer.SetData(args);
+
+		meshArgs[0] = numIndices_mesh;
+		meshArgs[1] = (uint)instanceCount;
+
+		meshArgsBuffer.SetData(meshArgs);
+
+
+		billboardArgs[0] = numIndices_billboard;
+		billboardArgs[1] = (uint)instanceCount;
+
+		billboardArgsBuffer.SetData(billboardArgs);
 
 		// Positions & Colors
 		        if (positionBuffer != null) positionBuffer.Release();
@@ -64,7 +91,8 @@ public class VTKGlyphField : MonoBehaviour {
 		
 		 positionBuffer.SetData(positions);
 
-		instanceMaterial.SetBuffer("positionBuffer", positionBuffer);
+		billboardMaterial.SetBuffer("positionBuffer", positionBuffer);
+		meshMaterial.SetBuffer("positionBuffer", positionBuffer);
 
 
 
@@ -78,17 +106,25 @@ public class VTKGlyphField : MonoBehaviour {
 		if (cachedInstanceCount != instanceCount) UpdateBuffers();
 
 
-		instanceMaterial.SetBuffer("positionBuffer", positionBuffer);
+		billboardMaterial.SetBuffer("positionBuffer", positionBuffer);
+		meshMaterial.SetBuffer("positionBuffer", positionBuffer);
 
 		// Pad input
 		//if (Input.GetAxisRaw("Horizontal") != 0.0f) instanceCount = (int)Mathf.Clamp(instanceCount + Input.GetAxis("Horizontal") * 40000, 1.0f, 5000000.0f);
 
 		// Render
 		//  instanceMaterial.SetBuffer("positionBuffer", positionBuffer);
-		instanceMaterial.SetMatrix("_DataTransform", transform.parent.parent.localToWorldMatrix);
+		billboardMaterial.SetMatrix("_DataTransform", transform.parent.parent.localToWorldMatrix);
+		meshMaterial.SetMatrix("_DataTransform", transform.parent.parent.localToWorldMatrix);
 
-		if (is_valid)
-			Graphics.DrawMeshInstancedIndirect(instanceMesh, 0, instanceMaterial, new Bounds(Vector3.zero, new Vector3(100.0f, 100.0f, 100.0f)), argsBuffer);
+		if (is_valid) {
+			if(renderBillboards)
+				Graphics.DrawMeshInstancedIndirect(billboardMesh, 0, billboardMaterial, new Bounds(Vector3.zero, new Vector3(100.0f, 100.0f, 100.0f)), billboardArgsBuffer);
+
+			if(renderMeshes)
+				Graphics.DrawMeshInstancedIndirect(glyphMesh, 0, meshMaterial, new Bounds(Vector3.zero, new Vector3(100.0f, 100.0f, 100.0f)), meshArgsBuffer);
+			
+		}
 
 	}
 }
