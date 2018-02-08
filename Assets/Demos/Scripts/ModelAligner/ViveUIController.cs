@@ -12,13 +12,13 @@ namespace VisBySculpting
         public UnityEvent onPointerTriggerDown;
         public UnityEvent onPointerTriggerUp;
 
-        //public SteamVR_TrackedObject uiHolderTracker;
-        //public GameObject uiCanvas;
+        public SteamVR_TrackedObject uiHolderTracker;
+        public GameObject uiCanvas;
 
 
         void Update()
         {
-            /*{ // for the ui holder
+            { // for the ui holder
                 SteamVR_Controller.Device device0 = this.GetDevice(this.uiHolderTracker);
                 if (device0 != null && device0.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
                 {
@@ -28,7 +28,7 @@ namespace VisBySculpting
                 {
                     this.uiCanvas.gameObject.SetActive(false);
                 }
-            }*/
+            }
 
             { // for the ui pointer
                 SteamVR_Controller.Device device0 = this.GetDevice(this.uiPointerTracker);

@@ -6,16 +6,24 @@ public class Datatoggle : MonoBehaviour {
 
 	public GameObject tract;
 	public GameObject wave;
+    public GameObject brain;
 
-	public bool tractIsActive = false;
+    public bool tractIsActive = false;
 	public bool waveIsActive = false;
+    public bool brainIsActive = false;
 
-	public void toggleTract() {
+    public void toggleTract() {
 		tractIsActive = !tractIsActive;
 		tract.SetActive (tractIsActive);
 	}
 
-	public void toggleWave() {
+    public void toggleBrain()
+    {
+        brainIsActive = !brainIsActive;
+        brain.SetActive(brainIsActive);
+    }
+
+    public void toggleWave() {
 		waveIsActive = !waveIsActive;
 		wave.SetActive (waveIsActive);
 	}
