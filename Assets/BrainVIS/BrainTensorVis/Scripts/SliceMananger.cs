@@ -37,26 +37,26 @@ public class SliceMananger : MonoBehaviour
         this.bgTexture = this.bgImageQuad.GetComponent<MeshRenderer>().material.mainTexture as Texture2D;
 
         { // color map 1
-            byte[] bytes = File.ReadAllBytes(Application.dataPath + "/BrainVIS/BrainColorMaps/cylinder1.jpg");
+			byte[] bytes = File.ReadAllBytes(Application.streamingAssetsPath  + "/example_data/BrainVIS/BrainColorMaps/cylinder1.jpg");
             Texture2D texture = new Texture2D(512, 32);
             texture.LoadImage(bytes);
             this.cylinder1Mat.mainTexture = texture;
         }
         { // color map 2
-            byte[] bytes = File.ReadAllBytes(Application.dataPath + "/BrainVIS/BrainColorMaps/cylinder2.jpg");
+			byte[] bytes = File.ReadAllBytes(Application.streamingAssetsPath  + "/example_data/BrainVIS/BrainColorMaps/cylinder2.jpg");
             Texture2D texture = new Texture2D(512, 32);
             texture.LoadImage(bytes);
             this.cylinder2Mat.mainTexture = texture;
         }
         { // color map 3
-            byte[] bytes = File.ReadAllBytes(Application.dataPath + "/BrainVIS/BrainColorMaps/zeppelin.jpg");
+			byte[] bytes = File.ReadAllBytes(Application.streamingAssetsPath  + "/example_data/BrainVIS/BrainColorMaps/zeppelin.jpg");
             Texture2D texture = new Texture2D(512, 32);
             texture.LoadImage(bytes);
             this.zeppelinMat.mainTexture = texture;
         }
 
         // for testing
-        this.OpenSlice(Application.dataPath + "/BrainVIS/BrainTensorData/Zep_cyl_cyl_32.txt");
+		this.OpenSlice(Application.streamingAssetsPath  + "/example_data/BrainVIS/BrainTensorData/Zep_cyl_cyl_32.txt");
     }
 
     public void OpenSlice(string filePath)

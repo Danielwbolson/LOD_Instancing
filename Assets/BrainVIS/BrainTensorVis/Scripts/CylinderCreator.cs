@@ -43,7 +43,7 @@ public class CylinderCreator : MonoBehaviour
 
 
 		// 1) load data
-		string[] lines = System.IO.File.ReadAllLines (Application.dataPath + "/Resources/Zep_cyl_cyl_32.txt");
+		string[] lines = System.IO.File.ReadAllLines (Application.streamingAssetsPath  + "/example_data/Resources/Zep_cyl_cyl_32.txt");
 		// skip the first line, which is the header
 		for (int l = 1; l < lines.Length; l++) {
 			string[] values = lines [l].Split (new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);

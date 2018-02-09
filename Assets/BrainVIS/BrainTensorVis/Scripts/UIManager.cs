@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
 
 	void Start ()
 	{
-		this.dataDirPath = Application.dataPath + "/BrainVIS/BrainTensorData";
+		this.dataDirPath = Application.streamingAssetsPath  + "/example_data/BrainVIS/BrainTensorData";
 
 		string[] filePaths = Directory.GetFiles (this.dataDirPath, "*_*_*_*.txt");
 

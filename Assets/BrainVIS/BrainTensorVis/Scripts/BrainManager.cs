@@ -35,32 +35,32 @@ public class BrainManager : MonoBehaviour
 		this.bgTexture = this.bgImageQuad.GetComponent<MeshRenderer> ().material.mainTexture as Texture2D;
 
 		{ // color map 1
-			byte[] bytes = File.ReadAllBytes (Application.dataPath + "/BrainColorMaps/cylinder1.jpg");
+			byte[] bytes = File.ReadAllBytes (Application.streamingAssetsPath  + "/example_data/BrainColorMaps/cylinder1.jpg");
 			Texture2D texture = new Texture2D (512, 32);
 			texture.LoadImage (bytes);
 			this.cylinder1Mat.mainTexture = texture;
 		}
 		{ // color map 2
-			byte[] bytes = File.ReadAllBytes (Application.dataPath + "/BrainColorMaps/cylinder2.jpg");
+			byte[] bytes = File.ReadAllBytes (Application.streamingAssetsPath  + "/example_data/BrainColorMaps/cylinder2.jpg");
 			Texture2D texture = new Texture2D (512, 32);
 			texture.LoadImage (bytes);
 			this.cylinder2Mat.mainTexture = texture;
 		}
 		{ // color map 3
-			byte[] bytes = File.ReadAllBytes (Application.dataPath + "/BrainColorMaps/zeppelin.jpg");
+			byte[] bytes = File.ReadAllBytes (Application.streamingAssetsPath  + "/example_data/BrainColorMaps/zeppelin.jpg");
 			Texture2D texture = new Texture2D (512, 32);
 			texture.LoadImage (bytes);
 			this.zeppelinMat.mainTexture = texture;
 		}
 		{ // color map 4
-			byte[] bytes = File.ReadAllBytes (Application.dataPath + "/BrainColorMaps/roundedCube.jpg");
+			byte[] bytes = File.ReadAllBytes (Application.streamingAssetsPath  + "/example_data/BrainColorMaps/roundedCube.jpg");
 			Texture2D texture = new Texture2D (512, 32);
 			texture.LoadImage (bytes);
 			this.roundedCubeMat.mainTexture = texture;
 		}
 
 		// for testing
-		this.OpenSlice (Application.dataPath + "/BrainTensorData/Zep_cyl_cyl_49.txt");
+		this.OpenSlice (Application.streamingAssetsPath  + "/example_data/BrainTensorData/Zep_cyl_cyl_49.txt");
 	}
 
 	public void OpenSlice (string filePath)
