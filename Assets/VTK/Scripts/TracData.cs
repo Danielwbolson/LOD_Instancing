@@ -298,6 +298,7 @@ public class TracData : Data {
 
 
 		is_valid = true;
+		file.Close ();
 
 	}
 

@@ -30,9 +30,7 @@ public class Datatoggle : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		tract.SetActive (tractIsActive);
 		brain.SetActive(brainIsActive);
-		wave.SetActive (waveIsActive);
 
 	}
 	
