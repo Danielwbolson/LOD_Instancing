@@ -13,14 +13,42 @@ public class VTKData : Data {
 
 	unsafe public void* handle = null;
 
+	public string[] variable_names;
+	int[] variable_components;
+
 
 	[DllImport("vtkplugin", EntryPoint = "answer")]  private static extern int answer();
 	[DllImport("vtkplugin", EntryPoint = "open_data")]  unsafe private static extern void* open_data (StringBuilder sb);
 	[DllImport("vtkplugin", EntryPoint = "close_data")]  unsafe private static extern void   close_data (void* h);
 	[DllImport("vtkplugin", EntryPoint = "get_number_of_vertices")]  unsafe private static extern int   get_number_of_vertices (void* h);
 	[DllImport("vtkplugin", EntryPoint = "get_bounds")]  unsafe private static extern IntPtr get_bounds (void* h);
+	[DllImport("vtkplugin", EntryPoint = "free_data")]  unsafe private static extern void free_data (void* h);
 
+	[DllImport("vtkplugin", EntryPoint = "get_variable_names")] 
+	unsafe private static extern void get_variable_names(void *h, char ***names, int ** components, int *number_of_variables);
 
+//	void Start () {
+//		gameObject.GetComponent<LineRenderer> ().enabled = false;
+//		unsafe{
+//			void*  handle = open_data (new StringBuilder(Application.streamingAssetsPath + "/" + "example_data/" + "VTK/" + "streamlines.vtp"));
+//			char** names = null;
+//			int* components = null;
+//			int numVars = 0;
+//			get_variable_names (handle, &names, &components, &numVars);
+//
+//			for (int i = 0; i < numVars; i++) {
+//				print ( Marshal.PtrToStringAnsi((IntPtr)names[i]) + " (" + components [i] + ")");
+//			}
+//
+//			for (int i = 0; i < numVars; i++) {
+//				free_data(names[i]);
+//			}
+//			free_data (names);
+//			free_data (components);
+//			close_data (handle);
+//				
+//		}
+//	} 
 
 	public void LoadData()
 	{
@@ -33,10 +61,32 @@ public class VTKData : Data {
 			print("opening..");
 			handle = open_data (new StringBuilder(Application.streamingAssetsPath + "/" + filename));
 
+
+
 			if (handle == null)
 				print ("Could not open " + Application.streamingAssetsPath + "/" + filename);
 			else
 				print("Opened " + Application.streamingAssetsPath + "/" + filename);
+
+
+			char** names = null;
+			int* components = null;
+			int numVars = 0;
+			get_variable_names (handle, &names, &components, &numVars);
+			variable_names = new string[numVars];
+			variable_components = new int[numVars];
+			print (numVars);
+			for (int i = 0; i < numVars; i++) {
+				print ( Marshal.PtrToStringAnsi((IntPtr)names[i]) + " (" + components [i] + ")");
+				variable_names [i] = Marshal.PtrToStringAnsi ((IntPtr)names [i]);
+				variable_components [i] = components [i];
+			}
+
+			for (int i = 0; i < numVars; i++) {
+				free_data(names[i]);
+			}
+			free_data (names);
+			free_data (components);
 
 
 			IntPtr bbox_buff;
