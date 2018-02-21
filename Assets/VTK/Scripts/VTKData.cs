@@ -27,28 +27,6 @@ public class VTKData : Data {
 	[DllImport("vtkplugin", EntryPoint = "get_variable_names")] 
 	unsafe private static extern void get_variable_names(void *h, char ***names, int ** components, int *number_of_variables);
 
-//	void Start () {
-//		gameObject.GetComponent<LineRenderer> ().enabled = false;
-//		unsafe{
-//			void*  handle = open_data (new StringBuilder(Application.streamingAssetsPath + "/" + "example_data/" + "VTK/" + "streamlines.vtp"));
-//			char** names = null;
-//			int* components = null;
-//			int numVars = 0;
-//			get_variable_names (handle, &names, &components, &numVars);
-//
-//			for (int i = 0; i < numVars; i++) {
-//				print ( Marshal.PtrToStringAnsi((IntPtr)names[i]) + " (" + components [i] + ")");
-//			}
-//
-//			for (int i = 0; i < numVars; i++) {
-//				free_data(names[i]);
-//			}
-//			free_data (names);
-//			free_data (components);
-//			close_data (handle);
-//				
-//		}
-//	} 
 
 	public void LoadData()
 	{
@@ -75,9 +53,9 @@ public class VTKData : Data {
 			get_variable_names (handle, &names, &components, &numVars);
 			variable_names = new string[numVars];
 			variable_components = new int[numVars];
-			print (numVars);
+			//print (numVars);
 			for (int i = 0; i < numVars; i++) {
-				print ( Marshal.PtrToStringAnsi((IntPtr)names[i]) + " (" + components [i] + ")");
+				//print ( Marshal.PtrToStringAnsi((IntPtr)names[i]) + " (" + components [i] + ")");
 				variable_names [i] = Marshal.PtrToStringAnsi ((IntPtr)names [i]);
 				variable_components [i] = components [i];
 			}
@@ -106,18 +84,16 @@ public class VTKData : Data {
 			float extremum = sizes.Max ();
 			gameObject.transform.localScale = new Vector3(1f/extremum,1f/extremum,1f/extremum);
 
-            //print ("loaded " + get_number_of_vertices (handle) + " vertices");
-
 			updateBounds ();
 			is_valid = true;
 			
+			for (int c = 0; c < gameObject.transform.childCount; c++) {
+				Filter f = gameObject.transform.GetChild (c).GetComponent<Filter> ();
+				if (f == null)
+					continue;
+				f.RefreshFilter ();
+			}
 
-			gameObject.transform.GetChild (0).gameObject.GetComponent<VTKContour> ().vtkContour ();
-
-			gameObject.transform.GetChild (1).gameObject.GetComponent<VTKContour> ().vtkContour ();
-			gameObject.transform.GetChild (2).gameObject.GetComponent<VTKContour> ().vtkContour ();
-
-			gameObject.transform.GetChild (3).gameObject.GetComponent<VTKSampleSet> ().vtkSample ();
 			return;
 
 		}

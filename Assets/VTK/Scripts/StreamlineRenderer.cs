@@ -2,9 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Runtime.InteropServices;
+using System.Text;
+using System;
+using System.Linq;
 
-public class VTKContour : Filter {
+public class StreamlineRenderer : Filter {
 	public VTKData vtkData;
 	public float isovalue = 0.001f;
 
@@ -13,43 +17,42 @@ public class VTKContour : Filter {
 	[DllImport("vtkplugin")] unsafe private static extern int contour (void *d, float v, int *np, float **p, float **n, int *nt, int **t);
 	[DllImport("vtkplugin")] unsafe private static extern void free_data (void* h);
 
-	// Use this for initialization
-//	void Start () {
-//		print ("starting");
-//		isovalue = 0.001f;
-//		vtkContour ();
-//
-//
-//	}
+	[DllImport("vtkplugin")] unsafe private static extern void get_array(void *h, StringBuilder array_name, float **values, int *number_of_elements, int *number_of_components);
 
-//	// Update is called once per frame
-//	void Update () {
-//
-//	}
-
-	public void SetIsoValue(float f)
-	{
-		isovalue = f;
-		vtkContour ();
-	}
 
 	public override void RefreshFilter() {
-		//print ("OVERRIDE");
-		//vtkContour ();
+		vtkContour ();
+		print ("AAAAAAAAHHHHHHH!!!!!");
+
 
 	}
 	unsafe public void vtkContour()
 	{
+
+		print ("AAAAAAAAHHHHHHH");
 		if (vtkData == null)
 			vtkData = gameObject.transform.parent.gameObject.GetComponent<VTKData> ();
 		if (vtkData.handle != null) 
 		{
+
+			char** names = null;
+			int* components = null;
+			int numVars = 0;
+			float* values = null;
+			int num_elements = 0;
+			int num_components = 0;
+
+			get_array (vtkData.handle, new StringBuilder ("Normals"), &values, &num_elements, &num_components);
+			print (num_elements);
+			print (num_components);
+			print (values [0] + "," + values [1] + "," + values [2]);
 
 			int np = 0;
 			int nt = 0;
 			float* p = null;
 			float* n = null;
 			int *t = null;
+
 			contour ((void*)vtkData.handle, isovalue, &np, &p, &n, &nt, &t);
 
 			int[] triangles = new int[nt*3];
@@ -95,6 +98,6 @@ public class VTKContour : Filter {
 			//
 			//print ("YY " + isovalue + " " + np + " " + nt );
 		} //else
-			//print ("not!");
+		//print ("not!");
 	}
 }
