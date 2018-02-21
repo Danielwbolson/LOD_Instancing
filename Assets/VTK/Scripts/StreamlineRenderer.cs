@@ -5,98 +5,115 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Runtime.InteropServices;
 using System.Text;
-using System;
 using System.Linq;
 
 public class StreamlineRenderer : Filter {
 	public VTKData vtkData;
 	public float isovalue = 0.001f;
-
-	private IntPtr NULL = IntPtr.Zero;
+	bool is_valid = false;
 
 	[DllImport("vtkplugin")] unsafe private static extern int contour (void *d, float v, int *np, float **p, float **n, int *nt, int **t);
 	[DllImport("vtkplugin")] unsafe private static extern void free_data (void* h);
 
 	[DllImport("vtkplugin")] unsafe private static extern void get_array(void *h, StringBuilder array_name, float **values, int *number_of_elements, int *number_of_components);
-
-
+	[DllImport("vtkplugin")] unsafe private static extern void get_points(void *h, float **values, int *number_of_elements, int *number_of_components);
+	[DllImport("vtkplugin")] unsafe private static extern int get_number_of_lines (void*h);
+	[DllImport("vtkplugin")] unsafe private static extern void get_line_ids (void*h, int line, int** ids_list, int*number_of_ids);
+		
 	public override void RefreshFilter() {
-		vtkContour ();
-		print ("AAAAAAAAHHHHHHH!!!!!");
+		getLines ();
 
 
 	}
-	unsafe public void vtkContour()
+	private List<List<int> > ids;
+	private Vector3 [] line_positions = null;
+	private Vector3 [] line_normals = null;
+	private float[] line_values = null;
+
+	unsafe void OnDrawGizmos() {
+		if (!is_valid)
+			return;
+		Gizmos.matrix = transform.localToWorldMatrix;
+		UnityEngine.Random.InitState (2);
+
+		for (int l = 0; l < ids.Count; l++) {
+			Gizmos.color =  UnityEngine.Random.ColorHSV();
+			print (ids [l].Count);
+
+			for (int i = 1; i < ids [l].Count; i++) {
+				Vector3 A = line_positions [ids [l][(i - 1)]];
+				Vector3 B = line_positions [ids[l][(i)]];
+
+				Gizmos.DrawLine(A,B)  ;
+			}
+		}
+			
+
+		Gizmos.color = Color.green;
+	}
+
+	
+	unsafe public void getLines()
 	{
 
-		print ("AAAAAAAAHHHHHHH");
 		if (vtkData == null)
 			vtkData = gameObject.transform.parent.gameObject.GetComponent<VTKData> ();
 		if (vtkData.handle != null) 
 		{
+			
 
-			char** names = null;
-			int* components = null;
-			int numVars = 0;
-			float* values = null;
-			int num_elements = 0;
-			int num_components = 0;
 
-			get_array (vtkData.handle, new StringBuilder ("Normals"), &values, &num_elements, &num_components);
-			print (num_elements);
-			print (num_components);
-			print (values [0] + "," + values [1] + "," + values [2]);
+			float* normals = null;
+			float* dataValues = null;
+			float* points = null;
+			int num_elements_normals = 0;
+			int num_components_normals = 0;
 
-			int np = 0;
-			int nt = 0;
-			float* p = null;
-			float* n = null;
-			int *t = null;
+			int num_elements_data = 0;
+			int num_components_data = 0;
 
-			contour ((void*)vtkData.handle, isovalue, &np, &p, &n, &nt, &t);
+			int num_points = 0;
+			int point_components = 0;
 
-			int[] triangles = new int[nt*3];
-			Vector3[] vertices = new Vector3[np];
-			Vector3[] normals = new Vector3[np];
 
-			for (int i = 0; i < np; i++) {
-				float n1 = (float)n [i * 3 + 0];
-				float n2 = (float)n [i * 3 + 1];
-				float n3 = (float)n [i * 3 + 2];
-
-				float v1 = (float)p [i * 3 + 0];
-				float v2 = (float)p [i * 3 + 1];
-				float v3 = (float)p [i * 3 + 2];
-
-				vertices [i].x = v1;
-				vertices [i].y = v2;
-				vertices [i].z = v3;
-
-				normals [i].x = n1;
-				normals [i].y = n2;
-				normals [i].z = n3;
-
+			get_array (vtkData.handle, new StringBuilder ("Normals"), &normals, &num_elements_normals, &num_components_normals);
+			get_array (vtkData.handle, new StringBuilder ("RTData"), &dataValues, &num_elements_data, &num_components_data);
+			get_points (vtkData.handle, &points, &num_points, &point_components);
+			int number_of_lines = get_number_of_lines (vtkData.handle);
+			ids = new List<List<int> > ();
+			line_values = new float[num_points];
+			line_positions = new Vector3[num_points];
+			line_normals = new Vector3[num_points];
+			print ("COMP: " + point_components);
+			for (int i = 0; i < num_points; i++) {
+				line_positions [i] = new Vector3 (points [i * 3 + 0], points [i * 3 + 1], points [i * 3 + 2]);
+				line_normals [i] = new Vector3 (normals [i * 3 + 0], normals [i * 3 + 1], normals [i * 3 + 2]);
+				line_values[i] = dataValues[i];
+				//print (line_positions[i]);
 			}
-
-			int num_t = nt*3;
-			for (int i = 0; i < num_t; i++) {
-				triangles [i] = t [i];
+			for (int i = 0; i < number_of_lines; i++) {
+				int* id_list = null;
+				int num_ids = 0;
+				get_line_ids (vtkData.handle, i, &id_list, &num_ids);
+//				print ("Line " + i + " has " + num_ids + " points");
+				ids.Add (new List<int> ());
+				for (int id = 0; id < num_ids; id++) {
+					ids.Last().Add(id_list[id]);
+				}
+				free_data(id_list);
 			}
+			print (num_elements_normals);
+			print (num_components_normals);
+			print (normals [0] + "," + normals [1] + "," + normals [2]);
+			print (num_components_data);
 
-			free_data ((void*)p);
-			free_data ((void*)n);
-			free_data ((void*)t);
-			p = null;
-			n = null;
-			t = null;
-			Mesh mesh = new Mesh ();
-			GetComponent<MeshFilter> ().mesh = mesh;
-			mesh.vertices = vertices;
-			mesh.triangles = triangles;
-			mesh.normals = normals;
-			//mesh.RecalculateNormals ();
-			//
-			//print ("YY " + isovalue + " " + np + " " + nt );
+			print (dataValues [0]);
+
+			free_data (normals);
+			free_data (dataValues);
+			free_data (points);
+			is_valid = true;
+
 		} //else
 		//print ("not!");
 	}

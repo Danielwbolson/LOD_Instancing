@@ -1,7 +1,7 @@
 import vtk
 reader = vtk.vtk.vtkXMLPolyDataReader()
 reader.SetFileName("streamlines.vtp")
-reader.Update();
+reader.Update()
 ds = reader.GetOutputAsDataSet()
 normals = ds.GetPointData().GetArray("Normals")
 data = ds.GetPointData().GetArray("RTData")
@@ -16,9 +16,9 @@ for i in range(pd.GetNumberOfArrays()):
         variables.append(array)
 
 
-points = ds.GetPoints();
+points = ds.GetPoints()
 
-lines = ds.GetLines();
+lines = ds.GetLines()
 
 print("Number of streamlines: " + str(lines.GetNumberOfCells()))
 
