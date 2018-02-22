@@ -37,17 +37,32 @@ public class StreamlineRenderer : Filter {
 	private List< List<Vector4> > uniformSplines;
 
 	unsafe void OnDrawGizmos() {
+		return;
 		if (!is_valid)
 			return;
 		Gizmos.matrix = transform.localToWorldMatrix;
-		UnityEngine.Random.InitState (2);
 
 		for (int l = 0; l < uniformSplines.Count; l++) {
-			Gizmos.color =  UnityEngine.Random.ColorHSV();
-
 			for (int i = 1; i < uniformSplines [l].Count; i++) {
 				Vector3 A = uniformSplines [l] [(i - 1)];
 				Vector3 B = uniformSplines [l] [(i)];
+
+				if (i == 1)
+					Gizmos.color = Color.green;
+				else if (i == uniformSplines [l].Count - 1)
+					Gizmos.color = Color.red;
+				else if (i % 2 == 0)
+					Gizmos.color = Color.white;
+				else
+					Gizmos.color = Color.black;
+				Gizmos.DrawLine(A,B)  ;
+			}
+		}
+
+		for (int l = 0; l < ids.Count; l++) {
+			for (int i = 1; i < ids [l].Count; i++) {
+				Vector3 A = line_positions[ids [l] [(i - 1)]];
+				Vector3 B = line_positions[ids [l] [i]];
 
 				if (i == 1)
 					Gizmos.color = Color.green;
@@ -126,7 +141,7 @@ public class StreamlineRenderer : Filter {
 					splines.Last ().addControlPoint (new Vector4(line_positions[ids [l] [i]].x,line_positions[ids [l] [i]].y,line_positions[ids [l] [i]].z,1));
 				}
 				//print (splines.Last().getLength(0, splines.Last ().controlPointCount ()-1));
-				uniformSplines.Add (splines.Last ().generateUniformPositions (1f));
+				uniformSplines.Add (splines.Last ().generateUniformPositions (0.2f));
 			}
 			//print (num_elements_normals);
 			//print (num_components_normals);
@@ -174,7 +189,7 @@ public class StreamlineRenderer : Filter {
 
 		if (_material != null) {
 			_material.SetBuffer ("_positions", positionBuffer);
-			Debug.Log ("SET BUFFER");
+			Debug.Log ("SET BUFFER: " + points.Count);
 			_material.SetInt ("_numPositions", points.Count);
 
 			_material.SetBuffer ("_offsets", offsetBuffer);

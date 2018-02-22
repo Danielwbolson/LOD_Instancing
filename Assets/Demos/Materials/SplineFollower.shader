@@ -7,6 +7,7 @@
 
 	}
 		SubShader{
+		cull Off
 		Tags{ "RenderType" = "Opaque" }
 		LOD 200
 
@@ -118,11 +119,13 @@
 			seg = 0;
 			seg_t = 0;
 		}
+
 		int4 index = getSegmentIndices (seg);
 		float3 p0 = _positions[index.x];
 		float3 p1 = _positions[index.y];
 		float3 p2 = _positions[index.z];
 		float3 p3 = _positions[index.w];
+
 		return (GetCatmullRomPosition (seg_t, p0.xyz, p1.xyz, p2.xyz, p3.xyz));
 	}
 
@@ -163,29 +166,24 @@
 	 void vert (inout appdata_full v) {
 	 	#ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
 	 		 //v.vertex.x += unity_InstanceID;
-	 		 v.vertex.w = 1;
-	 		float z = v.vertex.y*1/(_meshHeight*2)*_glyphScale;
+			float z = v.vertex.y*1/(_meshHeight*2)*_glyphScale;
 	 		float centerT = (unity_InstanceID  + _offset)*(_glyphScale+_glyphSpacing);
 
 	 		float instT = centerT +z;
-	 		if(false) {
+
 			float _RotationSpeed = _glyphTwist*instT;
 			float sinX = sin ( _RotationSpeed  );
 			float cosX = cos ( _RotationSpeed  );
 			float sinY = sin ( _RotationSpeed  );
 			float2x2 rotationMatrix = float2x2( cosX, -sinX, sinY, cosX);          
 
-			v.vertex.xz = mul(rotationMatrix,v.vertex.xz);
- 
-			v.normal.xz = mul(rotationMatrix,v.normal.xz);}
-
+			v.vertex.xz = mul(rotationMatrix,v.vertex.xz); 
+			v.normal.xz = mul(rotationMatrix,v.normal.xz);
 
 
 //	 		float3 pointA = getSplinePosition(unity_InstanceID+_offset);;
 //	 		float3 pointB = getSplinePosition(unity_InstanceID+1+_offset);;
-			v.vertex.y *= 0.25;
-			v.vertex.xyz *= 0.25;
-
+			v.vertex.y = 0;
 	 		float3 ABVector;// = normalize(pointB.xyz - pointA.xyz);
 	 		ABVector = normalize(getSplineDerivative(centerT +z));
 	 		float3 splinePos = getSplinePosition(centerT  + z);
@@ -194,25 +192,17 @@
 
 	 		float angle = acos(d);
 
-	 		//v.vertex.xyz*=1;
+	 		v.vertex.xyz*=0.1;
+	 		v.vertex.xz *= 1/(_meshHeight*2)*_glyphScale*_glyphRadius;
 
+	 		v.vertex.xyz = mul(rotationAroundAxis(crossVector,angle),v.vertex).xyz;
+	 		v.normal.xyz = mul(rotationAroundAxis(crossVector,angle),v.normal).xyz;
 
-
-	 		//v.vertex.xz *= 1/(1.0*2)*_glyphScale*_glyphRadius;
-
-	 		//v.vertex.xyz = mul(rotationAroundAxis(crossVector,angle),v.vertex).xyz;
-	 		//v.normal.xyz = mul(rotationAroundAxis(crossVector,angle),v.normal).xyz;
-
-	 		//v.vertex.xyz += _glyphInflate*v.normal.xyz;
-	 		v.vertex.xyz+=_positions[unity_InstanceID];
-
-	 		v.vertex.xyz = mul(_DataTransform,v.vertex).xyz;
-	 			 									 		 return;
-
-	 		return;
+	 		v.vertex.xyz += _glyphInflate*v.normal.xyz;
 
           	v.vertex.xyz += float3(splinePos.x,splinePos.y,splinePos.z);
 
+          	v.vertex.xyz = mul(_DataTransform,v.vertex).xyz;
           	v.texcoord.y  = instT*pow(2,_glyphTextureScale);
         #endif
 
