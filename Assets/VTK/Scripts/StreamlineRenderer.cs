@@ -13,16 +13,17 @@ public class StreamlineRenderer : Filter {
 	public VTKData vtkData;
 	public float isovalue = 0.001f;
 	bool is_valid = false;
+	private IntPtr NULL = IntPtr.Zero;
 
 	protected List<Spline> splines;
 
 	[DllImport("vtkplugin")] unsafe private static extern int contour (void *d, float v, int *np, float **p, float **n, int *nt, int **t);
-	[DllImport("vtkplugin")] unsafe private static extern void free_data (void* h);
+	[DllImport("vtkplugin")] unsafe private static extern void free_data (IntPtr h);
 
-	[DllImport("vtkplugin")] unsafe private static extern void get_array(void *h, StringBuilder array_name, float **values, int *number_of_elements, int *number_of_components);
-	[DllImport("vtkplugin")] unsafe private static extern void get_points(void *h, float **values, int *number_of_elements, int *number_of_components);
-	[DllImport("vtkplugin")] unsafe private static extern int get_number_of_lines (void*h);
-	[DllImport("vtkplugin")] unsafe private static extern void get_line_ids (void*h, int line, int** ids_list, int*number_of_ids);
+	[DllImport("vtkplugin")] unsafe private static extern void get_array(IntPtr h, StringBuilder array_name, IntPtr *values, int *number_of_elements, int *number_of_components);
+	[DllImport("vtkplugin")] unsafe private static extern void get_points(IntPtr h, IntPtr* values, int *number_of_elements, int *number_of_components);
+	[DllImport("vtkplugin")] unsafe private static extern int get_number_of_lines (IntPtr h);
+	[DllImport("vtkplugin")] unsafe private static extern void get_line_ids (IntPtr h, int line, IntPtr* ids_list, int*number_of_ids);
 		
 	public override void RefreshFilter() {
 		getLines ();
@@ -83,18 +84,18 @@ public class StreamlineRenderer : Filter {
 	
 	unsafe public void getLines()
 	{
-
 		if (vtkData == null)
 			vtkData = gameObject.transform.parent.gameObject.GetComponent<VTKData> ();
-		if (vtkData.handle != null) 
+		if (vtkData.handle != NULL) 
 		{
 			
 
 			splines = new List<Spline> ();
 
-			float* normals = null;
-			float* dataValues = null;
-			float* points = null;
+			IntPtr normals = IntPtr.Zero;;
+			IntPtr dataValues = IntPtr.Zero;;
+
+			IntPtr points = IntPtr.Zero;;
 			int num_elements_normals = 0;
 			int num_components_normals = 0;
 
@@ -106,8 +107,30 @@ public class StreamlineRenderer : Filter {
 
 
 			get_array (vtkData.handle, new StringBuilder ("Normals"), &normals, &num_elements_normals, &num_components_normals);
-			get_array (vtkData.handle, new StringBuilder ("RTData"), &dataValues, &num_elements_data, &num_components_data);
+			float[] normal_array = new float[num_elements_normals * num_components_normals];
+			Marshal.Copy (normals, normal_array, 0, normal_array.Length);
+			//free_data (normals);
+
+
 			get_points (vtkData.handle, &points, &num_points, &point_components);
+			float [] point_array = new float[num_points * point_components];
+			Marshal.Copy ( points, point_array, 0, point_array.Length);
+
+			//free_data (dataValues);
+
+
+			get_array (vtkData.handle, new StringBuilder ("RTData"), &dataValues, &num_elements_data, &num_components_data);
+
+			float[] data_array = new float[num_elements_data * num_components_data];
+			Marshal.Copy (dataValues, data_array, 0, data_array.Length);
+
+
+			//free_data (points);
+
+
+
+
+
 			int number_of_lines = get_number_of_lines (vtkData.handle);
 			ids = new List<List<int> > ();
 			line_values = new float[num_points];
@@ -115,19 +138,21 @@ public class StreamlineRenderer : Filter {
 			line_normals = new Vector3[num_points];
 			print ("COMP: " + point_components);
 			for (int i = 0; i < num_points; i++) {
-				line_positions [i] = new Vector3 (points [i * 3 + 0], points [i * 3 + 1], points [i * 3 + 2]);
-				line_normals [i] = new Vector3 (normals [i * 3 + 0], normals [i * 3 + 1], normals [i * 3 + 2]);
-				line_values[i] = dataValues[i];
+				line_positions [i] = new Vector3 (point_array [i * 3 + 0], point_array [i * 3 + 1], point_array [i * 3 + 2]);
+				line_normals [i] = new Vector3 (normal_array [i * num_components_normals + 0], normal_array [i * num_components_normals + 1], normal_array [i * num_components_normals + 2]);
+				line_values[i] = data_array[i];
 				//print (line_positions[i]);
 			}
 			for (int i = 0; i < number_of_lines; i++) {
-				int* id_list = null;
+				IntPtr id_list = IntPtr.Zero;;
 				int num_ids = 0;
 				get_line_ids (vtkData.handle, i, &id_list, &num_ids);
+				int[] id_array = new int[num_ids];
+				Marshal.Copy (id_list, id_array, 0, id_array.Length);
 //				print ("Line " + i + " has " + num_ids + " points");
 				ids.Add (new List<int> ());
 				for (int id = 0; id < num_ids; id++) {
-					ids.Last().Add(id_list[id]);
+					ids.Last().Add(id_array[id]);
 				}
 				free_data(id_list);
 			}
@@ -148,11 +173,8 @@ public class StreamlineRenderer : Filter {
 			//print (normals [0] + "," + normals [1] + "," + normals [2]);
 			//print (num_components_data);
 
-			print (dataValues [0]);
+			//print (dataValues [0]);
 
-			free_data (normals);
-			free_data (dataValues);
-			free_data (points);
 			is_valid = true;
 			UpdateBuffer ();
 

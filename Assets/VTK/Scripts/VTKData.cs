@@ -11,21 +11,20 @@ using System.Linq;
 public class VTKData : Data {
 	private IntPtr NULL = IntPtr.Zero;
 
-	unsafe public void* handle = null;
+	unsafe public IntPtr handle = IntPtr.Zero;
 
 	public string[] variable_names;
 	int[] variable_components;
 
 
-	[DllImport("vtkplugin", EntryPoint = "answer")]  private static extern int answer();
-	[DllImport("vtkplugin", EntryPoint = "open_data")]  unsafe private static extern void* open_data (StringBuilder sb);
-	[DllImport("vtkplugin", EntryPoint = "close_data")]  unsafe private static extern void   close_data (void* h);
-	[DllImport("vtkplugin", EntryPoint = "get_number_of_vertices")]  unsafe private static extern int   get_number_of_vertices (void* h);
-	[DllImport("vtkplugin", EntryPoint = "get_bounds")]  unsafe private static extern IntPtr get_bounds (void* h);
-	[DllImport("vtkplugin", EntryPoint = "free_data")]  unsafe private static extern void free_data (void* h);
+	[DllImport("vtkplugin", EntryPoint = "open_data")]   private static extern IntPtr open_data (StringBuilder sb);
+	[DllImport("vtkplugin", EntryPoint = "close_data")]   private static extern void   close_data (IntPtr h);
+	[DllImport("vtkplugin", EntryPoint = "get_number_of_vertices")]   private static extern int   get_number_of_vertices (IntPtr h);
+	[DllImport("vtkplugin", EntryPoint = "get_bounds")]   private static extern IntPtr get_bounds (IntPtr h);
+	[DllImport("vtkplugin", EntryPoint = "free_data")]   private static extern void free_data (IntPtr h);
 
 	[DllImport("vtkplugin", EntryPoint = "get_variable_names")] 
-	unsafe private static extern void get_variable_names(void *h, char ***names, int ** components, int *number_of_variables);
+	unsafe private static extern void get_variable_names(IntPtr h, char ***names, int ** components, int *number_of_variables);
 
 
 	public void LoadData()
@@ -33,7 +32,7 @@ public class VTKData : Data {
 		print ("Loading " + Application.streamingAssetsPath + "/" + filename);
 
 		unsafe{
-			if (handle != null)
+			if (handle != NULL)
 				close_data (handle);
 			// char* s = ;
 			print("opening..");
@@ -41,7 +40,7 @@ public class VTKData : Data {
 
 
 
-			if (handle == null)
+			if (handle == NULL)
 				print ("Could not open " + Application.streamingAssetsPath + "/" + filename);
 			else
 				print("Opened " + Application.streamingAssetsPath + "/" + filename);
@@ -61,10 +60,10 @@ public class VTKData : Data {
 			}
 
 			for (int i = 0; i < numVars; i++) {
-				free_data(names[i]);
+			//	free_data(names[i]);
 			}
-			free_data (names);
-			free_data (components);
+			//free_data (names);
+			//free_data (components);
 
 
 			IntPtr bbox_buff;

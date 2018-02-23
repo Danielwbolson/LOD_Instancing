@@ -8728,7 +8728,7 @@ MonoBehaviour:
   vtkData: {fileID: 0}
   isovalue: 0.001
   _material: {fileID: 2100000, guid: 8231929d6a9164756a6f672b98543612, type: 2}
-  _mesh: {fileID: 4300000, guid: d392b2863aa374dcfa3634eefabbc097, type: 3}
+  _mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
   _offset: 0
   _glyphScale: 0.1
   _glyphRadius: 10
