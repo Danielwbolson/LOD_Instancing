@@ -16,13 +16,15 @@ public static class ExtensionMethods
 }
 
 public class StreamlineRenderer : Filter {
+	public bool uniformGizmo = false;
+	public int numGizmo = 1;
 	public VTKData vtkData;
 	public float isovalue = 0.001f;
 	bool is_valid = false;
 	private IntPtr NULL = IntPtr.Zero;
 	private Paths paths;
 
-	protected List<Spline> splines;
+	//protected List<Spline> splines;
 
 	[DllImport("vtkplugin")] unsafe private static extern void free_data (IntPtr h);
 
@@ -87,30 +89,72 @@ public class StreamlineRenderer : Filter {
 		float min = paths.getVariable ("data").getMinValue();
 		float max = paths.getVariable ("data").getMaxValue();
 
-		for (int l = 0; l < paths.getNumberOfLines(); l++) {
-			int[] indices = paths.getLineIndices (l);
+		if (!uniformGizmo) {
 
-			for (int i = 1; i < indices.Count(); i++) {
-				Vector3 A = paths.getLineVertex( indices [i-1]);
-				Vector3 B = paths.getLineVertex( indices [i]);
-				if (false) {
-					float v = paths.getLineVariableValue1 ("data", indices [i - 1]);
-					float v_norm = v.Map (min, max, 0, 1);
-					Gizmos.color = Color.HSVToRGB(0,0,v_norm);
-				} else {
-					if (i == 1)
-						Gizmos.color = Color.green;
-					else if (i == indices.Count () - 1)
-						Gizmos.color = Color.red;
-					else if (i % 2 == 0)
-						Gizmos.color = Color.white;
-					else
-						Gizmos.color = Color.black;
+			for (int l = 0; l < Mathf.Min( paths.getNumberOfLines(), numGizmo); l++) {
+				int[] indices = paths.getLineIndices (l);
+
+				for (int i = 1; i < indices.Count(); i++) {
+					Vector3 A = paths.getLineVertex( indices [i-1]);
+					Vector3 B = paths.getLineVertex( indices [i]);
+					if (false) {
+						float v = paths.getLineVariableValue1 ("data", indices [i - 1]);
+						float v_norm = v.Map (min, max, 0, 1);
+						Gizmos.color = Color.HSVToRGB(0,0,v_norm);
+					} else {
+						if (i == 1)
+							Gizmos.color = Color.green;
+						else if (i == indices.Count () - 1)
+							Gizmos.color = Color.red;
+						else if (i % 2 == 0)
+							Gizmos.color = Color.white;
+						else
+							Gizmos.color = Color.black;
+					}
+					Gizmos.DrawLine(A,B)  ;
+
+					Gizmos.color = Color.blue;
+					//print(Vector3.Angle (B - A, paths.getLineNormal (indices [i - 1])));
+					Gizmos.DrawLine (A, A + paths.getLineNormal(indices[i-1]).normalized * 0.1f);
 				}
-				Gizmos.DrawLine(A,B)  ;
 			}
+		} else {
+			if (uniformPaths == null)
+				return;
+
+			for (int l = 0; l < Mathf.Min( uniformPaths.getNumberOfLines(), numGizmo); l++) {
+				int[] indices = uniformPaths.getLineIndices (l);
+
+				for (int i = 1; i < indices.Count(); i++) {
+					Vector3 A = uniformPaths.getLineVertex( indices [i-1]);
+					Vector3 B = uniformPaths.getLineVertex( indices [i]);
+					if (true) {
+						float v = uniformPaths.getLineVariableValue1 ("data", indices [i - 1]);
+						float v_norm = v.Map (min, max, 0, 1);
+						Gizmos.color = Color.HSVToRGB(0,0,v_norm);
+					} else {
+						if (i == 1)
+							Gizmos.color = Color.green;
+						else if (i == indices.Count () - 1)
+							Gizmos.color = Color.red;
+						else if (i % 2 == 0)
+							Gizmos.color = Color.white;
+						else
+							Gizmos.color = Color.black;
+					}
+					Gizmos.DrawLine(A,B)  ;
+
+					Gizmos.color = Color.blue;
+					//print(Vector3.Angle (B - A, paths.getLineNormal (indices [i - 1])));
+					Gizmos.DrawLine (A, A + uniformPaths.getLineNormal(indices[i-1]).normalized * 0.1f);
+				}
+			}
+
 		}
 
+//
+
+	
 		Gizmos.color = Color.green;
 	}
 
@@ -123,7 +167,7 @@ public class StreamlineRenderer : Filter {
 		{
 			paths = new Paths ();
 
-			splines = new List<Spline> ();
+			//splines = new List<Spline> ();
 
 			IntPtr normals = IntPtr.Zero;;
 			IntPtr dataValues = IntPtr.Zero;;
@@ -213,15 +257,15 @@ public class StreamlineRenderer : Filter {
 
 			uniformSplines = new List<List<Vector4> >() ;
 			//print (ids.Count + " == " + number_of_lines);
-			for (int l = 0; l < ids.Count; l++) {
-				splines.Add (new Spline ());
-				
-				for (int i = 0; i < ids [l].Count; i++) {
-					splines.Last ().addControlPoint (new Vector4(line_positions[ids [l] [i]].x,line_positions[ids [l] [i]].y,line_positions[ids [l] [i]].z,1));
-				}
-				//print (splines.Last().getLength(0, splines.Last ().controlPointCount ()-1));
-				uniformSplines.Add (splines.Last ().generateUniformPositions (0.2f));
-			}
+//			for (int l = 0; l < ids.Count; l++) {
+//				splines.Add (new Spline ());
+//				
+//				for (int i = 0; i < ids [l].Count; i++) {
+//					splines.Last ().addControlPoint (new Vector4(line_positions[ids [l] [i]].x,line_positions[ids [l] [i]].y,line_positions[ids [l] [i]].z,1));
+//				}
+//				//print (splines.Last().getLength(0, splines.Last ().controlPointCount ()-1));
+//				uniformSplines.Add (splines.Last ().generateUniformPositions (0.2f));
+//			}
 			//print (num_elements_normals);
 			//print (num_components_normals);
 			//print (normals [0] + "," + normals [1] + "," + normals [2]);
@@ -232,11 +276,12 @@ public class StreamlineRenderer : Filter {
 			is_valid = true;
 			UpdateBuffer ();
 
-			paths.generateUniformPaths (0.1f);
+			uniformPaths = paths.generateUniformPaths (0.1f);
 
 		} //else
 		//print ("not!");
 	}
+	private Paths uniformPaths = null;
 
 	private ComputeBuffer positionBuffer;
 	private ComputeBuffer offsetBuffer;
@@ -246,7 +291,7 @@ public class StreamlineRenderer : Filter {
 	void UpdateBuffer() {
 		List<int> offsets = new List<int> ();
 		List<Vector4> points = new List<Vector4> ();
-
+		return;
 		int offset = 0;
 		for (int i = 0; i < uniformSplines.Count; i++) {
 			offsets.Add (offset);
@@ -293,6 +338,7 @@ public class StreamlineRenderer : Filter {
 
 	void UpdateBuffers()
 	{ 
+		return;
 		if ( instanceCount < 1 ) instanceCount = 1;
 
 		uint numIndices = (_mesh != null) ? (uint)_mesh.GetIndexCount(0) : 0;
@@ -315,6 +361,7 @@ public class StreamlineRenderer : Filter {
 	}
 	void Update()
 	{ 
+		return;
 		if (!is_valid)
 			return;
 		_material.SetMatrix ("_DataTransform", transform.localToWorldMatrix);
@@ -342,320 +389,320 @@ public class StreamlineRenderer : Filter {
 
 
 
-
-
-
-public class Spline
-{
-
-	public List<Vector3> controlPointsList;
-
-	public Spline() {
-		controlPointsList = new List<Vector3>();
-	}
-
-	public void addControlPoint(Vector3 t, float e = 0.001f) {
-		//if(controlPointsList.Count != 0)
-			//Debug.Log ((controlPointsList.Last () - t).magnitude + " < " + e);
-		if(controlPointsList.Count == 0 || (controlPointsList.Last() - t).magnitude > e)
-			controlPointsList.Add (t);
-
-	}
-
-	public int controlPointCount() {
-		return controlPointsList.Count;
-	}
-	public int[] getSegmentIndices(int seg) {
-		int[] result = new int[4];
-		int index0 = seg==0? 0 : seg - 1;
-		int index1 = seg;
-		int index2 = seg + 1;
-		int index3 = seg + 2 <= controlPointCount() - 1? seg + 2: seg + 1;
-
-		result [0] = index0;
-		result [1] = index1;
-		result [2] = index2;
-		result [3] = index3;
-
-		return result;
-	}
-	public float getSegmentLength(int seg) {
-
-
-		int[] index = getSegmentIndices (seg);
-		Vector3 p0 = controlPointsList[index[0]];
-		Vector3 p1 = controlPointsList[index[1]];
-		Vector3 p2 = controlPointsList[index[2]];
-		Vector3 p3 = controlPointsList[index[3]];
-
-		float len = GetLengthSimpsons (0, 1, p0, p1, p2, p3);
-		return len;
-	}
-
-	public float getLength(float t_start, float t_end) {
-		//			float t_i_a = t_start;
-		//			float t_i_b = Mathf.Floor (t_start) + 1;
-		//Debug.Log(t_start +" -- " + t_end);
-		float t_i = t_start;
-
-		float len = 0;
-
-		while (t_i <= t_end) {
-			int seg = (int)Mathf.Floor (t_i );
-
-			float seg_t = t_i - seg;
-
-			float t_j = Mathf.Min (t_end, seg + 1f)-seg;
-			if (seg < controlPointCount () - 1) {
-				int[] index = getSegmentIndices (seg);
-				Vector3 p0 = controlPointsList [index [0]];
-				Vector3 p1 = controlPointsList [index [1]];
-				Vector3 p2 = controlPointsList [index [2]];
-				Vector3 p3 = controlPointsList [index [3]];
-
-
-
-				len += GetLengthSimpsons (seg_t, t_j, p0, p1, p2, p3);
-			}
-
-			t_i += 1;
-			//Debug.Log (t_i);
-
-		}
-
-
-		return len;
-
-
-
-	}
-
-	public Vector3 getSplinePosition(float t) {
-		int seg = (int)Mathf.Floor (t);
-
-		float seg_t = t - seg;
-		if (seg > controlPointCount () - 2) {
-			seg = controlPointCount () - 2;
-			seg_t = 1;
-		}
-		int[] index = getSegmentIndices (seg);
-		Vector3 p0 = controlPointsList[index[0]];
-		Vector3 p1 = controlPointsList[index[1]];
-		Vector3 p2 = controlPointsList[index[2]];
-		Vector3 p3 = controlPointsList[index[3]];
-		return (GetCatmullRomPosition (seg_t, p0, p1, p2, p3));
-	}
-
-	public Vector3 getSplineDerivative(float t) {
-		int seg = (int)Mathf.Floor (t);
-
-		float seg_t = t - seg;
-		if (seg > controlPointCount () - 2) {
-			seg = controlPointCount () - 2 ;
-			seg_t = 1;
-		}
-		int[] index = getSegmentIndices (seg);
-		Vector3 p0 = controlPointsList[index[0]];
-		Vector3 p1 = controlPointsList[index[1]];
-		Vector3 p2 = controlPointsList[index[2]];
-		Vector3 p3 = controlPointsList[index[3]];
-		return (GetCatmullRomDerivative (seg_t, p0, p1, p2, p3));
-	}
-
-
-	//Use Newton–Raphsons method to find the t value at the end of this distance d
-	public float FindTValue(float d)
-	{
-		d = Mathf.Max (0, d);
-		int segment = 0;
-		float segmentLength = getLength (segment, segment + 1);
-		while (d > segmentLength && segment < controlPointCount()-1) {
-			d -= segmentLength;
-
-			segment++;
-			segmentLength = getLength (segment, segment + 1);
-		}
-		if (segment == controlPointCount()-1)
-			return segment;
-		int[] index = getSegmentIndices (segment);
-		Vector3 p0 = controlPointsList[index[0]];
-		Vector3 p1 = controlPointsList[index[1]];
-		Vector3 p2 = controlPointsList[index[2]];
-		Vector3 p3 = controlPointsList[index[3]];
-
-		//Need a start value to make the method start
-		//Should obviously be between 0 and 1
-		//We can say that a good starting point is the percentage of distance traveled
-		//If this start value is not working you can use the Bisection Method to find a start value
-		//https://en.wikipedia.org/wiki/Bisection_method
-		float t = d / segmentLength;
-
-		//Need an error so we know when to stop the iteration
-		float error = 0.001f;
-
-		//We also need to avoid infinite loops
-		int iterations = 0;
-
-		while (true)
-		{
-			//Newton's method
-			float tNext = t - ((GetLengthSimpsons(0f, t, p0, p1,p2,p3) - d) / GetArcLengthIntegrand(t, p0, p1,p2,p3));
-
-			//Have we reached the desired accuracy?
-			if (Mathf.Abs(tNext - t) < error)
-			{
-				break;
-			}
-
-			t = tNext;
-
-			iterations += 1;
-
-			if (iterations > 1000)
-			{
-				break;
-			}
-		}
-		return segment + t;
-	}
-
-
-
-
-	//Returns a position between 4 Vector3 with Catmull-Rom spline algorithm
-	//http://www.iquilezles.org/www/articles/minispline/minispline.htm
-	Vector3 GetCatmullRomPosition(float t, Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)
-	{
-
-		//The coefficients of the cubic polynomial (except the 0.5f * which I added later for performance)
-		Vector3 a = 2f * p1;
-		Vector3 b = p2 - p0;
-		Vector3 c = 2f * p0 - 5f * p1 + 4f * p2 - p3;
-		Vector3 d = -p0 + 3f * p1 - 3f * p2 + p3;
-
-		//The cubic polynomial: a + b * t + c * t^2 + d * t^3
-		Vector3 pos = 0.5f * (a + (b * t) + (c * t * t) + (d * t * t * t));
-
-		return pos;
-	}
-
-	Vector3 GetCatmullRomDerivative(float t, Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)
-	{
-		//The coefficients of the cubic polynomial (except the 0.5f * which I added later for performance)
-		Vector3 a = 2f * p1;
-		Vector3 b = p2 - p0;
-		Vector3 c = 2f * p0 - 5f * p1 + 4f * p2 - p3;
-		Vector3 d = -p0 + 3f * p1 - 3f * p2 + p3;
-
-		//The cubic polynomial: a + b * t + c * t^2 + d * t^3
-		Vector3 der = 0.5f * b + t*(c+1.5f*d*t);
-
-
-		return der;
-	}
-
-
-
-
-
-
-
-
-	//The derivative of cubic De Casteljau's Algorithm
-	Vector3 DeCasteljausAlgorithmDerivative(float t, Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)
-	{
-
-		Vector3 A = 2f * p1;
-		Vector3 B = p2 - p0;
-		Vector3 C = 2f * p0 - 5f * p1 + 4f * p2 - p3;
-		Vector3 D = -p0 + 3f * p1 - 3f * p2 + p3;
-
-		Vector3 dU = t * t * (-3f * (A - 3f * (B - C) - D));
-
-		dU += t * (6f * (A - 2f * B + C));
-
-		dU += -3f * (A - B); 
-
-		return dU;
-	}
-
-
-	//Get and infinite small length from the derivative of the curve at position t
-	float GetArcLengthIntegrand(float t, Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)
-	{
-		//The derivative at this point (the velocity vector)
-		Vector3 dPos = GetCatmullRomDerivative(t, p0, p1,p2,p3);
-
-		//This the how it looks like in the YouTube videos
-		//float xx = dPos.x * dPos.x;
-		//float yy = dPos.y * dPos.y;
-		//float zz = dPos.z * dPos.z;
-
-		//float integrand = Mathf.Sqrt(xx + yy + zz);
-
-		//Same as above
-		float integrand = dPos.magnitude;
-
-		return integrand;
-	}
-
-
-	//Get the length of the curve between two t values with Simpson's rule
-	float GetLengthSimpsons(float tStart, float tEnd, Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)
-	{
-		//This is the resolution and has to be even
-		int n = 20;
-
-		//Now we need to divide the curve into sections
-		float delta = (tEnd - tStart) / (float)n;
-
-		//The main loop to calculate the length
-
-		//Everything multiplied by 1
-		float endPoints = GetArcLengthIntegrand(tStart, p0, p1,p2,p3) + GetArcLengthIntegrand(tEnd, p0, p1,p2,p3);
-
-		//Everything multiplied by 4
-		float x4 = 0f;
-		for (int i = 1; i < n; i += 2)
-		{
-			float t = tStart + delta * i;
-
-			x4 += GetArcLengthIntegrand(t, p0, p1,p2,p3);
-		}
-
-		//Everything multiplied by 2
-		float x2 = 0f;
-		for (int i = 2; i < n; i += 2)
-		{
-			float t = tStart + delta * i;
-
-			x2 += GetArcLengthIntegrand(t, p0, p1,p2,p3);
-		}
-
-		//The final length
-		float length = (delta / 3f) * (endPoints + 4f* x4 + 2f * x2);
-
-		return length;
-	}
-
-
-	public List<Vector4> generateUniformPositions(float stepSize) {
-		List<Vector4> result = new List<Vector4> ();
-
-		float t = 0;
-		float dist = 0;
-		float nextT = 0;
-
-		Vector3 p = getSplinePosition (t);
-		result.Add (new Vector4(p.x, p.y, p.z,1));
-
-		while(t<controlPointCount()-1){
-			dist += stepSize;
-			nextT = FindTValue (dist);
-			t = nextT;
-			 p = getSplinePosition (t);
-			result.Add (new Vector4(p.x, p.y, p.z,1));
-		}
-		return result;
-	}
-}
+//
+//
+//
+//public class Spline
+//{
+//
+//	public List<Vector3> controlPointsList;
+//
+//	public Spline() {
+//		controlPointsList = new List<Vector3>();
+//	}
+//
+//	public void addControlPoint(Vector3 t, float e = 0.001f) {
+//		//if(controlPointsList.Count != 0)
+//			//Debug.Log ((controlPointsList.Last () - t).magnitude + " < " + e);
+//		if(controlPointsList.Count == 0 || (controlPointsList.Last() - t).magnitude > e)
+//			controlPointsList.Add (t);
+//
+//	}
+//
+//	public int controlPointCount() {
+//		return controlPointsList.Count;
+//	}
+//	public int[] getSegmentIndices(int seg) {
+//		int[] result = new int[4];
+//		int index0 = seg==0? 0 : seg - 1;
+//		int index1 = seg;
+//		int index2 = seg + 1;
+//		int index3 = seg + 2 <= controlPointCount() - 1? seg + 2: seg + 1;
+//
+//		result [0] = index0;
+//		result [1] = index1;
+//		result [2] = index2;
+//		result [3] = index3;
+//
+//		return result;
+//	}
+//	public float getSegmentLength(int seg) {
+//
+//
+//		int[] index = getSegmentIndices (seg);
+//		Vector3 p0 = controlPointsList[index[0]];
+//		Vector3 p1 = controlPointsList[index[1]];
+//		Vector3 p2 = controlPointsList[index[2]];
+//		Vector3 p3 = controlPointsList[index[3]];
+//
+//		float len = GetLengthSimpsons (0, 1, p0, p1, p2, p3);
+//		return len;
+//	}
+//
+//	public float getLength(float t_start, float t_end) {
+//		//			float t_i_a = t_start;
+//		//			float t_i_b = Mathf.Floor (t_start) + 1;
+//		//Debug.Log(t_start +" -- " + t_end);
+//		float t_i = t_start;
+//
+//		float len = 0;
+//
+//		while (t_i <= t_end) {
+//			int seg = (int)Mathf.Floor (t_i );
+//
+//			float seg_t = t_i - seg;
+//
+//			float t_j = Mathf.Min (t_end, seg + 1f)-seg;
+//			if (seg < controlPointCount () - 1) {
+//				int[] index = getSegmentIndices (seg);
+//				Vector3 p0 = controlPointsList [index [0]];
+//				Vector3 p1 = controlPointsList [index [1]];
+//				Vector3 p2 = controlPointsList [index [2]];
+//				Vector3 p3 = controlPointsList [index [3]];
+//
+//
+//
+//				len += GetLengthSimpsons (seg_t, t_j, p0, p1, p2, p3);
+//			}
+//
+//			t_i += 1;
+//			//Debug.Log (t_i);
+//
+//		}
+//
+//
+//		return len;
+//
+//
+//
+//	}
+//
+//	public Vector3 getSplinePosition(float t) {
+//		int seg = (int)Mathf.Floor (t);
+//
+//		float seg_t = t - seg;
+//		if (seg > controlPointCount () - 2) {
+//			seg = controlPointCount () - 2;
+//			seg_t = 1;
+//		}
+//		int[] index = getSegmentIndices (seg);
+//		Vector3 p0 = controlPointsList[index[0]];
+//		Vector3 p1 = controlPointsList[index[1]];
+//		Vector3 p2 = controlPointsList[index[2]];
+//		Vector3 p3 = controlPointsList[index[3]];
+//		return (GetCatmullRomPosition (seg_t, p0, p1, p2, p3));
+//	}
+//
+//	public Vector3 getSplineDerivative(float t) {
+//		int seg = (int)Mathf.Floor (t);
+//
+//		float seg_t = t - seg;
+//		if (seg > controlPointCount () - 2) {
+//			seg = controlPointCount () - 2 ;
+//			seg_t = 1;
+//		}
+//		int[] index = getSegmentIndices (seg);
+//		Vector3 p0 = controlPointsList[index[0]];
+//		Vector3 p1 = controlPointsList[index[1]];
+//		Vector3 p2 = controlPointsList[index[2]];
+//		Vector3 p3 = controlPointsList[index[3]];
+//		return (GetCatmullRomDerivative (seg_t, p0, p1, p2, p3));
+//	}
+//
+//
+//	//Use Newton–Raphsons method to find the t value at the end of this distance d
+//	public float FindTValue(float d)
+//	{
+//		d = Mathf.Max (0, d);
+//		int segment = 0;
+//		float segmentLength = getLength (segment, segment + 1);
+//		while (d > segmentLength && segment < controlPointCount()-1) {
+//			d -= segmentLength;
+//
+//			segment++;
+//			segmentLength = getLength (segment, segment + 1);
+//		}
+//		if (segment == controlPointCount()-1)
+//			return segment;
+//		int[] index = getSegmentIndices (segment);
+//		Vector3 p0 = controlPointsList[index[0]];
+//		Vector3 p1 = controlPointsList[index[1]];
+//		Vector3 p2 = controlPointsList[index[2]];
+//		Vector3 p3 = controlPointsList[index[3]];
+//
+//		//Need a start value to make the method start
+//		//Should obviously be between 0 and 1
+//		//We can say that a good starting point is the percentage of distance traveled
+//		//If this start value is not working you can use the Bisection Method to find a start value
+//		//https://en.wikipedia.org/wiki/Bisection_method
+//		float t = d / segmentLength;
+//
+//		//Need an error so we know when to stop the iteration
+//		float error = 0.001f;
+//
+//		//We also need to avoid infinite loops
+//		int iterations = 0;
+//
+//		while (true)
+//		{
+//			//Newton's method
+//			float tNext = t - ((GetLengthSimpsons(0f, t, p0, p1,p2,p3) - d) / GetArcLengthIntegrand(t, p0, p1,p2,p3));
+//
+//			//Have we reached the desired accuracy?
+//			if (Mathf.Abs(tNext - t) < error)
+//			{
+//				break;
+//			}
+//
+//			t = tNext;
+//
+//			iterations += 1;
+//
+//			if (iterations > 1000)
+//			{
+//				break;
+//			}
+//		}
+//		return segment + t;
+//	}
+//
+//
+//
+//
+//	//Returns a position between 4 Vector3 with Catmull-Rom spline algorithm
+//	//http://www.iquilezles.org/www/articles/minispline/minispline.htm
+//	Vector3 GetCatmullRomPosition(float t, Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)
+//	{
+//
+//		//The coefficients of the cubic polynomial (except the 0.5f * which I added later for performance)
+//		Vector3 a = 2f * p1;
+//		Vector3 b = p2 - p0;
+//		Vector3 c = 2f * p0 - 5f * p1 + 4f * p2 - p3;
+//		Vector3 d = -p0 + 3f * p1 - 3f * p2 + p3;
+//
+//		//The cubic polynomial: a + b * t + c * t^2 + d * t^3
+//		Vector3 pos = 0.5f * (a + (b * t) + (c * t * t) + (d * t * t * t));
+//
+//		return pos;
+//	}
+//
+//	Vector3 GetCatmullRomDerivative(float t, Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)
+//	{
+//		//The coefficients of the cubic polynomial (except the 0.5f * which I added later for performance)
+//		Vector3 a = 2f * p1;
+//		Vector3 b = p2 - p0;
+//		Vector3 c = 2f * p0 - 5f * p1 + 4f * p2 - p3;
+//		Vector3 d = -p0 + 3f * p1 - 3f * p2 + p3;
+//
+//		//The cubic polynomial: a + b * t + c * t^2 + d * t^3
+//		Vector3 der = 0.5f * b + t*(c+1.5f*d*t);
+//
+//
+//		return der;
+//	}
+//
+//
+//
+//
+//
+//
+//
+//
+//	//The derivative of cubic De Casteljau's Algorithm
+//	Vector3 DeCasteljausAlgorithmDerivative(float t, Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)
+//	{
+//
+//		Vector3 A = 2f * p1;
+//		Vector3 B = p2 - p0;
+//		Vector3 C = 2f * p0 - 5f * p1 + 4f * p2 - p3;
+//		Vector3 D = -p0 + 3f * p1 - 3f * p2 + p3;
+//
+//		Vector3 dU = t * t * (-3f * (A - 3f * (B - C) - D));
+//
+//		dU += t * (6f * (A - 2f * B + C));
+//
+//		dU += -3f * (A - B); 
+//
+//		return dU;
+//	}
+//
+//
+//	//Get and infinite small length from the derivative of the curve at position t
+//	float GetArcLengthIntegrand(float t, Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)
+//	{
+//		//The derivative at this point (the velocity vector)
+//		Vector3 dPos = GetCatmullRomDerivative(t, p0, p1,p2,p3);
+//
+//		//This the how it looks like in the YouTube videos
+//		//float xx = dPos.x * dPos.x;
+//		//float yy = dPos.y * dPos.y;
+//		//float zz = dPos.z * dPos.z;
+//
+//		//float integrand = Mathf.Sqrt(xx + yy + zz);
+//
+//		//Same as above
+//		float integrand = dPos.magnitude;
+//
+//		return integrand;
+//	}
+//
+//
+//	//Get the length of the curve between two t values with Simpson's rule
+//	float GetLengthSimpsons(float tStart, float tEnd, Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)
+//	{
+//		//This is the resolution and has to be even
+//		int n = 20;
+//
+//		//Now we need to divide the curve into sections
+//		float delta = (tEnd - tStart) / (float)n;
+//
+//		//The main loop to calculate the length
+//
+//		//Everything multiplied by 1
+//		float endPoints = GetArcLengthIntegrand(tStart, p0, p1,p2,p3) + GetArcLengthIntegrand(tEnd, p0, p1,p2,p3);
+//
+//		//Everything multiplied by 4
+//		float x4 = 0f;
+//		for (int i = 1; i < n; i += 2)
+//		{
+//			float t = tStart + delta * i;
+//
+//			x4 += GetArcLengthIntegrand(t, p0, p1,p2,p3);
+//		}
+//
+//		//Everything multiplied by 2
+//		float x2 = 0f;
+//		for (int i = 2; i < n; i += 2)
+//		{
+//			float t = tStart + delta * i;
+//
+//			x2 += GetArcLengthIntegrand(t, p0, p1,p2,p3);
+//		}
+//
+//		//The final length
+//		float length = (delta / 3f) * (endPoints + 4f* x4 + 2f * x2);
+//
+//		return length;
+//	}
+//
+//
+//	public List<Vector4> generateUniformPositions(float stepSize) {
+//		List<Vector4> result = new List<Vector4> ();
+//
+//		float t = 0;
+//		float dist = 0;
+//		float nextT = 0;
+//
+//		Vector3 p = getSplinePosition (t);
+//		result.Add (new Vector4(p.x, p.y, p.z,1));
+//
+//		while(t<controlPointCount()-1){
+//			dist += stepSize;
+//			nextT = FindTValue (dist);
+//			t = nextT;
+//			 p = getSplinePosition (t);
+//			result.Add (new Vector4(p.x, p.y, p.z,1));
+//		}
+//		return result;
+//	}
+//}

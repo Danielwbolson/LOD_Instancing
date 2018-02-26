@@ -44,6 +44,9 @@ public class DataVariable {
 		this._maxes = maxes;
 	}
 
+	public void setDataAt(int index, float f) {
+		_data [index] = f;
+	}
 	public float getMinValue(int component = 0) {
 		return _mins [component];
 	}
@@ -95,7 +98,7 @@ public class Paths : DataSet {
 
 	public void setNormalData(float[] data, int components) {
 		this.addVariable ("normals", data, components);
-		_positionVariable = _variables ["normals"];
+		_normalVariable = _variables ["normals"];
 
 	}
 
@@ -106,26 +109,54 @@ public class Paths : DataSet {
 	public int[] getLineIndices(int lineIndex) {
 		return _pathIndices.Values.ToList()[lineIndex].ToArray() ;;
 	}
+	public DataVariable getPositionVariable() {
+		if (_positionVariable == null)
+			_positionVariable = _variables ["positions"];
+		return _positionVariable;
+	}
 
+	public DataVariable getNormalVariable() {
+		if (_normalVariable == null)
+			_normalVariable = _variables ["normals"];
+		return _normalVariable;
+	}
 	public Vector3 getLineVertex(int index) {
-		DataVariable ds = _variables ["positions"];
-		return new Vector3(ds.getDataAt (index*ds.getNumberOfComponents() +0), ds.getDataAt (index*ds.getNumberOfComponents() +1), ds.getDataAt (index*ds.getNumberOfComponents() +2) );
+		DataVariable ds = getPositionVariable();
+		float[] p = getLineVariableValue (ds, index);
+		Vector3 P;// = new Vector3 (ds.getDataAt (index * ds.getNumberOfComponents () + 0), ds.getDataAt (index * ds.getNumberOfComponents () + 1), ds.getDataAt (index * ds.getNumberOfComponents () + 2));
+		P = new Vector3 (p[0], p[1], p[2]);
+
+		return P;
 	}
 	public Vector3 getLineNormal(int index) {
-		DataVariable ds = _variables ["normals"];
+		DataVariable ds = getNormalVariable();
 		return new Vector3(ds.getDataAt (index*ds.getNumberOfComponents() +0), ds.getDataAt (index*ds.getNumberOfComponents() +1), ds.getDataAt (index*ds.getNumberOfComponents() +2) );
 	}
-	public float getLineVariableValue1(string variableName, int index) {
-		DataVariable ds = _variables [variableName];
+	public float getLineVariableValue1(DataVariable variable, int index) {
+		DataVariable ds = variable;
 		return ds.getDataAt (index*ds.getNumberOfComponents() +0);
 	}
-	public float [] getLineVariableValue(string variableName, int index) {
-		DataVariable ds = _variables [variableName];
+	public float [] getLineVariableValue(DataVariable variable, int index) {
+		DataVariable ds = variable;
+
+		if (ds == null) {
+			int x = 0;
+		}
 		float[] values = new float[ds.getNumberOfComponents()];
 		for(int v = 0; v < ds.getNumberOfComponents(); v++){ 
 			values[v] = ds.getDataAt (index*ds.getNumberOfComponents() +v);
 		}
 		return values;
+	}
+
+
+	public float getLineVariableValue1(string variableName, int index) {
+		DataVariable ds = _variables [variableName];
+		return getLineVariableValue1(ds,index);
+	}
+	public float [] getLineVariableValue(string variableName, int index) {
+		DataVariable ds = _variables [variableName];
+		return getLineVariableValue (ds, index);;
 	}
 
 	public void addLine(int [] indices, int seedID, bool should_combine) {
@@ -136,22 +167,52 @@ public class Paths : DataSet {
 			_pathIndices [seedID] = indices.OfType<int> ().ToList ();
 		} else if (should_combine) {
 			_pathIndices [seedID].Reverse ();
+			// Flip normals
+			int comp = getNormalVariable ().getNumberOfComponents ();
+
+			for (int i = 0; i < _pathIndices [seedID].Count (); i++) {
+				for (int c = 0; c < comp; c++) {
+					getNormalVariable ().setDataAt(_pathIndices [seedID] [i]*comp + c,  -getNormalVariable ().getDataAt (_pathIndices [seedID] [i]*comp+c) );
+
+				}
+			}
+
+
 			_pathIndices [seedID].AddRange (indices);
+
+
 		} else {
 			_pathIndices [-seedID] = indices.OfType<int> ().ToList ();
 		}
+
 	}
-	float segmantLength(int line, float t) {
+	float[][] segmentLengths;
+
+	float segmentLength(int line, int t) {
+		if (segmentLengths == null)
+			segmentLengths  = new float[getNumberOfLines()][];
+		if (segmentLengths [line] == null) {
+			segmentLengths [line] = new float[getLineIndices (line).Count ()];
+			for (int i=0; i<segmentLengths[line].Length; i++) { segmentLengths[line][i] = -1; }
+		}
+		if (segmentLengths [line] [t] > 0) {
+			//return segmentLengths [line] [t];
+		}
+
 		int[] lineIndices = getLineIndices (line);
 
-		int ti = (int)t;
-		int a = Mathf.Max (ti, 0);
-		int b = Mathf.Min (ti + 1, lineIndices.Count () - 1);
+		int a = Mathf.Max (t, 0);
+		int b = Mathf.Min (t + 1, lineIndices.Count () - 1);
 
 		Vector3 A = getPositionAtT (line, a);
 		Vector3 B = getPositionAtT (line, b);
 
-		return (A - B).magnitude;
+
+		float dist = Vector3.Distance (A, B);
+
+		segmentLengths [line] [t] = dist;
+
+		return segmentLengths [line] [t] ;
 
 	}
 	float calculateLineLength(int line) {
@@ -182,12 +243,21 @@ public class Paths : DataSet {
 
 	float [] getInterpolationAtT(DataVariable v, int line, float t) {
 		int[] lineIndices = getLineIndices (line);
+		float [] tween = new float[v.getNumberOfComponents()];
+
+//		tween [0] = getLineVertex (lineIndices [(int)t]).x;
+//		tween [1] = getLineVertex (lineIndices [(int)t]).y;
+//		tween [2] = getLineVertex (lineIndices [(int)t]).z;
+
+//		float [] result = getLineVariableValue (v, lineIndices [(int)t]);;
+		///return tween;
+
+		//return result;
 		int ti = (int)t;
 		int a = Mathf.Max (ti, 0);
 		int b = Mathf.Min (ti + 1, lineIndices.Count () - 1);
 		//float [] A = v.getDataAt(lineIndices [a]);
 		//float[] B = v.getDataAt (lineIndices [b]);
-		float [] tween = new float[v.getNumberOfComponents()];
 
 		if (a >= lineIndices.Count ()|| a < 0)
 			Debug.Log ("BANG");
@@ -198,11 +268,12 @@ public class Paths : DataSet {
 			tween [c] = Mathf.Lerp (A, B, t-ti);
 					
 		}
+		//Debug.Log(a + "->" +b + "; " + v.getDataAt(lineIndices [a]*v.getNumberOfComponents() ) +"->" +  v.getDataAt(lineIndices [b]*v.getNumberOfComponents() ) +" (" + (t-ti) + ") = " + tween[0]); 
 		return tween;
 
 	}
 	Vector3 getPositionAtT(int line, float t) {
-		float[] r = getInterpolationAtT (_positionVariable, line, t);
+		float[] r = getInterpolationAtT (getPositionVariable(), line, t);
 		return new Vector3 (r[0], r[1], r[2]);
 
 	}
@@ -213,43 +284,119 @@ public class Paths : DataSet {
 	}
 
 
-	double getInterpolatedStep(int line, double t_a, float step) {
+	float getInterpolatedStep(int line, float t_a, float step) {
 
-		double t = t_a;
-		double remaining_step = step;
-
-		double currentSegmentLength = segmantLength(line, (int)t);
-		double remaining_sub_t = t - (int)t;
-		if (remaining_step < remaining_sub_t * currentSegmentLength)
-			t += remaining_step / currentSegmentLength;
-		
+		float t = t_a;
 		int count = getLineIndices (line).Count ();
-		while (t < count && remaining_step > (currentSegmentLength = segmantLength(line, (int)t)) ) {
-			remaining_step -= currentSegmentLength;
-			t += 1;
 
-			//currentSegmentLength = segmantLength(line, (int)t);
+
+		float remaining_step = step;
+
+		float currentSegmentLength = segmentLength(line, (int)t);
+		float left_in_t = 1.0f- (t - (int)t);
+
+		if (remaining_step < left_in_t * currentSegmentLength) {
+			t += remaining_step / currentSegmentLength;
+			return t;
+		}
+		if (left_in_t > 0) { 
+			remaining_step -= left_in_t * currentSegmentLength;
+			t = (int)t + 1;
 
 		}
 
-		if (remaining_step <=  currentSegmentLength)
-			t += remaining_step / currentSegmentLength;
-		else
+		currentSegmentLength = segmentLength (line, (int)t);
+		while (t < count && remaining_step > currentSegmentLength ) 
+		{
+
+			remaining_step -= currentSegmentLength;
+			t += 1;
+			if(t < count)
+				currentSegmentLength = segmentLength(line, (int)t);
+		}
+
+		if (t >= count) {
 			return -1;
-		
+		}
+			
 
-		return (float)t;
+		return t + remaining_step / currentSegmentLength;;
 
+			
+	
 	}
+	public List<List<Vector3> > tempSteps;
+	public List<List<Vector3> > tempNorms;
 
 	public Paths generateUniformPaths(float stepSize) {
-		for (int l = 0; l < getNumberOfLines (); l++) {
+		tempSteps = new List<List<Vector3> > (); 
+		tempNorms = new List<List<Vector3> > (); 
+
+		_positionVariable = _variables ["positions"];
+		_normalVariable = _variables ["normals"];
+		//List<int> newIndices = new List<int> ();
+		List<float> lineLengths = new List<float> ();
+
+		int numLines = getNumberOfLines ();
+		
+		//numLines = 1;
+		for (int l = 0; l < numLines; l++) {
+			lineLengths.Add (calculateLineLength (l)); 
+		}
+
+		Dictionary<string, List<float> > newValues = new Dictionary<string, List<float> > ();
+		List<DataVariable> sources = new List<DataVariable>();
+		List<List<float>> destinations = new List<List<float>>();
+		List<string> names = new List<string>();
+
+		foreach(KeyValuePair<string,  DataVariable> entry in _variables)
+		{
+			names.Add (entry.Key);
+			sources.Add (entry.Value);
+			destinations.Add (new List<float> ());
+		}
+
+		
+		List< List<int> > newIndices = new List< List<int> > ();
+		List<int> seeds = new List<int>();
+		List<List<int> > oldIndices = new List<List<int> > ();
+
+		foreach(KeyValuePair<int,  List<int>> entry in _pathIndices)
+		{
+			seeds.Add (entry.Key);
+			oldIndices.Add(entry.Value);
+			newIndices.Add(new List<int>());
+		}
+		int index = 0;
+		for (int l = 0; l < numLines; l++) {
+			
+			tempSteps.Add (new List<Vector3> ());
+			tempNorms.Add (new List<Vector3> ());
+			int[] li = getLineIndices (l);
 			int i = 0;
-			double t = 0;
+			float t = 0;
 
 			Debug.Log ("Line " + l);
-			while ((t = getInterpolatedStep (l, t, stepSize)) > 0)
+			while ((t = getInterpolatedStep (l, t, stepSize)) > 0) {
 				i++;
+				for (int v = 0; v < names.Count (); v++) {
+					float[] d = getInterpolationAtT (sources[v], l, (float)t);
+					foreach (float f in d) {
+						destinations [v].Add (f);
+					}
+				}
+
+				newIndices [l].Add (index++);
+
+//				float[] p = getInterpolationAtT (_positionVariable, l, (float)t);
+//				float[] n = getInterpolationAtT (_normalVariable, l, (float)t);
+
+//				tempSteps.Last().Add(new Vector3(p[0],p[1],p[2]));
+//				tempNorms.Last ().Add (new Vector3(n[0],n[1],n[2]));
+
+
+			}
+
 
 
 			float len = calculateLineLength (l);
@@ -258,7 +405,16 @@ public class Paths : DataSet {
 
 			Debug.Log ("Compare: " + i  + ", " + (int)(len) / stepSize);
 		}
-		return null;
+
+		Paths newPaths = new Paths ();
+		for (int i = 0; i < names.Count (); i++) {
+			newPaths.addVariable (names [i], destinations [i].ToArray (), sources [i].getNumberOfComponents());
+		}
+		for (int i = 0; i < seeds.Count (); i++) {
+			newPaths.addLine (newIndices [i].ToArray (), seeds [i], false);
+				
+		}
+		return newPaths;
 	}
 
 

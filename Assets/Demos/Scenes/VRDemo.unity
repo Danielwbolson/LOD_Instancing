@@ -8725,6 +8725,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d423b414d768425cada1220e2509eb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uniformGizmo: 1
+  numGizmo: 20
   vtkData: {fileID: 0}
   isovalue: 0.001
   _material: {fileID: 2100000, guid: 8231929d6a9164756a6f672b98543612, type: 2}
