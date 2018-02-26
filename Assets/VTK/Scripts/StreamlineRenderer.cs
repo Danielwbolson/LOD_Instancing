@@ -41,7 +41,7 @@ public class StreamlineRenderer : Filter {
 	}
 		
 	unsafe void OnDrawGizmos() {
-		//return;
+		return;
 		if (!is_valid)
 			return;
 		Gizmos.matrix = transform.localToWorldMatrix;

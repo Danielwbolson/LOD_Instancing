@@ -229,6 +229,22 @@
 		return (transform);
 
 	}
+
+	float3x3 referenceFrameTransform(float3 i1, float3 j1, float3 k1, float3 i2, float3 j2, float3 k2){
+
+//		transform[0] = float3(dot(i1,i2), dot(j1,i2),dot(k1,i2));
+//		transform[1] = float3(dot(i1,j2), dot(j1,j2),dot(k1,j2));
+//		transform[2] = float3(dot(i1,k2), dot(j1,k2),dot(k1,k2));
+		float3x3 transform;
+		transform[0] = i2;
+		transform[1] = j2;
+		transform[2] = k2;
+		return (transform);
+
+
+	}
+
+
 	 void vert (inout appdata_full v) {
 	 	#ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
 //	 		 v.vertex.xyz += _positions[unity_InstanceID];
@@ -277,47 +293,34 @@
 //	 		float3 pointA = getSplinePosition(unity_InstanceID+_offset);;
 //	 		float3 pointB = getSplinePosition(unity_InstanceID+1+_offset);;
 			v.vertex.y = 0;
-	 		float3 N = getNormalOnLine(lineID,instT);
+	 		float3 N = normalize(getNormalOnLine(lineID,instT));
 	 		float3 P = getPositionOnLine(lineID,instT);
 	 		float3 AB = normalize(getPositionOnLine(lineID,instT+1) - getPositionOnLine(lineID,instT-1));
-	 		float3 C = cross(N,AB);
-	 		float3 T = cross(N,C);
+	 		float3 B = normalize(cross(N,AB));
+	 		float3 T = normalize(cross(N,B));
 	 		float3 ABVector = T;
 
+	 		float3 i = float3(1,0,0);
+	 		float3 j = float3(0,1,0);
+	 		float3 k = float3(0,0,1);
 
-	 		float3 splinePos = P;
-            float3 crossVector = normalize(cross(float3(0,1,0),ABVector));
 
-            float d = dot(float3(0,1,0),ABVector);
 
-	 		float angle = acos(d);
+			float3x3 transform;
+			transform[0] = -B;
+			transform[1] = T;
+			transform[2] = N;
+			transform = transpose(transform);
 
-	 		v.vertex.xyz*=1;
 
 	 		v.vertex.xz *= 1*_glyphScale*_glyphRadius;
-	 		float3 vertNorm = mul(rotationAroundAxis(crossVector,-angle),N).xyz;
-	 		float3 vertNormCross = cross(float3(0,0,1),vertNorm);
-	 		float normAngle = acos(dot(float3(0,0,1),vertNorm));
 
-	 		if(vertNormCross.y < 0)
-	 			normAngle = 360-normAngle; 
-
-	 		v.vertex.xyz = mul(rotationAroundAxis(float3(0,1,0),normAngle),v.vertex).xyz;
-
-	 		v.vertex.xyz = mul(rotationAroundAxis(crossVector,angle),v.vertex).xyz;
-	 		v.normal.xyz = mul(rotationAroundAxis(crossVector,angle),v.normal).xyz;
-
-	 		//v.vertex.xyz += _glyphInflate*v.normal.xyz;
-
-//          	v.vertex.x += lineID;
-//          	v.vertex.y += glyphID;
+			v.vertex.xyz = mul(transform,v.vertex.xyz);
+			v.normal.xyz = mul(transform,v.normal.xyz);
 
 			v.vertex.xyz += P;
 			v.vertex.xyz = mul(_DataTransform,v.vertex).xyz;
 
-			//v.vertex.xyz = original;
-			//v.vertex.x += lineID;
-			//v.vertex.z += indexListCount/100.0;
           	          	        	return;
 
           	v.texcoord.y  = instT*pow(2,_glyphTextureScale);
