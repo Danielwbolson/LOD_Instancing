@@ -19,7 +19,9 @@ public class DataVariable {
 	int _numberOfComponents;
 	float [] _mins;
 	float [] _maxes;
-
+	public float[] getData() {
+		return _data;
+	}
 	public float getDataAt(int index) {
 		return _data [index];
 
@@ -76,9 +78,7 @@ public class DataSet {
 	}
 }
 
-//public class PathInterpolator {
-//
-//}
+
 public class Paths : DataSet {
 
 	SortedDictionary<int, List<int> > _pathIndices;
@@ -214,6 +214,19 @@ public class Paths : DataSet {
 
 		return segmentLengths [line] [t] ;
 
+	}
+	float[] lineLengths;
+	public float getLineLength(int line) {
+		if(lineLengths == null) {
+			lineLengths = new float[getNumberOfLines()];
+			for(int i = 0; i < getNumberOfLines(); i++)
+				lineLengths[i] = -1;
+		}
+		if(lineLengths[line] < 0) {
+			lineLengths[line] = calculateLineLength(line);
+		}
+
+		return lineLengths[line];
 	}
 	float calculateLineLength(int line) {
 		int[] lineIndices = getLineIndices (line);

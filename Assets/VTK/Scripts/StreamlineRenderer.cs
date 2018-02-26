@@ -39,15 +39,9 @@ public class StreamlineRenderer : Filter {
 
 
 	}
-	private List<List<int> > ids;
-	private Vector3 [] line_positions = null;
-	private Vector3 [] line_normals = null;
-	private float[] line_values = null;
-
-	private List< List<Vector4> > uniformSplines;
-
+		
 	unsafe void OnDrawGizmos() {
-
+		//return;
 		if (!is_valid)
 			return;
 		Gizmos.matrix = transform.localToWorldMatrix;
@@ -128,7 +122,7 @@ public class StreamlineRenderer : Filter {
 				for (int i = 1; i < indices.Count(); i++) {
 					Vector3 A = uniformPaths.getLineVertex( indices [i-1]);
 					Vector3 B = uniformPaths.getLineVertex( indices [i]);
-					if (true) {
+					if (false) {
 						float v = uniformPaths.getLineVariableValue1 ("data", indices [i - 1]);
 						float v_norm = v.Map (min, max, 0, 1);
 						Gizmos.color = Color.HSVToRGB(0,0,v_norm);
@@ -221,18 +215,13 @@ public class StreamlineRenderer : Filter {
 
 
 			int number_of_lines = get_number_of_lines (vtkData.handle);
-			ids = new List<List<int> > ();
-			line_values = new float[num_points];
-			line_positions = new Vector3[num_points];
-			line_normals = new Vector3[num_points];
+		
 			print ("COMP: " + point_components);
 			paths.setPointData (point_array, 3);
 			paths.setNormalData (normal_array, num_components_normals);
 			paths.addVariable ("data", data_array, num_components_data, min, max);
 			for (int i = 0; i < num_points; i++) {
-				line_positions [i] = new Vector3 (point_array [i * 3 + 0], point_array [i * 3 + 1], point_array [i * 3 + 2]);
-				line_normals [i] = new Vector3 (normal_array [i * num_components_normals + 0], normal_array [i * num_components_normals + 1], normal_array [i * num_components_normals + 2]);
-				line_values[i] = data_array[i];
+
 				//print (line_positions[i]);
 			}
 			for (int i = 0; i < number_of_lines; i++) {
@@ -248,35 +237,16 @@ public class StreamlineRenderer : Filter {
 //				print ("Line " + i + " has " + num_ids + " points");
 				paths.addLine (id_array, seedId, true);
 
-				ids.Add (new List<int> ());
-				for (int id = 0; id < num_ids; id++) {
-					ids.Last().Add(id_array[id]);
-				}
+			
 				free_data(id_list);
 			}
 
-			uniformSplines = new List<List<Vector4> >() ;
-			//print (ids.Count + " == " + number_of_lines);
-//			for (int l = 0; l < ids.Count; l++) {
-//				splines.Add (new Spline ());
-//				
-//				for (int i = 0; i < ids [l].Count; i++) {
-//					splines.Last ().addControlPoint (new Vector4(line_positions[ids [l] [i]].x,line_positions[ids [l] [i]].y,line_positions[ids [l] [i]].z,1));
-//				}
-//				//print (splines.Last().getLength(0, splines.Last ().controlPointCount ()-1));
-//				uniformSplines.Add (splines.Last ().generateUniformPositions (0.2f));
-//			}
-			//print (num_elements_normals);
-			//print (num_components_normals);
-			//print (normals [0] + "," + normals [1] + "," + normals [2]);
-			//print (num_components_data);
-
-			//print (dataValues [0]);
 
 			is_valid = true;
+			uniformPaths = paths.generateUniformPaths (0.1f);
+
 			UpdateBuffer ();
 
-			uniformPaths = paths.generateUniformPaths (0.1f);
 
 		} //else
 		//print ("not!");
@@ -284,40 +254,70 @@ public class StreamlineRenderer : Filter {
 	private Paths uniformPaths = null;
 
 	private ComputeBuffer positionBuffer;
+	private ComputeBuffer normalBuffer;
+	private ComputeBuffer indexBuffer;
 	private ComputeBuffer offsetBuffer;
 	public Material _material;
 	public Mesh _mesh;
 
-	void UpdateBuffer() {
+
+	void UpdateBuffer ()
+	{
+		if (uniformPaths == null)
+			return;
+
+	DataVariable posVar = uniformPaths.getVariable ("positions");
+	float[] posArray = posVar.getData ();
+
+
+
+		positionBuffer = new ComputeBuffer (posArray.Count() ,sizeof(float)*3);
+		positionBuffer.SetData (posArray);
+
+		normalBuffer = new ComputeBuffer (uniformPaths.getVariable ("normals").getData ().Count (), sizeof(float) * 4);
+		normalBuffer.SetData (uniformPaths.getVariable ("normals").getData ());
+
 		List<int> offsets = new List<int> ();
-		List<Vector4> points = new List<Vector4> ();
-		return;
-		int offset = 0;
-		for (int i = 0; i < uniformSplines.Count; i++) {
-			offsets.Add (offset);
-			offset += uniformSplines[i].Count;
-			for (int p = 0; p < uniformSplines [i].Count; p++) {
-				//points.Add (new Vector4 (i, p, 0, 1));
-				//print (points.Last ());
-				points.Add (uniformSplines [i] [p]);
-			}
+
+		int indexCount = 0;
+		for (int l = 0; l < uniformPaths.getNumberOfLines (); l++) {
+			int[] ind = uniformPaths.getLineIndices (l);
+			offsets.Add (indexCount);
+			print (indexCount);
+			indexCount+= ind.Count();
+		}
+		offsets.Add (indexCount);
+
+		indexBuffer = new ComputeBuffer (indexCount, sizeof(int));
+		offsetBuffer = new ComputeBuffer (offsets.Count (), sizeof(int));
+		offsetBuffer.SetData (offsets.ToArray ());
+
+		for (int l = 0; l < uniformPaths.getNumberOfLines (); l++) {
+			int[] ind = uniformPaths.getLineIndices (l);
+			indexBuffer.SetData (ind, 0, offsets [l], ind.Count ());
 		}
 
-		positionBuffer = new ComputeBuffer (points.Count,sizeof(float)*4);
-		positionBuffer.SetData (points.ToArray());
+		
 
-		offsetBuffer = new ComputeBuffer (offsets.Count, sizeof(int));
-		offsetBuffer.SetData (offsets.ToArray ());
+		//offsetBuffer = new ComputeBuffer (offsets.Count, sizeof(int));
+		//offsetBuffer.SetData (offsets.ToArray ());
 
 
 		if (_material != null) {
 			_material.SetBuffer ("_positions", positionBuffer);
-			Debug.Log ("SET BUFFER: " + points.Count);
-			_material.SetInt ("_numPositions", points.Count);
+			Debug.Log ("SET BUFFER: " + posArray.Count());
+			_material.SetInt ("_numPositions", posArray.Count());
+
+			_material.SetBuffer ("_normals", normalBuffer);
+
 
 			_material.SetBuffer ("_offsets", offsetBuffer);
-			Debug.Log ("SET BUFFER");
-			_material.SetInt ("_numLines", offsets.Count);
+			_material.SetBuffer ("_indices", indexBuffer);
+
+
+//			_material.SetBuffer ("_offsets", offsetBuffer);
+//			Debug.Log ("SET BUFFER");
+//			_material.SetInt ("_numLines", offsets.Count);
 
 		}
 	}
@@ -338,7 +338,7 @@ public class StreamlineRenderer : Filter {
 
 	void UpdateBuffers()
 	{ 
-		return;
+		
 		if ( instanceCount < 1 ) instanceCount = 1;
 
 		uint numIndices = (_mesh != null) ? (uint)_mesh.GetIndexCount(0) : 0;
@@ -352,18 +352,90 @@ public class StreamlineRenderer : Filter {
 
 	void Start() {
 
-		_material.SetFloat("_meshHeight",_mesh.bounds.extents.y);
-		print ("_meshHeight " +  _mesh.bounds.extents.y);
 
 		argsBuffer = new ComputeBuffer(1, args.Length * sizeof(uint), ComputeBufferType.IndirectArguments);
 		UpdateBuffers();
 
 	}
+
+
+	ComputeBuffer glyphIDBuffer = null;
+	ComputeBuffer lineIDsBuffer = null;
+	ComputeBuffer lineLengthsBuffer = null;
+
+
+	void UpdateMesh () {
+		float meshHeight = _mesh.bounds.extents.y*_glyphScale;
+		//print ("Mesh Height: " + meshHeight);
+		_material.SetFloat ("_meshHeight", meshHeight);
+		List<int> indices = new List<int> ();
+		List<int> lineID = new List<int> ();
+		List<float> lineLengths = new List<float> ();
+
+		for (int l = 0; l < uniformPaths.getNumberOfLines (); l++) {
+			float length = uniformPaths.getLineLength (l);
+			lineLengths.Add (length);
+			float numGlyphs = length / meshHeight;
+			numGlyphs = Mathf.Ceil (numGlyphs);
+			for (int g = 0; g < numGlyphs; g++) {
+				lineID.Add (l);
+				indices.Add (g);
+			}
+
+		}
+
+
+//		positionBuffer = new ComputeBuffer (posArray.Count() ,sizeof(float)*3);
+//		positionBuffer.SetData (posArray);
+//
+//		normalBuffer = new ComputeBuffer (uniformPaths.getVariable ("normals").getData ().Count (), sizeof(float) * 4);
+//		normalBuffer.SetData (uniformPaths.getVariable ("normals").getData ());
+//
+
+		//offsetBuffer = new ComputeBuffer (offsets.Count, sizeof(int));
+		//offsetBuffer.SetData (offsets.ToArray ());
+//
+//
+//		if (_material != null) {
+//			_material.SetBuffer ("_positions", positionBuffer);
+//			Debug.Log ("SET BUFFER: " + posArray.Count());
+//			_material.SetInt ("_numPositions", posArray.Count());
+//
+//			_material.SetBuffer ("_normals", normalBuffer);
+//
+//
+//
+
+//		if(glyphIDBuffer != null) glyphIDBuffer.Release ();
+//		if(lineIDsBuffer != null) lineIDsBuffer.Release ();
+//		if(lineLengthsBuffer != null) lineLengthsBuffer.Release ();
+
+
+		if(glyphIDBuffer == null) glyphIDBuffer = new ComputeBuffer(indices.Count(),sizeof(int));
+		if(lineIDsBuffer == null) lineIDsBuffer = new ComputeBuffer(lineID.Count(), sizeof(int));
+		if(lineLengthsBuffer == null) lineLengthsBuffer = new ComputeBuffer(lineLengths.Count(), sizeof(float));
+//
+		glyphIDBuffer.SetData (indices.ToArray ());
+		lineIDsBuffer.SetData (lineID.ToArray ());
+		lineLengthsBuffer.SetData (lineLengths.ToArray ());
+//
+//
+		_material.SetBuffer ("_glyphID", glyphIDBuffer);
+		_material.SetBuffer ("_lineID", lineIDsBuffer);
+		_material.SetBuffer ("_lineLength", lineLengthsBuffer);
+
+		instanceCount = indices.Count ();
+		UpdateBuffers ();
+
+	}
+
 	void Update()
 	{ 
-		return;
 		if (!is_valid)
 			return;
+
+		UpdateMesh ();
+
 		_material.SetMatrix ("_DataTransform", transform.localToWorldMatrix);
 		_material.SetFloat("_offset", _offset);
 		_material.SetFloat ("_glyphScale", _glyphScale);
@@ -372,6 +444,7 @@ public class StreamlineRenderer : Filter {
 		_material.SetFloat ("_glyphTwist", _glyphTwist);
 		_material.SetFloat ("_glyphSpacing", _glyphSpacing);
 		_material.SetFloat ("_glyphTextureScale", _glyphTextureScale);
+		_material.SetFloat ("_stepSize", 0.1f);
 
 		// Update starting position buffer
 		if (cachedInstanceCount != instanceCount) UpdateBuffers();
@@ -380,8 +453,8 @@ public class StreamlineRenderer : Filter {
 		//if (Input.GetAxisRaw("Horizontal") != 0.0f) instanceCount = (int)Mathf.Clamp(instanceCount + Input.GetAxis("Horizontal") * 40000, 1.0f, 5000000.0f);
 
 		// Render
-		//Graphics.DrawMeshInstancedIndirect(_mesh, 0, _material, new Bounds(Vector3.zero, new Vector3(100.0f, 100.0f, 100.0f)), argsBuffer,0,null, UnityEngine.Rendering.ShadowCastingMode.Off);
-		//  instanceMaterial.SetBuffer("positionBuffer", positionBuffer);
+		Graphics.DrawMeshInstancedIndirect(_mesh, 0, _material, new Bounds(Vector3.zero, new Vector3(100.0f, 100.0f, 100.0f)), argsBuffer,0,null, UnityEngine.Rendering.ShadowCastingMode.Off);
+		//instanceMaterial.SetBuffer("positionBuffer", positionBuffer);
 	}
 
 

@@ -26,15 +26,28 @@
 
 #ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
 	//StructuredBuffer<float4> positionBuffer;
-	StructuredBuffer<float4> _positions;
+	StructuredBuffer<float3> _positions;
+	StructuredBuffer<float3> _normals;
 	StructuredBuffer<int> _offsets;
+	StructuredBuffer<int> _indices;
+	StructuredBuffer<int> _glyphID;
+	StructuredBuffer<int> _lineID;
+	StructuredBuffer<float> _lineLength;
+
+
 
 #else
-	float4 _positions[1];
+	float3 _positions[1];
+	float3 _normals[1];
+	int _offsets[1];
+	int _indices[1];
+	int _glyphID[1];
+	int _lineID[1];
+	int _lineLength[1];
 #endif
 
 	float4x4 _DataTransform;
-
+	float _stepSize;
 	int _numPositions;
 	int _numLines;
 	float _offset;
@@ -107,26 +120,79 @@
 		return result;
 	}
 
-	float3 getSplinePosition(float t) {
+	float3 getPositionOnLine(int l, float t) {
+		int indexListStart = _offsets[l];
+		int indexListCount = _offsets[l+1]-_offsets[l];
+		int lineLength = _lineLength[l];
+		t = min(t, indexListCount-1);
+		t = max(t,0);
+
+		
+				float3 tween;
 		int seg = floor (t);
+		int seg_b = seg+1;
+		seg_b = min(indexListCount-1, seg_b);
+		float seg_t = t-seg;
+		int a = _indices[indexListStart+seg];
+		int b = _indices[indexListStart+seg_b];
 
-		float seg_t = t - seg;
-		if (seg > _numPositions - 2) {
-			seg = _numPositions - 2;
-			seg_t = 1;
-		} 
-		if(seg < 0) {
-			seg = 0;
-			seg_t = 0;
-		}
+		float3 A = _positions[a];
+		float3 B = _positions[b];
+		tween = lerp(A,B,seg_t);
+		return tween; 
 
-		int4 index = getSegmentIndices (seg);
-		float3 p0 = _positions[index.x];
-		float3 p1 = _positions[index.y];
-		float3 p2 = _positions[index.z];
-		float3 p3 = _positions[index.w];
+	}
 
-		return (GetCatmullRomPosition (seg_t, p0.xyz, p1.xyz, p2.xyz, p3.xyz));
+	float3 getNormalOnLine(int l, float t) {
+		int indexListStart = _offsets[l];
+		int indexListCount = _offsets[l+1]-_offsets[l];
+		int lineLength = _lineLength[l];
+		t = min(t, indexListCount-1);
+		t = max(t,0);
+
+		
+				float3 tween;
+		int seg = floor (t);
+		int seg_b = seg+1;
+		seg_b = min(indexListCount-1, seg_b);
+		float seg_t = t-seg;
+		int a = _indices[indexListStart+seg];
+		int b = _indices[indexListStart+seg_b];
+
+		float3 A = _normals[a];
+		float3 B = _normals[b];
+		tween = lerp(A,B,seg_t);
+		return normalize(tween); 
+
+	}
+
+	float3 getSplinePosition(float t) {
+		float3 tween;
+		int seg = floor (t);
+		float seg_t = t-seg;
+		float3 A = _positions[seg];
+		float3 B = _positions[seg+1];
+		tween = lerp(A,B,seg_t);
+		return tween; 
+//		int seg = floor (t);
+//
+//		float seg_t = t - seg;
+//		if (seg > _numPositions - 2) {
+//			seg = _numPositions - 2;
+//			seg_t = 1;
+//		} 
+//		if(seg < 0) {
+//			seg = 0;
+//			seg_t = 0;
+//		}
+//
+//		int4 index = getSegmentIndices (seg);
+//		float3 p0 = _positions[index.x];
+//		float3 p1 = _positions[index.y];
+//		float3 p2 = _positions[index.z];
+//		float3 p3 = _positions[index.w];
+//
+//		return (GetCatmullRomPosition (seg_t, p0.xyz, p1.xyz, p2.xyz, p3.xyz));
 	}
 
 	float3 getSplineDerivative(float t) {
@@ -165,44 +231,95 @@
 	}
 	 void vert (inout appdata_full v) {
 	 	#ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
-	 		 //v.vertex.x += unity_InstanceID;
-			float z = v.vertex.y*1/(_meshHeight*2)*_glyphScale;
-	 		float centerT = (unity_InstanceID  + _offset)*(_glyphScale+_glyphSpacing);
+//	 		 v.vertex.xyz += _positions[unity_InstanceID];
+//	 		           	v.vertex.xyz = mul(_DataTransform,v.vertex).xyz;
+//
+//
+//	 		 return;
 
-	 		float instT = centerT +z;
 
-			float _RotationSpeed = _glyphTwist*instT;
-			float sinX = sin ( _RotationSpeed  );
-			float cosX = cos ( _RotationSpeed  );
-			float sinY = sin ( _RotationSpeed  );
-			float2x2 rotationMatrix = float2x2( cosX, -sinX, sinY, cosX);          
+			//v.vertex.xyz += _positions[unity_InstanceID*100];
+			float centerT;
+			float3 original = v.vertex.xyz;
+			v.vertex.xyz *= _glyphScale;
+			float z = v.vertex.y;
 
-			v.vertex.xz = mul(rotationMatrix,v.vertex.xz); 
-			v.normal.xz = mul(rotationMatrix,v.normal.xz);
+			int id = unity_InstanceID;
+			int lineID = _lineID[id];
+			int glyphID = _glyphID[id];
+
+			float line_length = _lineLength[lineID];
+
+			//int line_segments = floor(line_length);
+			int indexListStart = _offsets[lineID];
+			int indexListCount = _offsets[lineID+1]-_offsets[lineID];
+			float nGlyphs = line_length / _meshHeight;
+			int numGlyphs = ceil(nGlyphs);;
+			//centerT = glyphID*0.9 /(line_length / _meshHeight-1)	 *indexListCount;
+			centerT = glyphID* indexListCount*1.0/(nGlyphs) ;
+			centerT = glyphID * _meshHeight*2/_stepSize;
+			//centerT = glyphID *_meshHeight/_stepSize;
+	 		//centerT = (unity_InstanceID  + _offset)*(_glyphScale+_glyphSpacing);
+
+
+	 		float instT = centerT +z*1.0/_stepSize;
+
+//			float _RotationSpeed = _glyphTwist*instT;
+//			float sinX = sin ( _RotationSpeed  );
+//			float cosX = cos ( _RotationSpeed  );
+//			float sinY = sin ( _RotationSpeed  );
+//			float2x2 rotationMatrix = float2x2( cosX, -sinX, sinY, cosX);          
+//
+//			v.vertex.xz = mul(rotationMatrix,v.vertex.xz); 
+//			v.normal.xz = mul(rotationMatrix,v.normal.xz);
 
 
 //	 		float3 pointA = getSplinePosition(unity_InstanceID+_offset);;
 //	 		float3 pointB = getSplinePosition(unity_InstanceID+1+_offset);;
 			v.vertex.y = 0;
-	 		float3 ABVector;// = normalize(pointB.xyz - pointA.xyz);
-	 		ABVector = normalize(getSplineDerivative(centerT +z));
-	 		float3 splinePos = getSplinePosition(centerT  + z);
-	 		float3 crossVector = normalize(cross(float3(0,1,0),ABVector));
-	 		float d = dot(float3(0,1,0),ABVector);
+	 		float3 N = getNormalOnLine(lineID,instT);
+	 		float3 P = getPositionOnLine(lineID,instT);
+	 		float3 AB = normalize(getPositionOnLine(lineID,instT+1) - getPositionOnLine(lineID,instT-1));
+	 		float3 C = cross(N,AB);
+	 		float3 T = cross(N,C);
+	 		float3 ABVector = T;
+
+
+	 		float3 splinePos = P;
+            float3 crossVector = normalize(cross(float3(0,1,0),ABVector));
+
+            float d = dot(float3(0,1,0),ABVector);
 
 	 		float angle = acos(d);
 
-	 		v.vertex.xyz*=0.1;
-	 		v.vertex.xz *= 1/(_meshHeight*2)*_glyphScale*_glyphRadius;
+	 		v.vertex.xyz*=1;
+
+	 		v.vertex.xz *= 1*_glyphScale*_glyphRadius;
+	 		float3 vertNorm = mul(rotationAroundAxis(crossVector,-angle),N).xyz;
+	 		float3 vertNormCross = cross(float3(0,0,1),vertNorm);
+	 		float normAngle = acos(dot(float3(0,0,1),vertNorm));
+
+	 		if(vertNormCross.y < 0)
+	 			normAngle = 360-normAngle; 
+
+	 		v.vertex.xyz = mul(rotationAroundAxis(float3(0,1,0),normAngle),v.vertex).xyz;
 
 	 		v.vertex.xyz = mul(rotationAroundAxis(crossVector,angle),v.vertex).xyz;
 	 		v.normal.xyz = mul(rotationAroundAxis(crossVector,angle),v.normal).xyz;
 
-	 		v.vertex.xyz += _glyphInflate*v.normal.xyz;
+	 		//v.vertex.xyz += _glyphInflate*v.normal.xyz;
 
-          	v.vertex.xyz += float3(splinePos.x,splinePos.y,splinePos.z);
+//          	v.vertex.x += lineID;
+//          	v.vertex.y += glyphID;
 
-          	v.vertex.xyz = mul(_DataTransform,v.vertex).xyz;
+			v.vertex.xyz += P;
+			v.vertex.xyz = mul(_DataTransform,v.vertex).xyz;
+
+			//v.vertex.xyz = original;
+			//v.vertex.x += lineID;
+			//v.vertex.z += indexListCount/100.0;
+          	          	        	return;
+
           	v.texcoord.y  = instT*pow(2,_glyphTextureScale);
         #endif
 

@@ -8733,7 +8733,7 @@ MonoBehaviour:
   _mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
   _offset: 0
   _glyphScale: 0.1
-  _glyphRadius: 10
+  _glyphRadius: 20
   _glyphInflate: 0
   _glyphTwist: 0
   _glyphSpacing: 0
