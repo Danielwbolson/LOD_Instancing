@@ -2,14 +2,18 @@
 {
 	Properties{
 		_MainTex("Albedo (RGB)", 2D) = "white" {}
+		_MapTex("ColorMap", 2D) = "white" {}
 		_NormTex("Normal",2D) = "white" {}
 		_offset("Offset",float) = 0
+		_CutoutThresh("Cutout Threshold", Range(0.0,1.0)) = 0.2
+
 
 	}
 		SubShader{
-		cull Off
-		Tags{ "RenderType" = "Opaque" }
+		//cull Off
+        Tags {"Queue"="Cutout" "RenderType"="Cutout" }
 		LOD 200
+		        Blend SrcAlpha OneMinusSrcAlpha
 
 		CGPROGRAM
 		// Physically based Standard lighting model
@@ -19,15 +23,20 @@
 
 		sampler2D _MainTex;
 		sampler2D _NormTex;
+		sampler2D _MapTex;
+		float _CutoutThresh;
 
 	struct Input {
 		float2 uv_MainTex;
+		float t;
+		float data;
 	};
 
 #ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
 	//StructuredBuffer<float4> positionBuffer;
 	StructuredBuffer<float3> _positions;
 	StructuredBuffer<float3> _normals;
+	StructuredBuffer<float> _data;
 	StructuredBuffer<int> _offsets;
 	StructuredBuffer<int> _indices;
 	StructuredBuffer<int> _glyphID;
@@ -39,20 +48,22 @@
 #else
 	float3 _positions[1];
 	float3 _normals[1];
+	float _data[1];
 	int _offsets[1];
 	int _indices[1];
 	int _glyphID[1];
 	int _lineID[1];
 	int _lineLength[1];
 #endif
-
+	float _dataMin;
+	float _dataMax;
 	float4x4 _DataTransform;
 	float _stepSize;
 	int _numPositions;
 	int _numLines;
 	float _offset;
 	float _meshHeight;
-
+	int _Use3DGlyph;
 	float _glyphScale = 1;
 	float _glyphRadius = 1;
 
@@ -73,51 +84,35 @@
 	{
 
 	}
-	float3 GetCatmullRomPosition(float t, float3 p0, float3 p1, float3 p2, float3 p3)
-	{
+
+	float map(float value, float min1, float max1, float min2, float max2) {
+			// Convert the current value to a percentage
+		// 0% - min1, 100% - max1
+		float perc = (value - min1) / (max1 - min1);
+
+		// Do the same operation backwards with min2 and max2
+		return perc * (max2 - min2) + min2;
+	}
+	float getDataOnLine(int l, float t) {
+		int indexListStart = _offsets[l];
+		int indexListCount = _offsets[l+1]-_offsets[l];
+		int lineLength = _lineLength[l];
+		t = min(t, indexListCount-1);
+		t = max(t,0);
+
 		
-		//The coefficients of the cubic polynomial (except the 0.5f * which I added later for performance)
-		float3 a = 2 * p1;
-		float3 b = p2 - p0;
-		float3 c = 2 * p0 - 5 * p1 + 4 * p2 - p3;
-		float3 d = -p0 + 3 * p1 - 3 * p2 + p3;
+		int seg = floor (t);
+		int seg_b = seg+1;
+		seg_b = min(indexListCount-1, seg_b);
+		float seg_t = t-seg;
+		int a = _indices[indexListStart+seg];
+		int b = _indices[indexListStart+seg_b];
+		float tween;
+		float A = _data[a];
+		float B = _data[b];
+		tween = lerp(A,B,seg_t);
+		return tween; 
 
-		//The cubic polynomial: a + b * t + c * t^2 + d * t^3
-		float3 pos = 0.5 * (a + (b * t) + (c * t * t) + (d * t * t * t));
-
-		return pos;
-	}
-
-	float3 GetCatmullRomDerivative(float t, float3 p0, float3 p1, float3 p2, float3 p3)
-	{
-		//The coefficients of the cubic polynomial (except the 0.5f * which I added later for performance)
-		float3 a = 2 * p1;
-		float3 b = p2 - p0;
-		float3 c = 2 * p0 - 5 * p1 + 4 * p2 - p3;
-		float3 d = -p0 + 3 * p1 - 3 * p2 + p3;
-
-		//The cubic polynomial: a + b * t + c * t^2 + d * t^3
-		float3 der = 0.5 * b + t*(c+1.5*d*t);
-
-
-		return der;
-	}
-
-
-
-	int4 getSegmentIndices(int seg) {
-		int4 result;
-		int index0 = seg==0? 0 : seg - 1;
-		int index1 = seg;
-		int index2 = seg + 1;
-		int index3 = seg + 2 <= _numPositions - 1? seg + 2: seg + 1;
-
-		result.x = index0;
-		result.y = index1;
-		result.z = index2;
-		result.w = index3;
-
-		return result;
 	}
 
 	float3 getPositionOnLine(int l, float t) {
@@ -166,95 +161,13 @@
 
 	}
 
-	float3 getSplinePosition(float t) {
-		float3 tween;
-		int seg = floor (t);
-		float seg_t = t-seg;
-		float3 A = _positions[seg];
-		float3 B = _positions[seg+1];
-		tween = lerp(A,B,seg_t);
-		return tween; 
-//		int seg = floor (t);
-//
-//		float seg_t = t - seg;
-//		if (seg > _numPositions - 2) {
-//			seg = _numPositions - 2;
-//			seg_t = 1;
-//		} 
-//		if(seg < 0) {
-//			seg = 0;
-//			seg_t = 0;
-//		}
-//
-//		int4 index = getSegmentIndices (seg);
-//		float3 p0 = _positions[index.x];
-//		float3 p1 = _positions[index.y];
-//		float3 p2 = _positions[index.z];
-//		float3 p3 = _positions[index.w];
-//
-//		return (GetCatmullRomPosition (seg_t, p0.xyz, p1.xyz, p2.xyz, p3.xyz));
-	}
-
-	float3 getSplineDerivative(float t) {
-		int seg = floor (t);
-
-		float seg_t = t - seg;
-		if (seg > _numPositions - 2) {
-			seg = _numPositions - 2 ;
-			seg_t = 1;
-		}
-		if(seg < 0) {
-			seg = 0;
-			seg_t = 0;
-		}
-		int4 index = getSegmentIndices (seg);
-		float3 p0 = _positions[index.x];
-		float3 p1 = _positions[index.y];
-		float3 p2 = _positions[index.z];
-		float3 p3 = _positions[index.w];
-		return (GetCatmullRomDerivative (seg_t, p0.xyz, p1.xyz, p2.xyz, p3.xyz));
-	}
 
 
-	float4x4 rotationAroundAxis(float3 u, float a){
-		float4x4 transform;
-		float c = cos(a);
-		float s = sin(a);
-		float nc = 1-c;
+	 void  vert (inout appdata_full v, out Input o) {
+	           UNITY_INITIALIZE_OUTPUT(Input,o);
 
-		transform[0] = float4(c+u.x*u.x*nc,u.x*u.y*nc-u.z*s,u.x*u.z*nc+u.y*s,0);
-		transform[1] = float4(u.y*u.x*nc+u.z*s,c+u.y*u.y*nc,u.y*u.z*nc-u.x*s,0);
-		transform[2] = float4(u.z*u.x*nc-u.y*s,u.z*u.y*nc+u.x*s,c+u.z*u.z*nc,0);
-		transform[3] = float4(0,0,0,1);
-		return (transform);
-
-	}
-
-	float3x3 referenceFrameTransform(float3 i1, float3 j1, float3 k1, float3 i2, float3 j2, float3 k2){
-
-//		transform[0] = float3(dot(i1,i2), dot(j1,i2),dot(k1,i2));
-//		transform[1] = float3(dot(i1,j2), dot(j1,j2),dot(k1,j2));
-//		transform[2] = float3(dot(i1,k2), dot(j1,k2),dot(k1,k2));
-		float3x3 transform;
-		transform[0] = i2;
-		transform[1] = j2;
-		transform[2] = k2;
-		return (transform);
-
-
-	}
-
-
-	 void vert (inout appdata_full v) {
 	 	#ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
-//	 		 v.vertex.xyz += _positions[unity_InstanceID];
-//	 		           	v.vertex.xyz = mul(_DataTransform,v.vertex).xyz;
-//
-//
-//	 		 return;
 
-
-			//v.vertex.xyz += _positions[unity_InstanceID*100];
 			float centerT;
 			float3 original = v.vertex.xyz;
 			v.vertex.xyz *= _glyphScale;
@@ -271,8 +184,8 @@
 			int indexListCount = _offsets[lineID+1]-_offsets[lineID];
 			float nGlyphs = line_length / _meshHeight;
 			int numGlyphs = ceil(nGlyphs);;
-			//centerT = glyphID*0.9 /(line_length / _meshHeight-1)	 *indexListCount;
-			centerT = glyphID* indexListCount*1.0/(nGlyphs) ;
+
+
 			centerT = glyphID * _meshHeight*2/_stepSize;
 			//centerT = glyphID *_meshHeight/_stepSize;
 	 		//centerT = (unity_InstanceID  + _offset)*(_glyphScale+_glyphSpacing);
@@ -321,24 +234,40 @@
 			v.vertex.xyz += P;
 			v.vertex.xyz = mul(_DataTransform,v.vertex).xyz;
 
-          	          	        	return;
-
           	v.texcoord.y  = instT*pow(2,_glyphTextureScale);
+
+          	         o.t = instT;
+
+          	o.data = map(getDataOnLine(lineID,instT),_dataMin,_dataMax,0,1);
+
         #endif
 
 
       }
 	void surf(Input IN, inout SurfaceOutputStandard o) 
 	{
-		float4 col = 1.0f;
 
+		if(_Use3DGlyph==0) {
+			float4 col = 1.0f;
 
-		col = float4(1, 1, 1, 1);
+			float t = IN.t*0.1;
 
-		fixed4 c = tex2D(_MainTex, IN.uv_MainTex.yx) * col;
-		o.Albedo = c;
-		o.Normal.xyz = tex2D(_NormTex,IN.uv_MainTex.yx).xyz;
-		o.Alpha = c.a;
+			fixed4 tex = tex2D(_MainTex, float2(t,IN.uv_MainTex.x)) * col;
+			//tex = float4(t-(int)t,IN.uv_MainTex.x,0,1);
+			col = tex2D(_MapTex,float2(IN.data,0.5));
+			
+			o.Albedo = col*tex;
+
+						o.Normal.xyz = tex2D(_NormTex,IN.uv_MainTex.yx).xyz;
+			o.Alpha = tex.r;
+			clip(o.Alpha - _CutoutThresh);
+
+		} else {
+				o.Normal.xyz = tex2D(_NormTex,IN.uv_MainTex.yx).xyz;
+						o.Albedo = tex2D(_MapTex,float2(IN.data,0.5));
+
+		}
+
 	}
 	ENDCG
 	}

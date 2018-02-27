@@ -23,7 +23,7 @@ public class StreamlineRenderer : Filter {
 	bool is_valid = false;
 	private IntPtr NULL = IntPtr.Zero;
 	private Paths paths;
-
+	public bool Use3DGlyph = false;
 	//protected List<Spline> splines;
 
 	[DllImport("vtkplugin")] unsafe private static extern void free_data (IntPtr h);
@@ -255,6 +255,8 @@ public class StreamlineRenderer : Filter {
 
 	private ComputeBuffer positionBuffer;
 	private ComputeBuffer normalBuffer;
+	private ComputeBuffer dataBuffer;
+
 	private ComputeBuffer indexBuffer;
 	private ComputeBuffer offsetBuffer;
 	public Material _material;
@@ -276,6 +278,9 @@ public class StreamlineRenderer : Filter {
 
 		normalBuffer = new ComputeBuffer (uniformPaths.getVariable ("normals").getData ().Count (), sizeof(float) * 4);
 		normalBuffer.SetData (uniformPaths.getVariable ("normals").getData ());
+
+		dataBuffer = new ComputeBuffer (uniformPaths.getVariable ("data").getData ().Count (), sizeof(float));
+		dataBuffer.SetData (uniformPaths.getVariable ("data").getData ());
 
 		List<int> offsets = new List<int> ();
 
@@ -310,6 +315,7 @@ public class StreamlineRenderer : Filter {
 
 			_material.SetBuffer ("_normals", normalBuffer);
 
+			_material.SetBuffer ("_data", dataBuffer);
 
 			_material.SetBuffer ("_offsets", offsetBuffer);
 			_material.SetBuffer ("_indices", indexBuffer);
@@ -445,6 +451,10 @@ public class StreamlineRenderer : Filter {
 		_material.SetFloat ("_glyphSpacing", _glyphSpacing);
 		_material.SetFloat ("_glyphTextureScale", _glyphTextureScale);
 		_material.SetFloat ("_stepSize", 0.1f);
+		_material.SetInt ("_Use3DGlyph", (int)(Use3DGlyph?1:0));
+		_material.SetFloat ("_dataMin", paths.getVariable("data").getMinValue());
+		_material.SetFloat ("_dataMax", paths.getVariable("data").getMaxValue());
+
 
 		// Update starting position buffer
 		if (cachedInstanceCount != instanceCount) UpdateBuffers();
@@ -453,7 +463,7 @@ public class StreamlineRenderer : Filter {
 		//if (Input.GetAxisRaw("Horizontal") != 0.0f) instanceCount = (int)Mathf.Clamp(instanceCount + Input.GetAxis("Horizontal") * 40000, 1.0f, 5000000.0f);
 
 		// Render
-		Graphics.DrawMeshInstancedIndirect(_mesh, 0, _material, new Bounds(Vector3.zero, new Vector3(100.0f, 100.0f, 100.0f)), argsBuffer,0,null, UnityEngine.Rendering.ShadowCastingMode.Off);
+		Graphics.DrawMeshInstancedIndirect(_mesh, 0, _material, new Bounds(Vector3.zero, new Vector3(100.0f, 100.0f, 100.0f)), argsBuffer,0,null, UnityEngine.Rendering.ShadowCastingMode.Off,false);
 		//instanceMaterial.SetBuffer("positionBuffer", positionBuffer);
 	}
 
