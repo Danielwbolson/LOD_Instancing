@@ -256,7 +256,7 @@
 			//tex = float4(t-(int)t,IN.uv_MainTex.x,0,1);
 			col = tex2D(_MapTex,float2(IN.data,0.5));
 			
-			o.Albedo = col*tex;
+			o.Albedo = col*tex ;
 
 						o.Normal.xyz = tex2D(_NormTex,IN.uv_MainTex.yx).xyz;
 			o.Alpha = tex.r;
