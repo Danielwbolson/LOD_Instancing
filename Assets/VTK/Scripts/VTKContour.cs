@@ -51,12 +51,14 @@ public class VTKContour : Filter {
 			float* n = null;
 			int *t = null;
 			contour ((void*)vtkData.handle, isovalue, &np, &p, &n, &nt, &t);
+			print (np);
+			int maxPointCount = 65535;
+			np = Math.Min (np, maxPointCount);
+			List<int> triangles = new List<int>();
+			Vector3[] vertices = new Vector3[maxPointCount];
+			Vector3[] normals = new Vector3[maxPointCount];
 
-			int[] triangles = new int[nt*3];
-			Vector3[] vertices = new Vector3[np];
-			Vector3[] normals = new Vector3[np];
-
-			for (int i = 0; i < np; i++) {
+			for (int i = 0; i < maxPointCount; i++) {
 				float n1 = (float)n [i * 3 + 0];
 				float n2 = (float)n [i * 3 + 1];
 				float n3 = (float)n [i * 3 + 2];
@@ -76,8 +78,18 @@ public class VTKContour : Filter {
 			}
 
 			int num_t = nt*3;
-			for (int i = 0; i < num_t; i++) {
-				triangles [i] = t [i];
+			for (int i = 0; i < nt; i++) {
+				int i1 = t [i*3+0];
+				int i2 = t [i*3+1];
+				int i3 = t [i * 3 + 2];
+				if (i3 >= maxPointCount || i2 >= maxPointCount || i1 >= maxPointCount) {
+					continue;
+
+				}
+				triangles.Add(i1);
+				triangles.Add(i2);
+				triangles.Add(i3);
+
 			}
 
 			free_data ((void*)p);
@@ -89,9 +101,9 @@ public class VTKContour : Filter {
 			Mesh mesh = new Mesh ();
 			GetComponent<MeshFilter> ().mesh = mesh;
 			mesh.vertices = vertices;
-			mesh.triangles = triangles;
+			mesh.triangles = triangles.ToArray();
 			mesh.normals = normals;
-			//mesh.RecalculateNormals ();
+			mesh.RecalculateNormals ();
 			//
 			//print ("YY " + isovalue + " " + np + " " + nt );
 		} //else

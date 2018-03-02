@@ -78,7 +78,7 @@ public class VTKData : Data {
 			Vector3 size = MM - mm;
 			data_size = size;
 			data_center = center;
-			print (data_center + ", " + data_size);
+			print ("Center and extent: " + data_center + ", " + data_size);
 			float[] sizes = { data_size.x, data_size.y, data_size.z };
 			float extremum = sizes.Max ();
 			gameObject.transform.localScale = new Vector3(1f/extremum,1f/extremum,1f/extremum);

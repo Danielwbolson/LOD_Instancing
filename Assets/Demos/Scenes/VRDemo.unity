@@ -11438,7 +11438,7 @@ Prefab:
     - target: {fileID: 114015955161438828, guid: 46b92011d4e7b45b4bb5746fab09352d,
         type: 2}
       propertyPath: filename
-      value: example_data/VTK/test.vti
+      value: /example_data/BrainVIS/BrainTensorData/brain_CMRR_test.vti
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 46b92011d4e7b45b4bb5746fab09352d, type: 2}
