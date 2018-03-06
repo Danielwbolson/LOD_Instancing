@@ -96,7 +96,8 @@ public class VRDetector : MonoBehaviour
             // update teh canvas camera
             foreach (Canvas canvas in this.canvases)
             {
-                canvas.worldCamera = this.non_UI_VR_Camera;
+				if(canvas != null)
+                	canvas.worldCamera = this.non_UI_VR_Camera;
             }
         }
     }
