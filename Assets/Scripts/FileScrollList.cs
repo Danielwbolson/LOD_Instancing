@@ -4,13 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-[System.Serializable]
-public class DataFile {
-	public string fileName;
-	public Sprite icon;
-	public string details = "";
-}
-
 
 public class FileScrollList : MonoBehaviour {
 
@@ -19,23 +12,34 @@ public class FileScrollList : MonoBehaviour {
 
 	public SimpleObjectPool buttonObjectPool;
 
-	public DataFileList dataFileList;
+	public DataObjectManager dataFileList;
+
+	int currentCount = 0;
 	// Use this for initialization
 	void Start () {
 		RefreshDisplay ();
 	}
-
+	void Update() {
+		if (currentCount != dataFileList.GetNumberOfFiles ()) {
+			RefreshDisplay ();
+		}
+	}
 	private void RefreshDisplay() {
 		AddButtons ();
 	}
+
 	private void AddButtons() {
-		for (int i = 0; i < dataFileList.paths.Count; i++) {
-			print (i);
-			string file = dataFileList.paths [i];
+		currentCount = dataFileList.GetNumberOfFiles ();
+		for (int i = 0; i < dataFileList.GetNumberOfFiles(); i++) {
+			DataFile file = dataFileList.GetDataFile(i);
 			GameObject newButton = buttonObjectPool.GetObject ();
 			newButton.transform.SetParent (contentPanel, false);
 			FilePickerButton button = newButton.GetComponent<FilePickerButton> ();
 			button.Setup (file, this);
 		}
+	}
+
+	public void SelectDataFile(DataFile file) {
+		print ("Selected " + file.filePath);
 	}
 }

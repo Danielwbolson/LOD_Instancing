@@ -3,11 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
+
+[System.Serializable]
+public class DataFile {
+	public DataFile(string path) {
+		filePath = path;
+	}
+	public string filePath;
+
+}
+
 public class DataObjectManager : MonoBehaviour {
 
 	public string path;
 
-	public List<string> filePaths;
+	public List<DataFile> files;
 
 	// Use this for initialization
 	void Start () {
@@ -20,28 +30,34 @@ public class DataObjectManager : MonoBehaviour {
 	}
 
 	void Refresh() {
-		print ("Searching " + Application.streamingAssetsPath + "/" + "example_data/VTK" + "/"); 
-		//if (path.Length !=0) {
-			SearchDirectory (Application.streamingAssetsPath + "/" + "example_data/VTK" + "/");
-		//}
+		//print ("Searching " + Application.streamingAssetsPath + "/" + path + "/"); 
+		SearchDirectory (Application.streamingAssetsPath + "/" + path + "/");
 
-		print (filePaths.Count + " vtk files found");
+		//print (files.Count + " vtk files found");
+	}
+
+	public int GetNumberOfFiles() {
+		return files.Count;
+	}
+
+	public DataFile GetDataFile(int i) {
+		return files [i];
 	}
 	void SearchDirectory(string path) {
-		if (filePaths == null)
-			filePaths = new List<string> ();
+		if (files == null)
+			files = new List<DataFile> ();
 		else
-			filePaths.Clear ();
+			files.Clear ();
 		try{
 			foreach (string file in System.IO.Directory.GetFiles(path))
 			{ 	
 				if (!file.EndsWith (".meta")) {
-					filePaths.Add (file);
+					files.Add (new DataFile(file));
 
 				}
 			}
 		} catch(DirectoryNotFoundException e) {
-			print("Could not find path " +path);
+			print("Could not find path " + path);
 		}
 	}
 
