@@ -43,6 +43,7 @@ public class DataFactory : MonoBehaviour
 				GameObject lineRenderer = Instantiate (lineRendererPrefab);
 				lineRenderer.transform.SetParent (dataObject.transform);
 				lineRenderer.GetComponent<DataLineRenderer> ().dataObject = dataObject.GetComponent<DataObject> ();
+				lineRenderer.GetComponent<DataLineRenderer> ().getLines ();
 			}
 		}
 
