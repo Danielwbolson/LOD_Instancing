@@ -9,59 +9,127 @@ using System.Linq;
 
 
 public class VTKData : Data {
+
+	public void print(string s) {
+		Debug.Log (s);
+	}
 	private IntPtr NULL = IntPtr.Zero;
 
 	unsafe public IntPtr handle = IntPtr.Zero;
 
-	public string[] variable_names;
-	int[] variable_components;
+	public string[] point_variable_names;
+	int[] point_variable_components;
+	public string[] cell_variable_names;
+	int[] cell_variable_components;
 
 
-	[DllImport("vtkplugin", EntryPoint = "open_data")]   private static extern IntPtr open_data (StringBuilder sb);
-	[DllImport("vtkplugin", EntryPoint = "close_data")]   private static extern void   close_data (IntPtr h);
-	[DllImport("vtkplugin", EntryPoint = "get_number_of_vertices")]   private static extern int   get_number_of_vertices (IntPtr h);
-	[DllImport("vtkplugin", EntryPoint = "get_bounds")]   private static extern IntPtr get_bounds (IntPtr h);
-	[DllImport("vtkplugin", EntryPoint = "free_data")]   private static extern void free_data (IntPtr h);
+	int[] line_cell_ids;
+	[DllImport("vtkplugin")] private static extern IntPtr open_data (StringBuilder sb);
+	[DllImport("vtkplugin")] private static extern void   close_data (IntPtr h);
+	[DllImport("vtkplugin")] private static extern int   get_number_of_vertices (IntPtr h);
+	[DllImport("vtkplugin")] private static extern IntPtr get_bounds (IntPtr h);
+	[DllImport("vtkplugin")] private static extern void free_data (IntPtr h);
+	[DllImport("vtkplugin")] private static extern int   get_number_of_lines (IntPtr h);
+	[DllImport("vtkplugin")] private static extern int   get_number_of_polygons (IntPtr h);
+	[DllImport("vtkplugin")] private static extern int   get_number_of_strips (IntPtr h);
+	[DllImport("vtkplugin")] private static extern int   get_number_of_points (IntPtr h);
 
-	[DllImport("vtkplugin", EntryPoint = "get_variable_names")] 
-	unsafe private static extern void get_variable_names(IntPtr h, char ***names, int ** components, int *number_of_variables);
+	[DllImport("vtkplugin")] private static extern int   get_number_of_cells (IntPtr h);
+	[DllImport("vtkplugin")] private static extern int   IsA (IntPtr h, string type);
+
+	[DllImport("vtkplugin")] unsafe private static extern void get_point_variable_names(IntPtr h, char ***names, int ** components, int *number_of_variables);
 
 
-	public void LoadData()
+	[DllImport("vtkplugin")] unsafe private static extern void get_cell_variable_names(IntPtr h, char ***names, int ** components, int *number_of_variables);
+
+
+	~VTKData() {
+		free_data (handle);
+	}
+	public override int GetNumberOfVariables() {
+		return point_variable_names.Count() + cell_variable_names.Count() ;
+	}
+
+	public override string GetVariableName(int i) {
+		if(i < point_variable_names.Count())
+			return point_variable_names [i];
+		else 
+			return cell_variable_names [i-point_variable_names.Count()];
+		
+	}
+
+	public override int GetVariableComponentCount(int i) {
+		if(i < point_variable_names.Count())
+			return point_variable_components [i];
+		else 
+			return cell_variable_components [i-point_variable_names.Count()];	}
+
+	public override int GetNumberOfLines() {
+		if(IsType("vtkPolyData"))
+			return get_number_of_lines (handle);
+		else
+			return 0;
+	}
+
+	public override void LoadData()
 	{
-		print ("Loading " + Application.streamingAssetsPath + "/" + filename);
+		print ("Loading " + filename);
 
 		unsafe{
 			if (handle != NULL)
 				close_data (handle);
 			// char* s = ;
 			print("opening..");
-			handle = open_data (new StringBuilder(Application.streamingAssetsPath + "/" + filename));
+			handle = open_data (new StringBuilder(filename));
 
 
 
 			if (handle == NULL)
-				print ("Could not open " + Application.streamingAssetsPath + "/" + filename);
+				print ("Could not open " + filename);
 			else
-				print("Opened " + Application.streamingAssetsPath + "/" + filename);
+				print("Opened " + filename);
 
 
-			char** names = null;
-			int* components = null;
-			int numVars = 0;
-			get_variable_names (handle, &names, &components, &numVars);
-			variable_names = new string[numVars];
-			variable_components = new int[numVars];
+			char** pointVarNames = null;
+			int* pointVarComponents = null;
+
+			int numPointVars = 0;
+
+			char** cellVarNames = null;
+			int* cellVarComponents = null;
+
+			int numCellVars = 0;
+
+			get_point_variable_names (handle, &pointVarNames, &pointVarComponents, &numPointVars);
+			get_cell_variable_names (handle, &cellVarNames, &cellVarComponents, &numCellVars);
+
+			point_variable_names = new string[numPointVars];
+			point_variable_components = new int[numPointVars];
 			//print (numVars);
-			for (int i = 0; i < numVars; i++) {
+			for (int i = 0; i < numPointVars; i++) {
 				//print ( Marshal.PtrToStringAnsi((IntPtr)names[i]) + " (" + components [i] + ")");
-				variable_names [i] = Marshal.PtrToStringAnsi ((IntPtr)names [i]);
-				variable_components [i] = components [i];
+				point_variable_names [i] = Marshal.PtrToStringAnsi ((IntPtr)pointVarNames [i]);
+				point_variable_components [i] = pointVarComponents [i];
 			}
 
-			for (int i = 0; i < numVars; i++) {
-			//	free_data(names[i]);
+			for (int i = 0; i < numPointVars; i++) {
+				free_data((IntPtr)pointVarNames[i]);
 			}
+
+
+			cell_variable_names = new string[numCellVars];
+			cell_variable_components = new int[numCellVars];
+			//print (numVars);
+			for (int i = 0; i < numCellVars; i++) {
+				//print ( Marshal.PtrToStringAnsi((IntPtr)names[i]) + " (" + components [i] + ")");
+				cell_variable_names [i] = Marshal.PtrToStringAnsi ((IntPtr)cellVarNames [i]);
+				cell_variable_components [i] = cellVarComponents [i];
+			}
+
+			for (int i = 0; i < numCellVars; i++) {
+				free_data((IntPtr)cellVarNames[i]);
+			}
+
 			//free_data (names);
 			//free_data (components);
 
@@ -81,21 +149,53 @@ public class VTKData : Data {
 			print ("Center and extent: " + data_center + ", " + data_size);
 			float[] sizes = { data_size.x, data_size.y, data_size.z };
 			float extremum = sizes.Max ();
-			gameObject.transform.localScale = new Vector3(1f/extremum,1f/extremum,1f/extremum);
+			//gameObject.transform.localScale = new Vector3(1f/extremum,1f/extremum,1f/extremum);
 
-			updateBounds ();
+			//updateBounds ();
 			is_valid = true;
 			
-			for (int c = 0; c < gameObject.transform.childCount; c++) {
-				Filter f = gameObject.transform.GetChild (c).GetComponent<Filter> ();
-				if (f == null)
-					continue;
-				f.RefreshFilter ();
-			}
+//			for (int c = 0; c < gameObject.transform.childCount; c++) {
+//				Filter f = gameObject.transform.GetChild (c).GetComponent<Filter> ();
+//				if (f == null)
+//					continue;
+//				f.RefreshFilter ();
+//			}
 
+
+			//print ("Vertices: " + get_number_of_vertices (handle));
+			//print ("Polygons: " + get_number_of_polygons (handle));
+			//print ("Strips:   " + get_number_of_strips (handle));
+			//print ("Lines:    " + get_number_of_lines (handle));
+			//print ("Cells:    " + get_number_of_cells (handle));
+
+			if (IsType ("vtkPolyData")) {
+				print("Is a PolyData");
+
+				print ("Vertices: " + get_number_of_vertices (handle));
+				print ("Polygons: " + get_number_of_polygons (handle));
+				print ("Strips:   " + get_number_of_strips (handle));
+				print ("Lines:    " + get_number_of_lines (handle));
+				print ("Cells:    " + get_number_of_cells (handle));
+			}
+			if (IsType ("vtkImageData")) {
+				print("Is an ImageData");
+
+				print ("Points: " + get_number_of_points (handle));
+				print ("Cells:    " + get_number_of_cells (handle));
+			}
+			if (IsType ("vtkUnstructuredGrid")) {
+				print("Is a vtkUnstructuredGrid");
+
+				print ("Points: " + get_number_of_points (handle));
+				print ("Cells:    " + get_number_of_cells (handle));
+			}
 			return;
 
 		}
+	}
+
+	public override bool IsType(string type) {
+		return IsA(handle, type) == 1;
 	}
 
 	public int GetNumberOfVertices()

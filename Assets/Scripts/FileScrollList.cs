@@ -13,6 +13,8 @@ public class FileScrollList : MonoBehaviour {
 	public SimpleObjectPool buttonObjectPool;
 
 	public DataObjectManager dataFileList;
+	public VariableScrollList variableScrollList;
+
 
 	int currentCount = 0;
 	// Use this for initialization
@@ -41,5 +43,14 @@ public class FileScrollList : MonoBehaviour {
 
 	public void SelectDataFile(DataFile file) {
 		print ("Selected " + file.filePath);
+		Data d = dataFileList.factory.CreateDataset (file);
+		print ("Data: " + d);
+		d.LoadData ();
+		//print (d.GetNumberOfVariables());
+
+		//dataFileList.dataobject.data = d;
+
+		variableScrollList.SetData (d);
+
 	}
 }

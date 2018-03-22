@@ -16,8 +16,11 @@ public class DataFile {
 public class DataObjectManager : MonoBehaviour {
 
 	public string path;
+	public DataFactory factory;
 
 	public List<DataFile> files;
+
+	public DataObject dataobject;
 
 	// Use this for initialization
 	void Start () {
@@ -60,6 +63,7 @@ public class DataObjectManager : MonoBehaviour {
 			print("Could not find path " + path);
 		}
 	}
+
 
 
 }
