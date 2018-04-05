@@ -84,7 +84,7 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     - _glyphLength: 4
-    - _glyphScale: 0.01
+    - _glyphScale: 0.05
     - _glyphType: 1
     - _offset: 0
     m_Colors:
