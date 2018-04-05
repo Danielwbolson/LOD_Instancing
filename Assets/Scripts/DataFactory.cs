@@ -8,6 +8,7 @@ public class DataFactory : MonoBehaviour
 	public Transform dataRoot;
 	public GameObject dataObjectPrefab;
 	public GameObject lineRendererPrefab;
+	public GameObject glyphRendererPrefab;
 
 	// Use this for initialization
 	void Start ()
@@ -44,6 +45,13 @@ public class DataFactory : MonoBehaviour
 				lineRenderer.transform.SetParent (dataObject.transform);
 				lineRenderer.GetComponent<DataLineRenderer> ().dataObject = dataObject.GetComponent<DataObject> ();
 				lineRenderer.GetComponent<DataLineRenderer> ().getLines ();
+			}
+			if (newData.IsType("vtkImageData")) {
+				print("Is image data");
+				GameObject glyphRenderer = Instantiate (glyphRendererPrefab);
+				glyphRenderer.transform.SetParent (dataObject.transform);
+				glyphRenderer.GetComponent<DataGlyphRenderer> ().dataObject = dataObject.GetComponent<DataObject> ();
+
 			}
 		}
 

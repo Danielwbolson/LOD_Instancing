@@ -1136,6 +1136,8 @@ MonoBehaviour:
     type: 2}
   lineRendererPrefab: {fileID: 1348123100469854, guid: 833efb2ba46ab4d798d1ee00cb6a55f2,
     type: 2}
+  glyphRendererPrefab: {fileID: 1339691048574996, guid: a200da7f138ed45c2b46610053f1849d,
+    type: 2}
 --- !u!4 &316631748
 Transform:
   m_ObjectHideFlags: 0

@@ -28,17 +28,21 @@ public class VTKData : Data {
 	[DllImport("vtkplugin")] private static extern void   close_data (IntPtr h);
 	[DllImport("vtkplugin")] private static extern int   get_number_of_vertices (IntPtr h);
 	[DllImport("vtkplugin")] private static extern IntPtr get_bounds (IntPtr h);
+	[DllImport("vtkplugin")] private static extern IntPtr get_dimensions (IntPtr h);
+
 	[DllImport("vtkplugin")] private static extern void free_data (IntPtr h);
 	[DllImport("vtkplugin")] private static extern int   get_number_of_lines (IntPtr h);
 	[DllImport("vtkplugin")] private static extern int   get_number_of_polygons (IntPtr h);
 	[DllImport("vtkplugin")] private static extern int   get_number_of_strips (IntPtr h);
 	[DllImport("vtkplugin")] private static extern int   get_number_of_points (IntPtr h);
+	[DllImport("vtkplugin")] private static extern int   ComputePointId (IntPtr h, int i, int j, int k);
 
 	[DllImport("vtkplugin")] private static extern int   get_number_of_cells (IntPtr h);
 	[DllImport("vtkplugin")] private static extern int   IsA (IntPtr h, string type);
 
 	[DllImport("vtkplugin")] unsafe private static extern void get_point_variable_names(IntPtr h, char ***names, int ** components, int *number_of_variables);
 
+	[DllImport("vtkplugin")] unsafe private static extern void get_array(IntPtr h, string array_name, IntPtr *values, int *number_of_elements, int *number_of_components);
 
 	[DllImport("vtkplugin")] unsafe private static extern void get_cell_variable_names(IntPtr h, char ***names, int ** components, int *number_of_variables);
 
@@ -182,6 +186,41 @@ public class VTKData : Data {
 
 				print ("Points: " + get_number_of_points (handle));
 				print ("Cells:    " + get_number_of_cells (handle));
+
+				IntPtr dim_buff;
+				int[] dim = new int[3];
+
+				dim_buff = get_dimensions (handle);
+				Marshal.Copy (dim_buff, dim, 0, 3);
+
+				print (dim [0] + "x" + dim [1] + "x" + dim [2]);
+				IntPtr dataValues = IntPtr.Zero;;
+				int num_elements_data = 0;
+				int num_components_data = 0;
+				get_array (handle, "FA", &dataValues, &num_elements_data, &num_components_data);
+
+				float[] data_array = new float[num_elements_data * num_components_data];
+				Marshal.Copy (dataValues, data_array, 0, data_array.Length);
+
+				int x = 8;
+				int y = 16;
+				int z = 40;
+				string line = "";
+//				for (int i = 0; i < dim [0]; i++) {
+//					for (int j = 0; j < dim [1]; j++) {
+//						for (int k = 0; k < dim [2]; k++) {
+//
+//							if(data_array[index] != 0)
+//								print("(" + i+","+j+","+ k+") " + data_array[index]);
+//						}
+//					}
+//
+//				}
+				int index = z * dim [0] * dim [1] * num_components_data + y * dim [0] * num_components_data + x * num_components_data;
+				print (index + ": " + data_array [index]);
+				index = ComputePointId (handle, x,y,z);
+				print (index + ": " + data_array [index]);
+
 			}
 			if (IsType ("vtkUnstructuredGrid")) {
 				print("Is a vtkUnstructuredGrid");
