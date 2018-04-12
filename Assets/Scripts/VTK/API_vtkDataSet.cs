@@ -35,12 +35,12 @@ bool GetNumberOfCells(IntPtr /*vtkIdType* */ ret, IntPtr /*vtkDataSet* */ obj);
 //       Method: virtual double * vtkDataSet::GetPoint(vtkIdType ptId)
 // 
 [DllImport("vtkplugin", EntryPoint="API_vtkDataSet_GetPoint_0")] public static extern 
-bool GetPoint(IntPtr /*double** */ ret, IntPtr /*vtkDataSet* */ obj, int ptId);
+bool GetPoint(IntPtr /*double** */ ret, IntPtr /*vtkDataSet* */ obj, long ptId);
 
 //       Method: virtual void vtkDataSet::GetPoint(vtkIdType id, double x[3])
 // 
 [DllImport("vtkplugin", EntryPoint="API_vtkDataSet_GetPoint_1")] public static extern 
-bool GetPoint(IntPtr /*vtkDataSet* */ obj, int id, double[] /*3*/ x);
+bool GetPoint(IntPtr /*vtkDataSet* */ obj, long id, double[] /*3*/ x);
 
 //       Method: virtual vtkCellIterator * vtkDataSet::NewCellIterator()
 // 
@@ -50,22 +50,22 @@ bool NewCellIterator(IntPtr /*vtkCellIterator** */ ret, IntPtr /*vtkDataSet* */ 
 //       Method: virtual vtkCell * vtkDataSet::GetCell(vtkIdType cellId)
 // 
 [DllImport("vtkplugin", EntryPoint="API_vtkDataSet_GetCell_0")] public static extern 
-bool GetCell(IntPtr /*vtkCell** */ ret, IntPtr /*vtkDataSet* */ obj, int cellId);
+bool GetCell(IntPtr /*vtkCell** */ ret, IntPtr /*vtkDataSet* */ obj, long cellId);
 
 //       Method: virtual void vtkDataSet::GetCell(vtkIdType cellId, vtkGenericCell* cell)
 // 
 [DllImport("vtkplugin", EntryPoint="API_vtkDataSet_GetCell_2")] public static extern 
-bool GetCell(IntPtr /*vtkDataSet* */ obj, int cellId, IntPtr/*vtkGenericCell* */ cell);
+bool GetCell(IntPtr /*vtkDataSet* */ obj, long cellId, IntPtr/*vtkGenericCell* */ cell);
 
 //       Method: virtual void vtkDataSet::GetCellBounds(vtkIdType cellId, double bounds[6])
 // 
 [DllImport("vtkplugin", EntryPoint="API_vtkDataSet_GetCellBounds_0")] public static extern 
-bool GetCellBounds(IntPtr /*vtkDataSet* */ obj, int cellId, double[] /*6*/ bounds);
+bool GetCellBounds(IntPtr /*vtkDataSet* */ obj, long cellId, double[] /*6*/ bounds);
 
 //       Method: virtual int vtkDataSet::GetCellType(vtkIdType cellId)
 // 
 [DllImport("vtkplugin", EntryPoint="API_vtkDataSet_GetCellType_0")] public static extern 
-bool GetCellType(IntPtr /*int* */ ret, IntPtr /*vtkDataSet* */ obj, int cellId);
+bool GetCellType(IntPtr /*int* */ ret, IntPtr /*vtkDataSet* */ obj, long cellId);
 
 //       Method: virtual void vtkDataSet::GetCellTypes(vtkCellTypes* types)
 // 
@@ -75,17 +75,17 @@ bool GetCellTypes(IntPtr /*vtkDataSet* */ obj, IntPtr/*vtkCellTypes* */ types);
 //       Method: virtual void vtkDataSet::GetCellPoints(vtkIdType cellId, vtkIdList* ptIds)
 // 
 [DllImport("vtkplugin", EntryPoint="API_vtkDataSet_GetCellPoints_0")] public static extern 
-bool GetCellPoints(IntPtr /*vtkDataSet* */ obj, int cellId, IntPtr/*vtkIdList* */ ptIds);
+bool GetCellPoints(IntPtr /*vtkDataSet* */ obj, long cellId, IntPtr/*vtkIdList* */ ptIds);
 
 //       Method: virtual void vtkDataSet::GetPointCells(vtkIdType ptId, vtkIdList* cellIds)
 // 
 [DllImport("vtkplugin", EntryPoint="API_vtkDataSet_GetPointCells_0")] public static extern 
-bool GetPointCells(IntPtr /*vtkDataSet* */ obj, int ptId, IntPtr/*vtkIdList* */ cellIds);
+bool GetPointCells(IntPtr /*vtkDataSet* */ obj, long ptId, IntPtr/*vtkIdList* */ cellIds);
 
 //       Method: virtual void vtkDataSet::GetCellNeighbors(vtkIdType cellId, vtkIdList* ptIds, vtkIdList* cellIds)
 // 
 [DllImport("vtkplugin", EntryPoint="API_vtkDataSet_GetCellNeighbors_0")] public static extern 
-bool GetCellNeighbors(IntPtr /*vtkDataSet* */ obj, int cellId, IntPtr/*vtkIdList* */ ptIds, IntPtr/*vtkIdList* */ cellIds);
+bool GetCellNeighbors(IntPtr /*vtkDataSet* */ obj, long cellId, IntPtr/*vtkIdList* */ ptIds, IntPtr/*vtkIdList* */ cellIds);
 
 //       Method: vtkIdType vtkDataSet::FindPoint(double x, double y, double z)
 // 

@@ -1289,6 +1289,8 @@ MonoBehaviour:
     type: 2}
   glyphRendererPrefab: {fileID: 1339691048574996, guid: a200da7f138ed45c2b46610053f1849d,
     type: 2}
+  pointRendererPrefab: {fileID: 1339691048574996, guid: dc88ff01e5fa64573918100b8a57531c,
+    type: 2}
 --- !u!4 &316631748
 Transform:
   m_ObjectHideFlags: 0
@@ -1992,8 +1994,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 600236671}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.098, y: 1.51, z: 0.306}
-  m_LocalScale: {x: 0.50456816, y: 0.50456816, z: 0.50456816}
+  m_LocalPosition: {x: 0, y: 1.5, z: 2}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
@@ -2603,8 +2605,8 @@ Camera:
   m_GameObject: {fileID: 866904574}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.44533294, g: 0.46109962, b: 0.4750229, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -2613,7 +2615,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 70.2
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -2651,13 +2653,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 866904574}
-  m_LocalRotation: {x: 0.48997518, y: -0, z: -0, w: 0.8717364}
-  m_LocalPosition: {x: 0, y: 2.107, z: -0.233}
+  m_LocalRotation: {x: 0.23994085, y: -0, z: -0, w: 0.9707875}
+  m_LocalPosition: {x: 0, y: 2.03, z: -0.22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 742250889}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 58.678, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 27.766, y: 0, z: 0}
 --- !u!1 &895706998
 GameObject:
   m_ObjectHideFlags: 0

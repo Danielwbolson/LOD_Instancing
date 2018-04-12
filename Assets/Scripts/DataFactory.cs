@@ -9,6 +9,7 @@ public class DataFactory : MonoBehaviour
 	public GameObject dataObjectPrefab;
 	public GameObject lineRendererPrefab;
 	public GameObject glyphRendererPrefab;
+	public GameObject pointRendererPrefab;
 
 	// Use this for initialization
 	void Start ()
@@ -53,6 +54,12 @@ public class DataFactory : MonoBehaviour
 				glyphRenderer.GetComponent<DataGlyphRenderer> ().dataObject = dataObject.GetComponent<DataObject> ();
 
 			}
+
+			GameObject pointRenderer = Instantiate (pointRendererPrefab);
+			pointRenderer.transform.SetParent (dataObject.transform);
+			pointRenderer.GetComponent<DataPointRenderer> ().dataObject = dataObject.GetComponent<DataObject> ();
+
+
 		}
 
 		return newData;
