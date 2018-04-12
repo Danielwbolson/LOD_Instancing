@@ -82,8 +82,8 @@ Shader "Instanced/GlyphShader"
 			float4 volCoord = float4(o.volumePosition.x,o.volumePosition.y, o.volumePosition.z,0);
 	 		//
 
-	 		float3 direction =tex3Dlod(_dataVolume,volCoord).xyz;
-	 		float3 direction2 =tex3Dlod(_dataVolume2,volCoord).xyz;
+	 		float3 direction = normalize(tex3Dlod(_dataVolume,volCoord).xyz);
+	 		float3 direction2 = normalize(tex3Dlod(_dataVolume2,volCoord).xyz);
 
 	 		if(_glyphType == 1)
 	 			direction = direction2;
