@@ -34,6 +34,9 @@ public class StreamlineRenderer : Filter {
 	[DllImport("vtkplugin")] unsafe private static extern int get_number_of_lines (IntPtr h);
 	[DllImport("vtkplugin")] unsafe private static extern void get_line_ids (IntPtr h, int line, IntPtr* ids_list, int*number_of_ids, int*reasonForTermination, int*seedId);
 		
+
+
+
 	public override void RefreshFilter() {
 		getLines ();
 

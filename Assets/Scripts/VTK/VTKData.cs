@@ -48,7 +48,7 @@ public class VTKData : Data {
 
 
 	~VTKData() {
-		free_data (handle);
+		VTK.vtkCompound.free_data (handle);
 	}
 	public override int GetNumberOfVariables() {
 		return point_variable_names.Count() + cell_variable_names.Count() ;
@@ -117,7 +117,7 @@ public class VTKData : Data {
 			}
 
 			for (int i = 0; i < numPointVars; i++) {
-				free_data((IntPtr)pointVarNames[i]);
+				VTK.vtkCompound.free_data((IntPtr)pointVarNames[i]);
 			}
 
 
@@ -131,25 +131,21 @@ public class VTKData : Data {
 			}
 
 			for (int i = 0; i < numCellVars; i++) {
-				free_data((IntPtr)cellVarNames[i]);
+				VTK.vtkCompound.free_data((IntPtr)cellVarNames[i]);
 			}
 
 			//free_data (names);
 			//free_data (components);
 
+			bool a = VTK.vtkDataSet.IsA (handle,"vtkUnstructuredGrid");
+			bool aa = VTK.vtkCompound.IsA (handle, "vtkStructuredGrid")==1;
+			print( VTK.vtkDataSet.GetClassName (handle));
 
 			IntPtr bbox_buff;
 			double[] bbox = new double[6];
-
-			bbox_buff = get_bounds (handle);
-			Marshal.Copy (bbox_buff, bbox, 0, 6);
-			Vector3 mm = new Vector3 ((float)(bbox [0]), (float)(bbox [2]), (float)(bbox [4]));
-			Vector3 MM = new Vector3 ((float)(bbox [1]), (float)(bbox [3]), (float)(bbox [5]));
-
-			Vector3 center = (mm + MM) / 2;
-			Vector3 size = MM - mm;
-			data_size = size;
-			data_center = center;
+			Bounds b = VTK.vtkDataSet.GetBounds(handle);
+			data_size = b.size;
+			data_center = b.center;
 			print ("Center and extent: " + data_center + ", " + data_size);
 			float[] sizes = { data_size.x, data_size.y, data_size.z };
 			float extremum = sizes.Max ();
