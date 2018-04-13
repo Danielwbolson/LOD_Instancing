@@ -217,95 +217,95 @@ bool GetAbstractAttribute(IntPtr /*vtkAbstractArray** */ ret, IntPtr /*vtkDataSe
 [DllImport("vtkplugin", EntryPoint="API_vtkDataSetAttributes_RemoveArray_0")] public static extern 
 bool RemoveArray(IntPtr /*vtkDataSetAttributes* */ obj, int index);
 
-//       Method: void vtkDataSetAttributes::SetCopyScalars(int i)
+//       Method: void vtkDataSetAttributes::SetCopyScalars(vtkTypeBool i, int ctype)
 // 
 [DllImport("vtkplugin", EntryPoint="API_vtkDataSetAttributes_SetCopyScalars_0")] public static extern 
-bool SetCopyScalars(IntPtr /*vtkDataSetAttributes* */ obj, int i);
+bool SetCopyScalars(IntPtr /*vtkDataSetAttributes* */ obj, bool i, int ctype);
 
-//       Method: int vtkDataSetAttributes::GetCopyScalars()
+//       Method: vtkTypeBool vtkDataSetAttributes::GetCopyScalars(int ctype)
 // 
 [DllImport("vtkplugin", EntryPoint="API_vtkDataSetAttributes_GetCopyScalars_0")] public static extern 
-bool GetCopyScalars(IntPtr /*int* */ ret, IntPtr /*vtkDataSetAttributes* */ obj);
+bool GetCopyScalars(IntPtr /*vtkTypeBool* */ ret, IntPtr /*vtkDataSetAttributes* */ obj, int ctype);
 
-//       Method: void vtkDataSetAttributes::SetCopyVectors(int i)
+//       Method: void vtkDataSetAttributes::SetCopyVectors(vtkTypeBool i, int ctype)
 // 
 [DllImport("vtkplugin", EntryPoint="API_vtkDataSetAttributes_SetCopyVectors_0")] public static extern 
-bool SetCopyVectors(IntPtr /*vtkDataSetAttributes* */ obj, int i);
+bool SetCopyVectors(IntPtr /*vtkDataSetAttributes* */ obj, bool i, int ctype);
 
-//       Method: int vtkDataSetAttributes::GetCopyVectors()
+//       Method: vtkTypeBool vtkDataSetAttributes::GetCopyVectors(int ctype)
 // 
 [DllImport("vtkplugin", EntryPoint="API_vtkDataSetAttributes_GetCopyVectors_0")] public static extern 
-bool GetCopyVectors(IntPtr /*int* */ ret, IntPtr /*vtkDataSetAttributes* */ obj);
+bool GetCopyVectors(IntPtr /*vtkTypeBool* */ ret, IntPtr /*vtkDataSetAttributes* */ obj, int ctype);
 
-//       Method: void vtkDataSetAttributes::SetCopyNormals(int i)
+//       Method: void vtkDataSetAttributes::SetCopyNormals(vtkTypeBool i, int ctype)
 // 
 [DllImport("vtkplugin", EntryPoint="API_vtkDataSetAttributes_SetCopyNormals_0")] public static extern 
-bool SetCopyNormals(IntPtr /*vtkDataSetAttributes* */ obj, int i);
+bool SetCopyNormals(IntPtr /*vtkDataSetAttributes* */ obj, bool i, int ctype);
 
-//       Method: int vtkDataSetAttributes::GetCopyNormals()
+//       Method: vtkTypeBool vtkDataSetAttributes::GetCopyNormals(int ctype)
 // 
 [DllImport("vtkplugin", EntryPoint="API_vtkDataSetAttributes_GetCopyNormals_0")] public static extern 
-bool GetCopyNormals(IntPtr /*int* */ ret, IntPtr /*vtkDataSetAttributes* */ obj);
+bool GetCopyNormals(IntPtr /*vtkTypeBool* */ ret, IntPtr /*vtkDataSetAttributes* */ obj, int ctype);
 
-//       Method: void vtkDataSetAttributes::SetCopyTCoords(int i)
+//       Method: void vtkDataSetAttributes::SetCopyTCoords(vtkTypeBool i, int ctype)
 // 
 [DllImport("vtkplugin", EntryPoint="API_vtkDataSetAttributes_SetCopyTCoords_0")] public static extern 
-bool SetCopyTCoords(IntPtr /*vtkDataSetAttributes* */ obj, int i);
+bool SetCopyTCoords(IntPtr /*vtkDataSetAttributes* */ obj, bool i, int ctype);
 
-//       Method: int vtkDataSetAttributes::GetCopyTCoords()
+//       Method: vtkTypeBool vtkDataSetAttributes::GetCopyTCoords(int ctype)
 // 
 [DllImport("vtkplugin", EntryPoint="API_vtkDataSetAttributes_GetCopyTCoords_0")] public static extern 
-bool GetCopyTCoords(IntPtr /*int* */ ret, IntPtr /*vtkDataSetAttributes* */ obj);
+bool GetCopyTCoords(IntPtr /*vtkTypeBool* */ ret, IntPtr /*vtkDataSetAttributes* */ obj, int ctype);
 
-//       Method: void vtkDataSetAttributes::SetCopyTensors(int i)
+//       Method: void vtkDataSetAttributes::SetCopyTensors(vtkTypeBool i, int ctype)
 // 
 [DllImport("vtkplugin", EntryPoint="API_vtkDataSetAttributes_SetCopyTensors_0")] public static extern 
-bool SetCopyTensors(IntPtr /*vtkDataSetAttributes* */ obj, int i);
+bool SetCopyTensors(IntPtr /*vtkDataSetAttributes* */ obj, bool i, int ctype);
 
-//       Method: int vtkDataSetAttributes::GetCopyTensors()
+//       Method: vtkTypeBool vtkDataSetAttributes::GetCopyTensors(int ctype)
 // 
 [DllImport("vtkplugin", EntryPoint="API_vtkDataSetAttributes_GetCopyTensors_0")] public static extern 
-bool GetCopyTensors(IntPtr /*int* */ ret, IntPtr /*vtkDataSetAttributes* */ obj);
+bool GetCopyTensors(IntPtr /*vtkTypeBool* */ ret, IntPtr /*vtkDataSetAttributes* */ obj, int ctype);
 
-//       Method: void vtkDataSetAttributes::SetCopyGlobalIds(int i)
+//       Method: void vtkDataSetAttributes::SetCopyGlobalIds(vtkTypeBool i, int ctype)
 // 
 [DllImport("vtkplugin", EntryPoint="API_vtkDataSetAttributes_SetCopyGlobalIds_0")] public static extern 
-bool SetCopyGlobalIds(IntPtr /*vtkDataSetAttributes* */ obj, int i);
+bool SetCopyGlobalIds(IntPtr /*vtkDataSetAttributes* */ obj, bool i, int ctype);
 
-//       Method: int vtkDataSetAttributes::GetCopyGlobalIds()
+//       Method: vtkTypeBool vtkDataSetAttributes::GetCopyGlobalIds(int ctype)
 // 
 [DllImport("vtkplugin", EntryPoint="API_vtkDataSetAttributes_GetCopyGlobalIds_0")] public static extern 
-bool GetCopyGlobalIds(IntPtr /*int* */ ret, IntPtr /*vtkDataSetAttributes* */ obj);
+bool GetCopyGlobalIds(IntPtr /*vtkTypeBool* */ ret, IntPtr /*vtkDataSetAttributes* */ obj, int ctype);
 
-//       Method: void vtkDataSetAttributes::SetCopyPedigreeIds(int i)
+//       Method: void vtkDataSetAttributes::SetCopyPedigreeIds(vtkTypeBool i, int ctype)
 // 
 [DllImport("vtkplugin", EntryPoint="API_vtkDataSetAttributes_SetCopyPedigreeIds_0")] public static extern 
-bool SetCopyPedigreeIds(IntPtr /*vtkDataSetAttributes* */ obj, int i);
+bool SetCopyPedigreeIds(IntPtr /*vtkDataSetAttributes* */ obj, bool i, int ctype);
 
-//       Method: int vtkDataSetAttributes::GetCopyPedigreeIds()
+//       Method: vtkTypeBool vtkDataSetAttributes::GetCopyPedigreeIds(int ctype)
 // 
 [DllImport("vtkplugin", EntryPoint="API_vtkDataSetAttributes_GetCopyPedigreeIds_0")] public static extern 
-bool GetCopyPedigreeIds(IntPtr /*int* */ ret, IntPtr /*vtkDataSetAttributes* */ obj);
+bool GetCopyPedigreeIds(IntPtr /*vtkTypeBool* */ ret, IntPtr /*vtkDataSetAttributes* */ obj, int ctype);
 
-//       Method: void vtkDataSetAttributes::CopyAllOn()
+//       Method: void vtkDataSetAttributes::CopyAllOn(int ctype)
 // 
 [DllImport("vtkplugin", EntryPoint="API_vtkDataSetAttributes_CopyAllOn_0")] public static extern 
-bool CopyAllOn(IntPtr /*vtkDataSetAttributes* */ obj);
+bool CopyAllOn(IntPtr /*vtkDataSetAttributes* */ obj, int ctype);
 
-//       Method: void vtkDataSetAttributes::CopyAllOff()
+//       Method: void vtkDataSetAttributes::CopyAllOff(int ctype)
 // 
 [DllImport("vtkplugin", EntryPoint="API_vtkDataSetAttributes_CopyAllOff_0")] public static extern 
-bool CopyAllOff(IntPtr /*vtkDataSetAttributes* */ obj);
+bool CopyAllOff(IntPtr /*vtkDataSetAttributes* */ obj, int ctype);
 
 //       Method: void vtkDataSetAttributes::PassData(vtkFieldData* fd)
 // 
 [DllImport("vtkplugin", EntryPoint="API_vtkDataSetAttributes_PassData_0")] public static extern 
 bool PassData(IntPtr /*vtkDataSetAttributes* */ obj, IntPtr/*vtkFieldData* */ fd);
 
-//       Method: void vtkDataSetAttributes::CopyAllocate(vtkDataSetAttributes* pd, vtkIdType sze)
+//       Method: void vtkDataSetAttributes::CopyAllocate(vtkDataSetAttributes* pd, vtkIdType sze, vtkIdType ext)
 // 
 [DllImport("vtkplugin", EntryPoint="API_vtkDataSetAttributes_CopyAllocate_0")] public static extern 
-bool CopyAllocate(IntPtr /*vtkDataSetAttributes* */ obj, IntPtr/*vtkDataSetAttributes* */ pd, long sze);
+bool CopyAllocate(IntPtr /*vtkDataSetAttributes* */ obj, IntPtr/*vtkDataSetAttributes* */ pd, long sze, long ext);
 
 //       Method: void vtkDataSetAttributes::CopyAllocate(vtkDataSetAttributes* pd, vtkIdType sze, vtkIdType ext, int shallowCopyArrays)
 // 
@@ -317,10 +317,10 @@ bool CopyAllocate(IntPtr /*vtkDataSetAttributes* */ obj, IntPtr/*vtkDataSetAttri
 [DllImport("vtkplugin", EntryPoint="API_vtkDataSetAttributes_SetupForCopy_0")] public static extern 
 bool SetupForCopy(IntPtr /*vtkDataSetAttributes* */ obj, IntPtr/*vtkDataSetAttributes* */ pd);
 
-//       Method: void vtkDataSetAttributes::CopyStructuredData(vtkDataSetAttributes* inDsa, const int* inExt, const int* outExt)
+//       Method: void vtkDataSetAttributes::CopyStructuredData(vtkDataSetAttributes* inDsa, const int* inExt, const int* outExt, bool setSize)
 // 
 [DllImport("vtkplugin", EntryPoint="API_vtkDataSetAttributes_CopyStructuredData_0")] public static extern 
-bool CopyStructuredData(IntPtr /*vtkDataSetAttributes* */ obj, IntPtr/*vtkDataSetAttributes* */ inDsa, IntPtr/*const int* */ inExt, IntPtr/*const int* */ outExt);
+bool CopyStructuredData(IntPtr /*vtkDataSetAttributes* */ obj, IntPtr/*vtkDataSetAttributes* */ inDsa, IntPtr/*const int* */ inExt, IntPtr/*const int* */ outExt, bool setSize);
 
 //       Method: void vtkDataSetAttributes::CopyData(vtkDataSetAttributes* fromPd, vtkIdType fromId, vtkIdType toId)
 // 
@@ -352,10 +352,10 @@ bool CopyTuples(IntPtr /*vtkDataSetAttributes* */ obj, IntPtr/*vtkAbstractArray*
 [DllImport("vtkplugin", EntryPoint="API_vtkDataSetAttributes_CopyTuples_1")] public static extern 
 bool CopyTuples(IntPtr /*vtkDataSetAttributes* */ obj, IntPtr/*vtkAbstractArray* */ fromData, IntPtr/*vtkAbstractArray* */ toData, long dstStart, long n, long srcStart);
 
-//       Method: void vtkDataSetAttributes::InterpolateAllocate(vtkDataSetAttributes* pd, vtkIdType sze)
+//       Method: void vtkDataSetAttributes::InterpolateAllocate(vtkDataSetAttributes* pd, vtkIdType sze, vtkIdType ext)
 // 
 [DllImport("vtkplugin", EntryPoint="API_vtkDataSetAttributes_InterpolateAllocate_0")] public static extern 
-bool InterpolateAllocate(IntPtr /*vtkDataSetAttributes* */ obj, IntPtr/*vtkDataSetAttributes* */ pd, long sze);
+bool InterpolateAllocate(IntPtr /*vtkDataSetAttributes* */ obj, IntPtr/*vtkDataSetAttributes* */ pd, long sze, long ext);
 
 //       Method: void vtkDataSetAttributes::InterpolateAllocate(vtkDataSetAttributes* pd, vtkIdType sze, vtkIdType ext, int shallowCopyArrays)
 // 
@@ -376,31 +376,6 @@ bool InterpolateEdge(IntPtr /*vtkDataSetAttributes* */ obj, IntPtr/*vtkDataSetAt
 // 
 [DllImport("vtkplugin", EntryPoint="API_vtkDataSetAttributes_InterpolateTime_0")] public static extern 
 bool InterpolateTime(IntPtr /*vtkDataSetAttributes* */ obj, IntPtr/*vtkDataSetAttributes* */ from1, IntPtr/*vtkDataSetAttributes* */ from2, long id, double t);
-
-//       Method: void vtkDataSetAttributes::CopyAllocate(vtkIdType sze)
-// 
-[DllImport("vtkplugin", EntryPoint="API_vtkDataSetAttributes_CopyAllocate_2")] public static extern 
-bool CopyAllocate(IntPtr /*vtkDataSetAttributes* */ obj, long sze);
-
-//       Method: void vtkDataSetAttributes::CopyData(vtkDataSetAttributes* dsa, int idx, vtkIdType fromId, vtkIdType toId)
-// 
-[DllImport("vtkplugin", EntryPoint="API_vtkDataSetAttributes_CopyData_3")] public static extern 
-bool CopyData(IntPtr /*vtkDataSetAttributes* */ obj, IntPtr/*vtkDataSetAttributes* */ dsa, int idx, long fromId, long toId);
-
-//       Method: void vtkDataSetAttributes::CopyData(vtkDataSetAttributes* dsa, int idx, vtkIdType dstStart, vtkIdType n, vtkIdType srcStart)
-// 
-[DllImport("vtkplugin", EntryPoint="API_vtkDataSetAttributes_CopyData_4")] public static extern 
-bool CopyData(IntPtr /*vtkDataSetAttributes* */ obj, IntPtr/*vtkDataSetAttributes* */ dsa, int idx, long dstStart, long n, long srcStart);
-
-//       Method: void vtkDataSetAttributes::InterpolateAllocate(vtkIdType sze)
-// 
-[DllImport("vtkplugin", EntryPoint="API_vtkDataSetAttributes_InterpolateAllocate_2")] public static extern 
-bool InterpolateAllocate(IntPtr /*vtkDataSetAttributes* */ obj, long sze);
-
-//       Method: void vtkDataSetAttributes::InterpolatePoint(vtkDataSetAttributes* fromPd, int idx, vtkIdType toId, vtkIdList* ids, double* weights)
-// 
-[DllImport("vtkplugin", EntryPoint="API_vtkDataSetAttributes_InterpolatePoint_1")] public static extern 
-bool InterpolatePoint(IntPtr /*vtkDataSetAttributes* */ obj, IntPtr/*vtkDataSetAttributes* */ fromPd, int idx, long toId, IntPtr/*vtkIdList* */ ids, IntPtr/*double* */ weights);
 
 }
 };

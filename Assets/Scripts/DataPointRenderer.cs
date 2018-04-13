@@ -33,7 +33,7 @@ public class DataPointRenderer : MonoBehaviour {
 		}
 		is_valid = true;
 			
-		//VTK.vtkDataSet.GetPointData
+		//VTK.vtkDataSet.GetCell(
 
 
 
