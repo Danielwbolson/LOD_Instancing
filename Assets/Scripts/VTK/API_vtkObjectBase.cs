@@ -7,6 +7,21 @@ using System.Linq;
 namespace VTK {
 class API_vtkObjectBase {
 
+//       Method: const char * vtkObjectBase::GetClassName()
+// 
+[DllImport("vtkplugin", EntryPoint="API_vtkObjectBase_GetClassName_0")] public static extern 
+bool GetClassName(IntPtr /*const char** */ ret, IntPtr /*vtkObjectBase* */ obj);
+
+//       Method: const char * vtkObjectBase::GetClassNameA()
+// 
+[DllImport("vtkplugin", EntryPoint="API_vtkObjectBase_GetClassNameA_0")] public static extern 
+bool GetClassNameA(IntPtr /*const char** */ ret, IntPtr /*vtkObjectBase* */ obj);
+
+//       Method: const char * vtkObjectBase::GetClassNameW()
+// 
+[DllImport("vtkplugin", EntryPoint="API_vtkObjectBase_GetClassNameW_0")] public static extern 
+bool GetClassNameW(IntPtr /*const char** */ ret, IntPtr /*vtkObjectBase* */ obj);
+
 //       Method: static vtkTypeBool vtkObjectBase::IsTypeOf(const char* name)
 // 
 [DllImport("vtkplugin", EntryPoint="STATIC_API_vtkObjectBase_IsTypeOf_0")] public static extern 

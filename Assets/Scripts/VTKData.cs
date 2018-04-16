@@ -139,7 +139,11 @@ public class VTKData : Data {
 
 			bool a = VTK.vtkDataSet.IsA (handle,"vtkUnstructuredGrid");
 			bool aa = VTK.vtkCompound.IsA (handle, "vtkStructuredGrid")==1;
-			print( VTK.vtkDataSet.GetClassName (handle));
+
+			VTK.vtkXMLUnstructuredGridReader p = VTK.vtkXMLUnstructuredGridReader.New ();
+			print ("CLASS NAME: " + VTK.vtkXMLDataReader.GetClassName (p));
+			print("" + p.CanReadFile ("/Users/sethjohnson/NSF-Sculpting-Vis-Platform/unity/VisualizationPlatform/Assets/StreamingAssets/example_data/VTK/CICE.vtu"));
+
 
 			IntPtr bbox_buff;
 			double[] bbox = new double[6];

@@ -12,6 +12,11 @@ class API_vtkDataObject {
 [DllImport("vtkplugin", EntryPoint="STATIC_API_vtkDataObject_New_0")] public static extern 
 bool New(IntPtr /*vtkDataObject** */ ret);
 
+//       Method: virtual const char * vtkDataObject::GetClassName()
+// 
+[DllImport("vtkplugin", EntryPoint="API_vtkDataObject_GetClassName_0")] public static extern 
+bool GetClassName(IntPtr /*const char** */ ret, IntPtr /*vtkDataObject* */ obj);
+
 //       Method: virtual void vtkDataObject::SetInformation(vtkInformation* ARG_0)
 // 
 [DllImport("vtkplugin", EntryPoint="API_vtkDataObject_SetInformation_0")] public static extern 
@@ -75,22 +80,22 @@ bool GetActiveFieldInformation(IntPtr /*vtkInformation** */ ret, IntPtr/*vtkInfo
 //       Method: static vtkInformation * vtkDataObject::GetNamedFieldInformation(vtkInformation* info, int fieldAssociation, const char* name)
 // 
 [DllImport("vtkplugin", EntryPoint="STATIC_API_vtkDataObject_GetNamedFieldInformation_0")] public static extern 
-bool GetNamedFieldInformation(IntPtr /*vtkInformation** */ ret, IntPtr/*vtkInformation* */ info, int fieldAssociation, IntPtr/*const char* */ name);
+bool GetNamedFieldInformation(IntPtr /*vtkInformation** */ ret, IntPtr/*vtkInformation* */ info, int fieldAssociation, string/*const char* */ name);
 
 //       Method: static void vtkDataObject::RemoveNamedFieldInformation(vtkInformation* info, int fieldAssociation, const char* name)
 // 
 [DllImport("vtkplugin", EntryPoint="STATIC_API_vtkDataObject_RemoveNamedFieldInformation_0")] public static extern 
-bool RemoveNamedFieldInformation(IntPtr/*vtkInformation* */ info, int fieldAssociation, IntPtr/*const char* */ name);
+bool RemoveNamedFieldInformation(IntPtr/*vtkInformation* */ info, int fieldAssociation, string/*const char* */ name);
 
 //       Method: static vtkInformation * vtkDataObject::SetActiveAttribute(vtkInformation* info, int fieldAssociation, const char* attributeName, int attributeType)
 // 
 [DllImport("vtkplugin", EntryPoint="STATIC_API_vtkDataObject_SetActiveAttribute_0")] public static extern 
-bool SetActiveAttribute(IntPtr /*vtkInformation** */ ret, IntPtr/*vtkInformation* */ info, int fieldAssociation, IntPtr/*const char* */ attributeName, int attributeType);
+bool SetActiveAttribute(IntPtr /*vtkInformation** */ ret, IntPtr/*vtkInformation* */ info, int fieldAssociation, string/*const char* */ attributeName, int attributeType);
 
 //       Method: static void vtkDataObject::SetActiveAttributeInfo(vtkInformation* info, int fieldAssociation, int attributeType, const char* name, int arrayType, int numComponents, int numTuples)
 // 
 [DllImport("vtkplugin", EntryPoint="STATIC_API_vtkDataObject_SetActiveAttributeInfo_0")] public static extern 
-bool SetActiveAttributeInfo(IntPtr/*vtkInformation* */ info, int fieldAssociation, int attributeType, IntPtr/*const char* */ name, int arrayType, int numComponents, int numTuples);
+bool SetActiveAttributeInfo(IntPtr/*vtkInformation* */ info, int fieldAssociation, int attributeType, string/*const char* */ name, int arrayType, int numComponents, int numTuples);
 
 //       Method: static void vtkDataObject::SetPointDataActiveScalarInfo(vtkInformation* info, int arrayType, int numComponents)
 // 
@@ -147,10 +152,15 @@ bool GetAttributeTypeForArray(IntPtr /*int* */ ret, IntPtr /*vtkDataObject* */ o
 [DllImport("vtkplugin", EntryPoint="API_vtkDataObject_GetNumberOfElements_0")] public static extern 
 bool GetNumberOfElements(IntPtr /*vtkIdType* */ ret, IntPtr /*vtkDataObject* */ obj, int type);
 
+//       Method: static const char * vtkDataObject::GetAssociationTypeAsString(int associationType)
+// 
+[DllImport("vtkplugin", EntryPoint="STATIC_API_vtkDataObject_GetAssociationTypeAsString_0")] public static extern 
+bool GetAssociationTypeAsString(IntPtr /*const char** */ ret, int associationType);
+
 //       Method: static int vtkDataObject::GetAssociationTypeFromString(const char* associationType)
 // 
 [DllImport("vtkplugin", EntryPoint="STATIC_API_vtkDataObject_GetAssociationTypeFromString_0")] public static extern 
-bool GetAssociationTypeFromString(IntPtr /*int* */ ret, IntPtr/*const char* */ associationType);
+bool GetAssociationTypeFromString(IntPtr /*int* */ ret, string/*const char* */ associationType);
 
 //       Method: static vtkInformationStringKey * vtkDataObject::DATA_TYPE_NAME()
 // 
