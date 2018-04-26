@@ -1,0 +1,81 @@
+
+using System;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Linq;
+
+namespace VTK {
+class API_vtkCommand {
+
+// void UnRegister()
+// void UnRegister()
+[DllImport("vtkplugin", EntryPoint="vtkCommand_UnRegister_0")] public static extern 
+bool vtkCommand_UnRegister_0(IntPtr /*(vtkCommand*)*/ callingObject);
+
+// void UnRegister(vtkObjectBase * ARG_0)
+// void UnRegister(vtkObjectBase *)
+[DllImport("vtkplugin", EntryPoint="vtkCommand_UnRegister_1")] public static extern 
+bool vtkCommand_UnRegister_1(IntPtr /*(vtkCommand*)*/ callingObject, IntPtr /*(vtkObjectBase*)*/ ARG_0);
+
+// virtual void Execute(vtkObject * caller, unsigned long eventId, void * callData)
+// virtual void Execute(vtkObject *caller, unsigned long eventId, void *callData)
+[DllImport("vtkplugin", EntryPoint="vtkCommand_Execute_0")] public static extern 
+bool vtkCommand_Execute_0(IntPtr /*(vtkCommand*)*/ callingObject, IntPtr /*(vtkObject*)*/ caller, long /*(long)*/ eventId, IntPtr /*(void*)*/ callData);
+
+// static char* GetStringFromEventId(unsigned long event)
+// static const char *GetStringFromEventId(unsigned long event)
+[DllImport("vtkplugin", EntryPoint="vtkCommand_GetStringFromEventId_0")] public static extern 
+bool vtkCommand_GetStringFromEventId_0(IntPtr /*(char**)*/ return_value, long /*(long)*/ evt);
+
+// static long GetEventIdFromString(const char * event)
+// static unsigned long GetEventIdFromString(const char *event)
+[DllImport("vtkplugin", EntryPoint="vtkCommand_GetEventIdFromString_0")] public static extern 
+bool vtkCommand_GetEventIdFromString_0(IntPtr /*(long*)*/ return_value, IntPtr /*(char*)*/ evt);
+
+// static bool EventHasData(unsigned long event)
+// static bool EventHasData(unsigned long event)
+[DllImport("vtkplugin", EntryPoint="vtkCommand_EventHasData_0")] public static extern 
+bool vtkCommand_EventHasData_0(IntPtr /*(bool*)*/ return_value, long /*(long)*/ evt);
+
+// void SetAbortFlag(int f)
+// void SetAbortFlag(int f)
+[DllImport("vtkplugin", EntryPoint="vtkCommand_SetAbortFlag_0")] public static extern 
+bool vtkCommand_SetAbortFlag_0(IntPtr /*(vtkCommand*)*/ callingObject, int /*(int)*/ f);
+
+// int GetAbortFlag()
+// int GetAbortFlag()
+[DllImport("vtkplugin", EntryPoint="vtkCommand_GetAbortFlag_0")] public static extern 
+bool vtkCommand_GetAbortFlag_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkCommand*)*/ callingObject);
+
+// void AbortFlagOn()
+// void AbortFlagOn()
+[DllImport("vtkplugin", EntryPoint="vtkCommand_AbortFlagOn_0")] public static extern 
+bool vtkCommand_AbortFlagOn_0(IntPtr /*(vtkCommand*)*/ callingObject);
+
+// void AbortFlagOff()
+// void AbortFlagOff()
+[DllImport("vtkplugin", EntryPoint="vtkCommand_AbortFlagOff_0")] public static extern 
+bool vtkCommand_AbortFlagOff_0(IntPtr /*(vtkCommand*)*/ callingObject);
+
+// void SetPassiveObserver(int f)
+// void SetPassiveObserver(int f)
+[DllImport("vtkplugin", EntryPoint="vtkCommand_SetPassiveObserver_0")] public static extern 
+bool vtkCommand_SetPassiveObserver_0(IntPtr /*(vtkCommand*)*/ callingObject, int /*(int)*/ f);
+
+// int GetPassiveObserver()
+// int GetPassiveObserver()
+[DllImport("vtkplugin", EntryPoint="vtkCommand_GetPassiveObserver_0")] public static extern 
+bool vtkCommand_GetPassiveObserver_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkCommand*)*/ callingObject);
+
+// void PassiveObserverOn()
+// void PassiveObserverOn()
+[DllImport("vtkplugin", EntryPoint="vtkCommand_PassiveObserverOn_0")] public static extern 
+bool vtkCommand_PassiveObserverOn_0(IntPtr /*(vtkCommand*)*/ callingObject);
+
+// void PassiveObserverOff()
+// void PassiveObserverOff()
+[DllImport("vtkplugin", EntryPoint="vtkCommand_PassiveObserverOff_0")] public static extern 
+bool vtkCommand_PassiveObserverOff_0(IntPtr /*(vtkCommand*)*/ callingObject);
+
+}
+};

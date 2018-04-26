@@ -1,0 +1,76 @@
+
+using System;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Linq;
+
+namespace VTK {
+class API_vtkXMLDataParser {
+
+// static vtkXMLDataParser* New()
+// static vtkXMLDataParser* New()
+[DllImport("vtkplugin", EntryPoint="vtkXMLDataParser_New_0")] public static extern 
+bool vtkXMLDataParser_New_0(IntPtr /*(vtkXMLDataParser**)*/ return_value);
+
+// vtkXMLDataElement* GetRootElement()
+// vtkXMLDataElement* GetRootElement()
+[DllImport("vtkplugin", EntryPoint="vtkXMLDataParser_GetRootElement_0")] public static extern 
+bool vtkXMLDataParser_GetRootElement_0(IntPtr /*(vtkXMLDataElement**)*/ return_value, IntPtr /*(vtkXMLDataParser*)*/ callingObject);
+
+// size_t ReadInlineData(vtkXMLDataElement * element, int isAscii, void * buffer, vtkTypeUInt64 startWord, size_t numWords, int wordType)
+// size_t ReadInlineData(vtkXMLDataElement* element, int isAscii, void* buffer, vtkTypeUInt64 startWord, size_t numWords, int wordType)
+[DllImport("vtkplugin", EntryPoint="vtkXMLDataParser_ReadInlineData_0")] public static extern 
+bool vtkXMLDataParser_ReadInlineData_0(IntPtr /*(size_t*)*/ return_value, IntPtr /*(vtkXMLDataParser*)*/ callingObject, IntPtr /*(vtkXMLDataElement*)*/ element, int /*(int)*/ isAscii, IntPtr /*(void*)*/ buffer, ulong /*(vtkTypeUInt64)*/ startWord, ulong /*(size_t)*/ numWords, int /*(int)*/ wordType);
+
+// size_t ReadInlineData(vtkXMLDataElement * element, int isAscii, char * buffer, vtkTypeUInt64 startWord, size_t numWords)
+// size_t ReadInlineData(vtkXMLDataElement* element, int isAscii, char* buffer, vtkTypeUInt64 startWord, size_t numWords)
+[DllImport("vtkplugin", EntryPoint="vtkXMLDataParser_ReadInlineData_1")] public static extern 
+bool vtkXMLDataParser_ReadInlineData_1(IntPtr /*(size_t*)*/ return_value, IntPtr /*(vtkXMLDataParser*)*/ callingObject, IntPtr /*(vtkXMLDataElement*)*/ element, int /*(int)*/ isAscii, IntPtr /*(char*)*/ buffer, ulong /*(vtkTypeUInt64)*/ startWord, ulong /*(size_t)*/ numWords);
+
+// size_t ReadAppendedData(vtkTypeInt64 offset, void * buffer, vtkTypeUInt64 startWord, size_t numWords, int wordType)
+// size_t ReadAppendedData(vtkTypeInt64 offset, void* buffer, vtkTypeUInt64 startWord, size_t numWords, int wordType)
+[DllImport("vtkplugin", EntryPoint="vtkXMLDataParser_ReadAppendedData_0")] public static extern 
+bool vtkXMLDataParser_ReadAppendedData_0(IntPtr /*(size_t*)*/ return_value, IntPtr /*(vtkXMLDataParser*)*/ callingObject, long /*(vtkTypeInt64)*/ offset, IntPtr /*(void*)*/ buffer, ulong /*(vtkTypeUInt64)*/ startWord, ulong /*(size_t)*/ numWords, int /*(int)*/ wordType);
+
+// size_t ReadAppendedData(vtkTypeInt64 offset, char * buffer, vtkTypeUInt64 startWord, size_t numWords)
+// size_t ReadAppendedData(vtkTypeInt64 offset, char* buffer, vtkTypeUInt64 startWord, size_t numWords)
+[DllImport("vtkplugin", EntryPoint="vtkXMLDataParser_ReadAppendedData_1")] public static extern 
+bool vtkXMLDataParser_ReadAppendedData_1(IntPtr /*(size_t*)*/ return_value, IntPtr /*(vtkXMLDataParser*)*/ callingObject, long /*(vtkTypeInt64)*/ offset, IntPtr /*(char*)*/ buffer, ulong /*(vtkTypeUInt64)*/ startWord, ulong /*(size_t)*/ numWords);
+
+// size_t ReadAsciiData(void * buffer, vtkTypeUInt64 startWord, size_t numWords, int wordType)
+// size_t ReadAsciiData(void* buffer, vtkTypeUInt64 startWord, size_t numWords, int wordType)
+[DllImport("vtkplugin", EntryPoint="vtkXMLDataParser_ReadAsciiData_0")] public static extern 
+bool vtkXMLDataParser_ReadAsciiData_0(IntPtr /*(size_t*)*/ return_value, IntPtr /*(vtkXMLDataParser*)*/ callingObject, IntPtr /*(void*)*/ buffer, ulong /*(vtkTypeUInt64)*/ startWord, ulong /*(size_t)*/ numWords, int /*(int)*/ wordType);
+
+// size_t ReadBinaryData(void * buffer, vtkTypeUInt64 startWord, size_t maxWords, int wordType)
+// size_t ReadBinaryData(void* buffer, vtkTypeUInt64 startWord, size_t maxWords, int wordType)
+[DllImport("vtkplugin", EntryPoint="vtkXMLDataParser_ReadBinaryData_0")] public static extern 
+bool vtkXMLDataParser_ReadBinaryData_0(IntPtr /*(size_t*)*/ return_value, IntPtr /*(vtkXMLDataParser*)*/ callingObject, IntPtr /*(void*)*/ buffer, ulong /*(vtkTypeUInt64)*/ startWord, ulong /*(size_t)*/ maxWords, int /*(int)*/ wordType);
+
+// virtual void SetCompressor(vtkDataCompressor * ARG_0)
+// virtual void SetCompressor(vtkDataCompressor*)
+[DllImport("vtkplugin", EntryPoint="vtkXMLDataParser_SetCompressor_0")] public static extern 
+bool vtkXMLDataParser_SetCompressor_0(IntPtr /*(vtkXMLDataParser*)*/ callingObject, IntPtr /*(vtkDataCompressor*)*/ ARG_0);
+
+// size_t GetWordTypeSize(int wordType)
+// size_t GetWordTypeSize(int wordType)
+[DllImport("vtkplugin", EntryPoint="vtkXMLDataParser_GetWordTypeSize_0")] public static extern 
+bool vtkXMLDataParser_GetWordTypeSize_0(IntPtr /*(size_t*)*/ return_value, IntPtr /*(vtkXMLDataParser*)*/ callingObject, int /*(int)*/ wordType);
+
+// int Parse()
+// int Parse()
+[DllImport("vtkplugin", EntryPoint="vtkXMLDataParser_Parse_0")] public static extern 
+bool vtkXMLDataParser_Parse_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkXMLDataParser*)*/ callingObject);
+
+// void CharacterDataHandler(const char * data, int length)
+// void CharacterDataHandler(const char* data, int length)
+[DllImport("vtkplugin", EntryPoint="vtkXMLDataParser_CharacterDataHandler_0")] public static extern 
+bool vtkXMLDataParser_CharacterDataHandler_0(IntPtr /*(vtkXMLDataParser*)*/ callingObject, IntPtr /*(char*)*/ data, int /*(int)*/ length);
+
+// vtkTypeInt64 GetAppendedDataPosition()
+// vtkTypeInt64 GetAppendedDataPosition()
+[DllImport("vtkplugin", EntryPoint="vtkXMLDataParser_GetAppendedDataPosition_0")] public static extern 
+bool vtkXMLDataParser_GetAppendedDataPosition_0(IntPtr /*(vtkTypeInt64*)*/ return_value, IntPtr /*(vtkXMLDataParser*)*/ callingObject);
+
+}
+};

@@ -1,0 +1,151 @@
+
+using System;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Linq;
+
+namespace VTK {
+class API_vtkObject {
+
+// static vtkObject* New()
+// static vtkObject *New()
+[DllImport("vtkplugin", EntryPoint="vtkObject_New_0")] public static extern 
+bool vtkObject_New_0(IntPtr /*(vtkObject**)*/ return_value);
+
+// virtual void DebugOn()
+// virtual void DebugOn()
+[DllImport("vtkplugin", EntryPoint="vtkObject_DebugOn_0")] public static extern 
+bool vtkObject_DebugOn_0(IntPtr /*(vtkObject*)*/ callingObject);
+
+// virtual void DebugOff()
+// virtual void DebugOff()
+[DllImport("vtkplugin", EntryPoint="vtkObject_DebugOff_0")] public static extern 
+bool vtkObject_DebugOff_0(IntPtr /*(vtkObject*)*/ callingObject);
+
+// bool GetDebug()
+// bool GetDebug()
+[DllImport("vtkplugin", EntryPoint="vtkObject_GetDebug_0")] public static extern 
+bool vtkObject_GetDebug_0(IntPtr /*(bool*)*/ return_value, IntPtr /*(vtkObject*)*/ callingObject);
+
+// void SetDebug(bool debugFlag)
+// void SetDebug(bool debugFlag)
+[DllImport("vtkplugin", EntryPoint="vtkObject_SetDebug_0")] public static extern 
+bool vtkObject_SetDebug_0(IntPtr /*(vtkObject*)*/ callingObject, bool /*(bool)*/ debugFlag);
+
+// static void BreakOnError()
+// static void BreakOnError()
+[DllImport("vtkplugin", EntryPoint="vtkObject_BreakOnError_0")] public static extern 
+bool vtkObject_BreakOnError_0();
+
+// virtual void Modified()
+// virtual void Modified()
+[DllImport("vtkplugin", EntryPoint="vtkObject_Modified_0")] public static extern 
+bool vtkObject_Modified_0(IntPtr /*(vtkObject*)*/ callingObject);
+
+// virtual vtkMTimeType GetMTime()
+// virtual vtkMTimeType GetMTime()
+[DllImport("vtkplugin", EntryPoint="vtkObject_GetMTime_0")] public static extern 
+bool vtkObject_GetMTime_0(IntPtr /*(vtkMTimeType*)*/ return_value, IntPtr /*(vtkObject*)*/ callingObject);
+
+// static void SetGlobalWarningDisplay(int val)
+// static void SetGlobalWarningDisplay(int val)
+[DllImport("vtkplugin", EntryPoint="vtkObject_SetGlobalWarningDisplay_0")] public static extern 
+bool vtkObject_SetGlobalWarningDisplay_0(int /*(int)*/ val);
+
+// static void GlobalWarningDisplayOn()
+// static void GlobalWarningDisplayOn()
+[DllImport("vtkplugin", EntryPoint="vtkObject_GlobalWarningDisplayOn_0")] public static extern 
+bool vtkObject_GlobalWarningDisplayOn_0();
+
+// static void GlobalWarningDisplayOff()
+// static void GlobalWarningDisplayOff()
+[DllImport("vtkplugin", EntryPoint="vtkObject_GlobalWarningDisplayOff_0")] public static extern 
+bool vtkObject_GlobalWarningDisplayOff_0();
+
+// static int GetGlobalWarningDisplay()
+// static int GetGlobalWarningDisplay()
+[DllImport("vtkplugin", EntryPoint="vtkObject_GetGlobalWarningDisplay_0")] public static extern 
+bool vtkObject_GetGlobalWarningDisplay_0(IntPtr /*(int*)*/ return_value);
+
+// vtkCommand* GetCommand(unsigned long tag)
+// vtkCommand *GetCommand(unsigned long tag)
+[DllImport("vtkplugin", EntryPoint="vtkObject_GetCommand_0")] public static extern 
+bool vtkObject_GetCommand_0(IntPtr /*(vtkCommand**)*/ return_value, IntPtr /*(vtkObject*)*/ callingObject, long /*(long)*/ tag);
+
+// void RemoveObserver(vtkCommand * ARG_0)
+// void RemoveObserver(vtkCommand*)
+[DllImport("vtkplugin", EntryPoint="vtkObject_RemoveObserver_0")] public static extern 
+bool vtkObject_RemoveObserver_0(IntPtr /*(vtkObject*)*/ callingObject, IntPtr /*(vtkCommand*)*/ ARG_0);
+
+// void RemoveObservers(unsigned long event, vtkCommand * ARG_0)
+// void RemoveObservers(unsigned long event, vtkCommand *)
+[DllImport("vtkplugin", EntryPoint="vtkObject_RemoveObservers_0")] public static extern 
+bool vtkObject_RemoveObservers_0(IntPtr /*(vtkObject*)*/ callingObject, long /*(long)*/ evt, IntPtr /*(vtkCommand*)*/ ARG_0);
+
+// void RemoveObservers(const char * event, vtkCommand * ARG_0)
+// void RemoveObservers(const char *event, vtkCommand *)
+[DllImport("vtkplugin", EntryPoint="vtkObject_RemoveObservers_1")] public static extern 
+bool vtkObject_RemoveObservers_1(IntPtr /*(vtkObject*)*/ callingObject, IntPtr /*(char*)*/ evt, IntPtr /*(vtkCommand*)*/ ARG_0);
+
+// int HasObserver(unsigned long event, vtkCommand * ARG_0)
+// int HasObserver(unsigned long event, vtkCommand *)
+[DllImport("vtkplugin", EntryPoint="vtkObject_HasObserver_0")] public static extern 
+bool vtkObject_HasObserver_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkObject*)*/ callingObject, long /*(long)*/ evt, IntPtr /*(vtkCommand*)*/ ARG_0);
+
+// int HasObserver(const char * event, vtkCommand * ARG_0)
+// int HasObserver(const char *event, vtkCommand *)
+[DllImport("vtkplugin", EntryPoint="vtkObject_HasObserver_1")] public static extern 
+bool vtkObject_HasObserver_1(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkObject*)*/ callingObject, IntPtr /*(char*)*/ evt, IntPtr /*(vtkCommand*)*/ ARG_0);
+
+// void RemoveObserver(unsigned long tag)
+// void RemoveObserver(unsigned long tag)
+[DllImport("vtkplugin", EntryPoint="vtkObject_RemoveObserver_1")] public static extern 
+bool vtkObject_RemoveObserver_1(IntPtr /*(vtkObject*)*/ callingObject, long /*(long)*/ tag);
+
+// void RemoveObservers(unsigned long event)
+// void RemoveObservers(unsigned long event)
+[DllImport("vtkplugin", EntryPoint="vtkObject_RemoveObservers_2")] public static extern 
+bool vtkObject_RemoveObservers_2(IntPtr /*(vtkObject*)*/ callingObject, long /*(long)*/ evt);
+
+// void RemoveObservers(const char * event)
+// void RemoveObservers(const char *event)
+[DllImport("vtkplugin", EntryPoint="vtkObject_RemoveObservers_3")] public static extern 
+bool vtkObject_RemoveObservers_3(IntPtr /*(vtkObject*)*/ callingObject, IntPtr /*(char*)*/ evt);
+
+// void RemoveAllObservers()
+// void RemoveAllObservers()
+[DllImport("vtkplugin", EntryPoint="vtkObject_RemoveAllObservers_0")] public static extern 
+bool vtkObject_RemoveAllObservers_0(IntPtr /*(vtkObject*)*/ callingObject);
+
+// int HasObserver(unsigned long event)
+// int HasObserver(unsigned long event)
+[DllImport("vtkplugin", EntryPoint="vtkObject_HasObserver_2")] public static extern 
+bool vtkObject_HasObserver_2(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkObject*)*/ callingObject, long /*(long)*/ evt);
+
+// int HasObserver(const char * event)
+// int HasObserver(const char *event)
+[DllImport("vtkplugin", EntryPoint="vtkObject_HasObserver_3")] public static extern 
+bool vtkObject_HasObserver_3(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkObject*)*/ callingObject, IntPtr /*(char*)*/ evt);
+
+// int InvokeEvent(unsigned long event, void * callData)
+// int InvokeEvent(unsigned long event, void *callData)
+[DllImport("vtkplugin", EntryPoint="vtkObject_InvokeEvent_0")] public static extern 
+bool vtkObject_InvokeEvent_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkObject*)*/ callingObject, long /*(long)*/ evt, IntPtr /*(void*)*/ callData);
+
+// int InvokeEvent(const char * event, void * callData)
+// int InvokeEvent(const char *event, void *callData)
+[DllImport("vtkplugin", EntryPoint="vtkObject_InvokeEvent_1")] public static extern 
+bool vtkObject_InvokeEvent_1(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkObject*)*/ callingObject, IntPtr /*(char*)*/ evt, IntPtr /*(void*)*/ callData);
+
+// int InvokeEvent(unsigned long event)
+// int InvokeEvent(unsigned long event)
+[DllImport("vtkplugin", EntryPoint="vtkObject_InvokeEvent_2")] public static extern 
+bool vtkObject_InvokeEvent_2(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkObject*)*/ callingObject, long /*(long)*/ evt);
+
+// int InvokeEvent(const char * event)
+// int InvokeEvent(const char *event)
+[DllImport("vtkplugin", EntryPoint="vtkObject_InvokeEvent_3")] public static extern 
+bool vtkObject_InvokeEvent_3(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkObject*)*/ callingObject, IntPtr /*(char*)*/ evt);
+
+}
+};

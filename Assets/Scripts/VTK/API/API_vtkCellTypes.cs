@@ -1,0 +1,106 @@
+
+using System;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Linq;
+
+namespace VTK {
+class API_vtkCellTypes {
+
+// static vtkCellTypes* New()
+// static vtkCellTypes *New()
+[DllImport("vtkplugin", EntryPoint="vtkCellTypes_New_0")] public static extern 
+bool vtkCellTypes_New_0(IntPtr /*(vtkCellTypes**)*/ return_value);
+
+// int Allocate(int sz = 512, int ext = 1000)
+// int Allocate(int sz=512, int ext=1000)
+[DllImport("vtkplugin", EntryPoint="vtkCellTypes_Allocate_0")] public static extern 
+bool vtkCellTypes_Allocate_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkCellTypes*)*/ callingObject, int /*(int)*/ sz, int /*(int)*/ ext);
+
+// void InsertCell(vtkIdType id, unsigned char type, vtkIdType loc)
+// void InsertCell(vtkIdType id, unsigned char type, vtkIdType loc)
+[DllImport("vtkplugin", EntryPoint="vtkCellTypes_InsertCell_0")] public static extern 
+bool vtkCellTypes_InsertCell_0(IntPtr /*(vtkCellTypes*)*/ callingObject, long /*(vtkIdType)*/ id, char /*(char)*/ type, long /*(vtkIdType)*/ loc);
+
+// vtkIdType InsertNextCell(unsigned char type, vtkIdType loc)
+// vtkIdType InsertNextCell(unsigned char type, vtkIdType loc)
+[DllImport("vtkplugin", EntryPoint="vtkCellTypes_InsertNextCell_0")] public static extern 
+bool vtkCellTypes_InsertNextCell_0(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkCellTypes*)*/ callingObject, char /*(char)*/ type, long /*(vtkIdType)*/ loc);
+
+// void SetCellTypes(vtkIdType ncells, vtkUnsignedCharArray * cellTypes, vtkIdTypeArray * cellLocations)
+// void SetCellTypes(vtkIdType ncells, vtkUnsignedCharArray *cellTypes, vtkIdTypeArray *cellLocations)
+[DllImport("vtkplugin", EntryPoint="vtkCellTypes_SetCellTypes_0")] public static extern 
+bool vtkCellTypes_SetCellTypes_0(IntPtr /*(vtkCellTypes*)*/ callingObject, long /*(vtkIdType)*/ ncells, IntPtr /*(vtkUnsignedCharArray*)*/ cellTypes, IntPtr /*(vtkIdTypeArray*)*/ cellLocations);
+
+// void SetCellTypes(vtkIdType ncells, vtkUnsignedCharArray * cellTypes, vtkIntArray * cellLocations)
+// void SetCellTypes(vtkIdType ncells, vtkUnsignedCharArray *cellTypes, vtkIntArray *cellLocations)
+[DllImport("vtkplugin", EntryPoint="vtkCellTypes_SetCellTypes_1")] public static extern 
+bool vtkCellTypes_SetCellTypes_1(IntPtr /*(vtkCellTypes*)*/ callingObject, long /*(vtkIdType)*/ ncells, IntPtr /*(vtkUnsignedCharArray*)*/ cellTypes, IntPtr /*(vtkIntArray*)*/ cellLocations);
+
+// vtkIdType GetCellLocation(vtkIdType cellId)
+// vtkIdType GetCellLocation(vtkIdType cellId)
+[DllImport("vtkplugin", EntryPoint="vtkCellTypes_GetCellLocation_0")] public static extern 
+bool vtkCellTypes_GetCellLocation_0(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkCellTypes*)*/ callingObject, long /*(vtkIdType)*/ cellId);
+
+// void DeleteCell(vtkIdType cellId)
+// void DeleteCell(vtkIdType cellId)
+[DllImport("vtkplugin", EntryPoint="vtkCellTypes_DeleteCell_0")] public static extern 
+bool vtkCellTypes_DeleteCell_0(IntPtr /*(vtkCellTypes*)*/ callingObject, long /*(vtkIdType)*/ cellId);
+
+// vtkIdType GetNumberOfTypes()
+// vtkIdType GetNumberOfTypes()
+[DllImport("vtkplugin", EntryPoint="vtkCellTypes_GetNumberOfTypes_0")] public static extern 
+bool vtkCellTypes_GetNumberOfTypes_0(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkCellTypes*)*/ callingObject);
+
+// int IsType(unsigned char type)
+// int IsType(unsigned char type)
+[DllImport("vtkplugin", EntryPoint="vtkCellTypes_IsType_0")] public static extern 
+bool vtkCellTypes_IsType_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkCellTypes*)*/ callingObject, char /*(char)*/ type);
+
+// vtkIdType InsertNextType(unsigned char type)
+// vtkIdType InsertNextType(unsigned char type)
+[DllImport("vtkplugin", EntryPoint="vtkCellTypes_InsertNextType_0")] public static extern 
+bool vtkCellTypes_InsertNextType_0(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkCellTypes*)*/ callingObject, char /*(char)*/ type);
+
+// char GetCellType(vtkIdType cellId)
+// unsigned char GetCellType(vtkIdType cellId)
+[DllImport("vtkplugin", EntryPoint="vtkCellTypes_GetCellType_0")] public static extern 
+bool vtkCellTypes_GetCellType_0(IntPtr /*(char*)*/ return_value, IntPtr /*(vtkCellTypes*)*/ callingObject, long /*(vtkIdType)*/ cellId);
+
+// void Squeeze()
+// void Squeeze()
+[DllImport("vtkplugin", EntryPoint="vtkCellTypes_Squeeze_0")] public static extern 
+bool vtkCellTypes_Squeeze_0(IntPtr /*(vtkCellTypes*)*/ callingObject);
+
+// void Reset()
+// void Reset()
+[DllImport("vtkplugin", EntryPoint="vtkCellTypes_Reset_0")] public static extern 
+bool vtkCellTypes_Reset_0(IntPtr /*(vtkCellTypes*)*/ callingObject);
+
+// long GetActualMemorySize()
+// unsigned long GetActualMemorySize()
+[DllImport("vtkplugin", EntryPoint="vtkCellTypes_GetActualMemorySize_0")] public static extern 
+bool vtkCellTypes_GetActualMemorySize_0(IntPtr /*(long*)*/ return_value, IntPtr /*(vtkCellTypes*)*/ callingObject);
+
+// void DeepCopy(vtkCellTypes * src)
+// void DeepCopy(vtkCellTypes *src)
+[DllImport("vtkplugin", EntryPoint="vtkCellTypes_DeepCopy_0")] public static extern 
+bool vtkCellTypes_DeepCopy_0(IntPtr /*(vtkCellTypes*)*/ callingObject, IntPtr /*(vtkCellTypes*)*/ src);
+
+// static char* GetClassNameFromTypeId(int typeId)
+// static const char* GetClassNameFromTypeId(int typeId)
+[DllImport("vtkplugin", EntryPoint="vtkCellTypes_GetClassNameFromTypeId_0")] public static extern 
+bool vtkCellTypes_GetClassNameFromTypeId_0(IntPtr /*(char**)*/ return_value, int /*(int)*/ typeId);
+
+// static int GetTypeIdFromClassName(const char * classname)
+// static int GetTypeIdFromClassName(const char* classname)
+[DllImport("vtkplugin", EntryPoint="vtkCellTypes_GetTypeIdFromClassName_0")] public static extern 
+bool vtkCellTypes_GetTypeIdFromClassName_0(IntPtr /*(int*)*/ return_value, IntPtr /*(char*)*/ classname);
+
+// static int IsLinear(unsigned char type)
+// static int IsLinear(unsigned char type)
+[DllImport("vtkplugin", EntryPoint="vtkCellTypes_IsLinear_0")] public static extern 
+bool vtkCellTypes_IsLinear_0(IntPtr /*(int*)*/ return_value, char /*(char)*/ type);
+
+}
+};
