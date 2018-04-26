@@ -768,33 +768,33 @@ public void Modified() {
 	VTK.API_vtkDataArray.Modified(obj);
 }
 
-
-//       Method: static vtkInformationStringKey * vtkDataArray::UNITS_LABEL()
-// 
-public static vtkInformationStringKey UNITS_LABEL() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataArray.UNITS_LABEL(p);
-	vtkInformationStringKey result = new vtkInformationStringKey();
-	unsafe {result.SetPtr(new IntPtr ((*(void**)p.ToPointer ())));}
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: int vtkDataArray::CopyInformation(vtkInformation* infoFrom, int deep)
-// 
-public int CopyInformation(vtkInformation/*vtkInformation* */ infoFrom, int deep) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataArray.CopyInformation(p,obj, infoFrom, deep);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
+//
+////       Method: static vtkInformationStringKey * vtkDataArray::UNITS_LABEL()
+//// 
+//public static vtkInformationStringKey UNITS_LABEL() {
+//	int numElements = 1;
+//	IntPtr example = new IntPtr();
+//	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
+//	VTK.API_vtkDataArray.UNITS_LABEL(p);
+//	vtkInformationStringKey result = new vtkInformationStringKey();
+//	unsafe {result.SetPtr(new IntPtr ((*(void**)p.ToPointer ())));}
+//	Marshal.FreeHGlobal (p);
+//	return result;
+//}
+//
+//
+////       Method: int vtkDataArray::CopyInformation(vtkInformation* infoFrom, int deep)
+//// 
+//public int CopyInformation(vtkInformation/*vtkInformation* */ infoFrom, int deep) {
+//	int numElements = 1;
+//	int example = new int();
+//	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
+//	VTK.API_vtkDataArray.CopyInformation(p,obj, infoFrom, deep);
+//	int result = Convert.ToInt32(Marshal.ReadInt32(p));
+//	Marshal.FreeHGlobal (p);
+//	return result;
+//}
+//
 
 //       Method: int vtkDataArray::GetArrayType()
 // 
