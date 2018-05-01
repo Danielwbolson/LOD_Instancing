@@ -10,22 +10,22 @@ class API_vtkIntArray {
 // static vtkIntArray* New()
 // static vtkIntArray* New()
 [DllImport("vtkplugin", EntryPoint="vtkIntArray_New_0")] public static extern 
-bool New_0(IntPtr /*(vtkIntArray**)*/ return_value);
+bool New_0(IntPtr /*(IntPtr**)*/ return_value);
 
 // static vtkIntArray* FastDownCast(vtkAbstractArray * source)
 // static vtkIntArray* FastDownCast(vtkAbstractArray *source)
 [DllImport("vtkplugin", EntryPoint="vtkIntArray_FastDownCast_0")] public static extern 
-bool FastDownCast_0(IntPtr /*(vtkIntArray**)*/ return_value, IntPtr /*(vtkAbstractArray*)*/ source);
+bool FastDownCast_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkAbstractArray*)*/ source);
 
 // static int GetDataTypeValueMin()
 // static int GetDataTypeValueMin()
 [DllImport("vtkplugin", EntryPoint="vtkIntArray_GetDataTypeValueMin_0")] public static extern 
-bool GetDataTypeValueMin_0(IntPtr /*(int*)*/ return_value);
+bool GetDataTypeValueMin_0(IntPtr /*(IntPtr*)*/ return_value);
 
 // static int GetDataTypeValueMax()
 // static int GetDataTypeValueMax()
 [DllImport("vtkplugin", EntryPoint="vtkIntArray_GetDataTypeValueMax_0")] public static extern 
-bool GetDataTypeValueMax_0(IntPtr /*(int*)*/ return_value);
+bool GetDataTypeValueMax_0(IntPtr /*(IntPtr*)*/ return_value);
 
 }
 };

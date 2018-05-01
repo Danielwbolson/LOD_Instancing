@@ -10,17 +10,17 @@ class API_vtkLookupTable {
 // static vtkLookupTable* New()
 // static vtkLookupTable *New()
 [DllImport("vtkplugin", EntryPoint="vtkLookupTable_New_0")] public static extern 
-bool New_0(IntPtr /*(vtkLookupTable**)*/ return_value);
+bool New_0(IntPtr /*(IntPtr**)*/ return_value);
 
 // int IsOpaque()
 // int IsOpaque()
 [DllImport("vtkplugin", EntryPoint="vtkLookupTable_IsOpaque_0")] public static extern 
-bool IsOpaque_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkLookupTable*)*/ callingObject);
+bool IsOpaque_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkLookupTable*)*/ callingObject);
 
 // int Allocate(int sz = 256, int ext = 256)
 // int Allocate(int sz=256, int ext=256)
 [DllImport("vtkplugin", EntryPoint="vtkLookupTable_Allocate_0")] public static extern 
-bool Allocate_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkLookupTable*)*/ callingObject, int /*(int)*/ sz, int /*(int)*/ ext);
+bool Allocate_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkLookupTable*)*/ callingObject, int /*(int)*/ sz, int /*(int)*/ ext);
 
 // void Build()
 // void Build()
@@ -80,17 +80,17 @@ bool SetTableRange_1(IntPtr /*(vtkLookupTable*)*/ callingObject, double /*(doubl
 // char* GetNanColorAsUnsignedChars()
 // unsigned char* GetNanColorAsUnsignedChars()
 [DllImport("vtkplugin", EntryPoint="vtkLookupTable_GetNanColorAsUnsignedChars_0")] public static extern 
-bool GetNanColorAsUnsignedChars_0(IntPtr /*(char**)*/ return_value, IntPtr /*(vtkLookupTable*)*/ callingObject);
+bool GetNanColorAsUnsignedChars_0(IntPtr /*(unsigned IntPtr**)*/ return_value, IntPtr /*(vtkLookupTable*)*/ callingObject);
 
 // static void GetColorAsUnsignedChars(const double colorIn[4], unsigned char colorOut[4])
 // static void GetColorAsUnsignedChars(const double colorIn[4], unsigned char colorOut[4])
 [DllImport("vtkplugin", EntryPoint="vtkLookupTable_GetColorAsUnsignedChars_0")] public static extern 
-bool GetColorAsUnsignedChars_0(double /*(double[4])*/ []colorIn, char /*(char[4])*/ []colorOut);
+bool GetColorAsUnsignedChars_0(double /*(double[4])*/ []colorIn, char /*(unsigned char[4])*/ []colorOut);
 
 // char* MapValue(double v)
 // unsigned char* MapValue(double v)
 [DllImport("vtkplugin", EntryPoint="vtkLookupTable_MapValue_0")] public static extern 
-bool MapValue_0(IntPtr /*(char**)*/ return_value, IntPtr /*(vtkLookupTable*)*/ callingObject, double /*(double)*/ v);
+bool MapValue_0(IntPtr /*(unsigned IntPtr**)*/ return_value, IntPtr /*(vtkLookupTable*)*/ callingObject, double /*(double)*/ v);
 
 // void GetColor(double x, double rgb[3])
 // void GetColor(double x, double rgb[3])
@@ -100,12 +100,12 @@ bool GetColor_0(IntPtr /*(vtkLookupTable*)*/ callingObject, double /*(double)*/ 
 // double GetOpacity(double v)
 // double GetOpacity(double v)
 [DllImport("vtkplugin", EntryPoint="vtkLookupTable_GetOpacity_0")] public static extern 
-bool GetOpacity_0(IntPtr /*(double*)*/ return_value, IntPtr /*(vtkLookupTable*)*/ callingObject, double /*(double)*/ v);
+bool GetOpacity_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkLookupTable*)*/ callingObject, double /*(double)*/ v);
 
 // virtual vtkIdType GetIndex(double v)
 // virtual vtkIdType GetIndex(double v)
 [DllImport("vtkplugin", EntryPoint="vtkLookupTable_GetIndex_0")] public static extern 
-bool GetIndex_0(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkLookupTable*)*/ callingObject, double /*(double)*/ v);
+bool GetIndex_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkLookupTable*)*/ callingObject, double /*(double)*/ v);
 
 // void SetNumberOfTableValues(vtkIdType number)
 // void SetNumberOfTableValues(vtkIdType number)
@@ -115,7 +115,7 @@ bool SetNumberOfTableValues_0(IntPtr /*(vtkLookupTable*)*/ callingObject, long /
 // vtkIdType GetNumberOfTableValues()
 // vtkIdType GetNumberOfTableValues()
 [DllImport("vtkplugin", EntryPoint="vtkLookupTable_GetNumberOfTableValues_0")] public static extern 
-bool GetNumberOfTableValues_0(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkLookupTable*)*/ callingObject);
+bool GetNumberOfTableValues_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkLookupTable*)*/ callingObject);
 
 // virtual void SetTableValue(vtkIdType indx, const double rgba[4])
 // virtual void SetTableValue(vtkIdType indx, const double rgba[4])
@@ -125,7 +125,7 @@ bool SetTableValue_0(IntPtr /*(vtkLookupTable*)*/ callingObject, long /*(vtkIdTy
 // double* GetTableValue(vtkIdType id)
 // double *GetTableValue(vtkIdType id)
 [DllImport("vtkplugin", EntryPoint="vtkLookupTable_GetTableValue_0")] public static extern 
-bool GetTableValue_0(IntPtr /*(double**)*/ return_value, IntPtr /*(vtkLookupTable*)*/ callingObject, long /*(vtkIdType)*/ id);
+bool GetTableValue_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkLookupTable*)*/ callingObject, long /*(vtkIdType)*/ id);
 
 // void GetTableValue(vtkIdType id, double rgba[4])
 // void GetTableValue(vtkIdType id, double rgba[4])
@@ -135,17 +135,17 @@ bool GetTableValue_1(IntPtr /*(vtkLookupTable*)*/ callingObject, long /*(vtkIdTy
 // char* GetPointer(vtkIdType id)
 // unsigned char *GetPointer(vtkIdType id)
 [DllImport("vtkplugin", EntryPoint="vtkLookupTable_GetPointer_0")] public static extern 
-bool GetPointer_0(IntPtr /*(char**)*/ return_value, IntPtr /*(vtkLookupTable*)*/ callingObject, long /*(vtkIdType)*/ id);
+bool GetPointer_0(IntPtr /*(unsigned IntPtr**)*/ return_value, IntPtr /*(vtkLookupTable*)*/ callingObject, long /*(vtkIdType)*/ id);
 
 // char* WritePointer(vtkIdType id, int number)
 // unsigned char *WritePointer(vtkIdType id, int number)
 [DllImport("vtkplugin", EntryPoint="vtkLookupTable_WritePointer_0")] public static extern 
-bool WritePointer_0(IntPtr /*(char**)*/ return_value, IntPtr /*(vtkLookupTable*)*/ callingObject, long /*(vtkIdType)*/ id, int /*(int)*/ number);
+bool WritePointer_0(IntPtr /*(unsigned IntPtr**)*/ return_value, IntPtr /*(vtkLookupTable*)*/ callingObject, long /*(vtkIdType)*/ id, int /*(int)*/ number);
 
 // double* GetRange()
 // double *GetRange()
 [DllImport("vtkplugin", EntryPoint="vtkLookupTable_GetRange_0")] public static extern 
-bool GetRange_0(IntPtr /*(double**)*/ return_value, IntPtr /*(vtkLookupTable*)*/ callingObject);
+bool GetRange_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkLookupTable*)*/ callingObject);
 
 // void SetRange(double min, double max)
 // void SetRange(double min, double max)
@@ -165,7 +165,7 @@ bool GetLogRange_0(double /*(double[2])*/ []range, double /*(double[2])*/ []log_
 // static double ApplyLogScale(double v, const double range[2], const double log_range[2])
 // static double ApplyLogScale(double v, const double range[2], const double log_range[2])
 [DllImport("vtkplugin", EntryPoint="vtkLookupTable_ApplyLogScale_0")] public static extern 
-bool ApplyLogScale_0(IntPtr /*(double*)*/ return_value, double /*(double)*/ v, double /*(double[2])*/ []range, double /*(double[2])*/ []log_range);
+bool ApplyLogScale_0(IntPtr /*(IntPtr*)*/ return_value, double /*(double)*/ v, double /*(double[2])*/ []range, double /*(double[2])*/ []log_range);
 
 // void SetTable(vtkUnsignedCharArray * ARG_0)
 // void SetTable(vtkUnsignedCharArray *)
@@ -175,7 +175,7 @@ bool SetTable_0(IntPtr /*(vtkLookupTable*)*/ callingObject, IntPtr /*(vtkUnsigne
 // void MapScalarsThroughTable2(void * input, unsigned char * output, int inputDataType, int numberOfValues, int inputIncrement, int outputIncrement)
 // void MapScalarsThroughTable2(void *input, unsigned char *output, int inputDataType, int numberOfValues, int inputIncrement, int outputIncrement)
 [DllImport("vtkplugin", EntryPoint="vtkLookupTable_MapScalarsThroughTable2_0")] public static extern 
-bool MapScalarsThroughTable2_0(IntPtr /*(vtkLookupTable*)*/ callingObject, IntPtr /*(void*)*/ input, IntPtr /*(char*)*/ output, int /*(int)*/ inputDataType, int /*(int)*/ numberOfValues, int /*(int)*/ inputIncrement, int /*(int)*/ outputIncrement);
+bool MapScalarsThroughTable2_0(IntPtr /*(vtkLookupTable*)*/ callingObject, IntPtr /*(void*)*/ input, string /*(unsigned char*)*/ output, int /*(int)*/ inputDataType, int /*(int)*/ numberOfValues, int /*(int)*/ inputIncrement, int /*(int)*/ outputIncrement);
 
 // void DeepCopy(vtkScalarsToColors * lut)
 // void DeepCopy(vtkScalarsToColors *lut)
@@ -185,12 +185,12 @@ bool DeepCopy_0(IntPtr /*(vtkLookupTable*)*/ callingObject, IntPtr /*(vtkScalars
 // int UsingLogScale()
 // int UsingLogScale()
 [DllImport("vtkplugin", EntryPoint="vtkLookupTable_UsingLogScale_0")] public static extern 
-bool UsingLogScale_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkLookupTable*)*/ callingObject);
+bool UsingLogScale_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkLookupTable*)*/ callingObject);
 
 // vtkIdType GetNumberOfAvailableColors()
 // vtkIdType GetNumberOfAvailableColors()
 [DllImport("vtkplugin", EntryPoint="vtkLookupTable_GetNumberOfAvailableColors_0")] public static extern 
-bool GetNumberOfAvailableColors_0(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkLookupTable*)*/ callingObject);
+bool GetNumberOfAvailableColors_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkLookupTable*)*/ callingObject);
 
 // void GetIndexedColor(vtkIdType idx, double rgba[4])
 // void GetIndexedColor(vtkIdType idx, double rgba[4])

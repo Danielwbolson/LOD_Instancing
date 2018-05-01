@@ -10,27 +10,27 @@ class API_vtkObjectBase {
 // char* GetClassName()
 // const char* GetClassName()
 [DllImport("vtkplugin", EntryPoint="vtkObjectBase_GetClassName_0")] public static extern 
-bool GetClassName_0(IntPtr /*(char**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ callingObject);
+bool GetClassName_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ callingObject);
 
 // char* GetClassName()
 // const char* GetClassName()
 [DllImport("vtkplugin", EntryPoint="vtkObjectBase_GetClassName_1")] public static extern 
-bool GetClassName_1(IntPtr /*(char**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ callingObject);
+bool GetClassName_1(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ callingObject);
 
 // char* GetClassName()
 // const char* GetClassName()
 [DllImport("vtkplugin", EntryPoint="vtkObjectBase_GetClassName_2")] public static extern 
-bool GetClassName_2(IntPtr /*(char**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ callingObject);
+bool GetClassName_2(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ callingObject);
 
 // static vtkTypeBool IsTypeOf(const char * name)
 // static vtkTypeBool IsTypeOf(const char *name)
 [DllImport("vtkplugin", EntryPoint="vtkObjectBase_IsTypeOf_0")] public static extern 
-bool IsTypeOf_0(IntPtr /*(vtkTypeBool*)*/ return_value, IntPtr /*(char*)*/ name);
+bool IsTypeOf_0(IntPtr /*(IntPtr*)*/ return_value, string /*(char*)*/ name);
 
 // virtual vtkTypeBool IsA(const char * name)
 // virtual vtkTypeBool IsA(const char *name)
 [DllImport("vtkplugin", EntryPoint="vtkObjectBase_IsA_0")] public static extern 
-bool IsA_0(IntPtr /*(vtkTypeBool*)*/ return_value, IntPtr /*(vtkObjectBase*)*/ callingObject, IntPtr /*(char*)*/ name);
+bool IsA_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkObjectBase*)*/ callingObject, string /*(char*)*/ name);
 
 // virtual void Delete()
 // virtual void Delete()
@@ -45,7 +45,7 @@ bool FastDelete_0(IntPtr /*(vtkObjectBase*)*/ callingObject);
 // static vtkObjectBase* New()
 // static vtkObjectBase *New()
 [DllImport("vtkplugin", EntryPoint="vtkObjectBase_New_0")] public static extern 
-bool New_0(IntPtr /*(vtkObjectBase**)*/ return_value);
+bool New_0(IntPtr /*(IntPtr**)*/ return_value);
 
 // void InitializeObjectBase()
 // void InitializeObjectBase()
@@ -65,7 +65,7 @@ bool UnRegister_0(IntPtr /*(vtkObjectBase*)*/ callingObject, IntPtr /*(vtkObject
 // int GetReferenceCount()
 // int GetReferenceCount()
 [DllImport("vtkplugin", EntryPoint="vtkObjectBase_GetReferenceCount_0")] public static extern 
-bool GetReferenceCount_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkObjectBase*)*/ callingObject);
+bool GetReferenceCount_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkObjectBase*)*/ callingObject);
 
 // void SetReferenceCount(int ARG_0)
 // void SetReferenceCount(int)

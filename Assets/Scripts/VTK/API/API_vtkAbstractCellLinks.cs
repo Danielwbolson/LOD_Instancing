@@ -15,7 +15,7 @@ bool BuildLinks_0(IntPtr /*(vtkAbstractCellLinks*)*/ callingObject, IntPtr /*(vt
 // static int GetIdType(vtkIdType maxPtId, vtkIdType maxCellId, vtkCellArray * ca)
 // static int GetIdType(vtkIdType maxPtId, vtkIdType maxCellId, vtkCellArray *ca)
 [DllImport("vtkplugin", EntryPoint="vtkAbstractCellLinks_GetIdType_0")] public static extern 
-bool GetIdType_0(IntPtr /*(int*)*/ return_value, long /*(vtkIdType)*/ maxPtId, long /*(vtkIdType)*/ maxCellId, IntPtr /*(vtkCellArray*)*/ ca);
+bool GetIdType_0(IntPtr /*(IntPtr*)*/ return_value, long /*(vtkIdType)*/ maxPtId, long /*(vtkIdType)*/ maxCellId, IntPtr /*(vtkCellArray*)*/ ca);
 
 }
 };

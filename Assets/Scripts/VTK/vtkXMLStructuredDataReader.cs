@@ -6,24 +6,27 @@ using System.Runtime.InteropServices;
 
 namespace VTK {
 public partial class vtkXMLStructuredDataReader : vtkXMLDataReader {
+		public vtkXMLStructuredDataReader(IntPtr p) : base(p) {}
+		public static implicit operator  vtkXMLStructuredDataReader(IntPtr p) {return new vtkXMLStructuredDataReader(p);}
+		public static implicit operator  IntPtr(vtkXMLStructuredDataReader o) {return o.GetPtr();}
 
 // vtkIdType GetNumberOfPoints()
 // "vtkIdType GetNumberOfPoints()"
-public new long GetNumberOfPoints() {
+public long GetNumberOfPoints() {
 	int return_elements = 1;
-	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
-	API_vtkXMLStructuredDataReader.GetNumberOfPoints_0(this, returnPointer);
-	return Ptr.deref(returnPointer);
+	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	API_vtkXMLStructuredDataReader.GetNumberOfPoints_0(returnPointer.GetPtr(), this);
+	return (long)returnPointer;
 }
 
 
 // vtkIdType GetNumberOfCells()
 // "vtkIdType GetNumberOfCells()"
-public new long GetNumberOfCells() {
+public long GetNumberOfCells() {
 	int return_elements = 1;
-	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
-	API_vtkXMLStructuredDataReader.GetNumberOfCells_0(this, returnPointer);
-	return Ptr.deref(returnPointer);
+	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	API_vtkXMLStructuredDataReader.GetNumberOfCells_0(returnPointer.GetPtr(), this);
+	return (long)returnPointer;
 }
 
 

@@ -10,17 +10,17 @@ class API_vtkAbstractPointLocator {
 // virtual vtkIdType FindClosestPoint(const double x[3])
 // virtual vtkIdType FindClosestPoint(const double x[3])
 [DllImport("vtkplugin", EntryPoint="vtkAbstractPointLocator_FindClosestPoint_0")] public static extern 
-bool FindClosestPoint_0(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkAbstractPointLocator*)*/ callingObject, double /*(double[3])*/ []x);
+bool FindClosestPoint_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAbstractPointLocator*)*/ callingObject, double /*(double[3])*/ []x);
 
 // vtkIdType FindClosestPoint(double x, double y, double z)
 // vtkIdType FindClosestPoint(double x, double y, double z)
 [DllImport("vtkplugin", EntryPoint="vtkAbstractPointLocator_FindClosestPoint_1")] public static extern 
-bool FindClosestPoint_1(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkAbstractPointLocator*)*/ callingObject, double /*(double)*/ x, double /*(double)*/ y, double /*(double)*/ z);
+bool FindClosestPoint_1(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAbstractPointLocator*)*/ callingObject, double /*(double)*/ x, double /*(double)*/ y, double /*(double)*/ z);
 
 // virtual vtkIdType FindClosestPointWithinRadius(double radius, const double x[3], double & dist2)
 // virtual vtkIdType FindClosestPointWithinRadius( double radius, const double x[3], double& dist2)
 [DllImport("vtkplugin", EntryPoint="vtkAbstractPointLocator_FindClosestPointWithinRadius_0")] public static extern 
-bool FindClosestPointWithinRadius_0(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkAbstractPointLocator*)*/ callingObject, double /*(double)*/ radius, double /*(double[3])*/ []x, IntPtr /*(double&)*/ dist2);
+bool FindClosestPointWithinRadius_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAbstractPointLocator*)*/ callingObject, double /*(double)*/ radius, double /*(double[3])*/ []x, IntPtr /*(double&)*/ dist2);
 
 // virtual void FindClosestNPoints(int N, const double x[3], vtkIdList * result)
 // virtual void FindClosestNPoints( int N, const double x[3], vtkIdList *result)
@@ -45,7 +45,7 @@ bool FindPointsWithinRadius_1(IntPtr /*(vtkAbstractPointLocator*)*/ callingObjec
 // virtual double* GetBounds()
 // virtual double *GetBounds()
 [DllImport("vtkplugin", EntryPoint="vtkAbstractPointLocator_GetBounds_0")] public static extern 
-bool GetBounds_0(IntPtr /*(double**)*/ return_value, IntPtr /*(vtkAbstractPointLocator*)*/ callingObject);
+bool GetBounds_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkAbstractPointLocator*)*/ callingObject);
 
 // virtual void GetBounds(double * ARG_0)
 // virtual void GetBounds(double*)

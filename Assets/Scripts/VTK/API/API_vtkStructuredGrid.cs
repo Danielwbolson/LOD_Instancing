@@ -10,12 +10,12 @@ class API_vtkStructuredGrid {
 // static vtkStructuredGrid* New()
 // static vtkStructuredGrid *New()
 [DllImport("vtkplugin", EntryPoint="vtkStructuredGrid_New_0")] public static extern 
-bool New_0(IntPtr /*(vtkStructuredGrid**)*/ return_value);
+bool New_0(IntPtr /*(IntPtr**)*/ return_value);
 
 // int GetDataObjectType()
 // int GetDataObjectType()
 [DllImport("vtkplugin", EntryPoint="vtkStructuredGrid_GetDataObjectType_0")] public static extern 
-bool GetDataObjectType_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject);
+bool GetDataObjectType_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject);
 
 // void CopyStructure(vtkDataSet * ds)
 // void CopyStructure(vtkDataSet *ds)
@@ -25,12 +25,12 @@ bool CopyStructure_0(IntPtr /*(vtkStructuredGrid*)*/ callingObject, IntPtr /*(vt
 // vtkIdType GetNumberOfPoints()
 // vtkIdType GetNumberOfPoints()
 [DllImport("vtkplugin", EntryPoint="vtkStructuredGrid_GetNumberOfPoints_0")] public static extern 
-bool GetNumberOfPoints_0(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject);
+bool GetNumberOfPoints_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject);
 
 // double* GetPoint(vtkIdType ptId)
 // double *GetPoint(vtkIdType ptId)
 [DllImport("vtkplugin", EntryPoint="vtkStructuredGrid_GetPoint_0")] public static extern 
-bool GetPoint_0(IntPtr /*(double**)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject, long /*(vtkIdType)*/ ptId);
+bool GetPoint_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject, long /*(vtkIdType)*/ ptId);
 
 // void GetPoint(vtkIdType ptId, double p[3])
 // void GetPoint(vtkIdType ptId, double p[3])
@@ -40,12 +40,12 @@ bool GetPoint_1(IntPtr /*(vtkStructuredGrid*)*/ callingObject, long /*(vtkIdType
 // vtkCell* GetCell(vtkIdType cellId)
 // vtkCell *GetCell(vtkIdType cellId)
 [DllImport("vtkplugin", EntryPoint="vtkStructuredGrid_GetCell_0")] public static extern 
-bool GetCell_0(IntPtr /*(vtkCell**)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject, long /*(vtkIdType)*/ cellId);
+bool GetCell_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject, long /*(vtkIdType)*/ cellId);
 
 // vtkCell* GetCell(int i, int j, int k)
 // vtkCell *GetCell(int i, int j, int k)
 [DllImport("vtkplugin", EntryPoint="vtkStructuredGrid_GetCell_1")] public static extern 
-bool GetCell_1(IntPtr /*(vtkCell**)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject, int /*(int)*/ i, int /*(int)*/ j, int /*(int)*/ k);
+bool GetCell_1(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject, int /*(int)*/ i, int /*(int)*/ j, int /*(int)*/ k);
 
 // void GetCell(vtkIdType cellId, vtkGenericCell * cell)
 // void GetCell(vtkIdType cellId, vtkGenericCell *cell)
@@ -60,12 +60,12 @@ bool GetCellBounds_0(IntPtr /*(vtkStructuredGrid*)*/ callingObject, long /*(vtkI
 // int GetCellType(vtkIdType cellId)
 // int GetCellType(vtkIdType cellId)
 [DllImport("vtkplugin", EntryPoint="vtkStructuredGrid_GetCellType_0")] public static extern 
-bool GetCellType_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject, long /*(vtkIdType)*/ cellId);
+bool GetCellType_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject, long /*(vtkIdType)*/ cellId);
 
 // vtkIdType GetNumberOfCells()
 // vtkIdType GetNumberOfCells()
 [DllImport("vtkplugin", EntryPoint="vtkStructuredGrid_GetNumberOfCells_0")] public static extern 
-bool GetNumberOfCells_0(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject);
+bool GetNumberOfCells_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject);
 
 // void GetCellPoints(vtkIdType cellId, vtkIdList * ptIds)
 // void GetCellPoints(vtkIdType cellId, vtkIdList *ptIds)
@@ -85,7 +85,7 @@ bool Initialize_0(IntPtr /*(vtkStructuredGrid*)*/ callingObject);
 // int GetMaxCellSize()
 // int GetMaxCellSize()
 [DllImport("vtkplugin", EntryPoint="vtkStructuredGrid_GetMaxCellSize_0")] public static extern 
-bool GetMaxCellSize_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject);
+bool GetMaxCellSize_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject);
 
 // void GetCellNeighbors(vtkIdType cellId, vtkIdList * ptIds, vtkIdList * cellIds)
 // void GetCellNeighbors(vtkIdType cellId, vtkIdList *ptIds, vtkIdList *cellIds)
@@ -110,7 +110,7 @@ bool SetDimensions_1(IntPtr /*(vtkStructuredGrid*)*/ callingObject, int /*(int[3
 // virtual int* GetDimensions()
 // virtual int *GetDimensions ()
 [DllImport("vtkplugin", EntryPoint="vtkStructuredGrid_GetDimensions_0")] public static extern 
-bool GetDimensions_0(IntPtr /*(int**)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject);
+bool GetDimensions_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject);
 
 // virtual void GetDimensions(int dim[3])
 // virtual void GetDimensions (int dim[3])
@@ -120,7 +120,7 @@ bool GetDimensions_1(IntPtr /*(vtkStructuredGrid*)*/ callingObject, int /*(int[3
 // int GetDataDimension()
 // int GetDataDimension()
 [DllImport("vtkplugin", EntryPoint="vtkStructuredGrid_GetDataDimension_0")] public static extern 
-bool GetDataDimension_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject);
+bool GetDataDimension_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject);
 
 // void SetExtent(int extent[6])
 // void SetExtent(int extent[6])
@@ -135,7 +135,7 @@ bool SetExtent_1(IntPtr /*(vtkStructuredGrid*)*/ callingObject, int /*(int)*/ x1
 // long GetActualMemorySize()
 // unsigned long GetActualMemorySize()
 [DllImport("vtkplugin", EntryPoint="vtkStructuredGrid_GetActualMemorySize_0")] public static extern 
-bool GetActualMemorySize_0(IntPtr /*(long*)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject);
+bool GetActualMemorySize_0(IntPtr /*(unsigned IntPtr*)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject);
 
 // void ShallowCopy(vtkDataObject * src)
 // void ShallowCopy(vtkDataObject *src)
@@ -150,7 +150,7 @@ bool DeepCopy_0(IntPtr /*(vtkStructuredGrid*)*/ callingObject, IntPtr /*(vtkData
 // int GetExtentType()
 // int GetExtentType()
 [DllImport("vtkplugin", EntryPoint="vtkStructuredGrid_GetExtentType_0")] public static extern 
-bool GetExtentType_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject);
+bool GetExtentType_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject);
 
 // void BlankPoint(vtkIdType ptId)
 // void BlankPoint(vtkIdType ptId)
@@ -175,22 +175,22 @@ bool UnBlankCell_0(IntPtr /*(vtkStructuredGrid*)*/ callingObject, long /*(vtkIdT
 // char IsPointVisible(vtkIdType ptId)
 // unsigned char IsPointVisible(vtkIdType ptId)
 [DllImport("vtkplugin", EntryPoint="vtkStructuredGrid_IsPointVisible_0")] public static extern 
-bool IsPointVisible_0(IntPtr /*(char*)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject, long /*(vtkIdType)*/ ptId);
+bool IsPointVisible_0(IntPtr /*(unsigned IntPtr*)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject, long /*(vtkIdType)*/ ptId);
 
 // char IsCellVisible(vtkIdType cellId)
 // unsigned char IsCellVisible(vtkIdType cellId)
 [DllImport("vtkplugin", EntryPoint="vtkStructuredGrid_IsCellVisible_0")] public static extern 
-bool IsCellVisible_0(IntPtr /*(char*)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject, long /*(vtkIdType)*/ cellId);
+bool IsCellVisible_0(IntPtr /*(unsigned IntPtr*)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject, long /*(vtkIdType)*/ cellId);
 
 // bool HasAnyBlankPoints()
 // bool HasAnyBlankPoints()
 [DllImport("vtkplugin", EntryPoint="vtkStructuredGrid_HasAnyBlankPoints_0")] public static extern 
-bool HasAnyBlankPoints_0(IntPtr /*(bool*)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject);
+bool HasAnyBlankPoints_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject);
 
 // bool HasAnyBlankCells()
 // bool HasAnyBlankCells()
 [DllImport("vtkplugin", EntryPoint="vtkStructuredGrid_HasAnyBlankCells_0")] public static extern 
-bool HasAnyBlankCells_0(IntPtr /*(bool*)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject);
+bool HasAnyBlankCells_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject);
 
 // void GetCellDims(int cellDims[3])
 // void GetCellDims( int cellDims[3] )

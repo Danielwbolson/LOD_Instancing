@@ -10,12 +10,12 @@ class API_vtkXMLDataReader {
 // virtual vtkIdType GetNumberOfPoints()
 // virtual vtkIdType GetNumberOfPoints()
 [DllImport("vtkplugin", EntryPoint="vtkXMLDataReader_GetNumberOfPoints_0")] public static extern 
-bool GetNumberOfPoints_0(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkXMLDataReader*)*/ callingObject);
+bool GetNumberOfPoints_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkXMLDataReader*)*/ callingObject);
 
 // virtual vtkIdType GetNumberOfCells()
 // virtual vtkIdType GetNumberOfCells()
 [DllImport("vtkplugin", EntryPoint="vtkXMLDataReader_GetNumberOfCells_0")] public static extern 
-bool GetNumberOfCells_0(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkXMLDataReader*)*/ callingObject);
+bool GetNumberOfCells_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkXMLDataReader*)*/ callingObject);
 
 }
 };

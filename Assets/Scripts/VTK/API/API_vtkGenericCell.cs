@@ -10,7 +10,7 @@ class API_vtkGenericCell {
 // static vtkGenericCell* New()
 // static vtkGenericCell *New()
 [DllImport("vtkplugin", EntryPoint="vtkGenericCell_New_0")] public static extern 
-bool New_0(IntPtr /*(vtkGenericCell**)*/ return_value);
+bool New_0(IntPtr /*(IntPtr**)*/ return_value);
 
 // void SetPoints(vtkPoints * points)
 // void SetPoints(vtkPoints *points)
@@ -35,22 +35,22 @@ bool DeepCopy_0(IntPtr /*(vtkGenericCell*)*/ callingObject, IntPtr /*(vtkCell*)*
 // int GetCellType()
 // int GetCellType()
 [DllImport("vtkplugin", EntryPoint="vtkGenericCell_GetCellType_0")] public static extern 
-bool GetCellType_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject);
+bool GetCellType_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject);
 
 // int GetCellDimension()
 // int GetCellDimension()
 [DllImport("vtkplugin", EntryPoint="vtkGenericCell_GetCellDimension_0")] public static extern 
-bool GetCellDimension_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject);
+bool GetCellDimension_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject);
 
 // int IsLinear()
 // int IsLinear()
 [DllImport("vtkplugin", EntryPoint="vtkGenericCell_IsLinear_0")] public static extern 
-bool IsLinear_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject);
+bool IsLinear_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject);
 
 // int RequiresInitialization()
 // int RequiresInitialization()
 [DllImport("vtkplugin", EntryPoint="vtkGenericCell_RequiresInitialization_0")] public static extern 
-bool RequiresInitialization_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject);
+bool RequiresInitialization_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject);
 
 // void Initialize()
 // void Initialize()
@@ -60,7 +60,7 @@ bool Initialize_0(IntPtr /*(vtkGenericCell*)*/ callingObject);
 // int RequiresExplicitFaceRepresentation()
 // int RequiresExplicitFaceRepresentation()
 [DllImport("vtkplugin", EntryPoint="vtkGenericCell_RequiresExplicitFaceRepresentation_0")] public static extern 
-bool RequiresExplicitFaceRepresentation_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject);
+bool RequiresExplicitFaceRepresentation_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject);
 
 // void SetFaces(vtkIdType * faces)
 // void SetFaces(vtkIdType *faces)
@@ -70,37 +70,37 @@ bool SetFaces_0(IntPtr /*(vtkGenericCell*)*/ callingObject, IntPtr /*(vtkIdType*
 // vtkIdType* GetFaces()
 // vtkIdType *GetFaces()
 [DllImport("vtkplugin", EntryPoint="vtkGenericCell_GetFaces_0")] public static extern 
-bool GetFaces_0(IntPtr /*(vtkIdType**)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject);
+bool GetFaces_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject);
 
 // int GetNumberOfEdges()
 // int GetNumberOfEdges()
 [DllImport("vtkplugin", EntryPoint="vtkGenericCell_GetNumberOfEdges_0")] public static extern 
-bool GetNumberOfEdges_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject);
+bool GetNumberOfEdges_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject);
 
 // int GetNumberOfFaces()
 // int GetNumberOfFaces()
 [DllImport("vtkplugin", EntryPoint="vtkGenericCell_GetNumberOfFaces_0")] public static extern 
-bool GetNumberOfFaces_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject);
+bool GetNumberOfFaces_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject);
 
 // vtkCell* GetEdge(int edgeId)
 // vtkCell *GetEdge(int edgeId)
 [DllImport("vtkplugin", EntryPoint="vtkGenericCell_GetEdge_0")] public static extern 
-bool GetEdge_0(IntPtr /*(vtkCell**)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject, int /*(int)*/ edgeId);
+bool GetEdge_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject, int /*(int)*/ edgeId);
 
 // vtkCell* GetFace(int faceId)
 // vtkCell *GetFace(int faceId)
 [DllImport("vtkplugin", EntryPoint="vtkGenericCell_GetFace_0")] public static extern 
-bool GetFace_0(IntPtr /*(vtkCell**)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject, int /*(int)*/ faceId);
+bool GetFace_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject, int /*(int)*/ faceId);
 
 // int CellBoundary(int subId, double pcoords[3], vtkIdList * pts)
 // int CellBoundary(int subId, double pcoords[3], vtkIdList *pts)
 [DllImport("vtkplugin", EntryPoint="vtkGenericCell_CellBoundary_0")] public static extern 
-bool CellBoundary_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject, int /*(int)*/ subId, double /*(double[3])*/ []pcoords, IntPtr /*(vtkIdList*)*/ pts);
+bool CellBoundary_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject, int /*(int)*/ subId, double /*(double[3])*/ []pcoords, IntPtr /*(vtkIdList*)*/ pts);
 
 // int EvaluatePosition(double x[3], double * closestPoint, int & subId, double pcoords[3], double & dist2, double * weights)
 // int EvaluatePosition(double x[3], double* closestPoint, int& subId, double pcoords[3], double& dist2, double *weights)
 [DllImport("vtkplugin", EntryPoint="vtkGenericCell_EvaluatePosition_0")] public static extern 
-bool EvaluatePosition_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject, double /*(double[3])*/ []x, IntPtr /*(double*)*/ closestPoint, IntPtr /*(int&)*/ subId, double /*(double[3])*/ []pcoords, IntPtr /*(double&)*/ dist2, IntPtr /*(double*)*/ weights);
+bool EvaluatePosition_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject, double /*(double[3])*/ []x, IntPtr /*(double*)*/ closestPoint, IntPtr /*(int&)*/ subId, double /*(double[3])*/ []pcoords, IntPtr /*(double&)*/ dist2, IntPtr /*(double*)*/ weights);
 
 // void EvaluateLocation(int & subId, double pcoords[3], double x[3], double * weights)
 // void EvaluateLocation(int& subId, double pcoords[3], double x[3], double *weights)
@@ -120,12 +120,12 @@ bool Clip_0(IntPtr /*(vtkGenericCell*)*/ callingObject, double /*(double)*/ valu
 // int IntersectWithLine(double p1[3], double p2[3], double tol, double & t, double x[3], double pcoords[3], int & subId)
 // int IntersectWithLine(double p1[3], double p2[3], double tol, double& t, double x[3], double pcoords[3], int& subId)
 [DllImport("vtkplugin", EntryPoint="vtkGenericCell_IntersectWithLine_0")] public static extern 
-bool IntersectWithLine_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject, double /*(double[3])*/ []p1, double /*(double[3])*/ []p2, double /*(double)*/ tol, IntPtr /*(double&)*/ t, double /*(double[3])*/ []x, double /*(double[3])*/ []pcoords, IntPtr /*(int&)*/ subId);
+bool IntersectWithLine_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject, double /*(double[3])*/ []p1, double /*(double[3])*/ []p2, double /*(double)*/ tol, IntPtr /*(double&)*/ t, double /*(double[3])*/ []x, double /*(double[3])*/ []pcoords, IntPtr /*(int&)*/ subId);
 
 // int Triangulate(int index, vtkIdList * ptIds, vtkPoints * pts)
 // int Triangulate(int index, vtkIdList *ptIds, vtkPoints *pts)
 [DllImport("vtkplugin", EntryPoint="vtkGenericCell_Triangulate_0")] public static extern 
-bool Triangulate_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject, int /*(int)*/ index, IntPtr /*(vtkIdList*)*/ ptIds, IntPtr /*(vtkPoints*)*/ pts);
+bool Triangulate_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject, int /*(int)*/ index, IntPtr /*(vtkIdList*)*/ ptIds, IntPtr /*(vtkPoints*)*/ pts);
 
 // void Derivatives(int subId, double pcoords[3], double * values, int dim, double * derivs)
 // void Derivatives(int subId, double pcoords[3], double *values, int dim, double *derivs)
@@ -135,17 +135,17 @@ bool Derivatives_0(IntPtr /*(vtkGenericCell*)*/ callingObject, int /*(int)*/ sub
 // int GetParametricCenter(double pcoords[3])
 // int GetParametricCenter(double pcoords[3])
 [DllImport("vtkplugin", EntryPoint="vtkGenericCell_GetParametricCenter_0")] public static extern 
-bool GetParametricCenter_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject, double /*(double[3])*/ []pcoords);
+bool GetParametricCenter_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject, double /*(double[3])*/ []pcoords);
 
 // double* GetParametricCoords()
 // double *GetParametricCoords()
 [DllImport("vtkplugin", EntryPoint="vtkGenericCell_GetParametricCoords_0")] public static extern 
-bool GetParametricCoords_0(IntPtr /*(double**)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject);
+bool GetParametricCoords_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject);
 
 // int IsPrimaryCell()
 // int IsPrimaryCell()
 [DllImport("vtkplugin", EntryPoint="vtkGenericCell_IsPrimaryCell_0")] public static extern 
-bool IsPrimaryCell_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject);
+bool IsPrimaryCell_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject);
 
 // void InterpolateFunctions(double pcoords[3], double * weights)
 // void InterpolateFunctions(double pcoords[3], double *weights)
@@ -370,12 +370,12 @@ bool SetCellTypeToLagrangeWedge_0(IntPtr /*(vtkGenericCell*)*/ callingObject);
 // static vtkCell* InstantiateCell(int cellType)
 // static vtkCell* InstantiateCell(int cellType)
 [DllImport("vtkplugin", EntryPoint="vtkGenericCell_InstantiateCell_0")] public static extern 
-bool InstantiateCell_0(IntPtr /*(vtkCell**)*/ return_value, int /*(int)*/ cellType);
+bool InstantiateCell_0(IntPtr /*(IntPtr**)*/ return_value, int /*(int)*/ cellType);
 
 // vtkCell* GetRepresentativeCell()
 // vtkCell* GetRepresentativeCell()
 [DllImport("vtkplugin", EntryPoint="vtkGenericCell_GetRepresentativeCell_0")] public static extern 
-bool GetRepresentativeCell_0(IntPtr /*(vtkCell**)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject);
+bool GetRepresentativeCell_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkGenericCell*)*/ callingObject);
 
 }
 };

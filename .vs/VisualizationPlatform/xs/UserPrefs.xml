@@ -1,32 +1,16 @@
 ﻿<Properties StartupConfiguration="{44863B18-BB99-1CD8-D08A-97A710867F69}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/VTK/vtkXMLUnstructuredDataReader.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/TestScript.cs">
     <Files>
       <File FileName="Assets/Scripts/VTK/vtkCell.cs" Line="1" Column="1" />
-      <File FileName="Assets/TestScript.cs" Line="25" Column="1" />
-      <File FileName="Assets/Scripts/VTK/vtkIdList.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/VTK/vtkDataArray.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/VTK/vtkObjectBase.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/VTK/vtkStringArray.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/VTK/vtkXMLDataElement.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/VTK/vtkXMLUnstructuredGridReader.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/DataPointRenderer.cs" Line="32" Column="6" />
-      <File FileName="Assets/Scripts/VTK/vtkXMLUnstructuredDataReader.cs" Line="7" Column="24" />
-      <File FileName="Assets/Scripts/VTK/vtkXMLPolyDataReader.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/VTK/vtkXMLStructuredGridReader.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/VariableScrollList.cs" Line="36" Column="4" />
-      <File FileName="Assets/Scripts/VTKData.cs" Line="152" Column="29" />
-      <File FileName="Assets/Scripts/VTK/vtkScalarsToColors.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/VTK/vtkLookupTable.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/VTK/vtkCellLinks.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/VTK/vtkCUSTOM.cs" Line="10" Column="22" />
-      <File FileName="Assets/Scripts/VTK/vtkUnstructuredGrid.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/VTK/API/API_vtkAbstractPointLocator.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/VTK/vtkDoubleArray.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/VTK/vtkCommand.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/VTK/vtkObject.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/VTK/vtkAbstractArray.cs" Line="1" Column="1" />
-      <File FileName="Assets/3rd-Party/MinVR/Scripts/VRNetClient.cs" Line="151" Column="25" />
+      <File FileName="Assets/Scripts/VTK/vtkDataSet.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/VTK/vtkCUSTOM.cs" Line="124" Column="21" />
+      <File FileName="Assets/Scripts/VTKData.cs" Line="108" Column="35" />
+      <File FileName="Assets/Scripts/VTK/APIFunctions.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/VTK/API/API_vtkXMLUnstructuredGridReader.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/VTK/vtkXMLReader.cs" Line="29" Column="13" />
+      <File FileName="Assets/TestScript.cs" Line="55" Column="109" />
+      <File FileName="Assets/Scripts/VTK/vtkAlgorithm.cs" Line="295" Column="13" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
@@ -35,7 +19,7 @@
       <Breakpoint file="/Users/sethjohnson/NSF-Sculpting-Vis-Platform/unity/VisualizationPlatform/Assets/VTK/Scripts/Paths.cs" relfile="Assets/VTK/Scripts/Paths.cs" line="143" column="1" />
       <Breakpoint file="/Users/sethjohnson/NSF-Sculpting-Vis-Platform/unity/VisualizationPlatform/Assets/Scripts/DataGlyphRenderer.cs" relfile="Assets/Scripts/DataGlyphRenderer.cs" line="132" column="1" />
       <Breakpoint file="/Users/sethjohnson/NSF-Sculpting-Vis-Platform/unity/VisualizationPlatform/Assets/Scripts/DataGlyphRenderer.cs" relfile="Assets/Scripts/DataGlyphRenderer.cs" line="97" column="17" />
-      <Breakpoint file="/Users/sethjohnson/NSF-Sculpting-Vis-Platform/unity/VisualizationPlatform/Assets/Scripts/VTKData.cs" relfile="Assets/Scripts/VTKData.cs" line="143" column="1" />
+      <Breakpoint file="/Users/sethjohnson/NSF-Sculpting-Vis-Platform/unity/VisualizationPlatform/Assets/Scripts/VTKData.cs" relfile="Assets/Scripts/VTKData.cs" line="157" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

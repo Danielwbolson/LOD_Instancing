@@ -10,17 +10,17 @@ class API_vtkDataArray {
 // static vtkDataArray* FastDownCast(vtkAbstractArray * source)
 // static vtkDataArray* FastDownCast(vtkAbstractArray *source)
 [DllImport("vtkplugin", EntryPoint="vtkDataArray_FastDownCast_0")] public static extern 
-bool FastDownCast_0(IntPtr /*(vtkDataArray**)*/ return_value, IntPtr /*(vtkAbstractArray*)*/ source);
+bool FastDownCast_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkAbstractArray*)*/ source);
 
 // int IsNumeric()
 // int IsNumeric()
 [DllImport("vtkplugin", EntryPoint="vtkDataArray_IsNumeric_0")] public static extern 
-bool IsNumeric_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject);
+bool IsNumeric_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject);
 
 // int GetElementComponentSize()
 // int GetElementComponentSize()
 [DllImport("vtkplugin", EntryPoint="vtkDataArray_GetElementComponentSize_0")] public static extern 
-bool GetElementComponentSize_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject);
+bool GetElementComponentSize_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject);
 
 // void InsertTuple(vtkIdType dstTupleIdx, vtkIdType srcTupleIdx, vtkAbstractArray * source)
 // void InsertTuple(vtkIdType dstTupleIdx, vtkIdType srcTupleIdx, vtkAbstractArray* source)
@@ -30,7 +30,7 @@ bool InsertTuple_0(IntPtr /*(vtkDataArray*)*/ callingObject, long /*(vtkIdType)*
 // vtkIdType InsertNextTuple(vtkIdType srcTupleIdx, vtkAbstractArray * source)
 // vtkIdType InsertNextTuple(vtkIdType srcTupleIdx, vtkAbstractArray* source)
 [DllImport("vtkplugin", EntryPoint="vtkDataArray_InsertNextTuple_0")] public static extern 
-bool InsertNextTuple_0(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject, long /*(vtkIdType)*/ srcTupleIdx, IntPtr /*(vtkAbstractArray*)*/ source);
+bool InsertNextTuple_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject, long /*(vtkIdType)*/ srcTupleIdx, IntPtr /*(vtkAbstractArray*)*/ source);
 
 // void InsertTuples(vtkIdList * dstIds, vtkIdList * srcIds, vtkAbstractArray * source)
 // void InsertTuples(vtkIdList *dstIds, vtkIdList *srcIds, vtkAbstractArray *source)
@@ -65,7 +65,7 @@ bool InterpolateTuple_1(IntPtr /*(vtkDataArray*)*/ callingObject, long /*(vtkIdT
 // virtual double* GetTuple(vtkIdType tupleIdx)
 // virtual double *GetTuple(vtkIdType tupleIdx)
 [DllImport("vtkplugin", EntryPoint="vtkDataArray_GetTuple_0")] public static extern 
-bool GetTuple_0(IntPtr /*(double**)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject, long /*(vtkIdType)*/ tupleIdx);
+bool GetTuple_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject, long /*(vtkIdType)*/ tupleIdx);
 
 // virtual void GetTuple(vtkIdType tupleIdx, double * tuple)
 // virtual void GetTuple(vtkIdType tupleIdx, double * tuple)
@@ -75,32 +75,32 @@ bool GetTuple_1(IntPtr /*(vtkDataArray*)*/ callingObject, long /*(vtkIdType)*/ t
 // double GetTuple1(vtkIdType tupleIdx)
 // double GetTuple1(vtkIdType tupleIdx)
 [DllImport("vtkplugin", EntryPoint="vtkDataArray_GetTuple1_0")] public static extern 
-bool GetTuple1_0(IntPtr /*(double*)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject, long /*(vtkIdType)*/ tupleIdx);
+bool GetTuple1_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject, long /*(vtkIdType)*/ tupleIdx);
 
 // double* GetTuple2(vtkIdType tupleIdx)
 // double* GetTuple2(vtkIdType tupleIdx)
 [DllImport("vtkplugin", EntryPoint="vtkDataArray_GetTuple2_0")] public static extern 
-bool GetTuple2_0(IntPtr /*(double**)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject, long /*(vtkIdType)*/ tupleIdx);
+bool GetTuple2_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject, long /*(vtkIdType)*/ tupleIdx);
 
 // double* GetTuple3(vtkIdType tupleIdx)
 // double* GetTuple3(vtkIdType tupleIdx)
 [DllImport("vtkplugin", EntryPoint="vtkDataArray_GetTuple3_0")] public static extern 
-bool GetTuple3_0(IntPtr /*(double**)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject, long /*(vtkIdType)*/ tupleIdx);
+bool GetTuple3_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject, long /*(vtkIdType)*/ tupleIdx);
 
 // double* GetTuple4(vtkIdType tupleIdx)
 // double* GetTuple4(vtkIdType tupleIdx)
 [DllImport("vtkplugin", EntryPoint="vtkDataArray_GetTuple4_0")] public static extern 
-bool GetTuple4_0(IntPtr /*(double**)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject, long /*(vtkIdType)*/ tupleIdx);
+bool GetTuple4_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject, long /*(vtkIdType)*/ tupleIdx);
 
 // double* GetTuple6(vtkIdType tupleIdx)
 // double* GetTuple6(vtkIdType tupleIdx)
 [DllImport("vtkplugin", EntryPoint="vtkDataArray_GetTuple6_0")] public static extern 
-bool GetTuple6_0(IntPtr /*(double**)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject, long /*(vtkIdType)*/ tupleIdx);
+bool GetTuple6_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject, long /*(vtkIdType)*/ tupleIdx);
 
 // double* GetTuple9(vtkIdType tupleIdx)
 // double* GetTuple9(vtkIdType tupleIdx)
 [DllImport("vtkplugin", EntryPoint="vtkDataArray_GetTuple9_0")] public static extern 
-bool GetTuple9_0(IntPtr /*(double**)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject, long /*(vtkIdType)*/ tupleIdx);
+bool GetTuple9_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject, long /*(vtkIdType)*/ tupleIdx);
 
 // void SetTuple(vtkIdType dstTupleIdx, vtkIdType srcTupleIdx, vtkAbstractArray * source)
 // void SetTuple(vtkIdType dstTupleIdx, vtkIdType srcTupleIdx, vtkAbstractArray* source)
@@ -190,12 +190,12 @@ bool InsertTuple9_0(IntPtr /*(vtkDataArray*)*/ callingObject, long /*(vtkIdType)
 // virtual vtkIdType InsertNextTuple(const float * tuple)
 // virtual vtkIdType InsertNextTuple(const float * tuple)
 [DllImport("vtkplugin", EntryPoint="vtkDataArray_InsertNextTuple_1")] public static extern 
-bool InsertNextTuple_1(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject, IntPtr /*(float*)*/ tuple);
+bool InsertNextTuple_1(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject, IntPtr /*(float*)*/ tuple);
 
 // virtual vtkIdType InsertNextTuple(const double * tuple)
 // virtual vtkIdType InsertNextTuple(const double * tuple)
 [DllImport("vtkplugin", EntryPoint="vtkDataArray_InsertNextTuple_2")] public static extern 
-bool InsertNextTuple_2(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject, IntPtr /*(double*)*/ tuple);
+bool InsertNextTuple_2(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject, IntPtr /*(double*)*/ tuple);
 
 // void InsertNextTuple1(double value)
 // void InsertNextTuple1(double value)
@@ -245,7 +245,7 @@ bool RemoveLastTuple_0(IntPtr /*(vtkDataArray*)*/ callingObject);
 // virtual double GetComponent(vtkIdType tupleIdx, int compIdx)
 // virtual double GetComponent(vtkIdType tupleIdx, int compIdx)
 [DllImport("vtkplugin", EntryPoint="vtkDataArray_GetComponent_0")] public static extern 
-bool GetComponent_0(IntPtr /*(double*)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject, long /*(vtkIdType)*/ tupleIdx, int /*(int)*/ compIdx);
+bool GetComponent_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject, long /*(vtkIdType)*/ tupleIdx, int /*(int)*/ compIdx);
 
 // virtual void SetComponent(vtkIdType tupleIdx, int compIdx, double value)
 // virtual void SetComponent(vtkIdType tupleIdx, int compIdx, double value)
@@ -295,12 +295,12 @@ bool CopyComponent_0(IntPtr /*(vtkDataArray*)*/ callingObject, int /*(int)*/ dst
 // virtual void* WriteVoidPointer(vtkIdType valueIdx, vtkIdType numValues)
 // virtual void* WriteVoidPointer(vtkIdType valueIdx, vtkIdType numValues)
 [DllImport("vtkplugin", EntryPoint="vtkDataArray_WriteVoidPointer_0")] public static extern 
-bool WriteVoidPointer_0(IntPtr /*(void**)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject, long /*(vtkIdType)*/ valueIdx, long /*(vtkIdType)*/ numValues);
+bool WriteVoidPointer_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject, long /*(vtkIdType)*/ valueIdx, long /*(vtkIdType)*/ numValues);
 
 // long GetActualMemorySize()
 // unsigned long GetActualMemorySize()
 [DllImport("vtkplugin", EntryPoint="vtkDataArray_GetActualMemorySize_0")] public static extern 
-bool GetActualMemorySize_0(IntPtr /*(long*)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject);
+bool GetActualMemorySize_0(IntPtr /*(unsigned IntPtr*)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject);
 
 // void CreateDefaultLookupTable()
 // void CreateDefaultLookupTable()
@@ -320,12 +320,12 @@ bool GetRange_0(IntPtr /*(vtkDataArray*)*/ callingObject, double /*(double[2])*/
 // double* GetRange(int comp)
 // double* GetRange(int comp)
 [DllImport("vtkplugin", EntryPoint="vtkDataArray_GetRange_1")] public static extern 
-bool GetRange_1(IntPtr /*(double**)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject, int /*(int)*/ comp);
+bool GetRange_1(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject, int /*(int)*/ comp);
 
 // double* GetRange()
 // double* GetRange()
 [DllImport("vtkplugin", EntryPoint="vtkDataArray_GetRange_2")] public static extern 
-bool GetRange_2(IntPtr /*(double**)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject);
+bool GetRange_2(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject);
 
 // void GetRange(double range[2])
 // void GetRange(double range[2])
@@ -340,12 +340,12 @@ bool GetFiniteRange_0(IntPtr /*(vtkDataArray*)*/ callingObject, double /*(double
 // double* GetFiniteRange(int comp)
 // double *GetFiniteRange(int comp)
 [DllImport("vtkplugin", EntryPoint="vtkDataArray_GetFiniteRange_1")] public static extern 
-bool GetFiniteRange_1(IntPtr /*(double**)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject, int /*(int)*/ comp);
+bool GetFiniteRange_1(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject, int /*(int)*/ comp);
 
 // double* GetFiniteRange()
 // double *GetFiniteRange()
 [DllImport("vtkplugin", EntryPoint="vtkDataArray_GetFiniteRange_2")] public static extern 
-bool GetFiniteRange_2(IntPtr /*(double**)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject);
+bool GetFiniteRange_2(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject);
 
 // void GetFiniteRange(double range[2])
 // void GetFiniteRange(double range[2])
@@ -360,12 +360,12 @@ bool GetDataTypeRange_0(IntPtr /*(vtkDataArray*)*/ callingObject, double /*(doub
 // double GetDataTypeMin()
 // double GetDataTypeMin()
 [DllImport("vtkplugin", EntryPoint="vtkDataArray_GetDataTypeMin_0")] public static extern 
-bool GetDataTypeMin_0(IntPtr /*(double*)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject);
+bool GetDataTypeMin_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject);
 
 // double GetDataTypeMax()
 // double GetDataTypeMax()
 [DllImport("vtkplugin", EntryPoint="vtkDataArray_GetDataTypeMax_0")] public static extern 
-bool GetDataTypeMax_0(IntPtr /*(double*)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject);
+bool GetDataTypeMax_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject);
 
 // static void GetDataTypeRange(int type, double range[2])
 // static void GetDataTypeRange(int type, double range[2])
@@ -375,17 +375,17 @@ bool GetDataTypeRange_1(int /*(int)*/ type, double /*(double[2])*/ []range);
 // static double GetDataTypeMin(int type)
 // static double GetDataTypeMin(int type)
 [DllImport("vtkplugin", EntryPoint="vtkDataArray_GetDataTypeMin_1")] public static extern 
-bool GetDataTypeMin_1(IntPtr /*(double*)*/ return_value, int /*(int)*/ type);
+bool GetDataTypeMin_1(IntPtr /*(IntPtr*)*/ return_value, int /*(int)*/ type);
 
 // static double GetDataTypeMax(int type)
 // static double GetDataTypeMax(int type)
 [DllImport("vtkplugin", EntryPoint="vtkDataArray_GetDataTypeMax_1")] public static extern 
-bool GetDataTypeMax_1(IntPtr /*(double*)*/ return_value, int /*(int)*/ type);
+bool GetDataTypeMax_1(IntPtr /*(IntPtr*)*/ return_value, int /*(int)*/ type);
 
 // virtual double GetMaxNorm()
 // virtual double GetMaxNorm()
 [DllImport("vtkplugin", EntryPoint="vtkDataArray_GetMaxNorm_0")] public static extern 
-bool GetMaxNorm_0(IntPtr /*(double*)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject);
+bool GetMaxNorm_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject);
 
 // void Modified()
 // void Modified()
@@ -395,7 +395,7 @@ bool Modified_0(IntPtr /*(vtkDataArray*)*/ callingObject);
 // int GetArrayType()
 // int GetArrayType()
 [DllImport("vtkplugin", EntryPoint="vtkDataArray_GetArrayType_0")] public static extern 
-bool GetArrayType_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject);
+bool GetArrayType_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject);
 
 }
 };

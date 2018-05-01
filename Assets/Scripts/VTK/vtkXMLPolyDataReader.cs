@@ -6,74 +6,77 @@ using System.Runtime.InteropServices;
 
 namespace VTK {
 public partial class vtkXMLPolyDataReader : vtkXMLUnstructuredDataReader {
+		public vtkXMLPolyDataReader(IntPtr p) : base(p) {}
+		public static implicit operator  vtkXMLPolyDataReader(IntPtr p) {return new vtkXMLPolyDataReader(p);}
+		public static implicit operator  IntPtr(vtkXMLPolyDataReader o) {return o.GetPtr();}
 
 // static vtkXMLPolyDataReader* New()
 // "static vtkXMLPolyDataReader *New()"
-public new static vtkXMLPolyDataReader New() {
+public static vtkXMLPolyDataReader New() {
 	int return_elements = 1;
-	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
-	API_vtkXMLPolyDataReader.New_0(returnPointer);
-	return Ptr.deref(returnPointer);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	API_vtkXMLPolyDataReader.New_0(returnPointer.GetPtr());
+	return (vtkXMLPolyDataReader)(IntPtr)returnPointer;
 }
 
 
 // vtkPolyData* GetOutput()
 // "vtkPolyData *GetOutput()"
-public new vtkPolyData GetOutput() {
+public vtkPolyData GetOutput() {
 	int return_elements = 1;
-	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
-	API_vtkXMLPolyDataReader.GetOutput_0(this, returnPointer);
-	return Ptr.deref(returnPointer);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	API_vtkXMLPolyDataReader.GetOutput_0(returnPointer.GetPtr(), this);
+	return (vtkPolyData)(IntPtr)returnPointer;
 }
 
 
 // vtkPolyData* GetOutput(int idx)
 // "vtkPolyData *GetOutput(int idx)"
-public new vtkPolyData GetOutput(int /*(int)*/ idx) {
+public vtkPolyData GetOutput(int /*(int)*/ idx) {
 	int return_elements = 1;
-	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
-	API_vtkXMLPolyDataReader.GetOutput_1(this, returnPointer, idx);
-	return Ptr.deref(returnPointer);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	API_vtkXMLPolyDataReader.GetOutput_1(returnPointer.GetPtr(), this, idx);
+	return (vtkPolyData)(IntPtr)returnPointer;
 }
 
 
 // virtual vtkIdType GetNumberOfVerts()
 // "virtual vtkIdType GetNumberOfVerts()"
-public new long GetNumberOfVerts() {
+public long GetNumberOfVerts() {
 	int return_elements = 1;
-	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
-	API_vtkXMLPolyDataReader.GetNumberOfVerts_0(this, returnPointer);
-	return Ptr.deref(returnPointer);
+	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	API_vtkXMLPolyDataReader.GetNumberOfVerts_0(returnPointer.GetPtr(), this);
+	return (long)returnPointer;
 }
 
 
 // virtual vtkIdType GetNumberOfLines()
 // "virtual vtkIdType GetNumberOfLines()"
-public new long GetNumberOfLines() {
+public long GetNumberOfLines() {
 	int return_elements = 1;
-	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
-	API_vtkXMLPolyDataReader.GetNumberOfLines_0(this, returnPointer);
-	return Ptr.deref(returnPointer);
+	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	API_vtkXMLPolyDataReader.GetNumberOfLines_0(returnPointer.GetPtr(), this);
+	return (long)returnPointer;
 }
 
 
 // virtual vtkIdType GetNumberOfStrips()
 // "virtual vtkIdType GetNumberOfStrips()"
-public new long GetNumberOfStrips() {
+public long GetNumberOfStrips() {
 	int return_elements = 1;
-	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
-	API_vtkXMLPolyDataReader.GetNumberOfStrips_0(this, returnPointer);
-	return Ptr.deref(returnPointer);
+	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	API_vtkXMLPolyDataReader.GetNumberOfStrips_0(returnPointer.GetPtr(), this);
+	return (long)returnPointer;
 }
 
 
 // virtual vtkIdType GetNumberOfPolys()
 // "virtual vtkIdType GetNumberOfPolys()"
-public new long GetNumberOfPolys() {
+public long GetNumberOfPolys() {
 	int return_elements = 1;
-	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
-	API_vtkXMLPolyDataReader.GetNumberOfPolys_0(this, returnPointer);
-	return Ptr.deref(returnPointer);
+	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	API_vtkXMLPolyDataReader.GetNumberOfPolys_0(returnPointer.GetPtr(), this);
+	return (long)returnPointer;
 }
 
 

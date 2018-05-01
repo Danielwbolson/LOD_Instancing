@@ -10,7 +10,7 @@ class API_vtkIdList {
 // static vtkIdList* New()
 // static vtkIdList *New()
 [DllImport("vtkplugin", EntryPoint="vtkIdList_New_0")] public static extern 
-bool New_0(IntPtr /*(vtkIdList**)*/ return_value);
+bool New_0(IntPtr /*(IntPtr**)*/ return_value);
 
 // void Initialize()
 // void Initialize()
@@ -20,17 +20,17 @@ bool Initialize_0(IntPtr /*(vtkIdList*)*/ callingObject);
 // int Allocate(const vtkIdType sz, const int strategy = 0)
 // int Allocate(const vtkIdType sz, const int strategy=0)
 [DllImport("vtkplugin", EntryPoint="vtkIdList_Allocate_0")] public static extern 
-bool Allocate_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkIdList*)*/ callingObject, long /*(vtkIdType)*/ sz, int /*(int)*/ strategy);
+bool Allocate_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkIdList*)*/ callingObject, long /*(vtkIdType)*/ sz, int /*(int)*/ strategy);
 
 // vtkIdType GetNumberOfIds()
 // vtkIdType GetNumberOfIds()
 [DllImport("vtkplugin", EntryPoint="vtkIdList_GetNumberOfIds_0")] public static extern 
-bool GetNumberOfIds_0(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkIdList*)*/ callingObject);
+bool GetNumberOfIds_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkIdList*)*/ callingObject);
 
 // vtkIdType GetId(const vtkIdType i)
 // vtkIdType GetId(const vtkIdType i)
 [DllImport("vtkplugin", EntryPoint="vtkIdList_GetId_0")] public static extern 
-bool GetId_0(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkIdList*)*/ callingObject, long /*(vtkIdType)*/ i);
+bool GetId_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkIdList*)*/ callingObject, long /*(vtkIdType)*/ i);
 
 // void SetNumberOfIds(const vtkIdType number)
 // void SetNumberOfIds(const vtkIdType number)
@@ -50,22 +50,22 @@ bool InsertId_0(IntPtr /*(vtkIdList*)*/ callingObject, long /*(vtkIdType)*/ i, l
 // vtkIdType InsertNextId(const vtkIdType vtkid)
 // vtkIdType InsertNextId(const vtkIdType vtkid)
 [DllImport("vtkplugin", EntryPoint="vtkIdList_InsertNextId_0")] public static extern 
-bool InsertNextId_0(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkIdList*)*/ callingObject, long /*(vtkIdType)*/ vtkid);
+bool InsertNextId_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkIdList*)*/ callingObject, long /*(vtkIdType)*/ vtkid);
 
 // vtkIdType InsertUniqueId(const vtkIdType vtkid)
 // vtkIdType InsertUniqueId(const vtkIdType vtkid)
 [DllImport("vtkplugin", EntryPoint="vtkIdList_InsertUniqueId_0")] public static extern 
-bool InsertUniqueId_0(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkIdList*)*/ callingObject, long /*(vtkIdType)*/ vtkid);
+bool InsertUniqueId_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkIdList*)*/ callingObject, long /*(vtkIdType)*/ vtkid);
 
 // vtkIdType* GetPointer(const vtkIdType i)
 // vtkIdType *GetPointer(const vtkIdType i)
 [DllImport("vtkplugin", EntryPoint="vtkIdList_GetPointer_0")] public static extern 
-bool GetPointer_0(IntPtr /*(vtkIdType**)*/ return_value, IntPtr /*(vtkIdList*)*/ callingObject, long /*(vtkIdType)*/ i);
+bool GetPointer_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkIdList*)*/ callingObject, long /*(vtkIdType)*/ i);
 
 // vtkIdType* WritePointer(const vtkIdType i, const vtkIdType number)
 // vtkIdType *WritePointer(const vtkIdType i, const vtkIdType number)
 [DllImport("vtkplugin", EntryPoint="vtkIdList_WritePointer_0")] public static extern 
-bool WritePointer_0(IntPtr /*(vtkIdType**)*/ return_value, IntPtr /*(vtkIdList*)*/ callingObject, long /*(vtkIdType)*/ i, long /*(vtkIdType)*/ number);
+bool WritePointer_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkIdList*)*/ callingObject, long /*(vtkIdType)*/ i, long /*(vtkIdType)*/ number);
 
 // void SetArray(vtkIdType * array, vtkIdType size)
 // void SetArray(vtkIdType *array, vtkIdType size)
@@ -95,7 +95,7 @@ bool DeleteId_0(IntPtr /*(vtkIdList*)*/ callingObject, long /*(vtkIdType)*/ vtki
 // vtkIdType IsId(vtkIdType vtkid)
 // vtkIdType IsId(vtkIdType vtkid)
 [DllImport("vtkplugin", EntryPoint="vtkIdList_IsId_0")] public static extern 
-bool IsId_0(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkIdList*)*/ callingObject, long /*(vtkIdType)*/ vtkid);
+bool IsId_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkIdList*)*/ callingObject, long /*(vtkIdType)*/ vtkid);
 
 // void IntersectWith(vtkIdList * otherIds)
 // void IntersectWith(vtkIdList* otherIds)
@@ -105,7 +105,7 @@ bool IntersectWith_0(IntPtr /*(vtkIdList*)*/ callingObject, IntPtr /*(vtkIdList*
 // vtkIdType* Resize(const vtkIdType sz)
 // vtkIdType *Resize(const vtkIdType sz)
 [DllImport("vtkplugin", EntryPoint="vtkIdList_Resize_0")] public static extern 
-bool Resize_0(IntPtr /*(vtkIdType**)*/ return_value, IntPtr /*(vtkIdList*)*/ callingObject, long /*(vtkIdType)*/ sz);
+bool Resize_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkIdList*)*/ callingObject, long /*(vtkIdType)*/ sz);
 
 // void IntersectWith(vtkIdList & otherIds)
 // void IntersectWith(vtkIdList& otherIds)

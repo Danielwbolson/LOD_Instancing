@@ -10,7 +10,7 @@ class API_vtkAlgorithmOutput {
 // static vtkAlgorithmOutput* New()
 // static vtkAlgorithmOutput *New()
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithmOutput_New_0")] public static extern 
-bool New_0(IntPtr /*(vtkAlgorithmOutput**)*/ return_value);
+bool New_0(IntPtr /*(IntPtr**)*/ return_value);
 
 // void SetIndex(int index)
 // void SetIndex(int index)
@@ -20,12 +20,12 @@ bool SetIndex_0(IntPtr /*(vtkAlgorithmOutput*)*/ callingObject, int /*(int)*/ in
 // int GetIndex()
 // int GetIndex()
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithmOutput_GetIndex_0")] public static extern 
-bool GetIndex_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkAlgorithmOutput*)*/ callingObject);
+bool GetIndex_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAlgorithmOutput*)*/ callingObject);
 
 // vtkAlgorithm* GetProducer()
 // vtkAlgorithm* GetProducer()
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithmOutput_GetProducer_0")] public static extern 
-bool GetProducer_0(IntPtr /*(vtkAlgorithm**)*/ return_value, IntPtr /*(vtkAlgorithmOutput*)*/ callingObject);
+bool GetProducer_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkAlgorithmOutput*)*/ callingObject);
 
 // void SetProducer(vtkAlgorithm * producer)
 // void SetProducer(vtkAlgorithm* producer)

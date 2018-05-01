@@ -10,7 +10,7 @@ class API_vtkCellLinks {
 // static vtkCellLinks* New()
 // static vtkCellLinks *New()
 [DllImport("vtkplugin", EntryPoint="vtkCellLinks_New_0")] public static extern 
-bool New_0(IntPtr /*(vtkCellLinks**)*/ return_value);
+bool New_0(IntPtr /*(IntPtr**)*/ return_value);
 
 // void BuildLinks(vtkDataSet * data)
 // void BuildLinks(vtkDataSet *data)
@@ -32,25 +32,20 @@ bool Allocate_0(IntPtr /*(vtkCellLinks*)*/ callingObject, long /*(vtkIdType)*/ n
 [DllImport("vtkplugin", EntryPoint="vtkCellLinks_Initialize_0")] public static extern 
 bool Initialize_0(IntPtr /*(vtkCellLinks*)*/ callingObject);
 
-// Link& GetLink(vtkIdType ptId)
-// Link &GetLink(vtkIdType ptId)
-[DllImport("vtkplugin", EntryPoint="vtkCellLinks_GetLink_0")] public static extern 
-bool GetLink_0(IntPtr /*(Link*)*/ return_value, IntPtr /*(vtkCellLinks*)*/ callingObject, long /*(vtkIdType)*/ ptId);
-
 // short GetNcells(vtkIdType ptId)
 // unsigned short GetNcells(vtkIdType ptId)
 [DllImport("vtkplugin", EntryPoint="vtkCellLinks_GetNcells_0")] public static extern 
-bool GetNcells_0(IntPtr /*(short*)*/ return_value, IntPtr /*(vtkCellLinks*)*/ callingObject, long /*(vtkIdType)*/ ptId);
+bool GetNcells_0(IntPtr /*(unsigned IntPtr*)*/ return_value, IntPtr /*(vtkCellLinks*)*/ callingObject, long /*(vtkIdType)*/ ptId);
 
 // vtkIdType* GetCells(vtkIdType ptId)
 // vtkIdType *GetCells(vtkIdType ptId)
 [DllImport("vtkplugin", EntryPoint="vtkCellLinks_GetCells_0")] public static extern 
-bool GetCells_0(IntPtr /*(vtkIdType**)*/ return_value, IntPtr /*(vtkCellLinks*)*/ callingObject, long /*(vtkIdType)*/ ptId);
+bool GetCells_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkCellLinks*)*/ callingObject, long /*(vtkIdType)*/ ptId);
 
 // vtkIdType InsertNextPoint(int numLinks)
 // vtkIdType InsertNextPoint(int numLinks)
 [DllImport("vtkplugin", EntryPoint="vtkCellLinks_InsertNextPoint_0")] public static extern 
-bool InsertNextPoint_0(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkCellLinks*)*/ callingObject, int /*(int)*/ numLinks);
+bool InsertNextPoint_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkCellLinks*)*/ callingObject, int /*(int)*/ numLinks);
 
 // void InsertNextCellReference(vtkIdType ptId, vtkIdType cellId)
 // void InsertNextCellReference(vtkIdType ptId, vtkIdType cellId)
@@ -90,7 +85,7 @@ bool Reset_0(IntPtr /*(vtkCellLinks*)*/ callingObject);
 // long GetActualMemorySize()
 // unsigned long GetActualMemorySize()
 [DllImport("vtkplugin", EntryPoint="vtkCellLinks_GetActualMemorySize_0")] public static extern 
-bool GetActualMemorySize_0(IntPtr /*(long*)*/ return_value, IntPtr /*(vtkCellLinks*)*/ callingObject);
+bool GetActualMemorySize_0(IntPtr /*(unsigned IntPtr*)*/ return_value, IntPtr /*(vtkCellLinks*)*/ callingObject);
 
 // void DeepCopy(vtkCellLinks * src)
 // void DeepCopy(vtkCellLinks *src)

@@ -10,22 +10,22 @@ class API_vtkAlgorithm {
 // static vtkAlgorithm* New()
 // static vtkAlgorithm *New()
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_New_0")] public static extern 
-bool New_0(IntPtr /*(vtkAlgorithm**)*/ return_value);
+bool New_0(IntPtr /*(IntPtr**)*/ return_value);
 
 // int HasExecutive()
 // int HasExecutive()
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_HasExecutive_0")] public static extern 
-bool HasExecutive_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject);
+bool HasExecutive_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject);
 
 // int GetNumberOfInputPorts()
 // int GetNumberOfInputPorts()
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_GetNumberOfInputPorts_0")] public static extern 
-bool GetNumberOfInputPorts_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject);
+bool GetNumberOfInputPorts_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject);
 
 // int GetNumberOfOutputPorts()
 // int GetNumberOfOutputPorts()
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_GetNumberOfOutputPorts_0")] public static extern 
-bool GetNumberOfOutputPorts_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject);
+bool GetNumberOfOutputPorts_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject);
 
 // void Register(vtkObjectBase * o)
 // void Register(vtkObjectBase* o)
@@ -45,12 +45,12 @@ bool UpdateProgress_0(IntPtr /*(vtkAlgorithm*)*/ callingObject, double /*(double
 // void SetProgressText(const char * ptext)
 // void SetProgressText(const char* ptext)
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_SetProgressText_0")] public static extern 
-bool SetProgressText_0(IntPtr /*(vtkAlgorithm*)*/ callingObject, IntPtr /*(char*)*/ ptext);
+bool SetProgressText_0(IntPtr /*(vtkAlgorithm*)*/ callingObject, string /*(char*)*/ ptext);
 
 // virtual void SetInputArrayToProcess(int idx, int port, int connection, int fieldAssociation, const char * name)
 // virtual void SetInputArrayToProcess(int idx, int port, int connection, int fieldAssociation, const char *name)
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_SetInputArrayToProcess_0")] public static extern 
-bool SetInputArrayToProcess_0(IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int)*/ idx, int /*(int)*/ port, int /*(int)*/ connection, int /*(int)*/ fieldAssociation, IntPtr /*(char*)*/ name);
+bool SetInputArrayToProcess_0(IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int)*/ idx, int /*(int)*/ port, int /*(int)*/ connection, int /*(int)*/ fieldAssociation, string /*(char*)*/ name);
 
 // virtual void SetInputArrayToProcess(int idx, int port, int connection, int fieldAssociation, int fieldAttributeType)
 // virtual void SetInputArrayToProcess(int idx, int port, int connection, int fieldAssociation, int fieldAttributeType)
@@ -60,7 +60,7 @@ bool SetInputArrayToProcess_1(IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(i
 // virtual void SetInputArrayToProcess(int idx, int port, int connection, const char * fieldAssociation, const char * attributeTypeorName)
 // virtual void SetInputArrayToProcess(int idx, int port, int connection, const char* fieldAssociation, const char* attributeTypeorName)
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_SetInputArrayToProcess_2")] public static extern 
-bool SetInputArrayToProcess_2(IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int)*/ idx, int /*(int)*/ port, int /*(int)*/ connection, IntPtr /*(char*)*/ fieldAssociation, IntPtr /*(char*)*/ attributeTypeorName);
+bool SetInputArrayToProcess_2(IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int)*/ idx, int /*(int)*/ port, int /*(int)*/ connection, string /*(char*)*/ fieldAssociation, string /*(char*)*/ attributeTypeorName);
 
 // void RemoveAllInputs()
 // void RemoveAllInputs()
@@ -70,12 +70,12 @@ bool RemoveAllInputs_0(IntPtr /*(vtkAlgorithm*)*/ callingObject);
 // vtkDataObject* GetOutputDataObject(int port)
 // vtkDataObject* GetOutputDataObject(int port)
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_GetOutputDataObject_0")] public static extern 
-bool GetOutputDataObject_0(IntPtr /*(vtkDataObject**)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int)*/ port);
+bool GetOutputDataObject_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int)*/ port);
 
 // vtkDataObject* GetInputDataObject(int port, int connection)
 // vtkDataObject *GetInputDataObject(int port, int connection)
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_GetInputDataObject_0")] public static extern 
-bool GetInputDataObject_0(IntPtr /*(vtkDataObject**)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int)*/ port, int /*(int)*/ connection);
+bool GetInputDataObject_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int)*/ port, int /*(int)*/ connection);
 
 // virtual void SetInputConnection(int port, vtkAlgorithmOutput * input)
 // virtual void SetInputConnection(int port, vtkAlgorithmOutput* input)
@@ -135,42 +135,42 @@ bool AddInputDataObject_1(IntPtr /*(vtkAlgorithm*)*/ callingObject, IntPtr /*(vt
 // vtkAlgorithmOutput* GetOutputPort(int index)
 // vtkAlgorithmOutput* GetOutputPort(int index)
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_GetOutputPort_0")] public static extern 
-bool GetOutputPort_0(IntPtr /*(vtkAlgorithmOutput**)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int)*/ index);
+bool GetOutputPort_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int)*/ index);
 
 // vtkAlgorithmOutput* GetOutputPort()
 // vtkAlgorithmOutput* GetOutputPort()
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_GetOutputPort_1")] public static extern 
-bool GetOutputPort_1(IntPtr /*(vtkAlgorithmOutput**)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject);
+bool GetOutputPort_1(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject);
 
 // int GetNumberOfInputConnections(int port)
 // int GetNumberOfInputConnections(int port)
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_GetNumberOfInputConnections_0")] public static extern 
-bool GetNumberOfInputConnections_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int)*/ port);
+bool GetNumberOfInputConnections_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int)*/ port);
 
 // int GetTotalNumberOfInputConnections()
 // int GetTotalNumberOfInputConnections()
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_GetTotalNumberOfInputConnections_0")] public static extern 
-bool GetTotalNumberOfInputConnections_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject);
+bool GetTotalNumberOfInputConnections_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject);
 
 // vtkAlgorithmOutput* GetInputConnection(int port, int index)
 // vtkAlgorithmOutput* GetInputConnection(int port, int index)
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_GetInputConnection_0")] public static extern 
-bool GetInputConnection_0(IntPtr /*(vtkAlgorithmOutput**)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int)*/ port, int /*(int)*/ index);
+bool GetInputConnection_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int)*/ port, int /*(int)*/ index);
 
 // vtkAlgorithm* GetInputAlgorithm(int port, int index, int & algPort)
 // vtkAlgorithm* GetInputAlgorithm(int port, int index, int& algPort)
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_GetInputAlgorithm_0")] public static extern 
-bool GetInputAlgorithm_0(IntPtr /*(vtkAlgorithm**)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int)*/ port, int /*(int)*/ index, IntPtr /*(int&)*/ algPort);
+bool GetInputAlgorithm_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int)*/ port, int /*(int)*/ index, IntPtr /*(int&)*/ algPort);
 
 // vtkAlgorithm* GetInputAlgorithm(int port, int index)
 // vtkAlgorithm* GetInputAlgorithm(int port, int index)
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_GetInputAlgorithm_1")] public static extern 
-bool GetInputAlgorithm_1(IntPtr /*(vtkAlgorithm**)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int)*/ port, int /*(int)*/ index);
+bool GetInputAlgorithm_1(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int)*/ port, int /*(int)*/ index);
 
 // vtkAlgorithm* GetInputAlgorithm()
 // vtkAlgorithm* GetInputAlgorithm()
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_GetInputAlgorithm_2")] public static extern 
-bool GetInputAlgorithm_2(IntPtr /*(vtkAlgorithm**)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject);
+bool GetInputAlgorithm_2(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject);
 
 // virtual void Update(int port)
 // virtual void Update(int port)
@@ -185,12 +185,12 @@ bool Update_1(IntPtr /*(vtkAlgorithm*)*/ callingObject);
 // virtual int UpdatePiece(int piece, int numPieces, int ghostLevels, const int extents[6] = nullptr)
 // virtual int UpdatePiece( int piece, int numPieces, int ghostLevels, const int extents[6]=nullptr)
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_UpdatePiece_0")] public static extern 
-bool UpdatePiece_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int)*/ piece, int /*(int)*/ numPieces, int /*(int)*/ ghostLevels, int /*(int[6])*/ []extents);
+bool UpdatePiece_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int)*/ piece, int /*(int)*/ numPieces, int /*(int)*/ ghostLevels, int /*(int[6])*/ []extents);
 
 // virtual int UpdateExtent(const int extents[6])
 // virtual int UpdateExtent(const int extents[6])
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_UpdateExtent_0")] public static extern 
-bool UpdateExtent_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int[6])*/ []extents);
+bool UpdateExtent_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int[6])*/ []extents);
 
 // virtual void UpdateInformation()
 // virtual void UpdateInformation()
@@ -225,7 +225,7 @@ bool SetReleaseDataFlag_0(IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int)*
 // virtual int GetReleaseDataFlag()
 // virtual int GetReleaseDataFlag()
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_GetReleaseDataFlag_0")] public static extern 
-bool GetReleaseDataFlag_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject);
+bool GetReleaseDataFlag_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject);
 
 // void ReleaseDataFlagOn()
 // void ReleaseDataFlagOn()
@@ -240,12 +240,12 @@ bool ReleaseDataFlagOff_0(IntPtr /*(vtkAlgorithm*)*/ callingObject);
 // int* GetUpdateExtent()
 // int* GetUpdateExtent()
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_GetUpdateExtent_0")] public static extern 
-bool GetUpdateExtent_0(IntPtr /*(int**)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject);
+bool GetUpdateExtent_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject);
 
 // int* GetUpdateExtent(int port)
 // int* GetUpdateExtent(int port)
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_GetUpdateExtent_1")] public static extern 
-bool GetUpdateExtent_1(IntPtr /*(int**)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int)*/ port);
+bool GetUpdateExtent_1(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int)*/ port);
 
 // void GetUpdateExtent(int & x0, int & x1, int & y0, int & y1, int & z0, int & z1)
 // void GetUpdateExtent(int& x0, int& x1, int& y0, int& y1, int& z0, int& z1)
@@ -270,32 +270,32 @@ bool GetUpdateExtent_5(IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int)*/ p
 // int GetUpdatePiece()
 // int GetUpdatePiece()
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_GetUpdatePiece_0")] public static extern 
-bool GetUpdatePiece_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject);
+bool GetUpdatePiece_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject);
 
 // int GetUpdatePiece(int port)
 // int GetUpdatePiece(int port)
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_GetUpdatePiece_1")] public static extern 
-bool GetUpdatePiece_1(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int)*/ port);
+bool GetUpdatePiece_1(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int)*/ port);
 
 // int GetUpdateNumberOfPieces()
 // int GetUpdateNumberOfPieces()
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_GetUpdateNumberOfPieces_0")] public static extern 
-bool GetUpdateNumberOfPieces_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject);
+bool GetUpdateNumberOfPieces_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject);
 
 // int GetUpdateNumberOfPieces(int port)
 // int GetUpdateNumberOfPieces(int port)
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_GetUpdateNumberOfPieces_1")] public static extern 
-bool GetUpdateNumberOfPieces_1(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int)*/ port);
+bool GetUpdateNumberOfPieces_1(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int)*/ port);
 
 // int GetUpdateGhostLevel()
 // int GetUpdateGhostLevel()
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_GetUpdateGhostLevel_0")] public static extern 
-bool GetUpdateGhostLevel_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject);
+bool GetUpdateGhostLevel_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject);
 
 // int GetUpdateGhostLevel(int port)
 // int GetUpdateGhostLevel(int port)
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_GetUpdateGhostLevel_1")] public static extern 
-bool GetUpdateGhostLevel_1(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int)*/ port);
+bool GetUpdateGhostLevel_1(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int)*/ port);
 
 // void SetProgressObserver(vtkProgressObserver * ARG_0)
 // void SetProgressObserver(vtkProgressObserver*)

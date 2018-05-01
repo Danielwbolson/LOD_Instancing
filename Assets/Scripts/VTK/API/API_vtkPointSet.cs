@@ -20,7 +20,7 @@ bool CopyStructure_0(IntPtr /*(vtkPointSet*)*/ callingObject, IntPtr /*(vtkDataS
 // vtkIdType GetNumberOfPoints()
 // vtkIdType GetNumberOfPoints()
 [DllImport("vtkplugin", EntryPoint="vtkPointSet_GetNumberOfPoints_0")] public static extern 
-bool GetNumberOfPoints_0(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkPointSet*)*/ callingObject);
+bool GetNumberOfPoints_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkPointSet*)*/ callingObject);
 
 // void GetPoint(vtkIdType ptId, double x[3])
 // void GetPoint(vtkIdType ptId, double x[3])
@@ -30,37 +30,37 @@ bool GetPoint_0(IntPtr /*(vtkPointSet*)*/ callingObject, long /*(vtkIdType)*/ pt
 // vtkIdType FindPoint(double x[3])
 // vtkIdType FindPoint(double x[3])
 [DllImport("vtkplugin", EntryPoint="vtkPointSet_FindPoint_0")] public static extern 
-bool FindPoint_0(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkPointSet*)*/ callingObject, double /*(double[3])*/ []x);
+bool FindPoint_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkPointSet*)*/ callingObject, double /*(double[3])*/ []x);
 
 // vtkIdType FindPoint(double x, double y, double z)
 // vtkIdType FindPoint(double x, double y, double z)
 [DllImport("vtkplugin", EntryPoint="vtkPointSet_FindPoint_1")] public static extern 
-bool FindPoint_1(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkPointSet*)*/ callingObject, double /*(double)*/ x, double /*(double)*/ y, double /*(double)*/ z);
+bool FindPoint_1(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkPointSet*)*/ callingObject, double /*(double)*/ x, double /*(double)*/ y, double /*(double)*/ z);
 
 // vtkIdType FindCell(double x[3], vtkCell * cell, vtkIdType cellId, double tol2, int & subId, double pcoords[3], double * weights)
 // vtkIdType FindCell(double x[3], vtkCell *cell, vtkIdType cellId, double tol2, int& subId, double pcoords[3], double *weights)
 [DllImport("vtkplugin", EntryPoint="vtkPointSet_FindCell_0")] public static extern 
-bool FindCell_0(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkPointSet*)*/ callingObject, double /*(double[3])*/ []x, IntPtr /*(vtkCell*)*/ cell, long /*(vtkIdType)*/ cellId, double /*(double)*/ tol2, IntPtr /*(int&)*/ subId, double /*(double[3])*/ []pcoords, IntPtr /*(double*)*/ weights);
+bool FindCell_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkPointSet*)*/ callingObject, double /*(double[3])*/ []x, IntPtr /*(vtkCell*)*/ cell, long /*(vtkIdType)*/ cellId, double /*(double)*/ tol2, IntPtr /*(int&)*/ subId, double /*(double[3])*/ []pcoords, IntPtr /*(double*)*/ weights);
 
 // vtkIdType FindCell(double x[3], vtkCell * cell, vtkGenericCell * gencell, vtkIdType cellId, double tol2, int & subId, double pcoords[3], double * weights)
 // vtkIdType FindCell(double x[3], vtkCell *cell, vtkGenericCell *gencell, vtkIdType cellId, double tol2, int& subId, double pcoords[3], double *weights)
 [DllImport("vtkplugin", EntryPoint="vtkPointSet_FindCell_1")] public static extern 
-bool FindCell_1(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkPointSet*)*/ callingObject, double /*(double[3])*/ []x, IntPtr /*(vtkCell*)*/ cell, IntPtr /*(vtkGenericCell*)*/ gencell, long /*(vtkIdType)*/ cellId, double /*(double)*/ tol2, IntPtr /*(int&)*/ subId, double /*(double[3])*/ []pcoords, IntPtr /*(double*)*/ weights);
+bool FindCell_1(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkPointSet*)*/ callingObject, double /*(double[3])*/ []x, IntPtr /*(vtkCell*)*/ cell, IntPtr /*(vtkGenericCell*)*/ gencell, long /*(vtkIdType)*/ cellId, double /*(double)*/ tol2, IntPtr /*(int&)*/ subId, double /*(double[3])*/ []pcoords, IntPtr /*(double*)*/ weights);
 
 // double* GetPoint(vtkIdType ptId)
 // double *GetPoint(vtkIdType ptId)
 [DllImport("vtkplugin", EntryPoint="vtkPointSet_GetPoint_1")] public static extern 
-bool GetPoint_1(IntPtr /*(double**)*/ return_value, IntPtr /*(vtkPointSet*)*/ callingObject, long /*(vtkIdType)*/ ptId);
+bool GetPoint_1(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkPointSet*)*/ callingObject, long /*(vtkIdType)*/ ptId);
 
 // vtkCellIterator* NewCellIterator()
 // vtkCellIterator* NewCellIterator()
 [DllImport("vtkplugin", EntryPoint="vtkPointSet_NewCellIterator_0")] public static extern 
-bool NewCellIterator_0(IntPtr /*(vtkCellIterator**)*/ return_value, IntPtr /*(vtkPointSet*)*/ callingObject);
+bool NewCellIterator_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkPointSet*)*/ callingObject);
 
 // vtkMTimeType GetMTime()
 // vtkMTimeType GetMTime()
 [DllImport("vtkplugin", EntryPoint="vtkPointSet_GetMTime_0")] public static extern 
-bool GetMTime_0(IntPtr /*(vtkMTimeType*)*/ return_value, IntPtr /*(vtkPointSet*)*/ callingObject);
+bool GetMTime_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkPointSet*)*/ callingObject);
 
 // void ComputeBounds()
 // void ComputeBounds()
@@ -80,7 +80,7 @@ bool SetPoints_0(IntPtr /*(vtkPointSet*)*/ callingObject, IntPtr /*(vtkPoints*)*
 // long GetActualMemorySize()
 // unsigned long GetActualMemorySize()
 [DllImport("vtkplugin", EntryPoint="vtkPointSet_GetActualMemorySize_0")] public static extern 
-bool GetActualMemorySize_0(IntPtr /*(long*)*/ return_value, IntPtr /*(vtkPointSet*)*/ callingObject);
+bool GetActualMemorySize_0(IntPtr /*(unsigned IntPtr*)*/ return_value, IntPtr /*(vtkPointSet*)*/ callingObject);
 
 // void ShallowCopy(vtkDataObject * src)
 // void ShallowCopy(vtkDataObject *src)

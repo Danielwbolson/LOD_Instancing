@@ -10,12 +10,12 @@ class API_vtkUnstructuredGrid {
 // static vtkUnstructuredGrid* New()
 // static vtkUnstructuredGrid *New()
 [DllImport("vtkplugin", EntryPoint="vtkUnstructuredGrid_New_0")] public static extern 
-bool New_0(IntPtr /*(vtkUnstructuredGrid**)*/ return_value);
+bool New_0(IntPtr /*(IntPtr**)*/ return_value);
 
 // int GetDataObjectType()
 // int GetDataObjectType()
 [DllImport("vtkplugin", EntryPoint="vtkUnstructuredGrid_GetDataObjectType_0")] public static extern 
-bool GetDataObjectType_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
+bool GetDataObjectType_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
 
 // void Allocate(vtkIdType numCells = 1000, int extSize = 1000)
 // void Allocate(vtkIdType numCells=1000, int extSize=1000)
@@ -25,17 +25,17 @@ bool Allocate_0(IntPtr /*(vtkUnstructuredGrid*)*/ callingObject, long /*(vtkIdTy
 // vtkIdType InsertNextCell(int type, vtkIdType npts, vtkIdType * ptIds)
 // vtkIdType InsertNextCell(int type, vtkIdType npts, vtkIdType *ptIds)
 [DllImport("vtkplugin", EntryPoint="vtkUnstructuredGrid_InsertNextCell_0")] public static extern 
-bool InsertNextCell_0(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject, int /*(int)*/ type, long /*(vtkIdType)*/ npts, IntPtr /*(vtkIdType*)*/ ptIds);
+bool InsertNextCell_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject, int /*(int)*/ type, long /*(vtkIdType)*/ npts, IntPtr /*(vtkIdType*)*/ ptIds);
 
 // vtkIdType InsertNextCell(int type, vtkIdList * ptIds)
 // vtkIdType InsertNextCell(int type, vtkIdList *ptIds)
 [DllImport("vtkplugin", EntryPoint="vtkUnstructuredGrid_InsertNextCell_1")] public static extern 
-bool InsertNextCell_1(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject, int /*(int)*/ type, IntPtr /*(vtkIdList*)*/ ptIds);
+bool InsertNextCell_1(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject, int /*(int)*/ type, IntPtr /*(vtkIdList*)*/ ptIds);
 
 // vtkIdType InsertNextCell(int type, vtkIdType npts, vtkIdType * ptIds, vtkIdType nfaces, vtkIdType * faces)
 // vtkIdType InsertNextCell(int type, vtkIdType npts, vtkIdType *ptIds, vtkIdType nfaces, vtkIdType *faces)
 [DllImport("vtkplugin", EntryPoint="vtkUnstructuredGrid_InsertNextCell_2")] public static extern 
-bool InsertNextCell_2(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject, int /*(int)*/ type, long /*(vtkIdType)*/ npts, IntPtr /*(vtkIdType*)*/ ptIds, long /*(vtkIdType)*/ nfaces, IntPtr /*(vtkIdType*)*/ faces);
+bool InsertNextCell_2(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject, int /*(int)*/ type, long /*(vtkIdType)*/ npts, IntPtr /*(vtkIdType*)*/ ptIds, long /*(vtkIdType)*/ nfaces, IntPtr /*(vtkIdType*)*/ faces);
 
 // void Reset()
 // void Reset()
@@ -50,12 +50,12 @@ bool CopyStructure_0(IntPtr /*(vtkUnstructuredGrid*)*/ callingObject, IntPtr /*(
 // vtkIdType GetNumberOfCells()
 // vtkIdType GetNumberOfCells()
 [DllImport("vtkplugin", EntryPoint="vtkUnstructuredGrid_GetNumberOfCells_0")] public static extern 
-bool GetNumberOfCells_0(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
+bool GetNumberOfCells_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
 
 // vtkCell* GetCell(vtkIdType cellId)
 // vtkCell *GetCell(vtkIdType cellId)
 [DllImport("vtkplugin", EntryPoint="vtkUnstructuredGrid_GetCell_0")] public static extern 
-bool GetCell_0(IntPtr /*(vtkCell**)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject, long /*(vtkIdType)*/ cellId);
+bool GetCell_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject, long /*(vtkIdType)*/ cellId);
 
 // void GetCell(vtkIdType cellId, vtkGenericCell * cell)
 // void GetCell(vtkIdType cellId, vtkGenericCell *cell)
@@ -80,22 +80,22 @@ bool GetPointCells_0(IntPtr /*(vtkUnstructuredGrid*)*/ callingObject, long /*(vt
 // vtkCellIterator* NewCellIterator()
 // vtkCellIterator* NewCellIterator()
 [DllImport("vtkplugin", EntryPoint="vtkUnstructuredGrid_NewCellIterator_0")] public static extern 
-bool NewCellIterator_0(IntPtr /*(vtkCellIterator**)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
+bool NewCellIterator_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
 
 // int GetCellType(vtkIdType cellId)
 // int GetCellType(vtkIdType cellId)
 [DllImport("vtkplugin", EntryPoint="vtkUnstructuredGrid_GetCellType_0")] public static extern 
-bool GetCellType_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject, long /*(vtkIdType)*/ cellId);
+bool GetCellType_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject, long /*(vtkIdType)*/ cellId);
 
 // vtkUnsignedCharArray* GetCellTypesArray()
 // vtkUnsignedCharArray* GetCellTypesArray()
 [DllImport("vtkplugin", EntryPoint="vtkUnstructuredGrid_GetCellTypesArray_0")] public static extern 
-bool GetCellTypesArray_0(IntPtr /*(vtkUnsignedCharArray**)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
+bool GetCellTypesArray_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
 
 // vtkIdTypeArray* GetCellLocationsArray()
 // vtkIdTypeArray* GetCellLocationsArray()
 [DllImport("vtkplugin", EntryPoint="vtkUnstructuredGrid_GetCellLocationsArray_0")] public static extern 
-bool GetCellLocationsArray_0(IntPtr /*(vtkIdTypeArray**)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
+bool GetCellLocationsArray_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
 
 // void Squeeze()
 // void Squeeze()
@@ -110,7 +110,7 @@ bool Initialize_0(IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
 // int GetMaxCellSize()
 // int GetMaxCellSize()
 [DllImport("vtkplugin", EntryPoint="vtkUnstructuredGrid_GetMaxCellSize_0")] public static extern 
-bool GetMaxCellSize_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
+bool GetMaxCellSize_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
 
 // void BuildLinks()
 // void BuildLinks()
@@ -120,7 +120,7 @@ bool BuildLinks_0(IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
 // vtkCellLinks* GetCellLinks()
 // vtkCellLinks *GetCellLinks()
 [DllImport("vtkplugin", EntryPoint="vtkUnstructuredGrid_GetCellLinks_0")] public static extern 
-bool GetCellLinks_0(IntPtr /*(vtkCellLinks**)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
+bool GetCellLinks_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
 
 // virtual void GetCellPoints(vtkIdType cellId, vtkIdType & npts, vtkIdType *& pts)
 // virtual void GetCellPoints(vtkIdType cellId, vtkIdType& npts, vtkIdType* &pts)
@@ -160,7 +160,7 @@ bool SetCells_3(IntPtr /*(vtkUnstructuredGrid*)*/ callingObject, IntPtr /*(vtkUn
 // vtkCellArray* GetCells()
 // vtkCellArray *GetCells()
 [DllImport("vtkplugin", EntryPoint="vtkUnstructuredGrid_GetCells_0")] public static extern 
-bool GetCells_0(IntPtr /*(vtkCellArray**)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
+bool GetCells_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
 
 // void ReplaceCell(vtkIdType cellId, int npts, vtkIdType * pts)
 // void ReplaceCell(vtkIdType cellId, int npts, vtkIdType *pts)
@@ -170,7 +170,7 @@ bool ReplaceCell_0(IntPtr /*(vtkUnstructuredGrid*)*/ callingObject, long /*(vtkI
 // vtkIdType InsertNextLinkedCell(int type, int npts, vtkIdType * pts)
 // vtkIdType InsertNextLinkedCell(int type, int npts, vtkIdType *pts)
 [DllImport("vtkplugin", EntryPoint="vtkUnstructuredGrid_InsertNextLinkedCell_0")] public static extern 
-bool InsertNextLinkedCell_0(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject, int /*(int)*/ type, int /*(int)*/ npts, IntPtr /*(vtkIdType*)*/ pts);
+bool InsertNextLinkedCell_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject, int /*(int)*/ type, int /*(int)*/ npts, IntPtr /*(vtkIdType*)*/ pts);
 
 // void RemoveReferenceToCell(vtkIdType ptId, vtkIdType cellId)
 // void RemoveReferenceToCell(vtkIdType ptId, vtkIdType cellId)
@@ -195,22 +195,22 @@ bool GetCellNeighbors_0(IntPtr /*(vtkUnstructuredGrid*)*/ callingObject, long /*
 // virtual int GetPiece()
 // virtual int GetPiece()
 [DllImport("vtkplugin", EntryPoint="vtkUnstructuredGrid_GetPiece_0")] public static extern 
-bool GetPiece_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
+bool GetPiece_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
 
 // virtual int GetNumberOfPieces()
 // virtual int GetNumberOfPieces()
 [DllImport("vtkplugin", EntryPoint="vtkUnstructuredGrid_GetNumberOfPieces_0")] public static extern 
-bool GetNumberOfPieces_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
+bool GetNumberOfPieces_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
 
 // virtual int GetGhostLevel()
 // virtual int GetGhostLevel()
 [DllImport("vtkplugin", EntryPoint="vtkUnstructuredGrid_GetGhostLevel_0")] public static extern 
-bool GetGhostLevel_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
+bool GetGhostLevel_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
 
 // long GetActualMemorySize()
 // unsigned long GetActualMemorySize()
 [DllImport("vtkplugin", EntryPoint="vtkUnstructuredGrid_GetActualMemorySize_0")] public static extern 
-bool GetActualMemorySize_0(IntPtr /*(long*)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
+bool GetActualMemorySize_0(IntPtr /*(unsigned IntPtr*)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
 
 // void ShallowCopy(vtkDataObject * src)
 // void ShallowCopy(vtkDataObject *src)
@@ -230,7 +230,7 @@ bool GetIdsOfCellsOfType_0(IntPtr /*(vtkUnstructuredGrid*)*/ callingObject, int 
 // int IsHomogeneous()
 // int IsHomogeneous()
 [DllImport("vtkplugin", EntryPoint="vtkUnstructuredGrid_IsHomogeneous_0")] public static extern 
-bool IsHomogeneous_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
+bool IsHomogeneous_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
 
 // void RemoveGhostCells()
 // void RemoveGhostCells()
@@ -240,27 +240,27 @@ bool RemoveGhostCells_0(IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
 // vtkIdType* GetFaces(vtkIdType cellId)
 // vtkIdType *GetFaces(vtkIdType cellId)
 [DllImport("vtkplugin", EntryPoint="vtkUnstructuredGrid_GetFaces_0")] public static extern 
-bool GetFaces_0(IntPtr /*(vtkIdType**)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject, long /*(vtkIdType)*/ cellId);
+bool GetFaces_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject, long /*(vtkIdType)*/ cellId);
 
 // vtkIdTypeArray* GetFaces()
 // vtkIdTypeArray* GetFaces()
 [DllImport("vtkplugin", EntryPoint="vtkUnstructuredGrid_GetFaces_1")] public static extern 
-bool GetFaces_1(IntPtr /*(vtkIdTypeArray**)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
+bool GetFaces_1(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
 
 // vtkIdTypeArray* GetFaceLocations()
 // vtkIdTypeArray* GetFaceLocations()
 [DllImport("vtkplugin", EntryPoint="vtkUnstructuredGrid_GetFaceLocations_0")] public static extern 
-bool GetFaceLocations_0(IntPtr /*(vtkIdTypeArray**)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
+bool GetFaceLocations_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
 
 // int InitializeFacesRepresentation(vtkIdType numPrevCells)
 // int InitializeFacesRepresentation(vtkIdType numPrevCells)
 [DllImport("vtkplugin", EntryPoint="vtkUnstructuredGrid_InitializeFacesRepresentation_0")] public static extern 
-bool InitializeFacesRepresentation_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject, long /*(vtkIdType)*/ numPrevCells);
+bool InitializeFacesRepresentation_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject, long /*(vtkIdType)*/ numPrevCells);
 
 // virtual vtkMTimeType GetMeshMTime()
 // virtual vtkMTimeType GetMeshMTime()
 [DllImport("vtkplugin", EntryPoint="vtkUnstructuredGrid_GetMeshMTime_0")] public static extern 
-bool GetMeshMTime_0(IntPtr /*(vtkMTimeType*)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
+bool GetMeshMTime_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
 
 // static void DecomposeAPolyhedronCell(vtkCellArray * polyhedronCellArray, vtkIdType & nCellpts, vtkIdType & nCellfaces, vtkCellArray * cellArray, vtkIdTypeArray * faces)
 // static void DecomposeAPolyhedronCell(vtkCellArray *polyhedronCellArray, vtkIdType & nCellpts, vtkIdType & nCellfaces, vtkCellArray *cellArray, vtkIdTypeArray *faces)

@@ -10,17 +10,17 @@ class API_vtkPoints {
 // static vtkPoints* New(int dataType)
 // static vtkPoints *New(int dataType)
 [DllImport("vtkplugin", EntryPoint="vtkPoints_New_0")] public static extern 
-bool New_0(IntPtr /*(vtkPoints**)*/ return_value, int /*(int)*/ dataType);
+bool New_0(IntPtr /*(IntPtr**)*/ return_value, int /*(int)*/ dataType);
 
 // static vtkPoints* New()
 // static vtkPoints *New()
 [DllImport("vtkplugin", EntryPoint="vtkPoints_New_1")] public static extern 
-bool New_1(IntPtr /*(vtkPoints**)*/ return_value);
+bool New_1(IntPtr /*(IntPtr**)*/ return_value);
 
 // virtual int Allocate(vtkIdType sz, vtkIdType ext = 1000)
 // virtual int Allocate(vtkIdType sz, vtkIdType ext = 1000)
 [DllImport("vtkplugin", EntryPoint="vtkPoints_Allocate_0")] public static extern 
-bool Allocate_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkPoints*)*/ callingObject, long /*(vtkIdType)*/ sz, long /*(vtkIdType)*/ ext);
+bool Allocate_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkPoints*)*/ callingObject, long /*(vtkIdType)*/ sz, long /*(vtkIdType)*/ ext);
 
 // virtual void Initialize()
 // virtual void Initialize()
@@ -35,12 +35,12 @@ bool SetData_0(IntPtr /*(vtkPoints*)*/ callingObject, IntPtr /*(vtkDataArray*)*/
 // vtkDataArray* GetData()
 // vtkDataArray *GetData()
 [DllImport("vtkplugin", EntryPoint="vtkPoints_GetData_0")] public static extern 
-bool GetData_0(IntPtr /*(vtkDataArray**)*/ return_value, IntPtr /*(vtkPoints*)*/ callingObject);
+bool GetData_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkPoints*)*/ callingObject);
 
 // virtual int GetDataType()
 // virtual int GetDataType()
 [DllImport("vtkplugin", EntryPoint="vtkPoints_GetDataType_0")] public static extern 
-bool GetDataType_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkPoints*)*/ callingObject);
+bool GetDataType_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkPoints*)*/ callingObject);
 
 // virtual void SetDataType(int dataType)
 // virtual void SetDataType(int dataType)
@@ -105,7 +105,7 @@ bool SetDataTypeToDouble_0(IntPtr /*(vtkPoints*)*/ callingObject);
 // void* GetVoidPointer(const int id)
 // void *GetVoidPointer(const int id)
 [DllImport("vtkplugin", EntryPoint="vtkPoints_GetVoidPointer_0")] public static extern 
-bool GetVoidPointer_0(IntPtr /*(void**)*/ return_value, IntPtr /*(vtkPoints*)*/ callingObject, int /*(int)*/ id);
+bool GetVoidPointer_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkPoints*)*/ callingObject, int /*(int)*/ id);
 
 // virtual void Squeeze()
 // virtual void Squeeze()
@@ -130,17 +130,17 @@ bool ShallowCopy_0(IntPtr /*(vtkPoints*)*/ callingObject, IntPtr /*(vtkPoints*)*
 // long GetActualMemorySize()
 // unsigned long GetActualMemorySize()
 [DllImport("vtkplugin", EntryPoint="vtkPoints_GetActualMemorySize_0")] public static extern 
-bool GetActualMemorySize_0(IntPtr /*(long*)*/ return_value, IntPtr /*(vtkPoints*)*/ callingObject);
+bool GetActualMemorySize_0(IntPtr /*(unsigned IntPtr*)*/ return_value, IntPtr /*(vtkPoints*)*/ callingObject);
 
 // vtkIdType GetNumberOfPoints()
 // vtkIdType GetNumberOfPoints()
 [DllImport("vtkplugin", EntryPoint="vtkPoints_GetNumberOfPoints_0")] public static extern 
-bool GetNumberOfPoints_0(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkPoints*)*/ callingObject);
+bool GetNumberOfPoints_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkPoints*)*/ callingObject);
 
 // double* GetPoint(vtkIdType id)
 // double *GetPoint(vtkIdType id)
 [DllImport("vtkplugin", EntryPoint="vtkPoints_GetPoint_0")] public static extern 
-bool GetPoint_0(IntPtr /*(double**)*/ return_value, IntPtr /*(vtkPoints*)*/ callingObject, long /*(vtkIdType)*/ id);
+bool GetPoint_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkPoints*)*/ callingObject, long /*(vtkIdType)*/ id);
 
 // void GetPoint(vtkIdType id, double x[3])
 // void GetPoint(vtkIdType id, double x[3])
@@ -190,17 +190,17 @@ bool InsertPoints_1(IntPtr /*(vtkPoints*)*/ callingObject, long /*(vtkIdType)*/ 
 // vtkIdType InsertNextPoint(const float x[3])
 // vtkIdType InsertNextPoint(const float x[3])
 [DllImport("vtkplugin", EntryPoint="vtkPoints_InsertNextPoint_0")] public static extern 
-bool InsertNextPoint_0(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkPoints*)*/ callingObject, float /*(float[3])*/ []x);
+bool InsertNextPoint_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkPoints*)*/ callingObject, float /*(float[3])*/ []x);
 
 // vtkIdType InsertNextPoint(const double x[3])
 // vtkIdType InsertNextPoint(const double x[3])
 [DllImport("vtkplugin", EntryPoint="vtkPoints_InsertNextPoint_1")] public static extern 
-bool InsertNextPoint_1(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkPoints*)*/ callingObject, double /*(double[3])*/ []x);
+bool InsertNextPoint_1(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkPoints*)*/ callingObject, double /*(double[3])*/ []x);
 
 // vtkIdType InsertNextPoint(double x, double y, double z)
 // vtkIdType InsertNextPoint(double x, double y, double z)
 [DllImport("vtkplugin", EntryPoint="vtkPoints_InsertNextPoint_2")] public static extern 
-bool InsertNextPoint_2(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkPoints*)*/ callingObject, double /*(double)*/ x, double /*(double)*/ y, double /*(double)*/ z);
+bool InsertNextPoint_2(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkPoints*)*/ callingObject, double /*(double)*/ x, double /*(double)*/ y, double /*(double)*/ z);
 
 // void SetNumberOfPoints(vtkIdType numPoints)
 // void SetNumberOfPoints(vtkIdType numPoints)
@@ -210,7 +210,7 @@ bool SetNumberOfPoints_0(IntPtr /*(vtkPoints*)*/ callingObject, long /*(vtkIdTyp
 // int Resize(vtkIdType numPoints)
 // int Resize(vtkIdType numPoints)
 [DllImport("vtkplugin", EntryPoint="vtkPoints_Resize_0")] public static extern 
-bool Resize_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkPoints*)*/ callingObject, long /*(vtkIdType)*/ numPoints);
+bool Resize_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkPoints*)*/ callingObject, long /*(vtkIdType)*/ numPoints);
 
 // void GetPoints(vtkIdList * ptId, vtkPoints * fp)
 // void GetPoints(vtkIdList *ptId, vtkPoints *fp)
@@ -225,7 +225,7 @@ bool ComputeBounds_0(IntPtr /*(vtkPoints*)*/ callingObject);
 // double* GetBounds()
 // double *GetBounds()
 [DllImport("vtkplugin", EntryPoint="vtkPoints_GetBounds_0")] public static extern 
-bool GetBounds_0(IntPtr /*(double**)*/ return_value, IntPtr /*(vtkPoints*)*/ callingObject);
+bool GetBounds_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkPoints*)*/ callingObject);
 
 // void GetBounds(double bounds[6])
 // void GetBounds(double bounds[6])
@@ -235,7 +235,7 @@ bool GetBounds_1(IntPtr /*(vtkPoints*)*/ callingObject, double /*(double[6])*/ [
 // vtkMTimeType GetMTime()
 // vtkMTimeType GetMTime()
 [DllImport("vtkplugin", EntryPoint="vtkPoints_GetMTime_0")] public static extern 
-bool GetMTime_0(IntPtr /*(vtkMTimeType*)*/ return_value, IntPtr /*(vtkPoints*)*/ callingObject);
+bool GetMTime_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkPoints*)*/ callingObject);
 
 // void Modified()
 // void Modified()

@@ -10,7 +10,7 @@ class API_vtkFieldData {
 // static vtkFieldData* New()
 // static vtkFieldData *New()
 [DllImport("vtkplugin", EntryPoint="vtkFieldData_New_0")] public static extern 
-bool New_0(IntPtr /*(vtkFieldData**)*/ return_value);
+bool New_0(IntPtr /*(IntPtr**)*/ return_value);
 
 // virtual void Initialize()
 // virtual void Initialize()
@@ -20,7 +20,7 @@ bool Initialize_0(IntPtr /*(vtkFieldData*)*/ callingObject);
 // int Allocate(vtkIdType sz, vtkIdType ext = 1000)
 // int Allocate(vtkIdType sz, vtkIdType ext=1000)
 [DllImport("vtkplugin", EntryPoint="vtkFieldData_Allocate_0")] public static extern 
-bool Allocate_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject, long /*(vtkIdType)*/ sz, long /*(vtkIdType)*/ ext);
+bool Allocate_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject, long /*(vtkIdType)*/ sz, long /*(vtkIdType)*/ ext);
 
 // void CopyStructure(vtkFieldData * ARG_0)
 // void CopyStructure(vtkFieldData*)
@@ -35,17 +35,17 @@ bool AllocateArrays_0(IntPtr /*(vtkFieldData*)*/ callingObject, int /*(int)*/ nu
 // int GetNumberOfArrays()
 // int GetNumberOfArrays()
 [DllImport("vtkplugin", EntryPoint="vtkFieldData_GetNumberOfArrays_0")] public static extern 
-bool GetNumberOfArrays_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject);
+bool GetNumberOfArrays_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject);
 
 // int AddArray(vtkAbstractArray * array)
 // int AddArray(vtkAbstractArray *array)
 [DllImport("vtkplugin", EntryPoint="vtkFieldData_AddArray_0")] public static extern 
-bool AddArray_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject, IntPtr /*(vtkAbstractArray*)*/ array);
+bool AddArray_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject, IntPtr /*(vtkAbstractArray*)*/ array);
 
 // virtual void RemoveArray(const char * name)
 // virtual void RemoveArray(const char *name)
 [DllImport("vtkplugin", EntryPoint="vtkFieldData_RemoveArray_0")] public static extern 
-bool RemoveArray_0(IntPtr /*(vtkFieldData*)*/ callingObject, IntPtr /*(char*)*/ name);
+bool RemoveArray_0(IntPtr /*(vtkFieldData*)*/ callingObject, string /*(char*)*/ name);
 
 // virtual void RemoveArray(int index)
 // virtual void RemoveArray(int index)
@@ -55,42 +55,42 @@ bool RemoveArray_1(IntPtr /*(vtkFieldData*)*/ callingObject, int /*(int)*/ index
 // vtkDataArray* GetArray(int i)
 // vtkDataArray *GetArray(int i)
 [DllImport("vtkplugin", EntryPoint="vtkFieldData_GetArray_0")] public static extern 
-bool GetArray_0(IntPtr /*(vtkDataArray**)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject, int /*(int)*/ i);
+bool GetArray_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject, int /*(int)*/ i);
 
 // vtkDataArray* GetArray(const char * arrayName, int & index)
 // vtkDataArray *GetArray(const char *arrayName, int &index)
 [DllImport("vtkplugin", EntryPoint="vtkFieldData_GetArray_1")] public static extern 
-bool GetArray_1(IntPtr /*(vtkDataArray**)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject, IntPtr /*(char*)*/ arrayName, IntPtr /*(int&)*/ index);
+bool GetArray_1(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject, string /*(char*)*/ arrayName, IntPtr /*(int&)*/ index);
 
 // vtkDataArray* GetArray(const char * arrayName)
 // vtkDataArray *GetArray(const char *arrayName)
 [DllImport("vtkplugin", EntryPoint="vtkFieldData_GetArray_2")] public static extern 
-bool GetArray_2(IntPtr /*(vtkDataArray**)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject, IntPtr /*(char*)*/ arrayName);
+bool GetArray_2(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject, string /*(char*)*/ arrayName);
 
 // vtkAbstractArray* GetAbstractArray(int i)
 // vtkAbstractArray* GetAbstractArray(int i)
 [DllImport("vtkplugin", EntryPoint="vtkFieldData_GetAbstractArray_0")] public static extern 
-bool GetAbstractArray_0(IntPtr /*(vtkAbstractArray**)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject, int /*(int)*/ i);
+bool GetAbstractArray_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject, int /*(int)*/ i);
 
 // vtkAbstractArray* GetAbstractArray(const char * arrayName, int & index)
 // vtkAbstractArray* GetAbstractArray(const char* arrayName, int &index)
 [DllImport("vtkplugin", EntryPoint="vtkFieldData_GetAbstractArray_1")] public static extern 
-bool GetAbstractArray_1(IntPtr /*(vtkAbstractArray**)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject, IntPtr /*(char*)*/ arrayName, IntPtr /*(int&)*/ index);
+bool GetAbstractArray_1(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject, string /*(char*)*/ arrayName, IntPtr /*(int&)*/ index);
 
 // vtkAbstractArray* GetAbstractArray(const char * arrayName)
 // vtkAbstractArray* GetAbstractArray(const char* arrayName)
 [DllImport("vtkplugin", EntryPoint="vtkFieldData_GetAbstractArray_2")] public static extern 
-bool GetAbstractArray_2(IntPtr /*(vtkAbstractArray**)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject, IntPtr /*(char*)*/ arrayName);
+bool GetAbstractArray_2(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject, string /*(char*)*/ arrayName);
 
 // int HasArray(const char * name)
 // int HasArray(const char *name)
 [DllImport("vtkplugin", EntryPoint="vtkFieldData_HasArray_0")] public static extern 
-bool HasArray_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject, IntPtr /*(char*)*/ name);
+bool HasArray_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject, string /*(char*)*/ name);
 
 // char* GetArrayName(int i)
 // const char* GetArrayName(int i)
 [DllImport("vtkplugin", EntryPoint="vtkFieldData_GetArrayName_0")] public static extern 
-bool GetArrayName_0(IntPtr /*(char**)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject, int /*(int)*/ i);
+bool GetArrayName_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject, int /*(int)*/ i);
 
 // virtual void PassData(vtkFieldData * fd)
 // virtual void PassData(vtkFieldData* fd)
@@ -100,12 +100,12 @@ bool PassData_0(IntPtr /*(vtkFieldData*)*/ callingObject, IntPtr /*(vtkFieldData
 // void CopyFieldOn(const char * name)
 // void CopyFieldOn(const char* name)
 [DllImport("vtkplugin", EntryPoint="vtkFieldData_CopyFieldOn_0")] public static extern 
-bool CopyFieldOn_0(IntPtr /*(vtkFieldData*)*/ callingObject, IntPtr /*(char*)*/ name);
+bool CopyFieldOn_0(IntPtr /*(vtkFieldData*)*/ callingObject, string /*(char*)*/ name);
 
 // void CopyFieldOff(const char * name)
 // void CopyFieldOff(const char* name)
 [DllImport("vtkplugin", EntryPoint="vtkFieldData_CopyFieldOff_0")] public static extern 
-bool CopyFieldOff_0(IntPtr /*(vtkFieldData*)*/ callingObject, IntPtr /*(char*)*/ name);
+bool CopyFieldOff_0(IntPtr /*(vtkFieldData*)*/ callingObject, string /*(char*)*/ name);
 
 // virtual void CopyAllOn(int unused = 0)
 // virtual void CopyAllOn(int unused=0)
@@ -140,12 +140,12 @@ bool Reset_0(IntPtr /*(vtkFieldData*)*/ callingObject);
 // virtual long GetActualMemorySize()
 // virtual unsigned long GetActualMemorySize()
 [DllImport("vtkplugin", EntryPoint="vtkFieldData_GetActualMemorySize_0")] public static extern 
-bool GetActualMemorySize_0(IntPtr /*(long*)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject);
+bool GetActualMemorySize_0(IntPtr /*(unsigned IntPtr*)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject);
 
 // vtkMTimeType GetMTime()
 // vtkMTimeType GetMTime()
 [DllImport("vtkplugin", EntryPoint="vtkFieldData_GetMTime_0")] public static extern 
-bool GetMTime_0(IntPtr /*(vtkMTimeType*)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject);
+bool GetMTime_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject);
 
 // void GetField(vtkIdList * ptId, vtkFieldData * f)
 // void GetField(vtkIdList *ptId, vtkFieldData *f)
@@ -155,17 +155,17 @@ bool GetField_0(IntPtr /*(vtkFieldData*)*/ callingObject, IntPtr /*(vtkIdList*)*
 // int GetArrayContainingComponent(int i, int & arrayComp)
 // int GetArrayContainingComponent(int i, int& arrayComp)
 [DllImport("vtkplugin", EntryPoint="vtkFieldData_GetArrayContainingComponent_0")] public static extern 
-bool GetArrayContainingComponent_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject, int /*(int)*/ i, IntPtr /*(int&)*/ arrayComp);
+bool GetArrayContainingComponent_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject, int /*(int)*/ i, IntPtr /*(int&)*/ arrayComp);
 
 // int GetNumberOfComponents()
 // int GetNumberOfComponents()
 [DllImport("vtkplugin", EntryPoint="vtkFieldData_GetNumberOfComponents_0")] public static extern 
-bool GetNumberOfComponents_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject);
+bool GetNumberOfComponents_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject);
 
 // vtkIdType GetNumberOfTuples()
 // vtkIdType GetNumberOfTuples()
 [DllImport("vtkplugin", EntryPoint="vtkFieldData_GetNumberOfTuples_0")] public static extern 
-bool GetNumberOfTuples_0(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject);
+bool GetNumberOfTuples_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject);
 
 // void SetNumberOfTuples(const vtkIdType number)
 // void SetNumberOfTuples(const vtkIdType number)
@@ -185,7 +185,7 @@ bool InsertTuple_0(IntPtr /*(vtkFieldData*)*/ callingObject, long /*(vtkIdType)*
 // vtkIdType InsertNextTuple(const vtkIdType j, vtkFieldData * source)
 // vtkIdType InsertNextTuple(const vtkIdType j, vtkFieldData* source)
 [DllImport("vtkplugin", EntryPoint="vtkFieldData_InsertNextTuple_0")] public static extern 
-bool InsertNextTuple_0(IntPtr /*(vtkIdType*)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject, long /*(vtkIdType)*/ j, IntPtr /*(vtkFieldData*)*/ source);
+bool InsertNextTuple_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject, long /*(vtkIdType)*/ j, IntPtr /*(vtkFieldData*)*/ source);
 
 }
 };

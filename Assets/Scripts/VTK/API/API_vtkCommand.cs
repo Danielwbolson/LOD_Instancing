@@ -20,22 +20,22 @@ bool UnRegister_1(IntPtr /*(vtkCommand*)*/ callingObject, IntPtr /*(vtkObjectBas
 // virtual void Execute(vtkObject * caller, unsigned long eventId, void * callData)
 // virtual void Execute(vtkObject *caller, unsigned long eventId, void *callData)
 [DllImport("vtkplugin", EntryPoint="vtkCommand_Execute_0")] public static extern 
-bool Execute_0(IntPtr /*(vtkCommand*)*/ callingObject, IntPtr /*(vtkObject*)*/ caller, long /*(long)*/ eventId, IntPtr /*(void*)*/ callData);
+bool Execute_0(IntPtr /*(vtkCommand*)*/ callingObject, IntPtr /*(vtkObject*)*/ caller, ulong /*(unsigned long)*/ eventId, IntPtr /*(void*)*/ callData);
 
 // static char* GetStringFromEventId(unsigned long event)
 // static const char *GetStringFromEventId(unsigned long event)
 [DllImport("vtkplugin", EntryPoint="vtkCommand_GetStringFromEventId_0")] public static extern 
-bool GetStringFromEventId_0(IntPtr /*(char**)*/ return_value, long /*(long)*/ evt);
+bool GetStringFromEventId_0(IntPtr /*(IntPtr**)*/ return_value, ulong /*(unsigned long)*/ evt);
 
 // static long GetEventIdFromString(const char * event)
 // static unsigned long GetEventIdFromString(const char *event)
 [DllImport("vtkplugin", EntryPoint="vtkCommand_GetEventIdFromString_0")] public static extern 
-bool GetEventIdFromString_0(IntPtr /*(long*)*/ return_value, IntPtr /*(char*)*/ evt);
+bool GetEventIdFromString_0(IntPtr /*(unsigned IntPtr*)*/ return_value, string /*(char*)*/ evt);
 
 // static bool EventHasData(unsigned long event)
 // static bool EventHasData(unsigned long event)
 [DllImport("vtkplugin", EntryPoint="vtkCommand_EventHasData_0")] public static extern 
-bool EventHasData_0(IntPtr /*(bool*)*/ return_value, long /*(long)*/ evt);
+bool EventHasData_0(IntPtr /*(IntPtr*)*/ return_value, ulong /*(unsigned long)*/ evt);
 
 // void SetAbortFlag(int f)
 // void SetAbortFlag(int f)
@@ -45,7 +45,7 @@ bool SetAbortFlag_0(IntPtr /*(vtkCommand*)*/ callingObject, int /*(int)*/ f);
 // int GetAbortFlag()
 // int GetAbortFlag()
 [DllImport("vtkplugin", EntryPoint="vtkCommand_GetAbortFlag_0")] public static extern 
-bool GetAbortFlag_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkCommand*)*/ callingObject);
+bool GetAbortFlag_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkCommand*)*/ callingObject);
 
 // void AbortFlagOn()
 // void AbortFlagOn()
@@ -65,7 +65,7 @@ bool SetPassiveObserver_0(IntPtr /*(vtkCommand*)*/ callingObject, int /*(int)*/ 
 // int GetPassiveObserver()
 // int GetPassiveObserver()
 [DllImport("vtkplugin", EntryPoint="vtkCommand_GetPassiveObserver_0")] public static extern 
-bool GetPassiveObserver_0(IntPtr /*(int*)*/ return_value, IntPtr /*(vtkCommand*)*/ callingObject);
+bool GetPassiveObserver_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkCommand*)*/ callingObject);
 
 // void PassiveObserverOn()
 // void PassiveObserverOn()

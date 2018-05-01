@@ -134,10 +134,14 @@ public class VTKData : Data {
 				VTK.vtkCompound.free_data((IntPtr)cellVarNames[i]);
 			}
 
-			//free_data (names);
-			//free_data (components);
+            //free_data (names);
+            //free_data (components);
+           
+            // s = cd.GetArrayName(0);
 
-			//bool a = VTK.vtkDataSet.IsA (handle,"vtkUnstructuredGrid");
+
+
+            // = reader.IsA ("vtkUnstructuredGrid");
 			//bool aa = VTK.vtkCompound.IsA (handle, "vtkStructuredGrid")==1;
 
 			//VTK.vtkXMLUnstructuredGridReader p = VTK.vtkXMLUnstructuredGridReader.New ();
