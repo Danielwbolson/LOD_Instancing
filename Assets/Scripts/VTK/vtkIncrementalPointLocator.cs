@@ -1,106 +1,86 @@
 
+
 using System;
 using UnityEngine;
 using System.Runtime.InteropServices;
 
-
-namespace VTK
-{
+namespace VTK {
 public partial class vtkIncrementalPointLocator : vtkAbstractPointLocator {
 
-//       Method: virtual const char * vtkIncrementalPointLocator::GetClassName()
-// 
-public string GetClassName() {
-	IntPtr p =  Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr()));
-	VTK.API_vtkIncrementalPointLocator.GetClassName(p,obj);
-	string result = Marshal.PtrToStringAnsi(Marshal.ReadIntPtr(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual vtkIdType FindClosestInsertedPoint(const double x[3])
+// "virtual vtkIdType FindClosestInsertedPoint( const double x[3] )"
+public new long FindClosestInsertedPoint(double /*(double[3])*/ []x) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkIncrementalPointLocator.FindClosestInsertedPoint_0(this, returnPointer, x);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual vtkIdType vtkIncrementalPointLocator::FindClosestInsertedPoint(const double x[3])
-// 
-public long FindClosestInsertedPoint(double[] /*3*/ x) {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkIncrementalPointLocator.FindClosestInsertedPoint(p,obj, x);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual int InitPointInsertion(vtkPoints * newPts, const double bounds[6])
+// "virtual int InitPointInsertion( vtkPoints * newPts, const double bounds[6] )"
+public new int InitPointInsertion(vtkPoints /*(vtkPoints*)*/ newPts, double /*(double[6])*/ []bounds) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkIncrementalPointLocator.InitPointInsertion_0(this, returnPointer, newPts, bounds);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual int vtkIncrementalPointLocator::InitPointInsertion(vtkPoints* newPts, const double bounds[6])
-// 
-public int InitPointInsertion(vtkPoints/*vtkPoints* */ newPts, double[] /*6*/ bounds) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkIncrementalPointLocator.InitPointInsertion(p,obj, newPts, bounds);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual int InitPointInsertion(vtkPoints * newPts, const double bounds[6], vtkIdType estSize)
+// "virtual int InitPointInsertion( vtkPoints * newPts, const double bounds[6], vtkIdType estSize )"
+public new int InitPointInsertion(vtkPoints /*(vtkPoints*)*/ newPts, double /*(double[6])*/ []bounds, long /*(vtkIdType)*/ estSize) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkIncrementalPointLocator.InitPointInsertion_1(this, returnPointer, newPts, bounds, estSize);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual int vtkIncrementalPointLocator::InitPointInsertion(vtkPoints* newPts, const double bounds[6], vtkIdType estSize)
-// 
-public int InitPointInsertion(vtkPoints/*vtkPoints* */ newPts, double[] /*6*/ bounds, long estSize) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkIncrementalPointLocator.InitPointInsertion(p,obj, newPts, bounds, estSize);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual vtkIdType IsInsertedPoint(double x, double y, double z)
+// "virtual vtkIdType IsInsertedPoint( double x, double y, double z )"
+public new long IsInsertedPoint(double /*(double)*/ x, double /*(double)*/ y, double /*(double)*/ z) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkIncrementalPointLocator.IsInsertedPoint_0(this, returnPointer, x, y, z);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual vtkIdType vtkIncrementalPointLocator::IsInsertedPoint(double x, double y, double z)
-// 
-public long IsInsertedPoint(double x, double y, double z) {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkIncrementalPointLocator.IsInsertedPoint(p,obj, x, y, z);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual vtkIdType IsInsertedPoint(const double x[3])
+// "virtual vtkIdType IsInsertedPoint( const double x[3] )"
+public new long IsInsertedPoint(double /*(double[3])*/ []x) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkIncrementalPointLocator.IsInsertedPoint_1(this, returnPointer, x);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual vtkIdType vtkIncrementalPointLocator::IsInsertedPoint(const double x[3])
-// 
-public long IsInsertedPoint(double[] /*3*/ x) {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkIncrementalPointLocator.IsInsertedPoint(p,obj, x);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual int InsertUniquePoint(const double x[3], vtkIdType & ptId)
+// "virtual int InsertUniquePoint( const double x[3], vtkIdType & ptId )"
+public new int InsertUniquePoint(double /*(double[3])*/ []x, long /*(vtkIdType&)*/ []ptId) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkIncrementalPointLocator.InsertUniquePoint_0(this, returnPointer, x, *ptId);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual void vtkIncrementalPointLocator::InsertPoint(vtkIdType ptId, const double x[3])
-// 
-public void InsertPoint(long ptId, double[] /*3*/ x) {
-	VTK.API_vtkIncrementalPointLocator.InsertPoint(obj, ptId, x);
+// virtual void InsertPoint(vtkIdType ptId, const double x[3])
+// "virtual void InsertPoint( vtkIdType ptId, const double x[3] )"
+public new void InsertPoint(long /*(vtkIdType)*/ ptId, double /*(double[3])*/ []x) {
+	API_vtkIncrementalPointLocator.InsertPoint_0(this, ptId, x);
 }
 
 
-//       Method: virtual vtkIdType vtkIncrementalPointLocator::InsertNextPoint(const double x[3])
-// 
-public long InsertNextPoint(double[] /*3*/ x) {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkIncrementalPointLocator.InsertNextPoint(p,obj, x);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual vtkIdType InsertNextPoint(const double x[3])
+// "virtual vtkIdType InsertNextPoint( const double x[3] )"
+public new long InsertNextPoint(double /*(double[3])*/ []x) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkIncrementalPointLocator.InsertNextPoint_0(this, returnPointer, x);
+	return Ptr.deref(returnPointer);
 }
 
 

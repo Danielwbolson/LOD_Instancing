@@ -1,784 +1,553 @@
 
+
 using System;
 using UnityEngine;
 using System.Runtime.InteropServices;
 
+namespace VTK {
+public partial class vtkDataSetAttributes : vtkFieldData {
 
-namespace VTK
-{
-public class vtkDataSetAttributes : vtkFieldData {
+// static vtkDataSetAttributes* New()
+// "static vtkDataSetAttributes *New()"
+public new static vtkDataSetAttributes New() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkDataSetAttributes.New_0(returnPointer);
+	return Ptr.deref(returnPointer);
+}
+
+
+// void Initialize()
+// "void Initialize()"
+public new void Initialize() {
+	API_vtkDataSetAttributes.Initialize_0(this);
+}
+
+
+// virtual void Update()
+// "virtual void Update()"
+public new void Update() {
+	API_vtkDataSetAttributes.Update_0(this);
+}
+
+
+// void DeepCopy(vtkFieldData * pd)
+// "void DeepCopy(vtkFieldData *pd)"
+public new void DeepCopy(vtkFieldData /*(vtkFieldData*)*/ pd) {
+	API_vtkDataSetAttributes.DeepCopy_0(this, pd);
+}
+
+
+// void ShallowCopy(vtkFieldData * pd)
+// "void ShallowCopy(vtkFieldData *pd)"
+public new void ShallowCopy(vtkFieldData /*(vtkFieldData*)*/ pd) {
+	API_vtkDataSetAttributes.ShallowCopy_0(this, pd);
+}
+
+
+// static char* GhostArrayName()
+// "static const char* GhostArrayName()"
+public new static char GhostArrayName() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new char())*return_elements);
+	API_vtkDataSetAttributes.GhostArrayName_0(returnPointer);
+	return Ptr.deref(returnPointer);
+}
+
+
+// int SetScalars(vtkDataArray * da)
+// "int SetScalars(vtkDataArray* da)"
+public new int SetScalars(vtkDataArray /*(vtkDataArray*)*/ da) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkDataSetAttributes.SetScalars_0(this, returnPointer, da);
+	return Ptr.deref(returnPointer);
+}
+
+
+// int SetActiveScalars(const char * name)
+// "int SetActiveScalars(const char* name)"
+public new int SetActiveScalars(char /*(char*)*/ []name) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkDataSetAttributes.SetActiveScalars_0(this, returnPointer, name);
+	return Ptr.deref(returnPointer);
+}
+
+
+// vtkDataArray* GetScalars()
+// "vtkDataArray* GetScalars()"
+public new vtkDataArray GetScalars() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkDataSetAttributes.GetScalars_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
+}
+
+
+// int SetVectors(vtkDataArray * da)
+// "int SetVectors(vtkDataArray* da)"
+public new int SetVectors(vtkDataArray /*(vtkDataArray*)*/ da) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkDataSetAttributes.SetVectors_0(this, returnPointer, da);
+	return Ptr.deref(returnPointer);
+}
+
 
-//       Method: static vtkDataSetAttributes * vtkDataSetAttributes::New()
-// 
-public static IntPtr New() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.New(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// int SetActiveVectors(const char * name)
+// "int SetActiveVectors(const char* name)"
+public new int SetActiveVectors(char /*(char*)*/ []name) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkDataSetAttributes.SetActiveVectors_0(this, returnPointer, name);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual const char * vtkDataSetAttributes::GetClassName()
-// 
-public static string GetClassName(IntPtr obj) {
-	IntPtr p =  Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr()));
-	VTK.API_vtkDataSetAttributes.GetClassName(p,obj);
-	string result = Marshal.PtrToStringAnsi(Marshal.ReadIntPtr(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkDataArray* GetVectors()
+// "vtkDataArray* GetVectors()"
+public new vtkDataArray GetVectors() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkDataSetAttributes.GetVectors_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkDataSetAttributes::Initialize()
-// 
-public static void Initialize(IntPtr obj) {
-	VTK.API_vtkDataSetAttributes.Initialize(obj);
+// int SetNormals(vtkDataArray * da)
+// "int SetNormals(vtkDataArray* da)"
+public new int SetNormals(vtkDataArray /*(vtkDataArray*)*/ da) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkDataSetAttributes.SetNormals_0(this, returnPointer, da);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual void vtkDataSetAttributes::Update()
-// 
-public static void Update(IntPtr obj) {
-	VTK.API_vtkDataSetAttributes.Update(obj);
+// int SetActiveNormals(const char * name)
+// "int SetActiveNormals(const char* name)"
+public new int SetActiveNormals(char /*(char*)*/ []name) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkDataSetAttributes.SetActiveNormals_0(this, returnPointer, name);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkDataSetAttributes::DeepCopy(vtkFieldData* pd)
-// 
-public static void DeepCopy(IntPtr obj, IntPtr/*vtkFieldData* */ pd) {
-	VTK.API_vtkDataSetAttributes.DeepCopy(obj, pd);
+// vtkDataArray* GetNormals()
+// "vtkDataArray* GetNormals()"
+public new vtkDataArray GetNormals() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkDataSetAttributes.GetNormals_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkDataSetAttributes::ShallowCopy(vtkFieldData* pd)
-// 
-public static void ShallowCopy(IntPtr obj, IntPtr/*vtkFieldData* */ pd) {
-	VTK.API_vtkDataSetAttributes.ShallowCopy(obj, pd);
+// int SetTCoords(vtkDataArray * da)
+// "int SetTCoords(vtkDataArray* da)"
+public new int SetTCoords(vtkDataArray /*(vtkDataArray*)*/ da) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkDataSetAttributes.SetTCoords_0(this, returnPointer, da);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkDataSetAttributes::SetScalars(vtkDataArray* da)
-// 
-public static int SetScalars(IntPtr obj, IntPtr/*vtkDataArray* */ da) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.SetScalars(p,obj, da);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int SetActiveTCoords(const char * name)
+// "int SetActiveTCoords(const char* name)"
+public new int SetActiveTCoords(char /*(char*)*/ []name) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkDataSetAttributes.SetActiveTCoords_0(this, returnPointer, name);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkDataSetAttributes::SetActiveScalars(const char* name)
-// 
-public static int SetActiveScalars(IntPtr obj, string/*const char* */ name) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.SetActiveScalars(p,obj, name);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkDataArray* GetTCoords()
+// "vtkDataArray* GetTCoords()"
+public new vtkDataArray GetTCoords() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkDataSetAttributes.GetTCoords_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkDataArray * vtkDataSetAttributes::GetScalars()
-// 
-public static IntPtr GetScalars(IntPtr obj) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.GetScalars(p,obj);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// int SetTensors(vtkDataArray * da)
+// "int SetTensors(vtkDataArray* da)"
+public new int SetTensors(vtkDataArray /*(vtkDataArray*)*/ da) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkDataSetAttributes.SetTensors_0(this, returnPointer, da);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkDataSetAttributes::SetVectors(vtkDataArray* da)
-// 
-public static int SetVectors(IntPtr obj, IntPtr/*vtkDataArray* */ da) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.SetVectors(p,obj, da);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: int vtkDataSetAttributes::SetActiveVectors(const char* name)
-// 
-public static int SetActiveVectors(IntPtr obj, string/*const char* */ name) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.SetActiveVectors(p,obj, name);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: vtkDataArray * vtkDataSetAttributes::GetVectors()
-// 
-public static IntPtr GetVectors(IntPtr obj) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.GetVectors(p,obj);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: int vtkDataSetAttributes::SetNormals(vtkDataArray* da)
-// 
-public static int SetNormals(IntPtr obj, IntPtr/*vtkDataArray* */ da) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.SetNormals(p,obj, da);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: int vtkDataSetAttributes::SetActiveNormals(const char* name)
-// 
-public static int SetActiveNormals(IntPtr obj, string/*const char* */ name) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.SetActiveNormals(p,obj, name);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: vtkDataArray * vtkDataSetAttributes::GetNormals()
-// 
-public static IntPtr GetNormals(IntPtr obj) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.GetNormals(p,obj);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: int vtkDataSetAttributes::SetTCoords(vtkDataArray* da)
-// 
-public static int SetTCoords(IntPtr obj, IntPtr/*vtkDataArray* */ da) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.SetTCoords(p,obj, da);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: int vtkDataSetAttributes::SetActiveTCoords(const char* name)
-// 
-public static int SetActiveTCoords(IntPtr obj, string/*const char* */ name) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.SetActiveTCoords(p,obj, name);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: vtkDataArray * vtkDataSetAttributes::GetTCoords()
-// 
-public static IntPtr GetTCoords(IntPtr obj) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.GetTCoords(p,obj);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: int vtkDataSetAttributes::SetTensors(vtkDataArray* da)
-// 
-public static int SetTensors(IntPtr obj, IntPtr/*vtkDataArray* */ da) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.SetTensors(p,obj, da);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: int vtkDataSetAttributes::SetActiveTensors(const char* name)
-// 
-public static int SetActiveTensors(IntPtr obj, string/*const char* */ name) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.SetActiveTensors(p,obj, name);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: vtkDataArray * vtkDataSetAttributes::GetTensors()
-// 
-public static IntPtr GetTensors(IntPtr obj) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.GetTensors(p,obj);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: int vtkDataSetAttributes::SetGlobalIds(vtkDataArray* da)
-// 
-public static int SetGlobalIds(IntPtr obj, IntPtr/*vtkDataArray* */ da) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.SetGlobalIds(p,obj, da);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: int vtkDataSetAttributes::SetActiveGlobalIds(const char* name)
-// 
-public static int SetActiveGlobalIds(IntPtr obj, string/*const char* */ name) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.SetActiveGlobalIds(p,obj, name);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: vtkDataArray * vtkDataSetAttributes::GetGlobalIds()
-// 
-public static IntPtr GetGlobalIds(IntPtr obj) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.GetGlobalIds(p,obj);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: int vtkDataSetAttributes::SetPedigreeIds(vtkAbstractArray* da)
-// 
-public static int SetPedigreeIds(IntPtr obj, IntPtr/*vtkAbstractArray* */ da) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.SetPedigreeIds(p,obj, da);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: int vtkDataSetAttributes::SetActivePedigreeIds(const char* name)
-// 
-public static int SetActivePedigreeIds(IntPtr obj, string/*const char* */ name) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.SetActivePedigreeIds(p,obj, name);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: vtkAbstractArray * vtkDataSetAttributes::GetPedigreeIds()
-// 
-public static IntPtr GetPedigreeIds(IntPtr obj) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.GetPedigreeIds(p,obj);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: vtkDataArray * vtkDataSetAttributes::GetScalars(const char* name)
-// 
-public static IntPtr GetScalars(IntPtr obj, string/*const char* */ name) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.GetScalars(p,obj, name);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: vtkDataArray * vtkDataSetAttributes::GetVectors(const char* name)
-// 
-public static IntPtr GetVectors(IntPtr obj, string/*const char* */ name) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.GetVectors(p,obj, name);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: vtkDataArray * vtkDataSetAttributes::GetNormals(const char* name)
-// 
-public static IntPtr GetNormals(IntPtr obj, string/*const char* */ name) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.GetNormals(p,obj, name);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: vtkDataArray * vtkDataSetAttributes::GetTCoords(const char* name)
-// 
-public static IntPtr GetTCoords(IntPtr obj, string/*const char* */ name) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.GetTCoords(p,obj, name);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: vtkDataArray * vtkDataSetAttributes::GetTensors(const char* name)
-// 
-public static IntPtr GetTensors(IntPtr obj, string/*const char* */ name) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.GetTensors(p,obj, name);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: vtkDataArray * vtkDataSetAttributes::GetGlobalIds(const char* name)
-// 
-public static IntPtr GetGlobalIds(IntPtr obj, string/*const char* */ name) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.GetGlobalIds(p,obj, name);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: vtkAbstractArray * vtkDataSetAttributes::GetPedigreeIds(const char* name)
-// 
-public static IntPtr GetPedigreeIds(IntPtr obj, string/*const char* */ name) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.GetPedigreeIds(p,obj, name);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: int vtkDataSetAttributes::SetActiveAttribute(const char* name, int attributeType)
-// 
-public static int SetActiveAttribute(IntPtr obj, string/*const char* */ name, int attributeType) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.SetActiveAttribute(p,obj, name, attributeType);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: int vtkDataSetAttributes::SetActiveAttribute(int index, int attributeType)
-// 
-public static int SetActiveAttribute(IntPtr obj, int index, int attributeType) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.SetActiveAttribute(p,obj, index, attributeType);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: void vtkDataSetAttributes::GetAttributeIndices(int* indexArray)
-// 
-public static void GetAttributeIndices(IntPtr obj, IntPtr/*int* */ indexArray) {
-	VTK.API_vtkDataSetAttributes.GetAttributeIndices(obj, indexArray);
-}
-
-
-//       Method: int vtkDataSetAttributes::IsArrayAnAttribute(int idx)
-// 
-public static int IsArrayAnAttribute(IntPtr obj, int idx) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.IsArrayAnAttribute(p,obj, idx);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: int vtkDataSetAttributes::SetAttribute(vtkAbstractArray* aa, int attributeType)
-// 
-public static int SetAttribute(IntPtr obj, IntPtr/*vtkAbstractArray* */ aa, int attributeType) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.SetAttribute(p,obj, aa, attributeType);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: vtkDataArray * vtkDataSetAttributes::GetAttribute(int attributeType)
-// 
-public static IntPtr GetAttribute(IntPtr obj, int attributeType) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.GetAttribute(p,obj, attributeType);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: vtkAbstractArray * vtkDataSetAttributes::GetAbstractAttribute(int attributeType)
-// 
-public static IntPtr GetAbstractAttribute(IntPtr obj, int attributeType) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.GetAbstractAttribute(p,obj, attributeType);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// int SetActiveTensors(const char * name)
+// "int SetActiveTensors(const char* name)"
+public new int SetActiveTensors(char /*(char*)*/ []name) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkDataSetAttributes.SetActiveTensors_0(this, returnPointer, name);
+	return Ptr.deref(returnPointer);
 }
 
-
-//       Method: void vtkDataSetAttributes::RemoveArray(int index)
-// 
-public static void RemoveArray(IntPtr obj, int index) {
-	VTK.API_vtkDataSetAttributes.RemoveArray(obj, index);
-}
-
 
-//       Method: void vtkDataSetAttributes::SetCopyScalars(vtkTypeBool i, int ctype)
-// 
-public static void SetCopyScalars(IntPtr obj, bool i, int ctype) {
-	VTK.API_vtkDataSetAttributes.SetCopyScalars(obj, i, ctype);
-}
+// vtkDataArray* GetTensors()
+// "vtkDataArray* GetTensors()"
+public new vtkDataArray GetTensors() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkDataSetAttributes.GetTensors_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
+}
+
+
+// int SetGlobalIds(vtkDataArray * da)
+// "int SetGlobalIds(vtkDataArray* da)"
+public new int SetGlobalIds(vtkDataArray /*(vtkDataArray*)*/ da) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkDataSetAttributes.SetGlobalIds_0(this, returnPointer, da);
+	return Ptr.deref(returnPointer);
+}
+
+
+// int SetActiveGlobalIds(const char * name)
+// "int SetActiveGlobalIds(const char* name)"
+public new int SetActiveGlobalIds(char /*(char*)*/ []name) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkDataSetAttributes.SetActiveGlobalIds_0(this, returnPointer, name);
+	return Ptr.deref(returnPointer);
+}
+
+
+// vtkDataArray* GetGlobalIds()
+// "vtkDataArray* GetGlobalIds()"
+public new vtkDataArray GetGlobalIds() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkDataSetAttributes.GetGlobalIds_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
+}
+
+
+// int SetPedigreeIds(vtkAbstractArray * da)
+// "int SetPedigreeIds(vtkAbstractArray* da)"
+public new int SetPedigreeIds(vtkAbstractArray /*(vtkAbstractArray*)*/ da) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkDataSetAttributes.SetPedigreeIds_0(this, returnPointer, da);
+	return Ptr.deref(returnPointer);
+}
+
 
+// int SetActivePedigreeIds(const char * name)
+// "int SetActivePedigreeIds(const char* name)"
+public new int SetActivePedigreeIds(char /*(char*)*/ []name) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkDataSetAttributes.SetActivePedigreeIds_0(this, returnPointer, name);
+	return Ptr.deref(returnPointer);
+}
+
+
+// vtkAbstractArray* GetPedigreeIds()
+// "vtkAbstractArray* GetPedigreeIds()"
+public new vtkAbstractArray GetPedigreeIds() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkDataSetAttributes.GetPedigreeIds_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
+}
+
+
+// vtkDataArray* GetScalars(const char * name)
+// "vtkDataArray* GetScalars(const char* name)"
+public new vtkDataArray GetScalars(char /*(char*)*/ []name) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkDataSetAttributes.GetScalars_1(this, returnPointer, name);
+	return Ptr.deref(returnPointer);
+}
 
-//       Method: vtkTypeBool vtkDataSetAttributes::GetCopyScalars(int ctype)
-// 
-public static bool GetCopyScalars(IntPtr obj, int ctype) {
-	int numElements = 1;
-	bool example = new bool();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.GetCopyScalars(p,obj, ctype);
-	bool result = Convert.ToBoolean(Marshal.ReadByte(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
+
+// vtkDataArray* GetVectors(const char * name)
+// "vtkDataArray* GetVectors(const char* name)"
+public new vtkDataArray GetVectors(char /*(char*)*/ []name) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkDataSetAttributes.GetVectors_1(this, returnPointer, name);
+	return Ptr.deref(returnPointer);
+}
+
+
+// vtkDataArray* GetNormals(const char * name)
+// "vtkDataArray* GetNormals(const char* name)"
+public new vtkDataArray GetNormals(char /*(char*)*/ []name) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkDataSetAttributes.GetNormals_1(this, returnPointer, name);
+	return Ptr.deref(returnPointer);
+}
+
+
+// vtkDataArray* GetTCoords(const char * name)
+// "vtkDataArray* GetTCoords(const char* name)"
+public new vtkDataArray GetTCoords(char /*(char*)*/ []name) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkDataSetAttributes.GetTCoords_1(this, returnPointer, name);
+	return Ptr.deref(returnPointer);
+}
 
 
-//       Method: void vtkDataSetAttributes::SetCopyVectors(vtkTypeBool i, int ctype)
-// 
-public static void SetCopyVectors(IntPtr obj, bool i, int ctype) {
-	VTK.API_vtkDataSetAttributes.SetCopyVectors(obj, i, ctype);
+// vtkDataArray* GetTensors(const char * name)
+// "vtkDataArray* GetTensors(const char* name)"
+public new vtkDataArray GetTensors(char /*(char*)*/ []name) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkDataSetAttributes.GetTensors_1(this, returnPointer, name);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkTypeBool vtkDataSetAttributes::GetCopyVectors(int ctype)
-// 
-public static bool GetCopyVectors(IntPtr obj, int ctype) {
-	int numElements = 1;
-	bool example = new bool();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.GetCopyVectors(p,obj, ctype);
-	bool result = Convert.ToBoolean(Marshal.ReadByte(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkDataArray* GetGlobalIds(const char * name)
+// "vtkDataArray* GetGlobalIds(const char* name)"
+public new vtkDataArray GetGlobalIds(char /*(char*)*/ []name) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkDataSetAttributes.GetGlobalIds_1(this, returnPointer, name);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkDataSetAttributes::SetCopyNormals(vtkTypeBool i, int ctype)
-// 
-public static void SetCopyNormals(IntPtr obj, bool i, int ctype) {
-	VTK.API_vtkDataSetAttributes.SetCopyNormals(obj, i, ctype);
+// vtkAbstractArray* GetPedigreeIds(const char * name)
+// "vtkAbstractArray* GetPedigreeIds(const char* name)"
+public new vtkAbstractArray GetPedigreeIds(char /*(char*)*/ []name) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkDataSetAttributes.GetPedigreeIds_1(this, returnPointer, name);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkTypeBool vtkDataSetAttributes::GetCopyNormals(int ctype)
-// 
-public static bool GetCopyNormals(IntPtr obj, int ctype) {
-	int numElements = 1;
-	bool example = new bool();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.GetCopyNormals(p,obj, ctype);
-	bool result = Convert.ToBoolean(Marshal.ReadByte(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int SetActiveAttribute(const char * name, int attributeType)
+// "int SetActiveAttribute(const char* name, int attributeType)"
+public new int SetActiveAttribute(char /*(char*)*/ []name, int /*(int)*/ attributeType) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkDataSetAttributes.SetActiveAttribute_0(this, returnPointer, name, attributeType);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkDataSetAttributes::SetCopyTCoords(vtkTypeBool i, int ctype)
-// 
-public static void SetCopyTCoords(IntPtr obj, bool i, int ctype) {
-	VTK.API_vtkDataSetAttributes.SetCopyTCoords(obj, i, ctype);
+// int SetActiveAttribute(int index, int attributeType)
+// "int SetActiveAttribute(int index, int attributeType)"
+public new int SetActiveAttribute(int /*(int)*/ index, int /*(int)*/ attributeType) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkDataSetAttributes.SetActiveAttribute_1(this, returnPointer, index, attributeType);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkTypeBool vtkDataSetAttributes::GetCopyTCoords(int ctype)
-// 
-public static bool GetCopyTCoords(IntPtr obj, int ctype) {
-	int numElements = 1;
-	bool example = new bool();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.GetCopyTCoords(p,obj, ctype);
-	bool result = Convert.ToBoolean(Marshal.ReadByte(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// void GetAttributeIndices(int * indexArray)
+// "void GetAttributeIndices(int* indexArray)"
+public new void GetAttributeIndices(int /*(int*)*/ []indexArray) {
+	API_vtkDataSetAttributes.GetAttributeIndices_0(this, indexArray);
 }
 
 
-//       Method: void vtkDataSetAttributes::SetCopyTensors(vtkTypeBool i, int ctype)
-// 
-public static void SetCopyTensors(IntPtr obj, bool i, int ctype) {
-	VTK.API_vtkDataSetAttributes.SetCopyTensors(obj, i, ctype);
+// int IsArrayAnAttribute(int idx)
+// "int IsArrayAnAttribute(int idx)"
+public new int IsArrayAnAttribute(int /*(int)*/ idx) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkDataSetAttributes.IsArrayAnAttribute_0(this, returnPointer, idx);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkTypeBool vtkDataSetAttributes::GetCopyTensors(int ctype)
-// 
-public static bool GetCopyTensors(IntPtr obj, int ctype) {
-	int numElements = 1;
-	bool example = new bool();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.GetCopyTensors(p,obj, ctype);
-	bool result = Convert.ToBoolean(Marshal.ReadByte(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int SetAttribute(vtkAbstractArray * aa, int attributeType)
+// "int SetAttribute(vtkAbstractArray* aa, int attributeType)"
+public new int SetAttribute(vtkAbstractArray /*(vtkAbstractArray*)*/ aa, int /*(int)*/ attributeType) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkDataSetAttributes.SetAttribute_0(this, returnPointer, aa, attributeType);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkDataSetAttributes::SetCopyGlobalIds(vtkTypeBool i, int ctype)
-// 
-public static void SetCopyGlobalIds(IntPtr obj, bool i, int ctype) {
-	VTK.API_vtkDataSetAttributes.SetCopyGlobalIds(obj, i, ctype);
+// vtkDataArray* GetAttribute(int attributeType)
+// "vtkDataArray* GetAttribute(int attributeType)"
+public new vtkDataArray GetAttribute(int /*(int)*/ attributeType) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkDataSetAttributes.GetAttribute_0(this, returnPointer, attributeType);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkTypeBool vtkDataSetAttributes::GetCopyGlobalIds(int ctype)
-// 
-public static bool GetCopyGlobalIds(IntPtr obj, int ctype) {
-	int numElements = 1;
-	bool example = new bool();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.GetCopyGlobalIds(p,obj, ctype);
-	bool result = Convert.ToBoolean(Marshal.ReadByte(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkAbstractArray* GetAbstractAttribute(int attributeType)
+// "vtkAbstractArray* GetAbstractAttribute(int attributeType)"
+public new vtkAbstractArray GetAbstractAttribute(int /*(int)*/ attributeType) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkDataSetAttributes.GetAbstractAttribute_0(this, returnPointer, attributeType);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkDataSetAttributes::SetCopyPedigreeIds(vtkTypeBool i, int ctype)
-// 
-public static void SetCopyPedigreeIds(IntPtr obj, bool i, int ctype) {
-	VTK.API_vtkDataSetAttributes.SetCopyPedigreeIds(obj, i, ctype);
+// void RemoveArray(int index)
+// "void RemoveArray(int index)"
+public new void RemoveArray(int /*(int)*/ index) {
+	API_vtkDataSetAttributes.RemoveArray_0(this, index);
 }
 
 
-//       Method: vtkTypeBool vtkDataSetAttributes::GetCopyPedigreeIds(int ctype)
-// 
-public static bool GetCopyPedigreeIds(IntPtr obj, int ctype) {
-	int numElements = 1;
-	bool example = new bool();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataSetAttributes.GetCopyPedigreeIds(p,obj, ctype);
-	bool result = Convert.ToBoolean(Marshal.ReadByte(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// static char* GetAttributeTypeAsString(int attributeType)
+// "static const char* GetAttributeTypeAsString(int attributeType)"
+public new static char GetAttributeTypeAsString(int /*(int)*/ attributeType) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new char())*return_elements);
+	API_vtkDataSetAttributes.GetAttributeTypeAsString_0(returnPointer, attributeType);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkDataSetAttributes::CopyAllOn(int ctype)
-// 
-public static void CopyAllOn(IntPtr obj, int ctype) {
-	VTK.API_vtkDataSetAttributes.CopyAllOn(obj, ctype);
+// static char* GetLongAttributeTypeAsString(int attributeType)
+// "static const char* GetLongAttributeTypeAsString(int attributeType)"
+public new static char GetLongAttributeTypeAsString(int /*(int)*/ attributeType) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new char())*return_elements);
+	API_vtkDataSetAttributes.GetLongAttributeTypeAsString_0(returnPointer, attributeType);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkDataSetAttributes::CopyAllOff(int ctype)
-// 
-public static void CopyAllOff(IntPtr obj, int ctype) {
-	VTK.API_vtkDataSetAttributes.CopyAllOff(obj, ctype);
+// int GetCopyAttribute(int index, int ctype)
+// "int GetCopyAttribute (int index, int ctype)"
+public new int GetCopyAttribute(int /*(int)*/ index, int /*(int)*/ ctype) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkDataSetAttributes.GetCopyAttribute_0(this, returnPointer, index, ctype);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkDataSetAttributes::PassData(vtkFieldData* fd)
-// 
-public static void PassData(IntPtr obj, IntPtr/*vtkFieldData* */ fd) {
-	VTK.API_vtkDataSetAttributes.PassData(obj, fd);
+// void PassData(vtkFieldData * fd)
+// "void PassData(vtkFieldData* fd)"
+public new void PassData(vtkFieldData /*(vtkFieldData*)*/ fd) {
+	API_vtkDataSetAttributes.PassData_0(this, fd);
 }
 
 
-//       Method: void vtkDataSetAttributes::CopyAllocate(vtkDataSetAttributes* pd, vtkIdType sze, vtkIdType ext)
-// 
-public static void CopyAllocate(IntPtr obj, IntPtr/*vtkDataSetAttributes* */ pd, long sze, long ext) {
-	VTK.API_vtkDataSetAttributes.CopyAllocate(obj, pd, sze, ext);
+// void CopyAllocate(vtkDataSetAttributes * pd, vtkIdType sze = 0, vtkIdType ext = 1000)
+// "void CopyAllocate(vtkDataSetAttributes* pd, vtkIdType sze=0, vtkIdType ext=1000)"
+public new void CopyAllocate(vtkDataSetAttributes /*(vtkDataSetAttributes*)*/ pd, long /*(vtkIdType)*/ sze, long /*(vtkIdType)*/ ext) {
+	API_vtkDataSetAttributes.CopyAllocate_0(this, pd, sze, ext);
 }
 
 
-//       Method: void vtkDataSetAttributes::CopyAllocate(vtkDataSetAttributes* pd, vtkIdType sze, vtkIdType ext, int shallowCopyArrays)
-// 
-public static void CopyAllocate(IntPtr obj, IntPtr/*vtkDataSetAttributes* */ pd, long sze, long ext, int shallowCopyArrays) {
-	VTK.API_vtkDataSetAttributes.CopyAllocate(obj, pd, sze, ext, shallowCopyArrays);
+// void CopyAllocate(vtkDataSetAttributes * pd, vtkIdType sze, vtkIdType ext, int shallowCopyArrays)
+// "void CopyAllocate(vtkDataSetAttributes* pd, vtkIdType sze, vtkIdType ext, int shallowCopyArrays)"
+public new void CopyAllocate(vtkDataSetAttributes /*(vtkDataSetAttributes*)*/ pd, long /*(vtkIdType)*/ sze, long /*(vtkIdType)*/ ext, int /*(int)*/ shallowCopyArrays) {
+	API_vtkDataSetAttributes.CopyAllocate_1(this, pd, sze, ext, shallowCopyArrays);
 }
 
 
-//       Method: void vtkDataSetAttributes::SetupForCopy(vtkDataSetAttributes* pd)
-// 
-public static void SetupForCopy(IntPtr obj, IntPtr/*vtkDataSetAttributes* */ pd) {
-	VTK.API_vtkDataSetAttributes.SetupForCopy(obj, pd);
+// void SetupForCopy(vtkDataSetAttributes * pd)
+// "void SetupForCopy(vtkDataSetAttributes* pd)"
+public new void SetupForCopy(vtkDataSetAttributes /*(vtkDataSetAttributes*)*/ pd) {
+	API_vtkDataSetAttributes.SetupForCopy_0(this, pd);
 }
 
 
-//       Method: void vtkDataSetAttributes::CopyStructuredData(vtkDataSetAttributes* inDsa, const int* inExt, const int* outExt, bool setSize)
-// 
-public static void CopyStructuredData(IntPtr obj, IntPtr/*vtkDataSetAttributes* */ inDsa, IntPtr/*const int* */ inExt, IntPtr/*const int* */ outExt, bool setSize) {
-	VTK.API_vtkDataSetAttributes.CopyStructuredData(obj, inDsa, inExt, outExt, setSize);
+// void CopyStructuredData(vtkDataSetAttributes * inDsa, const int * inExt, const int * outExt, bool setSize = true)
+// "void CopyStructuredData(vtkDataSetAttributes *inDsa, const int *inExt, const int *outExt, bool setSize = true)"
+public new void CopyStructuredData(vtkDataSetAttributes /*(vtkDataSetAttributes*)*/ inDsa, int /*(int*)*/ []inExt, int /*(int*)*/ []outExt, bool /*(bool)*/ setSize) {
+	API_vtkDataSetAttributes.CopyStructuredData_0(this, inDsa, inExt, outExt, setSize);
 }
 
 
-//       Method: void vtkDataSetAttributes::CopyData(vtkDataSetAttributes* fromPd, vtkIdType fromId, vtkIdType toId)
-// 
-public static void CopyData(IntPtr obj, IntPtr/*vtkDataSetAttributes* */ fromPd, long fromId, long toId) {
-	VTK.API_vtkDataSetAttributes.CopyData(obj, fromPd, fromId, toId);
+// void CopyData(vtkDataSetAttributes * fromPd, vtkIdType fromId, vtkIdType toId)
+// "void CopyData(vtkDataSetAttributes *fromPd, vtkIdType fromId, vtkIdType toId)"
+public new void CopyData(vtkDataSetAttributes /*(vtkDataSetAttributes*)*/ fromPd, long /*(vtkIdType)*/ fromId, long /*(vtkIdType)*/ toId) {
+	API_vtkDataSetAttributes.CopyData_0(this, fromPd, fromId, toId);
 }
 
 
-//       Method: void vtkDataSetAttributes::CopyData(vtkDataSetAttributes* fromPd, vtkIdList* fromIds, vtkIdList* toIds)
-// 
-public static void CopyData(IntPtr obj, IntPtr/*vtkDataSetAttributes* */ fromPd, IntPtr/*vtkIdList* */ fromIds, IntPtr/*vtkIdList* */ toIds) {
-	VTK.API_vtkDataSetAttributes.CopyData(obj, fromPd, fromIds, toIds);
+// void CopyData(vtkDataSetAttributes * fromPd, vtkIdList * fromIds, vtkIdList * toIds)
+// "void CopyData(vtkDataSetAttributes *fromPd, vtkIdList *fromIds, vtkIdList *toIds)"
+public new void CopyData(vtkDataSetAttributes /*(vtkDataSetAttributes*)*/ fromPd, vtkIdList /*(vtkIdList*)*/ fromIds, vtkIdList /*(vtkIdList*)*/ toIds) {
+	API_vtkDataSetAttributes.CopyData_1(this, fromPd, fromIds, toIds);
 }
 
 
-//       Method: void vtkDataSetAttributes::CopyData(vtkDataSetAttributes* fromPd, vtkIdType dstStart, vtkIdType n, vtkIdType srcStart)
-// 
-public static void CopyData(IntPtr obj, IntPtr/*vtkDataSetAttributes* */ fromPd, long dstStart, long n, long srcStart) {
-	VTK.API_vtkDataSetAttributes.CopyData(obj, fromPd, dstStart, n, srcStart);
+// void CopyData(vtkDataSetAttributes * fromPd, vtkIdType dstStart, vtkIdType n, vtkIdType srcStart)
+// "void CopyData(vtkDataSetAttributes *fromPd, vtkIdType dstStart, vtkIdType n, vtkIdType srcStart)"
+public new void CopyData(vtkDataSetAttributes /*(vtkDataSetAttributes*)*/ fromPd, long /*(vtkIdType)*/ dstStart, long /*(vtkIdType)*/ n, long /*(vtkIdType)*/ srcStart) {
+	API_vtkDataSetAttributes.CopyData_2(this, fromPd, dstStart, n, srcStart);
 }
 
 
-//       Method: void vtkDataSetAttributes::CopyTuple(vtkAbstractArray* fromData, vtkAbstractArray* toData, vtkIdType fromId, vtkIdType toId)
-// 
-public static void CopyTuple(IntPtr obj, IntPtr/*vtkAbstractArray* */ fromData, IntPtr/*vtkAbstractArray* */ toData, long fromId, long toId) {
-	VTK.API_vtkDataSetAttributes.CopyTuple(obj, fromData, toData, fromId, toId);
+// void CopyTuple(vtkAbstractArray * fromData, vtkAbstractArray * toData, vtkIdType fromId, vtkIdType toId)
+// "void CopyTuple(vtkAbstractArray *fromData, vtkAbstractArray *toData, vtkIdType fromId, vtkIdType toId)"
+public new void CopyTuple(vtkAbstractArray /*(vtkAbstractArray*)*/ fromData, vtkAbstractArray /*(vtkAbstractArray*)*/ toData, long /*(vtkIdType)*/ fromId, long /*(vtkIdType)*/ toId) {
+	API_vtkDataSetAttributes.CopyTuple_0(this, fromData, toData, fromId, toId);
 }
 
 
-//       Method: void vtkDataSetAttributes::CopyTuples(vtkAbstractArray* fromData, vtkAbstractArray* toData, vtkIdList* fromIds, vtkIdList* toIds)
-// 
-public static void CopyTuples(IntPtr obj, IntPtr/*vtkAbstractArray* */ fromData, IntPtr/*vtkAbstractArray* */ toData, IntPtr/*vtkIdList* */ fromIds, IntPtr/*vtkIdList* */ toIds) {
-	VTK.API_vtkDataSetAttributes.CopyTuples(obj, fromData, toData, fromIds, toIds);
+// void CopyTuples(vtkAbstractArray * fromData, vtkAbstractArray * toData, vtkIdList * fromIds, vtkIdList * toIds)
+// "void CopyTuples(vtkAbstractArray *fromData, vtkAbstractArray *toData, vtkIdList *fromIds, vtkIdList *toIds)"
+public new void CopyTuples(vtkAbstractArray /*(vtkAbstractArray*)*/ fromData, vtkAbstractArray /*(vtkAbstractArray*)*/ toData, vtkIdList /*(vtkIdList*)*/ fromIds, vtkIdList /*(vtkIdList*)*/ toIds) {
+	API_vtkDataSetAttributes.CopyTuples_0(this, fromData, toData, fromIds, toIds);
 }
 
 
-//       Method: void vtkDataSetAttributes::CopyTuples(vtkAbstractArray* fromData, vtkAbstractArray* toData, vtkIdType dstStart, vtkIdType n, vtkIdType srcStart)
-// 
-public static void CopyTuples(IntPtr obj, IntPtr/*vtkAbstractArray* */ fromData, IntPtr/*vtkAbstractArray* */ toData, long dstStart, long n, long srcStart) {
-	VTK.API_vtkDataSetAttributes.CopyTuples(obj, fromData, toData, dstStart, n, srcStart);
+// void CopyTuples(vtkAbstractArray * fromData, vtkAbstractArray * toData, vtkIdType dstStart, vtkIdType n, vtkIdType srcStart)
+// "void CopyTuples(vtkAbstractArray *fromData, vtkAbstractArray *toData, vtkIdType dstStart, vtkIdType n, vtkIdType srcStart)"
+public new void CopyTuples(vtkAbstractArray /*(vtkAbstractArray*)*/ fromData, vtkAbstractArray /*(vtkAbstractArray*)*/ toData, long /*(vtkIdType)*/ dstStart, long /*(vtkIdType)*/ n, long /*(vtkIdType)*/ srcStart) {
+	API_vtkDataSetAttributes.CopyTuples_1(this, fromData, toData, dstStart, n, srcStart);
 }
 
 
-//       Method: void vtkDataSetAttributes::InterpolateAllocate(vtkDataSetAttributes* pd, vtkIdType sze, vtkIdType ext)
-// 
-public static void InterpolateAllocate(IntPtr obj, IntPtr/*vtkDataSetAttributes* */ pd, long sze, long ext) {
-	VTK.API_vtkDataSetAttributes.InterpolateAllocate(obj, pd, sze, ext);
+// void InterpolateAllocate(vtkDataSetAttributes * pd, vtkIdType sze = 0, vtkIdType ext = 1000)
+// "void InterpolateAllocate(vtkDataSetAttributes* pd, vtkIdType sze=0, vtkIdType ext=1000)"
+public new void InterpolateAllocate(vtkDataSetAttributes /*(vtkDataSetAttributes*)*/ pd, long /*(vtkIdType)*/ sze, long /*(vtkIdType)*/ ext) {
+	API_vtkDataSetAttributes.InterpolateAllocate_0(this, pd, sze, ext);
 }
 
 
-//       Method: void vtkDataSetAttributes::InterpolateAllocate(vtkDataSetAttributes* pd, vtkIdType sze, vtkIdType ext, int shallowCopyArrays)
-// 
-public static void InterpolateAllocate(IntPtr obj, IntPtr/*vtkDataSetAttributes* */ pd, long sze, long ext, int shallowCopyArrays) {
-	VTK.API_vtkDataSetAttributes.InterpolateAllocate(obj, pd, sze, ext, shallowCopyArrays);
+// void InterpolateAllocate(vtkDataSetAttributes * pd, vtkIdType sze, vtkIdType ext, int shallowCopyArrays)
+// "void InterpolateAllocate(vtkDataSetAttributes* pd, vtkIdType sze, vtkIdType ext, int shallowCopyArrays)"
+public new void InterpolateAllocate(vtkDataSetAttributes /*(vtkDataSetAttributes*)*/ pd, long /*(vtkIdType)*/ sze, long /*(vtkIdType)*/ ext, int /*(int)*/ shallowCopyArrays) {
+	API_vtkDataSetAttributes.InterpolateAllocate_1(this, pd, sze, ext, shallowCopyArrays);
 }
 
 
-//       Method: void vtkDataSetAttributes::InterpolatePoint(vtkDataSetAttributes* fromPd, vtkIdType toId, vtkIdList* ids, double* weights)
-// 
-public static void InterpolatePoint(IntPtr obj, IntPtr/*vtkDataSetAttributes* */ fromPd, long toId, IntPtr/*vtkIdList* */ ids, IntPtr/*double* */ weights) {
-	VTK.API_vtkDataSetAttributes.InterpolatePoint(obj, fromPd, toId, ids, weights);
+// void InterpolatePoint(vtkDataSetAttributes * fromPd, vtkIdType toId, vtkIdList * ids, double * weights)
+// "void InterpolatePoint(vtkDataSetAttributes *fromPd, vtkIdType toId, vtkIdList *ids, double *weights)"
+public new void InterpolatePoint(vtkDataSetAttributes /*(vtkDataSetAttributes*)*/ fromPd, long /*(vtkIdType)*/ toId, vtkIdList /*(vtkIdList*)*/ ids, double /*(double*)*/ []weights) {
+	API_vtkDataSetAttributes.InterpolatePoint_0(this, fromPd, toId, ids, weights);
 }
 
 
-//       Method: void vtkDataSetAttributes::InterpolateEdge(vtkDataSetAttributes* fromPd, vtkIdType toId, vtkIdType p1, vtkIdType p2, double t)
-// 
-public static void InterpolateEdge(IntPtr obj, IntPtr/*vtkDataSetAttributes* */ fromPd, long toId, long p1, long p2, double t) {
-	VTK.API_vtkDataSetAttributes.InterpolateEdge(obj, fromPd, toId, p1, p2, t);
+// void InterpolateEdge(vtkDataSetAttributes * fromPd, vtkIdType toId, vtkIdType p1, vtkIdType p2, double t)
+// "void InterpolateEdge(vtkDataSetAttributes *fromPd, vtkIdType toId, vtkIdType p1, vtkIdType p2, double t)"
+public new void InterpolateEdge(vtkDataSetAttributes /*(vtkDataSetAttributes*)*/ fromPd, long /*(vtkIdType)*/ toId, long /*(vtkIdType)*/ p1, long /*(vtkIdType)*/ p2, double /*(double)*/ t) {
+	API_vtkDataSetAttributes.InterpolateEdge_0(this, fromPd, toId, p1, p2, t);
 }
 
 
-//       Method: void vtkDataSetAttributes::InterpolateTime(vtkDataSetAttributes* from1, vtkDataSetAttributes* from2, vtkIdType id, double t)
-// 
-public static void InterpolateTime(IntPtr obj, IntPtr/*vtkDataSetAttributes* */ from1, IntPtr/*vtkDataSetAttributes* */ from2, long id, double t) {
-	VTK.API_vtkDataSetAttributes.InterpolateTime(obj, from1, from2, id, t);
+// void InterpolateTime(vtkDataSetAttributes * from1, vtkDataSetAttributes * from2, vtkIdType id, double t)
+// "void InterpolateTime(vtkDataSetAttributes *from1, vtkDataSetAttributes *from2, vtkIdType id, double t)"
+public new void InterpolateTime(vtkDataSetAttributes /*(vtkDataSetAttributes*)*/ from1, vtkDataSetAttributes /*(vtkDataSetAttributes*)*/ from2, long /*(vtkIdType)*/ id, double /*(double)*/ t) {
+	API_vtkDataSetAttributes.InterpolateTime_0(this, from1, from2, id, t);
 }
 
 

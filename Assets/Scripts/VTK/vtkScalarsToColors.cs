@@ -1,300 +1,276 @@
 
+
 using System;
 using UnityEngine;
 using System.Runtime.InteropServices;
 
-
-namespace VTK
-{
+namespace VTK {
 public partial class vtkScalarsToColors : vtkObject {
 
-//       Method: virtual const char * vtkScalarsToColors::GetClassName()
-// 
-public string GetClassName() {
-	IntPtr p =  Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr()));
-	VTK.API_vtkScalarsToColors.GetClassName(p,obj);
-	string result = Marshal.PtrToStringAnsi(Marshal.ReadIntPtr(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// static vtkScalarsToColors* New()
+// "static vtkScalarsToColors *New()"
+public new static vtkScalarsToColors New() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkScalarsToColors.New_0(returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: static vtkScalarsToColors * vtkScalarsToColors::New()
-// 
-public static vtkScalarsToColors New() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkScalarsToColors.New(p);
-	vtkScalarsToColors result = new vtkScalarsToColors();
-	unsafe {result.SetPtr(new IntPtr ((*(void**)p.ToPointer ())));}
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual int IsOpaque()
+// "virtual int IsOpaque()"
+public new int IsOpaque() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkScalarsToColors.IsOpaque_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual int vtkScalarsToColors::IsOpaque()
-// 
-public int IsOpaque() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkScalarsToColors.IsOpaque(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual void Build()
+// "virtual void Build()"
+public new void Build() {
+	API_vtkScalarsToColors.Build_0(this);
 }
 
 
-//       Method: virtual void vtkScalarsToColors::Build()
-// 
-public void Build() {
-	VTK.API_vtkScalarsToColors.Build(obj);
+// virtual double* GetRange()
+// "virtual double *GetRange()"
+public new double GetRange() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new double())*return_elements);
+	API_vtkScalarsToColors.GetRange_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual double * vtkScalarsToColors::GetRange()
-// 
-public double[] GetRange() {
-	int numElements = 1;
-	double[] example = new double[numElements];
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkScalarsToColors.GetRange(p,obj);
-	double[] result = new double[numElements];
-	Marshal.Copy (p, result, 0, numElements);
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual void SetRange(double min, double max)
+// "virtual void SetRange(double min, double max)"
+public new void SetRange(double /*(double)*/ min, double /*(double)*/ max) {
+	API_vtkScalarsToColors.SetRange_0(this, min, max);
 }
 
 
-//       Method: virtual void vtkScalarsToColors::SetRange(double min, double max)
-// 
-public void SetRange(double min, double max) {
-	VTK.API_vtkScalarsToColors.SetRange(obj, min, max);
+// virtual void SetRange(const double rng[2])
+// "virtual void SetRange(const double rng[2])"
+public new void SetRange(double /*(double[2])*/ []rng) {
+	API_vtkScalarsToColors.SetRange_1(this, rng);
 }
 
 
-//       Method: virtual void vtkScalarsToColors::SetRange(const double rng[2])
-// 
-public void SetRange(double[] /*2*/ rng) {
-	VTK.API_vtkScalarsToColors.SetRange(obj, rng);
+// virtual char* MapValue(double v)
+// "virtual unsigned char *MapValue(double v)"
+public new char MapValue(double /*(double)*/ v) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new char())*return_elements);
+	API_vtkScalarsToColors.MapValue_0(this, returnPointer, v);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual void vtkScalarsToColors::GetColor(double v, double rgb[3])
-// 
-public void GetColor(double v, double[] /*3*/ rgb) {
-	VTK.API_vtkScalarsToColors.GetColor(obj, v, rgb);
+// virtual void GetColor(double v, double rgb[3])
+// "virtual void GetColor(double v, double rgb[3])"
+public new void GetColor(double /*(double)*/ v, double /*(double[3])*/ []rgb) {
+	API_vtkScalarsToColors.GetColor_0(this, v, rgb);
 }
 
 
-//       Method: double * vtkScalarsToColors::GetColor(double v)
-// 
-public double[] GetColor(double v) {
-	int numElements = 1;
-	double[] example = new double[numElements];
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkScalarsToColors.GetColor(p,obj, v);
-	double[] result = new double[numElements];
-	Marshal.Copy (p, result, 0, numElements);
-	Marshal.FreeHGlobal (p);
-	return result;
+// double* GetColor(double v)
+// "double *GetColor(double v)"
+public new double GetColor(double /*(double)*/ v) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new double())*return_elements);
+	API_vtkScalarsToColors.GetColor_1(this, returnPointer, v);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual double vtkScalarsToColors::GetOpacity(double v)
-// 
-public double GetOpacity(double v) {
-	int numElements = 1;
-	double example = new double();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkScalarsToColors.GetOpacity(p,obj, v);
-	double result;
-	Marshal.Copy (p, result, 0, 1);
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual double GetOpacity(double v)
+// "virtual double GetOpacity(double v)"
+public new double GetOpacity(double /*(double)*/ v) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new double())*return_elements);
+	API_vtkScalarsToColors.GetOpacity_0(this, returnPointer, v);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: double vtkScalarsToColors::GetLuminance(double x)
-// 
-public double GetLuminance(double x) {
-	int numElements = 1;
-	double example = new double();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkScalarsToColors.GetLuminance(p,obj, x);
-	double result;
-	Marshal.Copy (p, result, 0, 1);
-	Marshal.FreeHGlobal (p);
-	return result;
+// double GetLuminance(double x)
+// "double GetLuminance(double x)"
+public new double GetLuminance(double /*(double)*/ x) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new double())*return_elements);
+	API_vtkScalarsToColors.GetLuminance_0(this, returnPointer, x);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual void vtkScalarsToColors::SetAlpha(double alpha)
-// 
-public void SetAlpha(double alpha) {
-	VTK.API_vtkScalarsToColors.SetAlpha(obj, alpha);
+// virtual void SetAlpha(double alpha)
+// "virtual void SetAlpha(double alpha)"
+public new void SetAlpha(double /*(double)*/ alpha) {
+	API_vtkScalarsToColors.SetAlpha_0(this, alpha);
 }
 
 
-//       Method: virtual vtkUnsignedCharArray * vtkScalarsToColors::MapScalars(vtkDataArray* scalars, int colorMode, int component)
-// 
-public vtkUnsignedCharArray MapScalars(vtkDataArray/*vtkDataArray* */ scalars, int colorMode, int component) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkScalarsToColors.MapScalars(p,obj, scalars, colorMode, component);
-	vtkUnsignedCharArray result = new vtkUnsignedCharArray();
-	unsafe {result.SetPtr(new IntPtr ((*(void**)p.ToPointer ())));}
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual vtkUnsignedCharArray* MapScalars(vtkDataArray * scalars, int colorMode, int component)
+// "virtual vtkUnsignedCharArray *MapScalars(vtkDataArray *scalars, int colorMode, int component)"
+public new vtkUnsignedCharArray MapScalars(vtkDataArray /*(vtkDataArray*)*/ scalars, int /*(int)*/ colorMode, int /*(int)*/ component) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkScalarsToColors.MapScalars_0(this, returnPointer, scalars, colorMode, component);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual vtkUnsignedCharArray * vtkScalarsToColors::MapScalars(vtkAbstractArray* scalars, int colorMode, int component)
-// 
-public vtkUnsignedCharArray MapScalars(vtkAbstractArray/*vtkAbstractArray* */ scalars, int colorMode, int component) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkScalarsToColors.MapScalars(p,obj, scalars, colorMode, component);
-	vtkUnsignedCharArray result = new vtkUnsignedCharArray();
-	unsafe {result.SetPtr(new IntPtr ((*(void**)p.ToPointer ())));}
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual vtkUnsignedCharArray* MapScalars(vtkAbstractArray * scalars, int colorMode, int component)
+// "virtual vtkUnsignedCharArray *MapScalars(vtkAbstractArray *scalars, int colorMode, int component)"
+public new vtkUnsignedCharArray MapScalars(vtkAbstractArray /*(vtkAbstractArray*)*/ scalars, int /*(int)*/ colorMode, int /*(int)*/ component) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkScalarsToColors.MapScalars_1(this, returnPointer, scalars, colorMode, component);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkScalarsToColors::SetVectorModeToMagnitude()
-// 
-public void SetVectorModeToMagnitude() {
-	VTK.API_vtkScalarsToColors.SetVectorModeToMagnitude(obj);
+// void SetVectorModeToMagnitude()
+// "void SetVectorModeToMagnitude()"
+public new void SetVectorModeToMagnitude() {
+	API_vtkScalarsToColors.SetVectorModeToMagnitude_0(this);
 }
 
 
-//       Method: void vtkScalarsToColors::SetVectorModeToComponent()
-// 
-public void SetVectorModeToComponent() {
-	VTK.API_vtkScalarsToColors.SetVectorModeToComponent(obj);
+// void SetVectorModeToComponent()
+// "void SetVectorModeToComponent()"
+public new void SetVectorModeToComponent() {
+	API_vtkScalarsToColors.SetVectorModeToComponent_0(this);
 }
 
 
-//       Method: void vtkScalarsToColors::SetVectorModeToRGBColors()
-// 
-public void SetVectorModeToRGBColors() {
-	VTK.API_vtkScalarsToColors.SetVectorModeToRGBColors(obj);
+// void SetVectorModeToRGBColors()
+// "void SetVectorModeToRGBColors()"
+public new void SetVectorModeToRGBColors() {
+	API_vtkScalarsToColors.SetVectorModeToRGBColors_0(this);
 }
 
 
-//       Method: void vtkScalarsToColors::MapVectorsThroughTable(void* input, unsigned char* output, int inputDataType, int numberOfValues, int inputIncrement, int outputFormat, int vectorComponent, int vectorSize)
-// 
-public void MapVectorsThroughTable(IntPtr/*void* */ input, byte/*unsigned char* */ output, int inputDataType, int numberOfValues, int inputIncrement, int outputFormat, int vectorComponent, int vectorSize) {
-	VTK.API_vtkScalarsToColors.MapVectorsThroughTable(obj, input, output, inputDataType, numberOfValues, inputIncrement, outputFormat, vectorComponent, vectorSize);
+// void MapVectorsThroughTable(void * input, unsigned char * output, int inputDataType, int numberOfValues, int inputIncrement, int outputFormat, int vectorComponent, int vectorSize)
+// "void MapVectorsThroughTable(void *input, unsigned char *output, int inputDataType, int numberOfValues, int inputIncrement, int outputFormat, int vectorComponent, int vectorSize)"
+public new void MapVectorsThroughTable(IntPtr /*(void*)*/ []input, char /*(char*)*/ []output, int /*(int)*/ inputDataType, int /*(int)*/ numberOfValues, int /*(int)*/ inputIncrement, int /*(int)*/ outputFormat, int /*(int)*/ vectorComponent, int /*(int)*/ vectorSize) {
+	API_vtkScalarsToColors.MapVectorsThroughTable_0(this, input, output, inputDataType, numberOfValues, inputIncrement, outputFormat, vectorComponent, vectorSize);
 }
 
 
-//       Method: void vtkScalarsToColors::MapVectorsThroughTable(void* input, unsigned char* output, int inputDataType, int numberOfValues, int inputIncrement, int outputFormat)
-// 
-public void MapVectorsThroughTable(IntPtr/*void* */ input, byte/*unsigned char* */ output, int inputDataType, int numberOfValues, int inputIncrement, int outputFormat) {
-	VTK.API_vtkScalarsToColors.MapVectorsThroughTable(obj, input, output, inputDataType, numberOfValues, inputIncrement, outputFormat);
+// void MapVectorsThroughTable(void * input, unsigned char * output, int inputDataType, int numberOfValues, int inputIncrement, int outputFormat)
+// "void MapVectorsThroughTable(void *input, unsigned char *output, int inputDataType, int numberOfValues, int inputIncrement, int outputFormat)"
+public new void MapVectorsThroughTable(IntPtr /*(void*)*/ []input, char /*(char*)*/ []output, int /*(int)*/ inputDataType, int /*(int)*/ numberOfValues, int /*(int)*/ inputIncrement, int /*(int)*/ outputFormat) {
+	API_vtkScalarsToColors.MapVectorsThroughTable_1(this, input, output, inputDataType, numberOfValues, inputIncrement, outputFormat);
 }
 
 
-//       Method: void vtkScalarsToColors::MapScalarsThroughTable(vtkDataArray* scalars, unsigned char* output, int outputFormat)
-// 
-public void MapScalarsThroughTable(vtkDataArray/*vtkDataArray* */ scalars, byte/*unsigned char* */ output, int outputFormat) {
-	VTK.API_vtkScalarsToColors.MapScalarsThroughTable(obj, scalars, output, outputFormat);
+// void MapScalarsThroughTable(vtkDataArray * scalars, unsigned char * output, int outputFormat)
+// "void MapScalarsThroughTable(vtkDataArray *scalars, unsigned char *output, int outputFormat)"
+public new void MapScalarsThroughTable(vtkDataArray /*(vtkDataArray*)*/ scalars, char /*(char*)*/ []output, int /*(int)*/ outputFormat) {
+	API_vtkScalarsToColors.MapScalarsThroughTable_0(this, scalars, output, outputFormat);
 }
 
 
-//       Method: void vtkScalarsToColors::MapScalarsThroughTable(vtkDataArray* scalars, unsigned char* output)
-// 
-public void MapScalarsThroughTable(vtkDataArray/*vtkDataArray* */ scalars, byte/*unsigned char* */ output) {
-	VTK.API_vtkScalarsToColors.MapScalarsThroughTable(obj, scalars, output);
+// void MapScalarsThroughTable(vtkDataArray * scalars, unsigned char * output)
+// "void MapScalarsThroughTable(vtkDataArray *scalars, unsigned char *output)"
+public new void MapScalarsThroughTable(vtkDataArray /*(vtkDataArray*)*/ scalars, char /*(char*)*/ []output) {
+	API_vtkScalarsToColors.MapScalarsThroughTable_1(this, scalars, output);
 }
 
 
-//       Method: void vtkScalarsToColors::MapScalarsThroughTable(void* input, unsigned char* output, int inputDataType, int numberOfValues, int inputIncrement, int outputFormat)
-// 
-public void MapScalarsThroughTable(IntPtr/*void* */ input, byte/*unsigned char* */ output, int inputDataType, int numberOfValues, int inputIncrement, int outputFormat) {
-	VTK.API_vtkScalarsToColors.MapScalarsThroughTable(obj, input, output, inputDataType, numberOfValues, inputIncrement, outputFormat);
+// void MapScalarsThroughTable(void * input, unsigned char * output, int inputDataType, int numberOfValues, int inputIncrement, int outputFormat)
+// "void MapScalarsThroughTable(void *input, unsigned char *output, int inputDataType, int numberOfValues, int inputIncrement, int outputFormat)"
+public new void MapScalarsThroughTable(IntPtr /*(void*)*/ []input, char /*(char*)*/ []output, int /*(int)*/ inputDataType, int /*(int)*/ numberOfValues, int /*(int)*/ inputIncrement, int /*(int)*/ outputFormat) {
+	API_vtkScalarsToColors.MapScalarsThroughTable_2(this, input, output, inputDataType, numberOfValues, inputIncrement, outputFormat);
 }
 
 
-//       Method: virtual void vtkScalarsToColors::MapScalarsThroughTable2(void* input, unsigned char* output, int inputDataType, int numberOfValues, int inputIncrement, int outputFormat)
-// 
-public void MapScalarsThroughTable2(IntPtr/*void* */ input, byte/*unsigned char* */ output, int inputDataType, int numberOfValues, int inputIncrement, int outputFormat) {
-	VTK.API_vtkScalarsToColors.MapScalarsThroughTable2(obj, input, output, inputDataType, numberOfValues, inputIncrement, outputFormat);
+// virtual void MapScalarsThroughTable2(void * input, unsigned char * output, int inputDataType, int numberOfValues, int inputIncrement, int outputFormat)
+// "virtual void MapScalarsThroughTable2(void *input, unsigned char *output, int inputDataType, int numberOfValues, int inputIncrement, int outputFormat)"
+public new void MapScalarsThroughTable2(IntPtr /*(void*)*/ []input, char /*(char*)*/ []output, int /*(int)*/ inputDataType, int /*(int)*/ numberOfValues, int /*(int)*/ inputIncrement, int /*(int)*/ outputFormat) {
+	API_vtkScalarsToColors.MapScalarsThroughTable2_0(this, input, output, inputDataType, numberOfValues, inputIncrement, outputFormat);
 }
 
 
-//       Method: virtual void vtkScalarsToColors::DeepCopy(vtkScalarsToColors* o)
-// 
-public void DeepCopy(vtkScalarsToColors/*vtkScalarsToColors* */ o) {
-	VTK.API_vtkScalarsToColors.DeepCopy(obj, o);
+// virtual void DeepCopy(vtkScalarsToColors * o)
+// "virtual void DeepCopy(vtkScalarsToColors *o)"
+public new void DeepCopy(vtkScalarsToColors /*(vtkScalarsToColors*)*/ o) {
+	API_vtkScalarsToColors.DeepCopy_0(this, o);
 }
 
 
-//       Method: virtual int vtkScalarsToColors::UsingLogScale()
-// 
-public int UsingLogScale() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkScalarsToColors.UsingLogScale(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual int UsingLogScale()
+// "virtual int UsingLogScale()"
+public new int UsingLogScale() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkScalarsToColors.UsingLogScale_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual vtkIdType vtkScalarsToColors::GetNumberOfAvailableColors()
-// 
-public long GetNumberOfAvailableColors() {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkScalarsToColors.GetNumberOfAvailableColors(p,obj);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual vtkIdType GetNumberOfAvailableColors()
+// "virtual vtkIdType GetNumberOfAvailableColors()"
+public new long GetNumberOfAvailableColors() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkScalarsToColors.GetNumberOfAvailableColors_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual void vtkScalarsToColors::SetAnnotations(vtkAbstractArray* values, vtkStringArray* annotations)
-// 
-public void SetAnnotations(vtkAbstractArray/*vtkAbstractArray* */ values, vtkStringArray/*vtkStringArray* */ annotations) {
-	VTK.API_vtkScalarsToColors.SetAnnotations(obj, values, annotations);
+// virtual void SetAnnotations(vtkAbstractArray * values, vtkStringArray * annotations)
+// "virtual void SetAnnotations( vtkAbstractArray* values, vtkStringArray* annotations )"
+public new void SetAnnotations(vtkAbstractArray /*(vtkAbstractArray*)*/ values, vtkStringArray /*(vtkStringArray*)*/ annotations) {
+	API_vtkScalarsToColors.SetAnnotations_0(this, values, annotations);
 }
 
 
-//       Method: vtkIdType vtkScalarsToColors::GetNumberOfAnnotatedValues()
-// 
-public long GetNumberOfAnnotatedValues() {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkScalarsToColors.GetNumberOfAnnotatedValues(p,obj);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual vtkIdType SetAnnotation(vtkStdString value, vtkStdString annotation)
+// "virtual vtkIdType SetAnnotation(vtkStdString value, vtkStdString annotation)"
+public new long SetAnnotation(string /*(vtkStdString)*/ value, string /*(vtkStdString)*/ annotation) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkScalarsToColors.SetAnnotation_0(this, returnPointer, value, annotation);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual void vtkScalarsToColors::GetIndexedColor(vtkIdType i, double rgba[4])
-// 
-public void GetIndexedColor(long i, double[] /*4*/ rgba) {
-	VTK.API_vtkScalarsToColors.GetIndexedColor(obj, i, rgba);
+// vtkIdType GetNumberOfAnnotatedValues()
+// "vtkIdType GetNumberOfAnnotatedValues()"
+public new long GetNumberOfAnnotatedValues() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkScalarsToColors.GetNumberOfAnnotatedValues_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual void vtkScalarsToColors::ResetAnnotations()
-// 
-public void ResetAnnotations() {
-	VTK.API_vtkScalarsToColors.ResetAnnotations(obj);
+// vtkStdString GetAnnotation(vtkIdType idx)
+// "vtkStdString GetAnnotation(vtkIdType idx)"
+public new string GetAnnotation(long /*(vtkIdType)*/ idx) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new string())*return_elements);
+	API_vtkScalarsToColors.GetAnnotation_0(this, returnPointer, idx);
+	return Ptr.deref(returnPointer);
 }
 
 
+// virtual void GetIndexedColor(vtkIdType i, double rgba[4])
+// "virtual void GetIndexedColor(vtkIdType i, double rgba[4])"
+public new void GetIndexedColor(long /*(vtkIdType)*/ i, double /*(double[4])*/ []rgba) {
+	API_vtkScalarsToColors.GetIndexedColor_0(this, i, rgba);
+}
+
+
+// virtual void ResetAnnotations()
+// "virtual void ResetAnnotations()"
+public new void ResetAnnotations() {
+	API_vtkScalarsToColors.ResetAnnotations_0(this);
+}
 
 
 }

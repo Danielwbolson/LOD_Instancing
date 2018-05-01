@@ -1,129 +1,87 @@
 
+
 using System;
 using UnityEngine;
 using System.Runtime.InteropServices;
 
+namespace VTK {
+public partial class vtkUnstructuredGridBase : vtkPointSet {
 
-namespace VTK
-{
-public class vtkUnstructuredGridBase : vtkPointSet {
-
-//       Method: int vtkUnstructuredGridBase::GetDataObjectType()
-// 
-public static int GetDataObjectType(IntPtr obj) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkUnstructuredGridBase.GetDataObjectType(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int GetDataObjectType()
+// "int GetDataObjectType()"
+public new int GetDataObjectType() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkUnstructuredGridBase.GetDataObjectType_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual void vtkUnstructuredGridBase::Allocate(vtkIdType numCells, int extSize)
-// 
-public static void Allocate(IntPtr obj, long numCells, int extSize) {
-	VTK.API_vtkUnstructuredGridBase.Allocate(obj, numCells, extSize);
+// virtual void Allocate(vtkIdType numCells = 1000, int extSize = 1000)
+// "virtual void Allocate(vtkIdType numCells=1000, int extSize=1000)"
+public new void Allocate(long /*(vtkIdType)*/ numCells, int /*(int)*/ extSize) {
+	API_vtkUnstructuredGridBase.Allocate_0(this, numCells, extSize);
 }
 
 
-//       Method: void vtkUnstructuredGridBase::DeepCopy(vtkDataObject* src)
-// 
-public static void DeepCopy(IntPtr obj, IntPtr/*vtkDataObject* */ src) {
-	VTK.API_vtkUnstructuredGridBase.DeepCopy(obj, src);
+// void DeepCopy(vtkDataObject * src)
+// "void DeepCopy(vtkDataObject *src)"
+public new void DeepCopy(vtkDataObject /*(vtkDataObject*)*/ src) {
+	API_vtkUnstructuredGridBase.DeepCopy_0(this, src);
 }
 
 
-//       Method: virtual vtkIdType vtkUnstructuredGridBase::InsertNextCell(int type, vtkIdType npts, vtkIdType* ptIds)
-// 
-public static long InsertNextCell(IntPtr obj, int type, long npts, IntPtr/*vtkIdType* */ ptIds) {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkUnstructuredGridBase.InsertNextCell(p,obj, type, npts, ptIds);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual vtkIdType InsertNextCell(int type, vtkIdType npts, vtkIdType * ptIds)
+// "virtual vtkIdType InsertNextCell(int type, vtkIdType npts, vtkIdType *ptIds)"
+public new long InsertNextCell(int /*(int)*/ type, long /*(vtkIdType)*/ npts, long /*(vtkIdType*)*/ []ptIds) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkUnstructuredGridBase.InsertNextCell_0(this, returnPointer, type, npts, ptIds);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual vtkIdType vtkUnstructuredGridBase::InsertNextCell(int type, vtkIdList* ptIds)
-// 
-public static long InsertNextCell(IntPtr obj, int type, IntPtr/*vtkIdList* */ ptIds) {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkUnstructuredGridBase.InsertNextCell(p,obj, type, ptIds);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual vtkIdType InsertNextCell(int type, vtkIdList * ptIds)
+// "virtual vtkIdType InsertNextCell(int type, vtkIdList *ptIds)"
+public new long InsertNextCell(int /*(int)*/ type, vtkIdList /*(vtkIdList*)*/ ptIds) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkUnstructuredGridBase.InsertNextCell_1(this, returnPointer, type, ptIds);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual vtkIdType vtkUnstructuredGridBase::InsertNextCell(int type, vtkIdType npts, vtkIdType* ptIds, vtkIdType nfaces, vtkIdType* faces)
-// 
-public static long InsertNextCell(IntPtr obj, int type, long npts, IntPtr/*vtkIdType* */ ptIds, long nfaces, IntPtr/*vtkIdType* */ faces) {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkUnstructuredGridBase.InsertNextCell(p,obj, type, npts, ptIds, nfaces, faces);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual vtkIdType InsertNextCell(int type, vtkIdType npts, vtkIdType * ptIds, vtkIdType nfaces, vtkIdType * faces)
+// "virtual vtkIdType InsertNextCell(int type, vtkIdType npts, vtkIdType *ptIds, vtkIdType nfaces, vtkIdType *faces)"
+public new long InsertNextCell(int /*(int)*/ type, long /*(vtkIdType)*/ npts, long /*(vtkIdType*)*/ []ptIds, long /*(vtkIdType)*/ nfaces, long /*(vtkIdType*)*/ []faces) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkUnstructuredGridBase.InsertNextCell_2(this, returnPointer, type, npts, ptIds, nfaces, faces);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual void vtkUnstructuredGridBase::ReplaceCell(vtkIdType cellId, int npts, vtkIdType* pts)
-// 
-public static void ReplaceCell(IntPtr obj, long cellId, int npts, IntPtr/*vtkIdType* */ pts) {
-	VTK.API_vtkUnstructuredGridBase.ReplaceCell(obj, cellId, npts, pts);
+// virtual void ReplaceCell(vtkIdType cellId, int npts, vtkIdType * pts)
+// "virtual void ReplaceCell(vtkIdType cellId, int npts, vtkIdType *pts)"
+public new void ReplaceCell(long /*(vtkIdType)*/ cellId, int /*(int)*/ npts, long /*(vtkIdType*)*/ []pts) {
+	API_vtkUnstructuredGridBase.ReplaceCell_0(this, cellId, npts, pts);
 }
 
 
-//       Method: virtual void vtkUnstructuredGridBase::GetIdsOfCellsOfType(int type, vtkIdTypeArray* array)
-// 
-public static void GetIdsOfCellsOfType(IntPtr obj, int type, IntPtr/*vtkIdTypeArray* */ array) {
-	VTK.API_vtkUnstructuredGridBase.GetIdsOfCellsOfType(obj, type, array);
+// virtual void GetIdsOfCellsOfType(int type, vtkIdTypeArray * array)
+// "virtual void GetIdsOfCellsOfType(int type, vtkIdTypeArray *array)"
+public new void GetIdsOfCellsOfType(int /*(int)*/ type, vtkIdTypeArray /*(vtkIdTypeArray*)*/ array) {
+	API_vtkUnstructuredGridBase.GetIdsOfCellsOfType_0(this, type, array);
 }
 
 
-//       Method: virtual int vtkUnstructuredGridBase::IsHomogeneous()
-// 
-public static int IsHomogeneous(IntPtr obj) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkUnstructuredGridBase.IsHomogeneous(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkUnstructuredGridBase * vtkUnstructuredGridBase::GetData(vtkInformation* info)
-// 
-public static IntPtr GetData(IntPtr/*vtkInformation* */ info) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkUnstructuredGridBase.GetData(p, info);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkUnstructuredGridBase * vtkUnstructuredGridBase::GetData(vtkInformationVector* v, int i)
-// 
-public static IntPtr GetData(IntPtr/*vtkInformationVector* */ v, int i) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkUnstructuredGridBase.GetData(p, v, i);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual int IsHomogeneous()
+// "virtual int IsHomogeneous()"
+public new int IsHomogeneous() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkUnstructuredGridBase.IsHomogeneous_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 

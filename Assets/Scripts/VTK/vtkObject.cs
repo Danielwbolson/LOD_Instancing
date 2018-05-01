@@ -1,286 +1,244 @@
 
+
 using System;
 using UnityEngine;
 using System.Runtime.InteropServices;
 
-
-namespace VTK
-{
+namespace VTK {
 public partial class vtkObject : vtkObjectBase {
 
-//       Method: static vtkObject * vtkObject::New()
-// 
-public static vtkObject New() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkObject.New(p);
-	vtkObject result = new vtkObject();
-	unsafe {result.SetPtr(new IntPtr ((*(void**)p.ToPointer ())));}
-	Marshal.FreeHGlobal (p);
-	return result;
+// static vtkObject* New()
+// "static vtkObject *New()"
+public new static vtkObject New() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkObject.New_0(returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual void vtkObject::DebugOn()
-// 
-public void DebugOn() {
-	VTK.API_vtkObject.DebugOn(obj);
+// virtual void DebugOn()
+// "virtual void DebugOn()"
+public new void DebugOn() {
+	API_vtkObject.DebugOn_0(this);
 }
 
 
-//       Method: virtual void vtkObject::DebugOff()
-// 
-public void DebugOff() {
-	VTK.API_vtkObject.DebugOff(obj);
+// virtual void DebugOff()
+// "virtual void DebugOff()"
+public new void DebugOff() {
+	API_vtkObject.DebugOff_0(this);
 }
 
 
-//       Method: bool vtkObject::GetDebug()
-// 
-public bool GetDebug() {
-	int numElements = 1;
-	bool example = new bool();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkObject.GetDebug(p,obj);
-	bool result = Convert.ToBoolean(Marshal.ReadByte(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// bool GetDebug()
+// "bool GetDebug()"
+public new bool GetDebug() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new bool())*return_elements);
+	API_vtkObject.GetDebug_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkObject::SetDebug(bool debugFlag)
-// 
-public void SetDebug(bool debugFlag) {
-	VTK.API_vtkObject.SetDebug(obj, debugFlag);
+// void SetDebug(bool debugFlag)
+// "void SetDebug(bool debugFlag)"
+public new void SetDebug(bool /*(bool)*/ debugFlag) {
+	API_vtkObject.SetDebug_0(this, debugFlag);
 }
 
 
-//       Method: static void vtkObject::BreakOnError()
-// 
-public static void BreakOnError() {
-	VTK.API_vtkObject.BreakOnError();
+// static void BreakOnError()
+// "static void BreakOnError()"
+public new static void BreakOnError() {
+	API_vtkObject.BreakOnError_0();
 }
 
 
-//       Method: virtual void vtkObject::Modified()
-// 
-public void Modified() {
-	VTK.API_vtkObject.Modified(obj);
+// virtual void Modified()
+// "virtual void Modified()"
+public new void Modified() {
+	API_vtkObject.Modified_0(this);
 }
 
 
-//       Method: virtual vtkMTimeType vtkObject::GetMTime()
-// 
-public ulong GetMTime() {
-	int numElements = 1;
-	ulong example = new ulong();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkObject.GetMTime(p,obj);
-	// UNSPECIFIED TYPE
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual vtkMTimeType GetMTime()
+// "virtual vtkMTimeType GetMTime()"
+public new ulong GetMTime() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new ulong())*return_elements);
+	API_vtkObject.GetMTime_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: static void vtkObject::SetGlobalWarningDisplay(int val)
-// 
-public static void SetGlobalWarningDisplay(int val) {
-	VTK.API_vtkObject.SetGlobalWarningDisplay(val);
+// static void SetGlobalWarningDisplay(int val)
+// "static void SetGlobalWarningDisplay(int val)"
+public new static void SetGlobalWarningDisplay(int /*(int)*/ val) {
+	API_vtkObject.SetGlobalWarningDisplay_0(val);
 }
 
 
-//       Method: static void vtkObject::GlobalWarningDisplayOn()
-// 
-public static void GlobalWarningDisplayOn() {
-	VTK.API_vtkObject.GlobalWarningDisplayOn();
+// static void GlobalWarningDisplayOn()
+// "static void GlobalWarningDisplayOn()"
+public new static void GlobalWarningDisplayOn() {
+	API_vtkObject.GlobalWarningDisplayOn_0();
 }
 
 
-//       Method: static void vtkObject::GlobalWarningDisplayOff()
-// 
-public static void GlobalWarningDisplayOff() {
-	VTK.API_vtkObject.GlobalWarningDisplayOff();
+// static void GlobalWarningDisplayOff()
+// "static void GlobalWarningDisplayOff()"
+public new static void GlobalWarningDisplayOff() {
+	API_vtkObject.GlobalWarningDisplayOff_0();
 }
 
 
-//       Method: static int vtkObject::GetGlobalWarningDisplay()
-// 
-public static int GetGlobalWarningDisplay() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkObject.GetGlobalWarningDisplay(p);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// static int GetGlobalWarningDisplay()
+// "static int GetGlobalWarningDisplay()"
+public new static int GetGlobalWarningDisplay() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkObject.GetGlobalWarningDisplay_0(returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkCommand * vtkObject::GetCommand(unsigned long tag)
-// 
-public vtkCommand GetCommand(ulong tag) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkObject.GetCommand(p,obj, tag);
-	vtkCommand result = new vtkCommand();
-	unsafe {result.SetPtr(new IntPtr ((*(void**)p.ToPointer ())));}
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkCommand* GetCommand(unsigned long tag)
+// "vtkCommand *GetCommand(unsigned long tag)"
+public new vtkCommand GetCommand(ulong /*(long)*/ tag) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkObject.GetCommand_0(this, returnPointer, tag);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkObject::RemoveObserver(vtkCommand* ARG_0)
-// 
-public void RemoveObserver(vtkCommand/*vtkCommand* */ ARG_0) {
-	VTK.API_vtkObject.RemoveObserver(obj, ARG_0);
+// void RemoveObserver(vtkCommand * ARG_0)
+// "void RemoveObserver(vtkCommand*)"
+public new void RemoveObserver(vtkCommand /*(vtkCommand*)*/ ARG_0) {
+	API_vtkObject.RemoveObserver_0(this, ARG_0);
 }
 
 
-//       Method: void vtkObject::RemoveObservers(unsigned long evt, vtkCommand* ARG_0)
-// 
-public void RemoveObservers(ulong evt, vtkCommand/*vtkCommand* */ ARG_0) {
-	VTK.API_vtkObject.RemoveObservers(obj, evt, ARG_0);
+// void RemoveObservers(unsigned long event, vtkCommand * ARG_0)
+// "void RemoveObservers(unsigned long event, vtkCommand *)"
+public new void RemoveObservers(ulong /*(long)*/ evt, vtkCommand /*(vtkCommand*)*/ ARG_0) {
+	API_vtkObject.RemoveObservers_0(this, evt, ARG_0);
 }
 
 
-//       Method: void vtkObject::RemoveObservers(const char* evt, vtkCommand* ARG_0)
-// 
-public void RemoveObservers(string/*const char* */ evt, vtkCommand/*vtkCommand* */ ARG_0) {
-	VTK.API_vtkObject.RemoveObservers(obj, evt, ARG_0);
+// void RemoveObservers(const char * event, vtkCommand * ARG_0)
+// "void RemoveObservers(const char *event, vtkCommand *)"
+public new void RemoveObservers(char /*(char*)*/ []evt, vtkCommand /*(vtkCommand*)*/ ARG_0) {
+	API_vtkObject.RemoveObservers_1(this, evt, ARG_0);
 }
 
 
-//       Method: int vtkObject::HasObserver(unsigned long evt, vtkCommand* ARG_0)
-// 
-public int HasObserver(ulong evt, vtkCommand/*vtkCommand* */ ARG_0) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkObject.HasObserver(p,obj, evt, ARG_0);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int HasObserver(unsigned long event, vtkCommand * ARG_0)
+// "int HasObserver(unsigned long event, vtkCommand *)"
+public new int HasObserver(ulong /*(long)*/ evt, vtkCommand /*(vtkCommand*)*/ ARG_0) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkObject.HasObserver_0(this, returnPointer, evt, ARG_0);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkObject::HasObserver(const char* evt, vtkCommand* ARG_0)
-// 
-public int HasObserver(string/*const char* */ evt, vtkCommand/*vtkCommand* */ ARG_0) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkObject.HasObserver(p,obj, evt, ARG_0);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int HasObserver(const char * event, vtkCommand * ARG_0)
+// "int HasObserver(const char *event, vtkCommand *)"
+public new int HasObserver(char /*(char*)*/ []evt, vtkCommand /*(vtkCommand*)*/ ARG_0) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkObject.HasObserver_1(this, returnPointer, evt, ARG_0);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkObject::RemoveObserver(unsigned long tag)
-// 
-public void RemoveObserver(ulong tag) {
-	VTK.API_vtkObject.RemoveObserver(obj, tag);
+// void RemoveObserver(unsigned long tag)
+// "void RemoveObserver(unsigned long tag)"
+public new void RemoveObserver(ulong /*(long)*/ tag) {
+	API_vtkObject.RemoveObserver_1(this, tag);
 }
 
 
-//       Method: void vtkObject::RemoveObservers(unsigned long evt)
-// 
-public void RemoveObservers(ulong evt) {
-	VTK.API_vtkObject.RemoveObservers(obj, evt);
+// void RemoveObservers(unsigned long event)
+// "void RemoveObservers(unsigned long event)"
+public new void RemoveObservers(ulong /*(long)*/ evt) {
+	API_vtkObject.RemoveObservers_2(this, evt);
 }
 
 
-//       Method: void vtkObject::RemoveObservers(const char* evt)
-// 
-public void RemoveObservers(string/*const char* */ evt) {
-	VTK.API_vtkObject.RemoveObservers(obj, evt);
+// void RemoveObservers(const char * event)
+// "void RemoveObservers(const char *event)"
+public new void RemoveObservers(char /*(char*)*/ []evt) {
+	API_vtkObject.RemoveObservers_3(this, evt);
 }
 
 
-//       Method: void vtkObject::RemoveAllObservers()
-// 
-public void RemoveAllObservers() {
-	VTK.API_vtkObject.RemoveAllObservers(obj);
+// void RemoveAllObservers()
+// "void RemoveAllObservers()"
+public new void RemoveAllObservers() {
+	API_vtkObject.RemoveAllObservers_0(this);
 }
 
 
-//       Method: int vtkObject::HasObserver(unsigned long evt)
-// 
-public int HasObserver(ulong evt) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkObject.HasObserver(p,obj, evt);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int HasObserver(unsigned long event)
+// "int HasObserver(unsigned long event)"
+public new int HasObserver(ulong /*(long)*/ evt) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkObject.HasObserver_2(this, returnPointer, evt);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkObject::HasObserver(const char* evt)
-// 
-public int HasObserver(string/*const char* */ evt) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkObject.HasObserver(p,obj, evt);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int HasObserver(const char * event)
+// "int HasObserver(const char *event)"
+public new int HasObserver(char /*(char*)*/ []evt) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkObject.HasObserver_3(this, returnPointer, evt);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkObject::InvokeEvent(unsigned long evt, void* callData)
-// 
-public int InvokeEvent(ulong evt, IntPtr/*void* */ callData) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkObject.InvokeEvent(p,obj, evt, callData);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int InvokeEvent(unsigned long event, void * callData)
+// "int InvokeEvent(unsigned long event, void *callData)"
+public new int InvokeEvent(ulong /*(long)*/ evt, IntPtr /*(void*)*/ []callData) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkObject.InvokeEvent_0(this, returnPointer, evt, callData);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkObject::InvokeEvent(const char* evt, void* callData)
-// 
-public int InvokeEvent(string/*const char* */ evt, IntPtr/*void* */ callData) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkObject.InvokeEvent(p,obj, evt, callData);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int InvokeEvent(const char * event, void * callData)
+// "int InvokeEvent(const char *event, void *callData)"
+public new int InvokeEvent(char /*(char*)*/ []evt, IntPtr /*(void*)*/ []callData) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkObject.InvokeEvent_1(this, returnPointer, evt, callData);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkObject::InvokeEvent(unsigned long evt)
-// 
-public int InvokeEvent(ulong evt) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkObject.InvokeEvent(p,obj, evt);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int InvokeEvent(unsigned long event)
+// "int InvokeEvent(unsigned long event)"
+public new int InvokeEvent(ulong /*(long)*/ evt) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkObject.InvokeEvent_2(this, returnPointer, evt);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkObject::InvokeEvent(const char* evt)
-// 
-public int InvokeEvent(string/*const char* */ evt) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkObject.InvokeEvent(p,obj, evt);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int InvokeEvent(const char * event)
+// "int InvokeEvent(const char *event)"
+public new int InvokeEvent(char /*(char*)*/ []evt) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkObject.InvokeEvent_3(this, returnPointer, evt);
+	return Ptr.deref(returnPointer);
 }
 
 

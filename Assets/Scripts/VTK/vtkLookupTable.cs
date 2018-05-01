@@ -1,330 +1,320 @@
 
+
 using System;
 using UnityEngine;
 using System.Runtime.InteropServices;
 
-
-namespace VTK
-{
+namespace VTK {
 public partial class vtkLookupTable : vtkScalarsToColors {
 
-//       Method: static vtkLookupTable * vtkLookupTable::New()
-// 
-public static vtkLookupTable New() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkLookupTable.New(p);
-	vtkLookupTable result = new vtkLookupTable();
-	unsafe {result.SetPtr(new IntPtr ((*(void**)p.ToPointer ())));}
-	Marshal.FreeHGlobal (p);
-	return result;
+// static vtkLookupTable* New()
+// "static vtkLookupTable *New()"
+public new static vtkLookupTable New() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkLookupTable.New_0(returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual const char * vtkLookupTable::GetClassName()
-// 
-public string GetClassName() {
-	IntPtr p =  Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr()));
-	VTK.API_vtkLookupTable.GetClassName(p,obj);
-	string result = Marshal.PtrToStringAnsi(Marshal.ReadIntPtr(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int IsOpaque()
+// "int IsOpaque()"
+public new int IsOpaque() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkLookupTable.IsOpaque_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkLookupTable::IsOpaque()
-// 
-public int IsOpaque() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkLookupTable.IsOpaque(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int Allocate(int sz = 256, int ext = 256)
+// "int Allocate(int sz=256, int ext=256)"
+public new int Allocate(int /*(int)*/ sz, int /*(int)*/ ext) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkLookupTable.Allocate_0(this, returnPointer, sz, ext);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkLookupTable::Allocate(int sz, int ext)
-// 
-public int Allocate(int sz, int ext) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkLookupTable.Allocate(p,obj, sz, ext);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// void Build()
+// "void Build()"
+public new void Build() {
+	API_vtkLookupTable.Build_0(this);
 }
 
 
-//       Method: void vtkLookupTable::Build()
-// 
-public void Build() {
-	VTK.API_vtkLookupTable.Build(obj);
+// virtual void ForceBuild()
+// "virtual void ForceBuild()"
+public new void ForceBuild() {
+	API_vtkLookupTable.ForceBuild_0(this);
 }
 
 
-//       Method: virtual void vtkLookupTable::ForceBuild()
-// 
-public void ForceBuild() {
-	VTK.API_vtkLookupTable.ForceBuild(obj);
+// void BuildSpecialColors()
+// "void BuildSpecialColors()"
+public new void BuildSpecialColors() {
+	API_vtkLookupTable.BuildSpecialColors_0(this);
 }
 
 
-//       Method: void vtkLookupTable::BuildSpecialColors()
-// 
-public void BuildSpecialColors() {
-	VTK.API_vtkLookupTable.BuildSpecialColors(obj);
+// void SetRampToLinear()
+// "void SetRampToLinear()"
+public new void SetRampToLinear() {
+	API_vtkLookupTable.SetRampToLinear_0(this);
 }
 
 
-//       Method: void vtkLookupTable::SetRampToLinear()
-// 
-public void SetRampToLinear() {
-	VTK.API_vtkLookupTable.SetRampToLinear(obj);
+// void SetRampToSCurve()
+// "void SetRampToSCurve()"
+public new void SetRampToSCurve() {
+	API_vtkLookupTable.SetRampToSCurve_0(this);
 }
 
 
-//       Method: void vtkLookupTable::SetRampToSCurve()
-// 
-public void SetRampToSCurve() {
-	VTK.API_vtkLookupTable.SetRampToSCurve(obj);
+// void SetRampToSQRT()
+// "void SetRampToSQRT()"
+public new void SetRampToSQRT() {
+	API_vtkLookupTable.SetRampToSQRT_0(this);
 }
 
 
-//       Method: void vtkLookupTable::SetRampToSQRT()
-// 
-public void SetRampToSQRT() {
-	VTK.API_vtkLookupTable.SetRampToSQRT(obj);
+// void SetScale(int scale)
+// "void SetScale(int scale)"
+public new void SetScale(int /*(int)*/ scale) {
+	API_vtkLookupTable.SetScale_0(this, scale);
 }
 
 
-//       Method: void vtkLookupTable::SetScale(int scale)
-// 
-public void SetScale(int scale) {
-	VTK.API_vtkLookupTable.SetScale(obj, scale);
+// void SetScaleToLinear()
+// "void SetScaleToLinear()"
+public new void SetScaleToLinear() {
+	API_vtkLookupTable.SetScaleToLinear_0(this);
 }
 
 
-//       Method: void vtkLookupTable::SetScaleToLinear()
-// 
-public void SetScaleToLinear() {
-	VTK.API_vtkLookupTable.SetScaleToLinear(obj);
+// void SetScaleToLog10()
+// "void SetScaleToLog10()"
+public new void SetScaleToLog10() {
+	API_vtkLookupTable.SetScaleToLog10_0(this);
 }
 
 
-//       Method: void vtkLookupTable::SetScaleToLog10()
-// 
-public void SetScaleToLog10() {
-	VTK.API_vtkLookupTable.SetScaleToLog10(obj);
+// virtual void SetTableRange(const double r[2])
+// "virtual void SetTableRange(const double r[2])"
+public new void SetTableRange(double /*(double[2])*/ []r) {
+	API_vtkLookupTable.SetTableRange_0(this, r);
 }
 
 
-//       Method: virtual void vtkLookupTable::SetTableRange(const double r[2])
-// 
-public void SetTableRange(double[] /*2*/ r) {
-	VTK.API_vtkLookupTable.SetTableRange(obj, r);
+// virtual void SetTableRange(double min, double max)
+// "virtual void SetTableRange(double min, double max)"
+public new void SetTableRange(double /*(double)*/ min, double /*(double)*/ max) {
+	API_vtkLookupTable.SetTableRange_1(this, min, max);
 }
 
 
-//       Method: virtual void vtkLookupTable::SetTableRange(double min, double max)
-// 
-public void SetTableRange(double min, double max) {
-	VTK.API_vtkLookupTable.SetTableRange(obj, min, max);
+// char* GetNanColorAsUnsignedChars()
+// "unsigned char* GetNanColorAsUnsignedChars()"
+public new char GetNanColorAsUnsignedChars() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new char())*return_elements);
+	API_vtkLookupTable.GetNanColorAsUnsignedChars_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: static void vtkLookupTable::GetColorAsUnsignedChars(const double colorIn[4], unsigned char colorOut[4])
-// 
-public static void GetColorAsUnsignedChars(double[] /*4*/ colorIn, byte[] /*4*/ colorOut) {
-	VTK.API_vtkLookupTable.GetColorAsUnsignedChars(colorIn, colorOut);
+// static void GetColorAsUnsignedChars(const double colorIn[4], unsigned char colorOut[4])
+// "static void GetColorAsUnsignedChars(const double colorIn[4], unsigned char colorOut[4])"
+public new static void GetColorAsUnsignedChars(double /*(double[4])*/ []colorIn, char /*(char[4])*/ []colorOut) {
+	API_vtkLookupTable.GetColorAsUnsignedChars_0(colorIn, colorOut);
 }
 
 
-//       Method: void vtkLookupTable::GetColor(double x, double rgb[3])
-// 
-public void GetColor(double x, double[] /*3*/ rgb) {
-	VTK.API_vtkLookupTable.GetColor(obj, x, rgb);
+// char* MapValue(double v)
+// "unsigned char* MapValue(double v)"
+public new char MapValue(double /*(double)*/ v) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new char())*return_elements);
+	API_vtkLookupTable.MapValue_0(this, returnPointer, v);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: double vtkLookupTable::GetOpacity(double v)
-// 
-public double GetOpacity(double v) {
-	int numElements = 1;
-	double example = new double();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkLookupTable.GetOpacity(p,obj, v);
-	double result;
-	Marshal.Copy (p, result, 0, 1);
-	Marshal.FreeHGlobal (p);
-	return result;
+// void GetColor(double x, double rgb[3])
+// "void GetColor(double x, double rgb[3])"
+public new void GetColor(double /*(double)*/ x, double /*(double[3])*/ []rgb) {
+	API_vtkLookupTable.GetColor_0(this, x, rgb);
 }
 
 
-//       Method: virtual vtkIdType vtkLookupTable::GetIndex(double v)
-// 
-public long GetIndex(double v) {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkLookupTable.GetIndex(p,obj, v);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// double GetOpacity(double v)
+// "double GetOpacity(double v)"
+public new double GetOpacity(double /*(double)*/ v) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new double())*return_elements);
+	API_vtkLookupTable.GetOpacity_0(this, returnPointer, v);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkLookupTable::SetNumberOfTableValues(vtkIdType number)
-// 
-public void SetNumberOfTableValues(long number) {
-	VTK.API_vtkLookupTable.SetNumberOfTableValues(obj, number);
+// virtual vtkIdType GetIndex(double v)
+// "virtual vtkIdType GetIndex(double v)"
+public new long GetIndex(double /*(double)*/ v) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkLookupTable.GetIndex_0(this, returnPointer, v);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkIdType vtkLookupTable::GetNumberOfTableValues()
-// 
-public long GetNumberOfTableValues() {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkLookupTable.GetNumberOfTableValues(p,obj);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// void SetNumberOfTableValues(vtkIdType number)
+// "void SetNumberOfTableValues(vtkIdType number)"
+public new void SetNumberOfTableValues(long /*(vtkIdType)*/ number) {
+	API_vtkLookupTable.SetNumberOfTableValues_0(this, number);
 }
 
 
-//       Method: virtual void vtkLookupTable::SetTableValue(vtkIdType indx, const double rgba[4])
-// 
-public void SetTableValue(long indx, double[] /*4*/ rgba) {
-	VTK.API_vtkLookupTable.SetTableValue(obj, indx, rgba);
+// vtkIdType GetNumberOfTableValues()
+// "vtkIdType GetNumberOfTableValues()"
+public new long GetNumberOfTableValues() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkLookupTable.GetNumberOfTableValues_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual void vtkLookupTable::SetTableValue(vtkIdType indx, double r, double g, double b)
-// 
-public void SetTableValue(long indx, double r, double g, double b) {
-	VTK.API_vtkLookupTable.SetTableValue(obj, indx, r, g, b);
+// virtual void SetTableValue(vtkIdType indx, const double rgba[4])
+// "virtual void SetTableValue(vtkIdType indx, const double rgba[4])"
+public new void SetTableValue(long /*(vtkIdType)*/ indx, double /*(double[4])*/ []rgba) {
+	API_vtkLookupTable.SetTableValue_0(this, indx, rgba);
 }
 
 
-//       Method: double * vtkLookupTable::GetTableValue(vtkIdType id)
-// 
-public double[] GetTableValue(long id) {
-	int numElements = 1;
-	double[] example = new double[numElements];
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkLookupTable.GetTableValue(p,obj, id);
-	double[] result = new double[numElements];
-	Marshal.Copy (p, result, 0, numElements);
-	Marshal.FreeHGlobal (p);
-	return result;
+// double* GetTableValue(vtkIdType id)
+// "double *GetTableValue(vtkIdType id)"
+public new double GetTableValue(long /*(vtkIdType)*/ id) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new double())*return_elements);
+	API_vtkLookupTable.GetTableValue_0(this, returnPointer, id);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkLookupTable::GetTableValue(vtkIdType id, double rgba[4])
-// 
-public void GetTableValue(long id, double[] /*4*/ rgba) {
-	VTK.API_vtkLookupTable.GetTableValue(obj, id, rgba);
+// void GetTableValue(vtkIdType id, double rgba[4])
+// "void GetTableValue(vtkIdType id, double rgba[4])"
+public new void GetTableValue(long /*(vtkIdType)*/ id, double /*(double[4])*/ []rgba) {
+	API_vtkLookupTable.GetTableValue_1(this, id, rgba);
 }
 
 
-//       Method: double * vtkLookupTable::GetRange()
-// 
-public double[] GetRange() {
-	int numElements = 1;
-	double[] example = new double[numElements];
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkLookupTable.GetRange(p,obj);
-	double[] result = new double[numElements];
-	Marshal.Copy (p, result, 0, numElements);
-	Marshal.FreeHGlobal (p);
-	return result;
+// char* GetPointer(vtkIdType id)
+// "unsigned char *GetPointer(vtkIdType id)"
+public new char GetPointer(long /*(vtkIdType)*/ id) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new char())*return_elements);
+	API_vtkLookupTable.GetPointer_0(this, returnPointer, id);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkLookupTable::SetRange(double min, double max)
-// 
-public void SetRange(double min, double max) {
-	VTK.API_vtkLookupTable.SetRange(obj, min, max);
+// char* WritePointer(vtkIdType id, int number)
+// "unsigned char *WritePointer(vtkIdType id, int number)"
+public new char WritePointer(long /*(vtkIdType)*/ id, int /*(int)*/ number) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new char())*return_elements);
+	API_vtkLookupTable.WritePointer_0(this, returnPointer, id, number);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkLookupTable::SetRange(const double rng[2])
-// 
-public void SetRange(double[] /*2*/ rng) {
-	VTK.API_vtkLookupTable.SetRange(obj, rng);
+// double* GetRange()
+// "double *GetRange()"
+public new double GetRange() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new double())*return_elements);
+	API_vtkLookupTable.GetRange_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: static void vtkLookupTable::GetLogRange(const double range[2], double log_range[2])
-// 
-public static void GetLogRange(double[] /*2*/ range, double[] /*2*/ log_range) {
-	VTK.API_vtkLookupTable.GetLogRange(range, log_range);
+// void SetRange(double min, double max)
+// "void SetRange(double min, double max)"
+public new void SetRange(double /*(double)*/ min, double /*(double)*/ max) {
+	API_vtkLookupTable.SetRange_0(this, min, max);
 }
 
 
-//       Method: static double vtkLookupTable::ApplyLogScale(double v, const double range[2], const double log_range[2])
-// 
-public static double ApplyLogScale(double v, double[] /*2*/ range, double[] /*2*/ log_range) {
-	int numElements = 1;
-	double example = new double();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkLookupTable.ApplyLogScale(p, v, range, log_range);
-	double result;
-	Marshal.Copy (p, result, 0, 1);
-	Marshal.FreeHGlobal (p);
-	return result;
+// void SetRange(const double rng[2])
+// "void SetRange(const double rng[2])"
+public new void SetRange(double /*(double[2])*/ []rng) {
+	API_vtkLookupTable.SetRange_1(this, rng);
 }
 
 
-//       Method: void vtkLookupTable::MapScalarsThroughTable2(void* input, unsigned char* output, int inputDataType, int numberOfValues, int inputIncrement, int outputIncrement)
-// 
-public void MapScalarsThroughTable2(IntPtr/*void* */ input, byte/*unsigned char* */ output, int inputDataType, int numberOfValues, int inputIncrement, int outputIncrement) {
-	VTK.API_vtkLookupTable.MapScalarsThroughTable2(obj, input, output, inputDataType, numberOfValues, inputIncrement, outputIncrement);
+// static void GetLogRange(const double range[2], double log_range[2])
+// "static void GetLogRange(const double range[2], double log_range[2])"
+public new static void GetLogRange(double /*(double[2])*/ []range, double /*(double[2])*/ []log_range) {
+	API_vtkLookupTable.GetLogRange_0(range, log_range);
 }
 
 
-//       Method: void vtkLookupTable::DeepCopy(vtkScalarsToColors* lut)
-// 
-public void DeepCopy(vtkScalarsToColors/*vtkScalarsToColors* */ lut) {
-	VTK.API_vtkLookupTable.DeepCopy(obj, lut);
+// static double ApplyLogScale(double v, const double range[2], const double log_range[2])
+// "static double ApplyLogScale(double v, const double range[2], const double log_range[2])"
+public new static double ApplyLogScale(double /*(double)*/ v, double /*(double[2])*/ []range, double /*(double[2])*/ []log_range) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new double())*return_elements);
+	API_vtkLookupTable.ApplyLogScale_0(returnPointer, v, range, log_range);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkLookupTable::UsingLogScale()
-// 
-public int UsingLogScale() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkLookupTable.UsingLogScale(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// void SetTable(vtkUnsignedCharArray * ARG_0)
+// "void SetTable(vtkUnsignedCharArray *)"
+public new void SetTable(vtkUnsignedCharArray /*(vtkUnsignedCharArray*)*/ ARG_0) {
+	API_vtkLookupTable.SetTable_0(this, ARG_0);
 }
 
 
-//       Method: vtkIdType vtkLookupTable::GetNumberOfAvailableColors()
-// 
-public long GetNumberOfAvailableColors() {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkLookupTable.GetNumberOfAvailableColors(p,obj);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// void MapScalarsThroughTable2(void * input, unsigned char * output, int inputDataType, int numberOfValues, int inputIncrement, int outputIncrement)
+// "void MapScalarsThroughTable2(void *input, unsigned char *output, int inputDataType, int numberOfValues, int inputIncrement, int outputIncrement)"
+public new void MapScalarsThroughTable2(IntPtr /*(void*)*/ []input, char /*(char*)*/ []output, int /*(int)*/ inputDataType, int /*(int)*/ numberOfValues, int /*(int)*/ inputIncrement, int /*(int)*/ outputIncrement) {
+	API_vtkLookupTable.MapScalarsThroughTable2_0(this, input, output, inputDataType, numberOfValues, inputIncrement, outputIncrement);
 }
 
 
-//       Method: void vtkLookupTable::GetIndexedColor(vtkIdType idx, double rgba[4])
-// 
-public void GetIndexedColor(long idx, double[] /*4*/ rgba) {
-	VTK.API_vtkLookupTable.GetIndexedColor(obj, idx, rgba);
+// void DeepCopy(vtkScalarsToColors * lut)
+// "void DeepCopy(vtkScalarsToColors *lut)"
+public new void DeepCopy(vtkScalarsToColors /*(vtkScalarsToColors*)*/ lut) {
+	API_vtkLookupTable.DeepCopy_0(this, lut);
+}
+
+
+// int UsingLogScale()
+// "int UsingLogScale()"
+public new int UsingLogScale() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkLookupTable.UsingLogScale_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
+}
+
+
+// vtkIdType GetNumberOfAvailableColors()
+// "vtkIdType GetNumberOfAvailableColors()"
+public new long GetNumberOfAvailableColors() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkLookupTable.GetNumberOfAvailableColors_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
+}
+
+
+// void GetIndexedColor(vtkIdType idx, double rgba[4])
+// "void GetIndexedColor(vtkIdType idx, double rgba[4])"
+public new void GetIndexedColor(long /*(vtkIdType)*/ idx, double /*(double[4])*/ []rgba) {
+	API_vtkLookupTable.GetIndexedColor_0(this, idx, rgba);
 }
 
 

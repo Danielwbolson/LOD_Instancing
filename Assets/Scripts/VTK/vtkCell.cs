@@ -1,391 +1,329 @@
 
+
 using System;
 using UnityEngine;
 using System.Runtime.InteropServices;
 
-
-namespace VTK
-{
+namespace VTK {
 public partial class vtkCell : vtkObject {
 
-//       Method: virtual const char * vtkCell::GetClassName()
-// 
-public string GetClassName() {
-	IntPtr p =  Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr()));
-	VTK.API_vtkCell.GetClassName(p,obj);
-	string result = Marshal.PtrToStringAnsi(Marshal.ReadIntPtr(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// void Initialize(int npts, vtkIdType * pts, vtkPoints * p)
+// "void Initialize(int npts, vtkIdType *pts, vtkPoints *p)"
+public new void Initialize(int /*(int)*/ npts, long /*(vtkIdType*)*/ []pts, vtkPoints /*(vtkPoints*)*/ p) {
+	API_vtkCell.Initialize_0(this, npts, pts, p);
 }
 
 
-//       Method: void vtkCell::Initialize(int npts, vtkIdType* pts, vtkPoints* p)
-// 
-public void Initialize(int npts, long/*vtkIdType* */ pts, vtkPoints/*vtkPoints* */ p) {
-	VTK.API_vtkCell.Initialize(obj, npts, pts, p);
+// void Initialize(int npts, vtkPoints * p)
+// "void Initialize(int npts, vtkPoints *p)"
+public new void Initialize(int /*(int)*/ npts, vtkPoints /*(vtkPoints*)*/ p) {
+	API_vtkCell.Initialize_1(this, npts, p);
 }
 
 
-//       Method: void vtkCell::Initialize(int npts, vtkPoints* p)
-// 
-public void Initialize(int npts, vtkPoints/*vtkPoints* */ p) {
-	VTK.API_vtkCell.Initialize(obj, npts, p);
+// virtual void ShallowCopy(vtkCell * c)
+// "virtual void ShallowCopy(vtkCell *c)"
+public new void ShallowCopy(vtkCell /*(vtkCell*)*/ c) {
+	API_vtkCell.ShallowCopy_0(this, c);
 }
 
 
-//       Method: virtual void vtkCell::ShallowCopy(vtkCell* c)
-// 
-public void ShallowCopy(vtkCell/*vtkCell* */ c) {
-	VTK.API_vtkCell.ShallowCopy(obj, c);
+// virtual void DeepCopy(vtkCell * c)
+// "virtual void DeepCopy(vtkCell *c)"
+public new void DeepCopy(vtkCell /*(vtkCell*)*/ c) {
+	API_vtkCell.DeepCopy_0(this, c);
 }
 
 
-//       Method: virtual void vtkCell::DeepCopy(vtkCell* c)
-// 
-public void DeepCopy(vtkCell/*vtkCell* */ c) {
-	VTK.API_vtkCell.DeepCopy(obj, c);
+// virtual int GetCellType()
+// "virtual int GetCellType()"
+public new int GetCellType() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkCell.GetCellType_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual int vtkCell::GetCellType()
-// 
-public int GetCellType() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCell.GetCellType(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual int GetCellDimension()
+// "virtual int GetCellDimension()"
+public new int GetCellDimension() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkCell.GetCellDimension_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual int vtkCell::GetCellDimension()
-// 
-public int GetCellDimension() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCell.GetCellDimension(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual int IsLinear()
+// "virtual int IsLinear()"
+public new int IsLinear() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkCell.IsLinear_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual int vtkCell::IsLinear()
-// 
-public int IsLinear() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCell.IsLinear(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual int RequiresInitialization()
+// "virtual int RequiresInitialization()"
+public new int RequiresInitialization() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkCell.RequiresInitialization_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual int vtkCell::RequiresInitialization()
-// 
-public int RequiresInitialization() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCell.RequiresInitialization(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual void Initialize()
+// "virtual void Initialize()"
+public new void Initialize() {
+	API_vtkCell.Initialize_2(this);
 }
 
 
-//       Method: virtual void vtkCell::Initialize()
-// 
-public void Initialize() {
-	VTK.API_vtkCell.Initialize(obj);
+// virtual int IsExplicitCell()
+// "virtual int IsExplicitCell()"
+public new int IsExplicitCell() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkCell.IsExplicitCell_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual int vtkCell::IsExplicitCell()
-// 
-public int IsExplicitCell() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCell.IsExplicitCell(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual int RequiresExplicitFaceRepresentation()
+// "virtual int RequiresExplicitFaceRepresentation()"
+public new int RequiresExplicitFaceRepresentation() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkCell.RequiresExplicitFaceRepresentation_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual int vtkCell::RequiresExplicitFaceRepresentation()
-// 
-public int RequiresExplicitFaceRepresentation() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCell.RequiresExplicitFaceRepresentation(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual vtkIdType* GetFaces()
+// "virtual vtkIdType *GetFaces()"
+public new long GetFaces() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkCell.GetFaces_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual vtkIdType * vtkCell::GetFaces()
-// 
-public long GetFaces() {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCell.GetFaces(p,obj);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkPoints* GetPoints()
+// "vtkPoints *GetPoints()"
+public new vtkPoints GetPoints() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkCell.GetPoints_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkPoints * vtkCell::GetPoints()
-// 
-public vtkPoints GetPoints() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCell.GetPoints(p,obj);
-	vtkPoints result = new vtkPoints();
-	unsafe {result.SetPtr(new IntPtr ((*(void**)p.ToPointer ())));}
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkIdType GetNumberOfPoints()
+// "vtkIdType GetNumberOfPoints()"
+public new long GetNumberOfPoints() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkCell.GetNumberOfPoints_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkIdType vtkCell::GetNumberOfPoints()
-// 
-public long GetNumberOfPoints() {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCell.GetNumberOfPoints(p,obj);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual int GetNumberOfEdges()
+// "virtual int GetNumberOfEdges()"
+public new int GetNumberOfEdges() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkCell.GetNumberOfEdges_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual int vtkCell::GetNumberOfEdges()
-// 
-public int GetNumberOfEdges() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCell.GetNumberOfEdges(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual int GetNumberOfFaces()
+// "virtual int GetNumberOfFaces()"
+public new int GetNumberOfFaces() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkCell.GetNumberOfFaces_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual int vtkCell::GetNumberOfFaces()
-// 
-public int GetNumberOfFaces() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCell.GetNumberOfFaces(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkIdList* GetPointIds()
+// "vtkIdList *GetPointIds()"
+public new vtkIdList GetPointIds() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkCell.GetPointIds_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkIdList * vtkCell::GetPointIds()
-// 
-public vtkIdList GetPointIds() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCell.GetPointIds(p,obj);
-	vtkIdList result = new vtkIdList();
-	unsafe {result.SetPtr(new IntPtr ((*(void**)p.ToPointer ())));}
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkIdType GetPointId(int ptId)
+// "vtkIdType GetPointId(int ptId)"
+public new long GetPointId(int /*(int)*/ ptId) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkCell.GetPointId_0(this, returnPointer, ptId);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkIdType vtkCell::GetPointId(int ptId)
-// 
-public long GetPointId(int ptId) {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCell.GetPointId(p,obj, ptId);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual vtkCell* GetEdge(int edgeId)
+// "virtual vtkCell *GetEdge(int edgeId)"
+public new vtkCell GetEdge(int /*(int)*/ edgeId) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkCell.GetEdge_0(this, returnPointer, edgeId);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual vtkCell * vtkCell::GetEdge(int edgeId)
-// 
-public vtkCell GetEdge(int edgeId) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCell.GetEdge(p,obj, edgeId);
-	vtkCell result = new vtkCell();
-	unsafe {result.SetPtr(new IntPtr ((*(void**)p.ToPointer ())));}
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual vtkCell* GetFace(int faceId)
+// "virtual vtkCell *GetFace(int faceId)"
+public new vtkCell GetFace(int /*(int)*/ faceId) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkCell.GetFace_0(this, returnPointer, faceId);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual vtkCell * vtkCell::GetFace(int faceId)
-// 
-public vtkCell GetFace(int faceId) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCell.GetFace(p,obj, faceId);
-	vtkCell result = new vtkCell();
-	unsafe {result.SetPtr(new IntPtr ((*(void**)p.ToPointer ())));}
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual int CellBoundary(int subId, double pcoords[3], vtkIdList * pts)
+// "virtual int CellBoundary(int subId, double pcoords[3], vtkIdList *pts)"
+public new int CellBoundary(int /*(int)*/ subId, double /*(double[3])*/ []pcoords, vtkIdList /*(vtkIdList*)*/ pts) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkCell.CellBoundary_0(this, returnPointer, subId, pcoords, pts);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual int vtkCell::CellBoundary(int subId, double pcoords[3], vtkIdList* pts)
-// 
-public int CellBoundary(int subId, double[] /*3*/ pcoords, vtkIdList/*vtkIdList* */ pts) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCell.CellBoundary(p,obj, subId, pcoords, pts);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual int EvaluatePosition(double x[3], double * closestPoint, int & subId, double pcoords[3], double & dist2, double * weights)
+// "virtual int EvaluatePosition(double x[3], double* closestPoint, int& subId, double pcoords[3], double& dist2, double *weights)"
+public new int EvaluatePosition(double /*(double[3])*/ []x, double /*(double*)*/ []closestPoint, int /*(int&)*/ []subId, double /*(double[3])*/ []pcoords, double /*(double&)*/ []dist2, double /*(double*)*/ []weights) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkCell.EvaluatePosition_0(this, returnPointer, x, closestPoint, *subId, pcoords, *dist2, weights);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual void vtkCell::Contour(double value, vtkDataArray* cellScalars, vtkIncrementalPointLocator* locator, vtkCellArray* verts, vtkCellArray* lines, vtkCellArray* polys, vtkPointData* inPd, vtkPointData* outPd, vtkCellData* inCd, vtkIdType cellId, vtkCellData* outCd)
-// 
-public void Contour(double value, vtkDataArray/*vtkDataArray* */ cellScalars, vtkIncrementalPointLocator/*vtkIncrementalPointLocator* */ locator, vtkCellArray/*vtkCellArray* */ verts, vtkCellArray/*vtkCellArray* */ lines, vtkCellArray/*vtkCellArray* */ polys, vtkPointData/*vtkPointData* */ inPd, vtkPointData/*vtkPointData* */ outPd, vtkCellData/*vtkCellData* */ inCd, long cellId, vtkCellData/*vtkCellData* */ outCd) {
-	VTK.API_vtkCell.Contour(obj, value, cellScalars, locator, verts, lines, polys, inPd, outPd, inCd, cellId, outCd);
+// virtual void EvaluateLocation(int & subId, double pcoords[3], double x[3], double * weights)
+// "virtual void EvaluateLocation(int& subId, double pcoords[3], double x[3], double *weights)"
+public new void EvaluateLocation(int /*(int&)*/ []subId, double /*(double[3])*/ []pcoords, double /*(double[3])*/ []x, double /*(double*)*/ []weights) {
+	API_vtkCell.EvaluateLocation_0(this, *subId, pcoords, x, weights);
 }
 
 
-//       Method: virtual void vtkCell::Clip(double value, vtkDataArray* cellScalars, vtkIncrementalPointLocator* locator, vtkCellArray* connectivity, vtkPointData* inPd, vtkPointData* outPd, vtkCellData* inCd, vtkIdType cellId, vtkCellData* outCd, int insideOut)
-// 
-public void Clip(double value, vtkDataArray/*vtkDataArray* */ cellScalars, vtkIncrementalPointLocator/*vtkIncrementalPointLocator* */ locator, vtkCellArray/*vtkCellArray* */ connectivity, vtkPointData/*vtkPointData* */ inPd, vtkPointData/*vtkPointData* */ outPd, vtkCellData/*vtkCellData* */ inCd, long cellId, vtkCellData/*vtkCellData* */ outCd, int insideOut) {
-	VTK.API_vtkCell.Clip(obj, value, cellScalars, locator, connectivity, inPd, outPd, inCd, cellId, outCd, insideOut);
+// virtual void Contour(double value, vtkDataArray * cellScalars, vtkIncrementalPointLocator * locator, vtkCellArray * verts, vtkCellArray * lines, vtkCellArray * polys, vtkPointData * inPd, vtkPointData * outPd, vtkCellData * inCd, vtkIdType cellId, vtkCellData * outCd)
+// "virtual void Contour(double value, vtkDataArray *cellScalars, vtkIncrementalPointLocator *locator, vtkCellArray *verts, vtkCellArray *lines, vtkCellArray *polys, vtkPointData *inPd, vtkPointData *outPd, vtkCellData *inCd, vtkIdType cellId, vtkCellData *outCd)"
+public new void Contour(double /*(double)*/ value, vtkDataArray /*(vtkDataArray*)*/ cellScalars, vtkIncrementalPointLocator /*(vtkIncrementalPointLocator*)*/ locator, vtkCellArray /*(vtkCellArray*)*/ verts, vtkCellArray /*(vtkCellArray*)*/ lines, vtkCellArray /*(vtkCellArray*)*/ polys, vtkPointData /*(vtkPointData*)*/ inPd, vtkPointData /*(vtkPointData*)*/ outPd, vtkCellData /*(vtkCellData*)*/ inCd, long /*(vtkIdType)*/ cellId, vtkCellData /*(vtkCellData*)*/ outCd) {
+	API_vtkCell.Contour_0(this, value, cellScalars, locator, verts, lines, polys, inPd, outPd, inCd, cellId, outCd);
 }
 
 
-//       Method: virtual int vtkCell::Triangulate(int index, vtkIdList* ptIds, vtkPoints* pts)
-// 
-public int Triangulate(int index, vtkIdList/*vtkIdList* */ ptIds, vtkPoints/*vtkPoints* */ pts) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCell.Triangulate(p,obj, index, ptIds, pts);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual void Clip(double value, vtkDataArray * cellScalars, vtkIncrementalPointLocator * locator, vtkCellArray * connectivity, vtkPointData * inPd, vtkPointData * outPd, vtkCellData * inCd, vtkIdType cellId, vtkCellData * outCd, int insideOut)
+// "virtual void Clip(double value, vtkDataArray *cellScalars, vtkIncrementalPointLocator *locator, vtkCellArray *connectivity, vtkPointData *inPd, vtkPointData *outPd, vtkCellData *inCd, vtkIdType cellId, vtkCellData *outCd, int insideOut)"
+public new void Clip(double /*(double)*/ value, vtkDataArray /*(vtkDataArray*)*/ cellScalars, vtkIncrementalPointLocator /*(vtkIncrementalPointLocator*)*/ locator, vtkCellArray /*(vtkCellArray*)*/ connectivity, vtkPointData /*(vtkPointData*)*/ inPd, vtkPointData /*(vtkPointData*)*/ outPd, vtkCellData /*(vtkCellData*)*/ inCd, long /*(vtkIdType)*/ cellId, vtkCellData /*(vtkCellData*)*/ outCd, int /*(int)*/ insideOut) {
+	API_vtkCell.Clip_0(this, value, cellScalars, locator, connectivity, inPd, outPd, inCd, cellId, outCd, insideOut);
 }
 
 
-//       Method: virtual void vtkCell::Derivatives(int subId, double pcoords[3], double* values, int dim, double* derivs)
-// 
-public void Derivatives(int subId, double[] /*3*/ pcoords, double/*double* */ values, int dim, double/*double* */ derivs) {
-	VTK.API_vtkCell.Derivatives(obj, subId, pcoords, values, dim, derivs);
+// virtual int IntersectWithLine(double p1[3], double p2[3], double tol, double & t, double x[3], double pcoords[3], int & subId)
+// "virtual int IntersectWithLine(double p1[3], double p2[3], double tol, double& t, double x[3], double pcoords[3], int& subId)"
+public new int IntersectWithLine(double /*(double[3])*/ []p1, double /*(double[3])*/ []p2, double /*(double)*/ tol, double /*(double&)*/ []t, double /*(double[3])*/ []x, double /*(double[3])*/ []pcoords, int /*(int&)*/ []subId) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkCell.IntersectWithLine_0(this, returnPointer, p1, p2, tol, *t, x, pcoords, *subId);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkCell::GetBounds(double bounds[6])
-// 
-public void GetBounds(double[] /*6*/ bounds) {
-	VTK.API_vtkCell.GetBounds(obj, bounds);
+// virtual int Triangulate(int index, vtkIdList * ptIds, vtkPoints * pts)
+// "virtual int Triangulate(int index, vtkIdList *ptIds, vtkPoints *pts)"
+public new int Triangulate(int /*(int)*/ index, vtkIdList /*(vtkIdList*)*/ ptIds, vtkPoints /*(vtkPoints*)*/ pts) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkCell.Triangulate_0(this, returnPointer, index, ptIds, pts);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: double * vtkCell::GetBounds()
-// 
-public double[] GetBounds() {
-	int numElements = 1;
-	double[] example = new double[numElements];
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCell.GetBounds(p,obj);
-	double[] result = new double[numElements];
-	Marshal.Copy (p, result, 0, numElements);
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual void Derivatives(int subId, double pcoords[3], double * values, int dim, double * derivs)
+// "virtual void Derivatives(int subId, double pcoords[3], double *values, int dim, double *derivs)"
+public new void Derivatives(int /*(int)*/ subId, double /*(double[3])*/ []pcoords, double /*(double*)*/ []values, int /*(int)*/ dim, double /*(double*)*/ []derivs) {
+	API_vtkCell.Derivatives_0(this, subId, pcoords, values, dim, derivs);
 }
 
 
-//       Method: double vtkCell::GetLength2()
-// 
-public double GetLength2() {
-	int numElements = 1;
-	double example = new double();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCell.GetLength2(p,obj);
-	double result;
-	Marshal.Copy (p, result, 0, 1);
-	Marshal.FreeHGlobal (p);
-	return result;
+// void GetBounds(double bounds[6])
+// "void GetBounds(double bounds[6])"
+public new void GetBounds(double /*(double[6])*/ []bounds) {
+	API_vtkCell.GetBounds_0(this, bounds);
 }
 
 
-//       Method: virtual int vtkCell::GetParametricCenter(double pcoords[3])
-// 
-public int GetParametricCenter(double[] /*3*/ pcoords) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCell.GetParametricCenter(p,obj, pcoords);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// double* GetBounds()
+// "double *GetBounds()"
+public new double GetBounds() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new double())*return_elements);
+	API_vtkCell.GetBounds_1(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual double vtkCell::GetParametricDistance(double pcoords[3])
-// 
-public double GetParametricDistance(double[] /*3*/ pcoords) {
-	int numElements = 1;
-	double example = new double();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCell.GetParametricDistance(p,obj, pcoords);
-	double result;
-	Marshal.Copy (p, result, 0, 1);
-	Marshal.FreeHGlobal (p);
-	return result;
+// double GetLength2()
+// "double GetLength2()"
+public new double GetLength2() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new double())*return_elements);
+	API_vtkCell.GetLength2_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual int vtkCell::IsPrimaryCell()
-// 
-public int IsPrimaryCell() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCell.IsPrimaryCell(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual int GetParametricCenter(double pcoords[3])
+// "virtual int GetParametricCenter(double pcoords[3])"
+public new int GetParametricCenter(double /*(double[3])*/ []pcoords) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkCell.GetParametricCenter_0(this, returnPointer, pcoords);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual double * vtkCell::GetParametricCoords()
-// 
-public double[] GetParametricCoords() {
-	int numElements = 1;
-	double[] example = new double[numElements];
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCell.GetParametricCoords(p,obj);
-	double[] result = new double[numElements];
-	Marshal.Copy (p, result, 0, numElements);
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual double GetParametricDistance(double pcoords[3])
+// "virtual double GetParametricDistance(double pcoords[3])"
+public new double GetParametricDistance(double /*(double[3])*/ []pcoords) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new double())*return_elements);
+	API_vtkCell.GetParametricDistance_0(this, returnPointer, pcoords);
+	return Ptr.deref(returnPointer);
+}
+
+
+// virtual int IsPrimaryCell()
+// "virtual int IsPrimaryCell()"
+public new int IsPrimaryCell() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkCell.IsPrimaryCell_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
+}
+
+
+// virtual double* GetParametricCoords()
+// "virtual double *GetParametricCoords()"
+public new double GetParametricCoords() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new double())*return_elements);
+	API_vtkCell.GetParametricCoords_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 

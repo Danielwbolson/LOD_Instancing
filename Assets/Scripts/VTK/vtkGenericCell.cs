@@ -1,632 +1,587 @@
 
+
 using System;
 using UnityEngine;
 using System.Runtime.InteropServices;
 
-
-namespace VTK
-{
+namespace VTK {
 public partial class vtkGenericCell : vtkCell {
 
-//       Method: static vtkGenericCell * vtkGenericCell::New()
-// 
-public static vtkGenericCell New() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkGenericCell.New(p);
-	vtkGenericCell result = new vtkGenericCell();
-	unsafe {result.SetPtr(new IntPtr ((*(void**)p.ToPointer ())));}
-	Marshal.FreeHGlobal (p);
-	return result;
+// static vtkGenericCell* New()
+// "static vtkGenericCell *New()"
+public new static vtkGenericCell New() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkGenericCell.New_0(returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual const char * vtkGenericCell::GetClassName()
-// 
-public string GetClassName() {
-	IntPtr p =  Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr()));
-	VTK.API_vtkGenericCell.GetClassName(p,obj);
-	string result = Marshal.PtrToStringAnsi(Marshal.ReadIntPtr(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// void SetPoints(vtkPoints * points)
+// "void SetPoints(vtkPoints *points)"
+public new void SetPoints(vtkPoints /*(vtkPoints*)*/ points) {
+	API_vtkGenericCell.SetPoints_0(this, points);
 }
 
 
-//       Method: void vtkGenericCell::SetPoints(vtkPoints* points)
-// 
-public void SetPoints(vtkPoints/*vtkPoints* */ points) {
-	VTK.API_vtkGenericCell.SetPoints(obj, points);
+// void SetPointIds(vtkIdList * pointIds)
+// "void SetPointIds(vtkIdList *pointIds)"
+public new void SetPointIds(vtkIdList /*(vtkIdList*)*/ pointIds) {
+	API_vtkGenericCell.SetPointIds_0(this, pointIds);
 }
 
 
-//       Method: void vtkGenericCell::SetPointIds(vtkIdList* pointIds)
-// 
-public void SetPointIds(vtkIdList/*vtkIdList* */ pointIds) {
-	VTK.API_vtkGenericCell.SetPointIds(obj, pointIds);
+// void ShallowCopy(vtkCell * c)
+// "void ShallowCopy(vtkCell *c)"
+public new void ShallowCopy(vtkCell /*(vtkCell*)*/ c) {
+	API_vtkGenericCell.ShallowCopy_0(this, c);
 }
 
 
-//       Method: void vtkGenericCell::ShallowCopy(vtkCell* c)
-// 
-public void ShallowCopy(vtkCell/*vtkCell* */ c) {
-	VTK.API_vtkGenericCell.ShallowCopy(obj, c);
+// void DeepCopy(vtkCell * c)
+// "void DeepCopy(vtkCell *c)"
+public new void DeepCopy(vtkCell /*(vtkCell*)*/ c) {
+	API_vtkGenericCell.DeepCopy_0(this, c);
 }
 
 
-//       Method: void vtkGenericCell::DeepCopy(vtkCell* c)
-// 
-public void DeepCopy(vtkCell/*vtkCell* */ c) {
-	VTK.API_vtkGenericCell.DeepCopy(obj, c);
+// int GetCellType()
+// "int GetCellType()"
+public new int GetCellType() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkGenericCell.GetCellType_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkGenericCell::GetCellType()
-// 
-public int GetCellType() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkGenericCell.GetCellType(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int GetCellDimension()
+// "int GetCellDimension()"
+public new int GetCellDimension() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkGenericCell.GetCellDimension_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkGenericCell::GetCellDimension()
-// 
-public int GetCellDimension() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkGenericCell.GetCellDimension(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int IsLinear()
+// "int IsLinear()"
+public new int IsLinear() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkGenericCell.IsLinear_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkGenericCell::IsLinear()
-// 
-public int IsLinear() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkGenericCell.IsLinear(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int RequiresInitialization()
+// "int RequiresInitialization()"
+public new int RequiresInitialization() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkGenericCell.RequiresInitialization_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkGenericCell::RequiresInitialization()
-// 
-public int RequiresInitialization() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkGenericCell.RequiresInitialization(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// void Initialize()
+// "void Initialize()"
+public new void Initialize() {
+	API_vtkGenericCell.Initialize_0(this);
 }
 
 
-//       Method: void vtkGenericCell::Initialize()
-// 
-public void Initialize() {
-	VTK.API_vtkGenericCell.Initialize(obj);
-}
+// int RequiresExplicitFaceRepresentation()
+// "int RequiresExplicitFaceRepresentation()"
+public new int RequiresExplicitFaceRepresentation() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkGenericCell.RequiresExplicitFaceRepresentation_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
+}
+
+
+// void SetFaces(vtkIdType * faces)
+// "void SetFaces(vtkIdType *faces)"
+public new void SetFaces(long /*(vtkIdType*)*/ []faces) {
+	API_vtkGenericCell.SetFaces_0(this, faces);
+}
+
+
+// vtkIdType* GetFaces()
+// "vtkIdType *GetFaces()"
+public new long GetFaces() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkGenericCell.GetFaces_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
+}
 
 
-//       Method: int vtkGenericCell::RequiresExplicitFaceRepresentation()
-// 
-public int RequiresExplicitFaceRepresentation() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkGenericCell.RequiresExplicitFaceRepresentation(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int GetNumberOfEdges()
+// "int GetNumberOfEdges()"
+public new int GetNumberOfEdges() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkGenericCell.GetNumberOfEdges_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkGenericCell::SetFaces(vtkIdType* faces)
-// 
-public void SetFaces(long/*vtkIdType* */ faces) {
-	VTK.API_vtkGenericCell.SetFaces(obj, faces);
+// int GetNumberOfFaces()
+// "int GetNumberOfFaces()"
+public new int GetNumberOfFaces() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkGenericCell.GetNumberOfFaces_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkIdType * vtkGenericCell::GetFaces()
-// 
-public long GetFaces() {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkGenericCell.GetFaces(p,obj);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkCell* GetEdge(int edgeId)
+// "vtkCell *GetEdge(int edgeId)"
+public new vtkCell GetEdge(int /*(int)*/ edgeId) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkGenericCell.GetEdge_0(this, returnPointer, edgeId);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkGenericCell::GetNumberOfEdges()
-// 
-public int GetNumberOfEdges() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkGenericCell.GetNumberOfEdges(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkCell* GetFace(int faceId)
+// "vtkCell *GetFace(int faceId)"
+public new vtkCell GetFace(int /*(int)*/ faceId) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkGenericCell.GetFace_0(this, returnPointer, faceId);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkGenericCell::GetNumberOfFaces()
-// 
-public int GetNumberOfFaces() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkGenericCell.GetNumberOfFaces(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int CellBoundary(int subId, double pcoords[3], vtkIdList * pts)
+// "int CellBoundary(int subId, double pcoords[3], vtkIdList *pts)"
+public new int CellBoundary(int /*(int)*/ subId, double /*(double[3])*/ []pcoords, vtkIdList /*(vtkIdList*)*/ pts) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkGenericCell.CellBoundary_0(this, returnPointer, subId, pcoords, pts);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkCell * vtkGenericCell::GetEdge(int edgeId)
-// 
-public vtkCell GetEdge(int edgeId) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkGenericCell.GetEdge(p,obj, edgeId);
-	vtkCell result = new vtkCell();
-	unsafe {result.SetPtr(new IntPtr ((*(void**)p.ToPointer ())));}
-	Marshal.FreeHGlobal (p);
-	return result;
+// int EvaluatePosition(double x[3], double * closestPoint, int & subId, double pcoords[3], double & dist2, double * weights)
+// "int EvaluatePosition(double x[3], double* closestPoint, int& subId, double pcoords[3], double& dist2, double *weights)"
+public new int EvaluatePosition(double /*(double[3])*/ []x, double /*(double*)*/ []closestPoint, int /*(int&)*/ []subId, double /*(double[3])*/ []pcoords, double /*(double&)*/ []dist2, double /*(double*)*/ []weights) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkGenericCell.EvaluatePosition_0(this, returnPointer, x, closestPoint, *subId, pcoords, *dist2, weights);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkCell * vtkGenericCell::GetFace(int faceId)
-// 
-public vtkCell GetFace(int faceId) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkGenericCell.GetFace(p,obj, faceId);
-	vtkCell result = new vtkCell();
-	unsafe {result.SetPtr(new IntPtr ((*(void**)p.ToPointer ())));}
-	Marshal.FreeHGlobal (p);
-	return result;
+// void EvaluateLocation(int & subId, double pcoords[3], double x[3], double * weights)
+// "void EvaluateLocation(int& subId, double pcoords[3], double x[3], double *weights)"
+public new void EvaluateLocation(int /*(int&)*/ []subId, double /*(double[3])*/ []pcoords, double /*(double[3])*/ []x, double /*(double*)*/ []weights) {
+	API_vtkGenericCell.EvaluateLocation_0(this, *subId, pcoords, x, weights);
 }
 
 
-//       Method: int vtkGenericCell::CellBoundary(int subId, double pcoords[3], vtkIdList* pts)
-// 
-public int CellBoundary(int subId, double[] /*3*/ pcoords, vtkIdList/*vtkIdList* */ pts) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkGenericCell.CellBoundary(p,obj, subId, pcoords, pts);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// void Contour(double value, vtkDataArray * cellScalars, vtkIncrementalPointLocator * locator, vtkCellArray * verts, vtkCellArray * lines, vtkCellArray * polys, vtkPointData * inPd, vtkPointData * outPd, vtkCellData * inCd, vtkIdType cellId, vtkCellData * outCd)
+// "void Contour(double value, vtkDataArray *cellScalars, vtkIncrementalPointLocator *locator, vtkCellArray *verts, vtkCellArray *lines, vtkCellArray *polys, vtkPointData *inPd, vtkPointData *outPd, vtkCellData *inCd, vtkIdType cellId, vtkCellData *outCd)"
+public new void Contour(double /*(double)*/ value, vtkDataArray /*(vtkDataArray*)*/ cellScalars, vtkIncrementalPointLocator /*(vtkIncrementalPointLocator*)*/ locator, vtkCellArray /*(vtkCellArray*)*/ verts, vtkCellArray /*(vtkCellArray*)*/ lines, vtkCellArray /*(vtkCellArray*)*/ polys, vtkPointData /*(vtkPointData*)*/ inPd, vtkPointData /*(vtkPointData*)*/ outPd, vtkCellData /*(vtkCellData*)*/ inCd, long /*(vtkIdType)*/ cellId, vtkCellData /*(vtkCellData*)*/ outCd) {
+	API_vtkGenericCell.Contour_0(this, value, cellScalars, locator, verts, lines, polys, inPd, outPd, inCd, cellId, outCd);
 }
 
 
-//       Method: void vtkGenericCell::Contour(double value, vtkDataArray* cellScalars, vtkIncrementalPointLocator* locator, vtkCellArray* verts, vtkCellArray* lines, vtkCellArray* polys, vtkPointData* inPd, vtkPointData* outPd, vtkCellData* inCd, vtkIdType cellId, vtkCellData* outCd)
-// 
-public void Contour(double value, vtkDataArray/*vtkDataArray* */ cellScalars, vtkIncrementalPointLocator/*vtkIncrementalPointLocator* */ locator, vtkCellArray/*vtkCellArray* */ verts, vtkCellArray/*vtkCellArray* */ lines, vtkCellArray/*vtkCellArray* */ polys, vtkPointData/*vtkPointData* */ inPd, vtkPointData/*vtkPointData* */ outPd, vtkCellData/*vtkCellData* */ inCd, long cellId, vtkCellData/*vtkCellData* */ outCd) {
-	VTK.API_vtkGenericCell.Contour(obj, value, cellScalars, locator, verts, lines, polys, inPd, outPd, inCd, cellId, outCd);
+// void Clip(double value, vtkDataArray * cellScalars, vtkIncrementalPointLocator * locator, vtkCellArray * connectivity, vtkPointData * inPd, vtkPointData * outPd, vtkCellData * inCd, vtkIdType cellId, vtkCellData * outCd, int insideOut)
+// "void Clip(double value, vtkDataArray *cellScalars, vtkIncrementalPointLocator *locator, vtkCellArray *connectivity, vtkPointData *inPd, vtkPointData *outPd, vtkCellData *inCd, vtkIdType cellId, vtkCellData *outCd, int insideOut)"
+public new void Clip(double /*(double)*/ value, vtkDataArray /*(vtkDataArray*)*/ cellScalars, vtkIncrementalPointLocator /*(vtkIncrementalPointLocator*)*/ locator, vtkCellArray /*(vtkCellArray*)*/ connectivity, vtkPointData /*(vtkPointData*)*/ inPd, vtkPointData /*(vtkPointData*)*/ outPd, vtkCellData /*(vtkCellData*)*/ inCd, long /*(vtkIdType)*/ cellId, vtkCellData /*(vtkCellData*)*/ outCd, int /*(int)*/ insideOut) {
+	API_vtkGenericCell.Clip_0(this, value, cellScalars, locator, connectivity, inPd, outPd, inCd, cellId, outCd, insideOut);
 }
 
 
-//       Method: void vtkGenericCell::Clip(double value, vtkDataArray* cellScalars, vtkIncrementalPointLocator* locator, vtkCellArray* connectivity, vtkPointData* inPd, vtkPointData* outPd, vtkCellData* inCd, vtkIdType cellId, vtkCellData* outCd, int insideOut)
-// 
-public void Clip(double value, vtkDataArray/*vtkDataArray* */ cellScalars, vtkIncrementalPointLocator/*vtkIncrementalPointLocator* */ locator, vtkCellArray/*vtkCellArray* */ connectivity, vtkPointData/*vtkPointData* */ inPd, vtkPointData/*vtkPointData* */ outPd, vtkCellData/*vtkCellData* */ inCd, long cellId, vtkCellData/*vtkCellData* */ outCd, int insideOut) {
-	VTK.API_vtkGenericCell.Clip(obj, value, cellScalars, locator, connectivity, inPd, outPd, inCd, cellId, outCd, insideOut);
+// int IntersectWithLine(double p1[3], double p2[3], double tol, double & t, double x[3], double pcoords[3], int & subId)
+// "int IntersectWithLine(double p1[3], double p2[3], double tol, double& t, double x[3], double pcoords[3], int& subId)"
+public new int IntersectWithLine(double /*(double[3])*/ []p1, double /*(double[3])*/ []p2, double /*(double)*/ tol, double /*(double&)*/ []t, double /*(double[3])*/ []x, double /*(double[3])*/ []pcoords, int /*(int&)*/ []subId) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkGenericCell.IntersectWithLine_0(this, returnPointer, p1, p2, tol, *t, x, pcoords, *subId);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkGenericCell::Triangulate(int index, vtkIdList* ptIds, vtkPoints* pts)
-// 
-public int Triangulate(int index, vtkIdList/*vtkIdList* */ ptIds, vtkPoints/*vtkPoints* */ pts) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkGenericCell.Triangulate(p,obj, index, ptIds, pts);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int Triangulate(int index, vtkIdList * ptIds, vtkPoints * pts)
+// "int Triangulate(int index, vtkIdList *ptIds, vtkPoints *pts)"
+public new int Triangulate(int /*(int)*/ index, vtkIdList /*(vtkIdList*)*/ ptIds, vtkPoints /*(vtkPoints*)*/ pts) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkGenericCell.Triangulate_0(this, returnPointer, index, ptIds, pts);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkGenericCell::Derivatives(int subId, double pcoords[3], double* values, int dim, double* derivs)
-// 
-public void Derivatives(int subId, double[] /*3*/ pcoords, double/*double* */ values, int dim, double/*double* */ derivs) {
-	VTK.API_vtkGenericCell.Derivatives(obj, subId, pcoords, values, dim, derivs);
+// void Derivatives(int subId, double pcoords[3], double * values, int dim, double * derivs)
+// "void Derivatives(int subId, double pcoords[3], double *values, int dim, double *derivs)"
+public new void Derivatives(int /*(int)*/ subId, double /*(double[3])*/ []pcoords, double /*(double*)*/ []values, int /*(int)*/ dim, double /*(double*)*/ []derivs) {
+	API_vtkGenericCell.Derivatives_0(this, subId, pcoords, values, dim, derivs);
 }
 
 
-//       Method: int vtkGenericCell::GetParametricCenter(double pcoords[3])
-// 
-public int GetParametricCenter(double[] /*3*/ pcoords) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkGenericCell.GetParametricCenter(p,obj, pcoords);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int GetParametricCenter(double pcoords[3])
+// "int GetParametricCenter(double pcoords[3])"
+public new int GetParametricCenter(double /*(double[3])*/ []pcoords) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkGenericCell.GetParametricCenter_0(this, returnPointer, pcoords);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: double * vtkGenericCell::GetParametricCoords()
-// 
-public double[] GetParametricCoords() {
-	int numElements = 1;
-	double[] example = new double[numElements];
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkGenericCell.GetParametricCoords(p,obj);
-	double[] result = new double[numElements];
-	Marshal.Copy (p, result, 0, numElements);
-	Marshal.FreeHGlobal (p);
-	return result;
+// double* GetParametricCoords()
+// "double *GetParametricCoords()"
+public new double GetParametricCoords() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new double())*return_elements);
+	API_vtkGenericCell.GetParametricCoords_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkGenericCell::IsPrimaryCell()
-// 
-public int IsPrimaryCell() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkGenericCell.IsPrimaryCell(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int IsPrimaryCell()
+// "int IsPrimaryCell()"
+public new int IsPrimaryCell() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkGenericCell.IsPrimaryCell_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkGenericCell::InterpolateFunctions(double pcoords[3], double* weights)
-// 
-public void InterpolateFunctions(double[] /*3*/ pcoords, double/*double* */ weights) {
-	VTK.API_vtkGenericCell.InterpolateFunctions(obj, pcoords, weights);
+// void InterpolateFunctions(double pcoords[3], double * weights)
+// "void InterpolateFunctions(double pcoords[3], double *weights)"
+public new void InterpolateFunctions(double /*(double[3])*/ []pcoords, double /*(double*)*/ []weights) {
+	API_vtkGenericCell.InterpolateFunctions_0(this, pcoords, weights);
 }
 
 
-//       Method: void vtkGenericCell::InterpolateDerivs(double pcoords[3], double* derivs)
-// 
-public void InterpolateDerivs(double[] /*3*/ pcoords, double/*double* */ derivs) {
-	VTK.API_vtkGenericCell.InterpolateDerivs(obj, pcoords, derivs);
+// void InterpolateDerivs(double pcoords[3], double * derivs)
+// "void InterpolateDerivs(double pcoords[3], double *derivs)"
+public new void InterpolateDerivs(double /*(double[3])*/ []pcoords, double /*(double*)*/ []derivs) {
+	API_vtkGenericCell.InterpolateDerivs_0(this, pcoords, derivs);
 }
 
 
-//       Method: void vtkGenericCell::SetCellType(int cellType)
-// 
-public void SetCellType(int cellType) {
-	VTK.API_vtkGenericCell.SetCellType(obj, cellType);
+// void SetCellType(int cellType)
+// "void SetCellType(int cellType)"
+public new void SetCellType(int /*(int)*/ cellType) {
+	API_vtkGenericCell.SetCellType_0(this, cellType);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToEmptyCell()
-// 
-public void SetCellTypeToEmptyCell() {
-	VTK.API_vtkGenericCell.SetCellTypeToEmptyCell(obj);
+// void SetCellTypeToEmptyCell()
+// "void SetCellTypeToEmptyCell()"
+public new void SetCellTypeToEmptyCell() {
+	API_vtkGenericCell.SetCellTypeToEmptyCell_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToVertex()
-// 
-public void SetCellTypeToVertex() {
-	VTK.API_vtkGenericCell.SetCellTypeToVertex(obj);
+// void SetCellTypeToVertex()
+// "void SetCellTypeToVertex()"
+public new void SetCellTypeToVertex() {
+	API_vtkGenericCell.SetCellTypeToVertex_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToPolyVertex()
-// 
-public void SetCellTypeToPolyVertex() {
-	VTK.API_vtkGenericCell.SetCellTypeToPolyVertex(obj);
+// void SetCellTypeToPolyVertex()
+// "void SetCellTypeToPolyVertex()"
+public new void SetCellTypeToPolyVertex() {
+	API_vtkGenericCell.SetCellTypeToPolyVertex_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToLine()
-// 
-public void SetCellTypeToLine() {
-	VTK.API_vtkGenericCell.SetCellTypeToLine(obj);
+// void SetCellTypeToLine()
+// "void SetCellTypeToLine()"
+public new void SetCellTypeToLine() {
+	API_vtkGenericCell.SetCellTypeToLine_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToPolyLine()
-// 
-public void SetCellTypeToPolyLine() {
-	VTK.API_vtkGenericCell.SetCellTypeToPolyLine(obj);
+// void SetCellTypeToPolyLine()
+// "void SetCellTypeToPolyLine()"
+public new void SetCellTypeToPolyLine() {
+	API_vtkGenericCell.SetCellTypeToPolyLine_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToTriangle()
-// 
-public void SetCellTypeToTriangle() {
-	VTK.API_vtkGenericCell.SetCellTypeToTriangle(obj);
+// void SetCellTypeToTriangle()
+// "void SetCellTypeToTriangle()"
+public new void SetCellTypeToTriangle() {
+	API_vtkGenericCell.SetCellTypeToTriangle_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToTriangleStrip()
-// 
-public void SetCellTypeToTriangleStrip() {
-	VTK.API_vtkGenericCell.SetCellTypeToTriangleStrip(obj);
+// void SetCellTypeToTriangleStrip()
+// "void SetCellTypeToTriangleStrip()"
+public new void SetCellTypeToTriangleStrip() {
+	API_vtkGenericCell.SetCellTypeToTriangleStrip_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToPolygon()
-// 
-public void SetCellTypeToPolygon() {
-	VTK.API_vtkGenericCell.SetCellTypeToPolygon(obj);
+// void SetCellTypeToPolygon()
+// "void SetCellTypeToPolygon()"
+public new void SetCellTypeToPolygon() {
+	API_vtkGenericCell.SetCellTypeToPolygon_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToPixel()
-// 
-public void SetCellTypeToPixel() {
-	VTK.API_vtkGenericCell.SetCellTypeToPixel(obj);
+// void SetCellTypeToPixel()
+// "void SetCellTypeToPixel()"
+public new void SetCellTypeToPixel() {
+	API_vtkGenericCell.SetCellTypeToPixel_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToQuad()
-// 
-public void SetCellTypeToQuad() {
-	VTK.API_vtkGenericCell.SetCellTypeToQuad(obj);
+// void SetCellTypeToQuad()
+// "void SetCellTypeToQuad()"
+public new void SetCellTypeToQuad() {
+	API_vtkGenericCell.SetCellTypeToQuad_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToTetra()
-// 
-public void SetCellTypeToTetra() {
-	VTK.API_vtkGenericCell.SetCellTypeToTetra(obj);
+// void SetCellTypeToTetra()
+// "void SetCellTypeToTetra()"
+public new void SetCellTypeToTetra() {
+	API_vtkGenericCell.SetCellTypeToTetra_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToVoxel()
-// 
-public void SetCellTypeToVoxel() {
-	VTK.API_vtkGenericCell.SetCellTypeToVoxel(obj);
+// void SetCellTypeToVoxel()
+// "void SetCellTypeToVoxel()"
+public new void SetCellTypeToVoxel() {
+	API_vtkGenericCell.SetCellTypeToVoxel_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToHexahedron()
-// 
-public void SetCellTypeToHexahedron() {
-	VTK.API_vtkGenericCell.SetCellTypeToHexahedron(obj);
+// void SetCellTypeToHexahedron()
+// "void SetCellTypeToHexahedron()"
+public new void SetCellTypeToHexahedron() {
+	API_vtkGenericCell.SetCellTypeToHexahedron_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToWedge()
-// 
-public void SetCellTypeToWedge() {
-	VTK.API_vtkGenericCell.SetCellTypeToWedge(obj);
+// void SetCellTypeToWedge()
+// "void SetCellTypeToWedge()"
+public new void SetCellTypeToWedge() {
+	API_vtkGenericCell.SetCellTypeToWedge_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToPyramid()
-// 
-public void SetCellTypeToPyramid() {
-	VTK.API_vtkGenericCell.SetCellTypeToPyramid(obj);
+// void SetCellTypeToPyramid()
+// "void SetCellTypeToPyramid()"
+public new void SetCellTypeToPyramid() {
+	API_vtkGenericCell.SetCellTypeToPyramid_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToPentagonalPrism()
-// 
-public void SetCellTypeToPentagonalPrism() {
-	VTK.API_vtkGenericCell.SetCellTypeToPentagonalPrism(obj);
+// void SetCellTypeToPentagonalPrism()
+// "void SetCellTypeToPentagonalPrism()"
+public new void SetCellTypeToPentagonalPrism() {
+	API_vtkGenericCell.SetCellTypeToPentagonalPrism_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToHexagonalPrism()
-// 
-public void SetCellTypeToHexagonalPrism() {
-	VTK.API_vtkGenericCell.SetCellTypeToHexagonalPrism(obj);
+// void SetCellTypeToHexagonalPrism()
+// "void SetCellTypeToHexagonalPrism()"
+public new void SetCellTypeToHexagonalPrism() {
+	API_vtkGenericCell.SetCellTypeToHexagonalPrism_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToPolyhedron()
-// 
-public void SetCellTypeToPolyhedron() {
-	VTK.API_vtkGenericCell.SetCellTypeToPolyhedron(obj);
+// void SetCellTypeToPolyhedron()
+// "void SetCellTypeToPolyhedron()"
+public new void SetCellTypeToPolyhedron() {
+	API_vtkGenericCell.SetCellTypeToPolyhedron_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToConvexPointSet()
-// 
-public void SetCellTypeToConvexPointSet() {
-	VTK.API_vtkGenericCell.SetCellTypeToConvexPointSet(obj);
+// void SetCellTypeToConvexPointSet()
+// "void SetCellTypeToConvexPointSet()"
+public new void SetCellTypeToConvexPointSet() {
+	API_vtkGenericCell.SetCellTypeToConvexPointSet_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToQuadraticEdge()
-// 
-public void SetCellTypeToQuadraticEdge() {
-	VTK.API_vtkGenericCell.SetCellTypeToQuadraticEdge(obj);
+// void SetCellTypeToQuadraticEdge()
+// "void SetCellTypeToQuadraticEdge()"
+public new void SetCellTypeToQuadraticEdge() {
+	API_vtkGenericCell.SetCellTypeToQuadraticEdge_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToCubicLine()
-// 
-public void SetCellTypeToCubicLine() {
-	VTK.API_vtkGenericCell.SetCellTypeToCubicLine(obj);
+// void SetCellTypeToCubicLine()
+// "void SetCellTypeToCubicLine()"
+public new void SetCellTypeToCubicLine() {
+	API_vtkGenericCell.SetCellTypeToCubicLine_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToQuadraticTriangle()
-// 
-public void SetCellTypeToQuadraticTriangle() {
-	VTK.API_vtkGenericCell.SetCellTypeToQuadraticTriangle(obj);
+// void SetCellTypeToQuadraticTriangle()
+// "void SetCellTypeToQuadraticTriangle()"
+public new void SetCellTypeToQuadraticTriangle() {
+	API_vtkGenericCell.SetCellTypeToQuadraticTriangle_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToBiQuadraticTriangle()
-// 
-public void SetCellTypeToBiQuadraticTriangle() {
-	VTK.API_vtkGenericCell.SetCellTypeToBiQuadraticTriangle(obj);
+// void SetCellTypeToBiQuadraticTriangle()
+// "void SetCellTypeToBiQuadraticTriangle()"
+public new void SetCellTypeToBiQuadraticTriangle() {
+	API_vtkGenericCell.SetCellTypeToBiQuadraticTriangle_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToQuadraticQuad()
-// 
-public void SetCellTypeToQuadraticQuad() {
-	VTK.API_vtkGenericCell.SetCellTypeToQuadraticQuad(obj);
+// void SetCellTypeToQuadraticQuad()
+// "void SetCellTypeToQuadraticQuad()"
+public new void SetCellTypeToQuadraticQuad() {
+	API_vtkGenericCell.SetCellTypeToQuadraticQuad_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToQuadraticPolygon()
-// 
-public void SetCellTypeToQuadraticPolygon() {
-	VTK.API_vtkGenericCell.SetCellTypeToQuadraticPolygon(obj);
+// void SetCellTypeToQuadraticPolygon()
+// "void SetCellTypeToQuadraticPolygon()"
+public new void SetCellTypeToQuadraticPolygon() {
+	API_vtkGenericCell.SetCellTypeToQuadraticPolygon_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToQuadraticTetra()
-// 
-public void SetCellTypeToQuadraticTetra() {
-	VTK.API_vtkGenericCell.SetCellTypeToQuadraticTetra(obj);
+// void SetCellTypeToQuadraticTetra()
+// "void SetCellTypeToQuadraticTetra()"
+public new void SetCellTypeToQuadraticTetra() {
+	API_vtkGenericCell.SetCellTypeToQuadraticTetra_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToQuadraticHexahedron()
-// 
-public void SetCellTypeToQuadraticHexahedron() {
-	VTK.API_vtkGenericCell.SetCellTypeToQuadraticHexahedron(obj);
+// void SetCellTypeToQuadraticHexahedron()
+// "void SetCellTypeToQuadraticHexahedron()"
+public new void SetCellTypeToQuadraticHexahedron() {
+	API_vtkGenericCell.SetCellTypeToQuadraticHexahedron_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToQuadraticWedge()
-// 
-public void SetCellTypeToQuadraticWedge() {
-	VTK.API_vtkGenericCell.SetCellTypeToQuadraticWedge(obj);
+// void SetCellTypeToQuadraticWedge()
+// "void SetCellTypeToQuadraticWedge()"
+public new void SetCellTypeToQuadraticWedge() {
+	API_vtkGenericCell.SetCellTypeToQuadraticWedge_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToQuadraticPyramid()
-// 
-public void SetCellTypeToQuadraticPyramid() {
-	VTK.API_vtkGenericCell.SetCellTypeToQuadraticPyramid(obj);
+// void SetCellTypeToQuadraticPyramid()
+// "void SetCellTypeToQuadraticPyramid()"
+public new void SetCellTypeToQuadraticPyramid() {
+	API_vtkGenericCell.SetCellTypeToQuadraticPyramid_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToQuadraticLinearQuad()
-// 
-public void SetCellTypeToQuadraticLinearQuad() {
-	VTK.API_vtkGenericCell.SetCellTypeToQuadraticLinearQuad(obj);
+// void SetCellTypeToQuadraticLinearQuad()
+// "void SetCellTypeToQuadraticLinearQuad()"
+public new void SetCellTypeToQuadraticLinearQuad() {
+	API_vtkGenericCell.SetCellTypeToQuadraticLinearQuad_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToBiQuadraticQuad()
-// 
-public void SetCellTypeToBiQuadraticQuad() {
-	VTK.API_vtkGenericCell.SetCellTypeToBiQuadraticQuad(obj);
+// void SetCellTypeToBiQuadraticQuad()
+// "void SetCellTypeToBiQuadraticQuad()"
+public new void SetCellTypeToBiQuadraticQuad() {
+	API_vtkGenericCell.SetCellTypeToBiQuadraticQuad_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToQuadraticLinearWedge()
-// 
-public void SetCellTypeToQuadraticLinearWedge() {
-	VTK.API_vtkGenericCell.SetCellTypeToQuadraticLinearWedge(obj);
+// void SetCellTypeToQuadraticLinearWedge()
+// "void SetCellTypeToQuadraticLinearWedge()"
+public new void SetCellTypeToQuadraticLinearWedge() {
+	API_vtkGenericCell.SetCellTypeToQuadraticLinearWedge_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToBiQuadraticQuadraticWedge()
-// 
-public void SetCellTypeToBiQuadraticQuadraticWedge() {
-	VTK.API_vtkGenericCell.SetCellTypeToBiQuadraticQuadraticWedge(obj);
+// void SetCellTypeToBiQuadraticQuadraticWedge()
+// "void SetCellTypeToBiQuadraticQuadraticWedge()"
+public new void SetCellTypeToBiQuadraticQuadraticWedge() {
+	API_vtkGenericCell.SetCellTypeToBiQuadraticQuadraticWedge_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToTriQuadraticHexahedron()
-// 
-public void SetCellTypeToTriQuadraticHexahedron() {
-	VTK.API_vtkGenericCell.SetCellTypeToTriQuadraticHexahedron(obj);
+// void SetCellTypeToTriQuadraticHexahedron()
+// "void SetCellTypeToTriQuadraticHexahedron()"
+public new void SetCellTypeToTriQuadraticHexahedron() {
+	API_vtkGenericCell.SetCellTypeToTriQuadraticHexahedron_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToBiQuadraticQuadraticHexahedron()
-// 
-public void SetCellTypeToBiQuadraticQuadraticHexahedron() {
-	VTK.API_vtkGenericCell.SetCellTypeToBiQuadraticQuadraticHexahedron(obj);
+// void SetCellTypeToBiQuadraticQuadraticHexahedron()
+// "void SetCellTypeToBiQuadraticQuadraticHexahedron()"
+public new void SetCellTypeToBiQuadraticQuadraticHexahedron() {
+	API_vtkGenericCell.SetCellTypeToBiQuadraticQuadraticHexahedron_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToLagrangeTriangle()
-// 
-public void SetCellTypeToLagrangeTriangle() {
-	VTK.API_vtkGenericCell.SetCellTypeToLagrangeTriangle(obj);
+// void SetCellTypeToLagrangeTriangle()
+// "void SetCellTypeToLagrangeTriangle()"
+public new void SetCellTypeToLagrangeTriangle() {
+	API_vtkGenericCell.SetCellTypeToLagrangeTriangle_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToLagrangeTetra()
-// 
-public void SetCellTypeToLagrangeTetra() {
-	VTK.API_vtkGenericCell.SetCellTypeToLagrangeTetra(obj);
+// void SetCellTypeToLagrangeTetra()
+// "void SetCellTypeToLagrangeTetra()"
+public new void SetCellTypeToLagrangeTetra() {
+	API_vtkGenericCell.SetCellTypeToLagrangeTetra_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToLagrangeCurve()
-// 
-public void SetCellTypeToLagrangeCurve() {
-	VTK.API_vtkGenericCell.SetCellTypeToLagrangeCurve(obj);
+// void SetCellTypeToLagrangeCurve()
+// "void SetCellTypeToLagrangeCurve()"
+public new void SetCellTypeToLagrangeCurve() {
+	API_vtkGenericCell.SetCellTypeToLagrangeCurve_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToLagrangeQuadrilateral()
-// 
-public void SetCellTypeToLagrangeQuadrilateral() {
-	VTK.API_vtkGenericCell.SetCellTypeToLagrangeQuadrilateral(obj);
+// void SetCellTypeToLagrangeQuadrilateral()
+// "void SetCellTypeToLagrangeQuadrilateral()"
+public new void SetCellTypeToLagrangeQuadrilateral() {
+	API_vtkGenericCell.SetCellTypeToLagrangeQuadrilateral_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToLagrangeHexahedron()
-// 
-public void SetCellTypeToLagrangeHexahedron() {
-	VTK.API_vtkGenericCell.SetCellTypeToLagrangeHexahedron(obj);
+// void SetCellTypeToLagrangeHexahedron()
+// "void SetCellTypeToLagrangeHexahedron()"
+public new void SetCellTypeToLagrangeHexahedron() {
+	API_vtkGenericCell.SetCellTypeToLagrangeHexahedron_0(this);
 }
 
 
-//       Method: void vtkGenericCell::SetCellTypeToLagrangeWedge()
-// 
-public void SetCellTypeToLagrangeWedge() {
-	VTK.API_vtkGenericCell.SetCellTypeToLagrangeWedge(obj);
+// void SetCellTypeToLagrangeWedge()
+// "void SetCellTypeToLagrangeWedge()"
+public new void SetCellTypeToLagrangeWedge() {
+	API_vtkGenericCell.SetCellTypeToLagrangeWedge_0(this);
 }
 
 
-//       Method: static vtkCell * vtkGenericCell::InstantiateCell(int cellType)
-// 
-public static vtkCell InstantiateCell(int cellType) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkGenericCell.InstantiateCell(p, cellType);
-	vtkCell result = new vtkCell();
-	unsafe {result.SetPtr(new IntPtr ((*(void**)p.ToPointer ())));}
-	Marshal.FreeHGlobal (p);
-	return result;
+// static vtkCell* InstantiateCell(int cellType)
+// "static vtkCell* InstantiateCell(int cellType)"
+public new static vtkCell InstantiateCell(int /*(int)*/ cellType) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkGenericCell.InstantiateCell_0(returnPointer, cellType);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkCell * vtkGenericCell::GetRepresentativeCell()
-// 
-public vtkCell GetRepresentativeCell() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkGenericCell.GetRepresentativeCell(p,obj);
-	vtkCell result = new vtkCell();
-	unsafe {result.SetPtr(new IntPtr ((*(void**)p.ToPointer ())));}
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkCell* GetRepresentativeCell()
+// "vtkCell* GetRepresentativeCell()"
+public new vtkCell GetRepresentativeCell() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkGenericCell.GetRepresentativeCell_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 

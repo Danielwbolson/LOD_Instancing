@@ -1,151 +1,120 @@
 
+
 using System;
 using UnityEngine;
 using System.Runtime.InteropServices;
 
-
-namespace VTK
-{
+namespace VTK {
 public partial class vtkCellIterator : vtkObject {
 
-//       Method: void vtkCellIterator::InitTraversal()
-// 
-public void InitTraversal() {
-	VTK.API_vtkCellIterator.InitTraversal(obj);
+// void InitTraversal()
+// "void InitTraversal()"
+public new void InitTraversal() {
+	API_vtkCellIterator.InitTraversal_0(this);
 }
 
 
-//       Method: void vtkCellIterator::GoToNextCell()
-// 
-public void GoToNextCell() {
-	VTK.API_vtkCellIterator.GoToNextCell(obj);
+// void GoToNextCell()
+// "void GoToNextCell()"
+public new void GoToNextCell() {
+	API_vtkCellIterator.GoToNextCell_0(this);
 }
 
 
-//       Method: virtual bool vtkCellIterator::IsDoneWithTraversal()
-// 
-public bool IsDoneWithTraversal() {
-	int numElements = 1;
-	bool example = new bool();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCellIterator.IsDoneWithTraversal(p,obj);
-	bool result = Convert.ToBoolean(Marshal.ReadByte(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual bool IsDoneWithTraversal()
+// "virtual bool IsDoneWithTraversal()"
+public new bool IsDoneWithTraversal() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new bool())*return_elements);
+	API_vtkCellIterator.IsDoneWithTraversal_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkCellIterator::GetCellType()
-// 
-public int GetCellType() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCellIterator.GetCellType(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int GetCellType()
+// "int GetCellType()"
+public new int GetCellType() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkCellIterator.GetCellType_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkCellIterator::GetCellDimension()
-// 
-public int GetCellDimension() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCellIterator.GetCellDimension(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int GetCellDimension()
+// "int GetCellDimension()"
+public new int GetCellDimension() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkCellIterator.GetCellDimension_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual vtkIdType vtkCellIterator::GetCellId()
-// 
-public long GetCellId() {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCellIterator.GetCellId(p,obj);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual vtkIdType GetCellId()
+// "virtual vtkIdType GetCellId()"
+public new long GetCellId() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkCellIterator.GetCellId_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkIdList * vtkCellIterator::GetPointIds()
-// 
-public vtkIdList GetPointIds() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCellIterator.GetPointIds(p,obj);
-	vtkIdList result = new vtkIdList();
-	unsafe {result.SetPtr(new IntPtr ((*(void**)p.ToPointer ())));}
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkIdList* GetPointIds()
+// "vtkIdList *GetPointIds()"
+public new vtkIdList GetPointIds() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkCellIterator.GetPointIds_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkPoints * vtkCellIterator::GetPoints()
-// 
-public vtkPoints GetPoints() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCellIterator.GetPoints(p,obj);
-	vtkPoints result = new vtkPoints();
-	unsafe {result.SetPtr(new IntPtr ((*(void**)p.ToPointer ())));}
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkPoints* GetPoints()
+// "vtkPoints *GetPoints()"
+public new vtkPoints GetPoints() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkCellIterator.GetPoints_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkIdList * vtkCellIterator::GetFaces()
-// 
-public vtkIdList GetFaces() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCellIterator.GetFaces(p,obj);
-	vtkIdList result = new vtkIdList();
-	unsafe {result.SetPtr(new IntPtr ((*(void**)p.ToPointer ())));}
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkIdList* GetFaces()
+// "vtkIdList *GetFaces()"
+public new vtkIdList GetFaces() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkCellIterator.GetFaces_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkCellIterator::GetCell(vtkGenericCell* cell)
-// 
-public void GetCell(vtkGenericCell/*vtkGenericCell* */ cell) {
-	VTK.API_vtkCellIterator.GetCell(obj, cell);
+// void GetCell(vtkGenericCell * cell)
+// "void GetCell(vtkGenericCell *cell)"
+public new void GetCell(vtkGenericCell /*(vtkGenericCell*)*/ cell) {
+	API_vtkCellIterator.GetCell_0(this, cell);
 }
 
 
-//       Method: vtkIdType vtkCellIterator::GetNumberOfPoints()
-// 
-public long GetNumberOfPoints() {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCellIterator.GetNumberOfPoints(p,obj);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkIdType GetNumberOfPoints()
+// "vtkIdType GetNumberOfPoints()"
+public new long GetNumberOfPoints() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkCellIterator.GetNumberOfPoints_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkIdType vtkCellIterator::GetNumberOfFaces()
-// 
-public long GetNumberOfFaces() {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCellIterator.GetNumberOfFaces(p,obj);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkIdType GetNumberOfFaces()
+// "vtkIdType GetNumberOfFaces()"
+public new long GetNumberOfFaces() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkCellIterator.GetNumberOfFaces_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 

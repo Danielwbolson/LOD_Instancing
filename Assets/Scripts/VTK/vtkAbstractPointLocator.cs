@@ -1,89 +1,84 @@
 
+
 using System;
 using UnityEngine;
 using System.Runtime.InteropServices;
 
-
-namespace VTK
-{
+namespace VTK {
 public partial class vtkAbstractPointLocator : vtkLocator {
 
-//       Method: virtual const char * vtkAbstractPointLocator::GetClassName()
-// 
-public string GetClassName() {
-	IntPtr p =  Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr()));
-	VTK.API_vtkAbstractPointLocator.GetClassName(p,obj);
-	string result = Marshal.PtrToStringAnsi(Marshal.ReadIntPtr(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual vtkIdType FindClosestPoint(const double x[3])
+// "virtual vtkIdType FindClosestPoint(const double x[3])"
+public new long FindClosestPoint(double /*(double[3])*/ []x) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkAbstractPointLocator.FindClosestPoint_0(this, returnPointer, x);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual vtkIdType vtkAbstractPointLocator::FindClosestPoint(const double x[3])
-// 
-public long FindClosestPoint(double[] /*3*/ x) {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAbstractPointLocator.FindClosestPoint(p,obj, x);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkIdType FindClosestPoint(double x, double y, double z)
+// "vtkIdType FindClosestPoint(double x, double y, double z)"
+public new long FindClosestPoint(double /*(double)*/ x, double /*(double)*/ y, double /*(double)*/ z) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkAbstractPointLocator.FindClosestPoint_1(this, returnPointer, x, y, z);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkIdType vtkAbstractPointLocator::FindClosestPoint(double x, double y, double z)
-// 
-public long FindClosestPoint(double x, double y, double z) {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAbstractPointLocator.FindClosestPoint(p,obj, x, y, z);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual vtkIdType FindClosestPointWithinRadius(double radius, const double x[3], double & dist2)
+// "virtual vtkIdType FindClosestPointWithinRadius( double radius, const double x[3], double& dist2)"
+public new long FindClosestPointWithinRadius(double /*(double)*/ radius, double /*(double[3])*/ []x, double /*(double&)*/ []dist2) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkAbstractPointLocator.FindClosestPointWithinRadius_0(this, returnPointer, radius, x, *dist2);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual void vtkAbstractPointLocator::FindClosestNPoints(int N, const double x[3], vtkIdList* result)
-// 
-public void FindClosestNPoints(int N, double[] /*3*/ x, vtkIdList/*vtkIdList* */ result) {
-	VTK.API_vtkAbstractPointLocator.FindClosestNPoints(obj, N, x, result);
+// virtual void FindClosestNPoints(int N, const double x[3], vtkIdList * result)
+// "virtual void FindClosestNPoints( int N, const double x[3], vtkIdList *result)"
+public new void FindClosestNPoints(int /*(int)*/ N, double /*(double[3])*/ []x, vtkIdList /*(vtkIdList*)*/ result) {
+	API_vtkAbstractPointLocator.FindClosestNPoints_0(this, N, x, result);
 }
 
 
-//       Method: void vtkAbstractPointLocator::FindClosestNPoints(int N, double x, double y, double z, vtkIdList* result)
-// 
-public void FindClosestNPoints(int N, double x, double y, double z, vtkIdList/*vtkIdList* */ result) {
-	VTK.API_vtkAbstractPointLocator.FindClosestNPoints(obj, N, x, y, z, result);
+// void FindClosestNPoints(int N, double x, double y, double z, vtkIdList * result)
+// "void FindClosestNPoints(int N, double x, double y, double z, vtkIdList *result)"
+public new void FindClosestNPoints(int /*(int)*/ N, double /*(double)*/ x, double /*(double)*/ y, double /*(double)*/ z, vtkIdList /*(vtkIdList*)*/ result) {
+	API_vtkAbstractPointLocator.FindClosestNPoints_1(this, N, x, y, z, result);
 }
 
 
-//       Method: virtual void vtkAbstractPointLocator::FindPointsWithinRadius(double R, const double x[3], vtkIdList* result)
-// 
-public void FindPointsWithinRadius(double R, double[] /*3*/ x, vtkIdList/*vtkIdList* */ result) {
-	VTK.API_vtkAbstractPointLocator.FindPointsWithinRadius(obj, R, x, result);
+// virtual void FindPointsWithinRadius(double R, const double x[3], vtkIdList * result)
+// "virtual void FindPointsWithinRadius(double R, const double x[3], vtkIdList *result)"
+public new void FindPointsWithinRadius(double /*(double)*/ R, double /*(double[3])*/ []x, vtkIdList /*(vtkIdList*)*/ result) {
+	API_vtkAbstractPointLocator.FindPointsWithinRadius_0(this, R, x, result);
 }
 
 
-//       Method: void vtkAbstractPointLocator::FindPointsWithinRadius(double R, double x, double y, double z, vtkIdList* result)
-// 
-public void FindPointsWithinRadius(double R, double x, double y, double z, vtkIdList/*vtkIdList* */ result) {
-	VTK.API_vtkAbstractPointLocator.FindPointsWithinRadius(obj, R, x, y, z, result);
+// void FindPointsWithinRadius(double R, double x, double y, double z, vtkIdList * result)
+// "void FindPointsWithinRadius(double R, double x, double y, double z, vtkIdList *result)"
+public new void FindPointsWithinRadius(double /*(double)*/ R, double /*(double)*/ x, double /*(double)*/ y, double /*(double)*/ z, vtkIdList /*(vtkIdList*)*/ result) {
+	API_vtkAbstractPointLocator.FindPointsWithinRadius_1(this, R, x, y, z, result);
 }
 
 
-//       Method: virtual double * vtkAbstractPointLocator::GetBounds()
-// 
-public double[] GetBounds() {
-	int numElements = 1;
-	double[] example = new double[numElements];
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAbstractPointLocator.GetBounds(p,obj);
-	double[] result = new double[numElements];
-	Marshal.Copy (p, result, 0, numElements);
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual double* GetBounds()
+// "virtual double *GetBounds()"
+public new double GetBounds() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new double())*return_elements);
+	API_vtkAbstractPointLocator.GetBounds_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
+}
+
+
+// virtual void GetBounds(double * ARG_0)
+// "virtual void GetBounds(double*)"
+public new void GetBounds(double /*(double*)*/ []ARG_0) {
+	API_vtkAbstractPointLocator.GetBounds_1(this, ARG_0);
 }
 
 

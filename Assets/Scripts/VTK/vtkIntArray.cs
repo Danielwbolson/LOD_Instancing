@@ -1,75 +1,49 @@
 
+
 using System;
 using UnityEngine;
 using System.Runtime.InteropServices;
 
-
-namespace VTK
-{
+namespace VTK {
 public partial class vtkIntArray : vtkDataArray {
 
-//       Method: virtual const char * vtkIntArray::GetClassName()
-// 
-public string GetClassName() {
-	IntPtr p =  Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr()));
-	VTK.API_vtkIntArray.GetClassName(p,obj);
-	string result = Marshal.PtrToStringAnsi(Marshal.ReadIntPtr(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// static vtkIntArray* New()
+// "static vtkIntArray* New()"
+public new static vtkIntArray New() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkIntArray.New_0(returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: static vtkIntArray * vtkIntArray::New()
-// 
-public static vtkIntArray New() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkIntArray.New(p);
-	vtkIntArray result = new vtkIntArray();
-	unsafe {result.SetPtr(new IntPtr ((*(void**)p.ToPointer ())));}
-	Marshal.FreeHGlobal (p);
-	return result;
+// static vtkIntArray* FastDownCast(vtkAbstractArray * source)
+// "static vtkIntArray* FastDownCast(vtkAbstractArray *source)"
+public new static vtkIntArray FastDownCast(vtkAbstractArray /*(vtkAbstractArray*)*/ source) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkIntArray.FastDownCast_0(returnPointer, source);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: static vtkIntArray * vtkIntArray::FastDownCast(vtkAbstractArray* source)
-// 
-public static vtkIntArray FastDownCast(vtkAbstractArray/*vtkAbstractArray* */ source) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkIntArray.FastDownCast(p, source);
-	vtkIntArray result = new vtkIntArray();
-	unsafe {result.SetPtr(new IntPtr ((*(void**)p.ToPointer ())));}
-	Marshal.FreeHGlobal (p);
-	return result;
+// static int GetDataTypeValueMin()
+// "static int GetDataTypeValueMin()"
+public new static int GetDataTypeValueMin() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkIntArray.GetDataTypeValueMin_0(returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: static int vtkIntArray::GetDataTypeValueMin()
-// 
-public static int GetDataTypeValueMin() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkIntArray.GetDataTypeValueMin(p);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static int vtkIntArray::GetDataTypeValueMax()
-// 
-public static int GetDataTypeValueMax() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkIntArray.GetDataTypeValueMax(p);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// static int GetDataTypeValueMax()
+// "static int GetDataTypeValueMax()"
+public new static int GetDataTypeValueMax() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkIntArray.GetDataTypeValueMax_0(returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 

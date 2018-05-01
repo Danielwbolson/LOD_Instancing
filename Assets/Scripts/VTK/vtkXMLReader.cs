@@ -1,212 +1,174 @@
 
+
 using System;
 using UnityEngine;
 using System.Runtime.InteropServices;
 
+namespace VTK {
+public partial class vtkXMLReader : vtkAlgorithm {
 
-namespace VTK
-{
-public class vtkXMLReader : vtkAlgorithm {
-
-//       Method: virtual const char * vtkXMLReader::GetClassName()
-// 
-public static string GetClassName(IntPtr obj) {
-	IntPtr p =  Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr()));
-	VTK.API_vtkXMLReader.GetClassName(p,obj);
-	string result = Marshal.PtrToStringAnsi(Marshal.ReadIntPtr(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual int CanReadFile(const char * name)
+// "virtual int CanReadFile(const char* name)"
+public new int CanReadFile(char /*(char*)*/ []name) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkXMLReader.CanReadFile_0(this, returnPointer, name);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual int vtkXMLReader::CanReadFile(const char* name)
-// 
-public int CanReadFile(string/*const char* */ name) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkXMLReader.CanReadFile(p,GetPtr(), name);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkDataSet* GetOutputAsDataSet()
+// "vtkDataSet* GetOutputAsDataSet()"
+public new vtkDataSet GetOutputAsDataSet() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkXMLReader.GetOutputAsDataSet_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkDataSet * vtkXMLReader::GetOutputAsDataSet()
-// 
-public static IntPtr GetOutputAsDataSet(IntPtr obj) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkXMLReader.GetOutputAsDataSet(p,obj);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkDataSet* GetOutputAsDataSet(int index)
+// "vtkDataSet* GetOutputAsDataSet(int index)"
+public new vtkDataSet GetOutputAsDataSet(int /*(int)*/ index) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkXMLReader.GetOutputAsDataSet_1(this, returnPointer, index);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkDataSet * vtkXMLReader::GetOutputAsDataSet(int index)
-// 
-public static IntPtr GetOutputAsDataSet(IntPtr obj, int index) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkXMLReader.GetOutputAsDataSet(p,obj, index);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// int GetNumberOfPointArrays()
+// "int GetNumberOfPointArrays()"
+public new int GetNumberOfPointArrays() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkXMLReader.GetNumberOfPointArrays_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkXMLReader::GetNumberOfPointArrays()
-// 
-public static int GetNumberOfPointArrays(IntPtr obj) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkXMLReader.GetNumberOfPointArrays(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int GetNumberOfCellArrays()
+// "int GetNumberOfCellArrays()"
+public new int GetNumberOfCellArrays() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkXMLReader.GetNumberOfCellArrays_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkXMLReader::GetNumberOfCellArrays()
-// 
-public static int GetNumberOfCellArrays(IntPtr obj) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkXMLReader.GetNumberOfCellArrays(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int GetNumberOfColumnArrays()
+// "int GetNumberOfColumnArrays()"
+public new int GetNumberOfColumnArrays() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkXMLReader.GetNumberOfColumnArrays_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkXMLReader::GetNumberOfColumnArrays()
-// 
-public static int GetNumberOfColumnArrays(IntPtr obj) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkXMLReader.GetNumberOfColumnArrays(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// char* GetPointArrayName(int index)
+// "const char* GetPointArrayName(int index)"
+public new char GetPointArrayName(int /*(int)*/ index) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new char())*return_elements);
+	API_vtkXMLReader.GetPointArrayName_0(this, returnPointer, index);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkXMLReader::GetPointArrayStatus(const char* name)
-// 
-public static int GetPointArrayStatus(IntPtr obj, string/*const char* */ name) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkXMLReader.GetPointArrayStatus(p,obj, name);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// char* GetCellArrayName(int index)
+// "const char* GetCellArrayName(int index)"
+public new char GetCellArrayName(int /*(int)*/ index) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new char())*return_elements);
+	API_vtkXMLReader.GetCellArrayName_0(this, returnPointer, index);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkXMLReader::GetCellArrayStatus(const char* name)
-// 
-public static int GetCellArrayStatus(IntPtr obj, string/*const char* */ name) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkXMLReader.GetCellArrayStatus(p,obj, name);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// char* GetColumnArrayName(int index)
+// "const char* GetColumnArrayName(int index)"
+public new char GetColumnArrayName(int /*(int)*/ index) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new char())*return_elements);
+	API_vtkXMLReader.GetColumnArrayName_0(this, returnPointer, index);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkXMLReader::SetPointArrayStatus(const char* name, int status)
-// 
-public static void SetPointArrayStatus(IntPtr obj, string/*const char* */ name, int status) {
-	VTK.API_vtkXMLReader.SetPointArrayStatus(obj, name, status);
+// int GetPointArrayStatus(const char * name)
+// "int GetPointArrayStatus(const char* name)"
+public new int GetPointArrayStatus(char /*(char*)*/ []name) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkXMLReader.GetPointArrayStatus_0(this, returnPointer, name);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkXMLReader::SetCellArrayStatus(const char* name, int status)
-// 
-public static void SetCellArrayStatus(IntPtr obj, string/*const char* */ name, int status) {
-	VTK.API_vtkXMLReader.SetCellArrayStatus(obj, name, status);
+// int GetCellArrayStatus(const char * name)
+// "int GetCellArrayStatus(const char* name)"
+public new int GetCellArrayStatus(char /*(char*)*/ []name) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkXMLReader.GetCellArrayStatus_0(this, returnPointer, name);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkXMLReader::GetColumnArrayStatus(const char* name)
-// 
-public static int GetColumnArrayStatus(IntPtr obj, string/*const char* */ name) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkXMLReader.GetColumnArrayStatus(p,obj, name);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// void SetPointArrayStatus(const char * name, int status)
+// "void SetPointArrayStatus(const char* name, int status)"
+public new void SetPointArrayStatus(char /*(char*)*/ []name, int /*(int)*/ status) {
+	API_vtkXMLReader.SetPointArrayStatus_0(this, name, status);
 }
 
 
-//       Method: void vtkXMLReader::SetColumnArrayStatus(const char* name, int status)
-// 
-public static void SetColumnArrayStatus(IntPtr obj, string/*const char* */ name, int status) {
-	VTK.API_vtkXMLReader.SetColumnArrayStatus(obj, name, status);
+// void SetCellArrayStatus(const char * name, int status)
+// "void SetCellArrayStatus(const char* name, int status)"
+public new void SetCellArrayStatus(char /*(char*)*/ []name, int /*(int)*/ status) {
+	API_vtkXMLReader.SetCellArrayStatus_0(this, name, status);
 }
 
 
-////       Method: int vtkXMLReader::vtkNotUsed(port ))
-//// 
-//public static int vtkNotUsed(IntPtr obj, port )) {
-//	int numElements = 1;
-//	int example = new int();
-//	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-//	VTK.API_vtkXMLReader.vtkNotUsed(p,obj, ));
-//	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-//	Marshal.FreeHGlobal (p);
-//	return result;
-//}
-
-
-//       Method: vtkXMLDataParser * vtkXMLReader::GetXMLParser()
-// 
-public static IntPtr GetXMLParser(IntPtr obj) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkXMLReader.GetXMLParser(p,obj);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// int GetColumnArrayStatus(const char * name)
+// "int GetColumnArrayStatus(const char* name)"
+public new int GetColumnArrayStatus(char /*(char*)*/ []name) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkXMLReader.GetColumnArrayStatus_0(this, returnPointer, name);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkXMLReader::ProcessRequest(vtkInformation* request, vtkInformationVector** inputVector, vtkInformationVector* outputVector)
-// 
-public static int ProcessRequest(IntPtr obj, IntPtr/*vtkInformation* */ request, IntPtr/*vtkInformationVector** */ inputVector, IntPtr/*vtkInformationVector* */ outputVector) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkXMLReader.ProcessRequest(p,obj, request, inputVector, outputVector);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// void SetColumnArrayStatus(const char * name, int status)
+// "void SetColumnArrayStatus(const char* name, int status)"
+public new void SetColumnArrayStatus(char /*(char*)*/ []name, int /*(int)*/ status) {
+	API_vtkXMLReader.SetColumnArrayStatus_0(this, name, status);
 }
 
 
-//       Method: void vtkXMLReader::SetReaderErrorObserver(vtkCommand* ARG_0)
-// 
-public static void SetReaderErrorObserver(IntPtr obj, IntPtr/*vtkCommand* */ ARG_0) {
-	VTK.API_vtkXMLReader.SetReaderErrorObserver(obj, ARG_0);
+// vtkXMLDataParser* GetXMLParser()
+// "vtkXMLDataParser* GetXMLParser()"
+public new vtkXMLDataParser GetXMLParser() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkXMLReader.GetXMLParser_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkXMLReader::SetParserErrorObserver(vtkCommand* ARG_0)
-// 
-public static void SetParserErrorObserver(IntPtr obj, IntPtr/*vtkCommand* */ ARG_0) {
-	VTK.API_vtkXMLReader.SetParserErrorObserver(obj, ARG_0);
+// void SetReaderErrorObserver(vtkCommand * ARG_0)
+// "void SetReaderErrorObserver(vtkCommand *)"
+public new void SetReaderErrorObserver(vtkCommand /*(vtkCommand*)*/ ARG_0) {
+	API_vtkXMLReader.SetReaderErrorObserver_0(this, ARG_0);
+}
+
+
+// void SetParserErrorObserver(vtkCommand * ARG_0)
+// "void SetParserErrorObserver(vtkCommand *)"
+public new void SetParserErrorObserver(vtkCommand /*(vtkCommand*)*/ ARG_0) {
+	API_vtkXMLReader.SetParserErrorObserver_0(this, ARG_0);
 }
 
 

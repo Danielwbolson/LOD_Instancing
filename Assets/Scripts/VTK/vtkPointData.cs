@@ -1,41 +1,26 @@
 
+
 using System;
 using UnityEngine;
 using System.Runtime.InteropServices;
 
+namespace VTK {
+public partial class vtkPointData : vtkDataSetAttributes {
 
-namespace VTK
-{
-public class vtkPointData : vtkDataSetAttributes {
-
-//       Method: static vtkPointData * vtkPointData::New()
-// 
-public static IntPtr New() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPointData.New(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// static vtkPointData* New()
+// "static vtkPointData *New()"
+public new static vtkPointData New() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkPointData.New_0(returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual const char * vtkPointData::GetClassName()
-// 
-public static string GetClassName(IntPtr obj) {
-	IntPtr p =  Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr()));
-	VTK.API_vtkPointData.GetClassName(p,obj);
-	string result = Marshal.PtrToStringAnsi(Marshal.ReadIntPtr(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: void vtkPointData::NullPoint(vtkIdType ptId)
-// 
-public static void NullPoint(IntPtr obj, long ptId) {
-	VTK.API_vtkPointData.NullPoint(obj, ptId);
+// void NullPoint(vtkIdType ptId)
+// "void NullPoint(vtkIdType ptId)"
+public new void NullPoint(long /*(vtkIdType)*/ ptId) {
+	API_vtkPointData.NullPoint_0(this, ptId);
 }
 
 

@@ -1,196 +1,169 @@
 
+
 using System;
 using UnityEngine;
 using System.Runtime.InteropServices;
 
+namespace VTK {
+public partial class vtkPointSet : vtkDataSet {
 
-namespace VTK
-{
-public class vtkPointSet : vtkDataSet {
-
-//       Method: virtual const char * vtkPointSet::GetClassName()
-// 
-public static string GetClassName(IntPtr obj) {
-	IntPtr p =  Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr()));
-	VTK.API_vtkPointSet.GetClassName(p,obj);
-	string result = Marshal.PtrToStringAnsi(Marshal.ReadIntPtr(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// void Initialize()
+// "void Initialize()"
+public new void Initialize() {
+	API_vtkPointSet.Initialize_0(this);
 }
 
 
-//       Method: void vtkPointSet::Initialize()
-// 
-public static void Initialize(IntPtr obj) {
-	VTK.API_vtkPointSet.Initialize(obj);
+// void CopyStructure(vtkDataSet * pd)
+// "void CopyStructure(vtkDataSet *pd)"
+public new void CopyStructure(vtkDataSet /*(vtkDataSet*)*/ pd) {
+	API_vtkPointSet.CopyStructure_0(this, pd);
 }
 
 
-//       Method: void vtkPointSet::CopyStructure(vtkDataSet* pd)
-// 
-public static void CopyStructure(IntPtr obj, IntPtr/*vtkDataSet* */ pd) {
-	VTK.API_vtkPointSet.CopyStructure(obj, pd);
+// vtkIdType GetNumberOfPoints()
+// "vtkIdType GetNumberOfPoints()"
+public new long GetNumberOfPoints() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkPointSet.GetNumberOfPoints_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkIdType vtkPointSet::GetNumberOfPoints()
-// 
-public static long GetNumberOfPoints(IntPtr obj) {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPointSet.GetNumberOfPoints(p,obj);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// void GetPoint(vtkIdType ptId, double x[3])
+// "void GetPoint(vtkIdType ptId, double x[3])"
+public new void GetPoint(long /*(vtkIdType)*/ ptId, double /*(double[3])*/ []x) {
+	API_vtkPointSet.GetPoint_0(this, ptId, x);
 }
 
 
-//       Method: void vtkPointSet::GetPoint(vtkIdType ptId, double x[3])
-// 
-public static void GetPoint(IntPtr obj, long ptId, double[] /*3*/ x) {
-	VTK.API_vtkPointSet.GetPoint(obj, ptId, x);
+// vtkIdType FindPoint(double x[3])
+// "vtkIdType FindPoint(double x[3])"
+public new long FindPoint(double /*(double[3])*/ []x) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkPointSet.FindPoint_0(this, returnPointer, x);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkIdType vtkPointSet::FindPoint(double x[3])
-// 
-public static long FindPoint(IntPtr obj, double[] /*3*/ x) {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPointSet.FindPoint(p,obj, x);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkIdType FindPoint(double x, double y, double z)
+// "vtkIdType FindPoint(double x, double y, double z)"
+public new long FindPoint(double /*(double)*/ x, double /*(double)*/ y, double /*(double)*/ z) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkPointSet.FindPoint_1(this, returnPointer, x, y, z);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkIdType vtkPointSet::FindPoint(double x, double y, double z)
-// 
-public static long FindPoint(IntPtr obj, double x, double y, double z) {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPointSet.FindPoint(p,obj, x, y, z);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkIdType FindCell(double x[3], vtkCell * cell, vtkIdType cellId, double tol2, int & subId, double pcoords[3], double * weights)
+// "vtkIdType FindCell(double x[3], vtkCell *cell, vtkIdType cellId, double tol2, int& subId, double pcoords[3], double *weights)"
+public new long FindCell(double /*(double[3])*/ []x, vtkCell /*(vtkCell*)*/ cell, long /*(vtkIdType)*/ cellId, double /*(double)*/ tol2, int /*(int&)*/ []subId, double /*(double[3])*/ []pcoords, double /*(double*)*/ []weights) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkPointSet.FindCell_0(this, returnPointer, x, cell, cellId, tol2, *subId, pcoords, weights);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: double * vtkPointSet::GetPoint(vtkIdType ptId)
-// 
-public static double[] GetPoint(IntPtr obj, long ptId) {
-	int numElements = 1;
-	double[] example = new double[numElements];
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPointSet.GetPoint(p,obj, ptId);
-	double[] result = new double[numElements];
-	Marshal.Copy (p, result, 0, numElements);
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkIdType FindCell(double x[3], vtkCell * cell, vtkGenericCell * gencell, vtkIdType cellId, double tol2, int & subId, double pcoords[3], double * weights)
+// "vtkIdType FindCell(double x[3], vtkCell *cell, vtkGenericCell *gencell, vtkIdType cellId, double tol2, int& subId, double pcoords[3], double *weights)"
+public new long FindCell(double /*(double[3])*/ []x, vtkCell /*(vtkCell*)*/ cell, vtkGenericCell /*(vtkGenericCell*)*/ gencell, long /*(vtkIdType)*/ cellId, double /*(double)*/ tol2, int /*(int&)*/ []subId, double /*(double[3])*/ []pcoords, double /*(double*)*/ []weights) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkPointSet.FindCell_1(this, returnPointer, x, cell, gencell, cellId, tol2, *subId, pcoords, weights);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkCellIterator * vtkPointSet::NewCellIterator()
-// 
-public static IntPtr NewCellIterator(IntPtr obj) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPointSet.NewCellIterator(p,obj);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// double* GetPoint(vtkIdType ptId)
+// "double *GetPoint(vtkIdType ptId)"
+public new double GetPoint(long /*(vtkIdType)*/ ptId) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new double())*return_elements);
+	API_vtkPointSet.GetPoint_1(this, returnPointer, ptId);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkMTimeType vtkPointSet::GetMTime()
-// 
-public static IntPtr GetMTime(IntPtr obj) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPointSet.GetMTime(p,obj);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkCellIterator* NewCellIterator()
+// "vtkCellIterator* NewCellIterator()"
+public new vtkCellIterator NewCellIterator() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkPointSet.NewCellIterator_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkPointSet::ComputeBounds()
-// 
-public static void ComputeBounds(IntPtr obj) {
-	VTK.API_vtkPointSet.ComputeBounds(obj);
+// vtkMTimeType GetMTime()
+// "vtkMTimeType GetMTime()"
+public new ulong GetMTime() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new ulong())*return_elements);
+	API_vtkPointSet.GetMTime_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkPointSet::Squeeze()
-// 
-public static void Squeeze(IntPtr obj) {
-	VTK.API_vtkPointSet.Squeeze(obj);
+// void ComputeBounds()
+// "void ComputeBounds()"
+public new void ComputeBounds() {
+	API_vtkPointSet.ComputeBounds_0(this);
 }
 
 
-//       Method: virtual void vtkPointSet::SetPoints(vtkPoints* ARG_0)
-// 
-public static void SetPoints(IntPtr obj, IntPtr/*vtkPoints* */ ARG_0) {
-	VTK.API_vtkPointSet.SetPoints(obj, ARG_0);
+// void Squeeze()
+// "void Squeeze()"
+public new void Squeeze() {
+	API_vtkPointSet.Squeeze_0(this);
 }
 
 
-//       Method: void vtkPointSet::ShallowCopy(vtkDataObject* src)
-// 
-public static void ShallowCopy(IntPtr obj, IntPtr/*vtkDataObject* */ src) {
-	VTK.API_vtkPointSet.ShallowCopy(obj, src);
+// virtual void SetPoints(vtkPoints * ARG_0)
+// "virtual void SetPoints(vtkPoints*)"
+public new void SetPoints(vtkPoints /*(vtkPoints*)*/ ARG_0) {
+	API_vtkPointSet.SetPoints_0(this, ARG_0);
 }
 
 
-//       Method: void vtkPointSet::DeepCopy(vtkDataObject* src)
-// 
-public static void DeepCopy(IntPtr obj, IntPtr/*vtkDataObject* */ src) {
-	VTK.API_vtkPointSet.DeepCopy(obj, src);
+// long GetActualMemorySize()
+// "unsigned long GetActualMemorySize()"
+public new ulong GetActualMemorySize() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new ulong())*return_elements);
+	API_vtkPointSet.GetActualMemorySize_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkPointSet::Register(vtkObjectBase* o)
-// 
-public static void Register(IntPtr obj, IntPtr/*vtkObjectBase* */ o) {
-	VTK.API_vtkPointSet.Register(obj, o);
+// void ShallowCopy(vtkDataObject * src)
+// "void ShallowCopy(vtkDataObject *src)"
+public new void ShallowCopy(vtkDataObject /*(vtkDataObject*)*/ src) {
+	API_vtkPointSet.ShallowCopy_0(this, src);
 }
 
 
-//       Method: void vtkPointSet::UnRegister(vtkObjectBase* o)
-// 
-public static void UnRegister(IntPtr obj, IntPtr/*vtkObjectBase* */ o) {
-	VTK.API_vtkPointSet.UnRegister(obj, o);
+// void DeepCopy(vtkDataObject * src)
+// "void DeepCopy(vtkDataObject *src)"
+public new void DeepCopy(vtkDataObject /*(vtkDataObject*)*/ src) {
+	API_vtkPointSet.DeepCopy_0(this, src);
 }
 
 
-//       Method: static vtkPointSet * vtkPointSet::GetData(vtkInformation* info)
-// 
-public static IntPtr GetData(IntPtr/*vtkInformation* */ info) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPointSet.GetData(p, info);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// void Register(vtkObjectBase * o)
+// "void Register(vtkObjectBase* o)"
+public new void Register(vtkObjectBase /*(vtkObjectBase*)*/ o) {
+	API_vtkPointSet.Register_0(this, o);
 }
 
 
-//       Method: static vtkPointSet * vtkPointSet::GetData(vtkInformationVector* v, int i)
-// 
-public static IntPtr GetData(IntPtr/*vtkInformationVector* */ v, int i) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPointSet.GetData(p, v, i);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// void UnRegister(vtkObjectBase * o)
+// "void UnRegister(vtkObjectBase* o)"
+public new void UnRegister(vtkObjectBase /*(vtkObjectBase*)*/ o) {
+	API_vtkPointSet.UnRegister_0(this, o);
 }
 
 

@@ -1,123 +1,122 @@
 
+
 using System;
 using UnityEngine;
 using System.Runtime.InteropServices;
 
-
-namespace VTK
-{
+namespace VTK {
 public partial class vtkCommand : vtkObjectBase {
 
-//       Method: void vtkCommand::UnRegister()
-// 
-public void UnRegister() {
-	VTK.API_vtkCommand.UnRegister(obj);
+// void UnRegister()
+// "void UnRegister()"
+public new void UnRegister() {
+	API_vtkCommand.UnRegister_0(this);
 }
 
 
-//       Method: void vtkCommand::UnRegister(vtkObjectBase* ARG_0)
-// 
-public void UnRegister(vtkObjectBase/*vtkObjectBase* */ ARG_0) {
-	VTK.API_vtkCommand.UnRegister(obj, ARG_0);
+// void UnRegister(vtkObjectBase * ARG_0)
+// "void UnRegister(vtkObjectBase *)"
+public new void UnRegister(vtkObjectBase /*(vtkObjectBase*)*/ ARG_0) {
+	API_vtkCommand.UnRegister_1(this, ARG_0);
 }
 
 
-//       Method: virtual void vtkCommand::Execute(vtkObject* caller, unsigned long eventId, void* callData)
-// 
-public void Execute(vtkObject/*vtkObject* */ caller, ulong eventId, IntPtr/*void* */ callData) {
-	VTK.API_vtkCommand.Execute(obj, caller, eventId, callData);
+// virtual void Execute(vtkObject * caller, unsigned long eventId, void * callData)
+// "virtual void Execute(vtkObject *caller, unsigned long eventId, void *callData)"
+public new void Execute(vtkObject /*(vtkObject*)*/ caller, ulong /*(long)*/ eventId, IntPtr /*(void*)*/ []callData) {
+	API_vtkCommand.Execute_0(this, caller, eventId, callData);
 }
 
 
-//       Method: static const char * vtkCommand::GetStringFromEventId(unsigned long evt)
-// 
-public static string GetStringFromEventId(ulong evt) {
-	IntPtr p =  Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr()));
-	VTK.API_vtkCommand.GetStringFromEventId(p, evt);
-	string result = Marshal.PtrToStringAnsi(Marshal.ReadIntPtr(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// static char* GetStringFromEventId(unsigned long event)
+// "static const char *GetStringFromEventId(unsigned long event)"
+public new static char GetStringFromEventId(ulong /*(long)*/ evt) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new char())*return_elements);
+	API_vtkCommand.GetStringFromEventId_0(returnPointer, evt);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: static bool vtkCommand::EventHasData(unsigned long evt)
-// 
-public static bool EventHasData(ulong evt) {
-	int numElements = 1;
-	bool example = new bool();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCommand.EventHasData(p, evt);
-	bool result = Convert.ToBoolean(Marshal.ReadByte(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// static long GetEventIdFromString(const char * event)
+// "static unsigned long GetEventIdFromString(const char *event)"
+public new static ulong GetEventIdFromString(char /*(char*)*/ []evt) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new ulong())*return_elements);
+	API_vtkCommand.GetEventIdFromString_0(returnPointer, evt);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkCommand::SetAbortFlag(int f)
-// 
-public void SetAbortFlag(int f) {
-	VTK.API_vtkCommand.SetAbortFlag(obj, f);
+// static bool EventHasData(unsigned long event)
+// "static bool EventHasData(unsigned long event)"
+public new static bool EventHasData(ulong /*(long)*/ evt) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new bool())*return_elements);
+	API_vtkCommand.EventHasData_0(returnPointer, evt);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkCommand::GetAbortFlag()
-// 
-public int GetAbortFlag() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCommand.GetAbortFlag(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// void SetAbortFlag(int f)
+// "void SetAbortFlag(int f)"
+public new void SetAbortFlag(int /*(int)*/ f) {
+	API_vtkCommand.SetAbortFlag_0(this, f);
 }
 
 
-//       Method: void vtkCommand::AbortFlagOn()
-// 
-public void AbortFlagOn() {
-	VTK.API_vtkCommand.AbortFlagOn(obj);
+// int GetAbortFlag()
+// "int GetAbortFlag()"
+public new int GetAbortFlag() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkCommand.GetAbortFlag_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkCommand::AbortFlagOff()
-// 
-public void AbortFlagOff() {
-	VTK.API_vtkCommand.AbortFlagOff(obj);
+// void AbortFlagOn()
+// "void AbortFlagOn()"
+public new void AbortFlagOn() {
+	API_vtkCommand.AbortFlagOn_0(this);
 }
 
 
-//       Method: void vtkCommand::SetPassiveObserver(int f)
-// 
-public void SetPassiveObserver(int f) {
-	VTK.API_vtkCommand.SetPassiveObserver(obj, f);
+// void AbortFlagOff()
+// "void AbortFlagOff()"
+public new void AbortFlagOff() {
+	API_vtkCommand.AbortFlagOff_0(this);
 }
 
 
-//       Method: int vtkCommand::GetPassiveObserver()
-// 
-public int GetPassiveObserver() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkCommand.GetPassiveObserver(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// void SetPassiveObserver(int f)
+// "void SetPassiveObserver(int f)"
+public new void SetPassiveObserver(int /*(int)*/ f) {
+	API_vtkCommand.SetPassiveObserver_0(this, f);
 }
 
 
-//       Method: void vtkCommand::PassiveObserverOn()
-// 
-public void PassiveObserverOn() {
-	VTK.API_vtkCommand.PassiveObserverOn(obj);
+// int GetPassiveObserver()
+// "int GetPassiveObserver()"
+public new int GetPassiveObserver() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkCommand.GetPassiveObserver_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkCommand::PassiveObserverOff()
-// 
-public void PassiveObserverOff() {
-	VTK.API_vtkCommand.PassiveObserverOff(obj);
+// void PassiveObserverOn()
+// "void PassiveObserverOn()"
+public new void PassiveObserverOn() {
+	API_vtkCommand.PassiveObserverOn_0(this);
+}
+
+
+// void PassiveObserverOff()
+// "void PassiveObserverOff()"
+public new void PassiveObserverOff() {
+	API_vtkCommand.PassiveObserverOff_0(this);
 }
 
 

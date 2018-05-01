@@ -137,19 +137,19 @@ public class VTKData : Data {
 			//free_data (names);
 			//free_data (components);
 
-			bool a = VTK.vtkDataSet.IsA (handle,"vtkUnstructuredGrid");
-			bool aa = VTK.vtkCompound.IsA (handle, "vtkStructuredGrid")==1;
+			//bool a = VTK.vtkDataSet.IsA (handle,"vtkUnstructuredGrid");
+			//bool aa = VTK.vtkCompound.IsA (handle, "vtkStructuredGrid")==1;
 
-			VTK.vtkXMLUnstructuredGridReader p = VTK.vtkXMLUnstructuredGridReader.New ();
-			print ("CLASS NAME: " + VTK.vtkXMLDataReader.GetClassName (p));
-			print("" + p.CanReadFile ("/Users/sethjohnson/NSF-Sculpting-Vis-Platform/unity/VisualizationPlatform/Assets/StreamingAssets/example_data/VTK/CICE.vtu"));
+			//VTK.vtkXMLUnstructuredGridReader p = VTK.vtkXMLUnstructuredGridReader.New ();
+			//print ("CLASS NAME: " + VTK.vtkXMLDataReader.GetClassName (p));
+			//print("" + p.CanReadFile ("/Users/sethjohnson/NSF-Sculpting-Vis-Platform/unity/VisualizationPlatform/Assets/StreamingAssets/example_data/VTK/CICE.vtu"));
 
 
-			IntPtr bbox_buff;
-			double[] bbox = new double[6];
-			Bounds b = VTK.vtkDataSet.GetBounds(handle);
-			data_size = b.size;
-			data_center = b.center;
+			//IntPtr bbox_buff;
+			//double[] bbox = new double[6];
+			//Bounds b = VTK.vtkDataSet.GetBounds(handle);
+			//data_size = b.size;
+			//data_center = b.center;
 			print ("Center and extent: " + data_center + ", " + data_size);
 			float[] sizes = { data_size.x, data_size.y, data_size.z };
 			float extremum = sizes.Max ();

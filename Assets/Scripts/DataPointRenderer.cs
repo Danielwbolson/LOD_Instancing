@@ -25,11 +25,11 @@ public class DataPointRenderer : MonoBehaviour {
 
 		VTKData data = (VTKData)dataObject.data;
 
-		numberOfPoints = (int)VTK.vtkDataSet.GetNumberOfPoints (data.handle);
-		points = new Vector3[numberOfPoints];
+		//numberOfPoints = (int)VTK.vtkDataSet.GetNumberOfPoints (data.handle);
+		//points = new Vector3[numberOfPoints];
 
 		for (int i = 0; i < numberOfPoints; i++) {
-			points[i] = VTK.vtkDataSet.GetPoint(data.handle,(long)i);
+			//points[i] = VTK.vtkDataSet.GetPoint(data.handle,(long)i);
 		}
 		is_valid = true;
 			

@@ -1,344 +1,377 @@
 
+
 using System;
 using UnityEngine;
 using System.Runtime.InteropServices;
 
-
-namespace VTK
-{
+namespace VTK {
 public partial class vtkStringArray : vtkAbstractArray {
 
-//       Method: static vtkStringArray * vtkStringArray::New()
-// 
-public static vtkStringArray New() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkStringArray.New(p);
-	vtkStringArray result = new vtkStringArray();
-	unsafe {result.SetPtr(new IntPtr ((*(void**)p.ToPointer ())));}
-	Marshal.FreeHGlobal (p);
-	return result;
+// static vtkStringArray* New()
+// "static vtkStringArray* New()"
+public new static vtkStringArray New() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkStringArray.New_0(returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual const char * vtkStringArray::GetClassName()
-// 
-public string GetClassName() {
-	IntPtr p =  Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr()));
-	VTK.API_vtkStringArray.GetClassName(p,obj);
-	string result = Marshal.PtrToStringAnsi(Marshal.ReadIntPtr(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int GetDataType()
+// "int GetDataType()"
+public new int GetDataType() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkStringArray.GetDataType_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkStringArray::GetDataType()
-// 
-public int GetDataType() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkStringArray.GetDataType(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int IsNumeric()
+// "int IsNumeric()"
+public new int IsNumeric() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkStringArray.IsNumeric_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkStringArray::IsNumeric()
-// 
-public int IsNumeric() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkStringArray.IsNumeric(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// void Initialize()
+// "void Initialize()"
+public new void Initialize() {
+	API_vtkStringArray.Initialize_0(this);
 }
 
 
-//       Method: void vtkStringArray::Initialize()
-// 
-public void Initialize() {
-	VTK.API_vtkStringArray.Initialize(obj);
+// int GetDataTypeSize()
+// "int GetDataTypeSize()"
+public new int GetDataTypeSize() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkStringArray.GetDataTypeSize_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkStringArray::GetDataTypeSize()
-// 
-public int GetDataTypeSize() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkStringArray.GetDataTypeSize(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// void Squeeze()
+// "void Squeeze()"
+public new void Squeeze() {
+	API_vtkStringArray.Squeeze_0(this);
 }
 
 
-//       Method: void vtkStringArray::Squeeze()
-// 
-public void Squeeze() {
-	VTK.API_vtkStringArray.Squeeze(obj);
+// int Resize(vtkIdType numTuples)
+// "int Resize(vtkIdType numTuples)"
+public new int Resize(long /*(vtkIdType)*/ numTuples) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkStringArray.Resize_0(this, returnPointer, numTuples);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkStringArray::Resize(vtkIdType numTuples)
-// 
-public int Resize(long numTuples) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkStringArray.Resize(p,obj, numTuples);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// void SetTuple(vtkIdType i, vtkIdType j, vtkAbstractArray * source)
+// "void SetTuple(vtkIdType i, vtkIdType j, vtkAbstractArray* source)"
+public new void SetTuple(long /*(vtkIdType)*/ i, long /*(vtkIdType)*/ j, vtkAbstractArray /*(vtkAbstractArray*)*/ source) {
+	API_vtkStringArray.SetTuple_0(this, i, j, source);
 }
 
 
-//       Method: void vtkStringArray::SetTuple(vtkIdType i, vtkIdType j, vtkAbstractArray* source)
-// 
-public void SetTuple(long i, long j, vtkAbstractArray/*vtkAbstractArray* */ source) {
-	VTK.API_vtkStringArray.SetTuple(obj, i, j, source);
+// void InsertTuple(vtkIdType i, vtkIdType j, vtkAbstractArray * source)
+// "void InsertTuple(vtkIdType i, vtkIdType j, vtkAbstractArray* source)"
+public new void InsertTuple(long /*(vtkIdType)*/ i, long /*(vtkIdType)*/ j, vtkAbstractArray /*(vtkAbstractArray*)*/ source) {
+	API_vtkStringArray.InsertTuple_0(this, i, j, source);
 }
 
 
-//       Method: void vtkStringArray::InsertTuple(vtkIdType i, vtkIdType j, vtkAbstractArray* source)
-// 
-public void InsertTuple(long i, long j, vtkAbstractArray/*vtkAbstractArray* */ source) {
-	VTK.API_vtkStringArray.InsertTuple(obj, i, j, source);
+// void InsertTuples(vtkIdList * dstIds, vtkIdList * srcIds, vtkAbstractArray * source)
+// "void InsertTuples(vtkIdList *dstIds, vtkIdList *srcIds, vtkAbstractArray *source)"
+public new void InsertTuples(vtkIdList /*(vtkIdList*)*/ dstIds, vtkIdList /*(vtkIdList*)*/ srcIds, vtkAbstractArray /*(vtkAbstractArray*)*/ source) {
+	API_vtkStringArray.InsertTuples_0(this, dstIds, srcIds, source);
 }
 
 
-//       Method: void vtkStringArray::InsertTuples(vtkIdList* dstIds, vtkIdList* srcIds, vtkAbstractArray* source)
-// 
-public void InsertTuples(vtkIdList/*vtkIdList* */ dstIds, vtkIdList/*vtkIdList* */ srcIds, vtkAbstractArray/*vtkAbstractArray* */ source) {
-	VTK.API_vtkStringArray.InsertTuples(obj, dstIds, srcIds, source);
+// void InsertTuples(vtkIdType dstStart, vtkIdType n, vtkIdType srcStart, vtkAbstractArray * source)
+// "void InsertTuples(vtkIdType dstStart, vtkIdType n, vtkIdType srcStart, vtkAbstractArray* source)"
+public new void InsertTuples(long /*(vtkIdType)*/ dstStart, long /*(vtkIdType)*/ n, long /*(vtkIdType)*/ srcStart, vtkAbstractArray /*(vtkAbstractArray*)*/ source) {
+	API_vtkStringArray.InsertTuples_1(this, dstStart, n, srcStart, source);
 }
 
 
-//       Method: void vtkStringArray::InsertTuples(vtkIdType dstStart, vtkIdType n, vtkIdType srcStart, vtkAbstractArray* source)
-// 
-public void InsertTuples(long dstStart, long n, long srcStart, vtkAbstractArray/*vtkAbstractArray* */ source) {
-	VTK.API_vtkStringArray.InsertTuples(obj, dstStart, n, srcStart, source);
+// vtkIdType InsertNextTuple(vtkIdType j, vtkAbstractArray * source)
+// "vtkIdType InsertNextTuple(vtkIdType j, vtkAbstractArray* source)"
+public new long InsertNextTuple(long /*(vtkIdType)*/ j, vtkAbstractArray /*(vtkAbstractArray*)*/ source) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkStringArray.InsertNextTuple_0(this, returnPointer, j, source);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkIdType vtkStringArray::InsertNextTuple(vtkIdType j, vtkAbstractArray* source)
-// 
-public long InsertNextTuple(long j, vtkAbstractArray/*vtkAbstractArray* */ source) {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkStringArray.InsertNextTuple(p,obj, j, source);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// void InterpolateTuple(vtkIdType i, vtkIdList * ptIndices, vtkAbstractArray * source, double * weights)
+// "void InterpolateTuple(vtkIdType i, vtkIdList *ptIndices, vtkAbstractArray* source, double* weights)"
+public new void InterpolateTuple(long /*(vtkIdType)*/ i, vtkIdList /*(vtkIdList*)*/ ptIndices, vtkAbstractArray /*(vtkAbstractArray*)*/ source, double /*(double*)*/ []weights) {
+	API_vtkStringArray.InterpolateTuple_0(this, i, ptIndices, source, weights);
 }
 
 
-//       Method: void vtkStringArray::InterpolateTuple(vtkIdType i, vtkIdList* ptIndices, vtkAbstractArray* source, double* weights)
-// 
-public void InterpolateTuple(long i, vtkIdList/*vtkIdList* */ ptIndices, vtkAbstractArray/*vtkAbstractArray* */ source, double/*double* */ weights) {
-	VTK.API_vtkStringArray.InterpolateTuple(obj, i, ptIndices, source, weights);
+// void InterpolateTuple(vtkIdType i, vtkIdType id1, vtkAbstractArray * source1, vtkIdType id2, vtkAbstractArray * source2, double t)
+// "void InterpolateTuple(vtkIdType i, vtkIdType id1, vtkAbstractArray* source1, vtkIdType id2, vtkAbstractArray* source2, double t)"
+public new void InterpolateTuple(long /*(vtkIdType)*/ i, long /*(vtkIdType)*/ id1, vtkAbstractArray /*(vtkAbstractArray*)*/ source1, long /*(vtkIdType)*/ id2, vtkAbstractArray /*(vtkAbstractArray*)*/ source2, double /*(double)*/ t) {
+	API_vtkStringArray.InterpolateTuple_1(this, i, id1, source1, id2, source2, t);
 }
 
 
-//       Method: void vtkStringArray::InterpolateTuple(vtkIdType i, vtkIdType id1, vtkAbstractArray* source1, vtkIdType id2, vtkAbstractArray* source2, double t)
-// 
-public void InterpolateTuple(long i, long id1, vtkAbstractArray/*vtkAbstractArray* */ source1, long id2, vtkAbstractArray/*vtkAbstractArray* */ source2, double t) {
-	VTK.API_vtkStringArray.InterpolateTuple(obj, i, id1, source1, id2, source2, t);
+// void GetTuples(vtkIdList * ptIds, vtkAbstractArray * output)
+// "void GetTuples(vtkIdList *ptIds, vtkAbstractArray *output)"
+public new void GetTuples(vtkIdList /*(vtkIdList*)*/ ptIds, vtkAbstractArray /*(vtkAbstractArray*)*/ output) {
+	API_vtkStringArray.GetTuples_0(this, ptIds, output);
 }
 
 
-//       Method: void vtkStringArray::GetTuples(vtkIdList* ptIds, vtkAbstractArray* output)
-// 
-public void GetTuples(vtkIdList/*vtkIdList* */ ptIds, vtkAbstractArray/*vtkAbstractArray* */ output) {
-	VTK.API_vtkStringArray.GetTuples(obj, ptIds, output);
+// void GetTuples(vtkIdType p1, vtkIdType p2, vtkAbstractArray * output)
+// "void GetTuples(vtkIdType p1, vtkIdType p2, vtkAbstractArray *output)"
+public new void GetTuples(long /*(vtkIdType)*/ p1, long /*(vtkIdType)*/ p2, vtkAbstractArray /*(vtkAbstractArray*)*/ output) {
+	API_vtkStringArray.GetTuples_1(this, p1, p2, output);
 }
 
 
-//       Method: void vtkStringArray::GetTuples(vtkIdType p1, vtkIdType p2, vtkAbstractArray* output)
-// 
-public void GetTuples(long p1, long p2, vtkAbstractArray/*vtkAbstractArray* */ output) {
-	VTK.API_vtkStringArray.GetTuples(obj, p1, p2, output);
+// int Allocate(vtkIdType sz, vtkIdType ext = 1000)
+// "int Allocate( vtkIdType sz, vtkIdType ext=1000 )"
+public new int Allocate(long /*(vtkIdType)*/ sz, long /*(vtkIdType)*/ ext) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkStringArray.Allocate_0(this, returnPointer, sz, ext);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkStringArray::Allocate(vtkIdType sz, vtkIdType ext)
-// 
-public int Allocate(long sz, long ext) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkStringArray.Allocate(p,obj, sz, ext);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkStdString& GetValue(vtkIdType id)
+// "vtkStdString &GetValue(vtkIdType id)"
+public new string GetValue(long /*(vtkIdType)*/ id) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new string())*return_elements);
+	API_vtkStringArray.GetValue_0(this, returnPointer, id);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkStringArray::SetValue(vtkIdType id, const char* value)
-// 
-public void SetValue(long id, string/*const char* */ value) {
-	VTK.API_vtkStringArray.SetValue(obj, id, value);
+// void SetValue(vtkIdType id, vtkStdString value)
+// "void SetValue(vtkIdType id, vtkStdString value)"
+public new void SetValue(long /*(vtkIdType)*/ id, string /*(vtkStdString)*/ value) {
+	API_vtkStringArray.SetValue_0(this, id, value);
 }
 
 
-//       Method: void vtkStringArray::SetNumberOfTuples(vtkIdType number)
-// 
-public void SetNumberOfTuples(long number) {
-	VTK.API_vtkStringArray.SetNumberOfTuples(obj, number);
+// void SetValue(vtkIdType id, const char * value)
+// "void SetValue(vtkIdType id, const char *value)"
+public new void SetValue(long /*(vtkIdType)*/ id, char /*(char*)*/ []value) {
+	API_vtkStringArray.SetValue_1(this, id, value);
 }
 
 
-//       Method: void vtkStringArray::SetNumberOfValues(vtkIdType number)
-// 
-public void SetNumberOfValues(long number) {
-	VTK.API_vtkStringArray.SetNumberOfValues(obj, number);
+// void SetNumberOfTuples(vtkIdType number)
+// "void SetNumberOfTuples(vtkIdType number)"
+public new void SetNumberOfTuples(long /*(vtkIdType)*/ number) {
+	API_vtkStringArray.SetNumberOfTuples_0(this, number);
 }
 
 
-//       Method: vtkIdType vtkStringArray::GetNumberOfValues()
-// 
-public long GetNumberOfValues() {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkStringArray.GetNumberOfValues(p,obj);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// void SetNumberOfValues(vtkIdType number)
+// "void SetNumberOfValues(vtkIdType number)"
+public new void SetNumberOfValues(long /*(vtkIdType)*/ number) {
+	API_vtkStringArray.SetNumberOfValues_0(this, number);
 }
 
 
-//       Method: int vtkStringArray::GetNumberOfElementComponents()
-// 
-public int GetNumberOfElementComponents() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkStringArray.GetNumberOfElementComponents(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkIdType GetNumberOfValues()
+// "vtkIdType GetNumberOfValues()"
+public new long GetNumberOfValues() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkStringArray.GetNumberOfValues_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkStringArray::GetElementComponentSize()
-// 
-public int GetElementComponentSize() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkStringArray.GetElementComponentSize(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int GetNumberOfElementComponents()
+// "int GetNumberOfElementComponents()"
+public new int GetNumberOfElementComponents() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkStringArray.GetNumberOfElementComponents_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkStringArray::InsertValue(vtkIdType id, const char* val)
-// 
-public void InsertValue(long id, string/*const char* */ val) {
-	VTK.API_vtkStringArray.InsertValue(obj, id, val);
+// int GetElementComponentSize()
+// "int GetElementComponentSize()"
+public new int GetElementComponentSize() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkStringArray.GetElementComponentSize_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkIdType vtkStringArray::InsertNextValue(const char* f)
-// 
-public long InsertNextValue(string/*const char* */ f) {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkStringArray.InsertNextValue(p,obj, f);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// void InsertValue(vtkIdType id, vtkStdString f)
+// "void InsertValue(vtkIdType id, vtkStdString f)"
+public new void InsertValue(long /*(vtkIdType)*/ id, string /*(vtkStdString)*/ f) {
+	API_vtkStringArray.InsertValue_0(this, id, f);
 }
 
 
-//       Method: void * vtkStringArray::GetVoidPointer(vtkIdType id)
-// 
-public IntPtr GetVoidPointer(long id) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkStringArray.GetVoidPointer(p,obj, id);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// void InsertValue(vtkIdType id, const char * val)
+// "void InsertValue(vtkIdType id, const char *val)"
+public new void InsertValue(long /*(vtkIdType)*/ id, char /*(char*)*/ []val) {
+	API_vtkStringArray.InsertValue_1(this, id, val);
 }
 
 
-//       Method: void vtkStringArray::DeepCopy(vtkAbstractArray* aa)
-// 
-public void DeepCopy(vtkAbstractArray/*vtkAbstractArray* */ aa) {
-	VTK.API_vtkStringArray.DeepCopy(obj, aa);
+// vtkIdType InsertNextValue(vtkStdString f)
+// "vtkIdType InsertNextValue(vtkStdString f)"
+public new long InsertNextValue(string /*(vtkStdString)*/ f) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkStringArray.InsertNextValue_0(this, returnPointer, f);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkStringArray::SetVoidArray(void* array, vtkIdType size, int save)
-// 
-public void SetVoidArray(IntPtr/*void* */ array, long size, int save) {
-	VTK.API_vtkStringArray.SetVoidArray(obj, array, size, save);
+// vtkIdType InsertNextValue(const char * f)
+// "vtkIdType InsertNextValue(const char *f)"
+public new long InsertNextValue(char /*(char*)*/ []f) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkStringArray.InsertNextValue_1(this, returnPointer, f);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkIdType vtkStringArray::GetDataSize()
-// 
-public long GetDataSize() {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkStringArray.GetDataSize(p,obj);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkStdString* WritePointer(vtkIdType id, vtkIdType number)
+// "vtkStdString* WritePointer(vtkIdType id, vtkIdType number)"
+public new string WritePointer(long /*(vtkIdType)*/ id, long /*(vtkIdType)*/ number) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new string())*return_elements);
+	API_vtkStringArray.WritePointer_0(this, returnPointer, id, number);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkIdType vtkStringArray::LookupValue(const char* value)
-// 
-public long LookupValue(string/*const char* */ value) {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkStringArray.LookupValue(p,obj, value);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkStdString* GetPointer(vtkIdType id)
+// "vtkStdString* GetPointer(vtkIdType id)"
+public new string GetPointer(long /*(vtkIdType)*/ id) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new string())*return_elements);
+	API_vtkStringArray.GetPointer_0(this, returnPointer, id);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkStringArray::LookupValue(const char* value, vtkIdList* ids)
-// 
-public void LookupValue(string/*const char* */ value, vtkIdList/*vtkIdList* */ ids) {
-	VTK.API_vtkStringArray.LookupValue(obj, value, ids);
+// void* GetVoidPointer(vtkIdType id)
+// "void* GetVoidPointer(vtkIdType id)"
+public new IntPtr GetVoidPointer(long /*(vtkIdType)*/ id) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkStringArray.GetVoidPointer_0(this, returnPointer, id);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkStringArray::DataChanged()
-// 
-public void DataChanged() {
-	VTK.API_vtkStringArray.DataChanged(obj);
+// void DeepCopy(vtkAbstractArray * aa)
+// "void DeepCopy( vtkAbstractArray* aa )"
+public new void DeepCopy(vtkAbstractArray /*(vtkAbstractArray*)*/ aa) {
+	API_vtkStringArray.DeepCopy_0(this, aa);
 }
 
 
-//       Method: virtual void vtkStringArray::DataElementChanged(vtkIdType id)
-// 
-public void DataElementChanged(long id) {
-	VTK.API_vtkStringArray.DataElementChanged(obj, id);
+// void SetArray(vtkStdString * array, vtkIdType size, int save)
+// "void SetArray(vtkStdString* array, vtkIdType size, int save)"
+public new void SetArray(string /*(vtkStdString*)*/ []array, long /*(vtkIdType)*/ size, int /*(int)*/ save) {
+	API_vtkStringArray.SetArray_0(this, array, size, save);
 }
 
 
-//       Method: void vtkStringArray::ClearLookup()
-// 
-public void ClearLookup() {
-	VTK.API_vtkStringArray.ClearLookup(obj);
+// void SetVoidArray(void * array, vtkIdType size, int save)
+// "void SetVoidArray(void* array, vtkIdType size, int save)"
+public new void SetVoidArray(IntPtr /*(void*)*/ []array, long /*(vtkIdType)*/ size, int /*(int)*/ save) {
+	API_vtkStringArray.SetVoidArray_0(this, array, size, save);
+}
+
+
+// long GetActualMemorySize()
+// "unsigned long GetActualMemorySize()"
+public new ulong GetActualMemorySize() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new ulong())*return_elements);
+	API_vtkStringArray.GetActualMemorySize_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
+}
+
+
+// vtkIdType GetDataSize()
+// "vtkIdType GetDataSize()"
+public new long GetDataSize() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkStringArray.GetDataSize_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
+}
+
+
+// vtkIdType LookupValue(const vtkStdString & value)
+// "vtkIdType LookupValue(const vtkStdString& value)"
+public new long LookupValue(string /*(vtkStdString&)*/ []value) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkStringArray.LookupValue_0(this, returnPointer, *value);
+	return Ptr.deref(returnPointer);
+}
+
+
+// void LookupValue(const vtkStdString & value, vtkIdList * ids)
+// "void LookupValue(const vtkStdString& value, vtkIdList* ids)"
+public new void LookupValue(string /*(vtkStdString&)*/ []value, vtkIdList /*(vtkIdList*)*/ ids) {
+	API_vtkStringArray.LookupValue_1(this, *value, ids);
+}
+
+
+// vtkIdType LookupValue(const char * value)
+// "vtkIdType LookupValue(const char* value)"
+public new long LookupValue(char /*(char*)*/ []value) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkStringArray.LookupValue_2(this, returnPointer, value);
+	return Ptr.deref(returnPointer);
+}
+
+
+// void LookupValue(const char * value, vtkIdList * ids)
+// "void LookupValue(const char* value, vtkIdList* ids)"
+public new void LookupValue(char /*(char*)*/ []value, vtkIdList /*(vtkIdList*)*/ ids) {
+	API_vtkStringArray.LookupValue_3(this, value, ids);
+}
+
+
+// void DataChanged()
+// "void DataChanged()"
+public new void DataChanged() {
+	API_vtkStringArray.DataChanged_0(this);
+}
+
+
+// virtual void DataElementChanged(vtkIdType id)
+// "virtual void DataElementChanged(vtkIdType id)"
+public new void DataElementChanged(long /*(vtkIdType)*/ id) {
+	API_vtkStringArray.DataElementChanged_0(this, id);
+}
+
+
+// void ClearLookup()
+// "void ClearLookup()"
+public new void ClearLookup() {
+	API_vtkStringArray.ClearLookup_0(this);
 }
 
 

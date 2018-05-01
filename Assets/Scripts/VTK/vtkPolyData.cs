@@ -1,637 +1,605 @@
 
+
 using System;
 using UnityEngine;
 using System.Runtime.InteropServices;
 
-
-namespace VTK
-{
+namespace VTK {
 public partial class vtkPolyData : vtkPointSet {
 
-//       Method: static vtkPolyData * vtkPolyData::New()
-// 
-public static vtkPolyData New() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPolyData.New(p);
-	vtkPolyData result = new vtkPolyData();
-	unsafe {result.SetPtr(new IntPtr ((*(void**)p.ToPointer ())));}
-	Marshal.FreeHGlobal (p);
-	return result;
+// static vtkPolyData* New()
+// "static vtkPolyData *New()"
+public new static vtkPolyData New() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkPolyData.New_0(returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual const char * vtkPolyData::GetClassName()
-// 
-public string GetClassName() {
-	IntPtr p =  Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr()));
-	VTK.API_vtkPolyData.GetClassName(p,obj);
-	string result = Marshal.PtrToStringAnsi(Marshal.ReadIntPtr(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int GetDataObjectType()
+// "int GetDataObjectType()"
+public new int GetDataObjectType() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkPolyData.GetDataObjectType_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkPolyData::GetDataObjectType()
-// 
-public int GetDataObjectType() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPolyData.GetDataObjectType(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// void CopyStructure(vtkDataSet * ds)
+// "void CopyStructure(vtkDataSet *ds)"
+public new void CopyStructure(vtkDataSet /*(vtkDataSet*)*/ ds) {
+	API_vtkPolyData.CopyStructure_0(this, ds);
 }
 
 
-//       Method: void vtkPolyData::CopyStructure(vtkDataSet* ds)
-// 
-public void CopyStructure(vtkDataSet/*vtkDataSet* */ ds) {
-	VTK.API_vtkPolyData.CopyStructure(obj, ds);
+// vtkIdType GetNumberOfCells()
+// "vtkIdType GetNumberOfCells()"
+public new long GetNumberOfCells() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkPolyData.GetNumberOfCells_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkIdType vtkPolyData::GetNumberOfCells()
-// 
-public long GetNumberOfCells() {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPolyData.GetNumberOfCells(p,obj);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkCell* GetCell(vtkIdType cellId)
+// "vtkCell *GetCell(vtkIdType cellId)"
+public new vtkCell GetCell(long /*(vtkIdType)*/ cellId) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkPolyData.GetCell_0(this, returnPointer, cellId);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkCell * vtkPolyData::GetCell(vtkIdType cellId)
-// 
-public vtkCell GetCell(long cellId) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPolyData.GetCell(p,obj, cellId);
-	vtkCell result = new vtkCell();
-	unsafe {result.SetPtr(new IntPtr ((*(void**)p.ToPointer ())));}
-	Marshal.FreeHGlobal (p);
-	return result;
+// void GetCell(vtkIdType cellId, vtkGenericCell * cell)
+// "void GetCell(vtkIdType cellId, vtkGenericCell *cell)"
+public new void GetCell(long /*(vtkIdType)*/ cellId, vtkGenericCell /*(vtkGenericCell*)*/ cell) {
+	API_vtkPolyData.GetCell_1(this, cellId, cell);
 }
 
 
-//       Method: void vtkPolyData::GetCell(vtkIdType cellId, vtkGenericCell* cell)
-// 
-public void GetCell(long cellId, vtkGenericCell/*vtkGenericCell* */ cell) {
-	VTK.API_vtkPolyData.GetCell(obj, cellId, cell);
+// int GetCellType(vtkIdType cellId)
+// "int GetCellType(vtkIdType cellId)"
+public new int GetCellType(long /*(vtkIdType)*/ cellId) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkPolyData.GetCellType_0(this, returnPointer, cellId);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkPolyData::GetCellType(vtkIdType cellId)
-// 
-public int GetCellType(long cellId) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPolyData.GetCellType(p,obj, cellId);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// void GetCellBounds(vtkIdType cellId, double bounds[6])
+// "void GetCellBounds(vtkIdType cellId, double bounds[6])"
+public new void GetCellBounds(long /*(vtkIdType)*/ cellId, double /*(double[6])*/ []bounds) {
+	API_vtkPolyData.GetCellBounds_0(this, cellId, bounds);
 }
 
 
-//       Method: void vtkPolyData::GetCellBounds(vtkIdType cellId, double bounds[6])
-// 
-public void GetCellBounds(long cellId, double[] /*6*/ bounds) {
-	VTK.API_vtkPolyData.GetCellBounds(obj, cellId, bounds);
+// void GetCellNeighbors(vtkIdType cellId, vtkIdList * ptIds, vtkIdList * cellIds)
+// "void GetCellNeighbors(vtkIdType cellId, vtkIdList *ptIds, vtkIdList *cellIds)"
+public new void GetCellNeighbors(long /*(vtkIdType)*/ cellId, vtkIdList /*(vtkIdList*)*/ ptIds, vtkIdList /*(vtkIdList*)*/ cellIds) {
+	API_vtkPolyData.GetCellNeighbors_0(this, cellId, ptIds, cellIds);
 }
 
 
-//       Method: void vtkPolyData::GetCellNeighbors(vtkIdType cellId, vtkIdList* ptIds, vtkIdList* cellIds)
-// 
-public void GetCellNeighbors(long cellId, vtkIdList/*vtkIdList* */ ptIds, vtkIdList/*vtkIdList* */ cellIds) {
-	VTK.API_vtkPolyData.GetCellNeighbors(obj, cellId, ptIds, cellIds);
+// void CopyCells(vtkPolyData * pd, vtkIdList * idList, vtkPointLocator * locator = nullptr)
+// "void CopyCells(vtkPolyData *pd, vtkIdList *idList, vtkPointLocator *locator = nullptr)"
+public new void CopyCells(vtkPolyData /*(vtkPolyData*)*/ pd, vtkIdList /*(vtkIdList*)*/ idList, vtkPointLocator /*(vtkPointLocator*)*/ locator) {
+	API_vtkPolyData.CopyCells_0(this, pd, idList, locator);
 }
 
 
-// //       Method: void vtkPolyData::CopyCells(vtkPolyData* pd, vtkIdList* idList, vtkPointLocator* locator)
-// // 
-// public void CopyCells(vtkPolyDatavtkPolyData*  pd, vtkIdList/*vtkIdList* */ idList, vtkPointLocator/*vtkPointLocator* */ locator) {
-// 	VTK.API_vtkPolyData.CopyCells(obj, pd, idList, locator);
-// }
-
-
-//       Method: void vtkPolyData::GetCellPoints(vtkIdType cellId, vtkIdList* ptIds)
-// 
-public void GetCellPoints(long cellId, vtkIdList/*vtkIdList* */ ptIds) {
-	VTK.API_vtkPolyData.GetCellPoints(obj, cellId, ptIds);
+// void GetCellPoints(vtkIdType cellId, vtkIdList * ptIds)
+// "void GetCellPoints(vtkIdType cellId, vtkIdList *ptIds)"
+public new void GetCellPoints(long /*(vtkIdType)*/ cellId, vtkIdList /*(vtkIdList*)*/ ptIds) {
+	API_vtkPolyData.GetCellPoints_0(this, cellId, ptIds);
 }
 
 
-//       Method: void vtkPolyData::GetPointCells(vtkIdType ptId, vtkIdList* cellIds)
-// 
-public void GetPointCells(long ptId, vtkIdList/*vtkIdList* */ cellIds) {
-	VTK.API_vtkPolyData.GetPointCells(obj, ptId, cellIds);
+// void GetPointCells(vtkIdType ptId, vtkIdList * cellIds)
+// "void GetPointCells(vtkIdType ptId, vtkIdList *cellIds)"
+public new void GetPointCells(long /*(vtkIdType)*/ ptId, vtkIdList /*(vtkIdList*)*/ cellIds) {
+	API_vtkPolyData.GetPointCells_0(this, ptId, cellIds);
 }
 
 
-//       Method: void vtkPolyData::ComputeBounds()
-// 
-public void ComputeBounds() {
-	VTK.API_vtkPolyData.ComputeBounds(obj);
+// void ComputeBounds()
+// "void ComputeBounds()"
+public new void ComputeBounds() {
+	API_vtkPolyData.ComputeBounds_0(this);
 }
 
 
-//       Method: void vtkPolyData::Squeeze()
-// 
-public void Squeeze() {
-	VTK.API_vtkPolyData.Squeeze(obj);
+// void Squeeze()
+// "void Squeeze()"
+public new void Squeeze() {
+	API_vtkPolyData.Squeeze_0(this);
 }
 
 
-//       Method: int vtkPolyData::GetMaxCellSize()
-// 
-public int GetMaxCellSize() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPolyData.GetMaxCellSize(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int GetMaxCellSize()
+// "int GetMaxCellSize()"
+public new int GetMaxCellSize() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkPolyData.GetMaxCellSize_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkCellArray * vtkPolyData::GetVerts()
-// 
-public vtkCellArray GetVerts() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPolyData.GetVerts(p,obj);
-	vtkCellArray result = new vtkCellArray();
-	unsafe {result.SetPtr(new IntPtr ((*(void**)p.ToPointer ())));}
-	Marshal.FreeHGlobal (p);
-	return result;
+// void SetVerts(vtkCellArray * v)
+// "void SetVerts (vtkCellArray* v)"
+public new void SetVerts(vtkCellArray /*(vtkCellArray*)*/ v) {
+	API_vtkPolyData.SetVerts_0(this, v);
 }
 
 
-//       Method: vtkCellArray * vtkPolyData::GetLines()
-// 
-public vtkCellArray GetLines() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPolyData.GetLines(p,obj);
-	vtkCellArray result = new vtkCellArray();
-	unsafe {result.SetPtr(new IntPtr ((*(void**)p.ToPointer ())));}
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkCellArray* GetVerts()
+// "vtkCellArray *GetVerts()"
+public new vtkCellArray GetVerts() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkPolyData.GetVerts_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkCellArray * vtkPolyData::GetPolys()
-// 
-public vtkCellArray GetPolys() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPolyData.GetPolys(p,obj);
-	vtkCellArray result = new vtkCellArray();
-	unsafe {result.SetPtr(new IntPtr ((*(void**)p.ToPointer ())));}
-	Marshal.FreeHGlobal (p);
-	return result;
+// void SetLines(vtkCellArray * l)
+// "void SetLines (vtkCellArray* l)"
+public new void SetLines(vtkCellArray /*(vtkCellArray*)*/ l) {
+	API_vtkPolyData.SetLines_0(this, l);
 }
 
 
-//       Method: vtkCellArray * vtkPolyData::GetStrips()
-// 
-public vtkCellArray GetStrips() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPolyData.GetStrips(p,obj);
-	vtkCellArray result = new vtkCellArray();
-	unsafe {result.SetPtr(new IntPtr ((*(void**)p.ToPointer ())));}
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkCellArray* GetLines()
+// "vtkCellArray *GetLines()"
+public new vtkCellArray GetLines() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkPolyData.GetLines_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkIdType vtkPolyData::GetNumberOfVerts()
-// 
-public long GetNumberOfVerts() {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPolyData.GetNumberOfVerts(p,obj);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// void SetPolys(vtkCellArray * p)
+// "void SetPolys (vtkCellArray* p)"
+public new void SetPolys(vtkCellArray /*(vtkCellArray*)*/ p) {
+	API_vtkPolyData.SetPolys_0(this, p);
 }
 
 
-//       Method: vtkIdType vtkPolyData::GetNumberOfLines()
-// 
-public long GetNumberOfLines() {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPolyData.GetNumberOfLines(p,obj);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkCellArray* GetPolys()
+// "vtkCellArray *GetPolys()"
+public new vtkCellArray GetPolys() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkPolyData.GetPolys_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkIdType vtkPolyData::GetNumberOfPolys()
-// 
-public long GetNumberOfPolys() {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPolyData.GetNumberOfPolys(p,obj);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// void SetStrips(vtkCellArray * s)
+// "void SetStrips (vtkCellArray* s)"
+public new void SetStrips(vtkCellArray /*(vtkCellArray*)*/ s) {
+	API_vtkPolyData.SetStrips_0(this, s);
 }
 
 
-//       Method: vtkIdType vtkPolyData::GetNumberOfStrips()
-// 
-public long GetNumberOfStrips() {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPolyData.GetNumberOfStrips(p,obj);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkCellArray* GetStrips()
+// "vtkCellArray *GetStrips()"
+public new vtkCellArray GetStrips() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkPolyData.GetStrips_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkPolyData::Allocate(vtkIdType numCells, int extSize)
-// 
-public void Allocate(long numCells, int extSize) {
-	VTK.API_vtkPolyData.Allocate(obj, numCells, extSize);
+// vtkIdType GetNumberOfVerts()
+// "vtkIdType GetNumberOfVerts()"
+public new long GetNumberOfVerts() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkPolyData.GetNumberOfVerts_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkPolyData::Allocate(vtkPolyData* inPolyData, vtkIdType numCells, int extSize)
-// 
-public void Allocate(vtkPolyData/*vtkPolyData* */ inPolyData, long numCells, int extSize) {
-	VTK.API_vtkPolyData.Allocate(obj, inPolyData, numCells, extSize);
+// vtkIdType GetNumberOfLines()
+// "vtkIdType GetNumberOfLines()"
+public new long GetNumberOfLines() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkPolyData.GetNumberOfLines_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkIdType vtkPolyData::InsertNextCell(int type, int npts, vtkIdType* pts)
-// 
-public long InsertNextCell(int type, int npts, long/*vtkIdType* */ pts) {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPolyData.InsertNextCell(p,obj, type, npts, pts);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkIdType GetNumberOfPolys()
+// "vtkIdType GetNumberOfPolys()"
+public new long GetNumberOfPolys() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkPolyData.GetNumberOfPolys_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkIdType vtkPolyData::InsertNextCell(int type, vtkIdList* pts)
-// 
-public long InsertNextCell(int type, vtkIdList/*vtkIdList* */ pts) {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPolyData.InsertNextCell(p,obj, type, pts);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkIdType GetNumberOfStrips()
+// "vtkIdType GetNumberOfStrips()"
+public new long GetNumberOfStrips() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkPolyData.GetNumberOfStrips_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkPolyData::Reset()
-// 
-public void Reset() {
-	VTK.API_vtkPolyData.Reset(obj);
+// void Allocate(vtkIdType numCells = 1000, int extSize = 1000)
+// "void Allocate(vtkIdType numCells=1000, int extSize=1000)"
+public new void Allocate(long /*(vtkIdType)*/ numCells, int /*(int)*/ extSize) {
+	API_vtkPolyData.Allocate_0(this, numCells, extSize);
 }
 
 
-//       Method: void vtkPolyData::BuildCells()
-// 
-public void BuildCells() {
-	VTK.API_vtkPolyData.BuildCells(obj);
+// void Allocate(vtkPolyData * inPolyData, vtkIdType numCells = 1000, int extSize = 1000)
+// "void Allocate(vtkPolyData *inPolyData, vtkIdType numCells=1000, int extSize=1000)"
+public new void Allocate(vtkPolyData /*(vtkPolyData*)*/ inPolyData, long /*(vtkIdType)*/ numCells, int /*(int)*/ extSize) {
+	API_vtkPolyData.Allocate_1(this, inPolyData, numCells, extSize);
 }
 
 
-//       Method: bool vtkPolyData::NeedToBuildCells()
-// 
-public bool NeedToBuildCells() {
-	int numElements = 1;
-	bool example = new bool();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPolyData.NeedToBuildCells(p,obj);
-	bool result = Convert.ToBoolean(Marshal.ReadByte(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkIdType InsertNextCell(int type, int npts, vtkIdType * pts)
+// "vtkIdType InsertNextCell(int type, int npts, vtkIdType *pts)"
+public new long InsertNextCell(int /*(int)*/ type, int /*(int)*/ npts, long /*(vtkIdType*)*/ []pts) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkPolyData.InsertNextCell_0(this, returnPointer, type, npts, pts);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkPolyData::BuildLinks(int initialSize)
-// 
-public void BuildLinks(int initialSize) {
-	VTK.API_vtkPolyData.BuildLinks(obj, initialSize);
+// vtkIdType InsertNextCell(int type, vtkIdList * pts)
+// "vtkIdType InsertNextCell(int type, vtkIdList *pts)"
+public new long InsertNextCell(int /*(int)*/ type, vtkIdList /*(vtkIdList*)*/ pts) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkPolyData.InsertNextCell_1(this, returnPointer, type, pts);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkPolyData::DeleteCells()
-// 
-public void DeleteCells() {
-	VTK.API_vtkPolyData.DeleteCells(obj);
+// void Reset()
+// "void Reset()"
+public new void Reset() {
+	API_vtkPolyData.Reset_0(this);
 }
 
 
-//       Method: void vtkPolyData::DeleteLinks()
-// 
-public void DeleteLinks() {
-	VTK.API_vtkPolyData.DeleteLinks(obj);
+// void BuildCells()
+// "void BuildCells()"
+public new void BuildCells() {
+	API_vtkPolyData.BuildCells_0(this);
 }
 
 
-//       Method: void vtkPolyData::GetCellEdgeNeighbors(vtkIdType cellId, vtkIdType p1, vtkIdType p2, vtkIdList* cellIds)
-// 
-public void GetCellEdgeNeighbors(long cellId, long p1, long p2, vtkIdList/*vtkIdList* */ cellIds) {
-	VTK.API_vtkPolyData.GetCellEdgeNeighbors(obj, cellId, p1, p2, cellIds);
+// bool NeedToBuildCells()
+// "bool NeedToBuildCells()"
+public new bool NeedToBuildCells() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new bool())*return_elements);
+	API_vtkPolyData.NeedToBuildCells_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkPolyData::IsTriangle(int v1, int v2, int v3)
-// 
-public int IsTriangle(int v1, int v2, int v3) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPolyData.IsTriangle(p,obj, v1, v2, v3);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// void BuildLinks(int initialSize = 0)
+// "void BuildLinks(int initialSize=0)"
+public new void BuildLinks(int /*(int)*/ initialSize) {
+	API_vtkPolyData.BuildLinks_0(this, initialSize);
 }
 
 
-//       Method: int vtkPolyData::IsEdge(vtkIdType p1, vtkIdType p2)
-// 
-public int IsEdge(long p1, long p2) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPolyData.IsEdge(p,obj, p1, p2);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// void DeleteCells()
+// "void DeleteCells()"
+public new void DeleteCells() {
+	API_vtkPolyData.DeleteCells_0(this);
 }
 
 
-//       Method: int vtkPolyData::IsPointUsedByCell(vtkIdType ptId, vtkIdType cellId)
-// 
-public int IsPointUsedByCell(long ptId, long cellId) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPolyData.IsPointUsedByCell(p,obj, ptId, cellId);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// void DeleteLinks()
+// "void DeleteLinks()"
+public new void DeleteLinks() {
+	API_vtkPolyData.DeleteLinks_0(this);
 }
 
 
-//       Method: void vtkPolyData::ReplaceCell(vtkIdType cellId, int npts, vtkIdType* pts)
-// 
-public void ReplaceCell(long cellId, int npts, long/*vtkIdType* */ pts) {
-	VTK.API_vtkPolyData.ReplaceCell(obj, cellId, npts, pts);
+// void GetPointCells(vtkIdType ptId, unsigned short & ncells, vtkIdType *& cells)
+// "void GetPointCells(vtkIdType ptId, unsigned short& ncells, vtkIdType* &cells)"
+public new void GetPointCells(long /*(vtkIdType)*/ ptId, short /*(short&)*/ []ncells, long /*(vtkIdType*&)*/ []cells) {
+	API_vtkPolyData.GetPointCells_1(this, ptId, *ncells, *cells);
 }
 
 
-//       Method: void vtkPolyData::ReplaceCellPoint(vtkIdType cellId, vtkIdType oldPtId, vtkIdType newPtId)
-// 
-public void ReplaceCellPoint(long cellId, long oldPtId, long newPtId) {
-	VTK.API_vtkPolyData.ReplaceCellPoint(obj, cellId, oldPtId, newPtId);
+// void GetCellEdgeNeighbors(vtkIdType cellId, vtkIdType p1, vtkIdType p2, vtkIdList * cellIds)
+// "void GetCellEdgeNeighbors(vtkIdType cellId, vtkIdType p1, vtkIdType p2, vtkIdList *cellIds)"
+public new void GetCellEdgeNeighbors(long /*(vtkIdType)*/ cellId, long /*(vtkIdType)*/ p1, long /*(vtkIdType)*/ p2, vtkIdList /*(vtkIdList*)*/ cellIds) {
+	API_vtkPolyData.GetCellEdgeNeighbors_0(this, cellId, p1, p2, cellIds);
 }
 
 
-//       Method: void vtkPolyData::ReverseCell(vtkIdType cellId)
-// 
-public void ReverseCell(long cellId) {
-	VTK.API_vtkPolyData.ReverseCell(obj, cellId);
+// char GetCellPoints(vtkIdType cellId, vtkIdType & npts, vtkIdType *& pts)
+// "unsigned char GetCellPoints(vtkIdType cellId, vtkIdType& npts, vtkIdType* &pts)"
+public new char GetCellPoints(long /*(vtkIdType)*/ cellId, long /*(vtkIdType&)*/ []npts, long /*(vtkIdType*&)*/ []pts) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new char())*return_elements);
+	API_vtkPolyData.GetCellPoints_1(this, returnPointer, cellId, *npts, *pts);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkPolyData::DeletePoint(vtkIdType ptId)
-// 
-public void DeletePoint(long ptId) {
-	VTK.API_vtkPolyData.DeletePoint(obj, ptId);
+// char GetCell(vtkIdType cellId, vtkIdType *& pts)
+// "unsigned char GetCell(vtkIdType cellId, vtkIdType* &pts)"
+public new char GetCell(long /*(vtkIdType)*/ cellId, long /*(vtkIdType*&)*/ []pts) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new char())*return_elements);
+	API_vtkPolyData.GetCell_2(this, returnPointer, cellId, *pts);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkPolyData::DeleteCell(vtkIdType cellId)
-// 
-public void DeleteCell(long cellId) {
-	VTK.API_vtkPolyData.DeleteCell(obj, cellId);
+// int IsTriangle(int v1, int v2, int v3)
+// "int IsTriangle(int v1, int v2, int v3)"
+public new int IsTriangle(int /*(int)*/ v1, int /*(int)*/ v2, int /*(int)*/ v3) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkPolyData.IsTriangle_0(this, returnPointer, v1, v2, v3);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkPolyData::RemoveDeletedCells()
-// 
-public void RemoveDeletedCells() {
-	VTK.API_vtkPolyData.RemoveDeletedCells(obj);
+// int IsEdge(vtkIdType p1, vtkIdType p2)
+// "int IsEdge(vtkIdType p1, vtkIdType p2)"
+public new int IsEdge(long /*(vtkIdType)*/ p1, long /*(vtkIdType)*/ p2) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkPolyData.IsEdge_0(this, returnPointer, p1, p2);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkIdType vtkPolyData::InsertNextLinkedPoint(int numLinks)
-// 
-public long InsertNextLinkedPoint(int numLinks) {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPolyData.InsertNextLinkedPoint(p,obj, numLinks);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int IsPointUsedByCell(vtkIdType ptId, vtkIdType cellId)
+// "int IsPointUsedByCell(vtkIdType ptId, vtkIdType cellId)"
+public new int IsPointUsedByCell(long /*(vtkIdType)*/ ptId, long /*(vtkIdType)*/ cellId) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkPolyData.IsPointUsedByCell_0(this, returnPointer, ptId, cellId);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkIdType vtkPolyData::InsertNextLinkedPoint(double x[3], int numLinks)
-// 
-public long InsertNextLinkedPoint(double[] /*3*/ x, int numLinks) {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPolyData.InsertNextLinkedPoint(p,obj, x, numLinks);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// void ReplaceCell(vtkIdType cellId, int npts, vtkIdType * pts)
+// "void ReplaceCell(vtkIdType cellId, int npts, vtkIdType *pts)"
+public new void ReplaceCell(long /*(vtkIdType)*/ cellId, int /*(int)*/ npts, long /*(vtkIdType*)*/ []pts) {
+	API_vtkPolyData.ReplaceCell_0(this, cellId, npts, pts);
 }
 
 
-//       Method: vtkIdType vtkPolyData::InsertNextLinkedCell(int type, int npts, vtkIdType* pts)
-// 
-public long InsertNextLinkedCell(int type, int npts, long/*vtkIdType* */ pts) {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPolyData.InsertNextLinkedCell(p,obj, type, npts, pts);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// void ReplaceCellPoint(vtkIdType cellId, vtkIdType oldPtId, vtkIdType newPtId)
+// "void ReplaceCellPoint(vtkIdType cellId, vtkIdType oldPtId, vtkIdType newPtId)"
+public new void ReplaceCellPoint(long /*(vtkIdType)*/ cellId, long /*(vtkIdType)*/ oldPtId, long /*(vtkIdType)*/ newPtId) {
+	API_vtkPolyData.ReplaceCellPoint_0(this, cellId, oldPtId, newPtId);
 }
 
 
-//       Method: void vtkPolyData::ReplaceLinkedCell(vtkIdType cellId, int npts, vtkIdType* pts)
-// 
-public void ReplaceLinkedCell(long cellId, int npts, long/*vtkIdType* */ pts) {
-	VTK.API_vtkPolyData.ReplaceLinkedCell(obj, cellId, npts, pts);
+// void ReverseCell(vtkIdType cellId)
+// "void ReverseCell(vtkIdType cellId)"
+public new void ReverseCell(long /*(vtkIdType)*/ cellId) {
+	API_vtkPolyData.ReverseCell_0(this, cellId);
 }
 
 
-//       Method: void vtkPolyData::RemoveCellReference(vtkIdType cellId)
-// 
-public void RemoveCellReference(long cellId) {
-	VTK.API_vtkPolyData.RemoveCellReference(obj, cellId);
+// void DeletePoint(vtkIdType ptId)
+// "void DeletePoint(vtkIdType ptId)"
+public new void DeletePoint(long /*(vtkIdType)*/ ptId) {
+	API_vtkPolyData.DeletePoint_0(this, ptId);
 }
 
 
-//       Method: void vtkPolyData::AddCellReference(vtkIdType cellId)
-// 
-public void AddCellReference(long cellId) {
-	VTK.API_vtkPolyData.AddCellReference(obj, cellId);
+// void DeleteCell(vtkIdType cellId)
+// "void DeleteCell(vtkIdType cellId)"
+public new void DeleteCell(long /*(vtkIdType)*/ cellId) {
+	API_vtkPolyData.DeleteCell_0(this, cellId);
 }
 
 
-//       Method: void vtkPolyData::RemoveReferenceToCell(vtkIdType ptId, vtkIdType cellId)
-// 
-public void RemoveReferenceToCell(long ptId, long cellId) {
-	VTK.API_vtkPolyData.RemoveReferenceToCell(obj, ptId, cellId);
+// void RemoveDeletedCells()
+// "void RemoveDeletedCells()"
+public new void RemoveDeletedCells() {
+	API_vtkPolyData.RemoveDeletedCells_0(this);
 }
 
 
-//       Method: void vtkPolyData::AddReferenceToCell(vtkIdType ptId, vtkIdType cellId)
-// 
-public void AddReferenceToCell(long ptId, long cellId) {
-	VTK.API_vtkPolyData.AddReferenceToCell(obj, ptId, cellId);
+// vtkIdType InsertNextLinkedPoint(int numLinks)
+// "vtkIdType InsertNextLinkedPoint(int numLinks)"
+public new long InsertNextLinkedPoint(int /*(int)*/ numLinks) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkPolyData.InsertNextLinkedPoint_0(this, returnPointer, numLinks);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkPolyData::ResizeCellList(vtkIdType ptId, int size)
-// 
-public void ResizeCellList(long ptId, int size) {
-	VTK.API_vtkPolyData.ResizeCellList(obj, ptId, size);
+// vtkIdType InsertNextLinkedPoint(double x[3], int numLinks)
+// "vtkIdType InsertNextLinkedPoint(double x[3], int numLinks)"
+public new long InsertNextLinkedPoint(double /*(double[3])*/ []x, int /*(int)*/ numLinks) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkPolyData.InsertNextLinkedPoint_1(this, returnPointer, x, numLinks);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkPolyData::Initialize()
-// 
-public void Initialize() {
-	VTK.API_vtkPolyData.Initialize(obj);
+// vtkIdType InsertNextLinkedCell(int type, int npts, vtkIdType * pts)
+// "vtkIdType InsertNextLinkedCell(int type, int npts, vtkIdType *pts)"
+public new long InsertNextLinkedCell(int /*(int)*/ type, int /*(int)*/ npts, long /*(vtkIdType*)*/ []pts) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkPolyData.InsertNextLinkedCell_0(this, returnPointer, type, npts, pts);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual int vtkPolyData::GetPiece()
-// 
-public int GetPiece() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPolyData.GetPiece(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// void ReplaceLinkedCell(vtkIdType cellId, int npts, vtkIdType * pts)
+// "void ReplaceLinkedCell(vtkIdType cellId, int npts, vtkIdType *pts)"
+public new void ReplaceLinkedCell(long /*(vtkIdType)*/ cellId, int /*(int)*/ npts, long /*(vtkIdType*)*/ []pts) {
+	API_vtkPolyData.ReplaceLinkedCell_0(this, cellId, npts, pts);
 }
 
 
-//       Method: virtual int vtkPolyData::GetNumberOfPieces()
-// 
-public int GetNumberOfPieces() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPolyData.GetNumberOfPieces(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// void RemoveCellReference(vtkIdType cellId)
+// "void RemoveCellReference(vtkIdType cellId)"
+public new void RemoveCellReference(long /*(vtkIdType)*/ cellId) {
+	API_vtkPolyData.RemoveCellReference_0(this, cellId);
 }
 
 
-//       Method: virtual int vtkPolyData::GetGhostLevel()
-// 
-public int GetGhostLevel() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPolyData.GetGhostLevel(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// void AddCellReference(vtkIdType cellId)
+// "void AddCellReference(vtkIdType cellId)"
+public new void AddCellReference(long /*(vtkIdType)*/ cellId) {
+	API_vtkPolyData.AddCellReference_0(this, cellId);
 }
 
 
-//       Method: void vtkPolyData::ShallowCopy(vtkDataObject* src)
-// 
-public void ShallowCopy(vtkDataObject/*vtkDataObject* */ src) {
-	VTK.API_vtkPolyData.ShallowCopy(obj, src);
+// void RemoveReferenceToCell(vtkIdType ptId, vtkIdType cellId)
+// "void RemoveReferenceToCell(vtkIdType ptId, vtkIdType cellId)"
+public new void RemoveReferenceToCell(long /*(vtkIdType)*/ ptId, long /*(vtkIdType)*/ cellId) {
+	API_vtkPolyData.RemoveReferenceToCell_0(this, ptId, cellId);
 }
 
 
-//       Method: void vtkPolyData::DeepCopy(vtkDataObject* src)
-// 
-public void DeepCopy(vtkDataObject/*vtkDataObject* */ src) {
-	VTK.API_vtkPolyData.DeepCopy(obj, src);
+// void AddReferenceToCell(vtkIdType ptId, vtkIdType cellId)
+// "void AddReferenceToCell(vtkIdType ptId, vtkIdType cellId)"
+public new void AddReferenceToCell(long /*(vtkIdType)*/ ptId, long /*(vtkIdType)*/ cellId) {
+	API_vtkPolyData.AddReferenceToCell_0(this, ptId, cellId);
 }
 
 
-//       Method: void vtkPolyData::RemoveGhostCells()
-// 
-public void RemoveGhostCells() {
-	VTK.API_vtkPolyData.RemoveGhostCells(obj);
+// void ResizeCellList(vtkIdType ptId, int size)
+// "void ResizeCellList(vtkIdType ptId, int size)"
+public new void ResizeCellList(long /*(vtkIdType)*/ ptId, int /*(int)*/ size) {
+	API_vtkPolyData.ResizeCellList_0(this, ptId, size);
 }
 
 
-//       Method: static vtkPolyData * vtkPolyData::GetData(vtkInformation* info)
-// 
-public static vtkPolyData GetData(vtkInformation/*vtkInformation* */ info) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPolyData.GetData(p, info);
-	vtkPolyData result = new vtkPolyData();
-	unsafe {result.SetPtr(new IntPtr ((*(void**)p.ToPointer ())));}
-	Marshal.FreeHGlobal (p);
-	return result;
+// void Initialize()
+// "void Initialize()"
+public new void Initialize() {
+	API_vtkPolyData.Initialize_0(this);
 }
 
 
-//       Method: static vtkPolyData * vtkPolyData::GetData(vtkInformationVector* v, int i)
-// 
-public static vtkPolyData GetData(vtkInformationVector/*vtkInformationVector* */ v, int i) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPolyData.GetData(p, v, i);
-	vtkPolyData result = new vtkPolyData();
-	unsafe {result.SetPtr(new IntPtr ((*(void**)p.ToPointer ())));}
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual int GetPiece()
+// "virtual int GetPiece()"
+public new int GetPiece() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkPolyData.GetPiece_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual vtkMTimeType vtkPolyData::GetMeshMTime()
-// 
-public ulong GetMeshMTime() {
-	int numElements = 1;
-	ulong example = new ulong();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkPolyData.GetMeshMTime(p,obj);
-	// UNSPECIFIED TYPE
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual int GetNumberOfPieces()
+// "virtual int GetNumberOfPieces()"
+public new int GetNumberOfPieces() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkPolyData.GetNumberOfPieces_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
+}
+
+
+// virtual int GetGhostLevel()
+// "virtual int GetGhostLevel()"
+public new int GetGhostLevel() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkPolyData.GetGhostLevel_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
+}
+
+
+// long GetActualMemorySize()
+// "unsigned long GetActualMemorySize()"
+public new ulong GetActualMemorySize() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new ulong())*return_elements);
+	API_vtkPolyData.GetActualMemorySize_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
+}
+
+
+// void ShallowCopy(vtkDataObject * src)
+// "void ShallowCopy(vtkDataObject *src)"
+public new void ShallowCopy(vtkDataObject /*(vtkDataObject*)*/ src) {
+	API_vtkPolyData.ShallowCopy_0(this, src);
+}
+
+
+// void DeepCopy(vtkDataObject * src)
+// "void DeepCopy(vtkDataObject *src)"
+public new void DeepCopy(vtkDataObject /*(vtkDataObject*)*/ src) {
+	API_vtkPolyData.DeepCopy_0(this, src);
+}
+
+
+// void RemoveGhostCells()
+// "void RemoveGhostCells()"
+public new void RemoveGhostCells() {
+	API_vtkPolyData.RemoveGhostCells_0(this);
+}
+
+
+// int GetScalarFieldCriticalIndex(vtkIdType pointId, vtkDataArray * scalarField)
+// "int GetScalarFieldCriticalIndex (vtkIdType pointId, vtkDataArray *scalarField)"
+public new int GetScalarFieldCriticalIndex(long /*(vtkIdType)*/ pointId, vtkDataArray /*(vtkDataArray*)*/ scalarField) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkPolyData.GetScalarFieldCriticalIndex_0(this, returnPointer, pointId, scalarField);
+	return Ptr.deref(returnPointer);
+}
+
+
+// int GetScalarFieldCriticalIndex(vtkIdType pointId, int fieldId)
+// "int GetScalarFieldCriticalIndex (vtkIdType pointId, int fieldId)"
+public new int GetScalarFieldCriticalIndex(long /*(vtkIdType)*/ pointId, int /*(int)*/ fieldId) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkPolyData.GetScalarFieldCriticalIndex_1(this, returnPointer, pointId, fieldId);
+	return Ptr.deref(returnPointer);
+}
+
+
+// int GetScalarFieldCriticalIndex(vtkIdType pointId, const char * fieldName)
+// "int GetScalarFieldCriticalIndex (vtkIdType pointId, const char* fieldName)"
+public new int GetScalarFieldCriticalIndex(long /*(vtkIdType)*/ pointId, char /*(char*)*/ []fieldName) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkPolyData.GetScalarFieldCriticalIndex_2(this, returnPointer, pointId, fieldName);
+	return Ptr.deref(returnPointer);
+}
+
+
+// virtual vtkMTimeType GetMeshMTime()
+// "virtual vtkMTimeType GetMeshMTime()"
+public new ulong GetMeshMTime() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new ulong())*return_elements);
+	API_vtkPolyData.GetMeshMTime_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 

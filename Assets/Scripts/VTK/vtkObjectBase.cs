@@ -1,137 +1,101 @@
 
+
 using System;
 using UnityEngine;
 using System.Runtime.InteropServices;
 
+namespace VTK {
+public partial class vtkObjectBase {
 
-namespace VTK
-{
-public class vtkObjectBase {
-
-//       Method: const char * vtkObjectBase::GetClassName()
-// 
-public static string GetClassName(IntPtr obj) {
-	IntPtr p =  Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr()));
-	VTK.API_vtkObjectBase.GetClassName(p,obj);
-	string result = Marshal.PtrToStringAnsi(Marshal.ReadIntPtr(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// char* GetClassName()
+// "const char* GetClassName()"
+public new char GetClassName() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new char())*return_elements);
+	API_vtkObjectBase.GetClassName_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: const char * vtkObjectBase::GetClassNameA()
-// 
-public static string GetClassNameA(IntPtr obj) {
-	IntPtr p =  Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr()));
-	VTK.API_vtkObjectBase.GetClassNameA(p,obj);
-	string result = Marshal.PtrToStringAnsi(Marshal.ReadIntPtr(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// static vtkTypeBool IsTypeOf(const char * name)
+// "static vtkTypeBool IsTypeOf(const char *name)"
+public new static bool IsTypeOf(char /*(char*)*/ []name) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new bool())*return_elements);
+	API_vtkObjectBase.IsTypeOf_0(returnPointer, name);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: const char * vtkObjectBase::GetClassNameW()
-// 
-public static string GetClassNameW(IntPtr obj) {
-	IntPtr p =  Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr()));
-	VTK.API_vtkObjectBase.GetClassNameW(p,obj);
-	string result = Marshal.PtrToStringAnsi(Marshal.ReadIntPtr(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual vtkTypeBool IsA(const char * name)
+// "virtual vtkTypeBool IsA(const char *name)"
+public new bool IsA(char /*(char*)*/ []name) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new bool())*return_elements);
+	API_vtkObjectBase.IsA_0(this, returnPointer, name);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: static vtkTypeBool vtkObjectBase::IsTypeOf(const char* name)
-// 
-public static bool IsTypeOf(string/*const char* */ name) {
-	int numElements = 1;
-	bool example = new bool();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkObjectBase.IsTypeOf(p, name);
-	bool result = Convert.ToBoolean(Marshal.ReadByte(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual void Delete()
+// "virtual void Delete()"
+public new void Delete() {
+	API_vtkObjectBase.Delete_0(this);
 }
 
 
-//       Method: virtual vtkTypeBool vtkObjectBase::IsA(const char* name)
-// 
-public static bool IsA(IntPtr obj, string/*const char* */ name) {
-	int numElements = 1;
-	bool example = new bool();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkObjectBase.IsA(p,obj, name);
-	bool result = Convert.ToBoolean(Marshal.ReadByte(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual void FastDelete()
+// "virtual void FastDelete()"
+public new void FastDelete() {
+	API_vtkObjectBase.FastDelete_0(this);
 }
 
 
-//       Method: virtual void vtkObjectBase::Delete()
-// 
-public static void Delete(IntPtr obj) {
-	VTK.API_vtkObjectBase.Delete(obj);
+// static vtkObjectBase* New()
+// "static vtkObjectBase *New()"
+public new static vtkObjectBase New() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkObjectBase.New_0(returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual void vtkObjectBase::FastDelete()
-// 
-public static void FastDelete(IntPtr obj) {
-	VTK.API_vtkObjectBase.FastDelete(obj);
+// void InitializeObjectBase()
+// "void InitializeObjectBase()"
+public new void InitializeObjectBase() {
+	API_vtkObjectBase.InitializeObjectBase_0(this);
 }
 
 
-//       Method: static vtkObjectBase * vtkObjectBase::New()
-// 
-public static IntPtr New() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkObjectBase.New(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual void Register(vtkObjectBase * o)
+// "virtual void Register(vtkObjectBase* o)"
+public new void Register(vtkObjectBase /*(vtkObjectBase*)*/ o) {
+	API_vtkObjectBase.Register_0(this, o);
 }
 
 
-//       Method: void vtkObjectBase::InitializeObjectBase()
-// 
-public static void InitializeObjectBase(IntPtr obj) {
-	VTK.API_vtkObjectBase.InitializeObjectBase(obj);
+// virtual void UnRegister(vtkObjectBase * o)
+// "virtual void UnRegister(vtkObjectBase* o)"
+public new void UnRegister(vtkObjectBase /*(vtkObjectBase*)*/ o) {
+	API_vtkObjectBase.UnRegister_0(this, o);
 }
 
 
-//       Method: virtual void vtkObjectBase::Register(vtkObjectBase* o)
-// 
-public static void Register(IntPtr obj, IntPtr/*vtkObjectBase* */ o) {
-	VTK.API_vtkObjectBase.Register(obj, o);
+// int GetReferenceCount()
+// "int GetReferenceCount()"
+public new int GetReferenceCount() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkObjectBase.GetReferenceCount_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual void vtkObjectBase::UnRegister(vtkObjectBase* o)
-// 
-public static void UnRegister(IntPtr obj, IntPtr/*vtkObjectBase* */ o) {
-	VTK.API_vtkObjectBase.UnRegister(obj, o);
-}
-
-
-//       Method: int vtkObjectBase::GetReferenceCount()
-// 
-public static int GetReferenceCount(IntPtr obj) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkObjectBase.GetReferenceCount(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: void vtkObjectBase::SetReferenceCount(int ARG_0)
-// 
-public static void SetReferenceCount(IntPtr obj, int ARG_0) {
-	VTK.API_vtkObjectBase.SetReferenceCount(obj, ARG_0);
+// void SetReferenceCount(int ARG_0)
+// "void SetReferenceCount(int)"
+public new void SetReferenceCount(int /*(int)*/ ARG_0) {
+	API_vtkObjectBase.SetReferenceCount_0(this, ARG_0);
 }
 
 

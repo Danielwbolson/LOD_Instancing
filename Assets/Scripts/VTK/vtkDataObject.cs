@@ -1,696 +1,216 @@
 
+
 using System;
 using UnityEngine;
 using System.Runtime.InteropServices;
 
+namespace VTK {
+public partial class vtkDataObject : vtkObject {
 
-namespace VTK
-{
-public class vtkDataObject : vtkObject {
-
-//       Method: static vtkDataObject * vtkDataObject::New()
-// 
-public static IntPtr New() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.New(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// static vtkDataObject* New()
+// "static vtkDataObject *New()"
+public new static vtkDataObject New() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkDataObject.New_0(returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual const char * vtkDataObject::GetClassName()
-// 
-public static string GetClassName(IntPtr obj) {
-	IntPtr p =  Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr()));
-	VTK.API_vtkDataObject.GetClassName(p,obj);
-	string result = Marshal.PtrToStringAnsi(Marshal.ReadIntPtr(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkMTimeType GetMTime()
+// "vtkMTimeType GetMTime()"
+public new ulong GetMTime() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new ulong())*return_elements);
+	API_vtkDataObject.GetMTime_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual void vtkDataObject::SetInformation(vtkInformation* ARG_0)
-// 
-public static void SetInformation(IntPtr obj, IntPtr/*vtkInformation* */ ARG_0) {
-	VTK.API_vtkDataObject.SetInformation(obj, ARG_0);
+// virtual void Initialize()
+// "virtual void Initialize()"
+public new void Initialize() {
+	API_vtkDataObject.Initialize_0(this);
 }
 
 
-//       Method: vtkMTimeType vtkDataObject::GetMTime()
-// 
-public static IntPtr GetMTime(IntPtr obj) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.GetMTime(p,obj);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// void ReleaseData()
+// "void ReleaseData()"
+public new void ReleaseData() {
+	API_vtkDataObject.ReleaseData_0(this);
 }
 
 
-//       Method: virtual void vtkDataObject::Initialize()
-// 
-public static void Initialize(IntPtr obj) {
-	VTK.API_vtkDataObject.Initialize(obj);
+// static void SetGlobalReleaseDataFlag(int val)
+// "static void SetGlobalReleaseDataFlag(int val)"
+public new static void SetGlobalReleaseDataFlag(int /*(int)*/ val) {
+	API_vtkDataObject.SetGlobalReleaseDataFlag_0(val);
 }
 
 
-//       Method: void vtkDataObject::ReleaseData()
-// 
-public static void ReleaseData(IntPtr obj) {
-	VTK.API_vtkDataObject.ReleaseData(obj);
+// void GlobalReleaseDataFlagOn()
+// "void GlobalReleaseDataFlagOn()"
+public new void GlobalReleaseDataFlagOn() {
+	API_vtkDataObject.GlobalReleaseDataFlagOn_0(this);
 }
 
 
-//       Method: static void vtkDataObject::SetGlobalReleaseDataFlag(int val)
-// 
-public static void SetGlobalReleaseDataFlag(int val) {
-	VTK.API_vtkDataObject.SetGlobalReleaseDataFlag(val);
+// void GlobalReleaseDataFlagOff()
+// "void GlobalReleaseDataFlagOff()"
+public new void GlobalReleaseDataFlagOff() {
+	API_vtkDataObject.GlobalReleaseDataFlagOff_0(this);
 }
 
 
-//       Method: void vtkDataObject::GlobalReleaseDataFlagOn()
-// 
-public static void GlobalReleaseDataFlagOn(IntPtr obj) {
-	VTK.API_vtkDataObject.GlobalReleaseDataFlagOn(obj);
+// static int GetGlobalReleaseDataFlag()
+// "static int GetGlobalReleaseDataFlag()"
+public new static int GetGlobalReleaseDataFlag() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkDataObject.GetGlobalReleaseDataFlag_0(returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkDataObject::GlobalReleaseDataFlagOff()
-// 
-public static void GlobalReleaseDataFlagOff(IntPtr obj) {
-	VTK.API_vtkDataObject.GlobalReleaseDataFlagOff(obj);
+// virtual void SetFieldData(vtkFieldData * ARG_0)
+// "virtual void SetFieldData(vtkFieldData*)"
+public new void SetFieldData(vtkFieldData /*(vtkFieldData*)*/ ARG_0) {
+	API_vtkDataObject.SetFieldData_0(this, ARG_0);
 }
 
 
-//       Method: static int vtkDataObject::GetGlobalReleaseDataFlag()
-// 
-public static int GetGlobalReleaseDataFlag() {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.GetGlobalReleaseDataFlag(p);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual int GetDataObjectType()
+// "virtual int GetDataObjectType()"
+public new int GetDataObjectType() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkDataObject.GetDataObjectType_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual void vtkDataObject::SetFieldData(vtkFieldData* ARG_0)
-// 
-public static void SetFieldData(IntPtr obj, IntPtr/*vtkFieldData* */ ARG_0) {
-	VTK.API_vtkDataObject.SetFieldData(obj, ARG_0);
+// vtkMTimeType GetUpdateTime()
+// "vtkMTimeType GetUpdateTime()"
+public new ulong GetUpdateTime() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new ulong())*return_elements);
+	API_vtkDataObject.GetUpdateTime_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual int vtkDataObject::GetDataObjectType()
-// 
-public static int GetDataObjectType(IntPtr obj) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.GetDataObjectType(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual long GetActualMemorySize()
+// "virtual unsigned long GetActualMemorySize()"
+public new ulong GetActualMemorySize() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new ulong())*return_elements);
+	API_vtkDataObject.GetActualMemorySize_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkMTimeType vtkDataObject::GetUpdateTime()
-// 
-public static IntPtr GetUpdateTime(IntPtr obj) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.GetUpdateTime(p,obj);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// void DataHasBeenGenerated()
+// "void DataHasBeenGenerated()"
+public new void DataHasBeenGenerated() {
+	API_vtkDataObject.DataHasBeenGenerated_0(this);
 }
 
 
-//       Method: static vtkInformation * vtkDataObject::GetActiveFieldInformation(vtkInformation* info, int fieldAssociation, int attributeType)
-// 
-public static IntPtr GetActiveFieldInformation(IntPtr/*vtkInformation* */ info, int fieldAssociation, int attributeType) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.GetActiveFieldInformation(p, info, fieldAssociation, attributeType);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual void PrepareForNewData()
+// "virtual void PrepareForNewData()"
+public new void PrepareForNewData() {
+	API_vtkDataObject.PrepareForNewData_0(this);
 }
 
 
-//       Method: static vtkInformation * vtkDataObject::GetNamedFieldInformation(vtkInformation* info, int fieldAssociation, const char* name)
-// 
-public static IntPtr GetNamedFieldInformation(IntPtr/*vtkInformation* */ info, int fieldAssociation, string/*const char* */ name) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.GetNamedFieldInformation(p, info, fieldAssociation, name);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual void ShallowCopy(vtkDataObject * src)
+// "virtual void ShallowCopy(vtkDataObject *src)"
+public new void ShallowCopy(vtkDataObject /*(vtkDataObject*)*/ src) {
+	API_vtkDataObject.ShallowCopy_0(this, src);
 }
 
 
-//       Method: static void vtkDataObject::RemoveNamedFieldInformation(vtkInformation* info, int fieldAssociation, const char* name)
-// 
-public static void RemoveNamedFieldInformation(IntPtr/*vtkInformation* */ info, int fieldAssociation, string/*const char* */ name) {
-	VTK.API_vtkDataObject.RemoveNamedFieldInformation(info, fieldAssociation, name);
+// virtual void DeepCopy(vtkDataObject * src)
+// "virtual void DeepCopy(vtkDataObject *src)"
+public new void DeepCopy(vtkDataObject /*(vtkDataObject*)*/ src) {
+	API_vtkDataObject.DeepCopy_0(this, src);
 }
 
 
-//       Method: static vtkInformation * vtkDataObject::SetActiveAttribute(vtkInformation* info, int fieldAssociation, const char* attributeName, int attributeType)
-// 
-public static IntPtr SetActiveAttribute(IntPtr/*vtkInformation* */ info, int fieldAssociation, string/*const char* */ attributeName, int attributeType) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.SetActiveAttribute(p, info, fieldAssociation, attributeName, attributeType);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual int GetExtentType()
+// "virtual int GetExtentType()"
+public new int GetExtentType() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkDataObject.GetExtentType_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: static void vtkDataObject::SetActiveAttributeInfo(vtkInformation* info, int fieldAssociation, int attributeType, const char* name, int arrayType, int numComponents, int numTuples)
-// 
-public static void SetActiveAttributeInfo(IntPtr/*vtkInformation* */ info, int fieldAssociation, int attributeType, string/*const char* */ name, int arrayType, int numComponents, int numTuples) {
-	VTK.API_vtkDataObject.SetActiveAttributeInfo(info, fieldAssociation, attributeType, name, arrayType, numComponents, numTuples);
+// virtual void Crop(const int * updateExtent)
+// "virtual void Crop(const int* updateExtent)"
+public new void Crop(int /*(int*)*/ []updateExtent) {
+	API_vtkDataObject.Crop_0(this, updateExtent);
 }
 
 
-//       Method: static void vtkDataObject::SetPointDataActiveScalarInfo(vtkInformation* info, int arrayType, int numComponents)
-// 
-public static void SetPointDataActiveScalarInfo(IntPtr/*vtkInformation* */ info, int arrayType, int numComponents) {
-	VTK.API_vtkDataObject.SetPointDataActiveScalarInfo(info, arrayType, numComponents);
+// virtual vtkDataSetAttributes* GetAttributes(int type)
+// "virtual vtkDataSetAttributes* GetAttributes(int type)"
+public new vtkDataSetAttributes GetAttributes(int /*(int)*/ type) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkDataObject.GetAttributes_0(this, returnPointer, type);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkDataObject::DataHasBeenGenerated()
-// 
-public static void DataHasBeenGenerated(IntPtr obj) {
-	VTK.API_vtkDataObject.DataHasBeenGenerated(obj);
+// virtual vtkFieldData* GetAttributesAsFieldData(int type)
+// "virtual vtkFieldData* GetAttributesAsFieldData(int type)"
+public new vtkFieldData GetAttributesAsFieldData(int /*(int)*/ type) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkDataObject.GetAttributesAsFieldData_0(this, returnPointer, type);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual void vtkDataObject::PrepareForNewData()
-// 
-public static void PrepareForNewData(IntPtr obj) {
-	VTK.API_vtkDataObject.PrepareForNewData(obj);
+// virtual int GetAttributeTypeForArray(vtkAbstractArray * arr)
+// "virtual int GetAttributeTypeForArray(vtkAbstractArray* arr)"
+public new int GetAttributeTypeForArray(vtkAbstractArray /*(vtkAbstractArray*)*/ arr) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkDataObject.GetAttributeTypeForArray_0(this, returnPointer, arr);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual void vtkDataObject::ShallowCopy(vtkDataObject* src)
-// 
-public static void ShallowCopy(IntPtr obj, IntPtr/*vtkDataObject* */ src) {
-	VTK.API_vtkDataObject.ShallowCopy(obj, src);
+// virtual vtkIdType GetNumberOfElements(int type)
+// "virtual vtkIdType GetNumberOfElements(int type)"
+public new long GetNumberOfElements(int /*(int)*/ type) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new long())*return_elements);
+	API_vtkDataObject.GetNumberOfElements_0(this, returnPointer, type);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual void vtkDataObject::DeepCopy(vtkDataObject* src)
-// 
-public static void DeepCopy(IntPtr obj, IntPtr/*vtkDataObject* */ src) {
-	VTK.API_vtkDataObject.DeepCopy(obj, src);
+// static char* GetAssociationTypeAsString(int associationType)
+// "static const char* GetAssociationTypeAsString(int associationType)"
+public new static char GetAssociationTypeAsString(int /*(int)*/ associationType) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new char())*return_elements);
+	API_vtkDataObject.GetAssociationTypeAsString_0(returnPointer, associationType);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual int vtkDataObject::GetExtentType()
-// 
-public static int GetExtentType(IntPtr obj) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.GetExtentType(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: virtual void vtkDataObject::Crop(const int* updateExtent)
-// 
-public static void Crop(IntPtr obj, IntPtr/*const int* */ updateExtent) {
-	VTK.API_vtkDataObject.Crop(obj, updateExtent);
-}
-
-
-//       Method: virtual vtkDataSetAttributes * vtkDataObject::GetAttributes(int type)
-// 
-public static IntPtr GetAttributes(IntPtr obj, int type) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.GetAttributes(p,obj, type);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: virtual vtkFieldData * vtkDataObject::GetAttributesAsFieldData(int type)
-// 
-public static IntPtr GetAttributesAsFieldData(IntPtr obj, int type) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.GetAttributesAsFieldData(p,obj, type);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: virtual int vtkDataObject::GetAttributeTypeForArray(vtkAbstractArray* arr)
-// 
-public static int GetAttributeTypeForArray(IntPtr obj, IntPtr/*vtkAbstractArray* */ arr) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.GetAttributeTypeForArray(p,obj, arr);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: virtual vtkIdType vtkDataObject::GetNumberOfElements(int type)
-// 
-public static long GetNumberOfElements(IntPtr obj, int type) {
-	int numElements = 1;
-	long example = new long();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.GetNumberOfElements(p,obj, type);
-	long result = Convert.ToInt64(Marshal.ReadInt64(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static const char * vtkDataObject::GetAssociationTypeAsString(int associationType)
-// 
-public static string GetAssociationTypeAsString(int associationType) {
-	IntPtr p =  Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr()));
-	VTK.API_vtkDataObject.GetAssociationTypeAsString(p, associationType);
-	string result = Marshal.PtrToStringAnsi(Marshal.ReadIntPtr(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static int vtkDataObject::GetAssociationTypeFromString(const char* associationType)
-// 
-public static int GetAssociationTypeFromString(string/*const char* */ associationType) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.GetAssociationTypeFromString(p, associationType);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkInformationStringKey * vtkDataObject::DATA_TYPE_NAME()
-// 
-public static IntPtr DATA_TYPE_NAME() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.DATA_TYPE_NAME(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkInformationDataObjectKey * vtkDataObject::DATA_OBJECT()
-// 
-public static IntPtr DATA_OBJECT() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.DATA_OBJECT(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkInformationIntegerKey * vtkDataObject::DATA_EXTENT_TYPE()
-// 
-public static IntPtr DATA_EXTENT_TYPE() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.DATA_EXTENT_TYPE(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkInformationIntegerPointerKey * vtkDataObject::DATA_EXTENT()
-// 
-public static IntPtr DATA_EXTENT() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.DATA_EXTENT(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkInformationIntegerVectorKey * vtkDataObject::ALL_PIECES_EXTENT()
-// 
-public static IntPtr ALL_PIECES_EXTENT() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.ALL_PIECES_EXTENT(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkInformationIntegerKey * vtkDataObject::DATA_PIECE_NUMBER()
-// 
-public static IntPtr DATA_PIECE_NUMBER() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.DATA_PIECE_NUMBER(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkInformationIntegerKey * vtkDataObject::DATA_NUMBER_OF_PIECES()
-// 
-public static IntPtr DATA_NUMBER_OF_PIECES() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.DATA_NUMBER_OF_PIECES(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkInformationIntegerKey * vtkDataObject::DATA_NUMBER_OF_GHOST_LEVELS()
-// 
-public static IntPtr DATA_NUMBER_OF_GHOST_LEVELS() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.DATA_NUMBER_OF_GHOST_LEVELS(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkInformationDoubleKey * vtkDataObject::DATA_TIME_STEP()
-// 
-public static IntPtr DATA_TIME_STEP() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.DATA_TIME_STEP(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkInformationInformationVectorKey * vtkDataObject::POINT_DATA_VECTOR()
-// 
-public static IntPtr POINT_DATA_VECTOR() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.POINT_DATA_VECTOR(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkInformationInformationVectorKey * vtkDataObject::CELL_DATA_VECTOR()
-// 
-public static IntPtr CELL_DATA_VECTOR() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.CELL_DATA_VECTOR(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkInformationInformationVectorKey * vtkDataObject::VERTEX_DATA_VECTOR()
-// 
-public static IntPtr VERTEX_DATA_VECTOR() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.VERTEX_DATA_VECTOR(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkInformationInformationVectorKey * vtkDataObject::EDGE_DATA_VECTOR()
-// 
-public static IntPtr EDGE_DATA_VECTOR() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.EDGE_DATA_VECTOR(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkInformationIntegerKey * vtkDataObject::FIELD_ARRAY_TYPE()
-// 
-public static IntPtr FIELD_ARRAY_TYPE() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.FIELD_ARRAY_TYPE(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkInformationIntegerKey * vtkDataObject::FIELD_ASSOCIATION()
-// 
-public static IntPtr FIELD_ASSOCIATION() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.FIELD_ASSOCIATION(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkInformationIntegerKey * vtkDataObject::FIELD_ATTRIBUTE_TYPE()
-// 
-public static IntPtr FIELD_ATTRIBUTE_TYPE() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.FIELD_ATTRIBUTE_TYPE(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkInformationIntegerKey * vtkDataObject::FIELD_ACTIVE_ATTRIBUTE()
-// 
-public static IntPtr FIELD_ACTIVE_ATTRIBUTE() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.FIELD_ACTIVE_ATTRIBUTE(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkInformationIntegerKey * vtkDataObject::FIELD_NUMBER_OF_COMPONENTS()
-// 
-public static IntPtr FIELD_NUMBER_OF_COMPONENTS() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.FIELD_NUMBER_OF_COMPONENTS(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkInformationIntegerKey * vtkDataObject::FIELD_NUMBER_OF_TUPLES()
-// 
-public static IntPtr FIELD_NUMBER_OF_TUPLES() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.FIELD_NUMBER_OF_TUPLES(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkInformationIntegerKey * vtkDataObject::FIELD_OPERATION()
-// 
-public static IntPtr FIELD_OPERATION() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.FIELD_OPERATION(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkInformationDoubleVectorKey * vtkDataObject::FIELD_RANGE()
-// 
-public static IntPtr FIELD_RANGE() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.FIELD_RANGE(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkInformationIntegerVectorKey * vtkDataObject::PIECE_EXTENT()
-// 
-public static IntPtr PIECE_EXTENT() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.PIECE_EXTENT(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkInformationStringKey * vtkDataObject::FIELD_NAME()
-// 
-public static IntPtr FIELD_NAME() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.FIELD_NAME(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkInformationDoubleVectorKey * vtkDataObject::ORIGIN()
-// 
-public static IntPtr ORIGIN() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.ORIGIN(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkInformationDoubleVectorKey * vtkDataObject::SPACING()
-// 
-public static IntPtr SPACING() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.SPACING(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkInformationDoubleVectorKey * vtkDataObject::BOUNDING_BOX()
-// 
-public static IntPtr BOUNDING_BOX() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.BOUNDING_BOX(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkInformationDataObjectKey * vtkDataObject::SIL()
-// 
-public static IntPtr SIL() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.SIL(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkDataObject * vtkDataObject::GetData(vtkInformation* info)
-// 
-public static IntPtr GetData(IntPtr/*vtkInformation* */ info) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.GetData(p, info);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkDataObject * vtkDataObject::GetData(vtkInformationVector* v, int i)
-// 
-public static IntPtr GetData(IntPtr/*vtkInformationVector* */ v, int i) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkDataObject.GetData(p, v, i);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// static int GetAssociationTypeFromString(const char * associationType)
+// "static int GetAssociationTypeFromString(const char* associationType)"
+public new static int GetAssociationTypeFromString(char /*(char*)*/ []associationType) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkDataObject.GetAssociationTypeFromString_0(returnPointer, associationType);
+	return Ptr.deref(returnPointer);
 }
 
 

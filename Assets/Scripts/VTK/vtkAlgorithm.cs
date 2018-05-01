@@ -1,929 +1,497 @@
 
+
 using System;
 using UnityEngine;
 using System.Runtime.InteropServices;
 
+namespace VTK {
+public partial class vtkAlgorithm : vtkObject {
 
-namespace VTK
-{
-public class vtkAlgorithm : vtkObject {
-
-//       Method: static vtkAlgorithm * vtkAlgorithm::New()
-// 
-public static IntPtr New() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.New(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: virtual const char * vtkAlgorithm::GetClassName()
-// 
-public static string GetClassName(IntPtr obj) {
-	IntPtr p =  Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr()));
-	VTK.API_vtkAlgorithm.GetClassName(p,obj);
-	string result = Marshal.PtrToStringAnsi(Marshal.ReadIntPtr(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: int vtkAlgorithm::HasExecutive()
-// 
-public static int HasExecutive(IntPtr obj) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.HasExecutive(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: vtkExecutive * vtkAlgorithm::GetExecutive()
-// 
-public static IntPtr GetExecutive(IntPtr obj) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.GetExecutive(p,obj);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: virtual void vtkAlgorithm::SetExecutive(vtkExecutive* executive)
-// 
-public static void SetExecutive(IntPtr obj, IntPtr/*vtkExecutive* */ executive) {
-	VTK.API_vtkAlgorithm.SetExecutive(obj, executive);
-}
-
-
-//       Method: virtual int vtkAlgorithm::ProcessRequest(vtkInformation* request, vtkInformationVector** inInfo, vtkInformationVector* outInfo)
-// 
-public static int ProcessRequest(IntPtr obj, IntPtr/*vtkInformation* */ request, IntPtr/*vtkInformationVector** */ inInfo, IntPtr/*vtkInformationVector* */ outInfo) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.ProcessRequest(p,obj, request, inInfo, outInfo);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-////       Method: int vtkAlgorithm::ProcessRequest(vtkInformation* request, vtkCollection* inInfo, vtkInformationVector* outInfo)
-//// 
-//public static int ProcessRequest(IntPtr obj, IntPtr/*vtkInformation* */ request, IntPtr/*vtkCollection* */ inInfo, IntPtr/*vtkInformationVector* */ outInfo) {
-//	int numElements = 1;
-//	int example = new int();
-//	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-//	VTK.API_vtkAlgorithm.ProcessRequest(p,obj, request, inInfo, outInfo);
-//	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-//	Marshal.FreeHGlobal (p);
-//	return result;
-//}
-
-
-//       Method: virtual int vtkAlgorithm::ComputePipelineMTime(vtkInformation* request, vtkInformationVector** inInfoVec, vtkInformationVector* outInfoVec, int requestFromOutputPort, vtkMTimeType* mtime)
-// 
-public static int ComputePipelineMTime(IntPtr obj, IntPtr/*vtkInformation* */ request, IntPtr/*vtkInformationVector** */ inInfoVec, IntPtr/*vtkInformationVector* */ outInfoVec, int requestFromOutputPort, IntPtr/*vtkMTimeType* */ mtime) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.ComputePipelineMTime(p,obj, request, inInfoVec, outInfoVec, requestFromOutputPort, mtime);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: virtual int vtkAlgorithm::ModifyRequest(vtkInformation* request, int when)
-// 
-public static int ModifyRequest(IntPtr obj, IntPtr/*vtkInformation* */ request, int when) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.ModifyRequest(p,obj, request, when);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: vtkInformation * vtkAlgorithm::GetInputPortInformation(int port)
-// 
-public static IntPtr GetInputPortInformation(IntPtr obj, int port) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.GetInputPortInformation(p,obj, port);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: vtkInformation * vtkAlgorithm::GetOutputPortInformation(int port)
-// 
-public static IntPtr GetOutputPortInformation(IntPtr obj, int port) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.GetOutputPortInformation(p,obj, port);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: virtual void vtkAlgorithm::SetInformation(vtkInformation* ARG_0)
-// 
-public static void SetInformation(IntPtr obj, IntPtr/*vtkInformation* */ ARG_0) {
-	VTK.API_vtkAlgorithm.SetInformation(obj, ARG_0);
-}
-
-
-//       Method: int vtkAlgorithm::GetNumberOfInputPorts()
-// 
-public static int GetNumberOfInputPorts(IntPtr obj) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.GetNumberOfInputPorts(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: int vtkAlgorithm::GetNumberOfOutputPorts()
-// 
-public static int GetNumberOfOutputPorts(IntPtr obj) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.GetNumberOfOutputPorts(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: void vtkAlgorithm::Register(vtkObjectBase* o)
-// 
-public static void Register(IntPtr obj, IntPtr/*vtkObjectBase* */ o) {
-	VTK.API_vtkAlgorithm.Register(obj, o);
-}
-
-
-//       Method: void vtkAlgorithm::UnRegister(vtkObjectBase* o)
-// 
-public static void UnRegister(IntPtr obj, IntPtr/*vtkObjectBase* */ o) {
-	VTK.API_vtkAlgorithm.UnRegister(obj, o);
-}
-
-
-//       Method: void vtkAlgorithm::UpdateProgress(double amount)
-// 
-public static void UpdateProgress(IntPtr obj, double amount) {
-	VTK.API_vtkAlgorithm.UpdateProgress(obj, amount);
-}
-
-
-//       Method: void vtkAlgorithm::SetProgressText(const char* ptext)
-// 
-public static void SetProgressText(IntPtr obj, string/*const char* */ ptext) {
-	VTK.API_vtkAlgorithm.SetProgressText(obj, ptext);
-}
-
-
-//       Method: static vtkInformationIntegerKey * vtkAlgorithm::INPUT_IS_OPTIONAL()
-// 
-public static IntPtr INPUT_IS_OPTIONAL() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.INPUT_IS_OPTIONAL(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkInformationIntegerKey * vtkAlgorithm::INPUT_IS_REPEATABLE()
-// 
-public static IntPtr INPUT_IS_REPEATABLE() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.INPUT_IS_REPEATABLE(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkInformationInformationVectorKey * vtkAlgorithm::INPUT_REQUIRED_FIELDS()
-// 
-public static IntPtr INPUT_REQUIRED_FIELDS() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.INPUT_REQUIRED_FIELDS(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkInformationStringVectorKey * vtkAlgorithm::INPUT_REQUIRED_DATA_TYPE()
-// 
-public static IntPtr INPUT_REQUIRED_DATA_TYPE() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.INPUT_REQUIRED_DATA_TYPE(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkInformationInformationVectorKey * vtkAlgorithm::INPUT_ARRAYS_TO_PROCESS()
-// 
-public static IntPtr INPUT_ARRAYS_TO_PROCESS() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.INPUT_ARRAYS_TO_PROCESS(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkInformationIntegerKey * vtkAlgorithm::INPUT_PORT()
-// 
-public static IntPtr INPUT_PORT() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.INPUT_PORT(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static vtkInformationIntegerKey * vtkAlgorithm::INPUT_CONNECTION()
-// 
-public static IntPtr INPUT_CONNECTION() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.INPUT_CONNECTION(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// static vtkAlgorithm* New()
+// "static vtkAlgorithm *New()"
+public new static vtkAlgorithm New() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkAlgorithm.New_0(returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: static vtkInformationIntegerKey * vtkAlgorithm::CAN_PRODUCE_SUB_EXTENT()
-// 
-public static IntPtr CAN_PRODUCE_SUB_EXTENT() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.CAN_PRODUCE_SUB_EXTENT(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// int HasExecutive()
+// "int HasExecutive()"
+public new int HasExecutive() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkAlgorithm.HasExecutive_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: static vtkInformationIntegerKey * vtkAlgorithm::CAN_HANDLE_PIECE_REQUEST()
-// 
-public static IntPtr CAN_HANDLE_PIECE_REQUEST() {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.CAN_HANDLE_PIECE_REQUEST(p);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// int GetNumberOfInputPorts()
+// "int GetNumberOfInputPorts()"
+public new int GetNumberOfInputPorts() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkAlgorithm.GetNumberOfInputPorts_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual void vtkAlgorithm::SetInputArrayToProcess(int idx, int port, int connection, int fieldAssociation, const char* name)
-// 
-public static void SetInputArrayToProcess(IntPtr obj, int idx, int port, int connection, int fieldAssociation, string/*const char* */ name) {
-	VTK.API_vtkAlgorithm.SetInputArrayToProcess(obj, idx, port, connection, fieldAssociation, name);
+// int GetNumberOfOutputPorts()
+// "int GetNumberOfOutputPorts()"
+public new int GetNumberOfOutputPorts() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkAlgorithm.GetNumberOfOutputPorts_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual void vtkAlgorithm::SetInputArrayToProcess(int idx, int port, int connection, int fieldAssociation, int fieldAttributeType)
-// 
-public static void SetInputArrayToProcess(IntPtr obj, int idx, int port, int connection, int fieldAssociation, int fieldAttributeType) {
-	VTK.API_vtkAlgorithm.SetInputArrayToProcess(obj, idx, port, connection, fieldAssociation, fieldAttributeType);
+// void Register(vtkObjectBase * o)
+// "void Register(vtkObjectBase* o)"
+public new void Register(vtkObjectBase /*(vtkObjectBase*)*/ o) {
+	API_vtkAlgorithm.Register_0(this, o);
 }
 
 
-//       Method: virtual void vtkAlgorithm::SetInputArrayToProcess(int idx, vtkInformation* info)
-// 
-public static void SetInputArrayToProcess(IntPtr obj, int idx, IntPtr/*vtkInformation* */ info) {
-	VTK.API_vtkAlgorithm.SetInputArrayToProcess(obj, idx, info);
+// void UnRegister(vtkObjectBase * o)
+// "void UnRegister(vtkObjectBase* o)"
+public new void UnRegister(vtkObjectBase /*(vtkObjectBase*)*/ o) {
+	API_vtkAlgorithm.UnRegister_0(this, o);
 }
 
 
-//       Method: virtual void vtkAlgorithm::SetInputArrayToProcess(int idx, int port, int connection, const char* fieldAssociation, const char* attributeTypeorName)
-// 
-public static void SetInputArrayToProcess(IntPtr obj, int idx, int port, int connection, string/*const char* */ fieldAssociation, string/*const char* */ attributeTypeorName) {
-	VTK.API_vtkAlgorithm.SetInputArrayToProcess(obj, idx, port, connection, fieldAssociation, attributeTypeorName);
+// void UpdateProgress(double amount)
+// "void UpdateProgress(double amount)"
+public new void UpdateProgress(double /*(double)*/ amount) {
+	API_vtkAlgorithm.UpdateProgress_0(this, amount);
 }
 
 
-//       Method: vtkInformation * vtkAlgorithm::GetInputArrayInformation(int idx)
-// 
-public static IntPtr GetInputArrayInformation(IntPtr obj, int idx) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.GetInputArrayInformation(p,obj, idx);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// void SetProgressText(const char * ptext)
+// "void SetProgressText(const char* ptext)"
+public new void SetProgressText(char /*(char*)*/ []ptext) {
+	API_vtkAlgorithm.SetProgressText_0(this, ptext);
 }
 
 
-//       Method: void vtkAlgorithm::RemoveAllInputs()
-// 
-public static void RemoveAllInputs(IntPtr obj) {
-	VTK.API_vtkAlgorithm.RemoveAllInputs(obj);
+// virtual void SetInputArrayToProcess(int idx, int port, int connection, int fieldAssociation, const char * name)
+// "virtual void SetInputArrayToProcess(int idx, int port, int connection, int fieldAssociation, const char *name)"
+public new void SetInputArrayToProcess(int /*(int)*/ idx, int /*(int)*/ port, int /*(int)*/ connection, int /*(int)*/ fieldAssociation, char /*(char*)*/ []name) {
+	API_vtkAlgorithm.SetInputArrayToProcess_0(this, idx, port, connection, fieldAssociation, name);
 }
 
 
-//       Method: vtkDataObject * vtkAlgorithm::GetOutputDataObject(int port)
-// 
-public static IntPtr GetOutputDataObject(IntPtr obj, int port) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.GetOutputDataObject(p,obj, port);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual void SetInputArrayToProcess(int idx, int port, int connection, int fieldAssociation, int fieldAttributeType)
+// "virtual void SetInputArrayToProcess(int idx, int port, int connection, int fieldAssociation, int fieldAttributeType)"
+public new void SetInputArrayToProcess(int /*(int)*/ idx, int /*(int)*/ port, int /*(int)*/ connection, int /*(int)*/ fieldAssociation, int /*(int)*/ fieldAttributeType) {
+	API_vtkAlgorithm.SetInputArrayToProcess_1(this, idx, port, connection, fieldAssociation, fieldAttributeType);
 }
 
 
-//       Method: vtkDataObject * vtkAlgorithm::GetInputDataObject(int port, int connection)
-// 
-public static IntPtr GetInputDataObject(IntPtr obj, int port, int connection) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.GetInputDataObject(p,obj, port, connection);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual void SetInputArrayToProcess(int idx, int port, int connection, const char * fieldAssociation, const char * attributeTypeorName)
+// "virtual void SetInputArrayToProcess(int idx, int port, int connection, const char* fieldAssociation, const char* attributeTypeorName)"
+public new void SetInputArrayToProcess(int /*(int)*/ idx, int /*(int)*/ port, int /*(int)*/ connection, char /*(char*)*/ []fieldAssociation, char /*(char*)*/ []attributeTypeorName) {
+	API_vtkAlgorithm.SetInputArrayToProcess_2(this, idx, port, connection, fieldAssociation, attributeTypeorName);
 }
 
 
-//       Method: virtual void vtkAlgorithm::SetInputConnection(int port, vtkAlgorithmOutput* input)
-// 
-public static void SetInputConnection(IntPtr obj, int port, IntPtr/*vtkAlgorithmOutput* */ input) {
-	VTK.API_vtkAlgorithm.SetInputConnection(obj, port, input);
+// void RemoveAllInputs()
+// "void RemoveAllInputs()"
+public new void RemoveAllInputs() {
+	API_vtkAlgorithm.RemoveAllInputs_0(this);
 }
 
 
-//       Method: virtual void vtkAlgorithm::SetInputConnection(vtkAlgorithmOutput* input)
-// 
-public static void SetInputConnection(IntPtr obj, IntPtr/*vtkAlgorithmOutput* */ input) {
-	VTK.API_vtkAlgorithm.SetInputConnection(obj, input);
+// vtkDataObject* GetOutputDataObject(int port)
+// "vtkDataObject* GetOutputDataObject(int port)"
+public new vtkDataObject GetOutputDataObject(int /*(int)*/ port) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkAlgorithm.GetOutputDataObject_0(this, returnPointer, port);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual void vtkAlgorithm::AddInputConnection(int port, vtkAlgorithmOutput* input)
-// 
-public static void AddInputConnection(IntPtr obj, int port, IntPtr/*vtkAlgorithmOutput* */ input) {
-	VTK.API_vtkAlgorithm.AddInputConnection(obj, port, input);
+// vtkDataObject* GetInputDataObject(int port, int connection)
+// "vtkDataObject *GetInputDataObject(int port, int connection)"
+public new vtkDataObject GetInputDataObject(int /*(int)*/ port, int /*(int)*/ connection) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkAlgorithm.GetInputDataObject_0(this, returnPointer, port, connection);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual void vtkAlgorithm::AddInputConnection(vtkAlgorithmOutput* input)
-// 
-public static void AddInputConnection(IntPtr obj, IntPtr/*vtkAlgorithmOutput* */ input) {
-	VTK.API_vtkAlgorithm.AddInputConnection(obj, input);
+// virtual void SetInputConnection(int port, vtkAlgorithmOutput * input)
+// "virtual void SetInputConnection(int port, vtkAlgorithmOutput* input)"
+public new void SetInputConnection(int /*(int)*/ port, vtkAlgorithmOutput /*(vtkAlgorithmOutput*)*/ input) {
+	API_vtkAlgorithm.SetInputConnection_0(this, port, input);
 }
 
 
-//       Method: virtual void vtkAlgorithm::RemoveInputConnection(int port, vtkAlgorithmOutput* input)
-// 
-public static void RemoveInputConnection(IntPtr obj, int port, IntPtr/*vtkAlgorithmOutput* */ input) {
-	VTK.API_vtkAlgorithm.RemoveInputConnection(obj, port, input);
+// virtual void SetInputConnection(vtkAlgorithmOutput * input)
+// "virtual void SetInputConnection(vtkAlgorithmOutput* input)"
+public new void SetInputConnection(vtkAlgorithmOutput /*(vtkAlgorithmOutput*)*/ input) {
+	API_vtkAlgorithm.SetInputConnection_1(this, input);
 }
 
 
-//       Method: virtual void vtkAlgorithm::RemoveInputConnection(int port, int idx)
-// 
-public static void RemoveInputConnection(IntPtr obj, int port, int idx) {
-	VTK.API_vtkAlgorithm.RemoveInputConnection(obj, port, idx);
+// virtual void AddInputConnection(int port, vtkAlgorithmOutput * input)
+// "virtual void AddInputConnection(int port, vtkAlgorithmOutput* input)"
+public new void AddInputConnection(int /*(int)*/ port, vtkAlgorithmOutput /*(vtkAlgorithmOutput*)*/ input) {
+	API_vtkAlgorithm.AddInputConnection_0(this, port, input);
 }
 
 
-//       Method: virtual void vtkAlgorithm::RemoveAllInputConnections(int port)
-// 
-public static void RemoveAllInputConnections(IntPtr obj, int port) {
-	VTK.API_vtkAlgorithm.RemoveAllInputConnections(obj, port);
+// virtual void AddInputConnection(vtkAlgorithmOutput * input)
+// "virtual void AddInputConnection(vtkAlgorithmOutput* input)"
+public new void AddInputConnection(vtkAlgorithmOutput /*(vtkAlgorithmOutput*)*/ input) {
+	API_vtkAlgorithm.AddInputConnection_1(this, input);
 }
 
 
-//       Method: virtual void vtkAlgorithm::SetInputDataObject(int port, vtkDataObject* data)
-// 
-public static void SetInputDataObject(IntPtr obj, int port, IntPtr/*vtkDataObject* */ data) {
-	VTK.API_vtkAlgorithm.SetInputDataObject(obj, port, data);
+// virtual void RemoveInputConnection(int port, vtkAlgorithmOutput * input)
+// "virtual void RemoveInputConnection(int port, vtkAlgorithmOutput* input)"
+public new void RemoveInputConnection(int /*(int)*/ port, vtkAlgorithmOutput /*(vtkAlgorithmOutput*)*/ input) {
+	API_vtkAlgorithm.RemoveInputConnection_0(this, port, input);
 }
 
 
-//       Method: virtual void vtkAlgorithm::SetInputDataObject(vtkDataObject* data)
-// 
-public static void SetInputDataObject(IntPtr obj, IntPtr/*vtkDataObject* */ data) {
-	VTK.API_vtkAlgorithm.SetInputDataObject(obj, data);
+// virtual void RemoveInputConnection(int port, int idx)
+// "virtual void RemoveInputConnection(int port, int idx)"
+public new void RemoveInputConnection(int /*(int)*/ port, int /*(int)*/ idx) {
+	API_vtkAlgorithm.RemoveInputConnection_1(this, port, idx);
 }
 
 
-//       Method: virtual void vtkAlgorithm::AddInputDataObject(int port, vtkDataObject* data)
-// 
-public static void AddInputDataObject(IntPtr obj, int port, IntPtr/*vtkDataObject* */ data) {
-	VTK.API_vtkAlgorithm.AddInputDataObject(obj, port, data);
+// virtual void RemoveAllInputConnections(int port)
+// "virtual void RemoveAllInputConnections(int port)"
+public new void RemoveAllInputConnections(int /*(int)*/ port) {
+	API_vtkAlgorithm.RemoveAllInputConnections_0(this, port);
 }
 
 
-//       Method: virtual void vtkAlgorithm::AddInputDataObject(vtkDataObject* data)
-// 
-public static void AddInputDataObject(IntPtr obj, IntPtr/*vtkDataObject* */ data) {
-	VTK.API_vtkAlgorithm.AddInputDataObject(obj, data);
+// virtual void SetInputDataObject(int port, vtkDataObject * data)
+// "virtual void SetInputDataObject(int port, vtkDataObject* data)"
+public new void SetInputDataObject(int /*(int)*/ port, vtkDataObject /*(vtkDataObject*)*/ data) {
+	API_vtkAlgorithm.SetInputDataObject_0(this, port, data);
 }
 
 
-//       Method: vtkAlgorithmOutput * vtkAlgorithm::GetOutputPort(int index)
-// 
-public static IntPtr GetOutputPort(IntPtr obj, int index) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.GetOutputPort(p,obj, index);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual void SetInputDataObject(vtkDataObject * data)
+// "virtual void SetInputDataObject(vtkDataObject* data)"
+public new void SetInputDataObject(vtkDataObject /*(vtkDataObject*)*/ data) {
+	API_vtkAlgorithm.SetInputDataObject_1(this, data);
 }
 
 
-//       Method: vtkAlgorithmOutput * vtkAlgorithm::GetOutputPort()
-// 
-public static IntPtr GetOutputPort(IntPtr obj) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.GetOutputPort(p,obj);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual void AddInputDataObject(int port, vtkDataObject * data)
+// "virtual void AddInputDataObject(int port, vtkDataObject* data)"
+public new void AddInputDataObject(int /*(int)*/ port, vtkDataObject /*(vtkDataObject*)*/ data) {
+	API_vtkAlgorithm.AddInputDataObject_0(this, port, data);
 }
 
 
-//       Method: int vtkAlgorithm::GetNumberOfInputConnections(int port)
-// 
-public static int GetNumberOfInputConnections(IntPtr obj, int port) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.GetNumberOfInputConnections(p,obj, port);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual void AddInputDataObject(vtkDataObject * data)
+// "virtual void AddInputDataObject(vtkDataObject* data)"
+public new void AddInputDataObject(vtkDataObject /*(vtkDataObject*)*/ data) {
+	API_vtkAlgorithm.AddInputDataObject_1(this, data);
 }
 
 
-//       Method: int vtkAlgorithm::GetTotalNumberOfInputConnections()
-// 
-public static int GetTotalNumberOfInputConnections(IntPtr obj) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.GetTotalNumberOfInputConnections(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkAlgorithmOutput* GetOutputPort(int index)
+// "vtkAlgorithmOutput* GetOutputPort(int index)"
+public new vtkAlgorithmOutput GetOutputPort(int /*(int)*/ index) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkAlgorithm.GetOutputPort_0(this, returnPointer, index);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkAlgorithmOutput * vtkAlgorithm::GetInputConnection(int port, int index)
-// 
-public static IntPtr GetInputConnection(IntPtr obj, int port, int index) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.GetInputConnection(p,obj, port, index);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkAlgorithmOutput* GetOutputPort()
+// "vtkAlgorithmOutput* GetOutputPort()"
+public new vtkAlgorithmOutput GetOutputPort() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkAlgorithm.GetOutputPort_1(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkAlgorithm * vtkAlgorithm::GetInputAlgorithm(int port, int index)
-// 
-public static IntPtr GetInputAlgorithm(IntPtr obj, int port, int index) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.GetInputAlgorithm(p,obj, port, index);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// int GetNumberOfInputConnections(int port)
+// "int GetNumberOfInputConnections(int port)"
+public new int GetNumberOfInputConnections(int /*(int)*/ port) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkAlgorithm.GetNumberOfInputConnections_0(this, returnPointer, port);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkAlgorithm * vtkAlgorithm::GetInputAlgorithm()
-// 
-public static IntPtr GetInputAlgorithm(IntPtr obj) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.GetInputAlgorithm(p,obj);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// int GetTotalNumberOfInputConnections()
+// "int GetTotalNumberOfInputConnections()"
+public new int GetTotalNumberOfInputConnections() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkAlgorithm.GetTotalNumberOfInputConnections_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkExecutive * vtkAlgorithm::GetInputExecutive(int port, int index)
-// 
-public static IntPtr GetInputExecutive(IntPtr obj, int port, int index) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.GetInputExecutive(p,obj, port, index);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkAlgorithmOutput* GetInputConnection(int port, int index)
+// "vtkAlgorithmOutput* GetInputConnection(int port, int index)"
+public new vtkAlgorithmOutput GetInputConnection(int /*(int)*/ port, int /*(int)*/ index) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkAlgorithm.GetInputConnection_0(this, returnPointer, port, index);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkExecutive * vtkAlgorithm::GetInputExecutive()
-// 
-public static IntPtr GetInputExecutive(IntPtr obj) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.GetInputExecutive(p,obj);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkAlgorithm* GetInputAlgorithm(int port, int index, int & algPort)
+// "vtkAlgorithm* GetInputAlgorithm(int port, int index, int& algPort)"
+public new vtkAlgorithm GetInputAlgorithm(int /*(int)*/ port, int /*(int)*/ index, int /*(int&)*/ []algPort) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkAlgorithm.GetInputAlgorithm_0(this, returnPointer, port, index, *algPort);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkInformation * vtkAlgorithm::GetInputInformation(int port, int index)
-// 
-public static IntPtr GetInputInformation(IntPtr obj, int port, int index) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.GetInputInformation(p,obj, port, index);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkAlgorithm* GetInputAlgorithm(int port, int index)
+// "vtkAlgorithm* GetInputAlgorithm(int port, int index)"
+public new vtkAlgorithm GetInputAlgorithm(int /*(int)*/ port, int /*(int)*/ index) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkAlgorithm.GetInputAlgorithm_1(this, returnPointer, port, index);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkInformation * vtkAlgorithm::GetInputInformation()
-// 
-public static IntPtr GetInputInformation(IntPtr obj) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.GetInputInformation(p,obj);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// vtkAlgorithm* GetInputAlgorithm()
+// "vtkAlgorithm* GetInputAlgorithm()"
+public new vtkAlgorithm GetInputAlgorithm() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new IntPtr())*return_elements);
+	API_vtkAlgorithm.GetInputAlgorithm_2(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: vtkInformation * vtkAlgorithm::GetOutputInformation(int port)
-// 
-public static IntPtr GetOutputInformation(IntPtr obj, int port) {
-	int numElements = 1;
-	IntPtr example = new IntPtr();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.GetOutputInformation(p,obj, port);
-	IntPtr result = p;
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual void Update(int port)
+// "virtual void Update(int port)"
+public new void Update(int /*(int)*/ port) {
+	API_vtkAlgorithm.Update_0(this, port);
 }
 
 
-//       Method: virtual void vtkAlgorithm::Update(int port)
-// 
-public static void Update(IntPtr obj, int port) {
-	VTK.API_vtkAlgorithm.Update(obj, port);
+// virtual void Update()
+// "virtual void Update()"
+public new void Update() {
+	API_vtkAlgorithm.Update_1(this);
 }
 
 
-//       Method: virtual void vtkAlgorithm::Update()
-// 
-public static void Update(IntPtr obj) {
-	VTK.API_vtkAlgorithm.Update(obj);
+// virtual int UpdatePiece(int piece, int numPieces, int ghostLevels, const int extents[6] = nullptr)
+// "virtual int UpdatePiece( int piece, int numPieces, int ghostLevels, const int extents[6]=nullptr)"
+public new int UpdatePiece(int /*(int)*/ piece, int /*(int)*/ numPieces, int /*(int)*/ ghostLevels, int /*(int[6])*/ []extents) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkAlgorithm.UpdatePiece_0(this, returnPointer, piece, numPieces, ghostLevels, extents);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual int vtkAlgorithm::Update(int port, vtkInformationVector* requests)
-// 
-public static int Update(IntPtr obj, int port, IntPtr/*vtkInformationVector* */ requests) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.Update(p,obj, port, requests);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual int UpdateExtent(const int extents[6])
+// "virtual int UpdateExtent(const int extents[6])"
+public new int UpdateExtent(int /*(int[6])*/ []extents) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkAlgorithm.UpdateExtent_0(this, returnPointer, extents);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual int vtkAlgorithm::Update(vtkInformation* requests)
-// 
-public static int Update(IntPtr obj, IntPtr/*vtkInformation* */ requests) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.Update(p,obj, requests);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual void UpdateInformation()
+// "virtual void UpdateInformation()"
+public new void UpdateInformation() {
+	API_vtkAlgorithm.UpdateInformation_0(this);
 }
 
 
-//       Method: virtual int vtkAlgorithm::UpdatePiece(int piece, int numPieces, int ghostLevels, const int extents[6])
-// 
-public static int UpdatePiece(IntPtr obj, int piece, int numPieces, int ghostLevels, int[] /*6*/ extents) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.UpdatePiece(p,obj, piece, numPieces, ghostLevels, extents);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual void UpdateDataObject()
+// "virtual void UpdateDataObject()"
+public new void UpdateDataObject() {
+	API_vtkAlgorithm.UpdateDataObject_0(this);
 }
 
 
-//       Method: virtual int vtkAlgorithm::UpdateExtent(const int extents[6])
-// 
-public static int UpdateExtent(IntPtr obj, int[] /*6*/ extents) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.UpdateExtent(p,obj, extents);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual void PropagateUpdateExtent()
+// "virtual void PropagateUpdateExtent()"
+public new void PropagateUpdateExtent() {
+	API_vtkAlgorithm.PropagateUpdateExtent_0(this);
 }
 
 
-//       Method: virtual int vtkAlgorithm::UpdateTimeStep(double time, int numPieces, int ghostLevels, const int extents[6])
-// 
-public static int UpdateTimeStep(IntPtr obj, double time, int numPieces, int ghostLevels, int[] /*6*/ extents) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.UpdateTimeStep(p,obj, time, numPieces, ghostLevels, extents);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// virtual void UpdateWholeExtent()
+// "virtual void UpdateWholeExtent()"
+public new void UpdateWholeExtent() {
+	API_vtkAlgorithm.UpdateWholeExtent_0(this);
 }
 
 
-//       Method: virtual void vtkAlgorithm::UpdateInformation()
-// 
-public static void UpdateInformation(IntPtr obj) {
-	VTK.API_vtkAlgorithm.UpdateInformation(obj);
+// void ConvertTotalInputToPortConnection(int ind, int & port, int & conn)
+// "void ConvertTotalInputToPortConnection(int ind, int& port, int& conn)"
+public new void ConvertTotalInputToPortConnection(int /*(int)*/ ind, int /*(int&)*/ []port, int /*(int&)*/ []conn) {
+	API_vtkAlgorithm.ConvertTotalInputToPortConnection_0(this, ind, *port, *conn);
 }
 
 
-//       Method: virtual void vtkAlgorithm::UpdateDataObject()
-// 
-public static void UpdateDataObject(IntPtr obj) {
-	VTK.API_vtkAlgorithm.UpdateDataObject(obj);
+// virtual void SetReleaseDataFlag(int ARG_0)
+// "virtual void SetReleaseDataFlag(int)"
+public new void SetReleaseDataFlag(int /*(int)*/ ARG_0) {
+	API_vtkAlgorithm.SetReleaseDataFlag_0(this, ARG_0);
 }
 
 
-//       Method: virtual void vtkAlgorithm::PropagateUpdateExtent()
-// 
-public static void PropagateUpdateExtent(IntPtr obj) {
-	VTK.API_vtkAlgorithm.PropagateUpdateExtent(obj);
+// virtual int GetReleaseDataFlag()
+// "virtual int GetReleaseDataFlag()"
+public new int GetReleaseDataFlag() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkAlgorithm.GetReleaseDataFlag_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: virtual void vtkAlgorithm::UpdateWholeExtent()
-// 
-public static void UpdateWholeExtent(IntPtr obj) {
-	VTK.API_vtkAlgorithm.UpdateWholeExtent(obj);
+// void ReleaseDataFlagOn()
+// "void ReleaseDataFlagOn()"
+public new void ReleaseDataFlagOn() {
+	API_vtkAlgorithm.ReleaseDataFlagOn_0(this);
 }
 
 
-//       Method: virtual void vtkAlgorithm::SetReleaseDataFlag(int ARG_0)
-// 
-public static void SetReleaseDataFlag(IntPtr obj, int ARG_0) {
-	VTK.API_vtkAlgorithm.SetReleaseDataFlag(obj, ARG_0);
+// void ReleaseDataFlagOff()
+// "void ReleaseDataFlagOff()"
+public new void ReleaseDataFlagOff() {
+	API_vtkAlgorithm.ReleaseDataFlagOff_0(this);
 }
 
 
-//       Method: virtual int vtkAlgorithm::GetReleaseDataFlag()
-// 
-public static int GetReleaseDataFlag(IntPtr obj) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.GetReleaseDataFlag(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int* GetUpdateExtent()
+// "int* GetUpdateExtent()"
+public new int GetUpdateExtent() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkAlgorithm.GetUpdateExtent_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkAlgorithm::ReleaseDataFlagOn()
-// 
-public static void ReleaseDataFlagOn(IntPtr obj) {
-	VTK.API_vtkAlgorithm.ReleaseDataFlagOn(obj);
+// int* GetUpdateExtent(int port)
+// "int* GetUpdateExtent(int port)"
+public new int GetUpdateExtent(int /*(int)*/ port) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkAlgorithm.GetUpdateExtent_1(this, returnPointer, port);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkAlgorithm::ReleaseDataFlagOff()
-// 
-public static void ReleaseDataFlagOff(IntPtr obj) {
-	VTK.API_vtkAlgorithm.ReleaseDataFlagOff(obj);
+// void GetUpdateExtent(int & x0, int & x1, int & y0, int & y1, int & z0, int & z1)
+// "void GetUpdateExtent(int& x0, int& x1, int& y0, int& y1, int& z0, int& z1)"
+public new void GetUpdateExtent(int /*(int&)*/ []x0, int /*(int&)*/ []x1, int /*(int&)*/ []y0, int /*(int&)*/ []y1, int /*(int&)*/ []z0, int /*(int&)*/ []z1) {
+	API_vtkAlgorithm.GetUpdateExtent_2(this, *x0, *x1, *y0, *y1, *z0, *z1);
 }
 
 
-//       Method: int vtkAlgorithm::UpdateExtentIsEmpty(vtkInformation* pinfo, vtkDataObject* output)
-// 
-public static int UpdateExtentIsEmpty(IntPtr obj, IntPtr/*vtkInformation* */ pinfo, IntPtr/*vtkDataObject* */ output) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.UpdateExtentIsEmpty(p,obj, pinfo, output);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// void GetUpdateExtent(int port, int & x0, int & x1, int & y0, int & y1, int & z0, int & z1)
+// "void GetUpdateExtent(int port, int& x0, int& x1, int& y0, int& y1, int& z0, int& z1)"
+public new void GetUpdateExtent(int /*(int)*/ port, int /*(int&)*/ []x0, int /*(int&)*/ []x1, int /*(int&)*/ []y0, int /*(int&)*/ []y1, int /*(int&)*/ []z0, int /*(int&)*/ []z1) {
+	API_vtkAlgorithm.GetUpdateExtent_3(this, port, *x0, *x1, *y0, *y1, *z0, *z1);
 }
-
-
-//       Method: int vtkAlgorithm::UpdateExtentIsEmpty(vtkInformation* pinfo, int extentType)
-// 
-public static int UpdateExtentIsEmpty(IntPtr obj, IntPtr/*vtkInformation* */ pinfo, int extentType) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.UpdateExtentIsEmpty(p,obj, pinfo, extentType);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
-}
-
-
-//       Method: static void vtkAlgorithm::SetDefaultExecutivePrototype(vtkExecutive* proto)
-// 
-public static void SetDefaultExecutivePrototype(IntPtr/*vtkExecutive* */ proto) {
-	VTK.API_vtkAlgorithm.SetDefaultExecutivePrototype(proto);
-}
-
-
-////       Method: int * vtkAlgorithm::GetUpdateExtent()
-//// 
-//public static int[] GetUpdateExtent(IntPtr obj) {
-//	int numElements = 1;
-//	int[] example = new int[numElements];
-//	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-//	VTK.API_vtkAlgorithm.GetUpdateExtent(p,obj);
-//	// UNSPECIFIED TYPE
-//	Marshal.FreeHGlobal (p);
-//	return result;
-//}
-//
 
-////       Method: int * vtkAlgorithm::GetUpdateExtent(int port)
-//// 
-//public static int[] GetUpdateExtent(IntPtr obj, int port) {
-//	int numElements = 1;
-//	int[] example = new int[numElements];
-//	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-//	VTK.API_vtkAlgorithm.GetUpdateExtent(p,obj, port);
-//	// UNSPECIFIED TYPE
-//	Marshal.FreeHGlobal (p);
-//	return result;
-//}
-//
 
-//       Method: void vtkAlgorithm::GetUpdateExtent(int extent[6])
-// 
-public static void GetUpdateExtent(IntPtr obj, int[] /*6*/ extent) {
-	VTK.API_vtkAlgorithm.GetUpdateExtent(obj, extent);
+// void GetUpdateExtent(int extent[6])
+// "void GetUpdateExtent(int extent[6])"
+public new void GetUpdateExtent(int /*(int[6])*/ []extent) {
+	API_vtkAlgorithm.GetUpdateExtent_4(this, extent);
 }
 
 
-//       Method: void vtkAlgorithm::GetUpdateExtent(int port, int extent[6])
-// 
-public static void GetUpdateExtent(IntPtr obj, int port, int[] /*6*/ extent) {
-	VTK.API_vtkAlgorithm.GetUpdateExtent(obj, port, extent);
+// void GetUpdateExtent(int port, int extent[6])
+// "void GetUpdateExtent(int port, int extent[6])"
+public new void GetUpdateExtent(int /*(int)*/ port, int /*(int[6])*/ []extent) {
+	API_vtkAlgorithm.GetUpdateExtent_5(this, port, extent);
 }
 
 
-//       Method: int vtkAlgorithm::GetUpdatePiece()
-// 
-public static int GetUpdatePiece(IntPtr obj) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.GetUpdatePiece(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int GetUpdatePiece()
+// "int GetUpdatePiece()"
+public new int GetUpdatePiece() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkAlgorithm.GetUpdatePiece_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkAlgorithm::GetUpdatePiece(int port)
-// 
-public static int GetUpdatePiece(IntPtr obj, int port) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.GetUpdatePiece(p,obj, port);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int GetUpdatePiece(int port)
+// "int GetUpdatePiece(int port)"
+public new int GetUpdatePiece(int /*(int)*/ port) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkAlgorithm.GetUpdatePiece_1(this, returnPointer, port);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkAlgorithm::GetUpdateNumberOfPieces()
-// 
-public static int GetUpdateNumberOfPieces(IntPtr obj) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.GetUpdateNumberOfPieces(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int GetUpdateNumberOfPieces()
+// "int GetUpdateNumberOfPieces()"
+public new int GetUpdateNumberOfPieces() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkAlgorithm.GetUpdateNumberOfPieces_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkAlgorithm::GetUpdateNumberOfPieces(int port)
-// 
-public static int GetUpdateNumberOfPieces(IntPtr obj, int port) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.GetUpdateNumberOfPieces(p,obj, port);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int GetUpdateNumberOfPieces(int port)
+// "int GetUpdateNumberOfPieces(int port)"
+public new int GetUpdateNumberOfPieces(int /*(int)*/ port) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkAlgorithm.GetUpdateNumberOfPieces_1(this, returnPointer, port);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkAlgorithm::GetUpdateGhostLevel()
-// 
-public static int GetUpdateGhostLevel(IntPtr obj) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.GetUpdateGhostLevel(p,obj);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int GetUpdateGhostLevel()
+// "int GetUpdateGhostLevel()"
+public new int GetUpdateGhostLevel() {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkAlgorithm.GetUpdateGhostLevel_0(this, returnPointer);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: int vtkAlgorithm::GetUpdateGhostLevel(int port)
-// 
-public static int GetUpdateGhostLevel(IntPtr obj, int port) {
-	int numElements = 1;
-	int example = new int();
-	IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(example)*numElements);
-	VTK.API_vtkAlgorithm.GetUpdateGhostLevel(p,obj, port);
-	int result = Convert.ToInt32(Marshal.ReadInt32(p));
-	Marshal.FreeHGlobal (p);
-	return result;
+// int GetUpdateGhostLevel(int port)
+// "int GetUpdateGhostLevel(int port)"
+public new int GetUpdateGhostLevel(int /*(int)*/ port) {
+	int return_elements = 1;
+	IntPtr returnPointer = Marshal.AllocHGlobal(Marshal.SizeOf(new int())*return_elements);
+	API_vtkAlgorithm.GetUpdateGhostLevel_1(this, returnPointer, port);
+	return Ptr.deref(returnPointer);
 }
 
 
-//       Method: void vtkAlgorithm::SetProgressObserver(vtkProgressObserver* ARG_0)
-// 
-public static void SetProgressObserver(IntPtr obj, IntPtr/*vtkProgressObserver* */ ARG_0) {
-	VTK.API_vtkAlgorithm.SetProgressObserver(obj, ARG_0);
+// void SetProgressObserver(vtkProgressObserver * ARG_0)
+// "void SetProgressObserver(vtkProgressObserver*)"
+public new void SetProgressObserver(vtkProgressObserver /*(vtkProgressObserver*)*/ ARG_0) {
+	API_vtkAlgorithm.SetProgressObserver_0(this, ARG_0);
 }
 
 
