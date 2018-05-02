@@ -13,14 +13,14 @@ public partial class vtkPointSet : vtkDataSet {
 // void Initialize()
 // "void Initialize()"
 public void Initialize() {
-	API_vtkPointSet.Initialize_0(this);
+	VTK_API.API_vtkPointSet.Initialize_0(this);
 }
 
 
 // void CopyStructure(vtkDataSet * pd)
 // "void CopyStructure(vtkDataSet *pd)"
 public void CopyStructure(vtkDataSet /*(vtkDataSet*)*/ pd) {
-	API_vtkPointSet.CopyStructure_0(this, pd);
+	VTK_API.API_vtkPointSet.CopyStructure_0(this, pd);
 }
 
 
@@ -29,7 +29,7 @@ public void CopyStructure(vtkDataSet /*(vtkDataSet*)*/ pd) {
 public long GetNumberOfPoints() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
-	API_vtkPointSet.GetNumberOfPoints_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkPointSet.GetNumberOfPoints_0(returnPointer.GetPtr(), this);
 	return (long)returnPointer;
 }
 
@@ -37,7 +37,7 @@ public long GetNumberOfPoints() {
 // void GetPoint(vtkIdType ptId, double x[3])
 // "void GetPoint(vtkIdType ptId, double x[3])"
 public void GetPoint(long /*(vtkIdType)*/ ptId, double /*(double[3])*/ []x) {
-	API_vtkPointSet.GetPoint_0(this, ptId, x);
+	VTK_API.API_vtkPointSet.GetPoint_0(this, ptId, x);
 }
 
 
@@ -46,7 +46,7 @@ public void GetPoint(long /*(vtkIdType)*/ ptId, double /*(double[3])*/ []x) {
 public long FindPoint(double /*(double[3])*/ []x) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
-	API_vtkPointSet.FindPoint_0(returnPointer.GetPtr(), this, x);
+	VTK_API.API_vtkPointSet.FindPoint_0(returnPointer.GetPtr(), this, x);
 	return (long)returnPointer;
 }
 
@@ -56,7 +56,7 @@ public long FindPoint(double /*(double[3])*/ []x) {
 public long FindPoint(double /*(double)*/ x, double /*(double)*/ y, double /*(double)*/ z) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
-	API_vtkPointSet.FindPoint_1(returnPointer.GetPtr(), this, x, y, z);
+	VTK_API.API_vtkPointSet.FindPoint_1(returnPointer.GetPtr(), this, x, y, z);
 	return (long)returnPointer;
 }
 
@@ -66,7 +66,7 @@ public long FindPoint(double /*(double)*/ x, double /*(double)*/ y, double /*(do
 public long FindCell(double /*(double[3])*/ []x, vtkCell /*(vtkCell*)*/ cell, long /*(vtkIdType)*/ cellId, double /*(double)*/ tol2, IntPtr /*(int&)*/ subId, double /*(double[3])*/ []pcoords, IntPtr /*(double*)*/ weights) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
-	API_vtkPointSet.FindCell_0(returnPointer.GetPtr(), this, x, cell, cellId, tol2, subId, pcoords, weights);
+	VTK_API.API_vtkPointSet.FindCell_0(returnPointer.GetPtr(), this, x, cell, cellId, tol2, subId, pcoords, weights);
 	return (long)returnPointer;
 }
 
@@ -76,7 +76,7 @@ public long FindCell(double /*(double[3])*/ []x, vtkCell /*(vtkCell*)*/ cell, lo
 public long FindCell(double /*(double[3])*/ []x, vtkCell /*(vtkCell*)*/ cell, vtkGenericCell /*(vtkGenericCell*)*/ gencell, long /*(vtkIdType)*/ cellId, double /*(double)*/ tol2, IntPtr /*(int&)*/ subId, double /*(double[3])*/ []pcoords, IntPtr /*(double*)*/ weights) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
-	API_vtkPointSet.FindCell_1(returnPointer.GetPtr(), this, x, cell, gencell, cellId, tol2, subId, pcoords, weights);
+	VTK_API.API_vtkPointSet.FindCell_1(returnPointer.GetPtr(), this, x, cell, gencell, cellId, tol2, subId, pcoords, weights);
 	return (long)returnPointer;
 }
 
@@ -86,7 +86,7 @@ public long FindCell(double /*(double[3])*/ []x, vtkCell /*(vtkCell*)*/ cell, vt
 public IntPtr GetPoint(long /*(vtkIdType)*/ ptId) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkPointSet.GetPoint_1(returnPointer.GetPtr(), this, ptId);
+	VTK_API.API_vtkPointSet.GetPoint_1(returnPointer.GetPtr(), this, ptId);
 	return (IntPtr)returnPointer;
 }
 
@@ -96,7 +96,7 @@ public IntPtr GetPoint(long /*(vtkIdType)*/ ptId) {
 public vtkCellIterator NewCellIterator() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkPointSet.NewCellIterator_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkPointSet.NewCellIterator_0(returnPointer.GetPtr(), this);
 	return (vtkCellIterator)(IntPtr)returnPointer;
 }
 
@@ -106,7 +106,7 @@ public vtkCellIterator NewCellIterator() {
 public ulong GetMTime() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new ulong(), return_elements);
-	API_vtkPointSet.GetMTime_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkPointSet.GetMTime_0(returnPointer.GetPtr(), this);
 	return (ulong)returnPointer;
 }
 
@@ -114,21 +114,21 @@ public ulong GetMTime() {
 // void ComputeBounds()
 // "void ComputeBounds()"
 public void ComputeBounds() {
-	API_vtkPointSet.ComputeBounds_0(this);
+	VTK_API.API_vtkPointSet.ComputeBounds_0(this);
 }
 
 
 // void Squeeze()
 // "void Squeeze()"
 public void Squeeze() {
-	API_vtkPointSet.Squeeze_0(this);
+	VTK_API.API_vtkPointSet.Squeeze_0(this);
 }
 
 
 // virtual void SetPoints(vtkPoints * ARG_0)
 // "virtual void SetPoints(vtkPoints*)"
 public void SetPoints(vtkPoints /*(vtkPoints*)*/ ARG_0) {
-	API_vtkPointSet.SetPoints_0(this, ARG_0);
+	VTK_API.API_vtkPointSet.SetPoints_0(this, ARG_0);
 }
 
 
@@ -137,7 +137,7 @@ public void SetPoints(vtkPoints /*(vtkPoints*)*/ ARG_0) {
 public ulong GetActualMemorySize() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new ulong(), return_elements);
-	API_vtkPointSet.GetActualMemorySize_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkPointSet.GetActualMemorySize_0(returnPointer.GetPtr(), this);
 	return (ulong)returnPointer;
 }
 
@@ -145,28 +145,28 @@ public ulong GetActualMemorySize() {
 // void ShallowCopy(vtkDataObject * src)
 // "void ShallowCopy(vtkDataObject *src)"
 public void ShallowCopy(vtkDataObject /*(vtkDataObject*)*/ src) {
-	API_vtkPointSet.ShallowCopy_0(this, src);
+	VTK_API.API_vtkPointSet.ShallowCopy_0(this, src);
 }
 
 
 // void DeepCopy(vtkDataObject * src)
 // "void DeepCopy(vtkDataObject *src)"
 public void DeepCopy(vtkDataObject /*(vtkDataObject*)*/ src) {
-	API_vtkPointSet.DeepCopy_0(this, src);
+	VTK_API.API_vtkPointSet.DeepCopy_0(this, src);
 }
 
 
 // void Register(vtkObjectBase * o)
 // "void Register(vtkObjectBase* o)"
 public void Register(vtkObjectBase /*(vtkObjectBase*)*/ o) {
-	API_vtkPointSet.Register_0(this, o);
+	VTK_API.API_vtkPointSet.Register_0(this, o);
 }
 
 
 // void UnRegister(vtkObjectBase * o)
 // "void UnRegister(vtkObjectBase* o)"
 public void UnRegister(vtkObjectBase /*(vtkObjectBase*)*/ o) {
-	API_vtkPointSet.UnRegister_0(this, o);
+	VTK_API.API_vtkPointSet.UnRegister_0(this, o);
 }
 
 

@@ -15,7 +15,7 @@ public partial class vtkUnstructuredGrid : vtkUnstructuredGridBase {
 public static vtkUnstructuredGrid New() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkUnstructuredGrid.New_0(returnPointer.GetPtr());
+	VTK_API.API_vtkUnstructuredGrid.New_0(returnPointer.GetPtr());
 	return (vtkUnstructuredGrid)(IntPtr)returnPointer;
 }
 
@@ -25,7 +25,7 @@ public static vtkUnstructuredGrid New() {
 public int GetDataObjectType() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkUnstructuredGrid.GetDataObjectType_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkUnstructuredGrid.GetDataObjectType_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
 
@@ -33,7 +33,7 @@ public int GetDataObjectType() {
 // void Allocate(vtkIdType numCells = 1000, int extSize = 1000)
 // "void Allocate(vtkIdType numCells=1000, int extSize=1000)"
 public void Allocate(long /*(vtkIdType)*/ numCells, int /*(int)*/ extSize) {
-	API_vtkUnstructuredGrid.Allocate_0(this, numCells, extSize);
+	VTK_API.API_vtkUnstructuredGrid.Allocate_0(this, numCells, extSize);
 }
 
 
@@ -42,7 +42,7 @@ public void Allocate(long /*(vtkIdType)*/ numCells, int /*(int)*/ extSize) {
 public long InsertNextCell(int /*(int)*/ type, long /*(vtkIdType)*/ npts, IntPtr /*(vtkIdType*)*/ ptIds) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
-	API_vtkUnstructuredGrid.InsertNextCell_0(returnPointer.GetPtr(), this, type, npts, ptIds);
+	VTK_API.API_vtkUnstructuredGrid.InsertNextCell_0(returnPointer.GetPtr(), this, type, npts, ptIds);
 	return (long)returnPointer;
 }
 
@@ -52,7 +52,7 @@ public long InsertNextCell(int /*(int)*/ type, long /*(vtkIdType)*/ npts, IntPtr
 public long InsertNextCell(int /*(int)*/ type, vtkIdList /*(vtkIdList*)*/ ptIds) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
-	API_vtkUnstructuredGrid.InsertNextCell_1(returnPointer.GetPtr(), this, type, ptIds);
+	VTK_API.API_vtkUnstructuredGrid.InsertNextCell_1(returnPointer.GetPtr(), this, type, ptIds);
 	return (long)returnPointer;
 }
 
@@ -62,7 +62,7 @@ public long InsertNextCell(int /*(int)*/ type, vtkIdList /*(vtkIdList*)*/ ptIds)
 public long InsertNextCell(int /*(int)*/ type, long /*(vtkIdType)*/ npts, IntPtr /*(vtkIdType*)*/ ptIds, long /*(vtkIdType)*/ nfaces, IntPtr /*(vtkIdType*)*/ faces) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
-	API_vtkUnstructuredGrid.InsertNextCell_2(returnPointer.GetPtr(), this, type, npts, ptIds, nfaces, faces);
+	VTK_API.API_vtkUnstructuredGrid.InsertNextCell_2(returnPointer.GetPtr(), this, type, npts, ptIds, nfaces, faces);
 	return (long)returnPointer;
 }
 
@@ -70,14 +70,14 @@ public long InsertNextCell(int /*(int)*/ type, long /*(vtkIdType)*/ npts, IntPtr
 // void Reset()
 // "void Reset()"
 public void Reset() {
-	API_vtkUnstructuredGrid.Reset_0(this);
+	VTK_API.API_vtkUnstructuredGrid.Reset_0(this);
 }
 
 
 // void CopyStructure(vtkDataSet * ds)
 // "void CopyStructure(vtkDataSet *ds)"
 public void CopyStructure(vtkDataSet /*(vtkDataSet*)*/ ds) {
-	API_vtkUnstructuredGrid.CopyStructure_0(this, ds);
+	VTK_API.API_vtkUnstructuredGrid.CopyStructure_0(this, ds);
 }
 
 
@@ -86,7 +86,7 @@ public void CopyStructure(vtkDataSet /*(vtkDataSet*)*/ ds) {
 public long GetNumberOfCells() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
-	API_vtkUnstructuredGrid.GetNumberOfCells_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkUnstructuredGrid.GetNumberOfCells_0(returnPointer.GetPtr(), this);
 	return (long)returnPointer;
 }
 
@@ -96,7 +96,7 @@ public long GetNumberOfCells() {
 public vtkCell GetCell(long /*(vtkIdType)*/ cellId) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkUnstructuredGrid.GetCell_0(returnPointer.GetPtr(), this, cellId);
+	VTK_API.API_vtkUnstructuredGrid.GetCell_0(returnPointer.GetPtr(), this, cellId);
 	return (vtkCell)(IntPtr)returnPointer;
 }
 
@@ -104,28 +104,28 @@ public vtkCell GetCell(long /*(vtkIdType)*/ cellId) {
 // void GetCell(vtkIdType cellId, vtkGenericCell * cell)
 // "void GetCell(vtkIdType cellId, vtkGenericCell *cell)"
 public void GetCell(long /*(vtkIdType)*/ cellId, vtkGenericCell /*(vtkGenericCell*)*/ cell) {
-	API_vtkUnstructuredGrid.GetCell_1(this, cellId, cell);
+	VTK_API.API_vtkUnstructuredGrid.GetCell_1(this, cellId, cell);
 }
 
 
 // void GetCellBounds(vtkIdType cellId, double bounds[6])
 // "void GetCellBounds(vtkIdType cellId, double bounds[6])"
 public void GetCellBounds(long /*(vtkIdType)*/ cellId, double /*(double[6])*/ []bounds) {
-	API_vtkUnstructuredGrid.GetCellBounds_0(this, cellId, bounds);
+	VTK_API.API_vtkUnstructuredGrid.GetCellBounds_0(this, cellId, bounds);
 }
 
 
 // void GetCellPoints(vtkIdType cellId, vtkIdList * ptIds)
 // "void GetCellPoints(vtkIdType cellId, vtkIdList *ptIds)"
 public void GetCellPoints(long /*(vtkIdType)*/ cellId, vtkIdList /*(vtkIdList*)*/ ptIds) {
-	API_vtkUnstructuredGrid.GetCellPoints_0(this, cellId, ptIds);
+	VTK_API.API_vtkUnstructuredGrid.GetCellPoints_0(this, cellId, ptIds);
 }
 
 
 // void GetPointCells(vtkIdType ptId, vtkIdList * cellIds)
 // "void GetPointCells(vtkIdType ptId, vtkIdList *cellIds)"
 public void GetPointCells(long /*(vtkIdType)*/ ptId, vtkIdList /*(vtkIdList*)*/ cellIds) {
-	API_vtkUnstructuredGrid.GetPointCells_0(this, ptId, cellIds);
+	VTK_API.API_vtkUnstructuredGrid.GetPointCells_0(this, ptId, cellIds);
 }
 
 
@@ -134,7 +134,7 @@ public void GetPointCells(long /*(vtkIdType)*/ ptId, vtkIdList /*(vtkIdList*)*/ 
 public vtkCellIterator NewCellIterator() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkUnstructuredGrid.NewCellIterator_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkUnstructuredGrid.NewCellIterator_0(returnPointer.GetPtr(), this);
 	return (vtkCellIterator)(IntPtr)returnPointer;
 }
 
@@ -144,7 +144,7 @@ public vtkCellIterator NewCellIterator() {
 public int GetCellType(long /*(vtkIdType)*/ cellId) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkUnstructuredGrid.GetCellType_0(returnPointer.GetPtr(), this, cellId);
+	VTK_API.API_vtkUnstructuredGrid.GetCellType_0(returnPointer.GetPtr(), this, cellId);
 	return (int)returnPointer;
 }
 
@@ -154,7 +154,7 @@ public int GetCellType(long /*(vtkIdType)*/ cellId) {
 public vtkUnsignedCharArray GetCellTypesArray() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkUnstructuredGrid.GetCellTypesArray_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkUnstructuredGrid.GetCellTypesArray_0(returnPointer.GetPtr(), this);
 	return (vtkUnsignedCharArray)(IntPtr)returnPointer;
 }
 
@@ -164,7 +164,7 @@ public vtkUnsignedCharArray GetCellTypesArray() {
 public vtkIdTypeArray GetCellLocationsArray() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkUnstructuredGrid.GetCellLocationsArray_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkUnstructuredGrid.GetCellLocationsArray_0(returnPointer.GetPtr(), this);
 	return (vtkIdTypeArray)(IntPtr)returnPointer;
 }
 
@@ -172,14 +172,14 @@ public vtkIdTypeArray GetCellLocationsArray() {
 // void Squeeze()
 // "void Squeeze()"
 public void Squeeze() {
-	API_vtkUnstructuredGrid.Squeeze_0(this);
+	VTK_API.API_vtkUnstructuredGrid.Squeeze_0(this);
 }
 
 
 // void Initialize()
 // "void Initialize()"
 public void Initialize() {
-	API_vtkUnstructuredGrid.Initialize_0(this);
+	VTK_API.API_vtkUnstructuredGrid.Initialize_0(this);
 }
 
 
@@ -188,7 +188,7 @@ public void Initialize() {
 public int GetMaxCellSize() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkUnstructuredGrid.GetMaxCellSize_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkUnstructuredGrid.GetMaxCellSize_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
 
@@ -196,7 +196,7 @@ public int GetMaxCellSize() {
 // void BuildLinks()
 // "void BuildLinks()"
 public void BuildLinks() {
-	API_vtkUnstructuredGrid.BuildLinks_0(this);
+	VTK_API.API_vtkUnstructuredGrid.BuildLinks_0(this);
 }
 
 
@@ -205,7 +205,7 @@ public void BuildLinks() {
 public vtkCellLinks GetCellLinks() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkUnstructuredGrid.GetCellLinks_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkUnstructuredGrid.GetCellLinks_0(returnPointer.GetPtr(), this);
 	return (vtkCellLinks)(IntPtr)returnPointer;
 }
 
@@ -213,49 +213,49 @@ public vtkCellLinks GetCellLinks() {
 // virtual void GetCellPoints(vtkIdType cellId, vtkIdType & npts, vtkIdType *& pts)
 // "virtual void GetCellPoints(vtkIdType cellId, vtkIdType& npts, vtkIdType* &pts)"
 public void GetCellPoints(long /*(vtkIdType)*/ cellId, IntPtr /*(vtkIdType&)*/ npts, IntPtr /*(vtkIdType*&)*/ pts) {
-	API_vtkUnstructuredGrid.GetCellPoints_1(this, cellId, npts, pts);
+	VTK_API.API_vtkUnstructuredGrid.GetCellPoints_1(this, cellId, npts, pts);
 }
 
 
 // void GetFaceStream(vtkIdType cellId, vtkIdList * ptIds)
 // "void GetFaceStream(vtkIdType cellId, vtkIdList *ptIds)"
 public void GetFaceStream(long /*(vtkIdType)*/ cellId, vtkIdList /*(vtkIdList*)*/ ptIds) {
-	API_vtkUnstructuredGrid.GetFaceStream_0(this, cellId, ptIds);
+	VTK_API.API_vtkUnstructuredGrid.GetFaceStream_0(this, cellId, ptIds);
 }
 
 
 // void GetFaceStream(vtkIdType cellId, vtkIdType & nfaces, vtkIdType *& ptIds)
 // "void GetFaceStream(vtkIdType cellId, vtkIdType& nfaces, vtkIdType* &ptIds)"
 public void GetFaceStream(long /*(vtkIdType)*/ cellId, IntPtr /*(vtkIdType&)*/ nfaces, IntPtr /*(vtkIdType*&)*/ ptIds) {
-	API_vtkUnstructuredGrid.GetFaceStream_1(this, cellId, nfaces, ptIds);
+	VTK_API.API_vtkUnstructuredGrid.GetFaceStream_1(this, cellId, nfaces, ptIds);
 }
 
 
 // void SetCells(int type, vtkCellArray * cells)
 // "void SetCells(int type, vtkCellArray *cells)"
 public void SetCells(int /*(int)*/ type, vtkCellArray /*(vtkCellArray*)*/ cells) {
-	API_vtkUnstructuredGrid.SetCells_0(this, type, cells);
+	VTK_API.API_vtkUnstructuredGrid.SetCells_0(this, type, cells);
 }
 
 
 // void SetCells(int * types, vtkCellArray * cells)
 // "void SetCells(int *types, vtkCellArray *cells)"
 public void SetCells(IntPtr /*(int*)*/ types, vtkCellArray /*(vtkCellArray*)*/ cells) {
-	API_vtkUnstructuredGrid.SetCells_1(this, types, cells);
+	VTK_API.API_vtkUnstructuredGrid.SetCells_1(this, types, cells);
 }
 
 
 // void SetCells(vtkUnsignedCharArray * cellTypes, vtkIdTypeArray * cellLocations, vtkCellArray * cells)
 // "void SetCells(vtkUnsignedCharArray *cellTypes, vtkIdTypeArray *cellLocations, vtkCellArray *cells)"
 public void SetCells(vtkUnsignedCharArray /*(vtkUnsignedCharArray*)*/ cellTypes, vtkIdTypeArray /*(vtkIdTypeArray*)*/ cellLocations, vtkCellArray /*(vtkCellArray*)*/ cells) {
-	API_vtkUnstructuredGrid.SetCells_2(this, cellTypes, cellLocations, cells);
+	VTK_API.API_vtkUnstructuredGrid.SetCells_2(this, cellTypes, cellLocations, cells);
 }
 
 
 // void SetCells(vtkUnsignedCharArray * cellTypes, vtkIdTypeArray * cellLocations, vtkCellArray * cells, vtkIdTypeArray * faceLocations, vtkIdTypeArray * faces)
 // "void SetCells(vtkUnsignedCharArray *cellTypes, vtkIdTypeArray *cellLocations, vtkCellArray *cells, vtkIdTypeArray *faceLocations, vtkIdTypeArray *faces)"
 public void SetCells(vtkUnsignedCharArray /*(vtkUnsignedCharArray*)*/ cellTypes, vtkIdTypeArray /*(vtkIdTypeArray*)*/ cellLocations, vtkCellArray /*(vtkCellArray*)*/ cells, vtkIdTypeArray /*(vtkIdTypeArray*)*/ faceLocations, vtkIdTypeArray /*(vtkIdTypeArray*)*/ faces) {
-	API_vtkUnstructuredGrid.SetCells_3(this, cellTypes, cellLocations, cells, faceLocations, faces);
+	VTK_API.API_vtkUnstructuredGrid.SetCells_3(this, cellTypes, cellLocations, cells, faceLocations, faces);
 }
 
 
@@ -264,7 +264,7 @@ public void SetCells(vtkUnsignedCharArray /*(vtkUnsignedCharArray*)*/ cellTypes,
 public vtkCellArray GetCells() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkUnstructuredGrid.GetCells_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkUnstructuredGrid.GetCells_0(returnPointer.GetPtr(), this);
 	return (vtkCellArray)(IntPtr)returnPointer;
 }
 
@@ -272,7 +272,7 @@ public vtkCellArray GetCells() {
 // void ReplaceCell(vtkIdType cellId, int npts, vtkIdType * pts)
 // "void ReplaceCell(vtkIdType cellId, int npts, vtkIdType *pts)"
 public void ReplaceCell(long /*(vtkIdType)*/ cellId, int /*(int)*/ npts, IntPtr /*(vtkIdType*)*/ pts) {
-	API_vtkUnstructuredGrid.ReplaceCell_0(this, cellId, npts, pts);
+	VTK_API.API_vtkUnstructuredGrid.ReplaceCell_0(this, cellId, npts, pts);
 }
 
 
@@ -281,7 +281,7 @@ public void ReplaceCell(long /*(vtkIdType)*/ cellId, int /*(int)*/ npts, IntPtr 
 public long InsertNextLinkedCell(int /*(int)*/ type, int /*(int)*/ npts, IntPtr /*(vtkIdType*)*/ pts) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
-	API_vtkUnstructuredGrid.InsertNextLinkedCell_0(returnPointer.GetPtr(), this, type, npts, pts);
+	VTK_API.API_vtkUnstructuredGrid.InsertNextLinkedCell_0(returnPointer.GetPtr(), this, type, npts, pts);
 	return (long)returnPointer;
 }
 
@@ -289,28 +289,28 @@ public long InsertNextLinkedCell(int /*(int)*/ type, int /*(int)*/ npts, IntPtr 
 // void RemoveReferenceToCell(vtkIdType ptId, vtkIdType cellId)
 // "void RemoveReferenceToCell(vtkIdType ptId, vtkIdType cellId)"
 public void RemoveReferenceToCell(long /*(vtkIdType)*/ ptId, long /*(vtkIdType)*/ cellId) {
-	API_vtkUnstructuredGrid.RemoveReferenceToCell_0(this, ptId, cellId);
+	VTK_API.API_vtkUnstructuredGrid.RemoveReferenceToCell_0(this, ptId, cellId);
 }
 
 
 // void AddReferenceToCell(vtkIdType ptId, vtkIdType cellId)
 // "void AddReferenceToCell(vtkIdType ptId, vtkIdType cellId)"
 public void AddReferenceToCell(long /*(vtkIdType)*/ ptId, long /*(vtkIdType)*/ cellId) {
-	API_vtkUnstructuredGrid.AddReferenceToCell_0(this, ptId, cellId);
+	VTK_API.API_vtkUnstructuredGrid.AddReferenceToCell_0(this, ptId, cellId);
 }
 
 
 // void ResizeCellList(vtkIdType ptId, int size)
 // "void ResizeCellList(vtkIdType ptId, int size)"
 public void ResizeCellList(long /*(vtkIdType)*/ ptId, int /*(int)*/ size) {
-	API_vtkUnstructuredGrid.ResizeCellList_0(this, ptId, size);
+	VTK_API.API_vtkUnstructuredGrid.ResizeCellList_0(this, ptId, size);
 }
 
 
 // void GetCellNeighbors(vtkIdType cellId, vtkIdList * ptIds, vtkIdList * cellIds)
 // "void GetCellNeighbors(vtkIdType cellId, vtkIdList *ptIds, vtkIdList *cellIds)"
 public void GetCellNeighbors(long /*(vtkIdType)*/ cellId, vtkIdList /*(vtkIdList*)*/ ptIds, vtkIdList /*(vtkIdList*)*/ cellIds) {
-	API_vtkUnstructuredGrid.GetCellNeighbors_0(this, cellId, ptIds, cellIds);
+	VTK_API.API_vtkUnstructuredGrid.GetCellNeighbors_0(this, cellId, ptIds, cellIds);
 }
 
 
@@ -319,7 +319,7 @@ public void GetCellNeighbors(long /*(vtkIdType)*/ cellId, vtkIdList /*(vtkIdList
 public int GetPiece() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkUnstructuredGrid.GetPiece_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkUnstructuredGrid.GetPiece_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
 
@@ -329,7 +329,7 @@ public int GetPiece() {
 public int GetNumberOfPieces() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkUnstructuredGrid.GetNumberOfPieces_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkUnstructuredGrid.GetNumberOfPieces_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
 
@@ -339,7 +339,7 @@ public int GetNumberOfPieces() {
 public int GetGhostLevel() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkUnstructuredGrid.GetGhostLevel_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkUnstructuredGrid.GetGhostLevel_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
 
@@ -349,7 +349,7 @@ public int GetGhostLevel() {
 public ulong GetActualMemorySize() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new ulong(), return_elements);
-	API_vtkUnstructuredGrid.GetActualMemorySize_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkUnstructuredGrid.GetActualMemorySize_0(returnPointer.GetPtr(), this);
 	return (ulong)returnPointer;
 }
 
@@ -357,21 +357,21 @@ public ulong GetActualMemorySize() {
 // void ShallowCopy(vtkDataObject * src)
 // "void ShallowCopy(vtkDataObject *src)"
 public void ShallowCopy(vtkDataObject /*(vtkDataObject*)*/ src) {
-	API_vtkUnstructuredGrid.ShallowCopy_0(this, src);
+	VTK_API.API_vtkUnstructuredGrid.ShallowCopy_0(this, src);
 }
 
 
 // void DeepCopy(vtkDataObject * src)
 // "void DeepCopy(vtkDataObject *src)"
 public void DeepCopy(vtkDataObject /*(vtkDataObject*)*/ src) {
-	API_vtkUnstructuredGrid.DeepCopy_0(this, src);
+	VTK_API.API_vtkUnstructuredGrid.DeepCopy_0(this, src);
 }
 
 
 // void GetIdsOfCellsOfType(int type, vtkIdTypeArray * array)
 // "void GetIdsOfCellsOfType(int type, vtkIdTypeArray *array)"
 public void GetIdsOfCellsOfType(int /*(int)*/ type, vtkIdTypeArray /*(vtkIdTypeArray*)*/ array) {
-	API_vtkUnstructuredGrid.GetIdsOfCellsOfType_0(this, type, array);
+	VTK_API.API_vtkUnstructuredGrid.GetIdsOfCellsOfType_0(this, type, array);
 }
 
 
@@ -380,7 +380,7 @@ public void GetIdsOfCellsOfType(int /*(int)*/ type, vtkIdTypeArray /*(vtkIdTypeA
 public int IsHomogeneous() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkUnstructuredGrid.IsHomogeneous_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkUnstructuredGrid.IsHomogeneous_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
 
@@ -388,7 +388,7 @@ public int IsHomogeneous() {
 // void RemoveGhostCells()
 // "void RemoveGhostCells()"
 public void RemoveGhostCells() {
-	API_vtkUnstructuredGrid.RemoveGhostCells_0(this);
+	VTK_API.API_vtkUnstructuredGrid.RemoveGhostCells_0(this);
 }
 
 
@@ -397,7 +397,7 @@ public void RemoveGhostCells() {
 public IntPtr GetFaces(long /*(vtkIdType)*/ cellId) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkUnstructuredGrid.GetFaces_0(returnPointer.GetPtr(), this, cellId);
+	VTK_API.API_vtkUnstructuredGrid.GetFaces_0(returnPointer.GetPtr(), this, cellId);
 	return (IntPtr)returnPointer;
 }
 
@@ -407,7 +407,7 @@ public IntPtr GetFaces(long /*(vtkIdType)*/ cellId) {
 public vtkIdTypeArray GetFaces() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkUnstructuredGrid.GetFaces_1(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkUnstructuredGrid.GetFaces_1(returnPointer.GetPtr(), this);
 	return (vtkIdTypeArray)(IntPtr)returnPointer;
 }
 
@@ -417,7 +417,7 @@ public vtkIdTypeArray GetFaces() {
 public vtkIdTypeArray GetFaceLocations() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkUnstructuredGrid.GetFaceLocations_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkUnstructuredGrid.GetFaceLocations_0(returnPointer.GetPtr(), this);
 	return (vtkIdTypeArray)(IntPtr)returnPointer;
 }
 
@@ -427,7 +427,7 @@ public vtkIdTypeArray GetFaceLocations() {
 public int InitializeFacesRepresentation(long /*(vtkIdType)*/ numPrevCells) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkUnstructuredGrid.InitializeFacesRepresentation_0(returnPointer.GetPtr(), this, numPrevCells);
+	VTK_API.API_vtkUnstructuredGrid.InitializeFacesRepresentation_0(returnPointer.GetPtr(), this, numPrevCells);
 	return (int)returnPointer;
 }
 
@@ -437,7 +437,7 @@ public int InitializeFacesRepresentation(long /*(vtkIdType)*/ numPrevCells) {
 public ulong GetMeshMTime() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new ulong(), return_elements);
-	API_vtkUnstructuredGrid.GetMeshMTime_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkUnstructuredGrid.GetMeshMTime_0(returnPointer.GetPtr(), this);
 	return (ulong)returnPointer;
 }
 
@@ -445,35 +445,35 @@ public ulong GetMeshMTime() {
 // static void DecomposeAPolyhedronCell(vtkCellArray * polyhedronCellArray, vtkIdType & nCellpts, vtkIdType & nCellfaces, vtkCellArray * cellArray, vtkIdTypeArray * faces)
 // "static void DecomposeAPolyhedronCell(vtkCellArray *polyhedronCellArray, vtkIdType & nCellpts, vtkIdType & nCellfaces, vtkCellArray *cellArray, vtkIdTypeArray *faces)"
 public static void DecomposeAPolyhedronCell(vtkCellArray /*(vtkCellArray*)*/ polyhedronCellArray, IntPtr /*(vtkIdType&)*/ nCellpts, IntPtr /*(vtkIdType&)*/ nCellfaces, vtkCellArray /*(vtkCellArray*)*/ cellArray, vtkIdTypeArray /*(vtkIdTypeArray*)*/ faces) {
-	API_vtkUnstructuredGrid.DecomposeAPolyhedronCell_0(polyhedronCellArray, nCellpts, nCellfaces, cellArray, faces);
+	VTK_API.API_vtkUnstructuredGrid.DecomposeAPolyhedronCell_0(polyhedronCellArray, nCellpts, nCellfaces, cellArray, faces);
 }
 
 
 // static void DecomposeAPolyhedronCell(vtkIdType * polyhedronCellStream, vtkIdType & nCellpts, vtkIdType & nCellfaces, vtkCellArray * cellArray, vtkIdTypeArray * faces)
 // "static void DecomposeAPolyhedronCell(vtkIdType * polyhedronCellStream, vtkIdType & nCellpts, vtkIdType & nCellfaces, vtkCellArray *cellArray, vtkIdTypeArray *faces)"
 public static void DecomposeAPolyhedronCell(IntPtr /*(vtkIdType*)*/ polyhedronCellStream, IntPtr /*(vtkIdType&)*/ nCellpts, IntPtr /*(vtkIdType&)*/ nCellfaces, vtkCellArray /*(vtkCellArray*)*/ cellArray, vtkIdTypeArray /*(vtkIdTypeArray*)*/ faces) {
-	API_vtkUnstructuredGrid.DecomposeAPolyhedronCell_1(polyhedronCellStream, nCellpts, nCellfaces, cellArray, faces);
+	VTK_API.API_vtkUnstructuredGrid.DecomposeAPolyhedronCell_1(polyhedronCellStream, nCellpts, nCellfaces, cellArray, faces);
 }
 
 
 // static void DecomposeAPolyhedronCell(vtkIdType nCellFaces, vtkIdType * inFaceStream, vtkIdType & nCellpts, vtkCellArray * cellArray, vtkIdTypeArray * faces)
 // "static void DecomposeAPolyhedronCell(vtkIdType nCellFaces, vtkIdType * inFaceStream, vtkIdType & nCellpts, vtkCellArray * cellArray, vtkIdTypeArray * faces)"
 public static void DecomposeAPolyhedronCell(long /*(vtkIdType)*/ nCellFaces, IntPtr /*(vtkIdType*)*/ inFaceStream, IntPtr /*(vtkIdType&)*/ nCellpts, vtkCellArray /*(vtkCellArray*)*/ cellArray, vtkIdTypeArray /*(vtkIdTypeArray*)*/ faces) {
-	API_vtkUnstructuredGrid.DecomposeAPolyhedronCell_2(nCellFaces, inFaceStream, nCellpts, cellArray, faces);
+	VTK_API.API_vtkUnstructuredGrid.DecomposeAPolyhedronCell_2(nCellFaces, inFaceStream, nCellpts, cellArray, faces);
 }
 
 
 // static void ConvertFaceStreamPointIds(vtkIdList * faceStream, vtkIdType * idMap)
 // "static void ConvertFaceStreamPointIds(vtkIdList * faceStream, vtkIdType * idMap)"
 public static void ConvertFaceStreamPointIds(vtkIdList /*(vtkIdList*)*/ faceStream, IntPtr /*(vtkIdType*)*/ idMap) {
-	API_vtkUnstructuredGrid.ConvertFaceStreamPointIds_0(faceStream, idMap);
+	VTK_API.API_vtkUnstructuredGrid.ConvertFaceStreamPointIds_0(faceStream, idMap);
 }
 
 
 // static void ConvertFaceStreamPointIds(vtkIdType nfaces, vtkIdType * faceStream, vtkIdType * idMap)
 // "static void ConvertFaceStreamPointIds(vtkIdType nfaces, vtkIdType * faceStream, vtkIdType * idMap)"
 public static void ConvertFaceStreamPointIds(long /*(vtkIdType)*/ nfaces, IntPtr /*(vtkIdType*)*/ faceStream, IntPtr /*(vtkIdType*)*/ idMap) {
-	API_vtkUnstructuredGrid.ConvertFaceStreamPointIds_1(nfaces, faceStream, idMap);
+	VTK_API.API_vtkUnstructuredGrid.ConvertFaceStreamPointIds_1(nfaces, faceStream, idMap);
 }
 
 

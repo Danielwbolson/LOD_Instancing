@@ -15,7 +15,7 @@ public partial class vtkDataSetAttributes : vtkFieldData {
 public static vtkDataSetAttributes New() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkDataSetAttributes.New_0(returnPointer.GetPtr());
+	VTK_API.API_vtkDataSetAttributes.New_0(returnPointer.GetPtr());
 	return (vtkDataSetAttributes)(IntPtr)returnPointer;
 }
 
@@ -23,28 +23,28 @@ public static vtkDataSetAttributes New() {
 // void Initialize()
 // "void Initialize()"
 public void Initialize() {
-	API_vtkDataSetAttributes.Initialize_0(this);
+	VTK_API.API_vtkDataSetAttributes.Initialize_0(this);
 }
 
 
 // virtual void Update()
 // "virtual void Update()"
 public void Update() {
-	API_vtkDataSetAttributes.Update_0(this);
+	VTK_API.API_vtkDataSetAttributes.Update_0(this);
 }
 
 
 // void DeepCopy(vtkFieldData * pd)
 // "void DeepCopy(vtkFieldData *pd)"
 public void DeepCopy(vtkFieldData /*(vtkFieldData*)*/ pd) {
-	API_vtkDataSetAttributes.DeepCopy_0(this, pd);
+	VTK_API.API_vtkDataSetAttributes.DeepCopy_0(this, pd);
 }
 
 
 // void ShallowCopy(vtkFieldData * pd)
 // "void ShallowCopy(vtkFieldData *pd)"
 public void ShallowCopy(vtkFieldData /*(vtkFieldData*)*/ pd) {
-	API_vtkDataSetAttributes.ShallowCopy_0(this, pd);
+	VTK_API.API_vtkDataSetAttributes.ShallowCopy_0(this, pd);
 }
 
 
@@ -53,7 +53,7 @@ public void ShallowCopy(vtkFieldData /*(vtkFieldData*)*/ pd) {
 public static string GhostArrayName() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkDataSetAttributes.GhostArrayName_0(returnPointer.GetPtr());
+	VTK_API.API_vtkDataSetAttributes.GhostArrayName_0(returnPointer.GetPtr());
 	return (string)returnPointer;
 }
 
@@ -63,7 +63,7 @@ public static string GhostArrayName() {
 public int SetScalars(vtkDataArray /*(vtkDataArray*)*/ da) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkDataSetAttributes.SetScalars_0(returnPointer.GetPtr(), this, da);
+	VTK_API.API_vtkDataSetAttributes.SetScalars_0(returnPointer.GetPtr(), this, da);
 	return (int)returnPointer;
 }
 
@@ -73,7 +73,7 @@ public int SetScalars(vtkDataArray /*(vtkDataArray*)*/ da) {
 public int SetActiveScalars(string /*(char*)*/ name) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkDataSetAttributes.SetActiveScalars_0(returnPointer.GetPtr(), this, name);
+	VTK_API.API_vtkDataSetAttributes.SetActiveScalars_0(returnPointer.GetPtr(), this, name);
 	return (int)returnPointer;
 }
 
@@ -83,7 +83,7 @@ public int SetActiveScalars(string /*(char*)*/ name) {
 public vtkDataArray GetScalars() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkDataSetAttributes.GetScalars_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkDataSetAttributes.GetScalars_0(returnPointer.GetPtr(), this);
 	return (vtkDataArray)(IntPtr)returnPointer;
 }
 
@@ -93,7 +93,7 @@ public vtkDataArray GetScalars() {
 public int SetVectors(vtkDataArray /*(vtkDataArray*)*/ da) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkDataSetAttributes.SetVectors_0(returnPointer.GetPtr(), this, da);
+	VTK_API.API_vtkDataSetAttributes.SetVectors_0(returnPointer.GetPtr(), this, da);
 	return (int)returnPointer;
 }
 
@@ -103,7 +103,7 @@ public int SetVectors(vtkDataArray /*(vtkDataArray*)*/ da) {
 public int SetActiveVectors(string /*(char*)*/ name) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkDataSetAttributes.SetActiveVectors_0(returnPointer.GetPtr(), this, name);
+	VTK_API.API_vtkDataSetAttributes.SetActiveVectors_0(returnPointer.GetPtr(), this, name);
 	return (int)returnPointer;
 }
 
@@ -113,7 +113,7 @@ public int SetActiveVectors(string /*(char*)*/ name) {
 public vtkDataArray GetVectors() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkDataSetAttributes.GetVectors_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkDataSetAttributes.GetVectors_0(returnPointer.GetPtr(), this);
 	return (vtkDataArray)(IntPtr)returnPointer;
 }
 
@@ -123,7 +123,7 @@ public vtkDataArray GetVectors() {
 public int SetNormals(vtkDataArray /*(vtkDataArray*)*/ da) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkDataSetAttributes.SetNormals_0(returnPointer.GetPtr(), this, da);
+	VTK_API.API_vtkDataSetAttributes.SetNormals_0(returnPointer.GetPtr(), this, da);
 	return (int)returnPointer;
 }
 
@@ -133,7 +133,7 @@ public int SetNormals(vtkDataArray /*(vtkDataArray*)*/ da) {
 public int SetActiveNormals(string /*(char*)*/ name) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkDataSetAttributes.SetActiveNormals_0(returnPointer.GetPtr(), this, name);
+	VTK_API.API_vtkDataSetAttributes.SetActiveNormals_0(returnPointer.GetPtr(), this, name);
 	return (int)returnPointer;
 }
 
@@ -143,7 +143,7 @@ public int SetActiveNormals(string /*(char*)*/ name) {
 public vtkDataArray GetNormals() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkDataSetAttributes.GetNormals_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkDataSetAttributes.GetNormals_0(returnPointer.GetPtr(), this);
 	return (vtkDataArray)(IntPtr)returnPointer;
 }
 
@@ -153,7 +153,7 @@ public vtkDataArray GetNormals() {
 public int SetTCoords(vtkDataArray /*(vtkDataArray*)*/ da) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkDataSetAttributes.SetTCoords_0(returnPointer.GetPtr(), this, da);
+	VTK_API.API_vtkDataSetAttributes.SetTCoords_0(returnPointer.GetPtr(), this, da);
 	return (int)returnPointer;
 }
 
@@ -163,7 +163,7 @@ public int SetTCoords(vtkDataArray /*(vtkDataArray*)*/ da) {
 public int SetActiveTCoords(string /*(char*)*/ name) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkDataSetAttributes.SetActiveTCoords_0(returnPointer.GetPtr(), this, name);
+	VTK_API.API_vtkDataSetAttributes.SetActiveTCoords_0(returnPointer.GetPtr(), this, name);
 	return (int)returnPointer;
 }
 
@@ -173,7 +173,7 @@ public int SetActiveTCoords(string /*(char*)*/ name) {
 public vtkDataArray GetTCoords() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkDataSetAttributes.GetTCoords_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkDataSetAttributes.GetTCoords_0(returnPointer.GetPtr(), this);
 	return (vtkDataArray)(IntPtr)returnPointer;
 }
 
@@ -183,7 +183,7 @@ public vtkDataArray GetTCoords() {
 public int SetTensors(vtkDataArray /*(vtkDataArray*)*/ da) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkDataSetAttributes.SetTensors_0(returnPointer.GetPtr(), this, da);
+	VTK_API.API_vtkDataSetAttributes.SetTensors_0(returnPointer.GetPtr(), this, da);
 	return (int)returnPointer;
 }
 
@@ -193,7 +193,7 @@ public int SetTensors(vtkDataArray /*(vtkDataArray*)*/ da) {
 public int SetActiveTensors(string /*(char*)*/ name) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkDataSetAttributes.SetActiveTensors_0(returnPointer.GetPtr(), this, name);
+	VTK_API.API_vtkDataSetAttributes.SetActiveTensors_0(returnPointer.GetPtr(), this, name);
 	return (int)returnPointer;
 }
 
@@ -203,7 +203,7 @@ public int SetActiveTensors(string /*(char*)*/ name) {
 public vtkDataArray GetTensors() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkDataSetAttributes.GetTensors_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkDataSetAttributes.GetTensors_0(returnPointer.GetPtr(), this);
 	return (vtkDataArray)(IntPtr)returnPointer;
 }
 
@@ -213,7 +213,7 @@ public vtkDataArray GetTensors() {
 public int SetGlobalIds(vtkDataArray /*(vtkDataArray*)*/ da) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkDataSetAttributes.SetGlobalIds_0(returnPointer.GetPtr(), this, da);
+	VTK_API.API_vtkDataSetAttributes.SetGlobalIds_0(returnPointer.GetPtr(), this, da);
 	return (int)returnPointer;
 }
 
@@ -223,7 +223,7 @@ public int SetGlobalIds(vtkDataArray /*(vtkDataArray*)*/ da) {
 public int SetActiveGlobalIds(string /*(char*)*/ name) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkDataSetAttributes.SetActiveGlobalIds_0(returnPointer.GetPtr(), this, name);
+	VTK_API.API_vtkDataSetAttributes.SetActiveGlobalIds_0(returnPointer.GetPtr(), this, name);
 	return (int)returnPointer;
 }
 
@@ -233,7 +233,7 @@ public int SetActiveGlobalIds(string /*(char*)*/ name) {
 public vtkDataArray GetGlobalIds() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkDataSetAttributes.GetGlobalIds_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkDataSetAttributes.GetGlobalIds_0(returnPointer.GetPtr(), this);
 	return (vtkDataArray)(IntPtr)returnPointer;
 }
 
@@ -243,7 +243,7 @@ public vtkDataArray GetGlobalIds() {
 public int SetPedigreeIds(vtkAbstractArray /*(vtkAbstractArray*)*/ da) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkDataSetAttributes.SetPedigreeIds_0(returnPointer.GetPtr(), this, da);
+	VTK_API.API_vtkDataSetAttributes.SetPedigreeIds_0(returnPointer.GetPtr(), this, da);
 	return (int)returnPointer;
 }
 
@@ -253,7 +253,7 @@ public int SetPedigreeIds(vtkAbstractArray /*(vtkAbstractArray*)*/ da) {
 public int SetActivePedigreeIds(string /*(char*)*/ name) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkDataSetAttributes.SetActivePedigreeIds_0(returnPointer.GetPtr(), this, name);
+	VTK_API.API_vtkDataSetAttributes.SetActivePedigreeIds_0(returnPointer.GetPtr(), this, name);
 	return (int)returnPointer;
 }
 
@@ -263,7 +263,7 @@ public int SetActivePedigreeIds(string /*(char*)*/ name) {
 public vtkAbstractArray GetPedigreeIds() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkDataSetAttributes.GetPedigreeIds_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkDataSetAttributes.GetPedigreeIds_0(returnPointer.GetPtr(), this);
 	return (vtkAbstractArray)(IntPtr)returnPointer;
 }
 
@@ -273,7 +273,7 @@ public vtkAbstractArray GetPedigreeIds() {
 public vtkDataArray GetScalars(string /*(char*)*/ name) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkDataSetAttributes.GetScalars_1(returnPointer.GetPtr(), this, name);
+	VTK_API.API_vtkDataSetAttributes.GetScalars_1(returnPointer.GetPtr(), this, name);
 	return (vtkDataArray)(IntPtr)returnPointer;
 }
 
@@ -283,7 +283,7 @@ public vtkDataArray GetScalars(string /*(char*)*/ name) {
 public vtkDataArray GetVectors(string /*(char*)*/ name) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkDataSetAttributes.GetVectors_1(returnPointer.GetPtr(), this, name);
+	VTK_API.API_vtkDataSetAttributes.GetVectors_1(returnPointer.GetPtr(), this, name);
 	return (vtkDataArray)(IntPtr)returnPointer;
 }
 
@@ -293,7 +293,7 @@ public vtkDataArray GetVectors(string /*(char*)*/ name) {
 public vtkDataArray GetNormals(string /*(char*)*/ name) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkDataSetAttributes.GetNormals_1(returnPointer.GetPtr(), this, name);
+	VTK_API.API_vtkDataSetAttributes.GetNormals_1(returnPointer.GetPtr(), this, name);
 	return (vtkDataArray)(IntPtr)returnPointer;
 }
 
@@ -303,7 +303,7 @@ public vtkDataArray GetNormals(string /*(char*)*/ name) {
 public vtkDataArray GetTCoords(string /*(char*)*/ name) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkDataSetAttributes.GetTCoords_1(returnPointer.GetPtr(), this, name);
+	VTK_API.API_vtkDataSetAttributes.GetTCoords_1(returnPointer.GetPtr(), this, name);
 	return (vtkDataArray)(IntPtr)returnPointer;
 }
 
@@ -313,7 +313,7 @@ public vtkDataArray GetTCoords(string /*(char*)*/ name) {
 public vtkDataArray GetTensors(string /*(char*)*/ name) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkDataSetAttributes.GetTensors_1(returnPointer.GetPtr(), this, name);
+	VTK_API.API_vtkDataSetAttributes.GetTensors_1(returnPointer.GetPtr(), this, name);
 	return (vtkDataArray)(IntPtr)returnPointer;
 }
 
@@ -323,7 +323,7 @@ public vtkDataArray GetTensors(string /*(char*)*/ name) {
 public vtkDataArray GetGlobalIds(string /*(char*)*/ name) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkDataSetAttributes.GetGlobalIds_1(returnPointer.GetPtr(), this, name);
+	VTK_API.API_vtkDataSetAttributes.GetGlobalIds_1(returnPointer.GetPtr(), this, name);
 	return (vtkDataArray)(IntPtr)returnPointer;
 }
 
@@ -333,7 +333,7 @@ public vtkDataArray GetGlobalIds(string /*(char*)*/ name) {
 public vtkAbstractArray GetPedigreeIds(string /*(char*)*/ name) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkDataSetAttributes.GetPedigreeIds_1(returnPointer.GetPtr(), this, name);
+	VTK_API.API_vtkDataSetAttributes.GetPedigreeIds_1(returnPointer.GetPtr(), this, name);
 	return (vtkAbstractArray)(IntPtr)returnPointer;
 }
 
@@ -343,7 +343,7 @@ public vtkAbstractArray GetPedigreeIds(string /*(char*)*/ name) {
 public int SetActiveAttribute(string /*(char*)*/ name, int /*(int)*/ attributeType) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkDataSetAttributes.SetActiveAttribute_0(returnPointer.GetPtr(), this, name, attributeType);
+	VTK_API.API_vtkDataSetAttributes.SetActiveAttribute_0(returnPointer.GetPtr(), this, name, attributeType);
 	return (int)returnPointer;
 }
 
@@ -353,7 +353,7 @@ public int SetActiveAttribute(string /*(char*)*/ name, int /*(int)*/ attributeTy
 public int SetActiveAttribute(int /*(int)*/ index, int /*(int)*/ attributeType) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkDataSetAttributes.SetActiveAttribute_1(returnPointer.GetPtr(), this, index, attributeType);
+	VTK_API.API_vtkDataSetAttributes.SetActiveAttribute_1(returnPointer.GetPtr(), this, index, attributeType);
 	return (int)returnPointer;
 }
 
@@ -361,7 +361,7 @@ public int SetActiveAttribute(int /*(int)*/ index, int /*(int)*/ attributeType) 
 // void GetAttributeIndices(int * indexArray)
 // "void GetAttributeIndices(int* indexArray)"
 public void GetAttributeIndices(IntPtr /*(int*)*/ indexArray) {
-	API_vtkDataSetAttributes.GetAttributeIndices_0(this, indexArray);
+	VTK_API.API_vtkDataSetAttributes.GetAttributeIndices_0(this, indexArray);
 }
 
 
@@ -370,7 +370,7 @@ public void GetAttributeIndices(IntPtr /*(int*)*/ indexArray) {
 public int IsArrayAnAttribute(int /*(int)*/ idx) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkDataSetAttributes.IsArrayAnAttribute_0(returnPointer.GetPtr(), this, idx);
+	VTK_API.API_vtkDataSetAttributes.IsArrayAnAttribute_0(returnPointer.GetPtr(), this, idx);
 	return (int)returnPointer;
 }
 
@@ -380,7 +380,7 @@ public int IsArrayAnAttribute(int /*(int)*/ idx) {
 public int SetAttribute(vtkAbstractArray /*(vtkAbstractArray*)*/ aa, int /*(int)*/ attributeType) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkDataSetAttributes.SetAttribute_0(returnPointer.GetPtr(), this, aa, attributeType);
+	VTK_API.API_vtkDataSetAttributes.SetAttribute_0(returnPointer.GetPtr(), this, aa, attributeType);
 	return (int)returnPointer;
 }
 
@@ -390,7 +390,7 @@ public int SetAttribute(vtkAbstractArray /*(vtkAbstractArray*)*/ aa, int /*(int)
 public vtkDataArray GetAttribute(int /*(int)*/ attributeType) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkDataSetAttributes.GetAttribute_0(returnPointer.GetPtr(), this, attributeType);
+	VTK_API.API_vtkDataSetAttributes.GetAttribute_0(returnPointer.GetPtr(), this, attributeType);
 	return (vtkDataArray)(IntPtr)returnPointer;
 }
 
@@ -400,7 +400,7 @@ public vtkDataArray GetAttribute(int /*(int)*/ attributeType) {
 public vtkAbstractArray GetAbstractAttribute(int /*(int)*/ attributeType) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkDataSetAttributes.GetAbstractAttribute_0(returnPointer.GetPtr(), this, attributeType);
+	VTK_API.API_vtkDataSetAttributes.GetAbstractAttribute_0(returnPointer.GetPtr(), this, attributeType);
 	return (vtkAbstractArray)(IntPtr)returnPointer;
 }
 
@@ -408,7 +408,7 @@ public vtkAbstractArray GetAbstractAttribute(int /*(int)*/ attributeType) {
 // void RemoveArray(int index)
 // "void RemoveArray(int index)"
 public void RemoveArray(int /*(int)*/ index) {
-	API_vtkDataSetAttributes.RemoveArray_0(this, index);
+	VTK_API.API_vtkDataSetAttributes.RemoveArray_0(this, index);
 }
 
 
@@ -417,7 +417,7 @@ public void RemoveArray(int /*(int)*/ index) {
 public static string GetAttributeTypeAsString(int /*(int)*/ attributeType) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkDataSetAttributes.GetAttributeTypeAsString_0(returnPointer.GetPtr(), attributeType);
+	VTK_API.API_vtkDataSetAttributes.GetAttributeTypeAsString_0(returnPointer.GetPtr(), attributeType);
 	return (string)returnPointer;
 }
 
@@ -427,7 +427,7 @@ public static string GetAttributeTypeAsString(int /*(int)*/ attributeType) {
 public static string GetLongAttributeTypeAsString(int /*(int)*/ attributeType) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkDataSetAttributes.GetLongAttributeTypeAsString_0(returnPointer.GetPtr(), attributeType);
+	VTK_API.API_vtkDataSetAttributes.GetLongAttributeTypeAsString_0(returnPointer.GetPtr(), attributeType);
 	return (string)returnPointer;
 }
 
@@ -437,7 +437,7 @@ public static string GetLongAttributeTypeAsString(int /*(int)*/ attributeType) {
 public int GetCopyAttribute(int /*(int)*/ index, int /*(int)*/ ctype) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkDataSetAttributes.GetCopyAttribute_0(returnPointer.GetPtr(), this, index, ctype);
+	VTK_API.API_vtkDataSetAttributes.GetCopyAttribute_0(returnPointer.GetPtr(), this, index, ctype);
 	return (int)returnPointer;
 }
 
@@ -445,112 +445,112 @@ public int GetCopyAttribute(int /*(int)*/ index, int /*(int)*/ ctype) {
 // void PassData(vtkFieldData * fd)
 // "void PassData(vtkFieldData* fd)"
 public void PassData(vtkFieldData /*(vtkFieldData*)*/ fd) {
-	API_vtkDataSetAttributes.PassData_0(this, fd);
+	VTK_API.API_vtkDataSetAttributes.PassData_0(this, fd);
 }
 
 
 // void CopyAllocate(vtkDataSetAttributes * pd, vtkIdType sze = 0, vtkIdType ext = 1000)
 // "void CopyAllocate(vtkDataSetAttributes* pd, vtkIdType sze=0, vtkIdType ext=1000)"
 public void CopyAllocate(vtkDataSetAttributes /*(vtkDataSetAttributes*)*/ pd, long /*(vtkIdType)*/ sze, long /*(vtkIdType)*/ ext) {
-	API_vtkDataSetAttributes.CopyAllocate_0(this, pd, sze, ext);
+	VTK_API.API_vtkDataSetAttributes.CopyAllocate_0(this, pd, sze, ext);
 }
 
 
 // void CopyAllocate(vtkDataSetAttributes * pd, vtkIdType sze, vtkIdType ext, int shallowCopyArrays)
 // "void CopyAllocate(vtkDataSetAttributes* pd, vtkIdType sze, vtkIdType ext, int shallowCopyArrays)"
 public void CopyAllocate(vtkDataSetAttributes /*(vtkDataSetAttributes*)*/ pd, long /*(vtkIdType)*/ sze, long /*(vtkIdType)*/ ext, int /*(int)*/ shallowCopyArrays) {
-	API_vtkDataSetAttributes.CopyAllocate_1(this, pd, sze, ext, shallowCopyArrays);
+	VTK_API.API_vtkDataSetAttributes.CopyAllocate_1(this, pd, sze, ext, shallowCopyArrays);
 }
 
 
 // void SetupForCopy(vtkDataSetAttributes * pd)
 // "void SetupForCopy(vtkDataSetAttributes* pd)"
 public void SetupForCopy(vtkDataSetAttributes /*(vtkDataSetAttributes*)*/ pd) {
-	API_vtkDataSetAttributes.SetupForCopy_0(this, pd);
+	VTK_API.API_vtkDataSetAttributes.SetupForCopy_0(this, pd);
 }
 
 
 // void CopyStructuredData(vtkDataSetAttributes * inDsa, const int * inExt, const int * outExt, bool setSize = true)
 // "void CopyStructuredData(vtkDataSetAttributes *inDsa, const int *inExt, const int *outExt, bool setSize = true)"
 public void CopyStructuredData(vtkDataSetAttributes /*(vtkDataSetAttributes*)*/ inDsa, IntPtr /*(int*)*/ inExt, IntPtr /*(int*)*/ outExt, bool /*(bool)*/ setSize) {
-	API_vtkDataSetAttributes.CopyStructuredData_0(this, inDsa, inExt, outExt, setSize);
+	VTK_API.API_vtkDataSetAttributes.CopyStructuredData_0(this, inDsa, inExt, outExt, setSize);
 }
 
 
 // void CopyData(vtkDataSetAttributes * fromPd, vtkIdType fromId, vtkIdType toId)
 // "void CopyData(vtkDataSetAttributes *fromPd, vtkIdType fromId, vtkIdType toId)"
 public void CopyData(vtkDataSetAttributes /*(vtkDataSetAttributes*)*/ fromPd, long /*(vtkIdType)*/ fromId, long /*(vtkIdType)*/ toId) {
-	API_vtkDataSetAttributes.CopyData_0(this, fromPd, fromId, toId);
+	VTK_API.API_vtkDataSetAttributes.CopyData_0(this, fromPd, fromId, toId);
 }
 
 
 // void CopyData(vtkDataSetAttributes * fromPd, vtkIdList * fromIds, vtkIdList * toIds)
 // "void CopyData(vtkDataSetAttributes *fromPd, vtkIdList *fromIds, vtkIdList *toIds)"
 public void CopyData(vtkDataSetAttributes /*(vtkDataSetAttributes*)*/ fromPd, vtkIdList /*(vtkIdList*)*/ fromIds, vtkIdList /*(vtkIdList*)*/ toIds) {
-	API_vtkDataSetAttributes.CopyData_1(this, fromPd, fromIds, toIds);
+	VTK_API.API_vtkDataSetAttributes.CopyData_1(this, fromPd, fromIds, toIds);
 }
 
 
 // void CopyData(vtkDataSetAttributes * fromPd, vtkIdType dstStart, vtkIdType n, vtkIdType srcStart)
 // "void CopyData(vtkDataSetAttributes *fromPd, vtkIdType dstStart, vtkIdType n, vtkIdType srcStart)"
 public void CopyData(vtkDataSetAttributes /*(vtkDataSetAttributes*)*/ fromPd, long /*(vtkIdType)*/ dstStart, long /*(vtkIdType)*/ n, long /*(vtkIdType)*/ srcStart) {
-	API_vtkDataSetAttributes.CopyData_2(this, fromPd, dstStart, n, srcStart);
+	VTK_API.API_vtkDataSetAttributes.CopyData_2(this, fromPd, dstStart, n, srcStart);
 }
 
 
 // void CopyTuple(vtkAbstractArray * fromData, vtkAbstractArray * toData, vtkIdType fromId, vtkIdType toId)
 // "void CopyTuple(vtkAbstractArray *fromData, vtkAbstractArray *toData, vtkIdType fromId, vtkIdType toId)"
 public void CopyTuple(vtkAbstractArray /*(vtkAbstractArray*)*/ fromData, vtkAbstractArray /*(vtkAbstractArray*)*/ toData, long /*(vtkIdType)*/ fromId, long /*(vtkIdType)*/ toId) {
-	API_vtkDataSetAttributes.CopyTuple_0(this, fromData, toData, fromId, toId);
+	VTK_API.API_vtkDataSetAttributes.CopyTuple_0(this, fromData, toData, fromId, toId);
 }
 
 
 // void CopyTuples(vtkAbstractArray * fromData, vtkAbstractArray * toData, vtkIdList * fromIds, vtkIdList * toIds)
 // "void CopyTuples(vtkAbstractArray *fromData, vtkAbstractArray *toData, vtkIdList *fromIds, vtkIdList *toIds)"
 public void CopyTuples(vtkAbstractArray /*(vtkAbstractArray*)*/ fromData, vtkAbstractArray /*(vtkAbstractArray*)*/ toData, vtkIdList /*(vtkIdList*)*/ fromIds, vtkIdList /*(vtkIdList*)*/ toIds) {
-	API_vtkDataSetAttributes.CopyTuples_0(this, fromData, toData, fromIds, toIds);
+	VTK_API.API_vtkDataSetAttributes.CopyTuples_0(this, fromData, toData, fromIds, toIds);
 }
 
 
 // void CopyTuples(vtkAbstractArray * fromData, vtkAbstractArray * toData, vtkIdType dstStart, vtkIdType n, vtkIdType srcStart)
 // "void CopyTuples(vtkAbstractArray *fromData, vtkAbstractArray *toData, vtkIdType dstStart, vtkIdType n, vtkIdType srcStart)"
 public void CopyTuples(vtkAbstractArray /*(vtkAbstractArray*)*/ fromData, vtkAbstractArray /*(vtkAbstractArray*)*/ toData, long /*(vtkIdType)*/ dstStart, long /*(vtkIdType)*/ n, long /*(vtkIdType)*/ srcStart) {
-	API_vtkDataSetAttributes.CopyTuples_1(this, fromData, toData, dstStart, n, srcStart);
+	VTK_API.API_vtkDataSetAttributes.CopyTuples_1(this, fromData, toData, dstStart, n, srcStart);
 }
 
 
 // void InterpolateAllocate(vtkDataSetAttributes * pd, vtkIdType sze = 0, vtkIdType ext = 1000)
 // "void InterpolateAllocate(vtkDataSetAttributes* pd, vtkIdType sze=0, vtkIdType ext=1000)"
 public void InterpolateAllocate(vtkDataSetAttributes /*(vtkDataSetAttributes*)*/ pd, long /*(vtkIdType)*/ sze, long /*(vtkIdType)*/ ext) {
-	API_vtkDataSetAttributes.InterpolateAllocate_0(this, pd, sze, ext);
+	VTK_API.API_vtkDataSetAttributes.InterpolateAllocate_0(this, pd, sze, ext);
 }
 
 
 // void InterpolateAllocate(vtkDataSetAttributes * pd, vtkIdType sze, vtkIdType ext, int shallowCopyArrays)
 // "void InterpolateAllocate(vtkDataSetAttributes* pd, vtkIdType sze, vtkIdType ext, int shallowCopyArrays)"
 public void InterpolateAllocate(vtkDataSetAttributes /*(vtkDataSetAttributes*)*/ pd, long /*(vtkIdType)*/ sze, long /*(vtkIdType)*/ ext, int /*(int)*/ shallowCopyArrays) {
-	API_vtkDataSetAttributes.InterpolateAllocate_1(this, pd, sze, ext, shallowCopyArrays);
+	VTK_API.API_vtkDataSetAttributes.InterpolateAllocate_1(this, pd, sze, ext, shallowCopyArrays);
 }
 
 
 // void InterpolatePoint(vtkDataSetAttributes * fromPd, vtkIdType toId, vtkIdList * ids, double * weights)
 // "void InterpolatePoint(vtkDataSetAttributes *fromPd, vtkIdType toId, vtkIdList *ids, double *weights)"
 public void InterpolatePoint(vtkDataSetAttributes /*(vtkDataSetAttributes*)*/ fromPd, long /*(vtkIdType)*/ toId, vtkIdList /*(vtkIdList*)*/ ids, IntPtr /*(double*)*/ weights) {
-	API_vtkDataSetAttributes.InterpolatePoint_0(this, fromPd, toId, ids, weights);
+	VTK_API.API_vtkDataSetAttributes.InterpolatePoint_0(this, fromPd, toId, ids, weights);
 }
 
 
 // void InterpolateEdge(vtkDataSetAttributes * fromPd, vtkIdType toId, vtkIdType p1, vtkIdType p2, double t)
 // "void InterpolateEdge(vtkDataSetAttributes *fromPd, vtkIdType toId, vtkIdType p1, vtkIdType p2, double t)"
 public void InterpolateEdge(vtkDataSetAttributes /*(vtkDataSetAttributes*)*/ fromPd, long /*(vtkIdType)*/ toId, long /*(vtkIdType)*/ p1, long /*(vtkIdType)*/ p2, double /*(double)*/ t) {
-	API_vtkDataSetAttributes.InterpolateEdge_0(this, fromPd, toId, p1, p2, t);
+	VTK_API.API_vtkDataSetAttributes.InterpolateEdge_0(this, fromPd, toId, p1, p2, t);
 }
 
 
 // void InterpolateTime(vtkDataSetAttributes * from1, vtkDataSetAttributes * from2, vtkIdType id, double t)
 // "void InterpolateTime(vtkDataSetAttributes *from1, vtkDataSetAttributes *from2, vtkIdType id, double t)"
 public void InterpolateTime(vtkDataSetAttributes /*(vtkDataSetAttributes*)*/ from1, vtkDataSetAttributes /*(vtkDataSetAttributes*)*/ from2, long /*(vtkIdType)*/ id, double /*(double)*/ t) {
-	API_vtkDataSetAttributes.InterpolateTime_0(this, from1, from2, id, t);
+	VTK_API.API_vtkDataSetAttributes.InterpolateTime_0(this, from1, from2, id, t);
 }
 
 

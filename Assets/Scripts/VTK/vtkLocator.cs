@@ -13,56 +13,56 @@ public partial class vtkLocator : vtkObject {
 // virtual void SetDataSet(vtkDataSet * ARG_0)
 // "virtual void SetDataSet(vtkDataSet*)"
 public void SetDataSet(vtkDataSet /*(vtkDataSet*)*/ ARG_0) {
-	API_vtkLocator.SetDataSet_0(this, ARG_0);
+	VTK_API.API_vtkLocator.SetDataSet_0(this, ARG_0);
 }
 
 
 // virtual void Update()
 // "virtual void Update()"
 public void Update() {
-	API_vtkLocator.Update_0(this);
+	VTK_API.API_vtkLocator.Update_0(this);
 }
 
 
 // virtual void Initialize()
 // "virtual void Initialize()"
 public void Initialize() {
-	API_vtkLocator.Initialize_0(this);
+	VTK_API.API_vtkLocator.Initialize_0(this);
 }
 
 
 // virtual void BuildLocator()
 // "virtual void BuildLocator()"
 public void BuildLocator() {
-	API_vtkLocator.BuildLocator_0(this);
+	VTK_API.API_vtkLocator.BuildLocator_0(this);
 }
 
 
 // virtual void FreeSearchStructure()
 // "virtual void FreeSearchStructure()"
 public void FreeSearchStructure() {
-	API_vtkLocator.FreeSearchStructure_0(this);
+	VTK_API.API_vtkLocator.FreeSearchStructure_0(this);
 }
 
 
 // virtual void GenerateRepresentation(int level, vtkPolyData * pd)
 // "virtual void GenerateRepresentation(int level, vtkPolyData *pd)"
 public void GenerateRepresentation(int /*(int)*/ level, vtkPolyData /*(vtkPolyData*)*/ pd) {
-	API_vtkLocator.GenerateRepresentation_0(this, level, pd);
+	VTK_API.API_vtkLocator.GenerateRepresentation_0(this, level, pd);
 }
 
 
 // void Register(vtkObjectBase * o)
 // "void Register(vtkObjectBase *o)"
 public void Register(vtkObjectBase /*(vtkObjectBase*)*/ o) {
-	API_vtkLocator.Register_0(this, o);
+	VTK_API.API_vtkLocator.Register_0(this, o);
 }
 
 
 // void UnRegister(vtkObjectBase * o)
 // "void UnRegister(vtkObjectBase *o)"
 public void UnRegister(vtkObjectBase /*(vtkObjectBase*)*/ o) {
-	API_vtkLocator.UnRegister_0(this, o);
+	VTK_API.API_vtkLocator.UnRegister_0(this, o);
 }
 
 

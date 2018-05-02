@@ -15,7 +15,7 @@ public partial class vtkDataCompressor : vtkObject {
 public ulong GetMaximumCompressionSpace(ulong /*(size_t)*/ size) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new ulong(), return_elements);
-	API_vtkDataCompressor.GetMaximumCompressionSpace_0(returnPointer.GetPtr(), this, size);
+	VTK_API.API_vtkDataCompressor.GetMaximumCompressionSpace_0(returnPointer.GetPtr(), this, size);
 	return (ulong)returnPointer;
 }
 
@@ -25,7 +25,7 @@ public ulong GetMaximumCompressionSpace(ulong /*(size_t)*/ size) {
 public ulong Compress(string /*(unsigned charconst*)*/ uncompressedData, ulong /*(size_t)*/ uncompressedSize, string /*(unsigned char*)*/ compressedData, ulong /*(size_t)*/ compressionSpace) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new ulong(), return_elements);
-	API_vtkDataCompressor.Compress_0(returnPointer.GetPtr(), this, uncompressedData, uncompressedSize, compressedData, compressionSpace);
+	VTK_API.API_vtkDataCompressor.Compress_0(returnPointer.GetPtr(), this, uncompressedData, uncompressedSize, compressedData, compressionSpace);
 	return (ulong)returnPointer;
 }
 
@@ -35,7 +35,7 @@ public ulong Compress(string /*(unsigned charconst*)*/ uncompressedData, ulong /
 public ulong Uncompress(string /*(unsigned charconst*)*/ compressedData, ulong /*(size_t)*/ compressedSize, string /*(unsigned char*)*/ uncompressedData, ulong /*(size_t)*/ uncompressedSize) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new ulong(), return_elements);
-	API_vtkDataCompressor.Uncompress_0(returnPointer.GetPtr(), this, compressedData, compressedSize, uncompressedData, uncompressedSize);
+	VTK_API.API_vtkDataCompressor.Uncompress_0(returnPointer.GetPtr(), this, compressedData, compressedSize, uncompressedData, uncompressedSize);
 	return (ulong)returnPointer;
 }
 
@@ -45,7 +45,7 @@ public ulong Uncompress(string /*(unsigned charconst*)*/ compressedData, ulong /
 public vtkUnsignedCharArray Compress(string /*(unsigned charconst*)*/ uncompressedData, ulong /*(size_t)*/ uncompressedSize) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkDataCompressor.Compress_1(returnPointer.GetPtr(), this, uncompressedData, uncompressedSize);
+	VTK_API.API_vtkDataCompressor.Compress_1(returnPointer.GetPtr(), this, uncompressedData, uncompressedSize);
 	return (vtkUnsignedCharArray)(IntPtr)returnPointer;
 }
 
@@ -55,7 +55,7 @@ public vtkUnsignedCharArray Compress(string /*(unsigned charconst*)*/ uncompress
 public vtkUnsignedCharArray Uncompress(string /*(unsigned charconst*)*/ compressedData, ulong /*(size_t)*/ compressedSize, ulong /*(size_t)*/ uncompressedSize) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkDataCompressor.Uncompress_1(returnPointer.GetPtr(), this, compressedData, compressedSize, uncompressedSize);
+	VTK_API.API_vtkDataCompressor.Uncompress_1(returnPointer.GetPtr(), this, compressedData, compressedSize, uncompressedSize);
 	return (vtkUnsignedCharArray)(IntPtr)returnPointer;
 }
 

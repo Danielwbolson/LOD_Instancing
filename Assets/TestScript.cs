@@ -6,7 +6,9 @@ using UnityEngine;
 using System.Runtime.InteropServices;
 using System.Text;
 using System;
-using System.Linq; 
+using System.Linq;
+
+using VTK;
 
 public class TestScript : MonoBehaviour {
     [DllImport("vtkplugin")] private static extern IntPtr open_data(StringBuilder sb);
@@ -35,25 +37,35 @@ public class TestScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        VTK.vtkXMLUnstructuredGridReader reader = VTK.vtkXMLUnstructuredGridReader.New();
-        int a = reader.CanReadFile("/Users/sethjohnson/NSF-Sculpting-Vis-Platform/unity/VisualizationPlatform/Assets/StreamingAssets/example_data/VTK/CICE.vtu");
-        reader.SetFileName("/Users/sethjohnson/NSF-Sculpting-Vis-Platform/unity/VisualizationPlatform/Assets/StreamingAssets/example_data/VTK/CICE.vtu");
+        vtkXMLDataReader reader = vtkXMLImageDataReader.New();
+        int a = reader.CanReadFile("/Users/sethjohnson/NSF-Sculpting-Vis-Platform/unity/VisualizationPlatform/Assets/StreamingAssets/example_data/VTK/.vti");
+        reader.SetFileName("/Users/sethjohnson/NSF-Sculpting-Vis-Platform/unity/VisualizationPlatform/Assets/StreamingAssets/example_data/VTK/wavelet.vti");
         reader.Update();
-        VTK.vtkDataSet ds = reader.GetOutputAsDataSet();
+        vtkDataSet ds = reader.GetOutputAsDataSet();
 
-        VTK.vtkPointData pd = ds.GetPointData();
-        VTK.vtkCellData cd = ds.GetCellData();
+        vtkPointData pd = ds.GetPointData();
+        vtkCellData cd = ds.GetCellData();
         long np = ds.GetNumberOfPoints();
         long nc = ds.GetNumberOfCells();
         int n = cd.GetNumberOfArrays();
         int n2 = pd.GetNumberOfArrays();
         string s = pd.GetArrayName(0);
-        for (int i = 0; i < n2; i++) 
+        for (int i = 0; i < 1; i++) 
             print(pd.GetArrayName(i));
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 3; i++)
             print("cell " + i + ": " + VTK.vtkCellTypes.GetClassNameFromTypeId(ds.GetCell(i).GetCellType()));
-        
+
+        print(ds.GetBounds());
+
+        vtkCell cell = ds.GetCell(0);
+        vtkIdList idList = vtkIdList.New();
+        ds.GetCellPoints(0, idList);
+
+        vtkIdList idList2 = cell.GetPointIds();
+
+        print(idList.GetNumberOfIds() + ", " + idList2.GetNumberOfIds());
+        //print(d);
 	}
 	
 	// Update is called once per frame

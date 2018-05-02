@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Linq;
 
-namespace VTK {
+namespace VTK_API {
 class API_vtkCell {
 
 // void Initialize(int npts, vtkIdType * pts, vtkPoints * p)

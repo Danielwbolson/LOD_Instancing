@@ -15,7 +15,7 @@ public partial class vtkXMLParser : vtkObject {
 public static vtkXMLParser New() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkXMLParser.New_0(returnPointer.GetPtr());
+	VTK_API.API_vtkXMLParser.New_0(returnPointer.GetPtr());
 	return (vtkXMLParser)(IntPtr)returnPointer;
 }
 
@@ -25,7 +25,7 @@ public static vtkXMLParser New() {
 public long TellG() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
-	API_vtkXMLParser.TellG_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkXMLParser.TellG_0(returnPointer.GetPtr(), this);
 	return (long)returnPointer;
 }
 
@@ -33,7 +33,7 @@ public long TellG() {
 // void SeekG(vtkTypeInt64 position)
 // "void SeekG(vtkTypeInt64 position)"
 public void SeekG(long /*(vtkTypeInt64)*/ position) {
-	API_vtkXMLParser.SeekG_0(this, position);
+	VTK_API.API_vtkXMLParser.SeekG_0(this, position);
 }
 
 
@@ -42,7 +42,7 @@ public void SeekG(long /*(vtkTypeInt64)*/ position) {
 public int Parse() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkXMLParser.Parse_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkXMLParser.Parse_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
 
@@ -52,7 +52,7 @@ public int Parse() {
 public int Parse(string /*(char*)*/ inputString) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkXMLParser.Parse_1(returnPointer.GetPtr(), this, inputString);
+	VTK_API.API_vtkXMLParser.Parse_1(returnPointer.GetPtr(), this, inputString);
 	return (int)returnPointer;
 }
 
@@ -62,7 +62,7 @@ public int Parse(string /*(char*)*/ inputString) {
 public int Parse(string /*(char*)*/ inputString, uint /*(unsigned int)*/ length) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkXMLParser.Parse_2(returnPointer.GetPtr(), this, inputString, length);
+	VTK_API.API_vtkXMLParser.Parse_2(returnPointer.GetPtr(), this, inputString, length);
 	return (int)returnPointer;
 }
 
@@ -72,7 +72,7 @@ public int Parse(string /*(char*)*/ inputString, uint /*(unsigned int)*/ length)
 public int InitializeParser() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkXMLParser.InitializeParser_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkXMLParser.InitializeParser_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
 
@@ -82,7 +82,7 @@ public int InitializeParser() {
 public int ParseChunk(string /*(char*)*/ inputString, uint /*(unsigned int)*/ length) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkXMLParser.ParseChunk_0(returnPointer.GetPtr(), this, inputString, length);
+	VTK_API.API_vtkXMLParser.ParseChunk_0(returnPointer.GetPtr(), this, inputString, length);
 	return (int)returnPointer;
 }
 
@@ -92,7 +92,7 @@ public int ParseChunk(string /*(char*)*/ inputString, uint /*(unsigned int)*/ le
 public int CleanupParser() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkXMLParser.CleanupParser_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkXMLParser.CleanupParser_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
 

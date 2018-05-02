@@ -13,14 +13,14 @@ public partial class vtkCellIterator : vtkObject {
 // void InitTraversal()
 // "void InitTraversal()"
 public void InitTraversal() {
-	API_vtkCellIterator.InitTraversal_0(this);
+	VTK_API.API_vtkCellIterator.InitTraversal_0(this);
 }
 
 
 // void GoToNextCell()
 // "void GoToNextCell()"
 public void GoToNextCell() {
-	API_vtkCellIterator.GoToNextCell_0(this);
+	VTK_API.API_vtkCellIterator.GoToNextCell_0(this);
 }
 
 
@@ -29,7 +29,7 @@ public void GoToNextCell() {
 public bool IsDoneWithTraversal() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
-	API_vtkCellIterator.IsDoneWithTraversal_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkCellIterator.IsDoneWithTraversal_0(returnPointer.GetPtr(), this);
 	return (bool)returnPointer;
 }
 
@@ -39,7 +39,7 @@ public bool IsDoneWithTraversal() {
 public int GetCellType() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkCellIterator.GetCellType_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkCellIterator.GetCellType_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
 
@@ -49,7 +49,7 @@ public int GetCellType() {
 public int GetCellDimension() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkCellIterator.GetCellDimension_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkCellIterator.GetCellDimension_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
 
@@ -59,7 +59,7 @@ public int GetCellDimension() {
 public long GetCellId() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
-	API_vtkCellIterator.GetCellId_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkCellIterator.GetCellId_0(returnPointer.GetPtr(), this);
 	return (long)returnPointer;
 }
 
@@ -69,7 +69,7 @@ public long GetCellId() {
 public vtkIdList GetPointIds() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkCellIterator.GetPointIds_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkCellIterator.GetPointIds_0(returnPointer.GetPtr(), this);
 	return (vtkIdList)(IntPtr)returnPointer;
 }
 
@@ -79,7 +79,7 @@ public vtkIdList GetPointIds() {
 public vtkPoints GetPoints() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkCellIterator.GetPoints_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkCellIterator.GetPoints_0(returnPointer.GetPtr(), this);
 	return (vtkPoints)(IntPtr)returnPointer;
 }
 
@@ -89,7 +89,7 @@ public vtkPoints GetPoints() {
 public vtkIdList GetFaces() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkCellIterator.GetFaces_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkCellIterator.GetFaces_0(returnPointer.GetPtr(), this);
 	return (vtkIdList)(IntPtr)returnPointer;
 }
 
@@ -97,7 +97,7 @@ public vtkIdList GetFaces() {
 // void GetCell(vtkGenericCell * cell)
 // "void GetCell(vtkGenericCell *cell)"
 public void GetCell(vtkGenericCell /*(vtkGenericCell*)*/ cell) {
-	API_vtkCellIterator.GetCell_0(this, cell);
+	VTK_API.API_vtkCellIterator.GetCell_0(this, cell);
 }
 
 
@@ -106,7 +106,7 @@ public void GetCell(vtkGenericCell /*(vtkGenericCell*)*/ cell) {
 public long GetNumberOfPoints() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
-	API_vtkCellIterator.GetNumberOfPoints_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkCellIterator.GetNumberOfPoints_0(returnPointer.GetPtr(), this);
 	return (long)returnPointer;
 }
 
@@ -116,7 +116,7 @@ public long GetNumberOfPoints() {
 public long GetNumberOfFaces() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
-	API_vtkCellIterator.GetNumberOfFaces_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkCellIterator.GetNumberOfFaces_0(returnPointer.GetPtr(), this);
 	return (long)returnPointer;
 }
 

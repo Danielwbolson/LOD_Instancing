@@ -15,7 +15,7 @@ public partial class vtkObject : vtkObjectBase {
 public static vtkObject New() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkObject.New_0(returnPointer.GetPtr());
+	VTK_API.API_vtkObject.New_0(returnPointer.GetPtr());
 	return (vtkObject)(IntPtr)returnPointer;
 }
 
@@ -23,14 +23,14 @@ public static vtkObject New() {
 // virtual void DebugOn()
 // "virtual void DebugOn()"
 public void DebugOn() {
-	API_vtkObject.DebugOn_0(this);
+	VTK_API.API_vtkObject.DebugOn_0(this);
 }
 
 
 // virtual void DebugOff()
 // "virtual void DebugOff()"
 public void DebugOff() {
-	API_vtkObject.DebugOff_0(this);
+	VTK_API.API_vtkObject.DebugOff_0(this);
 }
 
 
@@ -39,7 +39,7 @@ public void DebugOff() {
 public bool GetDebug() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
-	API_vtkObject.GetDebug_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkObject.GetDebug_0(returnPointer.GetPtr(), this);
 	return (bool)returnPointer;
 }
 
@@ -47,21 +47,21 @@ public bool GetDebug() {
 // void SetDebug(bool debugFlag)
 // "void SetDebug(bool debugFlag)"
 public void SetDebug(bool /*(bool)*/ debugFlag) {
-	API_vtkObject.SetDebug_0(this, debugFlag);
+	VTK_API.API_vtkObject.SetDebug_0(this, debugFlag);
 }
 
 
 // static void BreakOnError()
 // "static void BreakOnError()"
 public static void BreakOnError() {
-	API_vtkObject.BreakOnError_0();
+	VTK_API.API_vtkObject.BreakOnError_0();
 }
 
 
 // virtual void Modified()
 // "virtual void Modified()"
 public void Modified() {
-	API_vtkObject.Modified_0(this);
+	VTK_API.API_vtkObject.Modified_0(this);
 }
 
 
@@ -70,7 +70,7 @@ public void Modified() {
 public ulong GetMTime() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new ulong(), return_elements);
-	API_vtkObject.GetMTime_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkObject.GetMTime_0(returnPointer.GetPtr(), this);
 	return (ulong)returnPointer;
 }
 
@@ -78,21 +78,21 @@ public ulong GetMTime() {
 // static void SetGlobalWarningDisplay(int val)
 // "static void SetGlobalWarningDisplay(int val)"
 public static void SetGlobalWarningDisplay(int /*(int)*/ val) {
-	API_vtkObject.SetGlobalWarningDisplay_0(val);
+	VTK_API.API_vtkObject.SetGlobalWarningDisplay_0(val);
 }
 
 
 // static void GlobalWarningDisplayOn()
 // "static void GlobalWarningDisplayOn()"
 public static void GlobalWarningDisplayOn() {
-	API_vtkObject.GlobalWarningDisplayOn_0();
+	VTK_API.API_vtkObject.GlobalWarningDisplayOn_0();
 }
 
 
 // static void GlobalWarningDisplayOff()
 // "static void GlobalWarningDisplayOff()"
 public static void GlobalWarningDisplayOff() {
-	API_vtkObject.GlobalWarningDisplayOff_0();
+	VTK_API.API_vtkObject.GlobalWarningDisplayOff_0();
 }
 
 
@@ -101,7 +101,7 @@ public static void GlobalWarningDisplayOff() {
 public static int GetGlobalWarningDisplay() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkObject.GetGlobalWarningDisplay_0(returnPointer.GetPtr());
+	VTK_API.API_vtkObject.GetGlobalWarningDisplay_0(returnPointer.GetPtr());
 	return (int)returnPointer;
 }
 
@@ -111,7 +111,7 @@ public static int GetGlobalWarningDisplay() {
 public vtkCommand GetCommand(ulong /*(unsigned long)*/ tag) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkObject.GetCommand_0(returnPointer.GetPtr(), this, tag);
+	VTK_API.API_vtkObject.GetCommand_0(returnPointer.GetPtr(), this, tag);
 	return (vtkCommand)(IntPtr)returnPointer;
 }
 
@@ -119,21 +119,21 @@ public vtkCommand GetCommand(ulong /*(unsigned long)*/ tag) {
 // void RemoveObserver(vtkCommand * ARG_0)
 // "void RemoveObserver(vtkCommand*)"
 public void RemoveObserver(vtkCommand /*(vtkCommand*)*/ ARG_0) {
-	API_vtkObject.RemoveObserver_0(this, ARG_0);
+	VTK_API.API_vtkObject.RemoveObserver_0(this, ARG_0);
 }
 
 
 // void RemoveObservers(unsigned long event, vtkCommand * ARG_0)
 // "void RemoveObservers(unsigned long event, vtkCommand *)"
 public void RemoveObservers(ulong /*(unsigned long)*/ evt, vtkCommand /*(vtkCommand*)*/ ARG_0) {
-	API_vtkObject.RemoveObservers_0(this, evt, ARG_0);
+	VTK_API.API_vtkObject.RemoveObservers_0(this, evt, ARG_0);
 }
 
 
 // void RemoveObservers(const char * event, vtkCommand * ARG_0)
 // "void RemoveObservers(const char *event, vtkCommand *)"
 public void RemoveObservers(string /*(char*)*/ evt, vtkCommand /*(vtkCommand*)*/ ARG_0) {
-	API_vtkObject.RemoveObservers_1(this, evt, ARG_0);
+	VTK_API.API_vtkObject.RemoveObservers_1(this, evt, ARG_0);
 }
 
 
@@ -142,7 +142,7 @@ public void RemoveObservers(string /*(char*)*/ evt, vtkCommand /*(vtkCommand*)*/
 public int HasObserver(ulong /*(unsigned long)*/ evt, vtkCommand /*(vtkCommand*)*/ ARG_0) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkObject.HasObserver_0(returnPointer.GetPtr(), this, evt, ARG_0);
+	VTK_API.API_vtkObject.HasObserver_0(returnPointer.GetPtr(), this, evt, ARG_0);
 	return (int)returnPointer;
 }
 
@@ -152,7 +152,7 @@ public int HasObserver(ulong /*(unsigned long)*/ evt, vtkCommand /*(vtkCommand*)
 public int HasObserver(string /*(char*)*/ evt, vtkCommand /*(vtkCommand*)*/ ARG_0) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkObject.HasObserver_1(returnPointer.GetPtr(), this, evt, ARG_0);
+	VTK_API.API_vtkObject.HasObserver_1(returnPointer.GetPtr(), this, evt, ARG_0);
 	return (int)returnPointer;
 }
 
@@ -160,28 +160,28 @@ public int HasObserver(string /*(char*)*/ evt, vtkCommand /*(vtkCommand*)*/ ARG_
 // void RemoveObserver(unsigned long tag)
 // "void RemoveObserver(unsigned long tag)"
 public void RemoveObserver(ulong /*(unsigned long)*/ tag) {
-	API_vtkObject.RemoveObserver_1(this, tag);
+	VTK_API.API_vtkObject.RemoveObserver_1(this, tag);
 }
 
 
 // void RemoveObservers(unsigned long event)
 // "void RemoveObservers(unsigned long event)"
 public void RemoveObservers(ulong /*(unsigned long)*/ evt) {
-	API_vtkObject.RemoveObservers_2(this, evt);
+	VTK_API.API_vtkObject.RemoveObservers_2(this, evt);
 }
 
 
 // void RemoveObservers(const char * event)
 // "void RemoveObservers(const char *event)"
 public void RemoveObservers(string /*(char*)*/ evt) {
-	API_vtkObject.RemoveObservers_3(this, evt);
+	VTK_API.API_vtkObject.RemoveObservers_3(this, evt);
 }
 
 
 // void RemoveAllObservers()
 // "void RemoveAllObservers()"
 public void RemoveAllObservers() {
-	API_vtkObject.RemoveAllObservers_0(this);
+	VTK_API.API_vtkObject.RemoveAllObservers_0(this);
 }
 
 
@@ -190,7 +190,7 @@ public void RemoveAllObservers() {
 public int HasObserver(ulong /*(unsigned long)*/ evt) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkObject.HasObserver_2(returnPointer.GetPtr(), this, evt);
+	VTK_API.API_vtkObject.HasObserver_2(returnPointer.GetPtr(), this, evt);
 	return (int)returnPointer;
 }
 
@@ -200,7 +200,7 @@ public int HasObserver(ulong /*(unsigned long)*/ evt) {
 public int HasObserver(string /*(char*)*/ evt) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkObject.HasObserver_3(returnPointer.GetPtr(), this, evt);
+	VTK_API.API_vtkObject.HasObserver_3(returnPointer.GetPtr(), this, evt);
 	return (int)returnPointer;
 }
 
@@ -210,7 +210,7 @@ public int HasObserver(string /*(char*)*/ evt) {
 public int InvokeEvent(ulong /*(unsigned long)*/ evt, IntPtr /*(void*)*/ callData) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkObject.InvokeEvent_0(returnPointer.GetPtr(), this, evt, callData);
+	VTK_API.API_vtkObject.InvokeEvent_0(returnPointer.GetPtr(), this, evt, callData);
 	return (int)returnPointer;
 }
 
@@ -220,7 +220,7 @@ public int InvokeEvent(ulong /*(unsigned long)*/ evt, IntPtr /*(void*)*/ callDat
 public int InvokeEvent(string /*(char*)*/ evt, IntPtr /*(void*)*/ callData) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkObject.InvokeEvent_1(returnPointer.GetPtr(), this, evt, callData);
+	VTK_API.API_vtkObject.InvokeEvent_1(returnPointer.GetPtr(), this, evt, callData);
 	return (int)returnPointer;
 }
 
@@ -230,7 +230,7 @@ public int InvokeEvent(string /*(char*)*/ evt, IntPtr /*(void*)*/ callData) {
 public int InvokeEvent(ulong /*(unsigned long)*/ evt) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkObject.InvokeEvent_2(returnPointer.GetPtr(), this, evt);
+	VTK_API.API_vtkObject.InvokeEvent_2(returnPointer.GetPtr(), this, evt);
 	return (int)returnPointer;
 }
 
@@ -240,7 +240,7 @@ public int InvokeEvent(ulong /*(unsigned long)*/ evt) {
 public int InvokeEvent(string /*(char*)*/ evt) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkObject.InvokeEvent_3(returnPointer.GetPtr(), this, evt);
+	VTK_API.API_vtkObject.InvokeEvent_3(returnPointer.GetPtr(), this, evt);
 	return (int)returnPointer;
 }
 

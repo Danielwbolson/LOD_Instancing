@@ -15,7 +15,7 @@ public partial class vtkXMLUnstructuredDataReader : vtkXMLDataReader {
 public long GetNumberOfPoints() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
-	API_vtkXMLUnstructuredDataReader.GetNumberOfPoints_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkXMLUnstructuredDataReader.GetNumberOfPoints_0(returnPointer.GetPtr(), this);
 	return (long)returnPointer;
 }
 
@@ -25,7 +25,7 @@ public long GetNumberOfPoints() {
 public long GetNumberOfCells() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
-	API_vtkXMLUnstructuredDataReader.GetNumberOfCells_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkXMLUnstructuredDataReader.GetNumberOfCells_0(returnPointer.GetPtr(), this);
 	return (long)returnPointer;
 }
 
@@ -35,7 +35,7 @@ public long GetNumberOfCells() {
 public long GetNumberOfPieces() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
-	API_vtkXMLUnstructuredDataReader.GetNumberOfPieces_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkXMLUnstructuredDataReader.GetNumberOfPieces_0(returnPointer.GetPtr(), this);
 	return (long)returnPointer;
 }
 
@@ -43,7 +43,7 @@ public long GetNumberOfPieces() {
 // void SetupUpdateExtent(int piece, int numberOfPieces, int ghostLevel)
 // "void SetupUpdateExtent(int piece, int numberOfPieces, int ghostLevel)"
 public void SetupUpdateExtent(int /*(int)*/ piece, int /*(int)*/ numberOfPieces, int /*(int)*/ ghostLevel) {
-	API_vtkXMLUnstructuredDataReader.SetupUpdateExtent_0(this, piece, numberOfPieces, ghostLevel);
+	VTK_API.API_vtkXMLUnstructuredDataReader.SetupUpdateExtent_0(this, piece, numberOfPieces, ghostLevel);
 }
 
 

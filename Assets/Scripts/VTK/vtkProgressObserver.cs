@@ -15,7 +15,7 @@ public partial class vtkProgressObserver : vtkObject {
 public static vtkProgressObserver New() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkProgressObserver.New_0(returnPointer.GetPtr());
+	VTK_API.API_vtkProgressObserver.New_0(returnPointer.GetPtr());
 	return (vtkProgressObserver)(IntPtr)returnPointer;
 }
 
@@ -23,7 +23,7 @@ public static vtkProgressObserver New() {
 // virtual void UpdateProgress(double amount)
 // "virtual void UpdateProgress(double amount)"
 public void UpdateProgress(double /*(double)*/ amount) {
-	API_vtkProgressObserver.UpdateProgress_0(this, amount);
+	VTK_API.API_vtkProgressObserver.UpdateProgress_0(this, amount);
 }
 
 

@@ -15,7 +15,7 @@ public partial class vtkUnsignedCharArray : vtkDataArray {
 public static vtkUnsignedCharArray New() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkUnsignedCharArray.New_0(returnPointer.GetPtr());
+	VTK_API.API_vtkUnsignedCharArray.New_0(returnPointer.GetPtr());
 	return (vtkUnsignedCharArray)(IntPtr)returnPointer;
 }
 
@@ -25,7 +25,7 @@ public static vtkUnsignedCharArray New() {
 public static vtkUnsignedCharArray FastDownCast(vtkAbstractArray /*(vtkAbstractArray*)*/ source) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkUnsignedCharArray.FastDownCast_0(returnPointer.GetPtr(), source);
+	VTK_API.API_vtkUnsignedCharArray.FastDownCast_0(returnPointer.GetPtr(), source);
 	return (vtkUnsignedCharArray)(IntPtr)returnPointer;
 }
 
@@ -35,7 +35,7 @@ public static vtkUnsignedCharArray FastDownCast(vtkAbstractArray /*(vtkAbstractA
 public static char GetDataTypeValueMin() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new char(), return_elements);
-	API_vtkUnsignedCharArray.GetDataTypeValueMin_0(returnPointer.GetPtr());
+	VTK_API.API_vtkUnsignedCharArray.GetDataTypeValueMin_0(returnPointer.GetPtr());
 	return (char)returnPointer;
 }
 
@@ -45,7 +45,7 @@ public static char GetDataTypeValueMin() {
 public static char GetDataTypeValueMax() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new char(), return_elements);
-	API_vtkUnsignedCharArray.GetDataTypeValueMax_0(returnPointer.GetPtr());
+	VTK_API.API_vtkUnsignedCharArray.GetDataTypeValueMax_0(returnPointer.GetPtr());
 	return (char)returnPointer;
 }
 

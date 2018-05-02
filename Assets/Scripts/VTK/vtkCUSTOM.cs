@@ -125,6 +125,37 @@ namespace VTK
             SetFileName_0(GetPtr(), fileName);
         }
     }
+
+
+    public partial class vtkDataSet {
+        public Bounds GetBounds() {
+            double[] b = new double[6];
+            GetBounds(b);
+            Bounds result = new Bounds();
+            result.SetMinMax(new Vector3((float)b[0], (float)b[2], (float)b[4]), new Vector3((float)b[1], (float)b[3], (float)b[5]));
+            return result;
+        }
+
+        public Bounds GetCellBounds(long cellId)
+        {
+            double[] b = new double[6];
+            GetCellBounds(cellId,b);
+            Bounds result = new Bounds();
+            result.SetMinMax(new Vector3((float)b[0], (float)b[2], (float)b[4]), new Vector3((float)b[1], (float)b[3], (float)b[5]));
+            return result;
+        }
+
+    }
+
+    public partial class vtkPoints {
+
+        public Vector3 GetPoint(long pointId)
+        {
+            double[] p = new double[3];
+            GetPoint_1(pointId,p);
+            return new Vector3((float)p[0], (float)p[1], (float)p[2]);
+        }
+    }
 }
 
 

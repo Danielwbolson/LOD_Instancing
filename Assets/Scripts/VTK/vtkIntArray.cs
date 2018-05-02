@@ -15,7 +15,7 @@ public partial class vtkIntArray : vtkDataArray {
 public static vtkIntArray New() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkIntArray.New_0(returnPointer.GetPtr());
+	VTK_API.API_vtkIntArray.New_0(returnPointer.GetPtr());
 	return (vtkIntArray)(IntPtr)returnPointer;
 }
 
@@ -25,7 +25,7 @@ public static vtkIntArray New() {
 public static vtkIntArray FastDownCast(vtkAbstractArray /*(vtkAbstractArray*)*/ source) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkIntArray.FastDownCast_0(returnPointer.GetPtr(), source);
+	VTK_API.API_vtkIntArray.FastDownCast_0(returnPointer.GetPtr(), source);
 	return (vtkIntArray)(IntPtr)returnPointer;
 }
 
@@ -35,7 +35,7 @@ public static vtkIntArray FastDownCast(vtkAbstractArray /*(vtkAbstractArray*)*/ 
 public static int GetDataTypeValueMin() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkIntArray.GetDataTypeValueMin_0(returnPointer.GetPtr());
+	VTK_API.API_vtkIntArray.GetDataTypeValueMin_0(returnPointer.GetPtr());
 	return (int)returnPointer;
 }
 
@@ -45,7 +45,7 @@ public static int GetDataTypeValueMin() {
 public static int GetDataTypeValueMax() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkIntArray.GetDataTypeValueMax_0(returnPointer.GetPtr());
+	VTK_API.API_vtkIntArray.GetDataTypeValueMax_0(returnPointer.GetPtr());
 	return (int)returnPointer;
 }
 

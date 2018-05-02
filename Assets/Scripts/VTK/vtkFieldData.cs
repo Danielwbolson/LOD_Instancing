@@ -15,7 +15,7 @@ public partial class vtkFieldData : vtkObject {
 public static vtkFieldData New() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkFieldData.New_0(returnPointer.GetPtr());
+	VTK_API.API_vtkFieldData.New_0(returnPointer.GetPtr());
 	return (vtkFieldData)(IntPtr)returnPointer;
 }
 
@@ -23,7 +23,7 @@ public static vtkFieldData New() {
 // virtual void Initialize()
 // "virtual void Initialize()"
 public void Initialize() {
-	API_vtkFieldData.Initialize_0(this);
+	VTK_API.API_vtkFieldData.Initialize_0(this);
 }
 
 
@@ -32,7 +32,7 @@ public void Initialize() {
 public int Allocate(long /*(vtkIdType)*/ sz, long /*(vtkIdType)*/ ext) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkFieldData.Allocate_0(returnPointer.GetPtr(), this, sz, ext);
+	VTK_API.API_vtkFieldData.Allocate_0(returnPointer.GetPtr(), this, sz, ext);
 	return (int)returnPointer;
 }
 
@@ -40,14 +40,14 @@ public int Allocate(long /*(vtkIdType)*/ sz, long /*(vtkIdType)*/ ext) {
 // void CopyStructure(vtkFieldData * ARG_0)
 // "void CopyStructure(vtkFieldData*)"
 public void CopyStructure(vtkFieldData /*(vtkFieldData*)*/ ARG_0) {
-	API_vtkFieldData.CopyStructure_0(this, ARG_0);
+	VTK_API.API_vtkFieldData.CopyStructure_0(this, ARG_0);
 }
 
 
 // void AllocateArrays(int num)
 // "void AllocateArrays(int num)"
 public void AllocateArrays(int /*(int)*/ num) {
-	API_vtkFieldData.AllocateArrays_0(this, num);
+	VTK_API.API_vtkFieldData.AllocateArrays_0(this, num);
 }
 
 
@@ -56,7 +56,7 @@ public void AllocateArrays(int /*(int)*/ num) {
 public int GetNumberOfArrays() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkFieldData.GetNumberOfArrays_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkFieldData.GetNumberOfArrays_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
 
@@ -66,7 +66,7 @@ public int GetNumberOfArrays() {
 public int AddArray(vtkAbstractArray /*(vtkAbstractArray*)*/ array) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkFieldData.AddArray_0(returnPointer.GetPtr(), this, array);
+	VTK_API.API_vtkFieldData.AddArray_0(returnPointer.GetPtr(), this, array);
 	return (int)returnPointer;
 }
 
@@ -74,14 +74,14 @@ public int AddArray(vtkAbstractArray /*(vtkAbstractArray*)*/ array) {
 // virtual void RemoveArray(const char * name)
 // "virtual void RemoveArray(const char *name)"
 public void RemoveArray(string /*(char*)*/ name) {
-	API_vtkFieldData.RemoveArray_0(this, name);
+	VTK_API.API_vtkFieldData.RemoveArray_0(this, name);
 }
 
 
 // virtual void RemoveArray(int index)
 // "virtual void RemoveArray(int index)"
 public void RemoveArray(int /*(int)*/ index) {
-	API_vtkFieldData.RemoveArray_1(this, index);
+	VTK_API.API_vtkFieldData.RemoveArray_1(this, index);
 }
 
 
@@ -90,7 +90,7 @@ public void RemoveArray(int /*(int)*/ index) {
 public vtkDataArray GetArray(int /*(int)*/ i) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkFieldData.GetArray_0(returnPointer.GetPtr(), this, i);
+	VTK_API.API_vtkFieldData.GetArray_0(returnPointer.GetPtr(), this, i);
 	return (vtkDataArray)(IntPtr)returnPointer;
 }
 
@@ -100,7 +100,7 @@ public vtkDataArray GetArray(int /*(int)*/ i) {
 public vtkDataArray GetArray(string /*(char*)*/ arrayName, IntPtr /*(int&)*/ index) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkFieldData.GetArray_1(returnPointer.GetPtr(), this, arrayName, index);
+	VTK_API.API_vtkFieldData.GetArray_1(returnPointer.GetPtr(), this, arrayName, index);
 	return (vtkDataArray)(IntPtr)returnPointer;
 }
 
@@ -110,7 +110,7 @@ public vtkDataArray GetArray(string /*(char*)*/ arrayName, IntPtr /*(int&)*/ ind
 public vtkDataArray GetArray(string /*(char*)*/ arrayName) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkFieldData.GetArray_2(returnPointer.GetPtr(), this, arrayName);
+	VTK_API.API_vtkFieldData.GetArray_2(returnPointer.GetPtr(), this, arrayName);
 	return (vtkDataArray)(IntPtr)returnPointer;
 }
 
@@ -120,7 +120,7 @@ public vtkDataArray GetArray(string /*(char*)*/ arrayName) {
 public vtkAbstractArray GetAbstractArray(int /*(int)*/ i) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkFieldData.GetAbstractArray_0(returnPointer.GetPtr(), this, i);
+	VTK_API.API_vtkFieldData.GetAbstractArray_0(returnPointer.GetPtr(), this, i);
 	return (vtkAbstractArray)(IntPtr)returnPointer;
 }
 
@@ -130,7 +130,7 @@ public vtkAbstractArray GetAbstractArray(int /*(int)*/ i) {
 public vtkAbstractArray GetAbstractArray(string /*(char*)*/ arrayName, IntPtr /*(int&)*/ index) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkFieldData.GetAbstractArray_1(returnPointer.GetPtr(), this, arrayName, index);
+	VTK_API.API_vtkFieldData.GetAbstractArray_1(returnPointer.GetPtr(), this, arrayName, index);
 	return (vtkAbstractArray)(IntPtr)returnPointer;
 }
 
@@ -140,7 +140,7 @@ public vtkAbstractArray GetAbstractArray(string /*(char*)*/ arrayName, IntPtr /*
 public vtkAbstractArray GetAbstractArray(string /*(char*)*/ arrayName) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkFieldData.GetAbstractArray_2(returnPointer.GetPtr(), this, arrayName);
+	VTK_API.API_vtkFieldData.GetAbstractArray_2(returnPointer.GetPtr(), this, arrayName);
 	return (vtkAbstractArray)(IntPtr)returnPointer;
 }
 
@@ -150,7 +150,7 @@ public vtkAbstractArray GetAbstractArray(string /*(char*)*/ arrayName) {
 public int HasArray(string /*(char*)*/ name) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkFieldData.HasArray_0(returnPointer.GetPtr(), this, name);
+	VTK_API.API_vtkFieldData.HasArray_0(returnPointer.GetPtr(), this, name);
 	return (int)returnPointer;
 }
 
@@ -160,7 +160,7 @@ public int HasArray(string /*(char*)*/ name) {
 public string GetArrayName(int /*(int)*/ i) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkFieldData.GetArrayName_0(returnPointer.GetPtr(), this, i);
+	VTK_API.API_vtkFieldData.GetArrayName_0(returnPointer.GetPtr(), this, i);
 	return (string)returnPointer;
 }
 
@@ -168,63 +168,63 @@ public string GetArrayName(int /*(int)*/ i) {
 // virtual void PassData(vtkFieldData * fd)
 // "virtual void PassData(vtkFieldData* fd)"
 public void PassData(vtkFieldData /*(vtkFieldData*)*/ fd) {
-	API_vtkFieldData.PassData_0(this, fd);
+	VTK_API.API_vtkFieldData.PassData_0(this, fd);
 }
 
 
 // void CopyFieldOn(const char * name)
 // "void CopyFieldOn(const char* name)"
 public void CopyFieldOn(string /*(char*)*/ name) {
-	API_vtkFieldData.CopyFieldOn_0(this, name);
+	VTK_API.API_vtkFieldData.CopyFieldOn_0(this, name);
 }
 
 
 // void CopyFieldOff(const char * name)
 // "void CopyFieldOff(const char* name)"
 public void CopyFieldOff(string /*(char*)*/ name) {
-	API_vtkFieldData.CopyFieldOff_0(this, name);
+	VTK_API.API_vtkFieldData.CopyFieldOff_0(this, name);
 }
 
 
 // virtual void CopyAllOn(int unused = 0)
 // "virtual void CopyAllOn(int unused=0)"
 public void CopyAllOn(int /*(int)*/ unused) {
-	API_vtkFieldData.CopyAllOn_0(this, unused);
+	VTK_API.API_vtkFieldData.CopyAllOn_0(this, unused);
 }
 
 
 // virtual void CopyAllOff(int unused = 0)
 // "virtual void CopyAllOff(int unused=0)"
 public void CopyAllOff(int /*(int)*/ unused) {
-	API_vtkFieldData.CopyAllOff_0(this, unused);
+	VTK_API.API_vtkFieldData.CopyAllOff_0(this, unused);
 }
 
 
 // virtual void DeepCopy(vtkFieldData * da)
 // "virtual void DeepCopy(vtkFieldData *da)"
 public void DeepCopy(vtkFieldData /*(vtkFieldData*)*/ da) {
-	API_vtkFieldData.DeepCopy_0(this, da);
+	VTK_API.API_vtkFieldData.DeepCopy_0(this, da);
 }
 
 
 // virtual void ShallowCopy(vtkFieldData * da)
 // "virtual void ShallowCopy(vtkFieldData *da)"
 public void ShallowCopy(vtkFieldData /*(vtkFieldData*)*/ da) {
-	API_vtkFieldData.ShallowCopy_0(this, da);
+	VTK_API.API_vtkFieldData.ShallowCopy_0(this, da);
 }
 
 
 // void Squeeze()
 // "void Squeeze()"
 public void Squeeze() {
-	API_vtkFieldData.Squeeze_0(this);
+	VTK_API.API_vtkFieldData.Squeeze_0(this);
 }
 
 
 // void Reset()
 // "void Reset()"
 public void Reset() {
-	API_vtkFieldData.Reset_0(this);
+	VTK_API.API_vtkFieldData.Reset_0(this);
 }
 
 
@@ -233,7 +233,7 @@ public void Reset() {
 public ulong GetActualMemorySize() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new ulong(), return_elements);
-	API_vtkFieldData.GetActualMemorySize_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkFieldData.GetActualMemorySize_0(returnPointer.GetPtr(), this);
 	return (ulong)returnPointer;
 }
 
@@ -243,7 +243,7 @@ public ulong GetActualMemorySize() {
 public ulong GetMTime() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new ulong(), return_elements);
-	API_vtkFieldData.GetMTime_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkFieldData.GetMTime_0(returnPointer.GetPtr(), this);
 	return (ulong)returnPointer;
 }
 
@@ -251,7 +251,7 @@ public ulong GetMTime() {
 // void GetField(vtkIdList * ptId, vtkFieldData * f)
 // "void GetField(vtkIdList *ptId, vtkFieldData *f)"
 public void GetField(vtkIdList /*(vtkIdList*)*/ ptId, vtkFieldData /*(vtkFieldData*)*/ f) {
-	API_vtkFieldData.GetField_0(this, ptId, f);
+	VTK_API.API_vtkFieldData.GetField_0(this, ptId, f);
 }
 
 
@@ -260,7 +260,7 @@ public void GetField(vtkIdList /*(vtkIdList*)*/ ptId, vtkFieldData /*(vtkFieldDa
 public int GetArrayContainingComponent(int /*(int)*/ i, IntPtr /*(int&)*/ arrayComp) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkFieldData.GetArrayContainingComponent_0(returnPointer.GetPtr(), this, i, arrayComp);
+	VTK_API.API_vtkFieldData.GetArrayContainingComponent_0(returnPointer.GetPtr(), this, i, arrayComp);
 	return (int)returnPointer;
 }
 
@@ -270,7 +270,7 @@ public int GetArrayContainingComponent(int /*(int)*/ i, IntPtr /*(int&)*/ arrayC
 public int GetNumberOfComponents() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkFieldData.GetNumberOfComponents_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkFieldData.GetNumberOfComponents_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
 
@@ -280,7 +280,7 @@ public int GetNumberOfComponents() {
 public long GetNumberOfTuples() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
-	API_vtkFieldData.GetNumberOfTuples_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkFieldData.GetNumberOfTuples_0(returnPointer.GetPtr(), this);
 	return (long)returnPointer;
 }
 
@@ -288,21 +288,21 @@ public long GetNumberOfTuples() {
 // void SetNumberOfTuples(const vtkIdType number)
 // "void SetNumberOfTuples(const vtkIdType number)"
 public void SetNumberOfTuples(long /*(vtkIdType)*/ number) {
-	API_vtkFieldData.SetNumberOfTuples_0(this, number);
+	VTK_API.API_vtkFieldData.SetNumberOfTuples_0(this, number);
 }
 
 
 // void SetTuple(const vtkIdType i, const vtkIdType j, vtkFieldData * source)
 // "void SetTuple(const vtkIdType i, const vtkIdType j, vtkFieldData* source)"
 public void SetTuple(long /*(vtkIdType)*/ i, long /*(vtkIdType)*/ j, vtkFieldData /*(vtkFieldData*)*/ source) {
-	API_vtkFieldData.SetTuple_0(this, i, j, source);
+	VTK_API.API_vtkFieldData.SetTuple_0(this, i, j, source);
 }
 
 
 // void InsertTuple(const vtkIdType i, const vtkIdType j, vtkFieldData * source)
 // "void InsertTuple(const vtkIdType i, const vtkIdType j, vtkFieldData* source)"
 public void InsertTuple(long /*(vtkIdType)*/ i, long /*(vtkIdType)*/ j, vtkFieldData /*(vtkFieldData*)*/ source) {
-	API_vtkFieldData.InsertTuple_0(this, i, j, source);
+	VTK_API.API_vtkFieldData.InsertTuple_0(this, i, j, source);
 }
 
 
@@ -311,7 +311,7 @@ public void InsertTuple(long /*(vtkIdType)*/ i, long /*(vtkIdType)*/ j, vtkField
 public long InsertNextTuple(long /*(vtkIdType)*/ j, vtkFieldData /*(vtkFieldData*)*/ source) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
-	API_vtkFieldData.InsertNextTuple_0(returnPointer.GetPtr(), this, j, source);
+	VTK_API.API_vtkFieldData.InsertNextTuple_0(returnPointer.GetPtr(), this, j, source);
 	return (long)returnPointer;
 }
 

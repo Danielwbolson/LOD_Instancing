@@ -15,7 +15,7 @@ public partial class vtkXMLStructuredGridReader : vtkXMLStructuredDataReader {
 public static vtkXMLStructuredGridReader New() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkXMLStructuredGridReader.New_0(returnPointer.GetPtr());
+	VTK_API.API_vtkXMLStructuredGridReader.New_0(returnPointer.GetPtr());
 	return (vtkXMLStructuredGridReader)(IntPtr)returnPointer;
 }
 
@@ -25,7 +25,7 @@ public static vtkXMLStructuredGridReader New() {
 public vtkStructuredGrid GetOutput() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkXMLStructuredGridReader.GetOutput_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkXMLStructuredGridReader.GetOutput_0(returnPointer.GetPtr(), this);
 	return (vtkStructuredGrid)(IntPtr)returnPointer;
 }
 
@@ -35,7 +35,7 @@ public vtkStructuredGrid GetOutput() {
 public vtkStructuredGrid GetOutput(int /*(int)*/ idx) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkXMLStructuredGridReader.GetOutput_1(returnPointer.GetPtr(), this, idx);
+	VTK_API.API_vtkXMLStructuredGridReader.GetOutput_1(returnPointer.GetPtr(), this, idx);
 	return (vtkStructuredGrid)(IntPtr)returnPointer;
 }
 

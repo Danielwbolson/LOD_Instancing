@@ -15,7 +15,7 @@ public partial class vtkDataObject : vtkObject {
 public static vtkDataObject New() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkDataObject.New_0(returnPointer.GetPtr());
+	VTK_API.API_vtkDataObject.New_0(returnPointer.GetPtr());
 	return (vtkDataObject)(IntPtr)returnPointer;
 }
 
@@ -25,7 +25,7 @@ public static vtkDataObject New() {
 public ulong GetMTime() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new ulong(), return_elements);
-	API_vtkDataObject.GetMTime_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkDataObject.GetMTime_0(returnPointer.GetPtr(), this);
 	return (ulong)returnPointer;
 }
 
@@ -33,35 +33,35 @@ public ulong GetMTime() {
 // virtual void Initialize()
 // "virtual void Initialize()"
 public void Initialize() {
-	API_vtkDataObject.Initialize_0(this);
+	VTK_API.API_vtkDataObject.Initialize_0(this);
 }
 
 
 // void ReleaseData()
 // "void ReleaseData()"
 public void ReleaseData() {
-	API_vtkDataObject.ReleaseData_0(this);
+	VTK_API.API_vtkDataObject.ReleaseData_0(this);
 }
 
 
 // static void SetGlobalReleaseDataFlag(int val)
 // "static void SetGlobalReleaseDataFlag(int val)"
 public static void SetGlobalReleaseDataFlag(int /*(int)*/ val) {
-	API_vtkDataObject.SetGlobalReleaseDataFlag_0(val);
+	VTK_API.API_vtkDataObject.SetGlobalReleaseDataFlag_0(val);
 }
 
 
 // void GlobalReleaseDataFlagOn()
 // "void GlobalReleaseDataFlagOn()"
 public void GlobalReleaseDataFlagOn() {
-	API_vtkDataObject.GlobalReleaseDataFlagOn_0(this);
+	VTK_API.API_vtkDataObject.GlobalReleaseDataFlagOn_0(this);
 }
 
 
 // void GlobalReleaseDataFlagOff()
 // "void GlobalReleaseDataFlagOff()"
 public void GlobalReleaseDataFlagOff() {
-	API_vtkDataObject.GlobalReleaseDataFlagOff_0(this);
+	VTK_API.API_vtkDataObject.GlobalReleaseDataFlagOff_0(this);
 }
 
 
@@ -70,7 +70,7 @@ public void GlobalReleaseDataFlagOff() {
 public static int GetGlobalReleaseDataFlag() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkDataObject.GetGlobalReleaseDataFlag_0(returnPointer.GetPtr());
+	VTK_API.API_vtkDataObject.GetGlobalReleaseDataFlag_0(returnPointer.GetPtr());
 	return (int)returnPointer;
 }
 
@@ -78,7 +78,7 @@ public static int GetGlobalReleaseDataFlag() {
 // virtual void SetFieldData(vtkFieldData * ARG_0)
 // "virtual void SetFieldData(vtkFieldData*)"
 public void SetFieldData(vtkFieldData /*(vtkFieldData*)*/ ARG_0) {
-	API_vtkDataObject.SetFieldData_0(this, ARG_0);
+	VTK_API.API_vtkDataObject.SetFieldData_0(this, ARG_0);
 }
 
 
@@ -87,7 +87,7 @@ public void SetFieldData(vtkFieldData /*(vtkFieldData*)*/ ARG_0) {
 public int GetDataObjectType() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkDataObject.GetDataObjectType_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkDataObject.GetDataObjectType_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
 
@@ -97,7 +97,7 @@ public int GetDataObjectType() {
 public ulong GetUpdateTime() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new ulong(), return_elements);
-	API_vtkDataObject.GetUpdateTime_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkDataObject.GetUpdateTime_0(returnPointer.GetPtr(), this);
 	return (ulong)returnPointer;
 }
 
@@ -107,7 +107,7 @@ public ulong GetUpdateTime() {
 public ulong GetActualMemorySize() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new ulong(), return_elements);
-	API_vtkDataObject.GetActualMemorySize_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkDataObject.GetActualMemorySize_0(returnPointer.GetPtr(), this);
 	return (ulong)returnPointer;
 }
 
@@ -115,28 +115,28 @@ public ulong GetActualMemorySize() {
 // void DataHasBeenGenerated()
 // "void DataHasBeenGenerated()"
 public void DataHasBeenGenerated() {
-	API_vtkDataObject.DataHasBeenGenerated_0(this);
+	VTK_API.API_vtkDataObject.DataHasBeenGenerated_0(this);
 }
 
 
 // virtual void PrepareForNewData()
 // "virtual void PrepareForNewData()"
 public void PrepareForNewData() {
-	API_vtkDataObject.PrepareForNewData_0(this);
+	VTK_API.API_vtkDataObject.PrepareForNewData_0(this);
 }
 
 
 // virtual void ShallowCopy(vtkDataObject * src)
 // "virtual void ShallowCopy(vtkDataObject *src)"
 public void ShallowCopy(vtkDataObject /*(vtkDataObject*)*/ src) {
-	API_vtkDataObject.ShallowCopy_0(this, src);
+	VTK_API.API_vtkDataObject.ShallowCopy_0(this, src);
 }
 
 
 // virtual void DeepCopy(vtkDataObject * src)
 // "virtual void DeepCopy(vtkDataObject *src)"
 public void DeepCopy(vtkDataObject /*(vtkDataObject*)*/ src) {
-	API_vtkDataObject.DeepCopy_0(this, src);
+	VTK_API.API_vtkDataObject.DeepCopy_0(this, src);
 }
 
 
@@ -145,7 +145,7 @@ public void DeepCopy(vtkDataObject /*(vtkDataObject*)*/ src) {
 public int GetExtentType() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkDataObject.GetExtentType_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkDataObject.GetExtentType_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
 
@@ -153,7 +153,7 @@ public int GetExtentType() {
 // virtual void Crop(const int * updateExtent)
 // "virtual void Crop(const int* updateExtent)"
 public void Crop(IntPtr /*(int*)*/ updateExtent) {
-	API_vtkDataObject.Crop_0(this, updateExtent);
+	VTK_API.API_vtkDataObject.Crop_0(this, updateExtent);
 }
 
 
@@ -162,7 +162,7 @@ public void Crop(IntPtr /*(int*)*/ updateExtent) {
 public vtkDataSetAttributes GetAttributes(int /*(int)*/ type) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkDataObject.GetAttributes_0(returnPointer.GetPtr(), this, type);
+	VTK_API.API_vtkDataObject.GetAttributes_0(returnPointer.GetPtr(), this, type);
 	return (vtkDataSetAttributes)(IntPtr)returnPointer;
 }
 
@@ -172,7 +172,7 @@ public vtkDataSetAttributes GetAttributes(int /*(int)*/ type) {
 public vtkFieldData GetAttributesAsFieldData(int /*(int)*/ type) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkDataObject.GetAttributesAsFieldData_0(returnPointer.GetPtr(), this, type);
+	VTK_API.API_vtkDataObject.GetAttributesAsFieldData_0(returnPointer.GetPtr(), this, type);
 	return (vtkFieldData)(IntPtr)returnPointer;
 }
 
@@ -182,7 +182,7 @@ public vtkFieldData GetAttributesAsFieldData(int /*(int)*/ type) {
 public int GetAttributeTypeForArray(vtkAbstractArray /*(vtkAbstractArray*)*/ arr) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkDataObject.GetAttributeTypeForArray_0(returnPointer.GetPtr(), this, arr);
+	VTK_API.API_vtkDataObject.GetAttributeTypeForArray_0(returnPointer.GetPtr(), this, arr);
 	return (int)returnPointer;
 }
 
@@ -192,7 +192,7 @@ public int GetAttributeTypeForArray(vtkAbstractArray /*(vtkAbstractArray*)*/ arr
 public long GetNumberOfElements(int /*(int)*/ type) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
-	API_vtkDataObject.GetNumberOfElements_0(returnPointer.GetPtr(), this, type);
+	VTK_API.API_vtkDataObject.GetNumberOfElements_0(returnPointer.GetPtr(), this, type);
 	return (long)returnPointer;
 }
 
@@ -202,7 +202,7 @@ public long GetNumberOfElements(int /*(int)*/ type) {
 public static string GetAssociationTypeAsString(int /*(int)*/ associationType) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkDataObject.GetAssociationTypeAsString_0(returnPointer.GetPtr(), associationType);
+	VTK_API.API_vtkDataObject.GetAssociationTypeAsString_0(returnPointer.GetPtr(), associationType);
 	return (string)returnPointer;
 }
 
@@ -212,7 +212,7 @@ public static string GetAssociationTypeAsString(int /*(int)*/ associationType) {
 public static int GetAssociationTypeFromString(string /*(char*)*/ associationType) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkDataObject.GetAssociationTypeFromString_0(returnPointer.GetPtr(), associationType);
+	VTK_API.API_vtkDataObject.GetAssociationTypeFromString_0(returnPointer.GetPtr(), associationType);
 	return (int)returnPointer;
 }
 

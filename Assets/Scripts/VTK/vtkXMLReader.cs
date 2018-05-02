@@ -15,7 +15,7 @@ public partial class vtkXMLReader : vtkAlgorithm {
 public int CanReadFile(string /*(char*)*/ name) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkXMLReader.CanReadFile_0(returnPointer.GetPtr(), this, name);
+	VTK_API.API_vtkXMLReader.CanReadFile_0(returnPointer.GetPtr(), this, name);
 	return (int)returnPointer;
 }
 
@@ -25,8 +25,7 @@ public int CanReadFile(string /*(char*)*/ name) {
 public vtkDataSet GetOutputAsDataSet() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkXMLReader.GetOutputAsDataSet_0(returnPointer.GetPtr(), this);
-
+	VTK_API.API_vtkXMLReader.GetOutputAsDataSet_0(returnPointer.GetPtr(), this);
 	return (vtkDataSet)(IntPtr)returnPointer;
 }
 
@@ -36,7 +35,7 @@ public vtkDataSet GetOutputAsDataSet() {
 public vtkDataSet GetOutputAsDataSet(int /*(int)*/ index) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkXMLReader.GetOutputAsDataSet_1(returnPointer.GetPtr(), this, index);
+	VTK_API.API_vtkXMLReader.GetOutputAsDataSet_1(returnPointer.GetPtr(), this, index);
 	return (vtkDataSet)(IntPtr)returnPointer;
 }
 
@@ -46,7 +45,7 @@ public vtkDataSet GetOutputAsDataSet(int /*(int)*/ index) {
 public int GetNumberOfPointArrays() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkXMLReader.GetNumberOfPointArrays_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkXMLReader.GetNumberOfPointArrays_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
 
@@ -56,7 +55,7 @@ public int GetNumberOfPointArrays() {
 public int GetNumberOfCellArrays() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkXMLReader.GetNumberOfCellArrays_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkXMLReader.GetNumberOfCellArrays_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
 
@@ -66,7 +65,7 @@ public int GetNumberOfCellArrays() {
 public int GetNumberOfColumnArrays() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkXMLReader.GetNumberOfColumnArrays_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkXMLReader.GetNumberOfColumnArrays_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
 
@@ -76,7 +75,7 @@ public int GetNumberOfColumnArrays() {
 public string GetPointArrayName(int /*(int)*/ index) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkXMLReader.GetPointArrayName_0(returnPointer.GetPtr(), this, index);
+	VTK_API.API_vtkXMLReader.GetPointArrayName_0(returnPointer.GetPtr(), this, index);
 	return (string)returnPointer;
 }
 
@@ -86,7 +85,7 @@ public string GetPointArrayName(int /*(int)*/ index) {
 public string GetCellArrayName(int /*(int)*/ index) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkXMLReader.GetCellArrayName_0(returnPointer.GetPtr(), this, index);
+	VTK_API.API_vtkXMLReader.GetCellArrayName_0(returnPointer.GetPtr(), this, index);
 	return (string)returnPointer;
 }
 
@@ -96,7 +95,7 @@ public string GetCellArrayName(int /*(int)*/ index) {
 public string GetColumnArrayName(int /*(int)*/ index) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkXMLReader.GetColumnArrayName_0(returnPointer.GetPtr(), this, index);
+	VTK_API.API_vtkXMLReader.GetColumnArrayName_0(returnPointer.GetPtr(), this, index);
 	return (string)returnPointer;
 }
 
@@ -106,7 +105,7 @@ public string GetColumnArrayName(int /*(int)*/ index) {
 public int GetPointArrayStatus(string /*(char*)*/ name) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkXMLReader.GetPointArrayStatus_0(returnPointer.GetPtr(), this, name);
+	VTK_API.API_vtkXMLReader.GetPointArrayStatus_0(returnPointer.GetPtr(), this, name);
 	return (int)returnPointer;
 }
 
@@ -116,7 +115,7 @@ public int GetPointArrayStatus(string /*(char*)*/ name) {
 public int GetCellArrayStatus(string /*(char*)*/ name) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkXMLReader.GetCellArrayStatus_0(returnPointer.GetPtr(), this, name);
+	VTK_API.API_vtkXMLReader.GetCellArrayStatus_0(returnPointer.GetPtr(), this, name);
 	return (int)returnPointer;
 }
 
@@ -124,14 +123,14 @@ public int GetCellArrayStatus(string /*(char*)*/ name) {
 // void SetPointArrayStatus(const char * name, int status)
 // "void SetPointArrayStatus(const char* name, int status)"
 public void SetPointArrayStatus(string /*(char*)*/ name, int /*(int)*/ status) {
-	API_vtkXMLReader.SetPointArrayStatus_0(this, name, status);
+	VTK_API.API_vtkXMLReader.SetPointArrayStatus_0(this, name, status);
 }
 
 
 // void SetCellArrayStatus(const char * name, int status)
 // "void SetCellArrayStatus(const char* name, int status)"
 public void SetCellArrayStatus(string /*(char*)*/ name, int /*(int)*/ status) {
-	API_vtkXMLReader.SetCellArrayStatus_0(this, name, status);
+	VTK_API.API_vtkXMLReader.SetCellArrayStatus_0(this, name, status);
 }
 
 
@@ -140,7 +139,7 @@ public void SetCellArrayStatus(string /*(char*)*/ name, int /*(int)*/ status) {
 public int GetColumnArrayStatus(string /*(char*)*/ name) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkXMLReader.GetColumnArrayStatus_0(returnPointer.GetPtr(), this, name);
+	VTK_API.API_vtkXMLReader.GetColumnArrayStatus_0(returnPointer.GetPtr(), this, name);
 	return (int)returnPointer;
 }
 
@@ -148,7 +147,7 @@ public int GetColumnArrayStatus(string /*(char*)*/ name) {
 // void SetColumnArrayStatus(const char * name, int status)
 // "void SetColumnArrayStatus(const char* name, int status)"
 public void SetColumnArrayStatus(string /*(char*)*/ name, int /*(int)*/ status) {
-	API_vtkXMLReader.SetColumnArrayStatus_0(this, name, status);
+	VTK_API.API_vtkXMLReader.SetColumnArrayStatus_0(this, name, status);
 }
 
 
@@ -157,7 +156,7 @@ public void SetColumnArrayStatus(string /*(char*)*/ name, int /*(int)*/ status) 
 public vtkXMLDataParser GetXMLParser() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkXMLReader.GetXMLParser_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkXMLReader.GetXMLParser_0(returnPointer.GetPtr(), this);
 	return (vtkXMLDataParser)(IntPtr)returnPointer;
 }
 
@@ -165,14 +164,14 @@ public vtkXMLDataParser GetXMLParser() {
 // void SetReaderErrorObserver(vtkCommand * ARG_0)
 // "void SetReaderErrorObserver(vtkCommand *)"
 public void SetReaderErrorObserver(vtkCommand /*(vtkCommand*)*/ ARG_0) {
-	API_vtkXMLReader.SetReaderErrorObserver_0(this, ARG_0);
+	VTK_API.API_vtkXMLReader.SetReaderErrorObserver_0(this, ARG_0);
 }
 
 
 // void SetParserErrorObserver(vtkCommand * ARG_0)
 // "void SetParserErrorObserver(vtkCommand *)"
 public void SetParserErrorObserver(vtkCommand /*(vtkCommand*)*/ ARG_0) {
-	API_vtkXMLReader.SetParserErrorObserver_0(this, ARG_0);
+	VTK_API.API_vtkXMLReader.SetParserErrorObserver_0(this, ARG_0);
 }
 
 

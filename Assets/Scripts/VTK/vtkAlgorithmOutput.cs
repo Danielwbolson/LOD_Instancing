@@ -15,7 +15,7 @@ public partial class vtkAlgorithmOutput : vtkObject {
 public static vtkAlgorithmOutput New() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkAlgorithmOutput.New_0(returnPointer.GetPtr());
+	VTK_API.API_vtkAlgorithmOutput.New_0(returnPointer.GetPtr());
 	return (vtkAlgorithmOutput)(IntPtr)returnPointer;
 }
 
@@ -23,7 +23,7 @@ public static vtkAlgorithmOutput New() {
 // void SetIndex(int index)
 // "void SetIndex(int index)"
 public void SetIndex(int /*(int)*/ index) {
-	API_vtkAlgorithmOutput.SetIndex_0(this, index);
+	VTK_API.API_vtkAlgorithmOutput.SetIndex_0(this, index);
 }
 
 
@@ -32,7 +32,7 @@ public void SetIndex(int /*(int)*/ index) {
 public int GetIndex() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkAlgorithmOutput.GetIndex_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkAlgorithmOutput.GetIndex_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
 
@@ -42,7 +42,7 @@ public int GetIndex() {
 public vtkAlgorithm GetProducer() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkAlgorithmOutput.GetProducer_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkAlgorithmOutput.GetProducer_0(returnPointer.GetPtr(), this);
 	return (vtkAlgorithm)(IntPtr)returnPointer;
 }
 
@@ -50,7 +50,7 @@ public vtkAlgorithm GetProducer() {
 // void SetProducer(vtkAlgorithm * producer)
 // "void SetProducer(vtkAlgorithm* producer)"
 public void SetProducer(vtkAlgorithm /*(vtkAlgorithm*)*/ producer) {
-	API_vtkAlgorithmOutput.SetProducer_0(this, producer);
+	VTK_API.API_vtkAlgorithmOutput.SetProducer_0(this, producer);
 }
 
 

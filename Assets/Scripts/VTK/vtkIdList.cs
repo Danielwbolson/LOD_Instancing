@@ -15,7 +15,7 @@ public partial class vtkIdList : vtkObject {
 public static vtkIdList New() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkIdList.New_0(returnPointer.GetPtr());
+	VTK_API.API_vtkIdList.New_0(returnPointer.GetPtr());
 	return (vtkIdList)(IntPtr)returnPointer;
 }
 
@@ -23,7 +23,7 @@ public static vtkIdList New() {
 // void Initialize()
 // "void Initialize()"
 public void Initialize() {
-	API_vtkIdList.Initialize_0(this);
+	VTK_API.API_vtkIdList.Initialize_0(this);
 }
 
 
@@ -32,7 +32,7 @@ public void Initialize() {
 public int Allocate(long /*(vtkIdType)*/ sz, int /*(int)*/ strategy) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkIdList.Allocate_0(returnPointer.GetPtr(), this, sz, strategy);
+	VTK_API.API_vtkIdList.Allocate_0(returnPointer.GetPtr(), this, sz, strategy);
 	return (int)returnPointer;
 }
 
@@ -42,7 +42,7 @@ public int Allocate(long /*(vtkIdType)*/ sz, int /*(int)*/ strategy) {
 public long GetNumberOfIds() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
-	API_vtkIdList.GetNumberOfIds_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkIdList.GetNumberOfIds_0(returnPointer.GetPtr(), this);
 	return (long)returnPointer;
 }
 
@@ -52,7 +52,7 @@ public long GetNumberOfIds() {
 public long GetId(long /*(vtkIdType)*/ i) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
-	API_vtkIdList.GetId_0(returnPointer.GetPtr(), this, i);
+	VTK_API.API_vtkIdList.GetId_0(returnPointer.GetPtr(), this, i);
 	return (long)returnPointer;
 }
 
@@ -60,21 +60,21 @@ public long GetId(long /*(vtkIdType)*/ i) {
 // void SetNumberOfIds(const vtkIdType number)
 // "void SetNumberOfIds(const vtkIdType number)"
 public void SetNumberOfIds(long /*(vtkIdType)*/ number) {
-	API_vtkIdList.SetNumberOfIds_0(this, number);
+	VTK_API.API_vtkIdList.SetNumberOfIds_0(this, number);
 }
 
 
 // void SetId(const vtkIdType i, const vtkIdType vtkid)
 // "void SetId(const vtkIdType i, const vtkIdType vtkid)"
 public void SetId(long /*(vtkIdType)*/ i, long /*(vtkIdType)*/ vtkid) {
-	API_vtkIdList.SetId_0(this, i, vtkid);
+	VTK_API.API_vtkIdList.SetId_0(this, i, vtkid);
 }
 
 
 // void InsertId(const vtkIdType i, const vtkIdType vtkid)
 // "void InsertId(const vtkIdType i, const vtkIdType vtkid)"
 public void InsertId(long /*(vtkIdType)*/ i, long /*(vtkIdType)*/ vtkid) {
-	API_vtkIdList.InsertId_0(this, i, vtkid);
+	VTK_API.API_vtkIdList.InsertId_0(this, i, vtkid);
 }
 
 
@@ -83,7 +83,7 @@ public void InsertId(long /*(vtkIdType)*/ i, long /*(vtkIdType)*/ vtkid) {
 public long InsertNextId(long /*(vtkIdType)*/ vtkid) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
-	API_vtkIdList.InsertNextId_0(returnPointer.GetPtr(), this, vtkid);
+	VTK_API.API_vtkIdList.InsertNextId_0(returnPointer.GetPtr(), this, vtkid);
 	return (long)returnPointer;
 }
 
@@ -93,7 +93,7 @@ public long InsertNextId(long /*(vtkIdType)*/ vtkid) {
 public long InsertUniqueId(long /*(vtkIdType)*/ vtkid) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
-	API_vtkIdList.InsertUniqueId_0(returnPointer.GetPtr(), this, vtkid);
+	VTK_API.API_vtkIdList.InsertUniqueId_0(returnPointer.GetPtr(), this, vtkid);
 	return (long)returnPointer;
 }
 
@@ -103,7 +103,7 @@ public long InsertUniqueId(long /*(vtkIdType)*/ vtkid) {
 public IntPtr GetPointer(long /*(vtkIdType)*/ i) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkIdList.GetPointer_0(returnPointer.GetPtr(), this, i);
+	VTK_API.API_vtkIdList.GetPointer_0(returnPointer.GetPtr(), this, i);
 	return (IntPtr)returnPointer;
 }
 
@@ -113,7 +113,7 @@ public IntPtr GetPointer(long /*(vtkIdType)*/ i) {
 public IntPtr WritePointer(long /*(vtkIdType)*/ i, long /*(vtkIdType)*/ number) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkIdList.WritePointer_0(returnPointer.GetPtr(), this, i, number);
+	VTK_API.API_vtkIdList.WritePointer_0(returnPointer.GetPtr(), this, i, number);
 	return (IntPtr)returnPointer;
 }
 
@@ -121,35 +121,35 @@ public IntPtr WritePointer(long /*(vtkIdType)*/ i, long /*(vtkIdType)*/ number) 
 // void SetArray(vtkIdType * array, vtkIdType size)
 // "void SetArray(vtkIdType *array, vtkIdType size)"
 public void SetArray(IntPtr /*(vtkIdType*)*/ array, long /*(vtkIdType)*/ size) {
-	API_vtkIdList.SetArray_0(this, array, size);
+	VTK_API.API_vtkIdList.SetArray_0(this, array, size);
 }
 
 
 // void Reset()
 // "void Reset()"
 public void Reset() {
-	API_vtkIdList.Reset_0(this);
+	VTK_API.API_vtkIdList.Reset_0(this);
 }
 
 
 // void Squeeze()
 // "void Squeeze()"
 public void Squeeze() {
-	API_vtkIdList.Squeeze_0(this);
+	VTK_API.API_vtkIdList.Squeeze_0(this);
 }
 
 
 // void DeepCopy(vtkIdList * ids)
 // "void DeepCopy(vtkIdList *ids)"
 public void DeepCopy(vtkIdList /*(vtkIdList*)*/ ids) {
-	API_vtkIdList.DeepCopy_0(this, ids);
+	VTK_API.API_vtkIdList.DeepCopy_0(this, ids);
 }
 
 
 // void DeleteId(vtkIdType vtkid)
 // "void DeleteId(vtkIdType vtkid)"
 public void DeleteId(long /*(vtkIdType)*/ vtkid) {
-	API_vtkIdList.DeleteId_0(this, vtkid);
+	VTK_API.API_vtkIdList.DeleteId_0(this, vtkid);
 }
 
 
@@ -158,7 +158,7 @@ public void DeleteId(long /*(vtkIdType)*/ vtkid) {
 public long IsId(long /*(vtkIdType)*/ vtkid) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
-	API_vtkIdList.IsId_0(returnPointer.GetPtr(), this, vtkid);
+	VTK_API.API_vtkIdList.IsId_0(returnPointer.GetPtr(), this, vtkid);
 	return (long)returnPointer;
 }
 
@@ -166,7 +166,7 @@ public long IsId(long /*(vtkIdType)*/ vtkid) {
 // void IntersectWith(vtkIdList * otherIds)
 // "void IntersectWith(vtkIdList* otherIds)"
 public void IntersectWith(vtkIdList /*(vtkIdList*)*/ otherIds) {
-	API_vtkIdList.IntersectWith_0(this, otherIds);
+	VTK_API.API_vtkIdList.IntersectWith_0(this, otherIds);
 }
 
 
@@ -175,7 +175,7 @@ public void IntersectWith(vtkIdList /*(vtkIdList*)*/ otherIds) {
 public IntPtr Resize(long /*(vtkIdType)*/ sz) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkIdList.Resize_0(returnPointer.GetPtr(), this, sz);
+	VTK_API.API_vtkIdList.Resize_0(returnPointer.GetPtr(), this, sz);
 	return (IntPtr)returnPointer;
 }
 

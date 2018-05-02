@@ -15,7 +15,7 @@ public partial class vtkPointData : vtkDataSetAttributes {
 public static vtkPointData New() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkPointData.New_0(returnPointer.GetPtr());
+	VTK_API.API_vtkPointData.New_0(returnPointer.GetPtr());
 	return (vtkPointData)(IntPtr)returnPointer;
 }
 
@@ -23,7 +23,7 @@ public static vtkPointData New() {
 // void NullPoint(vtkIdType ptId)
 // "void NullPoint(vtkIdType ptId)"
 public void NullPoint(long /*(vtkIdType)*/ ptId) {
-	API_vtkPointData.NullPoint_0(this, ptId);
+	VTK_API.API_vtkPointData.NullPoint_0(this, ptId);
 }
 
 

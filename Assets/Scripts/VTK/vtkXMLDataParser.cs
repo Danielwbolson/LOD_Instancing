@@ -15,7 +15,7 @@ public partial class vtkXMLDataParser : vtkXMLParser {
 public static vtkXMLDataParser New() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkXMLDataParser.New_0(returnPointer.GetPtr());
+	VTK_API.API_vtkXMLDataParser.New_0(returnPointer.GetPtr());
 	return (vtkXMLDataParser)(IntPtr)returnPointer;
 }
 
@@ -25,7 +25,7 @@ public static vtkXMLDataParser New() {
 public vtkXMLDataElement GetRootElement() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkXMLDataParser.GetRootElement_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkXMLDataParser.GetRootElement_0(returnPointer.GetPtr(), this);
 	return (vtkXMLDataElement)(IntPtr)returnPointer;
 }
 
@@ -35,7 +35,7 @@ public vtkXMLDataElement GetRootElement() {
 public ulong ReadInlineData(vtkXMLDataElement /*(vtkXMLDataElement*)*/ element, int /*(int)*/ isAscii, IntPtr /*(void*)*/ buffer, ulong /*(vtkTypeUInt64)*/ startWord, ulong /*(size_t)*/ numWords, int /*(int)*/ wordType) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new ulong(), return_elements);
-	API_vtkXMLDataParser.ReadInlineData_0(returnPointer.GetPtr(), this, element, isAscii, buffer, startWord, numWords, wordType);
+	VTK_API.API_vtkXMLDataParser.ReadInlineData_0(returnPointer.GetPtr(), this, element, isAscii, buffer, startWord, numWords, wordType);
 	return (ulong)returnPointer;
 }
 
@@ -45,7 +45,7 @@ public ulong ReadInlineData(vtkXMLDataElement /*(vtkXMLDataElement*)*/ element, 
 public ulong ReadInlineData(vtkXMLDataElement /*(vtkXMLDataElement*)*/ element, int /*(int)*/ isAscii, string /*(char*)*/ buffer, ulong /*(vtkTypeUInt64)*/ startWord, ulong /*(size_t)*/ numWords) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new ulong(), return_elements);
-	API_vtkXMLDataParser.ReadInlineData_1(returnPointer.GetPtr(), this, element, isAscii, buffer, startWord, numWords);
+	VTK_API.API_vtkXMLDataParser.ReadInlineData_1(returnPointer.GetPtr(), this, element, isAscii, buffer, startWord, numWords);
 	return (ulong)returnPointer;
 }
 
@@ -55,7 +55,7 @@ public ulong ReadInlineData(vtkXMLDataElement /*(vtkXMLDataElement*)*/ element, 
 public ulong ReadAppendedData(long /*(vtkTypeInt64)*/ offset, IntPtr /*(void*)*/ buffer, ulong /*(vtkTypeUInt64)*/ startWord, ulong /*(size_t)*/ numWords, int /*(int)*/ wordType) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new ulong(), return_elements);
-	API_vtkXMLDataParser.ReadAppendedData_0(returnPointer.GetPtr(), this, offset, buffer, startWord, numWords, wordType);
+	VTK_API.API_vtkXMLDataParser.ReadAppendedData_0(returnPointer.GetPtr(), this, offset, buffer, startWord, numWords, wordType);
 	return (ulong)returnPointer;
 }
 
@@ -65,7 +65,7 @@ public ulong ReadAppendedData(long /*(vtkTypeInt64)*/ offset, IntPtr /*(void*)*/
 public ulong ReadAppendedData(long /*(vtkTypeInt64)*/ offset, string /*(char*)*/ buffer, ulong /*(vtkTypeUInt64)*/ startWord, ulong /*(size_t)*/ numWords) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new ulong(), return_elements);
-	API_vtkXMLDataParser.ReadAppendedData_1(returnPointer.GetPtr(), this, offset, buffer, startWord, numWords);
+	VTK_API.API_vtkXMLDataParser.ReadAppendedData_1(returnPointer.GetPtr(), this, offset, buffer, startWord, numWords);
 	return (ulong)returnPointer;
 }
 
@@ -75,7 +75,7 @@ public ulong ReadAppendedData(long /*(vtkTypeInt64)*/ offset, string /*(char*)*/
 public ulong ReadAsciiData(IntPtr /*(void*)*/ buffer, ulong /*(vtkTypeUInt64)*/ startWord, ulong /*(size_t)*/ numWords, int /*(int)*/ wordType) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new ulong(), return_elements);
-	API_vtkXMLDataParser.ReadAsciiData_0(returnPointer.GetPtr(), this, buffer, startWord, numWords, wordType);
+	VTK_API.API_vtkXMLDataParser.ReadAsciiData_0(returnPointer.GetPtr(), this, buffer, startWord, numWords, wordType);
 	return (ulong)returnPointer;
 }
 
@@ -85,7 +85,7 @@ public ulong ReadAsciiData(IntPtr /*(void*)*/ buffer, ulong /*(vtkTypeUInt64)*/ 
 public ulong ReadBinaryData(IntPtr /*(void*)*/ buffer, ulong /*(vtkTypeUInt64)*/ startWord, ulong /*(size_t)*/ maxWords, int /*(int)*/ wordType) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new ulong(), return_elements);
-	API_vtkXMLDataParser.ReadBinaryData_0(returnPointer.GetPtr(), this, buffer, startWord, maxWords, wordType);
+	VTK_API.API_vtkXMLDataParser.ReadBinaryData_0(returnPointer.GetPtr(), this, buffer, startWord, maxWords, wordType);
 	return (ulong)returnPointer;
 }
 
@@ -93,7 +93,7 @@ public ulong ReadBinaryData(IntPtr /*(void*)*/ buffer, ulong /*(vtkTypeUInt64)*/
 // virtual void SetCompressor(vtkDataCompressor * ARG_0)
 // "virtual void SetCompressor(vtkDataCompressor*)"
 public void SetCompressor(vtkDataCompressor /*(vtkDataCompressor*)*/ ARG_0) {
-	API_vtkXMLDataParser.SetCompressor_0(this, ARG_0);
+	VTK_API.API_vtkXMLDataParser.SetCompressor_0(this, ARG_0);
 }
 
 
@@ -102,7 +102,7 @@ public void SetCompressor(vtkDataCompressor /*(vtkDataCompressor*)*/ ARG_0) {
 public ulong GetWordTypeSize(int /*(int)*/ wordType) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new ulong(), return_elements);
-	API_vtkXMLDataParser.GetWordTypeSize_0(returnPointer.GetPtr(), this, wordType);
+	VTK_API.API_vtkXMLDataParser.GetWordTypeSize_0(returnPointer.GetPtr(), this, wordType);
 	return (ulong)returnPointer;
 }
 
@@ -112,7 +112,7 @@ public ulong GetWordTypeSize(int /*(int)*/ wordType) {
 public int Parse() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkXMLDataParser.Parse_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkXMLDataParser.Parse_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
 
@@ -120,7 +120,7 @@ public int Parse() {
 // void CharacterDataHandler(const char * data, int length)
 // "void CharacterDataHandler(const char* data, int length)"
 public void CharacterDataHandler(string /*(char*)*/ data, int /*(int)*/ length) {
-	API_vtkXMLDataParser.CharacterDataHandler_0(this, data, length);
+	VTK_API.API_vtkXMLDataParser.CharacterDataHandler_0(this, data, length);
 }
 
 
@@ -129,7 +129,7 @@ public void CharacterDataHandler(string /*(char*)*/ data, int /*(int)*/ length) 
 public long GetAppendedDataPosition() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
-	API_vtkXMLDataParser.GetAppendedDataPosition_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkXMLDataParser.GetAppendedDataPosition_0(returnPointer.GetPtr(), this);
 	return (long)returnPointer;
 }
 

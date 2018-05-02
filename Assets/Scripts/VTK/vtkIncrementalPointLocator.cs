@@ -15,7 +15,7 @@ public partial class vtkIncrementalPointLocator : vtkAbstractPointLocator {
 public long FindClosestInsertedPoint(double /*(double[3])*/ []x) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
-	API_vtkIncrementalPointLocator.FindClosestInsertedPoint_0(returnPointer.GetPtr(), this, x);
+	VTK_API.API_vtkIncrementalPointLocator.FindClosestInsertedPoint_0(returnPointer.GetPtr(), this, x);
 	return (long)returnPointer;
 }
 
@@ -25,7 +25,7 @@ public long FindClosestInsertedPoint(double /*(double[3])*/ []x) {
 public int InitPointInsertion(vtkPoints /*(vtkPoints*)*/ newPts, double /*(double[6])*/ []bounds) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkIncrementalPointLocator.InitPointInsertion_0(returnPointer.GetPtr(), this, newPts, bounds);
+	VTK_API.API_vtkIncrementalPointLocator.InitPointInsertion_0(returnPointer.GetPtr(), this, newPts, bounds);
 	return (int)returnPointer;
 }
 
@@ -35,7 +35,7 @@ public int InitPointInsertion(vtkPoints /*(vtkPoints*)*/ newPts, double /*(doubl
 public int InitPointInsertion(vtkPoints /*(vtkPoints*)*/ newPts, double /*(double[6])*/ []bounds, long /*(vtkIdType)*/ estSize) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkIncrementalPointLocator.InitPointInsertion_1(returnPointer.GetPtr(), this, newPts, bounds, estSize);
+	VTK_API.API_vtkIncrementalPointLocator.InitPointInsertion_1(returnPointer.GetPtr(), this, newPts, bounds, estSize);
 	return (int)returnPointer;
 }
 
@@ -45,7 +45,7 @@ public int InitPointInsertion(vtkPoints /*(vtkPoints*)*/ newPts, double /*(doubl
 public long IsInsertedPoint(double /*(double)*/ x, double /*(double)*/ y, double /*(double)*/ z) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
-	API_vtkIncrementalPointLocator.IsInsertedPoint_0(returnPointer.GetPtr(), this, x, y, z);
+	VTK_API.API_vtkIncrementalPointLocator.IsInsertedPoint_0(returnPointer.GetPtr(), this, x, y, z);
 	return (long)returnPointer;
 }
 
@@ -55,7 +55,7 @@ public long IsInsertedPoint(double /*(double)*/ x, double /*(double)*/ y, double
 public long IsInsertedPoint(double /*(double[3])*/ []x) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
-	API_vtkIncrementalPointLocator.IsInsertedPoint_1(returnPointer.GetPtr(), this, x);
+	VTK_API.API_vtkIncrementalPointLocator.IsInsertedPoint_1(returnPointer.GetPtr(), this, x);
 	return (long)returnPointer;
 }
 
@@ -65,7 +65,7 @@ public long IsInsertedPoint(double /*(double[3])*/ []x) {
 public int InsertUniquePoint(double /*(double[3])*/ []x, IntPtr /*(vtkIdType&)*/ ptId) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	API_vtkIncrementalPointLocator.InsertUniquePoint_0(returnPointer.GetPtr(), this, x, ptId);
+	VTK_API.API_vtkIncrementalPointLocator.InsertUniquePoint_0(returnPointer.GetPtr(), this, x, ptId);
 	return (int)returnPointer;
 }
 
@@ -73,7 +73,7 @@ public int InsertUniquePoint(double /*(double[3])*/ []x, IntPtr /*(vtkIdType&)*/
 // virtual void InsertPoint(vtkIdType ptId, const double x[3])
 // "virtual void InsertPoint( vtkIdType ptId, const double x[3] )"
 public void InsertPoint(long /*(vtkIdType)*/ ptId, double /*(double[3])*/ []x) {
-	API_vtkIncrementalPointLocator.InsertPoint_0(this, ptId, x);
+	VTK_API.API_vtkIncrementalPointLocator.InsertPoint_0(this, ptId, x);
 }
 
 
@@ -82,7 +82,7 @@ public void InsertPoint(long /*(vtkIdType)*/ ptId, double /*(double[3])*/ []x) {
 public long InsertNextPoint(double /*(double[3])*/ []x) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
-	API_vtkIncrementalPointLocator.InsertNextPoint_0(returnPointer.GetPtr(), this, x);
+	VTK_API.API_vtkIncrementalPointLocator.InsertNextPoint_0(returnPointer.GetPtr(), this, x);
 	return (long)returnPointer;
 }
 

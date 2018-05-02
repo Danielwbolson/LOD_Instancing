@@ -15,7 +15,7 @@ public partial class vtkXMLDataReader : vtkXMLReader {
 public long GetNumberOfPoints() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
-	API_vtkXMLDataReader.GetNumberOfPoints_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkXMLDataReader.GetNumberOfPoints_0(returnPointer.GetPtr(), this);
 	return (long)returnPointer;
 }
 
@@ -25,7 +25,7 @@ public long GetNumberOfPoints() {
 public long GetNumberOfCells() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
-	API_vtkXMLDataReader.GetNumberOfCells_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkXMLDataReader.GetNumberOfCells_0(returnPointer.GetPtr(), this);
 	return (long)returnPointer;
 }
 

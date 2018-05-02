@@ -15,7 +15,7 @@ public partial class vtkCellData : vtkDataSetAttributes {
 public static vtkCellData New() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkCellData.New_0(returnPointer.GetPtr());
+	VTK_API.API_vtkCellData.New_0(returnPointer.GetPtr());
 	return (vtkCellData)(IntPtr)returnPointer;
 }
 

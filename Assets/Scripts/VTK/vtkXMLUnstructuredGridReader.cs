@@ -15,7 +15,7 @@ public partial class vtkXMLUnstructuredGridReader : vtkXMLUnstructuredDataReader
 public static vtkXMLUnstructuredGridReader New() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkXMLUnstructuredGridReader.New_0(returnPointer.GetPtr());
+	VTK_API.API_vtkXMLUnstructuredGridReader.New_0(returnPointer.GetPtr());
 	return (vtkXMLUnstructuredGridReader)(IntPtr)returnPointer;
 }
 
@@ -25,7 +25,7 @@ public static vtkXMLUnstructuredGridReader New() {
 public vtkUnstructuredGrid GetOutput() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkXMLUnstructuredGridReader.GetOutput_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkXMLUnstructuredGridReader.GetOutput_0(returnPointer.GetPtr(), this);
 	return (vtkUnstructuredGrid)(IntPtr)returnPointer;
 }
 
@@ -35,7 +35,7 @@ public vtkUnstructuredGrid GetOutput() {
 public vtkUnstructuredGrid GetOutput(int /*(int)*/ idx) {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
-	API_vtkXMLUnstructuredGridReader.GetOutput_1(returnPointer.GetPtr(), this, idx);
+	VTK_API.API_vtkXMLUnstructuredGridReader.GetOutput_1(returnPointer.GetPtr(), this, idx);
 	return (vtkUnstructuredGrid)(IntPtr)returnPointer;
 }
 
