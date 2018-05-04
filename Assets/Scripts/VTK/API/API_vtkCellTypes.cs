@@ -12,6 +12,26 @@ class API_vtkCellTypes {
 [DllImport("vtkplugin", EntryPoint="vtkCellTypes_New_0")] public static extern 
 bool New_0(IntPtr /*(IntPtr**)*/ return_value);
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// static vtkTypeBool IsTypeOf(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkCellTypes_IsTypeOf_0")] public static extern 
+bool IsTypeOf_0(IntPtr /*(IntPtr*)*/ return_value, string /*(char*)*/ type);
+
+// vtkTypeBool IsA(const char * type)
+// vtkTypeBool IsA(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkCellTypes_IsA_0")] public static extern 
+bool IsA_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkCellTypes*)*/ callingObject, string /*(char*)*/ type);
+
+// static vtkCellTypes* SafeDownCast(vtkObjectBase * o)
+// static vtkCellTypes* SafeDownCast(vtkObjectBase *o)
+[DllImport("vtkplugin", EntryPoint="vtkCellTypes_SafeDownCast_0")] public static extern 
+bool SafeDownCast_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ o);
+
+// vtkCellTypes* NewInstance()
+// vtkCellTypes *NewInstance()
+[DllImport("vtkplugin", EntryPoint="vtkCellTypes_NewInstance_0")] public static extern 
+bool NewInstance_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkCellTypes*)*/ callingObject);
+
 // int Allocate(int sz = 512, int ext = 1000)
 // int Allocate(int sz=512, int ext=1000)
 [DllImport("vtkplugin", EntryPoint="vtkCellTypes_Allocate_0")] public static extern 

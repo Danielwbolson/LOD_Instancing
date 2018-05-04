@@ -10,6 +10,46 @@ public partial class vtkAbstractPointLocator : vtkLocator {
 		public static implicit operator  vtkAbstractPointLocator(IntPtr p) {return new vtkAbstractPointLocator(p);}
 		public static implicit operator  IntPtr(vtkAbstractPointLocator o) {return o.GetPtr();}
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// "static vtkTypeBool IsTypeOf(const char *type)"
+public static bool IsTypeOf(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkAbstractPointLocator.IsTypeOf_0(returnPointer.GetPtr(), type);
+	return (bool)returnPointer;
+}
+
+
+// vtkTypeBool IsA(const char * type)
+// "vtkTypeBool IsA(const char *type)"
+public bool IsA(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkAbstractPointLocator.IsA_0(returnPointer.GetPtr(), this, type);
+	return (bool)returnPointer;
+}
+
+
+// static vtkAbstractPointLocator* SafeDownCast(vtkObjectBase * o)
+// "static vtkAbstractPointLocator* SafeDownCast(vtkObjectBase *o)"
+public static vtkAbstractPointLocator SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkAbstractPointLocator.SafeDownCast_0(returnPointer.GetPtr(), o);
+	return (vtkAbstractPointLocator)(IntPtr)returnPointer;
+}
+
+
+// vtkAbstractPointLocator* NewInstance()
+// "vtkAbstractPointLocator *NewInstance()"
+public vtkAbstractPointLocator NewInstance() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkAbstractPointLocator.NewInstance_0(returnPointer.GetPtr(), this);
+	return (vtkAbstractPointLocator)(IntPtr)returnPointer;
+}
+
+
 // virtual vtkIdType FindClosestPoint(const double x[3])
 // "virtual vtkIdType FindClosestPoint(const double x[3])"
 public long FindClosestPoint(double /*(double[3])*/ []x) {
@@ -82,6 +122,16 @@ public IntPtr GetBounds() {
 // "virtual void GetBounds(double*)"
 public void GetBounds(IntPtr /*(double*)*/ ARG_0) {
 	VTK_API.API_vtkAbstractPointLocator.GetBounds_1(this, ARG_0);
+}
+
+
+// virtual vtkIdType GetNumberOfBuckets()
+// "virtual vtkIdType GetNumberOfBuckets ()"
+public long GetNumberOfBuckets() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	VTK_API.API_vtkAbstractPointLocator.GetNumberOfBuckets_0(returnPointer.GetPtr(), this);
+	return (long)returnPointer;
 }
 
 

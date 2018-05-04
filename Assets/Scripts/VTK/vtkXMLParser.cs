@@ -10,6 +10,46 @@ public partial class vtkXMLParser : vtkObject {
 		public static implicit operator  vtkXMLParser(IntPtr p) {return new vtkXMLParser(p);}
 		public static implicit operator  IntPtr(vtkXMLParser o) {return o.GetPtr();}
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// "static vtkTypeBool IsTypeOf(const char *type)"
+public static bool IsTypeOf(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkXMLParser.IsTypeOf_0(returnPointer.GetPtr(), type);
+	return (bool)returnPointer;
+}
+
+
+// vtkTypeBool IsA(const char * type)
+// "vtkTypeBool IsA(const char *type)"
+public bool IsA(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkXMLParser.IsA_0(returnPointer.GetPtr(), this, type);
+	return (bool)returnPointer;
+}
+
+
+// static vtkXMLParser* SafeDownCast(vtkObjectBase * o)
+// "static vtkXMLParser* SafeDownCast(vtkObjectBase *o)"
+public static vtkXMLParser SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkXMLParser.SafeDownCast_0(returnPointer.GetPtr(), o);
+	return (vtkXMLParser)(IntPtr)returnPointer;
+}
+
+
+// vtkXMLParser* NewInstance()
+// "vtkXMLParser *NewInstance()"
+public vtkXMLParser NewInstance() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkXMLParser.NewInstance_0(returnPointer.GetPtr(), this);
+	return (vtkXMLParser)(IntPtr)returnPointer;
+}
+
+
 // static vtkXMLParser* New()
 // "static vtkXMLParser* New()"
 public static vtkXMLParser New() {
@@ -17,6 +57,23 @@ public static vtkXMLParser New() {
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
 	VTK_API.API_vtkXMLParser.New_0(returnPointer.GetPtr());
 	return (vtkXMLParser)(IntPtr)returnPointer;
+}
+
+
+// virtual void SetStream(istream * _arg)
+// "virtual void SetStream (istream* _arg)"
+public void SetStream(IntPtr /*(istream*)*/ _arg) {
+	VTK_API.API_vtkXMLParser.SetStream_0(this, _arg);
+}
+
+
+// virtual istream* GetStream()
+// "virtual istream* GetStream ()"
+public IntPtr GetStream() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkXMLParser.GetStream_0(returnPointer.GetPtr(), this);
+	return (IntPtr)returnPointer;
 }
 
 
@@ -94,6 +151,57 @@ public int CleanupParser() {
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
 	VTK_API.API_vtkXMLParser.CleanupParser_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
+}
+
+
+// virtual void SetFileName(const char * _arg)
+// "virtual void SetFileName (const char* _arg)"
+public void SetFileName(string /*(char*)*/ _arg) {
+	VTK_API.API_vtkXMLParser.SetFileName_0(this, _arg);
+}
+
+
+// virtual char* GetFileName()
+// "virtual char* GetFileName ()"
+public string GetFileName() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkXMLParser.GetFileName_0(returnPointer.GetPtr(), this);
+	return (string)returnPointer;
+}
+
+
+// virtual void SetIgnoreCharacterData(int _arg)
+// "virtual void SetIgnoreCharacterData (int _arg)"
+public void SetIgnoreCharacterData(int /*(int)*/ _arg) {
+	VTK_API.API_vtkXMLParser.SetIgnoreCharacterData_0(this, _arg);
+}
+
+
+// virtual int GetIgnoreCharacterData()
+// "virtual int GetIgnoreCharacterData ()"
+public int GetIgnoreCharacterData() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	VTK_API.API_vtkXMLParser.GetIgnoreCharacterData_0(returnPointer.GetPtr(), this);
+	return (int)returnPointer;
+}
+
+
+// virtual void SetEncoding(const char * _arg)
+// "virtual void SetEncoding (const char* _arg)"
+public void SetEncoding(string /*(char*)*/ _arg) {
+	VTK_API.API_vtkXMLParser.SetEncoding_0(this, _arg);
+}
+
+
+// virtual char* GetEncoding()
+// "virtual char* GetEncoding ()"
+public string GetEncoding() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkXMLParser.GetEncoding_0(returnPointer.GetPtr(), this);
+	return (string)returnPointer;
 }
 
 

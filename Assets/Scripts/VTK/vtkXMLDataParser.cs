@@ -10,6 +10,46 @@ public partial class vtkXMLDataParser : vtkXMLParser {
 		public static implicit operator  vtkXMLDataParser(IntPtr p) {return new vtkXMLDataParser(p);}
 		public static implicit operator  IntPtr(vtkXMLDataParser o) {return o.GetPtr();}
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// "static vtkTypeBool IsTypeOf(const char *type)"
+public static bool IsTypeOf(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkXMLDataParser.IsTypeOf_0(returnPointer.GetPtr(), type);
+	return (bool)returnPointer;
+}
+
+
+// vtkTypeBool IsA(const char * type)
+// "vtkTypeBool IsA(const char *type)"
+public bool IsA(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkXMLDataParser.IsA_0(returnPointer.GetPtr(), this, type);
+	return (bool)returnPointer;
+}
+
+
+// static vtkXMLDataParser* SafeDownCast(vtkObjectBase * o)
+// "static vtkXMLDataParser* SafeDownCast(vtkObjectBase *o)"
+public static vtkXMLDataParser SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkXMLDataParser.SafeDownCast_0(returnPointer.GetPtr(), o);
+	return (vtkXMLDataParser)(IntPtr)returnPointer;
+}
+
+
+// vtkXMLDataParser* NewInstance()
+// "vtkXMLDataParser *NewInstance()"
+public vtkXMLDataParser NewInstance() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkXMLDataParser.NewInstance_0(returnPointer.GetPtr(), this);
+	return (vtkXMLDataParser)(IntPtr)returnPointer;
+}
+
+
 // static vtkXMLDataParser* New()
 // "static vtkXMLDataParser* New()"
 public static vtkXMLDataParser New() {
@@ -97,6 +137,16 @@ public void SetCompressor(vtkDataCompressor /*(vtkDataCompressor*)*/ ARG_0) {
 }
 
 
+// virtual vtkDataCompressor* GetCompressor()
+// "virtual vtkDataCompressor *GetCompressor ()"
+public vtkDataCompressor GetCompressor() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkXMLDataParser.GetCompressor_0(returnPointer.GetPtr(), this);
+	return (vtkDataCompressor)(IntPtr)returnPointer;
+}
+
+
 // size_t GetWordTypeSize(int wordType)
 // "size_t GetWordTypeSize(int wordType)"
 public ulong GetWordTypeSize(int /*(int)*/ wordType) {
@@ -113,6 +163,77 @@ public int Parse() {
 	int return_elements = 1;
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
 	VTK_API.API_vtkXMLDataParser.Parse_0(returnPointer.GetPtr(), this);
+	return (int)returnPointer;
+}
+
+
+// virtual int GetAbort()
+// "virtual int GetAbort ()"
+public int GetAbort() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	VTK_API.API_vtkXMLDataParser.GetAbort_0(returnPointer.GetPtr(), this);
+	return (int)returnPointer;
+}
+
+
+// virtual void SetAbort(int _arg)
+// "virtual void SetAbort (int _arg)"
+public void SetAbort(int /*(int)*/ _arg) {
+	VTK_API.API_vtkXMLDataParser.SetAbort_0(this, _arg);
+}
+
+
+// virtual float GetProgress()
+// "virtual float GetProgress ()"
+public float GetProgress() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new float(), return_elements);
+	VTK_API.API_vtkXMLDataParser.GetProgress_0(returnPointer.GetPtr(), this);
+	return (float)returnPointer;
+}
+
+
+// virtual void SetProgress(float _arg)
+// "virtual void SetProgress (float _arg)"
+public void SetProgress(float /*(float)*/ _arg) {
+	VTK_API.API_vtkXMLDataParser.SetProgress_0(this, _arg);
+}
+
+
+// virtual void SetAttributesEncoding(int _arg)
+// "virtual void SetAttributesEncoding (int _arg)"
+public void SetAttributesEncoding(int /*(int)*/ _arg) {
+	VTK_API.API_vtkXMLDataParser.SetAttributesEncoding_0(this, _arg);
+}
+
+
+// virtual int GetAttributesEncodingMinValue()
+// "virtual int GetAttributesEncodingMinValue ()"
+public int GetAttributesEncodingMinValue() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	VTK_API.API_vtkXMLDataParser.GetAttributesEncodingMinValue_0(returnPointer.GetPtr(), this);
+	return (int)returnPointer;
+}
+
+
+// virtual int GetAttributesEncodingMaxValue()
+// "virtual int GetAttributesEncodingMaxValue ()"
+public int GetAttributesEncodingMaxValue() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	VTK_API.API_vtkXMLDataParser.GetAttributesEncodingMaxValue_0(returnPointer.GetPtr(), this);
+	return (int)returnPointer;
+}
+
+
+// virtual int GetAttributesEncoding()
+// "virtual int GetAttributesEncoding ()"
+public int GetAttributesEncoding() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	VTK_API.API_vtkXMLDataParser.GetAttributesEncoding_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
 

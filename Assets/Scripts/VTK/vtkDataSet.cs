@@ -10,6 +10,46 @@ public partial class vtkDataSet : vtkDataObject {
 		public static implicit operator  vtkDataSet(IntPtr p) {return new vtkDataSet(p);}
 		public static implicit operator  IntPtr(vtkDataSet o) {return o.GetPtr();}
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// "static vtkTypeBool IsTypeOf(const char *type)"
+public static bool IsTypeOf(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkDataSet.IsTypeOf_0(returnPointer.GetPtr(), type);
+	return (bool)returnPointer;
+}
+
+
+// vtkTypeBool IsA(const char * type)
+// "vtkTypeBool IsA(const char *type)"
+public bool IsA(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkDataSet.IsA_0(returnPointer.GetPtr(), this, type);
+	return (bool)returnPointer;
+}
+
+
+// static vtkDataSet* SafeDownCast(vtkObjectBase * o)
+// "static vtkDataSet* SafeDownCast(vtkObjectBase *o)"
+public static vtkDataSet SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkDataSet.SafeDownCast_0(returnPointer.GetPtr(), o);
+	return (vtkDataSet)(IntPtr)returnPointer;
+}
+
+
+// vtkDataSet* NewInstance()
+// "vtkDataSet *NewInstance()"
+public vtkDataSet NewInstance() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkDataSet.NewInstance_0(returnPointer.GetPtr(), this);
+	return (vtkDataSet)(IntPtr)returnPointer;
+}
+
+
 // virtual void CopyStructure(vtkDataSet * ds)
 // "virtual void CopyStructure(vtkDataSet *ds)"
 public void CopyStructure(vtkDataSet /*(vtkDataSet*)*/ ds) {
@@ -81,10 +121,20 @@ public vtkCell GetCell(long /*(vtkIdType)*/ cellId) {
 }
 
 
+// virtual vtkCell* GetCell(int ARG_0, int ARG_1, int ARG_2)
+// "virtual vtkCell *GetCell(int , int , int )"
+public vtkCell GetCell(int /*(int)*/ ARG_0, int /*(int)*/ ARG_1, int /*(int)*/ ARG_2) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkDataSet.GetCell_1(returnPointer.GetPtr(), this, ARG_0, ARG_1, ARG_2);
+	return (vtkCell)(IntPtr)returnPointer;
+}
+
+
 // virtual void GetCell(vtkIdType cellId, vtkGenericCell * cell)
 // "virtual void GetCell(vtkIdType cellId, vtkGenericCell *cell)"
 public void GetCell(long /*(vtkIdType)*/ cellId, vtkGenericCell /*(vtkGenericCell*)*/ cell) {
-	VTK_API.API_vtkDataSet.GetCell_1(this, cellId, cell);
+	VTK_API.API_vtkDataSet.GetCell_2(this, cellId, cell);
 }
 
 

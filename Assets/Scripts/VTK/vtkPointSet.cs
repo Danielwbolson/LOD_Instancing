@@ -10,6 +10,46 @@ public partial class vtkPointSet : vtkDataSet {
 		public static implicit operator  vtkPointSet(IntPtr p) {return new vtkPointSet(p);}
 		public static implicit operator  IntPtr(vtkPointSet o) {return o.GetPtr();}
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// "static vtkTypeBool IsTypeOf(const char *type)"
+public static bool IsTypeOf(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkPointSet.IsTypeOf_0(returnPointer.GetPtr(), type);
+	return (bool)returnPointer;
+}
+
+
+// vtkTypeBool IsA(const char * type)
+// "vtkTypeBool IsA(const char *type)"
+public bool IsA(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkPointSet.IsA_0(returnPointer.GetPtr(), this, type);
+	return (bool)returnPointer;
+}
+
+
+// static vtkPointSet* SafeDownCast(vtkObjectBase * o)
+// "static vtkPointSet* SafeDownCast(vtkObjectBase *o)"
+public static vtkPointSet SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkPointSet.SafeDownCast_0(returnPointer.GetPtr(), o);
+	return (vtkPointSet)(IntPtr)returnPointer;
+}
+
+
+// vtkPointSet* NewInstance()
+// "vtkPointSet *NewInstance()"
+public vtkPointSet NewInstance() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkPointSet.NewInstance_0(returnPointer.GetPtr(), this);
+	return (vtkPointSet)(IntPtr)returnPointer;
+}
+
+
 // void Initialize()
 // "void Initialize()"
 public void Initialize() {
@@ -129,6 +169,16 @@ public void Squeeze() {
 // "virtual void SetPoints(vtkPoints*)"
 public void SetPoints(vtkPoints /*(vtkPoints*)*/ ARG_0) {
 	VTK_API.API_vtkPointSet.SetPoints_0(this, ARG_0);
+}
+
+
+// virtual vtkPoints* GetPoints()
+// "virtual vtkPoints *GetPoints ()"
+public vtkPoints GetPoints() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkPointSet.GetPoints_0(returnPointer.GetPtr(), this);
+	return (vtkPoints)(IntPtr)returnPointer;
 }
 
 

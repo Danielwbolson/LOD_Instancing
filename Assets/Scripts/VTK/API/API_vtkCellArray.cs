@@ -7,6 +7,26 @@ using System.Linq;
 namespace VTK_API {
 class API_vtkCellArray {
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// static vtkTypeBool IsTypeOf(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkCellArray_IsTypeOf_0")] public static extern 
+bool IsTypeOf_0(IntPtr /*(IntPtr*)*/ return_value, string /*(char*)*/ type);
+
+// vtkTypeBool IsA(const char * type)
+// vtkTypeBool IsA(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkCellArray_IsA_0")] public static extern 
+bool IsA_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkCellArray*)*/ callingObject, string /*(char*)*/ type);
+
+// static vtkCellArray* SafeDownCast(vtkObjectBase * o)
+// static vtkCellArray* SafeDownCast(vtkObjectBase *o)
+[DllImport("vtkplugin", EntryPoint="vtkCellArray_SafeDownCast_0")] public static extern 
+bool SafeDownCast_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ o);
+
+// vtkCellArray* NewInstance()
+// vtkCellArray *NewInstance()
+[DllImport("vtkplugin", EntryPoint="vtkCellArray_NewInstance_0")] public static extern 
+bool NewInstance_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkCellArray*)*/ callingObject);
+
 // static vtkCellArray* New()
 // static vtkCellArray *New()
 [DllImport("vtkplugin", EntryPoint="vtkCellArray_New_0")] public static extern 
@@ -22,6 +42,16 @@ bool Allocate_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkCellArray*)*/ ca
 [DllImport("vtkplugin", EntryPoint="vtkCellArray_Initialize_0")] public static extern 
 bool Initialize_0(IntPtr /*(vtkCellArray*)*/ callingObject);
 
+// virtual vtkIdType GetNumberOfCells()
+// virtual vtkIdType GetNumberOfCells ()
+[DllImport("vtkplugin", EntryPoint="vtkCellArray_GetNumberOfCells_0")] public static extern 
+bool GetNumberOfCells_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkCellArray*)*/ callingObject);
+
+// virtual void SetNumberOfCells(vtkIdType _arg)
+// virtual void SetNumberOfCells (vtkIdType _arg)
+[DllImport("vtkplugin", EntryPoint="vtkCellArray_SetNumberOfCells_0")] public static extern 
+bool SetNumberOfCells_0(IntPtr /*(vtkCellArray*)*/ callingObject, long /*(vtkIdType)*/ _arg);
+
 // vtkIdType EstimateSize(vtkIdType numCells, int maxPtsPerCell)
 // vtkIdType EstimateSize(vtkIdType numCells, int maxPtsPerCell)
 [DllImport("vtkplugin", EntryPoint="vtkCellArray_EstimateSize_0")] public static extern 
@@ -32,10 +62,15 @@ bool EstimateSize_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkCellArray*)*
 [DllImport("vtkplugin", EntryPoint="vtkCellArray_InitTraversal_0")] public static extern 
 bool InitTraversal_0(IntPtr /*(vtkCellArray*)*/ callingObject);
 
+// int GetNextCell(vtkIdType & npts, vtkIdType *& pts)
+// int GetNextCell(vtkIdType& npts, vtkIdType* &pts)
+[DllImport("vtkplugin", EntryPoint="vtkCellArray_GetNextCell_0")] public static extern 
+bool GetNextCell_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkCellArray*)*/ callingObject, IntPtr /*(vtkIdType&)*/ npts, IntPtr /*(vtkIdType*&)*/ pts);
+
 // int GetNextCell(vtkIdList * pts)
 // int GetNextCell(vtkIdList *pts)
-[DllImport("vtkplugin", EntryPoint="vtkCellArray_GetNextCell_0")] public static extern 
-bool GetNextCell_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkCellArray*)*/ callingObject, IntPtr /*(vtkIdList*)*/ pts);
+[DllImport("vtkplugin", EntryPoint="vtkCellArray_GetNextCell_1")] public static extern 
+bool GetNextCell_1(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkCellArray*)*/ callingObject, IntPtr /*(vtkIdList*)*/ pts);
 
 // vtkIdType GetSize()
 // vtkIdType GetSize()
@@ -62,15 +97,20 @@ bool GetCell_1(IntPtr /*(vtkCellArray*)*/ callingObject, long /*(vtkIdType)*/ lo
 [DllImport("vtkplugin", EntryPoint="vtkCellArray_InsertNextCell_0")] public static extern 
 bool InsertNextCell_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkCellArray*)*/ callingObject, IntPtr /*(vtkCell*)*/ cell);
 
+// vtkIdType InsertNextCell(vtkIdType npts, const vtkIdType * pts)
+// vtkIdType InsertNextCell(vtkIdType npts, const vtkIdType* pts)
+[DllImport("vtkplugin", EntryPoint="vtkCellArray_InsertNextCell_1")] public static extern 
+bool InsertNextCell_1(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkCellArray*)*/ callingObject, long /*(vtkIdType)*/ npts, IntPtr /*(vtkIdType*)*/ pts);
+
 // vtkIdType InsertNextCell(vtkIdList * pts)
 // vtkIdType InsertNextCell(vtkIdList *pts)
-[DllImport("vtkplugin", EntryPoint="vtkCellArray_InsertNextCell_1")] public static extern 
-bool InsertNextCell_1(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkCellArray*)*/ callingObject, IntPtr /*(vtkIdList*)*/ pts);
+[DllImport("vtkplugin", EntryPoint="vtkCellArray_InsertNextCell_2")] public static extern 
+bool InsertNextCell_2(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkCellArray*)*/ callingObject, IntPtr /*(vtkIdList*)*/ pts);
 
 // vtkIdType InsertNextCell(int npts)
 // vtkIdType InsertNextCell(int npts)
-[DllImport("vtkplugin", EntryPoint="vtkCellArray_InsertNextCell_2")] public static extern 
-bool InsertNextCell_2(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkCellArray*)*/ callingObject, int /*(int)*/ npts);
+[DllImport("vtkplugin", EntryPoint="vtkCellArray_InsertNextCell_3")] public static extern 
+bool InsertNextCell_3(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkCellArray*)*/ callingObject, int /*(int)*/ npts);
 
 // void InsertCellPoint(vtkIdType id)
 // void InsertCellPoint(vtkIdType id)

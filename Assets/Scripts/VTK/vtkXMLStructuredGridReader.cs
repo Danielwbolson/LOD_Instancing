@@ -10,6 +10,46 @@ public partial class vtkXMLStructuredGridReader : vtkXMLStructuredDataReader {
 		public static implicit operator  vtkXMLStructuredGridReader(IntPtr p) {return new vtkXMLStructuredGridReader(p);}
 		public static implicit operator  IntPtr(vtkXMLStructuredGridReader o) {return o.GetPtr();}
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// "static vtkTypeBool IsTypeOf(const char *type)"
+public static bool IsTypeOf(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkXMLStructuredGridReader.IsTypeOf_0(returnPointer.GetPtr(), type);
+	return (bool)returnPointer;
+}
+
+
+// vtkTypeBool IsA(const char * type)
+// "vtkTypeBool IsA(const char *type)"
+public bool IsA(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkXMLStructuredGridReader.IsA_0(returnPointer.GetPtr(), this, type);
+	return (bool)returnPointer;
+}
+
+
+// static vtkXMLStructuredGridReader* SafeDownCast(vtkObjectBase * o)
+// "static vtkXMLStructuredGridReader* SafeDownCast(vtkObjectBase *o)"
+public static vtkXMLStructuredGridReader SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkXMLStructuredGridReader.SafeDownCast_0(returnPointer.GetPtr(), o);
+	return (vtkXMLStructuredGridReader)(IntPtr)returnPointer;
+}
+
+
+// vtkXMLStructuredGridReader* NewInstance()
+// "vtkXMLStructuredGridReader *NewInstance()"
+public vtkXMLStructuredGridReader NewInstance() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkXMLStructuredGridReader.NewInstance_0(returnPointer.GetPtr(), this);
+	return (vtkXMLStructuredGridReader)(IntPtr)returnPointer;
+}
+
+
 // static vtkXMLStructuredGridReader* New()
 // "static vtkXMLStructuredGridReader *New()"
 public static vtkXMLStructuredGridReader New() {

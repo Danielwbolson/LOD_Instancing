@@ -7,6 +7,26 @@ using System.Linq;
 namespace VTK_API {
 class API_vtkScalarsToColors {
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// static vtkTypeBool IsTypeOf(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkScalarsToColors_IsTypeOf_0")] public static extern 
+bool IsTypeOf_0(IntPtr /*(IntPtr*)*/ return_value, string /*(char*)*/ type);
+
+// vtkTypeBool IsA(const char * type)
+// vtkTypeBool IsA(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkScalarsToColors_IsA_0")] public static extern 
+bool IsA_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkScalarsToColors*)*/ callingObject, string /*(char*)*/ type);
+
+// static vtkScalarsToColors* SafeDownCast(vtkObjectBase * o)
+// static vtkScalarsToColors* SafeDownCast(vtkObjectBase *o)
+[DllImport("vtkplugin", EntryPoint="vtkScalarsToColors_SafeDownCast_0")] public static extern 
+bool SafeDownCast_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ o);
+
+// vtkScalarsToColors* NewInstance()
+// vtkScalarsToColors *NewInstance()
+[DllImport("vtkplugin", EntryPoint="vtkScalarsToColors_NewInstance_0")] public static extern 
+bool NewInstance_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkScalarsToColors*)*/ callingObject);
+
 // static vtkScalarsToColors* New()
 // static vtkScalarsToColors *New()
 [DllImport("vtkplugin", EntryPoint="vtkScalarsToColors_New_0")] public static extern 
@@ -67,6 +87,11 @@ bool GetLuminance_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkScalarsToCol
 [DllImport("vtkplugin", EntryPoint="vtkScalarsToColors_SetAlpha_0")] public static extern 
 bool SetAlpha_0(IntPtr /*(vtkScalarsToColors*)*/ callingObject, double /*(double)*/ alpha);
 
+// virtual double GetAlpha()
+// virtual double GetAlpha ()
+[DllImport("vtkplugin", EntryPoint="vtkScalarsToColors_GetAlpha_0")] public static extern 
+bool GetAlpha_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkScalarsToColors*)*/ callingObject);
+
 // virtual vtkUnsignedCharArray* MapScalars(vtkDataArray * scalars, int colorMode, int component)
 // virtual vtkUnsignedCharArray *MapScalars(vtkDataArray *scalars, int colorMode, int component)
 [DllImport("vtkplugin", EntryPoint="vtkScalarsToColors_MapScalars_0")] public static extern 
@@ -76,6 +101,16 @@ bool MapScalars_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkScalarsToColo
 // virtual vtkUnsignedCharArray *MapScalars(vtkAbstractArray *scalars, int colorMode, int component)
 [DllImport("vtkplugin", EntryPoint="vtkScalarsToColors_MapScalars_1")] public static extern 
 bool MapScalars_1(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkScalarsToColors*)*/ callingObject, IntPtr /*(vtkAbstractArray*)*/ scalars, int /*(int)*/ colorMode, int /*(int)*/ component);
+
+// virtual void SetVectorMode(int _arg)
+// virtual void SetVectorMode (int _arg)
+[DllImport("vtkplugin", EntryPoint="vtkScalarsToColors_SetVectorMode_0")] public static extern 
+bool SetVectorMode_0(IntPtr /*(vtkScalarsToColors*)*/ callingObject, int /*(int)*/ _arg);
+
+// virtual int GetVectorMode()
+// virtual int GetVectorMode ()
+[DllImport("vtkplugin", EntryPoint="vtkScalarsToColors_GetVectorMode_0")] public static extern 
+bool GetVectorMode_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkScalarsToColors*)*/ callingObject);
 
 // void SetVectorModeToMagnitude()
 // void SetVectorModeToMagnitude()
@@ -91,6 +126,26 @@ bool SetVectorModeToComponent_0(IntPtr /*(vtkScalarsToColors*)*/ callingObject);
 // void SetVectorModeToRGBColors()
 [DllImport("vtkplugin", EntryPoint="vtkScalarsToColors_SetVectorModeToRGBColors_0")] public static extern 
 bool SetVectorModeToRGBColors_0(IntPtr /*(vtkScalarsToColors*)*/ callingObject);
+
+// virtual void SetVectorComponent(int _arg)
+// virtual void SetVectorComponent (int _arg)
+[DllImport("vtkplugin", EntryPoint="vtkScalarsToColors_SetVectorComponent_0")] public static extern 
+bool SetVectorComponent_0(IntPtr /*(vtkScalarsToColors*)*/ callingObject, int /*(int)*/ _arg);
+
+// virtual int GetVectorComponent()
+// virtual int GetVectorComponent ()
+[DllImport("vtkplugin", EntryPoint="vtkScalarsToColors_GetVectorComponent_0")] public static extern 
+bool GetVectorComponent_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkScalarsToColors*)*/ callingObject);
+
+// virtual void SetVectorSize(int _arg)
+// virtual void SetVectorSize (int _arg)
+[DllImport("vtkplugin", EntryPoint="vtkScalarsToColors_SetVectorSize_0")] public static extern 
+bool SetVectorSize_0(IntPtr /*(vtkScalarsToColors*)*/ callingObject, int /*(int)*/ _arg);
+
+// virtual int GetVectorSize()
+// virtual int GetVectorSize ()
+[DllImport("vtkplugin", EntryPoint="vtkScalarsToColors_GetVectorSize_0")] public static extern 
+bool GetVectorSize_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkScalarsToColors*)*/ callingObject);
 
 // void MapVectorsThroughTable(void * input, unsigned char * output, int inputDataType, int numberOfValues, int inputIncrement, int outputFormat, int vectorComponent, int vectorSize)
 // void MapVectorsThroughTable(void *input, unsigned char *output, int inputDataType, int numberOfValues, int inputIncrement, int outputFormat, int vectorComponent, int vectorSize)
@@ -142,6 +197,16 @@ bool GetNumberOfAvailableColors_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(v
 [DllImport("vtkplugin", EntryPoint="vtkScalarsToColors_SetAnnotations_0")] public static extern 
 bool SetAnnotations_0(IntPtr /*(vtkScalarsToColors*)*/ callingObject, IntPtr /*(vtkAbstractArray*)*/ values, IntPtr /*(vtkStringArray*)*/ annotations);
 
+// virtual vtkAbstractArray* GetAnnotatedValues()
+// virtual vtkAbstractArray *GetAnnotatedValues ()
+[DllImport("vtkplugin", EntryPoint="vtkScalarsToColors_GetAnnotatedValues_0")] public static extern 
+bool GetAnnotatedValues_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkScalarsToColors*)*/ callingObject);
+
+// virtual vtkStringArray* GetAnnotations()
+// virtual vtkStringArray *GetAnnotations ()
+[DllImport("vtkplugin", EntryPoint="vtkScalarsToColors_GetAnnotations_0")] public static extern 
+bool GetAnnotations_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkScalarsToColors*)*/ callingObject);
+
 // virtual vtkIdType SetAnnotation(vtkStdString value, vtkStdString annotation)
 // virtual vtkIdType SetAnnotation(vtkStdString value, vtkStdString annotation)
 [DllImport("vtkplugin", EntryPoint="vtkScalarsToColors_SetAnnotation_0")] public static extern 
@@ -166,6 +231,26 @@ bool GetIndexedColor_0(IntPtr /*(vtkScalarsToColors*)*/ callingObject, long /*(v
 // virtual void ResetAnnotations()
 [DllImport("vtkplugin", EntryPoint="vtkScalarsToColors_ResetAnnotations_0")] public static extern 
 bool ResetAnnotations_0(IntPtr /*(vtkScalarsToColors*)*/ callingObject);
+
+// virtual void SetIndexedLookup(int _arg)
+// virtual void SetIndexedLookup (int _arg)
+[DllImport("vtkplugin", EntryPoint="vtkScalarsToColors_SetIndexedLookup_0")] public static extern 
+bool SetIndexedLookup_0(IntPtr /*(vtkScalarsToColors*)*/ callingObject, int /*(int)*/ _arg);
+
+// virtual int GetIndexedLookup()
+// virtual int GetIndexedLookup ()
+[DllImport("vtkplugin", EntryPoint="vtkScalarsToColors_GetIndexedLookup_0")] public static extern 
+bool GetIndexedLookup_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkScalarsToColors*)*/ callingObject);
+
+// virtual void IndexedLookupOn()
+// virtual void IndexedLookupOn ()
+[DllImport("vtkplugin", EntryPoint="vtkScalarsToColors_IndexedLookupOn_0")] public static extern 
+bool IndexedLookupOn_0(IntPtr /*(vtkScalarsToColors*)*/ callingObject);
+
+// virtual void IndexedLookupOff()
+// virtual void IndexedLookupOff ()
+[DllImport("vtkplugin", EntryPoint="vtkScalarsToColors_IndexedLookupOff_0")] public static extern 
+bool IndexedLookupOff_0(IntPtr /*(vtkScalarsToColors*)*/ callingObject);
 
 }
 };

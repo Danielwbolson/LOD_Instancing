@@ -20,6 +20,46 @@ public static vtkStringArray New() {
 }
 
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// "static vtkTypeBool IsTypeOf(const char *type)"
+public static bool IsTypeOf(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkStringArray.IsTypeOf_0(returnPointer.GetPtr(), type);
+	return (bool)returnPointer;
+}
+
+
+// vtkTypeBool IsA(const char * type)
+// "vtkTypeBool IsA(const char *type)"
+public bool IsA(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkStringArray.IsA_0(returnPointer.GetPtr(), this, type);
+	return (bool)returnPointer;
+}
+
+
+// static vtkStringArray* SafeDownCast(vtkObjectBase * o)
+// "static vtkStringArray* SafeDownCast(vtkObjectBase *o)"
+public static vtkStringArray SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkStringArray.SafeDownCast_0(returnPointer.GetPtr(), o);
+	return (vtkStringArray)(IntPtr)returnPointer;
+}
+
+
+// vtkStringArray* NewInstance()
+// "vtkStringArray *NewInstance()"
+public vtkStringArray NewInstance() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkStringArray.NewInstance_0(returnPointer.GetPtr(), this);
+	return (vtkStringArray)(IntPtr)returnPointer;
+}
+
+
 // int GetDataType()
 // "int GetDataType()"
 public int GetDataType() {
@@ -279,6 +319,13 @@ public void SetVoidArray(IntPtr /*(void*)*/ array, long /*(vtkIdType)*/ size, in
 }
 
 
+// void SetVoidArray(void * array, vtkIdType size, int save, int ARG_0)
+// "void SetVoidArray(void* array, vtkIdType size, int save, int )"
+public void SetVoidArray(IntPtr /*(void*)*/ array, long /*(vtkIdType)*/ size, int /*(int)*/ save, int /*(int)*/ ARG_0) {
+	VTK_API.API_vtkStringArray.SetVoidArray_1(this, array, size, save, ARG_0);
+}
+
+
 // long GetActualMemorySize()
 // "unsigned long GetActualMemorySize()"
 public ulong GetActualMemorySize() {
@@ -286,6 +333,16 @@ public ulong GetActualMemorySize() {
 	ReturnPointer returnPointer = new ReturnPointer(new ulong(), return_elements);
 	VTK_API.API_vtkStringArray.GetActualMemorySize_0(returnPointer.GetPtr(), this);
 	return (ulong)returnPointer;
+}
+
+
+// vtkArrayIterator* NewIterator()
+// "vtkArrayIterator* NewIterator()"
+public vtkArrayIterator NewIterator() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkStringArray.NewIterator_0(returnPointer.GetPtr(), this);
+	return (vtkArrayIterator)(IntPtr)returnPointer;
 }
 
 

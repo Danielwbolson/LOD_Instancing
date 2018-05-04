@@ -7,6 +7,26 @@ using System.Linq;
 namespace VTK_API {
 class API_vtkCommand {
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// static vtkTypeBool IsTypeOf(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkCommand_IsTypeOf_0")] public static extern 
+bool IsTypeOf_0(IntPtr /*(IntPtr*)*/ return_value, string /*(char*)*/ type);
+
+// vtkTypeBool IsA(const char * type)
+// vtkTypeBool IsA(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkCommand_IsA_0")] public static extern 
+bool IsA_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkCommand*)*/ callingObject, string /*(char*)*/ type);
+
+// static vtkCommand* SafeDownCast(vtkObjectBase * o)
+// static vtkCommand* SafeDownCast(vtkObjectBase *o)
+[DllImport("vtkplugin", EntryPoint="vtkCommand_SafeDownCast_0")] public static extern 
+bool SafeDownCast_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ o);
+
+// vtkCommand* NewInstance()
+// vtkCommand *NewInstance()
+[DllImport("vtkplugin", EntryPoint="vtkCommand_NewInstance_0")] public static extern 
+bool NewInstance_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkCommand*)*/ callingObject);
+
 // void UnRegister()
 // void UnRegister()
 [DllImport("vtkplugin", EntryPoint="vtkCommand_UnRegister_0")] public static extern 

@@ -17,6 +17,26 @@ bool New_0(IntPtr /*(IntPtr**)*/ return_value, int /*(int)*/ dataType);
 [DllImport("vtkplugin", EntryPoint="vtkPoints_New_1")] public static extern 
 bool New_1(IntPtr /*(IntPtr**)*/ return_value);
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// static vtkTypeBool IsTypeOf(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkPoints_IsTypeOf_0")] public static extern 
+bool IsTypeOf_0(IntPtr /*(IntPtr*)*/ return_value, string /*(char*)*/ type);
+
+// vtkTypeBool IsA(const char * type)
+// vtkTypeBool IsA(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkPoints_IsA_0")] public static extern 
+bool IsA_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkPoints*)*/ callingObject, string /*(char*)*/ type);
+
+// static vtkPoints* SafeDownCast(vtkObjectBase * o)
+// static vtkPoints* SafeDownCast(vtkObjectBase *o)
+[DllImport("vtkplugin", EntryPoint="vtkPoints_SafeDownCast_0")] public static extern 
+bool SafeDownCast_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ o);
+
+// vtkPoints* NewInstance()
+// vtkPoints *NewInstance()
+[DllImport("vtkplugin", EntryPoint="vtkPoints_NewInstance_0")] public static extern 
+bool NewInstance_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkPoints*)*/ callingObject);
+
 // virtual int Allocate(vtkIdType sz, vtkIdType ext = 1000)
 // virtual int Allocate(vtkIdType sz, vtkIdType ext = 1000)
 [DllImport("vtkplugin", EntryPoint="vtkPoints_Allocate_0")] public static extern 

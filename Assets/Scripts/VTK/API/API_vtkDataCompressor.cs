@@ -7,6 +7,26 @@ using System.Linq;
 namespace VTK_API {
 class API_vtkDataCompressor {
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// static vtkTypeBool IsTypeOf(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkDataCompressor_IsTypeOf_0")] public static extern 
+bool IsTypeOf_0(IntPtr /*(IntPtr*)*/ return_value, string /*(char*)*/ type);
+
+// vtkTypeBool IsA(const char * type)
+// vtkTypeBool IsA(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkDataCompressor_IsA_0")] public static extern 
+bool IsA_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkDataCompressor*)*/ callingObject, string /*(char*)*/ type);
+
+// static vtkDataCompressor* SafeDownCast(vtkObjectBase * o)
+// static vtkDataCompressor* SafeDownCast(vtkObjectBase *o)
+[DllImport("vtkplugin", EntryPoint="vtkDataCompressor_SafeDownCast_0")] public static extern 
+bool SafeDownCast_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ o);
+
+// vtkDataCompressor* NewInstance()
+// vtkDataCompressor *NewInstance()
+[DllImport("vtkplugin", EntryPoint="vtkDataCompressor_NewInstance_0")] public static extern 
+bool NewInstance_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkDataCompressor*)*/ callingObject);
+
 // virtual size_t GetMaximumCompressionSpace(size_t size)
 // virtual size_t GetMaximumCompressionSpace(size_t size)
 [DllImport("vtkplugin", EntryPoint="vtkDataCompressor_GetMaximumCompressionSpace_0")] public static extern 

@@ -12,6 +12,26 @@ class API_vtkStructuredGrid {
 [DllImport("vtkplugin", EntryPoint="vtkStructuredGrid_New_0")] public static extern 
 bool New_0(IntPtr /*(IntPtr**)*/ return_value);
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// static vtkTypeBool IsTypeOf(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkStructuredGrid_IsTypeOf_0")] public static extern 
+bool IsTypeOf_0(IntPtr /*(IntPtr*)*/ return_value, string /*(char*)*/ type);
+
+// vtkTypeBool IsA(const char * type)
+// vtkTypeBool IsA(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkStructuredGrid_IsA_0")] public static extern 
+bool IsA_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject, string /*(char*)*/ type);
+
+// static vtkStructuredGrid* SafeDownCast(vtkObjectBase * o)
+// static vtkStructuredGrid* SafeDownCast(vtkObjectBase *o)
+[DllImport("vtkplugin", EntryPoint="vtkStructuredGrid_SafeDownCast_0")] public static extern 
+bool SafeDownCast_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ o);
+
+// vtkStructuredGrid* NewInstance()
+// vtkStructuredGrid *NewInstance()
+[DllImport("vtkplugin", EntryPoint="vtkStructuredGrid_NewInstance_0")] public static extern 
+bool NewInstance_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject);
+
 // int GetDataObjectType()
 // int GetDataObjectType()
 [DllImport("vtkplugin", EntryPoint="vtkStructuredGrid_GetDataObjectType_0")] public static extern 
@@ -131,6 +151,21 @@ bool SetExtent_0(IntPtr /*(vtkStructuredGrid*)*/ callingObject, int /*(int[6])*/
 // void SetExtent(int x1, int x2, int y1, int y2, int z1, int z2)
 [DllImport("vtkplugin", EntryPoint="vtkStructuredGrid_SetExtent_1")] public static extern 
 bool SetExtent_1(IntPtr /*(vtkStructuredGrid*)*/ callingObject, int /*(int)*/ x1, int /*(int)*/ x2, int /*(int)*/ y1, int /*(int)*/ y2, int /*(int)*/ z1, int /*(int)*/ z2);
+
+// virtual int* GetExtent()
+// virtual int *GetExtent ()
+[DllImport("vtkplugin", EntryPoint="vtkStructuredGrid_GetExtent_0")] public static extern 
+bool GetExtent_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkStructuredGrid*)*/ callingObject);
+
+// virtual void GetExtent(int & _arg1, int & _arg2, int & _arg3, int & _arg4, int & _arg5, int & _arg6)
+// virtual void GetExtent (int &_arg1, int &_arg2, int &_arg3, int &_arg4, int &_arg5, int &_arg6)
+[DllImport("vtkplugin", EntryPoint="vtkStructuredGrid_GetExtent_1")] public static extern 
+bool GetExtent_1(IntPtr /*(vtkStructuredGrid*)*/ callingObject, IntPtr /*(int&)*/ _arg1, IntPtr /*(int&)*/ _arg2, IntPtr /*(int&)*/ _arg3, IntPtr /*(int&)*/ _arg4, IntPtr /*(int&)*/ _arg5, IntPtr /*(int&)*/ _arg6);
+
+// virtual void GetExtent(int _arg[6])
+// virtual void GetExtent (int _arg[6])
+[DllImport("vtkplugin", EntryPoint="vtkStructuredGrid_GetExtent_2")] public static extern 
+bool GetExtent_2(IntPtr /*(vtkStructuredGrid*)*/ callingObject, int /*(int[6])*/ []_arg);
 
 // long GetActualMemorySize()
 // unsigned long GetActualMemorySize()

@@ -7,6 +7,26 @@ using System.Linq;
 namespace VTK_API {
 class API_vtkAbstractArray {
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// static vtkTypeBool IsTypeOf(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkAbstractArray_IsTypeOf_0")] public static extern 
+bool IsTypeOf_0(IntPtr /*(IntPtr*)*/ return_value, string /*(char*)*/ type);
+
+// vtkTypeBool IsA(const char * type)
+// vtkTypeBool IsA(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkAbstractArray_IsA_0")] public static extern 
+bool IsA_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAbstractArray*)*/ callingObject, string /*(char*)*/ type);
+
+// static vtkAbstractArray* SafeDownCast(vtkObjectBase * o)
+// static vtkAbstractArray* SafeDownCast(vtkObjectBase *o)
+[DllImport("vtkplugin", EntryPoint="vtkAbstractArray_SafeDownCast_0")] public static extern 
+bool SafeDownCast_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ o);
+
+// vtkAbstractArray* NewInstance()
+// vtkAbstractArray *NewInstance()
+[DllImport("vtkplugin", EntryPoint="vtkAbstractArray_NewInstance_0")] public static extern 
+bool NewInstance_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkAbstractArray*)*/ callingObject);
+
 // virtual int Allocate(vtkIdType numValues, vtkIdType ext = 1000)
 // virtual int Allocate(vtkIdType numValues, vtkIdType ext=1000)
 [DllImport("vtkplugin", EntryPoint="vtkAbstractArray_Allocate_0")] public static extern 
@@ -36,6 +56,21 @@ bool GetDataTypeSize_1(IntPtr /*(IntPtr*)*/ return_value, int /*(int)*/ type);
 // virtual int GetElementComponentSize()
 [DllImport("vtkplugin", EntryPoint="vtkAbstractArray_GetElementComponentSize_0")] public static extern 
 bool GetElementComponentSize_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAbstractArray*)*/ callingObject);
+
+// virtual void SetNumberOfComponents(int _arg)
+// virtual void SetNumberOfComponents (int _arg)
+[DllImport("vtkplugin", EntryPoint="vtkAbstractArray_SetNumberOfComponents_0")] public static extern 
+bool SetNumberOfComponents_0(IntPtr /*(vtkAbstractArray*)*/ callingObject, int /*(int)*/ _arg);
+
+// virtual int GetNumberOfComponentsMinValue()
+// virtual int GetNumberOfComponentsMinValue ()
+[DllImport("vtkplugin", EntryPoint="vtkAbstractArray_GetNumberOfComponentsMinValue_0")] public static extern 
+bool GetNumberOfComponentsMinValue_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAbstractArray*)*/ callingObject);
+
+// virtual int GetNumberOfComponentsMaxValue()
+// virtual int GetNumberOfComponentsMaxValue ()
+[DllImport("vtkplugin", EntryPoint="vtkAbstractArray_GetNumberOfComponentsMaxValue_0")] public static extern 
+bool GetNumberOfComponentsMaxValue_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAbstractArray*)*/ callingObject);
 
 // int GetNumberOfComponents()
 // int GetNumberOfComponents()
@@ -162,6 +197,16 @@ bool GetSize_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAbstractArray*)*/
 [DllImport("vtkplugin", EntryPoint="vtkAbstractArray_GetMaxId_0")] public static extern 
 bool GetMaxId_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAbstractArray*)*/ callingObject);
 
+// virtual void SetVoidArray(void * ARG_0, vtkIdType ARG_1, int ARG_2)
+// virtual void SetVoidArray(void *, vtkIdType , int )
+[DllImport("vtkplugin", EntryPoint="vtkAbstractArray_SetVoidArray_0")] public static extern 
+bool SetVoidArray_0(IntPtr /*(vtkAbstractArray*)*/ callingObject, IntPtr /*(void*)*/ ARG_0, long /*(vtkIdType)*/ ARG_1, int /*(int)*/ ARG_2);
+
+// virtual void SetVoidArray(void * array, vtkIdType size, int save, int ARG_0)
+// virtual void SetVoidArray(void *array, vtkIdType size, int save, int )
+[DllImport("vtkplugin", EntryPoint="vtkAbstractArray_SetVoidArray_1")] public static extern 
+bool SetVoidArray_1(IntPtr /*(vtkAbstractArray*)*/ callingObject, IntPtr /*(void*)*/ array, long /*(vtkIdType)*/ size, int /*(int)*/ save, int /*(int)*/ ARG_0);
+
 // virtual void ExportToVoidPointer(void * out_ptr)
 // virtual void ExportToVoidPointer(void *out_ptr)
 [DllImport("vtkplugin", EntryPoint="vtkAbstractArray_ExportToVoidPointer_0")] public static extern 
@@ -172,15 +217,35 @@ bool ExportToVoidPointer_0(IntPtr /*(vtkAbstractArray*)*/ callingObject, IntPtr 
 [DllImport("vtkplugin", EntryPoint="vtkAbstractArray_GetActualMemorySize_0")] public static extern 
 bool GetActualMemorySize_0(IntPtr /*(unsigned IntPtr*)*/ return_value, IntPtr /*(vtkAbstractArray*)*/ callingObject);
 
+// virtual void SetName(const char * _arg)
+// virtual void SetName (const char* _arg)
+[DllImport("vtkplugin", EntryPoint="vtkAbstractArray_SetName_0")] public static extern 
+bool SetName_0(IntPtr /*(vtkAbstractArray*)*/ callingObject, string /*(char*)*/ _arg);
+
+// virtual char* GetName()
+// virtual char* GetName ()
+[DllImport("vtkplugin", EntryPoint="vtkAbstractArray_GetName_0")] public static extern 
+bool GetName_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkAbstractArray*)*/ callingObject);
+
 // virtual char* GetDataTypeAsString()
 // virtual const char *GetDataTypeAsString( void )
 [DllImport("vtkplugin", EntryPoint="vtkAbstractArray_GetDataTypeAsString_0")] public static extern 
 bool GetDataTypeAsString_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkAbstractArray*)*/ callingObject);
 
+// static vtkAbstractArray* CreateArray(int dataType)
+// static vtkAbstractArray* CreateArray(int dataType)
+[DllImport("vtkplugin", EntryPoint="vtkAbstractArray_CreateArray_0")] public static extern 
+bool CreateArray_0(IntPtr /*(IntPtr**)*/ return_value, int /*(int)*/ dataType);
+
 // virtual int IsNumeric()
 // virtual int IsNumeric()
 [DllImport("vtkplugin", EntryPoint="vtkAbstractArray_IsNumeric_0")] public static extern 
 bool IsNumeric_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAbstractArray*)*/ callingObject);
+
+// virtual vtkArrayIterator* NewIterator()
+// virtual vtkArrayIterator* NewIterator()
+[DllImport("vtkplugin", EntryPoint="vtkAbstractArray_NewIterator_0")] public static extern 
+bool NewIterator_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkAbstractArray*)*/ callingObject);
 
 // virtual vtkIdType GetDataSize()
 // virtual vtkIdType GetDataSize()
@@ -206,6 +271,16 @@ bool HasInformation_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAbstractAr
 // void Modified()
 [DllImport("vtkplugin", EntryPoint="vtkAbstractArray_Modified_0")] public static extern 
 bool Modified_0(IntPtr /*(vtkAbstractArray*)*/ callingObject);
+
+// virtual int GetMaxDiscreteValues()
+// virtual unsigned int GetMaxDiscreteValues ()
+[DllImport("vtkplugin", EntryPoint="vtkAbstractArray_GetMaxDiscreteValues_0")] public static extern 
+bool GetMaxDiscreteValues_0(IntPtr /*(unsigned IntPtr*)*/ return_value, IntPtr /*(vtkAbstractArray*)*/ callingObject);
+
+// virtual void SetMaxDiscreteValues(unsigned int _arg)
+// virtual void SetMaxDiscreteValues (unsigned int _arg)
+[DllImport("vtkplugin", EntryPoint="vtkAbstractArray_SetMaxDiscreteValues_0")] public static extern 
+bool SetMaxDiscreteValues_0(IntPtr /*(vtkAbstractArray*)*/ callingObject, uint /*(unsigned int)*/ _arg);
 
 // virtual int GetArrayType()
 // virtual int GetArrayType()

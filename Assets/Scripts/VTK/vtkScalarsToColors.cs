@@ -10,6 +10,46 @@ public partial class vtkScalarsToColors : vtkObject {
 		public static implicit operator  vtkScalarsToColors(IntPtr p) {return new vtkScalarsToColors(p);}
 		public static implicit operator  IntPtr(vtkScalarsToColors o) {return o.GetPtr();}
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// "static vtkTypeBool IsTypeOf(const char *type)"
+public static bool IsTypeOf(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkScalarsToColors.IsTypeOf_0(returnPointer.GetPtr(), type);
+	return (bool)returnPointer;
+}
+
+
+// vtkTypeBool IsA(const char * type)
+// "vtkTypeBool IsA(const char *type)"
+public bool IsA(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkScalarsToColors.IsA_0(returnPointer.GetPtr(), this, type);
+	return (bool)returnPointer;
+}
+
+
+// static vtkScalarsToColors* SafeDownCast(vtkObjectBase * o)
+// "static vtkScalarsToColors* SafeDownCast(vtkObjectBase *o)"
+public static vtkScalarsToColors SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkScalarsToColors.SafeDownCast_0(returnPointer.GetPtr(), o);
+	return (vtkScalarsToColors)(IntPtr)returnPointer;
+}
+
+
+// vtkScalarsToColors* NewInstance()
+// "vtkScalarsToColors *NewInstance()"
+public vtkScalarsToColors NewInstance() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkScalarsToColors.NewInstance_0(returnPointer.GetPtr(), this);
+	return (vtkScalarsToColors)(IntPtr)returnPointer;
+}
+
+
 // static vtkScalarsToColors* New()
 // "static vtkScalarsToColors *New()"
 public static vtkScalarsToColors New() {
@@ -115,6 +155,16 @@ public void SetAlpha(double /*(double)*/ alpha) {
 }
 
 
+// virtual double GetAlpha()
+// "virtual double GetAlpha ()"
+public double GetAlpha() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new double(), return_elements);
+	VTK_API.API_vtkScalarsToColors.GetAlpha_0(returnPointer.GetPtr(), this);
+	return (double)returnPointer;
+}
+
+
 // virtual vtkUnsignedCharArray* MapScalars(vtkDataArray * scalars, int colorMode, int component)
 // "virtual vtkUnsignedCharArray *MapScalars(vtkDataArray *scalars, int colorMode, int component)"
 public vtkUnsignedCharArray MapScalars(vtkDataArray /*(vtkDataArray*)*/ scalars, int /*(int)*/ colorMode, int /*(int)*/ component) {
@@ -132,6 +182,23 @@ public vtkUnsignedCharArray MapScalars(vtkAbstractArray /*(vtkAbstractArray*)*/ 
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
 	VTK_API.API_vtkScalarsToColors.MapScalars_1(returnPointer.GetPtr(), this, scalars, colorMode, component);
 	return (vtkUnsignedCharArray)(IntPtr)returnPointer;
+}
+
+
+// virtual void SetVectorMode(int _arg)
+// "virtual void SetVectorMode (int _arg)"
+public void SetVectorMode(int /*(int)*/ _arg) {
+	VTK_API.API_vtkScalarsToColors.SetVectorMode_0(this, _arg);
+}
+
+
+// virtual int GetVectorMode()
+// "virtual int GetVectorMode ()"
+public int GetVectorMode() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	VTK_API.API_vtkScalarsToColors.GetVectorMode_0(returnPointer.GetPtr(), this);
+	return (int)returnPointer;
 }
 
 
@@ -153,6 +220,40 @@ public void SetVectorModeToComponent() {
 // "void SetVectorModeToRGBColors()"
 public void SetVectorModeToRGBColors() {
 	VTK_API.API_vtkScalarsToColors.SetVectorModeToRGBColors_0(this);
+}
+
+
+// virtual void SetVectorComponent(int _arg)
+// "virtual void SetVectorComponent (int _arg)"
+public void SetVectorComponent(int /*(int)*/ _arg) {
+	VTK_API.API_vtkScalarsToColors.SetVectorComponent_0(this, _arg);
+}
+
+
+// virtual int GetVectorComponent()
+// "virtual int GetVectorComponent ()"
+public int GetVectorComponent() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	VTK_API.API_vtkScalarsToColors.GetVectorComponent_0(returnPointer.GetPtr(), this);
+	return (int)returnPointer;
+}
+
+
+// virtual void SetVectorSize(int _arg)
+// "virtual void SetVectorSize (int _arg)"
+public void SetVectorSize(int /*(int)*/ _arg) {
+	VTK_API.API_vtkScalarsToColors.SetVectorSize_0(this, _arg);
+}
+
+
+// virtual int GetVectorSize()
+// "virtual int GetVectorSize ()"
+public int GetVectorSize() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	VTK_API.API_vtkScalarsToColors.GetVectorSize_0(returnPointer.GetPtr(), this);
+	return (int)returnPointer;
 }
 
 
@@ -232,6 +333,26 @@ public void SetAnnotations(vtkAbstractArray /*(vtkAbstractArray*)*/ values, vtkS
 }
 
 
+// virtual vtkAbstractArray* GetAnnotatedValues()
+// "virtual vtkAbstractArray *GetAnnotatedValues ()"
+public vtkAbstractArray GetAnnotatedValues() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkScalarsToColors.GetAnnotatedValues_0(returnPointer.GetPtr(), this);
+	return (vtkAbstractArray)(IntPtr)returnPointer;
+}
+
+
+// virtual vtkStringArray* GetAnnotations()
+// "virtual vtkStringArray *GetAnnotations ()"
+public vtkStringArray GetAnnotations() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkScalarsToColors.GetAnnotations_0(returnPointer.GetPtr(), this);
+	return (vtkStringArray)(IntPtr)returnPointer;
+}
+
+
 // virtual vtkIdType SetAnnotation(vtkStdString value, vtkStdString annotation)
 // "virtual vtkIdType SetAnnotation(vtkStdString value, vtkStdString annotation)"
 public long SetAnnotation(string /*(vtkStdString)*/ value, string /*(vtkStdString)*/ annotation) {
@@ -273,6 +394,37 @@ public void GetIndexedColor(long /*(vtkIdType)*/ i, double /*(double[4])*/ []rgb
 // "virtual void ResetAnnotations()"
 public void ResetAnnotations() {
 	VTK_API.API_vtkScalarsToColors.ResetAnnotations_0(this);
+}
+
+
+// virtual void SetIndexedLookup(int _arg)
+// "virtual void SetIndexedLookup (int _arg)"
+public void SetIndexedLookup(int /*(int)*/ _arg) {
+	VTK_API.API_vtkScalarsToColors.SetIndexedLookup_0(this, _arg);
+}
+
+
+// virtual int GetIndexedLookup()
+// "virtual int GetIndexedLookup ()"
+public int GetIndexedLookup() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	VTK_API.API_vtkScalarsToColors.GetIndexedLookup_0(returnPointer.GetPtr(), this);
+	return (int)returnPointer;
+}
+
+
+// virtual void IndexedLookupOn()
+// "virtual void IndexedLookupOn ()"
+public void IndexedLookupOn() {
+	VTK_API.API_vtkScalarsToColors.IndexedLookupOn_0(this);
+}
+
+
+// virtual void IndexedLookupOff()
+// "virtual void IndexedLookupOff ()"
+public void IndexedLookupOff() {
+	VTK_API.API_vtkScalarsToColors.IndexedLookupOff_0(this);
 }
 
 

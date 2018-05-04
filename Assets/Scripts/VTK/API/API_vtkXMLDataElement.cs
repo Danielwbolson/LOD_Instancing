@@ -7,15 +7,50 @@ using System.Linq;
 namespace VTK_API {
 class API_vtkXMLDataElement {
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// static vtkTypeBool IsTypeOf(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkXMLDataElement_IsTypeOf_0")] public static extern 
+bool IsTypeOf_0(IntPtr /*(IntPtr*)*/ return_value, string /*(char*)*/ type);
+
+// vtkTypeBool IsA(const char * type)
+// vtkTypeBool IsA(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkXMLDataElement_IsA_0")] public static extern 
+bool IsA_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkXMLDataElement*)*/ callingObject, string /*(char*)*/ type);
+
+// static vtkXMLDataElement* SafeDownCast(vtkObjectBase * o)
+// static vtkXMLDataElement* SafeDownCast(vtkObjectBase *o)
+[DllImport("vtkplugin", EntryPoint="vtkXMLDataElement_SafeDownCast_0")] public static extern 
+bool SafeDownCast_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ o);
+
+// vtkXMLDataElement* NewInstance()
+// vtkXMLDataElement *NewInstance()
+[DllImport("vtkplugin", EntryPoint="vtkXMLDataElement_NewInstance_0")] public static extern 
+bool NewInstance_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkXMLDataElement*)*/ callingObject);
+
 // static vtkXMLDataElement* New()
 // static vtkXMLDataElement* New()
 [DllImport("vtkplugin", EntryPoint="vtkXMLDataElement_New_0")] public static extern 
 bool New_0(IntPtr /*(IntPtr**)*/ return_value);
 
+// virtual char* GetName()
+// virtual char* GetName ()
+[DllImport("vtkplugin", EntryPoint="vtkXMLDataElement_GetName_0")] public static extern 
+bool GetName_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkXMLDataElement*)*/ callingObject);
+
 // virtual void SetName(const char * _arg)
 // virtual void SetName (const char* _arg)
 [DllImport("vtkplugin", EntryPoint="vtkXMLDataElement_SetName_0")] public static extern 
 bool SetName_0(IntPtr /*(vtkXMLDataElement*)*/ callingObject, string /*(char*)*/ _arg);
+
+// virtual char* GetId()
+// virtual char* GetId ()
+[DllImport("vtkplugin", EntryPoint="vtkXMLDataElement_GetId_0")] public static extern 
+bool GetId_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkXMLDataElement*)*/ callingObject);
+
+// virtual void SetId(const char * _arg)
+// virtual void SetId (const char* _arg)
+[DllImport("vtkplugin", EntryPoint="vtkXMLDataElement_SetId_0")] public static extern 
+bool SetId_0(IntPtr /*(vtkXMLDataElement*)*/ callingObject, string /*(char*)*/ _arg);
 
 // char* GetAttribute(const char * name)
 // const char* GetAttribute(const char* name)
@@ -36,6 +71,11 @@ bool SetCharacterData_0(IntPtr /*(vtkXMLDataElement*)*/ callingObject, string /*
 // void AddCharacterData(const char* c, size_t length)
 [DllImport("vtkplugin", EntryPoint="vtkXMLDataElement_AddCharacterData_0")] public static extern 
 bool AddCharacterData_0(IntPtr /*(vtkXMLDataElement*)*/ callingObject, string /*(char*)*/ c, ulong /*(size_t)*/ length);
+
+// virtual char* GetCharacterData()
+// virtual char* GetCharacterData ()
+[DllImport("vtkplugin", EntryPoint="vtkXMLDataElement_GetCharacterData_0")] public static extern 
+bool GetCharacterData_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkXMLDataElement*)*/ callingObject);
 
 // int GetScalarAttribute(const char * name, int & value)
 // int GetScalarAttribute(const char* name, int& value)
@@ -162,6 +202,11 @@ bool SetVectorAttribute_5(IntPtr /*(vtkXMLDataElement*)*/ callingObject, string 
 [DllImport("vtkplugin", EntryPoint="vtkXMLDataElement_GetWordTypeAttribute_0")] public static extern 
 bool GetWordTypeAttribute_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkXMLDataElement*)*/ callingObject, string /*(char*)*/ name, IntPtr /*(int&)*/ value);
 
+// virtual int GetNumberOfAttributes()
+// virtual int GetNumberOfAttributes ()
+[DllImport("vtkplugin", EntryPoint="vtkXMLDataElement_GetNumberOfAttributes_0")] public static extern 
+bool GetNumberOfAttributes_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkXMLDataElement*)*/ callingObject);
+
 // char* GetAttributeName(int idx)
 // const char* GetAttributeName(int idx)
 [DllImport("vtkplugin", EntryPoint="vtkXMLDataElement_GetAttributeName_0")] public static extern 
@@ -252,6 +297,16 @@ bool LookupElementWithName_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkXM
 [DllImport("vtkplugin", EntryPoint="vtkXMLDataElement_LookupElement_0")] public static extern 
 bool LookupElement_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkXMLDataElement*)*/ callingObject, string /*(char*)*/ id);
 
+// virtual vtkTypeInt64 GetXMLByteIndex()
+// virtual vtkTypeInt64 GetXMLByteIndex ()
+[DllImport("vtkplugin", EntryPoint="vtkXMLDataElement_GetXMLByteIndex_0")] public static extern 
+bool GetXMLByteIndex_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkXMLDataElement*)*/ callingObject);
+
+// virtual void SetXMLByteIndex(vtkTypeInt64 _arg)
+// virtual void SetXMLByteIndex (vtkTypeInt64 _arg)
+[DllImport("vtkplugin", EntryPoint="vtkXMLDataElement_SetXMLByteIndex_0")] public static extern 
+bool SetXMLByteIndex_0(IntPtr /*(vtkXMLDataElement*)*/ callingObject, long /*(vtkTypeInt64)*/ _arg);
+
 // virtual int IsEqualTo(vtkXMLDataElement * elem)
 // virtual int IsEqualTo(vtkXMLDataElement *elem)
 [DllImport("vtkplugin", EntryPoint="vtkXMLDataElement_IsEqualTo_0")] public static extern 
@@ -262,10 +317,40 @@ bool IsEqualTo_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkXMLDataElement*
 [DllImport("vtkplugin", EntryPoint="vtkXMLDataElement_DeepCopy_0")] public static extern 
 bool DeepCopy_0(IntPtr /*(vtkXMLDataElement*)*/ callingObject, IntPtr /*(vtkXMLDataElement*)*/ elem);
 
+// virtual void SetAttributeEncoding(int _arg)
+// virtual void SetAttributeEncoding (int _arg)
+[DllImport("vtkplugin", EntryPoint="vtkXMLDataElement_SetAttributeEncoding_0")] public static extern 
+bool SetAttributeEncoding_0(IntPtr /*(vtkXMLDataElement*)*/ callingObject, int /*(int)*/ _arg);
+
+// virtual int GetAttributeEncodingMinValue()
+// virtual int GetAttributeEncodingMinValue ()
+[DllImport("vtkplugin", EntryPoint="vtkXMLDataElement_GetAttributeEncodingMinValue_0")] public static extern 
+bool GetAttributeEncodingMinValue_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkXMLDataElement*)*/ callingObject);
+
+// virtual int GetAttributeEncodingMaxValue()
+// virtual int GetAttributeEncodingMaxValue ()
+[DllImport("vtkplugin", EntryPoint="vtkXMLDataElement_GetAttributeEncodingMaxValue_0")] public static extern 
+bool GetAttributeEncodingMaxValue_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkXMLDataElement*)*/ callingObject);
+
+// virtual int GetAttributeEncoding()
+// virtual int GetAttributeEncoding ()
+[DllImport("vtkplugin", EntryPoint="vtkXMLDataElement_GetAttributeEncoding_0")] public static extern 
+bool GetAttributeEncoding_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkXMLDataElement*)*/ callingObject);
+
 // void PrintXML(const char * fname)
 // void PrintXML(const char* fname)
 [DllImport("vtkplugin", EntryPoint="vtkXMLDataElement_PrintXML_0")] public static extern 
 bool PrintXML_0(IntPtr /*(vtkXMLDataElement*)*/ callingObject, string /*(char*)*/ fname);
+
+// virtual int GetCharacterDataWidth()
+// virtual int GetCharacterDataWidth ()
+[DllImport("vtkplugin", EntryPoint="vtkXMLDataElement_GetCharacterDataWidth_0")] public static extern 
+bool GetCharacterDataWidth_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkXMLDataElement*)*/ callingObject);
+
+// virtual void SetCharacterDataWidth(int _arg)
+// virtual void SetCharacterDataWidth (int _arg)
+[DllImport("vtkplugin", EntryPoint="vtkXMLDataElement_SetCharacterDataWidth_0")] public static extern 
+bool SetCharacterDataWidth_0(IntPtr /*(vtkXMLDataElement*)*/ callingObject, int /*(int)*/ _arg);
 
 }
 };

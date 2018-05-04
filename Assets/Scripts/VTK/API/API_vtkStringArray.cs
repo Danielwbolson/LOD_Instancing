@@ -12,6 +12,26 @@ class API_vtkStringArray {
 [DllImport("vtkplugin", EntryPoint="vtkStringArray_New_0")] public static extern 
 bool New_0(IntPtr /*(IntPtr**)*/ return_value);
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// static vtkTypeBool IsTypeOf(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkStringArray_IsTypeOf_0")] public static extern 
+bool IsTypeOf_0(IntPtr /*(IntPtr*)*/ return_value, string /*(char*)*/ type);
+
+// vtkTypeBool IsA(const char * type)
+// vtkTypeBool IsA(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkStringArray_IsA_0")] public static extern 
+bool IsA_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkStringArray*)*/ callingObject, string /*(char*)*/ type);
+
+// static vtkStringArray* SafeDownCast(vtkObjectBase * o)
+// static vtkStringArray* SafeDownCast(vtkObjectBase *o)
+[DllImport("vtkplugin", EntryPoint="vtkStringArray_SafeDownCast_0")] public static extern 
+bool SafeDownCast_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ o);
+
+// vtkStringArray* NewInstance()
+// vtkStringArray *NewInstance()
+[DllImport("vtkplugin", EntryPoint="vtkStringArray_NewInstance_0")] public static extern 
+bool NewInstance_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkStringArray*)*/ callingObject);
+
 // int GetDataType()
 // int GetDataType()
 [DllImport("vtkplugin", EntryPoint="vtkStringArray_GetDataType_0")] public static extern 
@@ -182,10 +202,20 @@ bool SetArray_0(IntPtr /*(vtkStringArray*)*/ callingObject, IntPtr /*(vtkStdStri
 [DllImport("vtkplugin", EntryPoint="vtkStringArray_SetVoidArray_0")] public static extern 
 bool SetVoidArray_0(IntPtr /*(vtkStringArray*)*/ callingObject, IntPtr /*(void*)*/ array, long /*(vtkIdType)*/ size, int /*(int)*/ save);
 
+// void SetVoidArray(void * array, vtkIdType size, int save, int ARG_0)
+// void SetVoidArray(void* array, vtkIdType size, int save, int )
+[DllImport("vtkplugin", EntryPoint="vtkStringArray_SetVoidArray_1")] public static extern 
+bool SetVoidArray_1(IntPtr /*(vtkStringArray*)*/ callingObject, IntPtr /*(void*)*/ array, long /*(vtkIdType)*/ size, int /*(int)*/ save, int /*(int)*/ ARG_0);
+
 // long GetActualMemorySize()
 // unsigned long GetActualMemorySize()
 [DllImport("vtkplugin", EntryPoint="vtkStringArray_GetActualMemorySize_0")] public static extern 
 bool GetActualMemorySize_0(IntPtr /*(unsigned IntPtr*)*/ return_value, IntPtr /*(vtkStringArray*)*/ callingObject);
+
+// vtkArrayIterator* NewIterator()
+// vtkArrayIterator* NewIterator()
+[DllImport("vtkplugin", EntryPoint="vtkStringArray_NewIterator_0")] public static extern 
+bool NewIterator_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkStringArray*)*/ callingObject);
 
 // vtkIdType GetDataSize()
 // vtkIdType GetDataSize()

@@ -20,6 +20,46 @@ public static vtkStructuredGrid New() {
 }
 
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// "static vtkTypeBool IsTypeOf(const char *type)"
+public static bool IsTypeOf(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkStructuredGrid.IsTypeOf_0(returnPointer.GetPtr(), type);
+	return (bool)returnPointer;
+}
+
+
+// vtkTypeBool IsA(const char * type)
+// "vtkTypeBool IsA(const char *type)"
+public bool IsA(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkStructuredGrid.IsA_0(returnPointer.GetPtr(), this, type);
+	return (bool)returnPointer;
+}
+
+
+// static vtkStructuredGrid* SafeDownCast(vtkObjectBase * o)
+// "static vtkStructuredGrid* SafeDownCast(vtkObjectBase *o)"
+public static vtkStructuredGrid SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkStructuredGrid.SafeDownCast_0(returnPointer.GetPtr(), o);
+	return (vtkStructuredGrid)(IntPtr)returnPointer;
+}
+
+
+// vtkStructuredGrid* NewInstance()
+// "vtkStructuredGrid *NewInstance()"
+public vtkStructuredGrid NewInstance() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkStructuredGrid.NewInstance_0(returnPointer.GetPtr(), this);
+	return (vtkStructuredGrid)(IntPtr)returnPointer;
+}
+
+
 // int GetDataObjectType()
 // "int GetDataObjectType()"
 public int GetDataObjectType() {
@@ -215,6 +255,30 @@ public void SetExtent(int /*(int[6])*/ []extent) {
 // "void SetExtent(int x1, int x2, int y1, int y2, int z1, int z2)"
 public void SetExtent(int /*(int)*/ x1, int /*(int)*/ x2, int /*(int)*/ y1, int /*(int)*/ y2, int /*(int)*/ z1, int /*(int)*/ z2) {
 	VTK_API.API_vtkStructuredGrid.SetExtent_1(this, x1, x2, y1, y2, z1, z2);
+}
+
+
+// virtual int* GetExtent()
+// "virtual int *GetExtent ()"
+public IntPtr GetExtent() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkStructuredGrid.GetExtent_0(returnPointer.GetPtr(), this);
+	return (IntPtr)returnPointer;
+}
+
+
+// virtual void GetExtent(int & _arg1, int & _arg2, int & _arg3, int & _arg4, int & _arg5, int & _arg6)
+// "virtual void GetExtent (int &_arg1, int &_arg2, int &_arg3, int &_arg4, int &_arg5, int &_arg6)"
+public void GetExtent(IntPtr /*(int&)*/ _arg1, IntPtr /*(int&)*/ _arg2, IntPtr /*(int&)*/ _arg3, IntPtr /*(int&)*/ _arg4, IntPtr /*(int&)*/ _arg5, IntPtr /*(int&)*/ _arg6) {
+	VTK_API.API_vtkStructuredGrid.GetExtent_1(this, _arg1, _arg2, _arg3, _arg4, _arg5, _arg6);
+}
+
+
+// virtual void GetExtent(int _arg[6])
+// "virtual void GetExtent (int _arg[6])"
+public void GetExtent(int /*(int[6])*/ []_arg) {
+	VTK_API.API_vtkStructuredGrid.GetExtent_2(this, _arg);
 }
 
 

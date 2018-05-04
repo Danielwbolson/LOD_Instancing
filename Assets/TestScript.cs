@@ -37,13 +37,32 @@ public class TestScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        vtkXMLDataReader reader = vtkXMLImageDataReader.New();
-        int a = reader.CanReadFile("/Users/sethjohnson/NSF-Sculpting-Vis-Platform/unity/VisualizationPlatform/Assets/StreamingAssets/example_data/VTK/.vti");
-        reader.SetFileName("/Users/sethjohnson/NSF-Sculpting-Vis-Platform/unity/VisualizationPlatform/Assets/StreamingAssets/example_data/VTK/wavelet.vti");
+        vtkXMLDataReader reader = vtkXMLUnstructuredGridReader.New();
+        int a = reader.CanReadFile("/Users/sethjohnson/NSF-Sculpting-Vis-Platform/unity/VisualizationPlatform/Assets/StreamingAssets/example_data/VTK/CICE.vtu");
+        reader.SetFileName("/Users/sethjohnson/NSF-Sculpting-Vis-Platform/unity/VisualizationPlatform/Assets/StreamingAssets/example_data/VTK/CICE.vtu");
         reader.Update();
         vtkDataSet ds = reader.GetOutputAsDataSet();
 
+        if (ds.IsA("vtkUnstructuredGrid"))
+            print("VTU");
+        vtkUnstructuredGrid unstructuredGrid = (IntPtr)ds;
+
+        vtkPoints points = unstructuredGrid.GetPoints();
+
+        IntPtr voidPointer = points.GetVoidPointer(0);
+        float[] f = new float[points.GetNumberOfPoints()];
+        Marshal.Copy(voidPointer, f, (Int32)0, (Int32)points.GetNumberOfPoints());
+        print(f[0] + ", " + f[1] + ", " + f[2]);
+        print(f[3] + ", " + f[4] + ", " + f[5]);
+
+        print(points.GetPoint(0));
+        print(points.GetPoint(1));
+        
+
+
+
         vtkPointData pd = ds.GetPointData();
+
         vtkCellData cd = ds.GetCellData();
         long np = ds.GetNumberOfPoints();
         long nc = ds.GetNumberOfCells();
@@ -60,6 +79,7 @@ public class TestScript : MonoBehaviour {
 
         vtkCell cell = ds.GetCell(0);
         vtkIdList idList = vtkIdList.New();
+        
         ds.GetCellPoints(0, idList);
 
         vtkIdList idList2 = cell.GetPointIds();

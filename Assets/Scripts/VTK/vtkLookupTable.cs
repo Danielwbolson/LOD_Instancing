@@ -20,6 +20,46 @@ public static vtkLookupTable New() {
 }
 
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// "static vtkTypeBool IsTypeOf(const char *type)"
+public static bool IsTypeOf(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkLookupTable.IsTypeOf_0(returnPointer.GetPtr(), type);
+	return (bool)returnPointer;
+}
+
+
+// vtkTypeBool IsA(const char * type)
+// "vtkTypeBool IsA(const char *type)"
+public bool IsA(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkLookupTable.IsA_0(returnPointer.GetPtr(), this, type);
+	return (bool)returnPointer;
+}
+
+
+// static vtkLookupTable* SafeDownCast(vtkObjectBase * o)
+// "static vtkLookupTable* SafeDownCast(vtkObjectBase *o)"
+public static vtkLookupTable SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkLookupTable.SafeDownCast_0(returnPointer.GetPtr(), o);
+	return (vtkLookupTable)(IntPtr)returnPointer;
+}
+
+
+// vtkLookupTable* NewInstance()
+// "vtkLookupTable *NewInstance()"
+public vtkLookupTable NewInstance() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkLookupTable.NewInstance_0(returnPointer.GetPtr(), this);
+	return (vtkLookupTable)(IntPtr)returnPointer;
+}
+
+
 // int IsOpaque()
 // "int IsOpaque()"
 public int IsOpaque() {
@@ -61,6 +101,13 @@ public void BuildSpecialColors() {
 }
 
 
+// virtual void SetRamp(int _arg)
+// "virtual void SetRamp (int _arg)"
+public void SetRamp(int /*(int)*/ _arg) {
+	VTK_API.API_vtkLookupTable.SetRamp_0(this, _arg);
+}
+
+
 // void SetRampToLinear()
 // "void SetRampToLinear()"
 public void SetRampToLinear() {
@@ -79,6 +126,16 @@ public void SetRampToSCurve() {
 // "void SetRampToSQRT()"
 public void SetRampToSQRT() {
 	VTK_API.API_vtkLookupTable.SetRampToSQRT_0(this);
+}
+
+
+// virtual int GetRamp()
+// "virtual int GetRamp ()"
+public int GetRamp() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	VTK_API.API_vtkLookupTable.GetRamp_0(returnPointer.GetPtr(), this);
+	return (int)returnPointer;
 }
 
 
@@ -103,6 +160,16 @@ public void SetScaleToLog10() {
 }
 
 
+// virtual int GetScale()
+// "virtual int GetScale ()"
+public int GetScale() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	VTK_API.API_vtkLookupTable.GetScale_0(returnPointer.GetPtr(), this);
+	return (int)returnPointer;
+}
+
+
 // virtual void SetTableRange(const double r[2])
 // "virtual void SetTableRange(const double r[2])"
 public void SetTableRange(double /*(double[2])*/ []r) {
@@ -114,6 +181,213 @@ public void SetTableRange(double /*(double[2])*/ []r) {
 // "virtual void SetTableRange(double min, double max)"
 public void SetTableRange(double /*(double)*/ min, double /*(double)*/ max) {
 	VTK_API.API_vtkLookupTable.SetTableRange_1(this, min, max);
+}
+
+
+// virtual double* GetTableRange()
+// "virtual double *GetTableRange ()"
+public IntPtr GetTableRange() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkLookupTable.GetTableRange_0(returnPointer.GetPtr(), this);
+	return (IntPtr)returnPointer;
+}
+
+
+// virtual void GetTableRange(double data[2])
+// "virtual void GetTableRange (double data[2])"
+public void GetTableRange(double /*(double[2])*/ []data) {
+	VTK_API.API_vtkLookupTable.GetTableRange_1(this, data);
+}
+
+
+// virtual void SetHueRange(double _arg1, double _arg2)
+// "virtual void SetHueRange (double _arg1, double _arg2)"
+public void SetHueRange(double /*(double)*/ _arg1, double /*(double)*/ _arg2) {
+	VTK_API.API_vtkLookupTable.SetHueRange_0(this, _arg1, _arg2);
+}
+
+
+// void SetHueRange(double _arg[2])
+// "void SetHueRange (double _arg[2])"
+public void SetHueRange(double /*(double[2])*/ []_arg) {
+	VTK_API.API_vtkLookupTable.SetHueRange_1(this, _arg);
+}
+
+
+// virtual double* GetHueRange()
+// "virtual double *GetHueRange ()"
+public IntPtr GetHueRange() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkLookupTable.GetHueRange_0(returnPointer.GetPtr(), this);
+	return (IntPtr)returnPointer;
+}
+
+
+// virtual void GetHueRange(double & _arg1, double & _arg2)
+// "virtual void GetHueRange (double &_arg1, double &_arg2)"
+public void GetHueRange(IntPtr /*(double&)*/ _arg1, IntPtr /*(double&)*/ _arg2) {
+	VTK_API.API_vtkLookupTable.GetHueRange_1(this, _arg1, _arg2);
+}
+
+
+// virtual void GetHueRange(double _arg[2])
+// "virtual void GetHueRange (double _arg[2])"
+public void GetHueRange(double /*(double[2])*/ []_arg) {
+	VTK_API.API_vtkLookupTable.GetHueRange_2(this, _arg);
+}
+
+
+// virtual void SetSaturationRange(double _arg1, double _arg2)
+// "virtual void SetSaturationRange (double _arg1, double _arg2)"
+public void SetSaturationRange(double /*(double)*/ _arg1, double /*(double)*/ _arg2) {
+	VTK_API.API_vtkLookupTable.SetSaturationRange_0(this, _arg1, _arg2);
+}
+
+
+// void SetSaturationRange(double _arg[2])
+// "void SetSaturationRange (double _arg[2])"
+public void SetSaturationRange(double /*(double[2])*/ []_arg) {
+	VTK_API.API_vtkLookupTable.SetSaturationRange_1(this, _arg);
+}
+
+
+// virtual double* GetSaturationRange()
+// "virtual double *GetSaturationRange ()"
+public IntPtr GetSaturationRange() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkLookupTable.GetSaturationRange_0(returnPointer.GetPtr(), this);
+	return (IntPtr)returnPointer;
+}
+
+
+// virtual void GetSaturationRange(double & _arg1, double & _arg2)
+// "virtual void GetSaturationRange (double &_arg1, double &_arg2)"
+public void GetSaturationRange(IntPtr /*(double&)*/ _arg1, IntPtr /*(double&)*/ _arg2) {
+	VTK_API.API_vtkLookupTable.GetSaturationRange_1(this, _arg1, _arg2);
+}
+
+
+// virtual void GetSaturationRange(double _arg[2])
+// "virtual void GetSaturationRange (double _arg[2])"
+public void GetSaturationRange(double /*(double[2])*/ []_arg) {
+	VTK_API.API_vtkLookupTable.GetSaturationRange_2(this, _arg);
+}
+
+
+// virtual void SetValueRange(double _arg1, double _arg2)
+// "virtual void SetValueRange (double _arg1, double _arg2)"
+public void SetValueRange(double /*(double)*/ _arg1, double /*(double)*/ _arg2) {
+	VTK_API.API_vtkLookupTable.SetValueRange_0(this, _arg1, _arg2);
+}
+
+
+// void SetValueRange(double _arg[2])
+// "void SetValueRange (double _arg[2])"
+public void SetValueRange(double /*(double[2])*/ []_arg) {
+	VTK_API.API_vtkLookupTable.SetValueRange_1(this, _arg);
+}
+
+
+// virtual double* GetValueRange()
+// "virtual double *GetValueRange ()"
+public IntPtr GetValueRange() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkLookupTable.GetValueRange_0(returnPointer.GetPtr(), this);
+	return (IntPtr)returnPointer;
+}
+
+
+// virtual void GetValueRange(double & _arg1, double & _arg2)
+// "virtual void GetValueRange (double &_arg1, double &_arg2)"
+public void GetValueRange(IntPtr /*(double&)*/ _arg1, IntPtr /*(double&)*/ _arg2) {
+	VTK_API.API_vtkLookupTable.GetValueRange_1(this, _arg1, _arg2);
+}
+
+
+// virtual void GetValueRange(double _arg[2])
+// "virtual void GetValueRange (double _arg[2])"
+public void GetValueRange(double /*(double[2])*/ []_arg) {
+	VTK_API.API_vtkLookupTable.GetValueRange_2(this, _arg);
+}
+
+
+// virtual void SetAlphaRange(double _arg1, double _arg2)
+// "virtual void SetAlphaRange (double _arg1, double _arg2)"
+public void SetAlphaRange(double /*(double)*/ _arg1, double /*(double)*/ _arg2) {
+	VTK_API.API_vtkLookupTable.SetAlphaRange_0(this, _arg1, _arg2);
+}
+
+
+// void SetAlphaRange(double _arg[2])
+// "void SetAlphaRange (double _arg[2])"
+public void SetAlphaRange(double /*(double[2])*/ []_arg) {
+	VTK_API.API_vtkLookupTable.SetAlphaRange_1(this, _arg);
+}
+
+
+// virtual double* GetAlphaRange()
+// "virtual double *GetAlphaRange ()"
+public IntPtr GetAlphaRange() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkLookupTable.GetAlphaRange_0(returnPointer.GetPtr(), this);
+	return (IntPtr)returnPointer;
+}
+
+
+// virtual void GetAlphaRange(double & _arg1, double & _arg2)
+// "virtual void GetAlphaRange (double &_arg1, double &_arg2)"
+public void GetAlphaRange(IntPtr /*(double&)*/ _arg1, IntPtr /*(double&)*/ _arg2) {
+	VTK_API.API_vtkLookupTable.GetAlphaRange_1(this, _arg1, _arg2);
+}
+
+
+// virtual void GetAlphaRange(double _arg[2])
+// "virtual void GetAlphaRange (double _arg[2])"
+public void GetAlphaRange(double /*(double[2])*/ []_arg) {
+	VTK_API.API_vtkLookupTable.GetAlphaRange_2(this, _arg);
+}
+
+
+// virtual void SetNanColor(double _arg1, double _arg2, double _arg3, double _arg4)
+// "virtual void SetNanColor (double _arg1, double _arg2, double _arg3, double _arg4)"
+public void SetNanColor(double /*(double)*/ _arg1, double /*(double)*/ _arg2, double /*(double)*/ _arg3, double /*(double)*/ _arg4) {
+	VTK_API.API_vtkLookupTable.SetNanColor_0(this, _arg1, _arg2, _arg3, _arg4);
+}
+
+
+// virtual void SetNanColor(double _arg[4])
+// "virtual void SetNanColor (double _arg[4])"
+public void SetNanColor(double /*(double[4])*/ []_arg) {
+	VTK_API.API_vtkLookupTable.SetNanColor_1(this, _arg);
+}
+
+
+// virtual double* GetNanColor()
+// "virtual double *GetNanColor ()"
+public IntPtr GetNanColor() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkLookupTable.GetNanColor_0(returnPointer.GetPtr(), this);
+	return (IntPtr)returnPointer;
+}
+
+
+// virtual void GetNanColor(double & _arg1, double & _arg2, double & _arg3, double & _arg4)
+// "virtual void GetNanColor (double &_arg1, double &_arg2, double &_arg3, double &_arg4)"
+public void GetNanColor(IntPtr /*(double&)*/ _arg1, IntPtr /*(double&)*/ _arg2, IntPtr /*(double&)*/ _arg3, IntPtr /*(double&)*/ _arg4) {
+	VTK_API.API_vtkLookupTable.GetNanColor_1(this, _arg1, _arg2, _arg3, _arg4);
+}
+
+
+// virtual void GetNanColor(double _arg[4])
+// "virtual void GetNanColor (double _arg[4])"
+public void GetNanColor(double /*(double[4])*/ []_arg) {
+	VTK_API.API_vtkLookupTable.GetNanColor_2(this, _arg);
 }
 
 
@@ -131,6 +405,144 @@ public string GetNanColorAsUnsignedChars() {
 // "static void GetColorAsUnsignedChars(const double colorIn[4], unsigned char colorOut[4])"
 public static void GetColorAsUnsignedChars(double /*(double[4])*/ []colorIn, char /*(unsigned char[4])*/ []colorOut) {
 	VTK_API.API_vtkLookupTable.GetColorAsUnsignedChars_0(colorIn, colorOut);
+}
+
+
+// virtual void SetBelowRangeColor(double _arg1, double _arg2, double _arg3, double _arg4)
+// "virtual void SetBelowRangeColor (double _arg1, double _arg2, double _arg3, double _arg4)"
+public void SetBelowRangeColor(double /*(double)*/ _arg1, double /*(double)*/ _arg2, double /*(double)*/ _arg3, double /*(double)*/ _arg4) {
+	VTK_API.API_vtkLookupTable.SetBelowRangeColor_0(this, _arg1, _arg2, _arg3, _arg4);
+}
+
+
+// virtual void SetBelowRangeColor(double _arg[4])
+// "virtual void SetBelowRangeColor (double _arg[4])"
+public void SetBelowRangeColor(double /*(double[4])*/ []_arg) {
+	VTK_API.API_vtkLookupTable.SetBelowRangeColor_1(this, _arg);
+}
+
+
+// virtual double* GetBelowRangeColor()
+// "virtual double *GetBelowRangeColor ()"
+public IntPtr GetBelowRangeColor() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkLookupTable.GetBelowRangeColor_0(returnPointer.GetPtr(), this);
+	return (IntPtr)returnPointer;
+}
+
+
+// virtual void GetBelowRangeColor(double & _arg1, double & _arg2, double & _arg3, double & _arg4)
+// "virtual void GetBelowRangeColor (double &_arg1, double &_arg2, double &_arg3, double &_arg4)"
+public void GetBelowRangeColor(IntPtr /*(double&)*/ _arg1, IntPtr /*(double&)*/ _arg2, IntPtr /*(double&)*/ _arg3, IntPtr /*(double&)*/ _arg4) {
+	VTK_API.API_vtkLookupTable.GetBelowRangeColor_1(this, _arg1, _arg2, _arg3, _arg4);
+}
+
+
+// virtual void GetBelowRangeColor(double _arg[4])
+// "virtual void GetBelowRangeColor (double _arg[4])"
+public void GetBelowRangeColor(double /*(double[4])*/ []_arg) {
+	VTK_API.API_vtkLookupTable.GetBelowRangeColor_2(this, _arg);
+}
+
+
+// virtual void SetUseBelowRangeColor(int _arg)
+// "virtual void SetUseBelowRangeColor (int _arg)"
+public void SetUseBelowRangeColor(int /*(int)*/ _arg) {
+	VTK_API.API_vtkLookupTable.SetUseBelowRangeColor_0(this, _arg);
+}
+
+
+// virtual int GetUseBelowRangeColor()
+// "virtual int GetUseBelowRangeColor ()"
+public int GetUseBelowRangeColor() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	VTK_API.API_vtkLookupTable.GetUseBelowRangeColor_0(returnPointer.GetPtr(), this);
+	return (int)returnPointer;
+}
+
+
+// virtual void UseBelowRangeColorOn()
+// "virtual void UseBelowRangeColorOn ()"
+public void UseBelowRangeColorOn() {
+	VTK_API.API_vtkLookupTable.UseBelowRangeColorOn_0(this);
+}
+
+
+// virtual void UseBelowRangeColorOff()
+// "virtual void UseBelowRangeColorOff ()"
+public void UseBelowRangeColorOff() {
+	VTK_API.API_vtkLookupTable.UseBelowRangeColorOff_0(this);
+}
+
+
+// virtual void SetAboveRangeColor(double _arg1, double _arg2, double _arg3, double _arg4)
+// "virtual void SetAboveRangeColor (double _arg1, double _arg2, double _arg3, double _arg4)"
+public void SetAboveRangeColor(double /*(double)*/ _arg1, double /*(double)*/ _arg2, double /*(double)*/ _arg3, double /*(double)*/ _arg4) {
+	VTK_API.API_vtkLookupTable.SetAboveRangeColor_0(this, _arg1, _arg2, _arg3, _arg4);
+}
+
+
+// virtual void SetAboveRangeColor(double _arg[4])
+// "virtual void SetAboveRangeColor (double _arg[4])"
+public void SetAboveRangeColor(double /*(double[4])*/ []_arg) {
+	VTK_API.API_vtkLookupTable.SetAboveRangeColor_1(this, _arg);
+}
+
+
+// virtual double* GetAboveRangeColor()
+// "virtual double *GetAboveRangeColor ()"
+public IntPtr GetAboveRangeColor() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkLookupTable.GetAboveRangeColor_0(returnPointer.GetPtr(), this);
+	return (IntPtr)returnPointer;
+}
+
+
+// virtual void GetAboveRangeColor(double & _arg1, double & _arg2, double & _arg3, double & _arg4)
+// "virtual void GetAboveRangeColor (double &_arg1, double &_arg2, double &_arg3, double &_arg4)"
+public void GetAboveRangeColor(IntPtr /*(double&)*/ _arg1, IntPtr /*(double&)*/ _arg2, IntPtr /*(double&)*/ _arg3, IntPtr /*(double&)*/ _arg4) {
+	VTK_API.API_vtkLookupTable.GetAboveRangeColor_1(this, _arg1, _arg2, _arg3, _arg4);
+}
+
+
+// virtual void GetAboveRangeColor(double _arg[4])
+// "virtual void GetAboveRangeColor (double _arg[4])"
+public void GetAboveRangeColor(double /*(double[4])*/ []_arg) {
+	VTK_API.API_vtkLookupTable.GetAboveRangeColor_2(this, _arg);
+}
+
+
+// virtual void SetUseAboveRangeColor(int _arg)
+// "virtual void SetUseAboveRangeColor (int _arg)"
+public void SetUseAboveRangeColor(int /*(int)*/ _arg) {
+	VTK_API.API_vtkLookupTable.SetUseAboveRangeColor_0(this, _arg);
+}
+
+
+// virtual int GetUseAboveRangeColor()
+// "virtual int GetUseAboveRangeColor ()"
+public int GetUseAboveRangeColor() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	VTK_API.API_vtkLookupTable.GetUseAboveRangeColor_0(returnPointer.GetPtr(), this);
+	return (int)returnPointer;
+}
+
+
+// virtual void UseAboveRangeColorOn()
+// "virtual void UseAboveRangeColorOn ()"
+public void UseAboveRangeColorOn() {
+	VTK_API.API_vtkLookupTable.UseAboveRangeColorOn_0(this);
+}
+
+
+// virtual void UseAboveRangeColorOff()
+// "virtual void UseAboveRangeColorOff ()"
+public void UseAboveRangeColorOff() {
+	VTK_API.API_vtkLookupTable.UseAboveRangeColorOff_0(this);
 }
 
 
@@ -273,10 +685,57 @@ public static double ApplyLogScale(double /*(double)*/ v, double /*(double[2])*/
 }
 
 
+// virtual void SetNumberOfColors(vtkIdType _arg)
+// "virtual void SetNumberOfColors (vtkIdType _arg)"
+public void SetNumberOfColors(long /*(vtkIdType)*/ _arg) {
+	VTK_API.API_vtkLookupTable.SetNumberOfColors_0(this, _arg);
+}
+
+
+// virtual vtkIdType GetNumberOfColorsMinValue()
+// "virtual vtkIdType GetNumberOfColorsMinValue ()"
+public long GetNumberOfColorsMinValue() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	VTK_API.API_vtkLookupTable.GetNumberOfColorsMinValue_0(returnPointer.GetPtr(), this);
+	return (long)returnPointer;
+}
+
+
+// virtual vtkIdType GetNumberOfColorsMaxValue()
+// "virtual vtkIdType GetNumberOfColorsMaxValue ()"
+public long GetNumberOfColorsMaxValue() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	VTK_API.API_vtkLookupTable.GetNumberOfColorsMaxValue_0(returnPointer.GetPtr(), this);
+	return (long)returnPointer;
+}
+
+
+// virtual vtkIdType GetNumberOfColors()
+// "virtual vtkIdType GetNumberOfColors ()"
+public long GetNumberOfColors() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	VTK_API.API_vtkLookupTable.GetNumberOfColors_0(returnPointer.GetPtr(), this);
+	return (long)returnPointer;
+}
+
+
 // void SetTable(vtkUnsignedCharArray * ARG_0)
 // "void SetTable(vtkUnsignedCharArray *)"
 public void SetTable(vtkUnsignedCharArray /*(vtkUnsignedCharArray*)*/ ARG_0) {
 	VTK_API.API_vtkLookupTable.SetTable_0(this, ARG_0);
+}
+
+
+// virtual vtkUnsignedCharArray* GetTable()
+// "virtual vtkUnsignedCharArray *GetTable ()"
+public vtkUnsignedCharArray GetTable() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkLookupTable.GetTable_0(returnPointer.GetPtr(), this);
+	return (vtkUnsignedCharArray)(IntPtr)returnPointer;
 }
 
 

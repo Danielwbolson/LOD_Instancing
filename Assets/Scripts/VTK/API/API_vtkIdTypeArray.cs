@@ -7,6 +7,26 @@ using System.Linq;
 namespace VTK_API {
 class API_vtkIdTypeArray {
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// static vtkTypeBool IsTypeOf(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkIdTypeArray_IsTypeOf_0")] public static extern 
+bool IsTypeOf_0(IntPtr /*(IntPtr*)*/ return_value, string /*(char*)*/ type);
+
+// vtkTypeBool IsA(const char * type)
+// vtkTypeBool IsA(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkIdTypeArray_IsA_0")] public static extern 
+bool IsA_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkIdTypeArray*)*/ callingObject, string /*(char*)*/ type);
+
+// static vtkIdTypeArray* SafeDownCast(vtkObjectBase * o)
+// static vtkIdTypeArray* SafeDownCast(vtkObjectBase *o)
+[DllImport("vtkplugin", EntryPoint="vtkIdTypeArray_SafeDownCast_0")] public static extern 
+bool SafeDownCast_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ o);
+
+// vtkIdTypeArray* NewInstance()
+// vtkIdTypeArray *NewInstance()
+[DllImport("vtkplugin", EntryPoint="vtkIdTypeArray_NewInstance_0")] public static extern 
+bool NewInstance_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkIdTypeArray*)*/ callingObject);
+
 // static vtkIdTypeArray* New()
 // static vtkIdTypeArray* New()
 [DllImport("vtkplugin", EntryPoint="vtkIdTypeArray_New_0")] public static extern 

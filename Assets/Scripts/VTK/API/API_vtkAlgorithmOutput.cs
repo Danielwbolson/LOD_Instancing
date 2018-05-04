@@ -12,6 +12,26 @@ class API_vtkAlgorithmOutput {
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithmOutput_New_0")] public static extern 
 bool New_0(IntPtr /*(IntPtr**)*/ return_value);
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// static vtkTypeBool IsTypeOf(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkAlgorithmOutput_IsTypeOf_0")] public static extern 
+bool IsTypeOf_0(IntPtr /*(IntPtr*)*/ return_value, string /*(char*)*/ type);
+
+// vtkTypeBool IsA(const char * type)
+// vtkTypeBool IsA(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkAlgorithmOutput_IsA_0")] public static extern 
+bool IsA_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAlgorithmOutput*)*/ callingObject, string /*(char*)*/ type);
+
+// static vtkAlgorithmOutput* SafeDownCast(vtkObjectBase * o)
+// static vtkAlgorithmOutput* SafeDownCast(vtkObjectBase *o)
+[DllImport("vtkplugin", EntryPoint="vtkAlgorithmOutput_SafeDownCast_0")] public static extern 
+bool SafeDownCast_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ o);
+
+// vtkAlgorithmOutput* NewInstance()
+// vtkAlgorithmOutput *NewInstance()
+[DllImport("vtkplugin", EntryPoint="vtkAlgorithmOutput_NewInstance_0")] public static extern 
+bool NewInstance_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkAlgorithmOutput*)*/ callingObject);
+
 // void SetIndex(int index)
 // void SetIndex(int index)
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithmOutput_SetIndex_0")] public static extern 

@@ -10,6 +10,46 @@ public partial class vtkIncrementalPointLocator : vtkAbstractPointLocator {
 		public static implicit operator  vtkIncrementalPointLocator(IntPtr p) {return new vtkIncrementalPointLocator(p);}
 		public static implicit operator  IntPtr(vtkIncrementalPointLocator o) {return o.GetPtr();}
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// "static vtkTypeBool IsTypeOf(const char *type)"
+public static bool IsTypeOf(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkIncrementalPointLocator.IsTypeOf_0(returnPointer.GetPtr(), type);
+	return (bool)returnPointer;
+}
+
+
+// vtkTypeBool IsA(const char * type)
+// "vtkTypeBool IsA(const char *type)"
+public bool IsA(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkIncrementalPointLocator.IsA_0(returnPointer.GetPtr(), this, type);
+	return (bool)returnPointer;
+}
+
+
+// static vtkIncrementalPointLocator* SafeDownCast(vtkObjectBase * o)
+// "static vtkIncrementalPointLocator* SafeDownCast(vtkObjectBase *o)"
+public static vtkIncrementalPointLocator SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkIncrementalPointLocator.SafeDownCast_0(returnPointer.GetPtr(), o);
+	return (vtkIncrementalPointLocator)(IntPtr)returnPointer;
+}
+
+
+// vtkIncrementalPointLocator* NewInstance()
+// "vtkIncrementalPointLocator *NewInstance()"
+public vtkIncrementalPointLocator NewInstance() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkIncrementalPointLocator.NewInstance_0(returnPointer.GetPtr(), this);
+	return (vtkIncrementalPointLocator)(IntPtr)returnPointer;
+}
+
+
 // virtual vtkIdType FindClosestInsertedPoint(const double x[3])
 // "virtual vtkIdType FindClosestInsertedPoint( const double x[3] )"
 public long FindClosestInsertedPoint(double /*(double[3])*/ []x) {

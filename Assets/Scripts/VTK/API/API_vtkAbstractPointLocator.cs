@@ -7,6 +7,26 @@ using System.Linq;
 namespace VTK_API {
 class API_vtkAbstractPointLocator {
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// static vtkTypeBool IsTypeOf(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkAbstractPointLocator_IsTypeOf_0")] public static extern 
+bool IsTypeOf_0(IntPtr /*(IntPtr*)*/ return_value, string /*(char*)*/ type);
+
+// vtkTypeBool IsA(const char * type)
+// vtkTypeBool IsA(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkAbstractPointLocator_IsA_0")] public static extern 
+bool IsA_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAbstractPointLocator*)*/ callingObject, string /*(char*)*/ type);
+
+// static vtkAbstractPointLocator* SafeDownCast(vtkObjectBase * o)
+// static vtkAbstractPointLocator* SafeDownCast(vtkObjectBase *o)
+[DllImport("vtkplugin", EntryPoint="vtkAbstractPointLocator_SafeDownCast_0")] public static extern 
+bool SafeDownCast_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ o);
+
+// vtkAbstractPointLocator* NewInstance()
+// vtkAbstractPointLocator *NewInstance()
+[DllImport("vtkplugin", EntryPoint="vtkAbstractPointLocator_NewInstance_0")] public static extern 
+bool NewInstance_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkAbstractPointLocator*)*/ callingObject);
+
 // virtual vtkIdType FindClosestPoint(const double x[3])
 // virtual vtkIdType FindClosestPoint(const double x[3])
 [DllImport("vtkplugin", EntryPoint="vtkAbstractPointLocator_FindClosestPoint_0")] public static extern 
@@ -51,6 +71,11 @@ bool GetBounds_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkAbstractPointL
 // virtual void GetBounds(double*)
 [DllImport("vtkplugin", EntryPoint="vtkAbstractPointLocator_GetBounds_1")] public static extern 
 bool GetBounds_1(IntPtr /*(vtkAbstractPointLocator*)*/ callingObject, IntPtr /*(double*)*/ ARG_0);
+
+// virtual vtkIdType GetNumberOfBuckets()
+// virtual vtkIdType GetNumberOfBuckets ()
+[DllImport("vtkplugin", EntryPoint="vtkAbstractPointLocator_GetNumberOfBuckets_0")] public static extern 
+bool GetNumberOfBuckets_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAbstractPointLocator*)*/ callingObject);
 
 }
 };

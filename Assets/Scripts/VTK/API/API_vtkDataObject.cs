@@ -12,6 +12,26 @@ class API_vtkDataObject {
 [DllImport("vtkplugin", EntryPoint="vtkDataObject_New_0")] public static extern 
 bool New_0(IntPtr /*(IntPtr**)*/ return_value);
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// static vtkTypeBool IsTypeOf(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkDataObject_IsTypeOf_0")] public static extern 
+bool IsTypeOf_0(IntPtr /*(IntPtr*)*/ return_value, string /*(char*)*/ type);
+
+// vtkTypeBool IsA(const char * type)
+// vtkTypeBool IsA(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkDataObject_IsA_0")] public static extern 
+bool IsA_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkDataObject*)*/ callingObject, string /*(char*)*/ type);
+
+// static vtkDataObject* SafeDownCast(vtkObjectBase * o)
+// static vtkDataObject* SafeDownCast(vtkObjectBase *o)
+[DllImport("vtkplugin", EntryPoint="vtkDataObject_SafeDownCast_0")] public static extern 
+bool SafeDownCast_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ o);
+
+// vtkDataObject* NewInstance()
+// vtkDataObject *NewInstance()
+[DllImport("vtkplugin", EntryPoint="vtkDataObject_NewInstance_0")] public static extern 
+bool NewInstance_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkDataObject*)*/ callingObject);
+
 // vtkMTimeType GetMTime()
 // vtkMTimeType GetMTime()
 [DllImport("vtkplugin", EntryPoint="vtkDataObject_GetMTime_0")] public static extern 
@@ -26,6 +46,11 @@ bool Initialize_0(IntPtr /*(vtkDataObject*)*/ callingObject);
 // void ReleaseData()
 [DllImport("vtkplugin", EntryPoint="vtkDataObject_ReleaseData_0")] public static extern 
 bool ReleaseData_0(IntPtr /*(vtkDataObject*)*/ callingObject);
+
+// virtual int GetDataReleased()
+// virtual int GetDataReleased ()
+[DllImport("vtkplugin", EntryPoint="vtkDataObject_GetDataReleased_0")] public static extern 
+bool GetDataReleased_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkDataObject*)*/ callingObject);
 
 // static void SetGlobalReleaseDataFlag(int val)
 // static void SetGlobalReleaseDataFlag(int val)
@@ -51,6 +76,11 @@ bool GetGlobalReleaseDataFlag_0(IntPtr /*(IntPtr*)*/ return_value);
 // virtual void SetFieldData(vtkFieldData*)
 [DllImport("vtkplugin", EntryPoint="vtkDataObject_SetFieldData_0")] public static extern 
 bool SetFieldData_0(IntPtr /*(vtkDataObject*)*/ callingObject, IntPtr /*(vtkFieldData*)*/ ARG_0);
+
+// virtual vtkFieldData* GetFieldData()
+// virtual vtkFieldData *GetFieldData ()
+[DllImport("vtkplugin", EntryPoint="vtkDataObject_GetFieldData_0")] public static extern 
+bool GetFieldData_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkDataObject*)*/ callingObject);
 
 // virtual int GetDataObjectType()
 // virtual int GetDataObjectType()

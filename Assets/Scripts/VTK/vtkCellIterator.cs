@@ -10,6 +10,46 @@ public partial class vtkCellIterator : vtkObject {
 		public static implicit operator  vtkCellIterator(IntPtr p) {return new vtkCellIterator(p);}
 		public static implicit operator  IntPtr(vtkCellIterator o) {return o.GetPtr();}
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// "static vtkTypeBool IsTypeOf(const char *type)"
+public static bool IsTypeOf(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkCellIterator.IsTypeOf_0(returnPointer.GetPtr(), type);
+	return (bool)returnPointer;
+}
+
+
+// vtkTypeBool IsA(const char * type)
+// "vtkTypeBool IsA(const char *type)"
+public bool IsA(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkCellIterator.IsA_0(returnPointer.GetPtr(), this, type);
+	return (bool)returnPointer;
+}
+
+
+// static vtkCellIterator* SafeDownCast(vtkObjectBase * o)
+// "static vtkCellIterator* SafeDownCast(vtkObjectBase *o)"
+public static vtkCellIterator SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkCellIterator.SafeDownCast_0(returnPointer.GetPtr(), o);
+	return (vtkCellIterator)(IntPtr)returnPointer;
+}
+
+
+// vtkCellIterator* NewInstance()
+// "vtkCellIterator *NewInstance()"
+public vtkCellIterator NewInstance() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkCellIterator.NewInstance_0(returnPointer.GetPtr(), this);
+	return (vtkCellIterator)(IntPtr)returnPointer;
+}
+
+
 // void InitTraversal()
 // "void InitTraversal()"
 public void InitTraversal() {

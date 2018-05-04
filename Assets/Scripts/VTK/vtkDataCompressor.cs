@@ -10,6 +10,46 @@ public partial class vtkDataCompressor : vtkObject {
 		public static implicit operator  vtkDataCompressor(IntPtr p) {return new vtkDataCompressor(p);}
 		public static implicit operator  IntPtr(vtkDataCompressor o) {return o.GetPtr();}
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// "static vtkTypeBool IsTypeOf(const char *type)"
+public static bool IsTypeOf(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkDataCompressor.IsTypeOf_0(returnPointer.GetPtr(), type);
+	return (bool)returnPointer;
+}
+
+
+// vtkTypeBool IsA(const char * type)
+// "vtkTypeBool IsA(const char *type)"
+public bool IsA(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkDataCompressor.IsA_0(returnPointer.GetPtr(), this, type);
+	return (bool)returnPointer;
+}
+
+
+// static vtkDataCompressor* SafeDownCast(vtkObjectBase * o)
+// "static vtkDataCompressor* SafeDownCast(vtkObjectBase *o)"
+public static vtkDataCompressor SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkDataCompressor.SafeDownCast_0(returnPointer.GetPtr(), o);
+	return (vtkDataCompressor)(IntPtr)returnPointer;
+}
+
+
+// vtkDataCompressor* NewInstance()
+// "vtkDataCompressor *NewInstance()"
+public vtkDataCompressor NewInstance() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkDataCompressor.NewInstance_0(returnPointer.GetPtr(), this);
+	return (vtkDataCompressor)(IntPtr)returnPointer;
+}
+
+
 // virtual size_t GetMaximumCompressionSpace(size_t size)
 // "virtual size_t GetMaximumCompressionSpace(size_t size)"
 public ulong GetMaximumCompressionSpace(ulong /*(size_t)*/ size) {

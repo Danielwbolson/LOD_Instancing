@@ -20,6 +20,46 @@ public static vtkPolyData New() {
 }
 
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// "static vtkTypeBool IsTypeOf(const char *type)"
+public static bool IsTypeOf(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkPolyData.IsTypeOf_0(returnPointer.GetPtr(), type);
+	return (bool)returnPointer;
+}
+
+
+// vtkTypeBool IsA(const char * type)
+// "vtkTypeBool IsA(const char *type)"
+public bool IsA(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkPolyData.IsA_0(returnPointer.GetPtr(), this, type);
+	return (bool)returnPointer;
+}
+
+
+// static vtkPolyData* SafeDownCast(vtkObjectBase * o)
+// "static vtkPolyData* SafeDownCast(vtkObjectBase *o)"
+public static vtkPolyData SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkPolyData.SafeDownCast_0(returnPointer.GetPtr(), o);
+	return (vtkPolyData)(IntPtr)returnPointer;
+}
+
+
+// vtkPolyData* NewInstance()
+// "vtkPolyData *NewInstance()"
+public vtkPolyData NewInstance() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkPolyData.NewInstance_0(returnPointer.GetPtr(), this);
+	return (vtkPolyData)(IntPtr)returnPointer;
+}
+
+
 // int GetDataObjectType()
 // "int GetDataObjectType()"
 public int GetDataObjectType() {
@@ -85,13 +125,6 @@ public void GetCellBounds(long /*(vtkIdType)*/ cellId, double /*(double[6])*/ []
 // "void GetCellNeighbors(vtkIdType cellId, vtkIdList *ptIds, vtkIdList *cellIds)"
 public void GetCellNeighbors(long /*(vtkIdType)*/ cellId, vtkIdList /*(vtkIdList*)*/ ptIds, vtkIdList /*(vtkIdList*)*/ cellIds) {
 	VTK_API.API_vtkPolyData.GetCellNeighbors_0(this, cellId, ptIds, cellIds);
-}
-
-
-// void CopyCells(vtkPolyData * pd, vtkIdList * idList, vtkPointLocator * locator = nullptr)
-// "void CopyCells(vtkPolyData *pd, vtkIdList *idList, vtkPointLocator *locator = nullptr)"
-public void CopyCells(vtkPolyData /*(vtkPolyData*)*/ pd, vtkIdList /*(vtkIdList*)*/ idList, vtkPointLocator /*(vtkPointLocator*)*/ locator) {
-	VTK_API.API_vtkPolyData.CopyCells_0(this, pd, idList, locator);
 }
 
 

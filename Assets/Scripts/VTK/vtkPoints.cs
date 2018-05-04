@@ -30,6 +30,46 @@ public static vtkPoints New() {
 }
 
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// "static vtkTypeBool IsTypeOf(const char *type)"
+public static bool IsTypeOf(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkPoints.IsTypeOf_0(returnPointer.GetPtr(), type);
+	return (bool)returnPointer;
+}
+
+
+// vtkTypeBool IsA(const char * type)
+// "vtkTypeBool IsA(const char *type)"
+public bool IsA(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkPoints.IsA_0(returnPointer.GetPtr(), this, type);
+	return (bool)returnPointer;
+}
+
+
+// static vtkPoints* SafeDownCast(vtkObjectBase * o)
+// "static vtkPoints* SafeDownCast(vtkObjectBase *o)"
+public static vtkPoints SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkPoints.SafeDownCast_0(returnPointer.GetPtr(), o);
+	return (vtkPoints)(IntPtr)returnPointer;
+}
+
+
+// vtkPoints* NewInstance()
+// "vtkPoints *NewInstance()"
+public vtkPoints NewInstance() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkPoints.NewInstance_0(returnPointer.GetPtr(), this);
+	return (vtkPoints)(IntPtr)returnPointer;
+}
+
+
 // virtual int Allocate(vtkIdType sz, vtkIdType ext = 1000)
 // "virtual int Allocate(vtkIdType sz, vtkIdType ext = 1000)"
 public int Allocate(long /*(vtkIdType)*/ sz, long /*(vtkIdType)*/ ext) {

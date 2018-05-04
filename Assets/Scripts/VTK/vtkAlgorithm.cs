@@ -20,6 +20,46 @@ public static vtkAlgorithm New() {
 }
 
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// "static vtkTypeBool IsTypeOf(const char *type)"
+public static bool IsTypeOf(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkAlgorithm.IsTypeOf_0(returnPointer.GetPtr(), type);
+	return (bool)returnPointer;
+}
+
+
+// vtkTypeBool IsA(const char * type)
+// "vtkTypeBool IsA(const char *type)"
+public bool IsA(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkAlgorithm.IsA_0(returnPointer.GetPtr(), this, type);
+	return (bool)returnPointer;
+}
+
+
+// static vtkAlgorithm* SafeDownCast(vtkObjectBase * o)
+// "static vtkAlgorithm* SafeDownCast(vtkObjectBase *o)"
+public static vtkAlgorithm SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkAlgorithm.SafeDownCast_0(returnPointer.GetPtr(), o);
+	return (vtkAlgorithm)(IntPtr)returnPointer;
+}
+
+
+// vtkAlgorithm* NewInstance()
+// "vtkAlgorithm *NewInstance()"
+public vtkAlgorithm NewInstance() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkAlgorithm.NewInstance_0(returnPointer.GetPtr(), this);
+	return (vtkAlgorithm)(IntPtr)returnPointer;
+}
+
+
 // int HasExecutive()
 // "int HasExecutive()"
 public int HasExecutive() {
@@ -64,6 +104,74 @@ public void UnRegister(vtkObjectBase /*(vtkObjectBase*)*/ o) {
 }
 
 
+// virtual void SetAbortExecute(int _arg)
+// "virtual void SetAbortExecute (int _arg)"
+public void SetAbortExecute(int /*(int)*/ _arg) {
+	VTK_API.API_vtkAlgorithm.SetAbortExecute_0(this, _arg);
+}
+
+
+// virtual int GetAbortExecute()
+// "virtual int GetAbortExecute ()"
+public int GetAbortExecute() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	VTK_API.API_vtkAlgorithm.GetAbortExecute_0(returnPointer.GetPtr(), this);
+	return (int)returnPointer;
+}
+
+
+// virtual void AbortExecuteOn()
+// "virtual void AbortExecuteOn ()"
+public void AbortExecuteOn() {
+	VTK_API.API_vtkAlgorithm.AbortExecuteOn_0(this);
+}
+
+
+// virtual void AbortExecuteOff()
+// "virtual void AbortExecuteOff ()"
+public void AbortExecuteOff() {
+	VTK_API.API_vtkAlgorithm.AbortExecuteOff_0(this);
+}
+
+
+// virtual void SetProgress(double _arg)
+// "virtual void SetProgress (double _arg)"
+public void SetProgress(double /*(double)*/ _arg) {
+	VTK_API.API_vtkAlgorithm.SetProgress_0(this, _arg);
+}
+
+
+// virtual double GetProgressMinValue()
+// "virtual double GetProgressMinValue ()"
+public double GetProgressMinValue() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new double(), return_elements);
+	VTK_API.API_vtkAlgorithm.GetProgressMinValue_0(returnPointer.GetPtr(), this);
+	return (double)returnPointer;
+}
+
+
+// virtual double GetProgressMaxValue()
+// "virtual double GetProgressMaxValue ()"
+public double GetProgressMaxValue() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new double(), return_elements);
+	VTK_API.API_vtkAlgorithm.GetProgressMaxValue_0(returnPointer.GetPtr(), this);
+	return (double)returnPointer;
+}
+
+
+// virtual double GetProgress()
+// "virtual double GetProgress ()"
+public double GetProgress() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new double(), return_elements);
+	VTK_API.API_vtkAlgorithm.GetProgress_0(returnPointer.GetPtr(), this);
+	return (double)returnPointer;
+}
+
+
 // void UpdateProgress(double amount)
 // "void UpdateProgress(double amount)"
 public void UpdateProgress(double /*(double)*/ amount) {
@@ -75,6 +183,26 @@ public void UpdateProgress(double /*(double)*/ amount) {
 // "void SetProgressText(const char* ptext)"
 public void SetProgressText(string /*(char*)*/ ptext) {
 	VTK_API.API_vtkAlgorithm.SetProgressText_0(this, ptext);
+}
+
+
+// virtual char* GetProgressText()
+// "virtual char* GetProgressText ()"
+public string GetProgressText() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkAlgorithm.GetProgressText_0(returnPointer.GetPtr(), this);
+	return (string)returnPointer;
+}
+
+
+// virtual long GetErrorCode()
+// "virtual unsigned long GetErrorCode ()"
+public ulong GetErrorCode() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new ulong(), return_elements);
+	VTK_API.API_vtkAlgorithm.GetErrorCode_0(returnPointer.GetPtr(), this);
+	return (ulong)returnPointer;
 }
 
 
@@ -297,16 +425,6 @@ public void Update() {
 }
 
 
-// virtual int UpdatePiece(int piece, int numPieces, int ghostLevels, const int extents[6] = nullptr)
-// "virtual int UpdatePiece( int piece, int numPieces, int ghostLevels, const int extents[6]=nullptr)"
-public int UpdatePiece(int /*(int)*/ piece, int /*(int)*/ numPieces, int /*(int)*/ ghostLevels, int /*(int[6])*/ []extents) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
-	VTK_API.API_vtkAlgorithm.UpdatePiece_0(returnPointer.GetPtr(), this, piece, numPieces, ghostLevels, extents);
-	return (int)returnPointer;
-}
-
-
 // virtual int UpdateExtent(const int extents[6])
 // "virtual int UpdateExtent(const int extents[6])"
 public int UpdateExtent(int /*(int[6])*/ []extents) {
@@ -495,6 +613,16 @@ public int GetUpdateGhostLevel(int /*(int)*/ port) {
 // "void SetProgressObserver(vtkProgressObserver*)"
 public void SetProgressObserver(vtkProgressObserver /*(vtkProgressObserver*)*/ ARG_0) {
 	VTK_API.API_vtkAlgorithm.SetProgressObserver_0(this, ARG_0);
+}
+
+
+// virtual vtkProgressObserver* GetProgressObserver()
+// "virtual vtkProgressObserver *GetProgressObserver ()"
+public vtkProgressObserver GetProgressObserver() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkAlgorithm.GetProgressObserver_0(returnPointer.GetPtr(), this);
+	return (vtkProgressObserver)(IntPtr)returnPointer;
 }
 
 

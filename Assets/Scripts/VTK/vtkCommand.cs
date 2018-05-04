@@ -10,6 +10,46 @@ public partial class vtkCommand : vtkObjectBase {
 		public static implicit operator  vtkCommand(IntPtr p) {return new vtkCommand(p);}
 		public static implicit operator  IntPtr(vtkCommand o) {return o.GetPtr();}
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// "static vtkTypeBool IsTypeOf(const char *type)"
+public static bool IsTypeOf(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkCommand.IsTypeOf_0(returnPointer.GetPtr(), type);
+	return (bool)returnPointer;
+}
+
+
+// vtkTypeBool IsA(const char * type)
+// "vtkTypeBool IsA(const char *type)"
+public bool IsA(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkCommand.IsA_0(returnPointer.GetPtr(), this, type);
+	return (bool)returnPointer;
+}
+
+
+// static vtkCommand* SafeDownCast(vtkObjectBase * o)
+// "static vtkCommand* SafeDownCast(vtkObjectBase *o)"
+public static vtkCommand SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkCommand.SafeDownCast_0(returnPointer.GetPtr(), o);
+	return (vtkCommand)(IntPtr)returnPointer;
+}
+
+
+// vtkCommand* NewInstance()
+// "vtkCommand *NewInstance()"
+public vtkCommand NewInstance() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkCommand.NewInstance_0(returnPointer.GetPtr(), this);
+	return (vtkCommand)(IntPtr)returnPointer;
+}
+
+
 // void UnRegister()
 // "void UnRegister()"
 public void UnRegister() {

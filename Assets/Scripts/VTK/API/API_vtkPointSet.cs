@@ -7,6 +7,26 @@ using System.Linq;
 namespace VTK_API {
 class API_vtkPointSet {
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// static vtkTypeBool IsTypeOf(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkPointSet_IsTypeOf_0")] public static extern 
+bool IsTypeOf_0(IntPtr /*(IntPtr*)*/ return_value, string /*(char*)*/ type);
+
+// vtkTypeBool IsA(const char * type)
+// vtkTypeBool IsA(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkPointSet_IsA_0")] public static extern 
+bool IsA_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkPointSet*)*/ callingObject, string /*(char*)*/ type);
+
+// static vtkPointSet* SafeDownCast(vtkObjectBase * o)
+// static vtkPointSet* SafeDownCast(vtkObjectBase *o)
+[DllImport("vtkplugin", EntryPoint="vtkPointSet_SafeDownCast_0")] public static extern 
+bool SafeDownCast_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ o);
+
+// vtkPointSet* NewInstance()
+// vtkPointSet *NewInstance()
+[DllImport("vtkplugin", EntryPoint="vtkPointSet_NewInstance_0")] public static extern 
+bool NewInstance_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkPointSet*)*/ callingObject);
+
 // void Initialize()
 // void Initialize()
 [DllImport("vtkplugin", EntryPoint="vtkPointSet_Initialize_0")] public static extern 
@@ -76,6 +96,11 @@ bool Squeeze_0(IntPtr /*(vtkPointSet*)*/ callingObject);
 // virtual void SetPoints(vtkPoints*)
 [DllImport("vtkplugin", EntryPoint="vtkPointSet_SetPoints_0")] public static extern 
 bool SetPoints_0(IntPtr /*(vtkPointSet*)*/ callingObject, IntPtr /*(vtkPoints*)*/ ARG_0);
+
+// virtual vtkPoints* GetPoints()
+// virtual vtkPoints *GetPoints ()
+[DllImport("vtkplugin", EntryPoint="vtkPointSet_GetPoints_0")] public static extern 
+bool GetPoints_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkPointSet*)*/ callingObject);
 
 // long GetActualMemorySize()
 // unsigned long GetActualMemorySize()

@@ -10,6 +10,46 @@ public partial class vtkUnstructuredGridBase : vtkPointSet {
 		public static implicit operator  vtkUnstructuredGridBase(IntPtr p) {return new vtkUnstructuredGridBase(p);}
 		public static implicit operator  IntPtr(vtkUnstructuredGridBase o) {return o.GetPtr();}
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// "static vtkTypeBool IsTypeOf(const char *type)"
+public static bool IsTypeOf(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkUnstructuredGridBase.IsTypeOf_0(returnPointer.GetPtr(), type);
+	return (bool)returnPointer;
+}
+
+
+// vtkTypeBool IsA(const char * type)
+// "vtkTypeBool IsA(const char *type)"
+public bool IsA(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkUnstructuredGridBase.IsA_0(returnPointer.GetPtr(), this, type);
+	return (bool)returnPointer;
+}
+
+
+// static vtkUnstructuredGridBase* SafeDownCast(vtkObjectBase * o)
+// "static vtkUnstructuredGridBase* SafeDownCast(vtkObjectBase *o)"
+public static vtkUnstructuredGridBase SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkUnstructuredGridBase.SafeDownCast_0(returnPointer.GetPtr(), o);
+	return (vtkUnstructuredGridBase)(IntPtr)returnPointer;
+}
+
+
+// vtkUnstructuredGridBase* NewInstance()
+// "vtkUnstructuredGridBase *NewInstance()"
+public vtkUnstructuredGridBase NewInstance() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkUnstructuredGridBase.NewInstance_0(returnPointer.GetPtr(), this);
+	return (vtkUnstructuredGridBase)(IntPtr)returnPointer;
+}
+
+
 // int GetDataObjectType()
 // "int GetDataObjectType()"
 public int GetDataObjectType() {

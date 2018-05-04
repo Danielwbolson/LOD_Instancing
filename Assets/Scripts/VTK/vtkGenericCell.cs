@@ -20,6 +20,46 @@ public static vtkGenericCell New() {
 }
 
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// "static vtkTypeBool IsTypeOf(const char *type)"
+public static bool IsTypeOf(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkGenericCell.IsTypeOf_0(returnPointer.GetPtr(), type);
+	return (bool)returnPointer;
+}
+
+
+// vtkTypeBool IsA(const char * type)
+// "vtkTypeBool IsA(const char *type)"
+public bool IsA(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkGenericCell.IsA_0(returnPointer.GetPtr(), this, type);
+	return (bool)returnPointer;
+}
+
+
+// static vtkGenericCell* SafeDownCast(vtkObjectBase * o)
+// "static vtkGenericCell* SafeDownCast(vtkObjectBase *o)"
+public static vtkGenericCell SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkGenericCell.SafeDownCast_0(returnPointer.GetPtr(), o);
+	return (vtkGenericCell)(IntPtr)returnPointer;
+}
+
+
+// vtkGenericCell* NewInstance()
+// "vtkGenericCell *NewInstance()"
+public vtkGenericCell NewInstance() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkGenericCell.NewInstance_0(returnPointer.GetPtr(), this);
+	return (vtkGenericCell)(IntPtr)returnPointer;
+}
+
+
 // void SetPoints(vtkPoints * points)
 // "void SetPoints(vtkPoints *points)"
 public void SetPoints(vtkPoints /*(vtkPoints*)*/ points) {

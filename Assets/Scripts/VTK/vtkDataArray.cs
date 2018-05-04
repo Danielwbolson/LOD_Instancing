@@ -10,6 +10,46 @@ public partial class vtkDataArray : vtkAbstractArray {
 		public static implicit operator  vtkDataArray(IntPtr p) {return new vtkDataArray(p);}
 		public static implicit operator  IntPtr(vtkDataArray o) {return o.GetPtr();}
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// "static vtkTypeBool IsTypeOf(const char *type)"
+public static bool IsTypeOf(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkDataArray.IsTypeOf_0(returnPointer.GetPtr(), type);
+	return (bool)returnPointer;
+}
+
+
+// vtkTypeBool IsA(const char * type)
+// "vtkTypeBool IsA(const char *type)"
+public bool IsA(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkDataArray.IsA_0(returnPointer.GetPtr(), this, type);
+	return (bool)returnPointer;
+}
+
+
+// static vtkDataArray* SafeDownCast(vtkObjectBase * o)
+// "static vtkDataArray* SafeDownCast(vtkObjectBase *o)"
+public static vtkDataArray SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkDataArray.SafeDownCast_0(returnPointer.GetPtr(), o);
+	return (vtkDataArray)(IntPtr)returnPointer;
+}
+
+
+// vtkDataArray* NewInstance()
+// "vtkDataArray *NewInstance()"
+public vtkDataArray NewInstance() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkDataArray.NewInstance_0(returnPointer.GetPtr(), this);
+	return (vtkDataArray)(IntPtr)returnPointer;
+}
+
+
 // static vtkDataArray* FastDownCast(vtkAbstractArray * source)
 // "static vtkDataArray* FastDownCast(vtkAbstractArray *source)"
 public static vtkDataArray FastDownCast(vtkAbstractArray /*(vtkAbstractArray*)*/ source) {
@@ -461,6 +501,16 @@ public void SetLookupTable(vtkLookupTable /*(vtkLookupTable*)*/ lut) {
 }
 
 
+// virtual vtkLookupTable* GetLookupTable()
+// "virtual vtkLookupTable *GetLookupTable ()"
+public vtkLookupTable GetLookupTable() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkDataArray.GetLookupTable_0(returnPointer.GetPtr(), this);
+	return (vtkLookupTable)(IntPtr)returnPointer;
+}
+
+
 // void GetRange(double range[2], int comp)
 // "void GetRange(double range[2], int comp)"
 public void GetRange(double /*(double[2])*/ []range, int /*(int)*/ comp) {
@@ -590,6 +640,16 @@ public double GetMaxNorm() {
 	ReturnPointer returnPointer = new ReturnPointer(new double(), return_elements);
 	VTK_API.API_vtkDataArray.GetMaxNorm_0(returnPointer.GetPtr(), this);
 	return (double)returnPointer;
+}
+
+
+// static vtkDataArray* CreateDataArray(int dataType)
+// "static vtkDataArray* CreateDataArray(int dataType)"
+public static vtkDataArray CreateDataArray(int /*(int)*/ dataType) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkDataArray.CreateDataArray_0(returnPointer.GetPtr(), dataType);
+	return (vtkDataArray)(IntPtr)returnPointer;
 }
 
 

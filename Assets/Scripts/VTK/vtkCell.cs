@@ -10,6 +10,46 @@ public partial class vtkCell : vtkObject {
 		public static implicit operator  vtkCell(IntPtr p) {return new vtkCell(p);}
 		public static implicit operator  IntPtr(vtkCell o) {return o.GetPtr();}
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// "static vtkTypeBool IsTypeOf(const char *type)"
+public static bool IsTypeOf(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkCell.IsTypeOf_0(returnPointer.GetPtr(), type);
+	return (bool)returnPointer;
+}
+
+
+// vtkTypeBool IsA(const char * type)
+// "vtkTypeBool IsA(const char *type)"
+public bool IsA(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkCell.IsA_0(returnPointer.GetPtr(), this, type);
+	return (bool)returnPointer;
+}
+
+
+// static vtkCell* SafeDownCast(vtkObjectBase * o)
+// "static vtkCell* SafeDownCast(vtkObjectBase *o)"
+public static vtkCell SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkCell.SafeDownCast_0(returnPointer.GetPtr(), o);
+	return (vtkCell)(IntPtr)returnPointer;
+}
+
+
+// vtkCell* NewInstance()
+// "vtkCell *NewInstance()"
+public vtkCell NewInstance() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkCell.NewInstance_0(returnPointer.GetPtr(), this);
+	return (vtkCell)(IntPtr)returnPointer;
+}
+
+
 // void Initialize(int npts, vtkIdType * pts, vtkPoints * p)
 // "void Initialize(int npts, vtkIdType *pts, vtkPoints *p)"
 public void Initialize(int /*(int)*/ npts, IntPtr /*(vtkIdType*)*/ pts, vtkPoints /*(vtkPoints*)*/ p) {
@@ -102,6 +142,13 @@ public int RequiresExplicitFaceRepresentation() {
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
 	VTK_API.API_vtkCell.RequiresExplicitFaceRepresentation_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
+}
+
+
+// virtual void SetFaces(vtkIdType * ARG_0)
+// "virtual void SetFaces(vtkIdType *)"
+public void SetFaces(IntPtr /*(vtkIdType*)*/ ARG_0) {
+	VTK_API.API_vtkCell.SetFaces_0(this, ARG_0);
 }
 
 
@@ -327,6 +374,20 @@ public IntPtr GetParametricCoords() {
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
 	VTK_API.API_vtkCell.GetParametricCoords_0(returnPointer.GetPtr(), this);
 	return (IntPtr)returnPointer;
+}
+
+
+// virtual void InterpolateFunctions(double ARG_0[3], double * ARG_1)
+// "virtual void InterpolateFunctions(double [3], double* )"
+public void InterpolateFunctions(double /*(double[3])*/ []ARG_0, IntPtr /*(double*)*/ ARG_1) {
+	VTK_API.API_vtkCell.InterpolateFunctions_0(this, ARG_0, ARG_1);
+}
+
+
+// virtual void InterpolateDerivs(double ARG_0[3], double * ARG_1)
+// "virtual void InterpolateDerivs(double [3], double* )"
+public void InterpolateDerivs(double /*(double[3])*/ []ARG_0, IntPtr /*(double*)*/ ARG_1) {
+	VTK_API.API_vtkCell.InterpolateDerivs_0(this, ARG_0, ARG_1);
 }
 
 

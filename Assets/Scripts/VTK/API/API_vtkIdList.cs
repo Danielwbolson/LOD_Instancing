@@ -22,6 +22,26 @@ bool Initialize_0(IntPtr /*(vtkIdList*)*/ callingObject);
 [DllImport("vtkplugin", EntryPoint="vtkIdList_Allocate_0")] public static extern 
 bool Allocate_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkIdList*)*/ callingObject, long /*(vtkIdType)*/ sz, int /*(int)*/ strategy);
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// static vtkTypeBool IsTypeOf(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkIdList_IsTypeOf_0")] public static extern 
+bool IsTypeOf_0(IntPtr /*(IntPtr*)*/ return_value, string /*(char*)*/ type);
+
+// vtkTypeBool IsA(const char * type)
+// vtkTypeBool IsA(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkIdList_IsA_0")] public static extern 
+bool IsA_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkIdList*)*/ callingObject, string /*(char*)*/ type);
+
+// static vtkIdList* SafeDownCast(vtkObjectBase * o)
+// static vtkIdList* SafeDownCast(vtkObjectBase *o)
+[DllImport("vtkplugin", EntryPoint="vtkIdList_SafeDownCast_0")] public static extern 
+bool SafeDownCast_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ o);
+
+// vtkIdList* NewInstance()
+// vtkIdList *NewInstance()
+[DllImport("vtkplugin", EntryPoint="vtkIdList_NewInstance_0")] public static extern 
+bool NewInstance_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkIdList*)*/ callingObject);
+
 // vtkIdType GetNumberOfIds()
 // vtkIdType GetNumberOfIds()
 [DllImport("vtkplugin", EntryPoint="vtkIdList_GetNumberOfIds_0")] public static extern 

@@ -7,6 +7,26 @@ using System.Linq;
 namespace VTK_API {
 class API_vtkIncrementalPointLocator {
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// static vtkTypeBool IsTypeOf(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkIncrementalPointLocator_IsTypeOf_0")] public static extern 
+bool IsTypeOf_0(IntPtr /*(IntPtr*)*/ return_value, string /*(char*)*/ type);
+
+// vtkTypeBool IsA(const char * type)
+// vtkTypeBool IsA(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkIncrementalPointLocator_IsA_0")] public static extern 
+bool IsA_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkIncrementalPointLocator*)*/ callingObject, string /*(char*)*/ type);
+
+// static vtkIncrementalPointLocator* SafeDownCast(vtkObjectBase * o)
+// static vtkIncrementalPointLocator* SafeDownCast(vtkObjectBase *o)
+[DllImport("vtkplugin", EntryPoint="vtkIncrementalPointLocator_SafeDownCast_0")] public static extern 
+bool SafeDownCast_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ o);
+
+// vtkIncrementalPointLocator* NewInstance()
+// vtkIncrementalPointLocator *NewInstance()
+[DllImport("vtkplugin", EntryPoint="vtkIncrementalPointLocator_NewInstance_0")] public static extern 
+bool NewInstance_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkIncrementalPointLocator*)*/ callingObject);
+
 // virtual vtkIdType FindClosestInsertedPoint(const double x[3])
 // virtual vtkIdType FindClosestInsertedPoint( const double x[3] )
 [DllImport("vtkplugin", EntryPoint="vtkIncrementalPointLocator_FindClosestInsertedPoint_0")] public static extern 

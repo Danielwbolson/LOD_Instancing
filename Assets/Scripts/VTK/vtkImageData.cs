@@ -20,6 +20,46 @@ public static vtkImageData New() {
 }
 
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// "static vtkTypeBool IsTypeOf(const char *type)"
+public static bool IsTypeOf(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkImageData.IsTypeOf_0(returnPointer.GetPtr(), type);
+	return (bool)returnPointer;
+}
+
+
+// vtkTypeBool IsA(const char * type)
+// "vtkTypeBool IsA(const char *type)"
+public bool IsA(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkImageData.IsA_0(returnPointer.GetPtr(), this, type);
+	return (bool)returnPointer;
+}
+
+
+// static vtkImageData* SafeDownCast(vtkObjectBase * o)
+// "static vtkImageData* SafeDownCast(vtkObjectBase *o)"
+public static vtkImageData SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkImageData.SafeDownCast_0(returnPointer.GetPtr(), o);
+	return (vtkImageData)(IntPtr)returnPointer;
+}
+
+
+// vtkImageData* NewInstance()
+// "vtkImageData *NewInstance()"
+public vtkImageData NewInstance() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkImageData.NewInstance_0(returnPointer.GetPtr(), this);
+	return (vtkImageData)(IntPtr)returnPointer;
+}
+
+
 // void CopyStructure(vtkDataSet * ds)
 // "void CopyStructure(vtkDataSet *ds)"
 public void CopyStructure(vtkDataSet /*(vtkDataSet*)*/ ds) {
@@ -329,6 +369,30 @@ public void SetExtent(int /*(int)*/ x1, int /*(int)*/ x2, int /*(int)*/ y1, int 
 }
 
 
+// virtual int* GetExtent()
+// "virtual int *GetExtent ()"
+public IntPtr GetExtent() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkImageData.GetExtent_0(returnPointer.GetPtr(), this);
+	return (IntPtr)returnPointer;
+}
+
+
+// virtual void GetExtent(int & _arg1, int & _arg2, int & _arg3, int & _arg4, int & _arg5, int & _arg6)
+// "virtual void GetExtent (int &_arg1, int &_arg2, int &_arg3, int &_arg4, int &_arg5, int &_arg6)"
+public void GetExtent(IntPtr /*(int&)*/ _arg1, IntPtr /*(int&)*/ _arg2, IntPtr /*(int&)*/ _arg3, IntPtr /*(int&)*/ _arg4, IntPtr /*(int&)*/ _arg5, IntPtr /*(int&)*/ _arg6) {
+	VTK_API.API_vtkImageData.GetExtent_1(this, _arg1, _arg2, _arg3, _arg4, _arg5, _arg6);
+}
+
+
+// virtual void GetExtent(int _arg[6])
+// "virtual void GetExtent (int _arg[6])"
+public void GetExtent(int /*(int[6])*/ []_arg) {
+	VTK_API.API_vtkImageData.GetExtent_2(this, _arg);
+}
+
+
 // virtual double GetScalarTypeMin()
 // "virtual double GetScalarTypeMin()"
 public double GetScalarTypeMin() {
@@ -530,6 +594,82 @@ public ulong GetActualMemorySize() {
 	ReturnPointer returnPointer = new ReturnPointer(new ulong(), return_elements);
 	VTK_API.API_vtkImageData.GetActualMemorySize_0(returnPointer.GetPtr(), this);
 	return (ulong)returnPointer;
+}
+
+
+// virtual void SetSpacing(double _arg1, double _arg2, double _arg3)
+// "virtual void SetSpacing (double _arg1, double _arg2, double _arg3)"
+public void SetSpacing(double /*(double)*/ _arg1, double /*(double)*/ _arg2, double /*(double)*/ _arg3) {
+	VTK_API.API_vtkImageData.SetSpacing_0(this, _arg1, _arg2, _arg3);
+}
+
+
+// virtual void SetSpacing(double _arg[3])
+// "virtual void SetSpacing (double _arg[3])"
+public void SetSpacing(double /*(double[3])*/ []_arg) {
+	VTK_API.API_vtkImageData.SetSpacing_1(this, _arg);
+}
+
+
+// virtual double* GetSpacing()
+// "virtual double *GetSpacing ()"
+public IntPtr GetSpacing() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkImageData.GetSpacing_0(returnPointer.GetPtr(), this);
+	return (IntPtr)returnPointer;
+}
+
+
+// virtual void GetSpacing(double & _arg1, double & _arg2, double & _arg3)
+// "virtual void GetSpacing (double &_arg1, double &_arg2, double &_arg3)"
+public void GetSpacing(IntPtr /*(double&)*/ _arg1, IntPtr /*(double&)*/ _arg2, IntPtr /*(double&)*/ _arg3) {
+	VTK_API.API_vtkImageData.GetSpacing_1(this, _arg1, _arg2, _arg3);
+}
+
+
+// virtual void GetSpacing(double _arg[3])
+// "virtual void GetSpacing (double _arg[3])"
+public void GetSpacing(double /*(double[3])*/ []_arg) {
+	VTK_API.API_vtkImageData.GetSpacing_2(this, _arg);
+}
+
+
+// virtual void SetOrigin(double _arg1, double _arg2, double _arg3)
+// "virtual void SetOrigin (double _arg1, double _arg2, double _arg3)"
+public void SetOrigin(double /*(double)*/ _arg1, double /*(double)*/ _arg2, double /*(double)*/ _arg3) {
+	VTK_API.API_vtkImageData.SetOrigin_0(this, _arg1, _arg2, _arg3);
+}
+
+
+// virtual void SetOrigin(double _arg[3])
+// "virtual void SetOrigin (double _arg[3])"
+public void SetOrigin(double /*(double[3])*/ []_arg) {
+	VTK_API.API_vtkImageData.SetOrigin_1(this, _arg);
+}
+
+
+// virtual double* GetOrigin()
+// "virtual double *GetOrigin ()"
+public IntPtr GetOrigin() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkImageData.GetOrigin_0(returnPointer.GetPtr(), this);
+	return (IntPtr)returnPointer;
+}
+
+
+// virtual void GetOrigin(double & _arg1, double & _arg2, double & _arg3)
+// "virtual void GetOrigin (double &_arg1, double &_arg2, double &_arg3)"
+public void GetOrigin(IntPtr /*(double&)*/ _arg1, IntPtr /*(double&)*/ _arg2, IntPtr /*(double&)*/ _arg3) {
+	VTK_API.API_vtkImageData.GetOrigin_1(this, _arg1, _arg2, _arg3);
+}
+
+
+// virtual void GetOrigin(double _arg[3])
+// "virtual void GetOrigin (double _arg[3])"
+public void GetOrigin(double /*(double[3])*/ []_arg) {
+	VTK_API.API_vtkImageData.GetOrigin_2(this, _arg);
 }
 
 

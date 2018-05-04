@@ -12,6 +12,26 @@ class API_vtkDataSetAttributes {
 [DllImport("vtkplugin", EntryPoint="vtkDataSetAttributes_New_0")] public static extern 
 bool New_0(IntPtr /*(IntPtr**)*/ return_value);
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// static vtkTypeBool IsTypeOf(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkDataSetAttributes_IsTypeOf_0")] public static extern 
+bool IsTypeOf_0(IntPtr /*(IntPtr*)*/ return_value, string /*(char*)*/ type);
+
+// vtkTypeBool IsA(const char * type)
+// vtkTypeBool IsA(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkDataSetAttributes_IsA_0")] public static extern 
+bool IsA_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkDataSetAttributes*)*/ callingObject, string /*(char*)*/ type);
+
+// static vtkDataSetAttributes* SafeDownCast(vtkObjectBase * o)
+// static vtkDataSetAttributes* SafeDownCast(vtkObjectBase *o)
+[DllImport("vtkplugin", EntryPoint="vtkDataSetAttributes_SafeDownCast_0")] public static extern 
+bool SafeDownCast_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ o);
+
+// vtkDataSetAttributes* NewInstance()
+// vtkDataSetAttributes *NewInstance()
+[DllImport("vtkplugin", EntryPoint="vtkDataSetAttributes_NewInstance_0")] public static extern 
+bool NewInstance_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkDataSetAttributes*)*/ callingObject);
+
 // void Initialize()
 // void Initialize()
 [DllImport("vtkplugin", EntryPoint="vtkDataSetAttributes_Initialize_0")] public static extern 
@@ -231,6 +251,76 @@ bool GetLongAttributeTypeAsString_0(IntPtr /*(IntPtr**)*/ return_value, int /*(i
 // int GetCopyAttribute (int index, int ctype)
 [DllImport("vtkplugin", EntryPoint="vtkDataSetAttributes_GetCopyAttribute_0")] public static extern 
 bool GetCopyAttribute_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkDataSetAttributes*)*/ callingObject, int /*(int)*/ index, int /*(int)*/ ctype);
+
+// virtual void CopyScalarsOn()
+// virtual void CopyScalarsOn ()
+[DllImport("vtkplugin", EntryPoint="vtkDataSetAttributes_CopyScalarsOn_0")] public static extern 
+bool CopyScalarsOn_0(IntPtr /*(vtkDataSetAttributes*)*/ callingObject);
+
+// virtual void CopyScalarsOff()
+// virtual void CopyScalarsOff ()
+[DllImport("vtkplugin", EntryPoint="vtkDataSetAttributes_CopyScalarsOff_0")] public static extern 
+bool CopyScalarsOff_0(IntPtr /*(vtkDataSetAttributes*)*/ callingObject);
+
+// virtual void CopyVectorsOn()
+// virtual void CopyVectorsOn ()
+[DllImport("vtkplugin", EntryPoint="vtkDataSetAttributes_CopyVectorsOn_0")] public static extern 
+bool CopyVectorsOn_0(IntPtr /*(vtkDataSetAttributes*)*/ callingObject);
+
+// virtual void CopyVectorsOff()
+// virtual void CopyVectorsOff ()
+[DllImport("vtkplugin", EntryPoint="vtkDataSetAttributes_CopyVectorsOff_0")] public static extern 
+bool CopyVectorsOff_0(IntPtr /*(vtkDataSetAttributes*)*/ callingObject);
+
+// virtual void CopyNormalsOn()
+// virtual void CopyNormalsOn ()
+[DllImport("vtkplugin", EntryPoint="vtkDataSetAttributes_CopyNormalsOn_0")] public static extern 
+bool CopyNormalsOn_0(IntPtr /*(vtkDataSetAttributes*)*/ callingObject);
+
+// virtual void CopyNormalsOff()
+// virtual void CopyNormalsOff ()
+[DllImport("vtkplugin", EntryPoint="vtkDataSetAttributes_CopyNormalsOff_0")] public static extern 
+bool CopyNormalsOff_0(IntPtr /*(vtkDataSetAttributes*)*/ callingObject);
+
+// virtual void CopyTCoordsOn()
+// virtual void CopyTCoordsOn ()
+[DllImport("vtkplugin", EntryPoint="vtkDataSetAttributes_CopyTCoordsOn_0")] public static extern 
+bool CopyTCoordsOn_0(IntPtr /*(vtkDataSetAttributes*)*/ callingObject);
+
+// virtual void CopyTCoordsOff()
+// virtual void CopyTCoordsOff ()
+[DllImport("vtkplugin", EntryPoint="vtkDataSetAttributes_CopyTCoordsOff_0")] public static extern 
+bool CopyTCoordsOff_0(IntPtr /*(vtkDataSetAttributes*)*/ callingObject);
+
+// virtual void CopyTensorsOn()
+// virtual void CopyTensorsOn ()
+[DllImport("vtkplugin", EntryPoint="vtkDataSetAttributes_CopyTensorsOn_0")] public static extern 
+bool CopyTensorsOn_0(IntPtr /*(vtkDataSetAttributes*)*/ callingObject);
+
+// virtual void CopyTensorsOff()
+// virtual void CopyTensorsOff ()
+[DllImport("vtkplugin", EntryPoint="vtkDataSetAttributes_CopyTensorsOff_0")] public static extern 
+bool CopyTensorsOff_0(IntPtr /*(vtkDataSetAttributes*)*/ callingObject);
+
+// virtual void CopyGlobalIdsOn()
+// virtual void CopyGlobalIdsOn ()
+[DllImport("vtkplugin", EntryPoint="vtkDataSetAttributes_CopyGlobalIdsOn_0")] public static extern 
+bool CopyGlobalIdsOn_0(IntPtr /*(vtkDataSetAttributes*)*/ callingObject);
+
+// virtual void CopyGlobalIdsOff()
+// virtual void CopyGlobalIdsOff ()
+[DllImport("vtkplugin", EntryPoint="vtkDataSetAttributes_CopyGlobalIdsOff_0")] public static extern 
+bool CopyGlobalIdsOff_0(IntPtr /*(vtkDataSetAttributes*)*/ callingObject);
+
+// virtual void CopyPedigreeIdsOn()
+// virtual void CopyPedigreeIdsOn ()
+[DllImport("vtkplugin", EntryPoint="vtkDataSetAttributes_CopyPedigreeIdsOn_0")] public static extern 
+bool CopyPedigreeIdsOn_0(IntPtr /*(vtkDataSetAttributes*)*/ callingObject);
+
+// virtual void CopyPedigreeIdsOff()
+// virtual void CopyPedigreeIdsOff ()
+[DllImport("vtkplugin", EntryPoint="vtkDataSetAttributes_CopyPedigreeIdsOff_0")] public static extern 
+bool CopyPedigreeIdsOff_0(IntPtr /*(vtkDataSetAttributes*)*/ callingObject);
 
 // void PassData(vtkFieldData * fd)
 // void PassData(vtkFieldData* fd)

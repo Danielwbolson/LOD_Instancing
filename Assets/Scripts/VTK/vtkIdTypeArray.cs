@@ -10,6 +10,46 @@ public partial class vtkIdTypeArray : vtkDataArray {
 		public static implicit operator  vtkIdTypeArray(IntPtr p) {return new vtkIdTypeArray(p);}
 		public static implicit operator  IntPtr(vtkIdTypeArray o) {return o.GetPtr();}
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// "static vtkTypeBool IsTypeOf(const char *type)"
+public static bool IsTypeOf(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkIdTypeArray.IsTypeOf_0(returnPointer.GetPtr(), type);
+	return (bool)returnPointer;
+}
+
+
+// vtkTypeBool IsA(const char * type)
+// "vtkTypeBool IsA(const char *type)"
+public bool IsA(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkIdTypeArray.IsA_0(returnPointer.GetPtr(), this, type);
+	return (bool)returnPointer;
+}
+
+
+// static vtkIdTypeArray* SafeDownCast(vtkObjectBase * o)
+// "static vtkIdTypeArray* SafeDownCast(vtkObjectBase *o)"
+public static vtkIdTypeArray SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkIdTypeArray.SafeDownCast_0(returnPointer.GetPtr(), o);
+	return (vtkIdTypeArray)(IntPtr)returnPointer;
+}
+
+
+// vtkIdTypeArray* NewInstance()
+// "vtkIdTypeArray *NewInstance()"
+public vtkIdTypeArray NewInstance() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkIdTypeArray.NewInstance_0(returnPointer.GetPtr(), this);
+	return (vtkIdTypeArray)(IntPtr)returnPointer;
+}
+
+
 // static vtkIdTypeArray* New()
 // "static vtkIdTypeArray* New()"
 public static vtkIdTypeArray New() {

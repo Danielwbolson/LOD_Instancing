@@ -7,6 +7,26 @@ using System.Linq;
 namespace VTK_API {
 class API_vtkDataArray {
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// static vtkTypeBool IsTypeOf(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkDataArray_IsTypeOf_0")] public static extern 
+bool IsTypeOf_0(IntPtr /*(IntPtr*)*/ return_value, string /*(char*)*/ type);
+
+// vtkTypeBool IsA(const char * type)
+// vtkTypeBool IsA(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkDataArray_IsA_0")] public static extern 
+bool IsA_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject, string /*(char*)*/ type);
+
+// static vtkDataArray* SafeDownCast(vtkObjectBase * o)
+// static vtkDataArray* SafeDownCast(vtkObjectBase *o)
+[DllImport("vtkplugin", EntryPoint="vtkDataArray_SafeDownCast_0")] public static extern 
+bool SafeDownCast_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ o);
+
+// vtkDataArray* NewInstance()
+// vtkDataArray *NewInstance()
+[DllImport("vtkplugin", EntryPoint="vtkDataArray_NewInstance_0")] public static extern 
+bool NewInstance_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject);
+
 // static vtkDataArray* FastDownCast(vtkAbstractArray * source)
 // static vtkDataArray* FastDownCast(vtkAbstractArray *source)
 [DllImport("vtkplugin", EntryPoint="vtkDataArray_FastDownCast_0")] public static extern 
@@ -312,6 +332,11 @@ bool CreateDefaultLookupTable_0(IntPtr /*(vtkDataArray*)*/ callingObject);
 [DllImport("vtkplugin", EntryPoint="vtkDataArray_SetLookupTable_0")] public static extern 
 bool SetLookupTable_0(IntPtr /*(vtkDataArray*)*/ callingObject, IntPtr /*(vtkLookupTable*)*/ lut);
 
+// virtual vtkLookupTable* GetLookupTable()
+// virtual vtkLookupTable *GetLookupTable ()
+[DllImport("vtkplugin", EntryPoint="vtkDataArray_GetLookupTable_0")] public static extern 
+bool GetLookupTable_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject);
+
 // void GetRange(double range[2], int comp)
 // void GetRange(double range[2], int comp)
 [DllImport("vtkplugin", EntryPoint="vtkDataArray_GetRange_0")] public static extern 
@@ -386,6 +411,11 @@ bool GetDataTypeMax_1(IntPtr /*(IntPtr*)*/ return_value, int /*(int)*/ type);
 // virtual double GetMaxNorm()
 [DllImport("vtkplugin", EntryPoint="vtkDataArray_GetMaxNorm_0")] public static extern 
 bool GetMaxNorm_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject);
+
+// static vtkDataArray* CreateDataArray(int dataType)
+// static vtkDataArray* CreateDataArray(int dataType)
+[DllImport("vtkplugin", EntryPoint="vtkDataArray_CreateDataArray_0")] public static extern 
+bool CreateDataArray_0(IntPtr /*(IntPtr**)*/ return_value, int /*(int)*/ dataType);
 
 // void Modified()
 // void Modified()

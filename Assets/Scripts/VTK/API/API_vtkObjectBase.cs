@@ -12,16 +12,6 @@ class API_vtkObjectBase {
 [DllImport("vtkplugin", EntryPoint="vtkObjectBase_GetClassName_0")] public static extern 
 bool GetClassName_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ callingObject);
 
-// char* GetClassName()
-// const char* GetClassName()
-[DllImport("vtkplugin", EntryPoint="vtkObjectBase_GetClassName_1")] public static extern 
-bool GetClassName_1(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ callingObject);
-
-// char* GetClassName()
-// const char* GetClassName()
-[DllImport("vtkplugin", EntryPoint="vtkObjectBase_GetClassName_2")] public static extern 
-bool GetClassName_2(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ callingObject);
-
 // static vtkTypeBool IsTypeOf(const char * name)
 // static vtkTypeBool IsTypeOf(const char *name)
 [DllImport("vtkplugin", EntryPoint="vtkObjectBase_IsTypeOf_0")] public static extern 

@@ -12,6 +12,26 @@ class API_vtkPolyData {
 [DllImport("vtkplugin", EntryPoint="vtkPolyData_New_0")] public static extern 
 bool New_0(IntPtr /*(IntPtr**)*/ return_value);
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// static vtkTypeBool IsTypeOf(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkPolyData_IsTypeOf_0")] public static extern 
+bool IsTypeOf_0(IntPtr /*(IntPtr*)*/ return_value, string /*(char*)*/ type);
+
+// vtkTypeBool IsA(const char * type)
+// vtkTypeBool IsA(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkPolyData_IsA_0")] public static extern 
+bool IsA_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkPolyData*)*/ callingObject, string /*(char*)*/ type);
+
+// static vtkPolyData* SafeDownCast(vtkObjectBase * o)
+// static vtkPolyData* SafeDownCast(vtkObjectBase *o)
+[DllImport("vtkplugin", EntryPoint="vtkPolyData_SafeDownCast_0")] public static extern 
+bool SafeDownCast_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ o);
+
+// vtkPolyData* NewInstance()
+// vtkPolyData *NewInstance()
+[DllImport("vtkplugin", EntryPoint="vtkPolyData_NewInstance_0")] public static extern 
+bool NewInstance_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkPolyData*)*/ callingObject);
+
 // int GetDataObjectType()
 // int GetDataObjectType()
 [DllImport("vtkplugin", EntryPoint="vtkPolyData_GetDataObjectType_0")] public static extern 
@@ -51,11 +71,6 @@ bool GetCellBounds_0(IntPtr /*(vtkPolyData*)*/ callingObject, long /*(vtkIdType)
 // void GetCellNeighbors(vtkIdType cellId, vtkIdList *ptIds, vtkIdList *cellIds)
 [DllImport("vtkplugin", EntryPoint="vtkPolyData_GetCellNeighbors_0")] public static extern 
 bool GetCellNeighbors_0(IntPtr /*(vtkPolyData*)*/ callingObject, long /*(vtkIdType)*/ cellId, IntPtr /*(vtkIdList*)*/ ptIds, IntPtr /*(vtkIdList*)*/ cellIds);
-
-// void CopyCells(vtkPolyData * pd, vtkIdList * idList, vtkPointLocator * locator = nullptr)
-// void CopyCells(vtkPolyData *pd, vtkIdList *idList, vtkPointLocator *locator = nullptr)
-[DllImport("vtkplugin", EntryPoint="vtkPolyData_CopyCells_0")] public static extern 
-bool CopyCells_0(IntPtr /*(vtkPolyData*)*/ callingObject, IntPtr /*(vtkPolyData*)*/ pd, IntPtr /*(vtkIdList*)*/ idList, IntPtr /*(vtkPointLocator*)*/ locator);
 
 // void GetCellPoints(vtkIdType cellId, vtkIdList * ptIds)
 // void GetCellPoints(vtkIdType cellId, vtkIdList *ptIds)

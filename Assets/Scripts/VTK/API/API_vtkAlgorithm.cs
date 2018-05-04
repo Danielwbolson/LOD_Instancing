@@ -12,6 +12,26 @@ class API_vtkAlgorithm {
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_New_0")] public static extern 
 bool New_0(IntPtr /*(IntPtr**)*/ return_value);
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// static vtkTypeBool IsTypeOf(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkAlgorithm_IsTypeOf_0")] public static extern 
+bool IsTypeOf_0(IntPtr /*(IntPtr*)*/ return_value, string /*(char*)*/ type);
+
+// vtkTypeBool IsA(const char * type)
+// vtkTypeBool IsA(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkAlgorithm_IsA_0")] public static extern 
+bool IsA_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject, string /*(char*)*/ type);
+
+// static vtkAlgorithm* SafeDownCast(vtkObjectBase * o)
+// static vtkAlgorithm* SafeDownCast(vtkObjectBase *o)
+[DllImport("vtkplugin", EntryPoint="vtkAlgorithm_SafeDownCast_0")] public static extern 
+bool SafeDownCast_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ o);
+
+// vtkAlgorithm* NewInstance()
+// vtkAlgorithm *NewInstance()
+[DllImport("vtkplugin", EntryPoint="vtkAlgorithm_NewInstance_0")] public static extern 
+bool NewInstance_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject);
+
 // int HasExecutive()
 // int HasExecutive()
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_HasExecutive_0")] public static extern 
@@ -37,6 +57,46 @@ bool Register_0(IntPtr /*(vtkAlgorithm*)*/ callingObject, IntPtr /*(vtkObjectBas
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_UnRegister_0")] public static extern 
 bool UnRegister_0(IntPtr /*(vtkAlgorithm*)*/ callingObject, IntPtr /*(vtkObjectBase*)*/ o);
 
+// virtual void SetAbortExecute(int _arg)
+// virtual void SetAbortExecute (int _arg)
+[DllImport("vtkplugin", EntryPoint="vtkAlgorithm_SetAbortExecute_0")] public static extern 
+bool SetAbortExecute_0(IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int)*/ _arg);
+
+// virtual int GetAbortExecute()
+// virtual int GetAbortExecute ()
+[DllImport("vtkplugin", EntryPoint="vtkAlgorithm_GetAbortExecute_0")] public static extern 
+bool GetAbortExecute_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject);
+
+// virtual void AbortExecuteOn()
+// virtual void AbortExecuteOn ()
+[DllImport("vtkplugin", EntryPoint="vtkAlgorithm_AbortExecuteOn_0")] public static extern 
+bool AbortExecuteOn_0(IntPtr /*(vtkAlgorithm*)*/ callingObject);
+
+// virtual void AbortExecuteOff()
+// virtual void AbortExecuteOff ()
+[DllImport("vtkplugin", EntryPoint="vtkAlgorithm_AbortExecuteOff_0")] public static extern 
+bool AbortExecuteOff_0(IntPtr /*(vtkAlgorithm*)*/ callingObject);
+
+// virtual void SetProgress(double _arg)
+// virtual void SetProgress (double _arg)
+[DllImport("vtkplugin", EntryPoint="vtkAlgorithm_SetProgress_0")] public static extern 
+bool SetProgress_0(IntPtr /*(vtkAlgorithm*)*/ callingObject, double /*(double)*/ _arg);
+
+// virtual double GetProgressMinValue()
+// virtual double GetProgressMinValue ()
+[DllImport("vtkplugin", EntryPoint="vtkAlgorithm_GetProgressMinValue_0")] public static extern 
+bool GetProgressMinValue_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject);
+
+// virtual double GetProgressMaxValue()
+// virtual double GetProgressMaxValue ()
+[DllImport("vtkplugin", EntryPoint="vtkAlgorithm_GetProgressMaxValue_0")] public static extern 
+bool GetProgressMaxValue_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject);
+
+// virtual double GetProgress()
+// virtual double GetProgress ()
+[DllImport("vtkplugin", EntryPoint="vtkAlgorithm_GetProgress_0")] public static extern 
+bool GetProgress_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject);
+
 // void UpdateProgress(double amount)
 // void UpdateProgress(double amount)
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_UpdateProgress_0")] public static extern 
@@ -46,6 +106,16 @@ bool UpdateProgress_0(IntPtr /*(vtkAlgorithm*)*/ callingObject, double /*(double
 // void SetProgressText(const char* ptext)
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_SetProgressText_0")] public static extern 
 bool SetProgressText_0(IntPtr /*(vtkAlgorithm*)*/ callingObject, string /*(char*)*/ ptext);
+
+// virtual char* GetProgressText()
+// virtual char* GetProgressText ()
+[DllImport("vtkplugin", EntryPoint="vtkAlgorithm_GetProgressText_0")] public static extern 
+bool GetProgressText_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject);
+
+// virtual long GetErrorCode()
+// virtual unsigned long GetErrorCode ()
+[DllImport("vtkplugin", EntryPoint="vtkAlgorithm_GetErrorCode_0")] public static extern 
+bool GetErrorCode_0(IntPtr /*(unsigned IntPtr*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject);
 
 // virtual void SetInputArrayToProcess(int idx, int port, int connection, int fieldAssociation, const char * name)
 // virtual void SetInputArrayToProcess(int idx, int port, int connection, int fieldAssociation, const char *name)
@@ -182,11 +252,6 @@ bool Update_0(IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int)*/ port);
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_Update_1")] public static extern 
 bool Update_1(IntPtr /*(vtkAlgorithm*)*/ callingObject);
 
-// virtual int UpdatePiece(int piece, int numPieces, int ghostLevels, const int extents[6] = nullptr)
-// virtual int UpdatePiece( int piece, int numPieces, int ghostLevels, const int extents[6]=nullptr)
-[DllImport("vtkplugin", EntryPoint="vtkAlgorithm_UpdatePiece_0")] public static extern 
-bool UpdatePiece_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject, int /*(int)*/ piece, int /*(int)*/ numPieces, int /*(int)*/ ghostLevels, int /*(int[6])*/ []extents);
-
 // virtual int UpdateExtent(const int extents[6])
 // virtual int UpdateExtent(const int extents[6])
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_UpdateExtent_0")] public static extern 
@@ -301,6 +366,11 @@ bool GetUpdateGhostLevel_1(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAlgor
 // void SetProgressObserver(vtkProgressObserver*)
 [DllImport("vtkplugin", EntryPoint="vtkAlgorithm_SetProgressObserver_0")] public static extern 
 bool SetProgressObserver_0(IntPtr /*(vtkAlgorithm*)*/ callingObject, IntPtr /*(vtkProgressObserver*)*/ ARG_0);
+
+// virtual vtkProgressObserver* GetProgressObserver()
+// virtual vtkProgressObserver *GetProgressObserver ()
+[DllImport("vtkplugin", EntryPoint="vtkAlgorithm_GetProgressObserver_0")] public static extern 
+bool GetProgressObserver_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkAlgorithm*)*/ callingObject);
 
 }
 };

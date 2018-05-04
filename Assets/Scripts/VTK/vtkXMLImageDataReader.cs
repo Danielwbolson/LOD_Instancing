@@ -10,6 +10,46 @@ public partial class vtkXMLImageDataReader : vtkXMLStructuredDataReader {
 		public static implicit operator  vtkXMLImageDataReader(IntPtr p) {return new vtkXMLImageDataReader(p);}
 		public static implicit operator  IntPtr(vtkXMLImageDataReader o) {return o.GetPtr();}
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// "static vtkTypeBool IsTypeOf(const char *type)"
+public static bool IsTypeOf(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkXMLImageDataReader.IsTypeOf_0(returnPointer.GetPtr(), type);
+	return (bool)returnPointer;
+}
+
+
+// vtkTypeBool IsA(const char * type)
+// "vtkTypeBool IsA(const char *type)"
+public bool IsA(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkXMLImageDataReader.IsA_0(returnPointer.GetPtr(), this, type);
+	return (bool)returnPointer;
+}
+
+
+// static vtkXMLImageDataReader* SafeDownCast(vtkObjectBase * o)
+// "static vtkXMLImageDataReader* SafeDownCast(vtkObjectBase *o)"
+public static vtkXMLImageDataReader SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkXMLImageDataReader.SafeDownCast_0(returnPointer.GetPtr(), o);
+	return (vtkXMLImageDataReader)(IntPtr)returnPointer;
+}
+
+
+// vtkXMLImageDataReader* NewInstance()
+// "vtkXMLImageDataReader *NewInstance()"
+public vtkXMLImageDataReader NewInstance() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkXMLImageDataReader.NewInstance_0(returnPointer.GetPtr(), this);
+	return (vtkXMLImageDataReader)(IntPtr)returnPointer;
+}
+
+
 // static vtkXMLImageDataReader* New()
 // "static vtkXMLImageDataReader *New()"
 public static vtkXMLImageDataReader New() {

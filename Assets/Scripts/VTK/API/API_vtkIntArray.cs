@@ -7,6 +7,26 @@ using System.Linq;
 namespace VTK_API {
 class API_vtkIntArray {
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// static vtkTypeBool IsTypeOf(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkIntArray_IsTypeOf_0")] public static extern 
+bool IsTypeOf_0(IntPtr /*(IntPtr*)*/ return_value, string /*(char*)*/ type);
+
+// vtkTypeBool IsA(const char * type)
+// vtkTypeBool IsA(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkIntArray_IsA_0")] public static extern 
+bool IsA_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkIntArray*)*/ callingObject, string /*(char*)*/ type);
+
+// static vtkIntArray* SafeDownCast(vtkObjectBase * o)
+// static vtkIntArray* SafeDownCast(vtkObjectBase *o)
+[DllImport("vtkplugin", EntryPoint="vtkIntArray_SafeDownCast_0")] public static extern 
+bool SafeDownCast_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ o);
+
+// vtkIntArray* NewInstance()
+// vtkIntArray *NewInstance()
+[DllImport("vtkplugin", EntryPoint="vtkIntArray_NewInstance_0")] public static extern 
+bool NewInstance_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkIntArray*)*/ callingObject);
+
 // static vtkIntArray* New()
 // static vtkIntArray* New()
 [DllImport("vtkplugin", EntryPoint="vtkIntArray_New_0")] public static extern 

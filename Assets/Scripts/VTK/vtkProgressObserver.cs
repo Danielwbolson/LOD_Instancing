@@ -20,10 +20,60 @@ public static vtkProgressObserver New() {
 }
 
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// "static vtkTypeBool IsTypeOf(const char *type)"
+public static bool IsTypeOf(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkProgressObserver.IsTypeOf_0(returnPointer.GetPtr(), type);
+	return (bool)returnPointer;
+}
+
+
+// vtkTypeBool IsA(const char * type)
+// "vtkTypeBool IsA(const char *type)"
+public bool IsA(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkProgressObserver.IsA_0(returnPointer.GetPtr(), this, type);
+	return (bool)returnPointer;
+}
+
+
+// static vtkProgressObserver* SafeDownCast(vtkObjectBase * o)
+// "static vtkProgressObserver* SafeDownCast(vtkObjectBase *o)"
+public static vtkProgressObserver SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkProgressObserver.SafeDownCast_0(returnPointer.GetPtr(), o);
+	return (vtkProgressObserver)(IntPtr)returnPointer;
+}
+
+
+// vtkProgressObserver* NewInstance()
+// "vtkProgressObserver *NewInstance()"
+public vtkProgressObserver NewInstance() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkProgressObserver.NewInstance_0(returnPointer.GetPtr(), this);
+	return (vtkProgressObserver)(IntPtr)returnPointer;
+}
+
+
 // virtual void UpdateProgress(double amount)
 // "virtual void UpdateProgress(double amount)"
 public void UpdateProgress(double /*(double)*/ amount) {
 	VTK_API.API_vtkProgressObserver.UpdateProgress_0(this, amount);
+}
+
+
+// virtual double GetProgress()
+// "virtual double GetProgress ()"
+public double GetProgress() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new double(), return_elements);
+	VTK_API.API_vtkProgressObserver.GetProgress_0(returnPointer.GetPtr(), this);
+	return (double)returnPointer;
 }
 
 

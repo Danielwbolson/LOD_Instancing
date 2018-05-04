@@ -7,6 +7,26 @@ using System.Linq;
 namespace VTK_API {
 class API_vtkCell {
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// static vtkTypeBool IsTypeOf(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkCell_IsTypeOf_0")] public static extern 
+bool IsTypeOf_0(IntPtr /*(IntPtr*)*/ return_value, string /*(char*)*/ type);
+
+// vtkTypeBool IsA(const char * type)
+// vtkTypeBool IsA(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkCell_IsA_0")] public static extern 
+bool IsA_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkCell*)*/ callingObject, string /*(char*)*/ type);
+
+// static vtkCell* SafeDownCast(vtkObjectBase * o)
+// static vtkCell* SafeDownCast(vtkObjectBase *o)
+[DllImport("vtkplugin", EntryPoint="vtkCell_SafeDownCast_0")] public static extern 
+bool SafeDownCast_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ o);
+
+// vtkCell* NewInstance()
+// vtkCell *NewInstance()
+[DllImport("vtkplugin", EntryPoint="vtkCell_NewInstance_0")] public static extern 
+bool NewInstance_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkCell*)*/ callingObject);
+
 // void Initialize(int npts, vtkIdType * pts, vtkPoints * p)
 // void Initialize(int npts, vtkIdType *pts, vtkPoints *p)
 [DllImport("vtkplugin", EntryPoint="vtkCell_Initialize_0")] public static extern 
@@ -61,6 +81,11 @@ bool IsExplicitCell_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkCell*)*/ c
 // virtual int RequiresExplicitFaceRepresentation()
 [DllImport("vtkplugin", EntryPoint="vtkCell_RequiresExplicitFaceRepresentation_0")] public static extern 
 bool RequiresExplicitFaceRepresentation_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkCell*)*/ callingObject);
+
+// virtual void SetFaces(vtkIdType * ARG_0)
+// virtual void SetFaces(vtkIdType *)
+[DllImport("vtkplugin", EntryPoint="vtkCell_SetFaces_0")] public static extern 
+bool SetFaces_0(IntPtr /*(vtkCell*)*/ callingObject, IntPtr /*(vtkIdType*)*/ ARG_0);
 
 // virtual vtkIdType* GetFaces()
 // virtual vtkIdType *GetFaces()
@@ -181,6 +206,16 @@ bool IsPrimaryCell_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkCell*)*/ ca
 // virtual double *GetParametricCoords()
 [DllImport("vtkplugin", EntryPoint="vtkCell_GetParametricCoords_0")] public static extern 
 bool GetParametricCoords_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkCell*)*/ callingObject);
+
+// virtual void InterpolateFunctions(double ARG_0[3], double * ARG_1)
+// virtual void InterpolateFunctions(double [3], double* )
+[DllImport("vtkplugin", EntryPoint="vtkCell_InterpolateFunctions_0")] public static extern 
+bool InterpolateFunctions_0(IntPtr /*(vtkCell*)*/ callingObject, double /*(double[3])*/ []ARG_0, IntPtr /*(double*)*/ ARG_1);
+
+// virtual void InterpolateDerivs(double ARG_0[3], double * ARG_1)
+// virtual void InterpolateDerivs(double [3], double* )
+[DllImport("vtkplugin", EntryPoint="vtkCell_InterpolateDerivs_0")] public static extern 
+bool InterpolateDerivs_0(IntPtr /*(vtkCell*)*/ callingObject, double /*(double[3])*/ []ARG_0, IntPtr /*(double*)*/ ARG_1);
 
 }
 };

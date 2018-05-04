@@ -12,6 +12,26 @@ class API_vtkFieldData {
 [DllImport("vtkplugin", EntryPoint="vtkFieldData_New_0")] public static extern 
 bool New_0(IntPtr /*(IntPtr**)*/ return_value);
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// static vtkTypeBool IsTypeOf(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkFieldData_IsTypeOf_0")] public static extern 
+bool IsTypeOf_0(IntPtr /*(IntPtr*)*/ return_value, string /*(char*)*/ type);
+
+// vtkTypeBool IsA(const char * type)
+// vtkTypeBool IsA(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkFieldData_IsA_0")] public static extern 
+bool IsA_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject, string /*(char*)*/ type);
+
+// static vtkFieldData* SafeDownCast(vtkObjectBase * o)
+// static vtkFieldData* SafeDownCast(vtkObjectBase *o)
+[DllImport("vtkplugin", EntryPoint="vtkFieldData_SafeDownCast_0")] public static extern 
+bool SafeDownCast_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ o);
+
+// vtkFieldData* NewInstance()
+// vtkFieldData *NewInstance()
+[DllImport("vtkplugin", EntryPoint="vtkFieldData_NewInstance_0")] public static extern 
+bool NewInstance_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkFieldData*)*/ callingObject);
+
 // virtual void Initialize()
 // virtual void Initialize()
 [DllImport("vtkplugin", EntryPoint="vtkFieldData_Initialize_0")] public static extern 

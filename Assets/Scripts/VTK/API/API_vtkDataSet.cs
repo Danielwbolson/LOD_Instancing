@@ -7,6 +7,26 @@ using System.Linq;
 namespace VTK_API {
 class API_vtkDataSet {
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// static vtkTypeBool IsTypeOf(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkDataSet_IsTypeOf_0")] public static extern 
+bool IsTypeOf_0(IntPtr /*(IntPtr*)*/ return_value, string /*(char*)*/ type);
+
+// vtkTypeBool IsA(const char * type)
+// vtkTypeBool IsA(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkDataSet_IsA_0")] public static extern 
+bool IsA_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkDataSet*)*/ callingObject, string /*(char*)*/ type);
+
+// static vtkDataSet* SafeDownCast(vtkObjectBase * o)
+// static vtkDataSet* SafeDownCast(vtkObjectBase *o)
+[DllImport("vtkplugin", EntryPoint="vtkDataSet_SafeDownCast_0")] public static extern 
+bool SafeDownCast_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ o);
+
+// vtkDataSet* NewInstance()
+// vtkDataSet *NewInstance()
+[DllImport("vtkplugin", EntryPoint="vtkDataSet_NewInstance_0")] public static extern 
+bool NewInstance_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkDataSet*)*/ callingObject);
+
 // virtual void CopyStructure(vtkDataSet * ds)
 // virtual void CopyStructure(vtkDataSet *ds)
 [DllImport("vtkplugin", EntryPoint="vtkDataSet_CopyStructure_0")] public static extern 
@@ -47,10 +67,15 @@ bool NewCellIterator_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkDataSet*
 [DllImport("vtkplugin", EntryPoint="vtkDataSet_GetCell_0")] public static extern 
 bool GetCell_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkDataSet*)*/ callingObject, long /*(vtkIdType)*/ cellId);
 
+// virtual vtkCell* GetCell(int ARG_0, int ARG_1, int ARG_2)
+// virtual vtkCell *GetCell(int , int , int )
+[DllImport("vtkplugin", EntryPoint="vtkDataSet_GetCell_1")] public static extern 
+bool GetCell_1(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkDataSet*)*/ callingObject, int /*(int)*/ ARG_0, int /*(int)*/ ARG_1, int /*(int)*/ ARG_2);
+
 // virtual void GetCell(vtkIdType cellId, vtkGenericCell * cell)
 // virtual void GetCell(vtkIdType cellId, vtkGenericCell *cell)
-[DllImport("vtkplugin", EntryPoint="vtkDataSet_GetCell_1")] public static extern 
-bool GetCell_1(IntPtr /*(vtkDataSet*)*/ callingObject, long /*(vtkIdType)*/ cellId, IntPtr /*(vtkGenericCell*)*/ cell);
+[DllImport("vtkplugin", EntryPoint="vtkDataSet_GetCell_2")] public static extern 
+bool GetCell_2(IntPtr /*(vtkDataSet*)*/ callingObject, long /*(vtkIdType)*/ cellId, IntPtr /*(vtkGenericCell*)*/ cell);
 
 // virtual void GetCellBounds(vtkIdType cellId, double bounds[6])
 // virtual void GetCellBounds(vtkIdType cellId, double bounds[6])

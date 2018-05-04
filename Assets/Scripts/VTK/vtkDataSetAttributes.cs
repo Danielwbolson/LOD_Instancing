@@ -20,6 +20,46 @@ public static vtkDataSetAttributes New() {
 }
 
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// "static vtkTypeBool IsTypeOf(const char *type)"
+public static bool IsTypeOf(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkDataSetAttributes.IsTypeOf_0(returnPointer.GetPtr(), type);
+	return (bool)returnPointer;
+}
+
+
+// vtkTypeBool IsA(const char * type)
+// "vtkTypeBool IsA(const char *type)"
+public bool IsA(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkDataSetAttributes.IsA_0(returnPointer.GetPtr(), this, type);
+	return (bool)returnPointer;
+}
+
+
+// static vtkDataSetAttributes* SafeDownCast(vtkObjectBase * o)
+// "static vtkDataSetAttributes* SafeDownCast(vtkObjectBase *o)"
+public static vtkDataSetAttributes SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkDataSetAttributes.SafeDownCast_0(returnPointer.GetPtr(), o);
+	return (vtkDataSetAttributes)(IntPtr)returnPointer;
+}
+
+
+// vtkDataSetAttributes* NewInstance()
+// "vtkDataSetAttributes *NewInstance()"
+public vtkDataSetAttributes NewInstance() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkDataSetAttributes.NewInstance_0(returnPointer.GetPtr(), this);
+	return (vtkDataSetAttributes)(IntPtr)returnPointer;
+}
+
+
 // void Initialize()
 // "void Initialize()"
 public void Initialize() {
@@ -439,6 +479,104 @@ public int GetCopyAttribute(int /*(int)*/ index, int /*(int)*/ ctype) {
 	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
 	VTK_API.API_vtkDataSetAttributes.GetCopyAttribute_0(returnPointer.GetPtr(), this, index, ctype);
 	return (int)returnPointer;
+}
+
+
+// virtual void CopyScalarsOn()
+// "virtual void CopyScalarsOn ()"
+public void CopyScalarsOn() {
+	VTK_API.API_vtkDataSetAttributes.CopyScalarsOn_0(this);
+}
+
+
+// virtual void CopyScalarsOff()
+// "virtual void CopyScalarsOff ()"
+public void CopyScalarsOff() {
+	VTK_API.API_vtkDataSetAttributes.CopyScalarsOff_0(this);
+}
+
+
+// virtual void CopyVectorsOn()
+// "virtual void CopyVectorsOn ()"
+public void CopyVectorsOn() {
+	VTK_API.API_vtkDataSetAttributes.CopyVectorsOn_0(this);
+}
+
+
+// virtual void CopyVectorsOff()
+// "virtual void CopyVectorsOff ()"
+public void CopyVectorsOff() {
+	VTK_API.API_vtkDataSetAttributes.CopyVectorsOff_0(this);
+}
+
+
+// virtual void CopyNormalsOn()
+// "virtual void CopyNormalsOn ()"
+public void CopyNormalsOn() {
+	VTK_API.API_vtkDataSetAttributes.CopyNormalsOn_0(this);
+}
+
+
+// virtual void CopyNormalsOff()
+// "virtual void CopyNormalsOff ()"
+public void CopyNormalsOff() {
+	VTK_API.API_vtkDataSetAttributes.CopyNormalsOff_0(this);
+}
+
+
+// virtual void CopyTCoordsOn()
+// "virtual void CopyTCoordsOn ()"
+public void CopyTCoordsOn() {
+	VTK_API.API_vtkDataSetAttributes.CopyTCoordsOn_0(this);
+}
+
+
+// virtual void CopyTCoordsOff()
+// "virtual void CopyTCoordsOff ()"
+public void CopyTCoordsOff() {
+	VTK_API.API_vtkDataSetAttributes.CopyTCoordsOff_0(this);
+}
+
+
+// virtual void CopyTensorsOn()
+// "virtual void CopyTensorsOn ()"
+public void CopyTensorsOn() {
+	VTK_API.API_vtkDataSetAttributes.CopyTensorsOn_0(this);
+}
+
+
+// virtual void CopyTensorsOff()
+// "virtual void CopyTensorsOff ()"
+public void CopyTensorsOff() {
+	VTK_API.API_vtkDataSetAttributes.CopyTensorsOff_0(this);
+}
+
+
+// virtual void CopyGlobalIdsOn()
+// "virtual void CopyGlobalIdsOn ()"
+public void CopyGlobalIdsOn() {
+	VTK_API.API_vtkDataSetAttributes.CopyGlobalIdsOn_0(this);
+}
+
+
+// virtual void CopyGlobalIdsOff()
+// "virtual void CopyGlobalIdsOff ()"
+public void CopyGlobalIdsOff() {
+	VTK_API.API_vtkDataSetAttributes.CopyGlobalIdsOff_0(this);
+}
+
+
+// virtual void CopyPedigreeIdsOn()
+// "virtual void CopyPedigreeIdsOn ()"
+public void CopyPedigreeIdsOn() {
+	VTK_API.API_vtkDataSetAttributes.CopyPedigreeIdsOn_0(this);
+}
+
+
+// virtual void CopyPedigreeIdsOff()
+// "virtual void CopyPedigreeIdsOff ()"
+public void CopyPedigreeIdsOff() {
+	VTK_API.API_vtkDataSetAttributes.CopyPedigreeIdsOff_0(this);
 }
 
 

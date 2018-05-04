@@ -12,6 +12,26 @@ class API_vtkImageData {
 [DllImport("vtkplugin", EntryPoint="vtkImageData_New_0")] public static extern 
 bool New_0(IntPtr /*(IntPtr**)*/ return_value);
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// static vtkTypeBool IsTypeOf(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkImageData_IsTypeOf_0")] public static extern 
+bool IsTypeOf_0(IntPtr /*(IntPtr*)*/ return_value, string /*(char*)*/ type);
+
+// vtkTypeBool IsA(const char * type)
+// vtkTypeBool IsA(const char *type)
+[DllImport("vtkplugin", EntryPoint="vtkImageData_IsA_0")] public static extern 
+bool IsA_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkImageData*)*/ callingObject, string /*(char*)*/ type);
+
+// static vtkImageData* SafeDownCast(vtkObjectBase * o)
+// static vtkImageData* SafeDownCast(vtkObjectBase *o)
+[DllImport("vtkplugin", EntryPoint="vtkImageData_SafeDownCast_0")] public static extern 
+bool SafeDownCast_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkObjectBase*)*/ o);
+
+// vtkImageData* NewInstance()
+// vtkImageData *NewInstance()
+[DllImport("vtkplugin", EntryPoint="vtkImageData_NewInstance_0")] public static extern 
+bool NewInstance_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkImageData*)*/ callingObject);
+
 // void CopyStructure(vtkDataSet * ds)
 // void CopyStructure(vtkDataSet *ds)
 [DllImport("vtkplugin", EntryPoint="vtkImageData_CopyStructure_0")] public static extern 
@@ -192,6 +212,21 @@ bool SetExtent_0(IntPtr /*(vtkImageData*)*/ callingObject, int /*(int[6])*/ []ex
 [DllImport("vtkplugin", EntryPoint="vtkImageData_SetExtent_1")] public static extern 
 bool SetExtent_1(IntPtr /*(vtkImageData*)*/ callingObject, int /*(int)*/ x1, int /*(int)*/ x2, int /*(int)*/ y1, int /*(int)*/ y2, int /*(int)*/ z1, int /*(int)*/ z2);
 
+// virtual int* GetExtent()
+// virtual int *GetExtent ()
+[DllImport("vtkplugin", EntryPoint="vtkImageData_GetExtent_0")] public static extern 
+bool GetExtent_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkImageData*)*/ callingObject);
+
+// virtual void GetExtent(int & _arg1, int & _arg2, int & _arg3, int & _arg4, int & _arg5, int & _arg6)
+// virtual void GetExtent (int &_arg1, int &_arg2, int &_arg3, int &_arg4, int &_arg5, int &_arg6)
+[DllImport("vtkplugin", EntryPoint="vtkImageData_GetExtent_1")] public static extern 
+bool GetExtent_1(IntPtr /*(vtkImageData*)*/ callingObject, IntPtr /*(int&)*/ _arg1, IntPtr /*(int&)*/ _arg2, IntPtr /*(int&)*/ _arg3, IntPtr /*(int&)*/ _arg4, IntPtr /*(int&)*/ _arg5, IntPtr /*(int&)*/ _arg6);
+
+// virtual void GetExtent(int _arg[6])
+// virtual void GetExtent (int _arg[6])
+[DllImport("vtkplugin", EntryPoint="vtkImageData_GetExtent_2")] public static extern 
+bool GetExtent_2(IntPtr /*(vtkImageData*)*/ callingObject, int /*(int[6])*/ []_arg);
+
 // virtual double GetScalarTypeMin()
 // virtual double GetScalarTypeMin()
 [DllImport("vtkplugin", EntryPoint="vtkImageData_GetScalarTypeMin_0")] public static extern 
@@ -311,6 +346,56 @@ bool Crop_0(IntPtr /*(vtkImageData*)*/ callingObject, IntPtr /*(int*)*/ updateEx
 // unsigned long GetActualMemorySize()
 [DllImport("vtkplugin", EntryPoint="vtkImageData_GetActualMemorySize_0")] public static extern 
 bool GetActualMemorySize_0(IntPtr /*(unsigned IntPtr*)*/ return_value, IntPtr /*(vtkImageData*)*/ callingObject);
+
+// virtual void SetSpacing(double _arg1, double _arg2, double _arg3)
+// virtual void SetSpacing (double _arg1, double _arg2, double _arg3)
+[DllImport("vtkplugin", EntryPoint="vtkImageData_SetSpacing_0")] public static extern 
+bool SetSpacing_0(IntPtr /*(vtkImageData*)*/ callingObject, double /*(double)*/ _arg1, double /*(double)*/ _arg2, double /*(double)*/ _arg3);
+
+// virtual void SetSpacing(double _arg[3])
+// virtual void SetSpacing (double _arg[3])
+[DllImport("vtkplugin", EntryPoint="vtkImageData_SetSpacing_1")] public static extern 
+bool SetSpacing_1(IntPtr /*(vtkImageData*)*/ callingObject, double /*(double[3])*/ []_arg);
+
+// virtual double* GetSpacing()
+// virtual double *GetSpacing ()
+[DllImport("vtkplugin", EntryPoint="vtkImageData_GetSpacing_0")] public static extern 
+bool GetSpacing_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkImageData*)*/ callingObject);
+
+// virtual void GetSpacing(double & _arg1, double & _arg2, double & _arg3)
+// virtual void GetSpacing (double &_arg1, double &_arg2, double &_arg3)
+[DllImport("vtkplugin", EntryPoint="vtkImageData_GetSpacing_1")] public static extern 
+bool GetSpacing_1(IntPtr /*(vtkImageData*)*/ callingObject, IntPtr /*(double&)*/ _arg1, IntPtr /*(double&)*/ _arg2, IntPtr /*(double&)*/ _arg3);
+
+// virtual void GetSpacing(double _arg[3])
+// virtual void GetSpacing (double _arg[3])
+[DllImport("vtkplugin", EntryPoint="vtkImageData_GetSpacing_2")] public static extern 
+bool GetSpacing_2(IntPtr /*(vtkImageData*)*/ callingObject, double /*(double[3])*/ []_arg);
+
+// virtual void SetOrigin(double _arg1, double _arg2, double _arg3)
+// virtual void SetOrigin (double _arg1, double _arg2, double _arg3)
+[DllImport("vtkplugin", EntryPoint="vtkImageData_SetOrigin_0")] public static extern 
+bool SetOrigin_0(IntPtr /*(vtkImageData*)*/ callingObject, double /*(double)*/ _arg1, double /*(double)*/ _arg2, double /*(double)*/ _arg3);
+
+// virtual void SetOrigin(double _arg[3])
+// virtual void SetOrigin (double _arg[3])
+[DllImport("vtkplugin", EntryPoint="vtkImageData_SetOrigin_1")] public static extern 
+bool SetOrigin_1(IntPtr /*(vtkImageData*)*/ callingObject, double /*(double[3])*/ []_arg);
+
+// virtual double* GetOrigin()
+// virtual double *GetOrigin ()
+[DllImport("vtkplugin", EntryPoint="vtkImageData_GetOrigin_0")] public static extern 
+bool GetOrigin_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkImageData*)*/ callingObject);
+
+// virtual void GetOrigin(double & _arg1, double & _arg2, double & _arg3)
+// virtual void GetOrigin (double &_arg1, double &_arg2, double &_arg3)
+[DllImport("vtkplugin", EntryPoint="vtkImageData_GetOrigin_1")] public static extern 
+bool GetOrigin_1(IntPtr /*(vtkImageData*)*/ callingObject, IntPtr /*(double&)*/ _arg1, IntPtr /*(double&)*/ _arg2, IntPtr /*(double&)*/ _arg3);
+
+// virtual void GetOrigin(double _arg[3])
+// virtual void GetOrigin (double _arg[3])
+[DllImport("vtkplugin", EntryPoint="vtkImageData_GetOrigin_2")] public static extern 
+bool GetOrigin_2(IntPtr /*(vtkImageData*)*/ callingObject, double /*(double[3])*/ []_arg);
 
 // int GetScalarType()
 // int GetScalarType()

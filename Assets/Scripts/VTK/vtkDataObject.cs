@@ -20,6 +20,46 @@ public static vtkDataObject New() {
 }
 
 
+// static vtkTypeBool IsTypeOf(const char * type)
+// "static vtkTypeBool IsTypeOf(const char *type)"
+public static bool IsTypeOf(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkDataObject.IsTypeOf_0(returnPointer.GetPtr(), type);
+	return (bool)returnPointer;
+}
+
+
+// vtkTypeBool IsA(const char * type)
+// "vtkTypeBool IsA(const char *type)"
+public bool IsA(string /*(char*)*/ type) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	VTK_API.API_vtkDataObject.IsA_0(returnPointer.GetPtr(), this, type);
+	return (bool)returnPointer;
+}
+
+
+// static vtkDataObject* SafeDownCast(vtkObjectBase * o)
+// "static vtkDataObject* SafeDownCast(vtkObjectBase *o)"
+public static vtkDataObject SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkDataObject.SafeDownCast_0(returnPointer.GetPtr(), o);
+	return (vtkDataObject)(IntPtr)returnPointer;
+}
+
+
+// vtkDataObject* NewInstance()
+// "vtkDataObject *NewInstance()"
+public vtkDataObject NewInstance() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkDataObject.NewInstance_0(returnPointer.GetPtr(), this);
+	return (vtkDataObject)(IntPtr)returnPointer;
+}
+
+
 // vtkMTimeType GetMTime()
 // "vtkMTimeType GetMTime()"
 public ulong GetMTime() {
@@ -41,6 +81,16 @@ public void Initialize() {
 // "void ReleaseData()"
 public void ReleaseData() {
 	VTK_API.API_vtkDataObject.ReleaseData_0(this);
+}
+
+
+// virtual int GetDataReleased()
+// "virtual int GetDataReleased ()"
+public int GetDataReleased() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	VTK_API.API_vtkDataObject.GetDataReleased_0(returnPointer.GetPtr(), this);
+	return (int)returnPointer;
 }
 
 
@@ -79,6 +129,16 @@ public static int GetGlobalReleaseDataFlag() {
 // "virtual void SetFieldData(vtkFieldData*)"
 public void SetFieldData(vtkFieldData /*(vtkFieldData*)*/ ARG_0) {
 	VTK_API.API_vtkDataObject.SetFieldData_0(this, ARG_0);
+}
+
+
+// virtual vtkFieldData* GetFieldData()
+// "virtual vtkFieldData *GetFieldData ()"
+public vtkFieldData GetFieldData() {
+	int return_elements = 1;
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	VTK_API.API_vtkDataObject.GetFieldData_0(returnPointer.GetPtr(), this);
+	return (vtkFieldData)(IntPtr)returnPointer;
 }
 
 
