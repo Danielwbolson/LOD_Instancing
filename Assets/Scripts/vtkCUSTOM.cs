@@ -80,9 +80,9 @@ public class ReturnPointer
     }
     public static implicit operator VTK.vtkObject( ReturnPointer p)
     {
-        IntPtr result;
-        unsafe {result = new IntPtr(*(void**)p.data_.ToPointer()); }
-        return (VTK.vtkObject)result;
+
+
+        return (VTK.vtkObject)(IntPtr)p;
 
     }
 
@@ -113,18 +113,7 @@ namespace VTK
 
     }
 
-    public partial class vtkXMLDataReader {
-        // virtual int CanReadFile(const char * name)
-        // virtual int CanReadFile(const char* name)
-        [DllImport("vtkplugin", EntryPoint = "vtkXMLReader_SetFileName_0")]
-        protected static extern
-        bool SetFileName_0(IntPtr /*(vtkXMLReader*)*/ callingObject, string /*(char*)*/ name);
 
-
-        public void SetFileName(string fileName) {
-            SetFileName_0(GetPtr(), fileName);
-        }
-    }
 
 
     public partial class vtkDataSet {
@@ -148,6 +137,16 @@ namespace VTK
     }
 
     public partial class vtkPoints {
+
+        public Vector3 GetPoint(long pointId)
+        {
+            double[] p = new double[3];
+            GetPoint_1(pointId,p);
+            return new Vector3((float)p[0], (float)p[1], (float)p[2]);
+        }
+    }
+
+    public partial class vtkDataSet {
 
         public Vector3 GetPoint(long pointId)
         {

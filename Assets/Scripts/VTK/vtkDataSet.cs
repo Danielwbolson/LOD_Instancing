@@ -80,7 +80,7 @@ public long GetNumberOfCells() {
 
 // virtual double* GetPoint(vtkIdType ptId)
 // "virtual double *GetPoint(vtkIdType ptId)"
-public IntPtr GetPoint(long /*(vtkIdType)*/ ptId) {
+protected IntPtr GetPoint_0(long /*(vtkIdType)*/ ptId) {
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkDataSet.GetPoint_0(returnPointer.GetPtr(), this, ptId);
 	return (IntPtr)returnPointer;
@@ -89,7 +89,7 @@ public IntPtr GetPoint(long /*(vtkIdType)*/ ptId) {
 
 // virtual void GetPoint(vtkIdType id, double x[3])
 // "virtual void GetPoint(vtkIdType id, double x[3])"
-public void GetPoint(long /*(vtkIdType)*/ id, double /*(double[3])*/ []x) {
+protected void GetPoint_1(long /*(vtkIdType)*/ id, double /*(double[3])*/ []x) {
 	VTK_API.API_vtkDataSet.GetPoint_1(this, id, x);
 }
 
