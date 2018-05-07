@@ -13,8 +13,7 @@ public partial class vtkStructuredGrid : vtkPointSet {
 // static vtkStructuredGrid* New()
 // "static vtkStructuredGrid *New()"
 public static vtkStructuredGrid New() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkStructuredGrid.New_0(returnPointer.GetPtr());
 	return (vtkStructuredGrid)(IntPtr)returnPointer;
 }
@@ -23,8 +22,7 @@ public static vtkStructuredGrid New() {
 // static vtkTypeBool IsTypeOf(const char * type)
 // "static vtkTypeBool IsTypeOf(const char *type)"
 public static bool IsTypeOf(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkStructuredGrid.IsTypeOf_0(returnPointer.GetPtr(), type);
 	return (bool)returnPointer;
 }
@@ -33,8 +31,7 @@ public static bool IsTypeOf(string /*(char*)*/ type) {
 // vtkTypeBool IsA(const char * type)
 // "vtkTypeBool IsA(const char *type)"
 public bool IsA(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkStructuredGrid.IsA_0(returnPointer.GetPtr(), this, type);
 	return (bool)returnPointer;
 }
@@ -43,8 +40,7 @@ public bool IsA(string /*(char*)*/ type) {
 // static vtkStructuredGrid* SafeDownCast(vtkObjectBase * o)
 // "static vtkStructuredGrid* SafeDownCast(vtkObjectBase *o)"
 public static vtkStructuredGrid SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkStructuredGrid.SafeDownCast_0(returnPointer.GetPtr(), o);
 	return (vtkStructuredGrid)(IntPtr)returnPointer;
 }
@@ -53,8 +49,7 @@ public static vtkStructuredGrid SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ 
 // vtkStructuredGrid* NewInstance()
 // "vtkStructuredGrid *NewInstance()"
 public vtkStructuredGrid NewInstance() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkStructuredGrid.NewInstance_0(returnPointer.GetPtr(), this);
 	return (vtkStructuredGrid)(IntPtr)returnPointer;
 }
@@ -63,8 +58,7 @@ public vtkStructuredGrid NewInstance() {
 // int GetDataObjectType()
 // "int GetDataObjectType()"
 public int GetDataObjectType() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkStructuredGrid.GetDataObjectType_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -80,8 +74,7 @@ public void CopyStructure(vtkDataSet /*(vtkDataSet*)*/ ds) {
 // vtkIdType GetNumberOfPoints()
 // "vtkIdType GetNumberOfPoints()"
 public long GetNumberOfPoints() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new long());
 	VTK_API.API_vtkStructuredGrid.GetNumberOfPoints_0(returnPointer.GetPtr(), this);
 	return (long)returnPointer;
 }
@@ -90,8 +83,7 @@ public long GetNumberOfPoints() {
 // double* GetPoint(vtkIdType ptId)
 // "double *GetPoint(vtkIdType ptId)"
 public IntPtr GetPoint(long /*(vtkIdType)*/ ptId) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkStructuredGrid.GetPoint_0(returnPointer.GetPtr(), this, ptId);
 	return (IntPtr)returnPointer;
 }
@@ -107,8 +99,7 @@ public void GetPoint(long /*(vtkIdType)*/ ptId, double /*(double[3])*/ []p) {
 // vtkCell* GetCell(vtkIdType cellId)
 // "vtkCell *GetCell(vtkIdType cellId)"
 public vtkCell GetCell(long /*(vtkIdType)*/ cellId) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkStructuredGrid.GetCell_0(returnPointer.GetPtr(), this, cellId);
 	return (vtkCell)(IntPtr)returnPointer;
 }
@@ -117,8 +108,7 @@ public vtkCell GetCell(long /*(vtkIdType)*/ cellId) {
 // vtkCell* GetCell(int i, int j, int k)
 // "vtkCell *GetCell(int i, int j, int k)"
 public vtkCell GetCell(int /*(int)*/ i, int /*(int)*/ j, int /*(int)*/ k) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkStructuredGrid.GetCell_1(returnPointer.GetPtr(), this, i, j, k);
 	return (vtkCell)(IntPtr)returnPointer;
 }
@@ -141,8 +131,7 @@ public void GetCellBounds(long /*(vtkIdType)*/ cellId, double /*(double[6])*/ []
 // int GetCellType(vtkIdType cellId)
 // "int GetCellType(vtkIdType cellId)"
 public int GetCellType(long /*(vtkIdType)*/ cellId) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkStructuredGrid.GetCellType_0(returnPointer.GetPtr(), this, cellId);
 	return (int)returnPointer;
 }
@@ -151,8 +140,7 @@ public int GetCellType(long /*(vtkIdType)*/ cellId) {
 // vtkIdType GetNumberOfCells()
 // "vtkIdType GetNumberOfCells()"
 public long GetNumberOfCells() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new long());
 	VTK_API.API_vtkStructuredGrid.GetNumberOfCells_0(returnPointer.GetPtr(), this);
 	return (long)returnPointer;
 }
@@ -182,8 +170,7 @@ public void Initialize() {
 // int GetMaxCellSize()
 // "int GetMaxCellSize()"
 public int GetMaxCellSize() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkStructuredGrid.GetMaxCellSize_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -220,8 +207,7 @@ public void SetDimensions(int /*(int[3])*/ []dim) {
 // virtual int* GetDimensions()
 // "virtual int *GetDimensions ()"
 public IntPtr GetDimensions() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkStructuredGrid.GetDimensions_0(returnPointer.GetPtr(), this);
 	return (IntPtr)returnPointer;
 }
@@ -237,8 +223,7 @@ public void GetDimensions(int /*(int[3])*/ []dim) {
 // int GetDataDimension()
 // "int GetDataDimension()"
 public int GetDataDimension() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkStructuredGrid.GetDataDimension_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -261,8 +246,7 @@ public void SetExtent(int /*(int)*/ x1, int /*(int)*/ x2, int /*(int)*/ y1, int 
 // virtual int* GetExtent()
 // "virtual int *GetExtent ()"
 public IntPtr GetExtent() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkStructuredGrid.GetExtent_0(returnPointer.GetPtr(), this);
 	return (IntPtr)returnPointer;
 }
@@ -285,8 +269,7 @@ public void GetExtent(int /*(int[6])*/ []_arg) {
 // long GetActualMemorySize()
 // "unsigned long GetActualMemorySize()"
 public ulong GetActualMemorySize() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new ulong(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new ulong());
 	VTK_API.API_vtkStructuredGrid.GetActualMemorySize_0(returnPointer.GetPtr(), this);
 	return (ulong)returnPointer;
 }
@@ -309,8 +292,7 @@ public void DeepCopy(vtkDataObject /*(vtkDataObject*)*/ src) {
 // int GetExtentType()
 // "int GetExtentType()"
 public int GetExtentType() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkStructuredGrid.GetExtentType_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -347,8 +329,7 @@ public void UnBlankCell(long /*(vtkIdType)*/ ptId) {
 // char IsPointVisible(vtkIdType ptId)
 // "unsigned char IsPointVisible(vtkIdType ptId)"
 public char IsPointVisible(long /*(vtkIdType)*/ ptId) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new char(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new char());
 	VTK_API.API_vtkStructuredGrid.IsPointVisible_0(returnPointer.GetPtr(), this, ptId);
 	return (char)returnPointer;
 }
@@ -357,8 +338,7 @@ public char IsPointVisible(long /*(vtkIdType)*/ ptId) {
 // char IsCellVisible(vtkIdType cellId)
 // "unsigned char IsCellVisible(vtkIdType cellId)"
 public char IsCellVisible(long /*(vtkIdType)*/ cellId) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new char(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new char());
 	VTK_API.API_vtkStructuredGrid.IsCellVisible_0(returnPointer.GetPtr(), this, cellId);
 	return (char)returnPointer;
 }
@@ -367,8 +347,7 @@ public char IsCellVisible(long /*(vtkIdType)*/ cellId) {
 // bool HasAnyBlankPoints()
 // "bool HasAnyBlankPoints()"
 public bool HasAnyBlankPoints() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkStructuredGrid.HasAnyBlankPoints_0(returnPointer.GetPtr(), this);
 	return (bool)returnPointer;
 }
@@ -377,8 +356,7 @@ public bool HasAnyBlankPoints() {
 // bool HasAnyBlankCells()
 // "bool HasAnyBlankCells()"
 public bool HasAnyBlankCells() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkStructuredGrid.HasAnyBlankCells_0(returnPointer.GetPtr(), this);
 	return (bool)returnPointer;
 }

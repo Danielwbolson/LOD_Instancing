@@ -13,8 +13,7 @@ public partial class vtkArrayIterator : vtkObject {
 // static vtkTypeBool IsTypeOf(const char * type)
 // "static vtkTypeBool IsTypeOf(const char *type)"
 public static bool IsTypeOf(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkArrayIterator.IsTypeOf_0(returnPointer.GetPtr(), type);
 	return (bool)returnPointer;
 }
@@ -23,8 +22,7 @@ public static bool IsTypeOf(string /*(char*)*/ type) {
 // vtkTypeBool IsA(const char * type)
 // "vtkTypeBool IsA(const char *type)"
 public bool IsA(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkArrayIterator.IsA_0(returnPointer.GetPtr(), this, type);
 	return (bool)returnPointer;
 }
@@ -33,8 +31,7 @@ public bool IsA(string /*(char*)*/ type) {
 // static vtkArrayIterator* SafeDownCast(vtkObjectBase * o)
 // "static vtkArrayIterator* SafeDownCast(vtkObjectBase *o)"
 public static vtkArrayIterator SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkArrayIterator.SafeDownCast_0(returnPointer.GetPtr(), o);
 	return (vtkArrayIterator)(IntPtr)returnPointer;
 }
@@ -43,8 +40,7 @@ public static vtkArrayIterator SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o
 // vtkArrayIterator* NewInstance()
 // "vtkArrayIterator *NewInstance()"
 public vtkArrayIterator NewInstance() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkArrayIterator.NewInstance_0(returnPointer.GetPtr(), this);
 	return (vtkArrayIterator)(IntPtr)returnPointer;
 }
@@ -60,8 +56,7 @@ public void Initialize(vtkAbstractArray /*(vtkAbstractArray*)*/ array) {
 // virtual int GetDataType()
 // "virtual int GetDataType()"
 public int GetDataType() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkArrayIterator.GetDataType_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }

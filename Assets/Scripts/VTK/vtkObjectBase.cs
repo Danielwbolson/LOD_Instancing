@@ -12,8 +12,7 @@ public partial class vtkObjectBase {
 // char* GetClassName()
 // "const char* GetClassName()"
 public string GetClassName() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkObjectBase.GetClassName_0(returnPointer.GetPtr(), this);
 	return (string)returnPointer;
 }
@@ -22,8 +21,7 @@ public string GetClassName() {
 // static vtkTypeBool IsTypeOf(const char * name)
 // "static vtkTypeBool IsTypeOf(const char *name)"
 public static bool IsTypeOf(string /*(char*)*/ name) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkObjectBase.IsTypeOf_0(returnPointer.GetPtr(), name);
 	return (bool)returnPointer;
 }
@@ -32,8 +30,7 @@ public static bool IsTypeOf(string /*(char*)*/ name) {
 // virtual vtkTypeBool IsA(const char * name)
 // "virtual vtkTypeBool IsA(const char *name)"
 public bool IsA(string /*(char*)*/ name) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkObjectBase.IsA_0(returnPointer.GetPtr(), this, name);
 	return (bool)returnPointer;
 }
@@ -56,8 +53,7 @@ public void FastDelete() {
 // static vtkObjectBase* New()
 // "static vtkObjectBase *New()"
 public static vtkObjectBase New() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkObjectBase.New_0(returnPointer.GetPtr());
 	return (vtkObjectBase)(IntPtr)returnPointer;
 }
@@ -87,8 +83,7 @@ public void UnRegister(vtkObjectBase /*(vtkObjectBase*)*/ o) {
 // int GetReferenceCount()
 // "int GetReferenceCount()"
 public int GetReferenceCount() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkObjectBase.GetReferenceCount_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }

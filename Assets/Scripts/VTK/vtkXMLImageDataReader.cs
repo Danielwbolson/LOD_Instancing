@@ -13,8 +13,7 @@ public partial class vtkXMLImageDataReader : vtkXMLStructuredDataReader {
 // static vtkTypeBool IsTypeOf(const char * type)
 // "static vtkTypeBool IsTypeOf(const char *type)"
 public static bool IsTypeOf(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkXMLImageDataReader.IsTypeOf_0(returnPointer.GetPtr(), type);
 	return (bool)returnPointer;
 }
@@ -23,8 +22,7 @@ public static bool IsTypeOf(string /*(char*)*/ type) {
 // vtkTypeBool IsA(const char * type)
 // "vtkTypeBool IsA(const char *type)"
 public bool IsA(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkXMLImageDataReader.IsA_0(returnPointer.GetPtr(), this, type);
 	return (bool)returnPointer;
 }
@@ -33,8 +31,7 @@ public bool IsA(string /*(char*)*/ type) {
 // static vtkXMLImageDataReader* SafeDownCast(vtkObjectBase * o)
 // "static vtkXMLImageDataReader* SafeDownCast(vtkObjectBase *o)"
 public static vtkXMLImageDataReader SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkXMLImageDataReader.SafeDownCast_0(returnPointer.GetPtr(), o);
 	return (vtkXMLImageDataReader)(IntPtr)returnPointer;
 }
@@ -43,8 +40,7 @@ public static vtkXMLImageDataReader SafeDownCast(vtkObjectBase /*(vtkObjectBase*
 // vtkXMLImageDataReader* NewInstance()
 // "vtkXMLImageDataReader *NewInstance()"
 public vtkXMLImageDataReader NewInstance() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkXMLImageDataReader.NewInstance_0(returnPointer.GetPtr(), this);
 	return (vtkXMLImageDataReader)(IntPtr)returnPointer;
 }
@@ -53,8 +49,7 @@ public vtkXMLImageDataReader NewInstance() {
 // static vtkXMLImageDataReader* New()
 // "static vtkXMLImageDataReader *New()"
 public static vtkXMLImageDataReader New() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkXMLImageDataReader.New_0(returnPointer.GetPtr());
 	return (vtkXMLImageDataReader)(IntPtr)returnPointer;
 }
@@ -63,8 +58,7 @@ public static vtkXMLImageDataReader New() {
 // vtkImageData* GetOutput()
 // "vtkImageData *GetOutput()"
 public vtkImageData GetOutput() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkXMLImageDataReader.GetOutput_0(returnPointer.GetPtr(), this);
 	return (vtkImageData)(IntPtr)returnPointer;
 }
@@ -73,8 +67,7 @@ public vtkImageData GetOutput() {
 // vtkImageData* GetOutput(int idx)
 // "vtkImageData *GetOutput(int idx)"
 public vtkImageData GetOutput(int /*(int)*/ idx) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkXMLImageDataReader.GetOutput_1(returnPointer.GetPtr(), this, idx);
 	return (vtkImageData)(IntPtr)returnPointer;
 }

@@ -13,8 +13,7 @@ public partial class vtkXMLDataElement : vtkObject {
 // static vtkTypeBool IsTypeOf(const char * type)
 // "static vtkTypeBool IsTypeOf(const char *type)"
 public static bool IsTypeOf(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkXMLDataElement.IsTypeOf_0(returnPointer.GetPtr(), type);
 	return (bool)returnPointer;
 }
@@ -23,8 +22,7 @@ public static bool IsTypeOf(string /*(char*)*/ type) {
 // vtkTypeBool IsA(const char * type)
 // "vtkTypeBool IsA(const char *type)"
 public bool IsA(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkXMLDataElement.IsA_0(returnPointer.GetPtr(), this, type);
 	return (bool)returnPointer;
 }
@@ -33,8 +31,7 @@ public bool IsA(string /*(char*)*/ type) {
 // static vtkXMLDataElement* SafeDownCast(vtkObjectBase * o)
 // "static vtkXMLDataElement* SafeDownCast(vtkObjectBase *o)"
 public static vtkXMLDataElement SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkXMLDataElement.SafeDownCast_0(returnPointer.GetPtr(), o);
 	return (vtkXMLDataElement)(IntPtr)returnPointer;
 }
@@ -43,8 +40,7 @@ public static vtkXMLDataElement SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ 
 // vtkXMLDataElement* NewInstance()
 // "vtkXMLDataElement *NewInstance()"
 public vtkXMLDataElement NewInstance() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkXMLDataElement.NewInstance_0(returnPointer.GetPtr(), this);
 	return (vtkXMLDataElement)(IntPtr)returnPointer;
 }
@@ -53,8 +49,7 @@ public vtkXMLDataElement NewInstance() {
 // static vtkXMLDataElement* New()
 // "static vtkXMLDataElement* New()"
 public static vtkXMLDataElement New() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkXMLDataElement.New_0(returnPointer.GetPtr());
 	return (vtkXMLDataElement)(IntPtr)returnPointer;
 }
@@ -63,8 +58,7 @@ public static vtkXMLDataElement New() {
 // virtual char* GetName()
 // "virtual char* GetName ()"
 public string GetName() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkXMLDataElement.GetName_0(returnPointer.GetPtr(), this);
 	return (string)returnPointer;
 }
@@ -80,8 +74,7 @@ public void SetName(string /*(char*)*/ _arg) {
 // virtual char* GetId()
 // "virtual char* GetId ()"
 public string GetId() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkXMLDataElement.GetId_0(returnPointer.GetPtr(), this);
 	return (string)returnPointer;
 }
@@ -97,8 +90,7 @@ public void SetId(string /*(char*)*/ _arg) {
 // char* GetAttribute(const char * name)
 // "const char* GetAttribute(const char* name)"
 public string GetAttribute(string /*(char*)*/ name) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkXMLDataElement.GetAttribute_0(returnPointer.GetPtr(), this, name);
 	return (string)returnPointer;
 }
@@ -128,8 +120,7 @@ public void AddCharacterData(string /*(char*)*/ c, ulong /*(size_t)*/ length) {
 // virtual char* GetCharacterData()
 // "virtual char* GetCharacterData ()"
 public string GetCharacterData() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkXMLDataElement.GetCharacterData_0(returnPointer.GetPtr(), this);
 	return (string)returnPointer;
 }
@@ -138,8 +129,7 @@ public string GetCharacterData() {
 // int GetScalarAttribute(const char * name, int & value)
 // "int GetScalarAttribute(const char* name, int& value)"
 public int GetScalarAttribute(string /*(char*)*/ name, IntPtr /*(int&)*/ value) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkXMLDataElement.GetScalarAttribute_0(returnPointer.GetPtr(), this, name, value);
 	return (int)returnPointer;
 }
@@ -176,8 +166,7 @@ public void SetUnsignedLongAttribute(string /*(char*)*/ name, ulong /*(unsigned 
 // int GetVectorAttribute(const char * name, int length, int * value)
 // "int GetVectorAttribute(const char* name, int length, int* value)"
 public int GetVectorAttribute(string /*(char*)*/ name, int /*(int)*/ length, IntPtr /*(int*)*/ value) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkXMLDataElement.GetVectorAttribute_0(returnPointer.GetPtr(), this, name, length, value);
 	return (int)returnPointer;
 }
@@ -193,8 +182,7 @@ public void SetVectorAttribute(string /*(char*)*/ name, int /*(int)*/ length, In
 // int GetWordTypeAttribute(const char * name, int & value)
 // "int GetWordTypeAttribute(const char* name, int& value)"
 public int GetWordTypeAttribute(string /*(char*)*/ name, IntPtr /*(int&)*/ value) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkXMLDataElement.GetWordTypeAttribute_0(returnPointer.GetPtr(), this, name, value);
 	return (int)returnPointer;
 }
@@ -203,8 +191,7 @@ public int GetWordTypeAttribute(string /*(char*)*/ name, IntPtr /*(int&)*/ value
 // virtual int GetNumberOfAttributes()
 // "virtual int GetNumberOfAttributes ()"
 public int GetNumberOfAttributes() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkXMLDataElement.GetNumberOfAttributes_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -213,8 +200,7 @@ public int GetNumberOfAttributes() {
 // char* GetAttributeName(int idx)
 // "const char* GetAttributeName(int idx)"
 public string GetAttributeName(int /*(int)*/ idx) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkXMLDataElement.GetAttributeName_0(returnPointer.GetPtr(), this, idx);
 	return (string)returnPointer;
 }
@@ -223,8 +209,7 @@ public string GetAttributeName(int /*(int)*/ idx) {
 // char* GetAttributeValue(int idx)
 // "const char* GetAttributeValue(int idx)"
 public string GetAttributeValue(int /*(int)*/ idx) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkXMLDataElement.GetAttributeValue_0(returnPointer.GetPtr(), this, idx);
 	return (string)returnPointer;
 }
@@ -247,8 +232,7 @@ public void RemoveAllAttributes() {
 // vtkXMLDataElement* GetParent()
 // "vtkXMLDataElement* GetParent()"
 public vtkXMLDataElement GetParent() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkXMLDataElement.GetParent_0(returnPointer.GetPtr(), this);
 	return (vtkXMLDataElement)(IntPtr)returnPointer;
 }
@@ -264,8 +248,7 @@ public void SetParent(vtkXMLDataElement /*(vtkXMLDataElement*)*/ parent) {
 // virtual vtkXMLDataElement* GetRoot()
 // "virtual vtkXMLDataElement* GetRoot()"
 public vtkXMLDataElement GetRoot() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkXMLDataElement.GetRoot_0(returnPointer.GetPtr(), this);
 	return (vtkXMLDataElement)(IntPtr)returnPointer;
 }
@@ -274,8 +257,7 @@ public vtkXMLDataElement GetRoot() {
 // int GetNumberOfNestedElements()
 // "int GetNumberOfNestedElements()"
 public int GetNumberOfNestedElements() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkXMLDataElement.GetNumberOfNestedElements_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -284,8 +266,7 @@ public int GetNumberOfNestedElements() {
 // vtkXMLDataElement* GetNestedElement(int index)
 // "vtkXMLDataElement* GetNestedElement(int index)"
 public vtkXMLDataElement GetNestedElement(int /*(int)*/ index) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkXMLDataElement.GetNestedElement_0(returnPointer.GetPtr(), this, index);
 	return (vtkXMLDataElement)(IntPtr)returnPointer;
 }
@@ -315,8 +296,7 @@ public void RemoveAllNestedElements() {
 // vtkXMLDataElement* FindNestedElement(const char * id)
 // "vtkXMLDataElement* FindNestedElement(const char* id)"
 public vtkXMLDataElement FindNestedElement(string /*(char*)*/ id) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkXMLDataElement.FindNestedElement_0(returnPointer.GetPtr(), this, id);
 	return (vtkXMLDataElement)(IntPtr)returnPointer;
 }
@@ -325,8 +305,7 @@ public vtkXMLDataElement FindNestedElement(string /*(char*)*/ id) {
 // vtkXMLDataElement* FindNestedElementWithName(const char * name)
 // "vtkXMLDataElement* FindNestedElementWithName(const char* name)"
 public vtkXMLDataElement FindNestedElementWithName(string /*(char*)*/ name) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkXMLDataElement.FindNestedElementWithName_0(returnPointer.GetPtr(), this, name);
 	return (vtkXMLDataElement)(IntPtr)returnPointer;
 }
@@ -335,8 +314,7 @@ public vtkXMLDataElement FindNestedElementWithName(string /*(char*)*/ name) {
 // vtkXMLDataElement* FindNestedElementWithNameAndId(const char * name, const char * id)
 // "vtkXMLDataElement* FindNestedElementWithNameAndId( const char* name, const char* id)"
 public vtkXMLDataElement FindNestedElementWithNameAndId(string /*(char*)*/ name, string /*(char*)*/ id) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkXMLDataElement.FindNestedElementWithNameAndId_0(returnPointer.GetPtr(), this, name, id);
 	return (vtkXMLDataElement)(IntPtr)returnPointer;
 }
@@ -345,8 +323,7 @@ public vtkXMLDataElement FindNestedElementWithNameAndId(string /*(char*)*/ name,
 // vtkXMLDataElement* FindNestedElementWithNameAndAttribute(const char * name, const char * att_name, const char * att_value)
 // "vtkXMLDataElement* FindNestedElementWithNameAndAttribute( const char* name, const char* att_name, const char* att_value)"
 public vtkXMLDataElement FindNestedElementWithNameAndAttribute(string /*(char*)*/ name, string /*(char*)*/ att_name, string /*(char*)*/ att_value) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkXMLDataElement.FindNestedElementWithNameAndAttribute_0(returnPointer.GetPtr(), this, name, att_name, att_value);
 	return (vtkXMLDataElement)(IntPtr)returnPointer;
 }
@@ -355,8 +332,7 @@ public vtkXMLDataElement FindNestedElementWithNameAndAttribute(string /*(char*)*
 // vtkXMLDataElement* LookupElementWithName(const char * name)
 // "vtkXMLDataElement* LookupElementWithName(const char* name)"
 public vtkXMLDataElement LookupElementWithName(string /*(char*)*/ name) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkXMLDataElement.LookupElementWithName_0(returnPointer.GetPtr(), this, name);
 	return (vtkXMLDataElement)(IntPtr)returnPointer;
 }
@@ -365,8 +341,7 @@ public vtkXMLDataElement LookupElementWithName(string /*(char*)*/ name) {
 // vtkXMLDataElement* LookupElement(const char * id)
 // "vtkXMLDataElement* LookupElement(const char* id)"
 public vtkXMLDataElement LookupElement(string /*(char*)*/ id) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkXMLDataElement.LookupElement_0(returnPointer.GetPtr(), this, id);
 	return (vtkXMLDataElement)(IntPtr)returnPointer;
 }
@@ -375,8 +350,7 @@ public vtkXMLDataElement LookupElement(string /*(char*)*/ id) {
 // virtual vtkTypeInt64 GetXMLByteIndex()
 // "virtual vtkTypeInt64 GetXMLByteIndex ()"
 public long GetXMLByteIndex() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new long());
 	VTK_API.API_vtkXMLDataElement.GetXMLByteIndex_0(returnPointer.GetPtr(), this);
 	return (long)returnPointer;
 }
@@ -392,8 +366,7 @@ public void SetXMLByteIndex(long /*(vtkTypeInt64)*/ _arg) {
 // virtual int IsEqualTo(vtkXMLDataElement * elem)
 // "virtual int IsEqualTo(vtkXMLDataElement *elem)"
 public int IsEqualTo(vtkXMLDataElement /*(vtkXMLDataElement*)*/ elem) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkXMLDataElement.IsEqualTo_0(returnPointer.GetPtr(), this, elem);
 	return (int)returnPointer;
 }
@@ -416,8 +389,7 @@ public void SetAttributeEncoding(int /*(int)*/ _arg) {
 // virtual int GetAttributeEncodingMinValue()
 // "virtual int GetAttributeEncodingMinValue ()"
 public int GetAttributeEncodingMinValue() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkXMLDataElement.GetAttributeEncodingMinValue_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -426,8 +398,7 @@ public int GetAttributeEncodingMinValue() {
 // virtual int GetAttributeEncodingMaxValue()
 // "virtual int GetAttributeEncodingMaxValue ()"
 public int GetAttributeEncodingMaxValue() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkXMLDataElement.GetAttributeEncodingMaxValue_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -436,8 +407,7 @@ public int GetAttributeEncodingMaxValue() {
 // virtual int GetAttributeEncoding()
 // "virtual int GetAttributeEncoding ()"
 public int GetAttributeEncoding() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkXMLDataElement.GetAttributeEncoding_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -453,8 +423,7 @@ public void PrintXML(string /*(char*)*/ fname) {
 // virtual int GetCharacterDataWidth()
 // "virtual int GetCharacterDataWidth ()"
 public int GetCharacterDataWidth() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkXMLDataElement.GetCharacterDataWidth_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }

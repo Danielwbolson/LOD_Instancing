@@ -13,8 +13,7 @@ public partial class vtkGenericCell : vtkCell {
 // static vtkGenericCell* New()
 // "static vtkGenericCell *New()"
 public static vtkGenericCell New() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkGenericCell.New_0(returnPointer.GetPtr());
 	return (vtkGenericCell)(IntPtr)returnPointer;
 }
@@ -23,8 +22,7 @@ public static vtkGenericCell New() {
 // static vtkTypeBool IsTypeOf(const char * type)
 // "static vtkTypeBool IsTypeOf(const char *type)"
 public static bool IsTypeOf(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkGenericCell.IsTypeOf_0(returnPointer.GetPtr(), type);
 	return (bool)returnPointer;
 }
@@ -33,8 +31,7 @@ public static bool IsTypeOf(string /*(char*)*/ type) {
 // vtkTypeBool IsA(const char * type)
 // "vtkTypeBool IsA(const char *type)"
 public bool IsA(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkGenericCell.IsA_0(returnPointer.GetPtr(), this, type);
 	return (bool)returnPointer;
 }
@@ -43,8 +40,7 @@ public bool IsA(string /*(char*)*/ type) {
 // static vtkGenericCell* SafeDownCast(vtkObjectBase * o)
 // "static vtkGenericCell* SafeDownCast(vtkObjectBase *o)"
 public static vtkGenericCell SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkGenericCell.SafeDownCast_0(returnPointer.GetPtr(), o);
 	return (vtkGenericCell)(IntPtr)returnPointer;
 }
@@ -53,8 +49,7 @@ public static vtkGenericCell SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) 
 // vtkGenericCell* NewInstance()
 // "vtkGenericCell *NewInstance()"
 public vtkGenericCell NewInstance() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkGenericCell.NewInstance_0(returnPointer.GetPtr(), this);
 	return (vtkGenericCell)(IntPtr)returnPointer;
 }
@@ -91,8 +86,7 @@ public void DeepCopy(vtkCell /*(vtkCell*)*/ c) {
 // int GetCellType()
 // "int GetCellType()"
 public int GetCellType() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkGenericCell.GetCellType_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -101,8 +95,7 @@ public int GetCellType() {
 // int GetCellDimension()
 // "int GetCellDimension()"
 public int GetCellDimension() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkGenericCell.GetCellDimension_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -111,8 +104,7 @@ public int GetCellDimension() {
 // int IsLinear()
 // "int IsLinear()"
 public int IsLinear() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkGenericCell.IsLinear_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -121,8 +113,7 @@ public int IsLinear() {
 // int RequiresInitialization()
 // "int RequiresInitialization()"
 public int RequiresInitialization() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkGenericCell.RequiresInitialization_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -138,8 +129,7 @@ public void Initialize() {
 // int RequiresExplicitFaceRepresentation()
 // "int RequiresExplicitFaceRepresentation()"
 public int RequiresExplicitFaceRepresentation() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkGenericCell.RequiresExplicitFaceRepresentation_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -155,8 +145,7 @@ public void SetFaces(IntPtr /*(vtkIdType*)*/ faces) {
 // vtkIdType* GetFaces()
 // "vtkIdType *GetFaces()"
 public IntPtr GetFaces() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkGenericCell.GetFaces_0(returnPointer.GetPtr(), this);
 	return (IntPtr)returnPointer;
 }
@@ -165,8 +154,7 @@ public IntPtr GetFaces() {
 // int GetNumberOfEdges()
 // "int GetNumberOfEdges()"
 public int GetNumberOfEdges() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkGenericCell.GetNumberOfEdges_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -175,8 +163,7 @@ public int GetNumberOfEdges() {
 // int GetNumberOfFaces()
 // "int GetNumberOfFaces()"
 public int GetNumberOfFaces() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkGenericCell.GetNumberOfFaces_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -185,8 +172,7 @@ public int GetNumberOfFaces() {
 // vtkCell* GetEdge(int edgeId)
 // "vtkCell *GetEdge(int edgeId)"
 public vtkCell GetEdge(int /*(int)*/ edgeId) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkGenericCell.GetEdge_0(returnPointer.GetPtr(), this, edgeId);
 	return (vtkCell)(IntPtr)returnPointer;
 }
@@ -195,8 +181,7 @@ public vtkCell GetEdge(int /*(int)*/ edgeId) {
 // vtkCell* GetFace(int faceId)
 // "vtkCell *GetFace(int faceId)"
 public vtkCell GetFace(int /*(int)*/ faceId) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkGenericCell.GetFace_0(returnPointer.GetPtr(), this, faceId);
 	return (vtkCell)(IntPtr)returnPointer;
 }
@@ -205,8 +190,7 @@ public vtkCell GetFace(int /*(int)*/ faceId) {
 // int CellBoundary(int subId, double pcoords[3], vtkIdList * pts)
 // "int CellBoundary(int subId, double pcoords[3], vtkIdList *pts)"
 public int CellBoundary(int /*(int)*/ subId, double /*(double[3])*/ []pcoords, vtkIdList /*(vtkIdList*)*/ pts) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkGenericCell.CellBoundary_0(returnPointer.GetPtr(), this, subId, pcoords, pts);
 	return (int)returnPointer;
 }
@@ -215,8 +199,7 @@ public int CellBoundary(int /*(int)*/ subId, double /*(double[3])*/ []pcoords, v
 // int EvaluatePosition(double x[3], double * closestPoint, int & subId, double pcoords[3], double & dist2, double * weights)
 // "int EvaluatePosition(double x[3], double* closestPoint, int& subId, double pcoords[3], double& dist2, double *weights)"
 public int EvaluatePosition(double /*(double[3])*/ []x, IntPtr /*(double*)*/ closestPoint, IntPtr /*(int&)*/ subId, double /*(double[3])*/ []pcoords, IntPtr /*(double&)*/ dist2, IntPtr /*(double*)*/ weights) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkGenericCell.EvaluatePosition_0(returnPointer.GetPtr(), this, x, closestPoint, subId, pcoords, dist2, weights);
 	return (int)returnPointer;
 }
@@ -246,8 +229,7 @@ public void Clip(double /*(double)*/ value, vtkDataArray /*(vtkDataArray*)*/ cel
 // int IntersectWithLine(double p1[3], double p2[3], double tol, double & t, double x[3], double pcoords[3], int & subId)
 // "int IntersectWithLine(double p1[3], double p2[3], double tol, double& t, double x[3], double pcoords[3], int& subId)"
 public int IntersectWithLine(double /*(double[3])*/ []p1, double /*(double[3])*/ []p2, double /*(double)*/ tol, IntPtr /*(double&)*/ t, double /*(double[3])*/ []x, double /*(double[3])*/ []pcoords, IntPtr /*(int&)*/ subId) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkGenericCell.IntersectWithLine_0(returnPointer.GetPtr(), this, p1, p2, tol, t, x, pcoords, subId);
 	return (int)returnPointer;
 }
@@ -256,8 +238,7 @@ public int IntersectWithLine(double /*(double[3])*/ []p1, double /*(double[3])*/
 // int Triangulate(int index, vtkIdList * ptIds, vtkPoints * pts)
 // "int Triangulate(int index, vtkIdList *ptIds, vtkPoints *pts)"
 public int Triangulate(int /*(int)*/ index, vtkIdList /*(vtkIdList*)*/ ptIds, vtkPoints /*(vtkPoints*)*/ pts) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkGenericCell.Triangulate_0(returnPointer.GetPtr(), this, index, ptIds, pts);
 	return (int)returnPointer;
 }
@@ -273,8 +254,7 @@ public void Derivatives(int /*(int)*/ subId, double /*(double[3])*/ []pcoords, I
 // int GetParametricCenter(double pcoords[3])
 // "int GetParametricCenter(double pcoords[3])"
 public int GetParametricCenter(double /*(double[3])*/ []pcoords) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkGenericCell.GetParametricCenter_0(returnPointer.GetPtr(), this, pcoords);
 	return (int)returnPointer;
 }
@@ -283,8 +263,7 @@ public int GetParametricCenter(double /*(double[3])*/ []pcoords) {
 // double* GetParametricCoords()
 // "double *GetParametricCoords()"
 public IntPtr GetParametricCoords() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkGenericCell.GetParametricCoords_0(returnPointer.GetPtr(), this);
 	return (IntPtr)returnPointer;
 }
@@ -293,8 +272,7 @@ public IntPtr GetParametricCoords() {
 // int IsPrimaryCell()
 // "int IsPrimaryCell()"
 public int IsPrimaryCell() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkGenericCell.IsPrimaryCell_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -611,8 +589,7 @@ public void SetCellTypeToLagrangeWedge() {
 // static vtkCell* InstantiateCell(int cellType)
 // "static vtkCell* InstantiateCell(int cellType)"
 public static vtkCell InstantiateCell(int /*(int)*/ cellType) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkGenericCell.InstantiateCell_0(returnPointer.GetPtr(), cellType);
 	return (vtkCell)(IntPtr)returnPointer;
 }
@@ -621,8 +598,7 @@ public static vtkCell InstantiateCell(int /*(int)*/ cellType) {
 // vtkCell* GetRepresentativeCell()
 // "vtkCell* GetRepresentativeCell()"
 public vtkCell GetRepresentativeCell() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkGenericCell.GetRepresentativeCell_0(returnPointer.GetPtr(), this);
 	return (vtkCell)(IntPtr)returnPointer;
 }

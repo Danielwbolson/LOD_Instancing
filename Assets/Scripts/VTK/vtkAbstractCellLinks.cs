@@ -13,8 +13,7 @@ public partial class vtkAbstractCellLinks : vtkObject {
 // static vtkTypeBool IsTypeOf(const char * type)
 // "static vtkTypeBool IsTypeOf(const char *type)"
 public static bool IsTypeOf(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkAbstractCellLinks.IsTypeOf_0(returnPointer.GetPtr(), type);
 	return (bool)returnPointer;
 }
@@ -23,8 +22,7 @@ public static bool IsTypeOf(string /*(char*)*/ type) {
 // vtkTypeBool IsA(const char * type)
 // "vtkTypeBool IsA(const char *type)"
 public bool IsA(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkAbstractCellLinks.IsA_0(returnPointer.GetPtr(), this, type);
 	return (bool)returnPointer;
 }
@@ -33,8 +31,7 @@ public bool IsA(string /*(char*)*/ type) {
 // static vtkAbstractCellLinks* SafeDownCast(vtkObjectBase * o)
 // "static vtkAbstractCellLinks* SafeDownCast(vtkObjectBase *o)"
 public static vtkAbstractCellLinks SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkAbstractCellLinks.SafeDownCast_0(returnPointer.GetPtr(), o);
 	return (vtkAbstractCellLinks)(IntPtr)returnPointer;
 }
@@ -43,8 +40,7 @@ public static vtkAbstractCellLinks SafeDownCast(vtkObjectBase /*(vtkObjectBase*)
 // vtkAbstractCellLinks* NewInstance()
 // "vtkAbstractCellLinks *NewInstance()"
 public vtkAbstractCellLinks NewInstance() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkAbstractCellLinks.NewInstance_0(returnPointer.GetPtr(), this);
 	return (vtkAbstractCellLinks)(IntPtr)returnPointer;
 }
@@ -60,8 +56,7 @@ public void BuildLinks(vtkDataSet /*(vtkDataSet*)*/ data) {
 // static int GetIdType(vtkIdType maxPtId, vtkIdType maxCellId, vtkCellArray * ca)
 // "static int GetIdType(vtkIdType maxPtId, vtkIdType maxCellId, vtkCellArray *ca)"
 public static int GetIdType(long /*(vtkIdType)*/ maxPtId, long /*(vtkIdType)*/ maxCellId, vtkCellArray /*(vtkCellArray*)*/ ca) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkAbstractCellLinks.GetIdType_0(returnPointer.GetPtr(), maxPtId, maxCellId, ca);
 	return (int)returnPointer;
 }

@@ -13,8 +13,7 @@ public partial class vtkIdTypeArray : vtkDataArray {
 // static vtkTypeBool IsTypeOf(const char * type)
 // "static vtkTypeBool IsTypeOf(const char *type)"
 public static bool IsTypeOf(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkIdTypeArray.IsTypeOf_0(returnPointer.GetPtr(), type);
 	return (bool)returnPointer;
 }
@@ -23,8 +22,7 @@ public static bool IsTypeOf(string /*(char*)*/ type) {
 // vtkTypeBool IsA(const char * type)
 // "vtkTypeBool IsA(const char *type)"
 public bool IsA(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkIdTypeArray.IsA_0(returnPointer.GetPtr(), this, type);
 	return (bool)returnPointer;
 }
@@ -33,8 +31,7 @@ public bool IsA(string /*(char*)*/ type) {
 // static vtkIdTypeArray* SafeDownCast(vtkObjectBase * o)
 // "static vtkIdTypeArray* SafeDownCast(vtkObjectBase *o)"
 public static vtkIdTypeArray SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkIdTypeArray.SafeDownCast_0(returnPointer.GetPtr(), o);
 	return (vtkIdTypeArray)(IntPtr)returnPointer;
 }
@@ -43,8 +40,7 @@ public static vtkIdTypeArray SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) 
 // vtkIdTypeArray* NewInstance()
 // "vtkIdTypeArray *NewInstance()"
 public vtkIdTypeArray NewInstance() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkIdTypeArray.NewInstance_0(returnPointer.GetPtr(), this);
 	return (vtkIdTypeArray)(IntPtr)returnPointer;
 }
@@ -53,8 +49,7 @@ public vtkIdTypeArray NewInstance() {
 // static vtkIdTypeArray* New()
 // "static vtkIdTypeArray* New()"
 public static vtkIdTypeArray New() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkIdTypeArray.New_0(returnPointer.GetPtr());
 	return (vtkIdTypeArray)(IntPtr)returnPointer;
 }
@@ -63,8 +58,7 @@ public static vtkIdTypeArray New() {
 // int GetDataType()
 // "int GetDataType()"
 public int GetDataType() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkIdTypeArray.GetDataType_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -73,8 +67,7 @@ public int GetDataType() {
 // static vtkIdTypeArray* FastDownCast(vtkAbstractArray * source)
 // "static vtkIdTypeArray* FastDownCast(vtkAbstractArray *source)"
 public static vtkIdTypeArray FastDownCast(vtkAbstractArray /*(vtkAbstractArray*)*/ source) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkIdTypeArray.FastDownCast_0(returnPointer.GetPtr(), source);
 	return (vtkIdTypeArray)(IntPtr)returnPointer;
 }
@@ -83,8 +76,7 @@ public static vtkIdTypeArray FastDownCast(vtkAbstractArray /*(vtkAbstractArray*)
 // static vtkIdType GetDataTypeValueMin()
 // "static vtkIdType GetDataTypeValueMin()"
 public static long GetDataTypeValueMin() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new long());
 	VTK_API.API_vtkIdTypeArray.GetDataTypeValueMin_0(returnPointer.GetPtr());
 	return (long)returnPointer;
 }
@@ -93,8 +85,7 @@ public static long GetDataTypeValueMin() {
 // static vtkIdType GetDataTypeValueMax()
 // "static vtkIdType GetDataTypeValueMax()"
 public static long GetDataTypeValueMax() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new long());
 	VTK_API.API_vtkIdTypeArray.GetDataTypeValueMax_0(returnPointer.GetPtr());
 	return (long)returnPointer;
 }

@@ -13,8 +13,7 @@ public partial class vtkDataArray : vtkAbstractArray {
 // static vtkTypeBool IsTypeOf(const char * type)
 // "static vtkTypeBool IsTypeOf(const char *type)"
 public static bool IsTypeOf(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkDataArray.IsTypeOf_0(returnPointer.GetPtr(), type);
 	return (bool)returnPointer;
 }
@@ -23,8 +22,7 @@ public static bool IsTypeOf(string /*(char*)*/ type) {
 // vtkTypeBool IsA(const char * type)
 // "vtkTypeBool IsA(const char *type)"
 public bool IsA(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkDataArray.IsA_0(returnPointer.GetPtr(), this, type);
 	return (bool)returnPointer;
 }
@@ -33,8 +31,7 @@ public bool IsA(string /*(char*)*/ type) {
 // static vtkDataArray* SafeDownCast(vtkObjectBase * o)
 // "static vtkDataArray* SafeDownCast(vtkObjectBase *o)"
 public static vtkDataArray SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkDataArray.SafeDownCast_0(returnPointer.GetPtr(), o);
 	return (vtkDataArray)(IntPtr)returnPointer;
 }
@@ -43,8 +40,7 @@ public static vtkDataArray SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
 // vtkDataArray* NewInstance()
 // "vtkDataArray *NewInstance()"
 public vtkDataArray NewInstance() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkDataArray.NewInstance_0(returnPointer.GetPtr(), this);
 	return (vtkDataArray)(IntPtr)returnPointer;
 }
@@ -53,8 +49,7 @@ public vtkDataArray NewInstance() {
 // static vtkDataArray* FastDownCast(vtkAbstractArray * source)
 // "static vtkDataArray* FastDownCast(vtkAbstractArray *source)"
 public static vtkDataArray FastDownCast(vtkAbstractArray /*(vtkAbstractArray*)*/ source) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkDataArray.FastDownCast_0(returnPointer.GetPtr(), source);
 	return (vtkDataArray)(IntPtr)returnPointer;
 }
@@ -63,8 +58,7 @@ public static vtkDataArray FastDownCast(vtkAbstractArray /*(vtkAbstractArray*)*/
 // int IsNumeric()
 // "int IsNumeric()"
 public int IsNumeric() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkDataArray.IsNumeric_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -73,8 +67,7 @@ public int IsNumeric() {
 // int GetElementComponentSize()
 // "int GetElementComponentSize()"
 public int GetElementComponentSize() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkDataArray.GetElementComponentSize_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -90,8 +83,7 @@ public void InsertTuple(long /*(vtkIdType)*/ dstTupleIdx, long /*(vtkIdType)*/ s
 // vtkIdType InsertNextTuple(vtkIdType srcTupleIdx, vtkAbstractArray * source)
 // "vtkIdType InsertNextTuple(vtkIdType srcTupleIdx, vtkAbstractArray* source)"
 public long InsertNextTuple(long /*(vtkIdType)*/ srcTupleIdx, vtkAbstractArray /*(vtkAbstractArray*)*/ source) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new long());
 	VTK_API.API_vtkDataArray.InsertNextTuple_0(returnPointer.GetPtr(), this, srcTupleIdx, source);
 	return (long)returnPointer;
 }
@@ -142,8 +134,7 @@ public void InterpolateTuple(long /*(vtkIdType)*/ dstTupleIdx, long /*(vtkIdType
 // virtual double* GetTuple(vtkIdType tupleIdx)
 // "virtual double *GetTuple(vtkIdType tupleIdx)"
 public IntPtr GetTuple(long /*(vtkIdType)*/ tupleIdx) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkDataArray.GetTuple_0(returnPointer.GetPtr(), this, tupleIdx);
 	return (IntPtr)returnPointer;
 }
@@ -159,8 +150,7 @@ public void GetTuple(long /*(vtkIdType)*/ tupleIdx, IntPtr /*(double*)*/ tuple) 
 // double GetTuple1(vtkIdType tupleIdx)
 // "double GetTuple1(vtkIdType tupleIdx)"
 public double GetTuple1(long /*(vtkIdType)*/ tupleIdx) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new double(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new double());
 	VTK_API.API_vtkDataArray.GetTuple1_0(returnPointer.GetPtr(), this, tupleIdx);
 	return (double)returnPointer;
 }
@@ -169,8 +159,7 @@ public double GetTuple1(long /*(vtkIdType)*/ tupleIdx) {
 // double* GetTuple2(vtkIdType tupleIdx)
 // "double* GetTuple2(vtkIdType tupleIdx)"
 public IntPtr GetTuple2(long /*(vtkIdType)*/ tupleIdx) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkDataArray.GetTuple2_0(returnPointer.GetPtr(), this, tupleIdx);
 	return (IntPtr)returnPointer;
 }
@@ -179,8 +168,7 @@ public IntPtr GetTuple2(long /*(vtkIdType)*/ tupleIdx) {
 // double* GetTuple3(vtkIdType tupleIdx)
 // "double* GetTuple3(vtkIdType tupleIdx)"
 public IntPtr GetTuple3(long /*(vtkIdType)*/ tupleIdx) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkDataArray.GetTuple3_0(returnPointer.GetPtr(), this, tupleIdx);
 	return (IntPtr)returnPointer;
 }
@@ -189,8 +177,7 @@ public IntPtr GetTuple3(long /*(vtkIdType)*/ tupleIdx) {
 // double* GetTuple4(vtkIdType tupleIdx)
 // "double* GetTuple4(vtkIdType tupleIdx)"
 public IntPtr GetTuple4(long /*(vtkIdType)*/ tupleIdx) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkDataArray.GetTuple4_0(returnPointer.GetPtr(), this, tupleIdx);
 	return (IntPtr)returnPointer;
 }
@@ -199,8 +186,7 @@ public IntPtr GetTuple4(long /*(vtkIdType)*/ tupleIdx) {
 // double* GetTuple6(vtkIdType tupleIdx)
 // "double* GetTuple6(vtkIdType tupleIdx)"
 public IntPtr GetTuple6(long /*(vtkIdType)*/ tupleIdx) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkDataArray.GetTuple6_0(returnPointer.GetPtr(), this, tupleIdx);
 	return (IntPtr)returnPointer;
 }
@@ -209,8 +195,7 @@ public IntPtr GetTuple6(long /*(vtkIdType)*/ tupleIdx) {
 // double* GetTuple9(vtkIdType tupleIdx)
 // "double* GetTuple9(vtkIdType tupleIdx)"
 public IntPtr GetTuple9(long /*(vtkIdType)*/ tupleIdx) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkDataArray.GetTuple9_0(returnPointer.GetPtr(), this, tupleIdx);
 	return (IntPtr)returnPointer;
 }
@@ -324,8 +309,7 @@ public void InsertTuple9(long /*(vtkIdType)*/ tupleIdx, double /*(double)*/ val0
 // virtual vtkIdType InsertNextTuple(const float * tuple)
 // "virtual vtkIdType InsertNextTuple(const float * tuple)"
 public long InsertNextTuple(IntPtr /*(float*)*/ tuple) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new long());
 	VTK_API.API_vtkDataArray.InsertNextTuple_1(returnPointer.GetPtr(), this, tuple);
 	return (long)returnPointer;
 }
@@ -397,8 +381,7 @@ public void RemoveLastTuple() {
 // virtual double GetComponent(vtkIdType tupleIdx, int compIdx)
 // "virtual double GetComponent(vtkIdType tupleIdx, int compIdx)"
 public double GetComponent(long /*(vtkIdType)*/ tupleIdx, int /*(int)*/ compIdx) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new double(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new double());
 	VTK_API.API_vtkDataArray.GetComponent_0(returnPointer.GetPtr(), this, tupleIdx, compIdx);
 	return (double)returnPointer;
 }
@@ -470,8 +453,7 @@ public void CopyComponent(int /*(int)*/ dstComponent, vtkDataArray /*(vtkDataArr
 // virtual void* WriteVoidPointer(vtkIdType valueIdx, vtkIdType numValues)
 // "virtual void* WriteVoidPointer(vtkIdType valueIdx, vtkIdType numValues)"
 public IntPtr WriteVoidPointer(long /*(vtkIdType)*/ valueIdx, long /*(vtkIdType)*/ numValues) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkDataArray.WriteVoidPointer_0(returnPointer.GetPtr(), this, valueIdx, numValues);
 	return (IntPtr)returnPointer;
 }
@@ -480,8 +462,7 @@ public IntPtr WriteVoidPointer(long /*(vtkIdType)*/ valueIdx, long /*(vtkIdType)
 // long GetActualMemorySize()
 // "unsigned long GetActualMemorySize()"
 public ulong GetActualMemorySize() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new ulong(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new ulong());
 	VTK_API.API_vtkDataArray.GetActualMemorySize_0(returnPointer.GetPtr(), this);
 	return (ulong)returnPointer;
 }
@@ -504,8 +485,7 @@ public void SetLookupTable(vtkLookupTable /*(vtkLookupTable*)*/ lut) {
 // virtual vtkLookupTable* GetLookupTable()
 // "virtual vtkLookupTable *GetLookupTable ()"
 public vtkLookupTable GetLookupTable() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkDataArray.GetLookupTable_0(returnPointer.GetPtr(), this);
 	return (vtkLookupTable)(IntPtr)returnPointer;
 }
@@ -521,8 +501,7 @@ public void GetRange(double /*(double[2])*/ []range, int /*(int)*/ comp) {
 // double* GetRange(int comp)
 // "double* GetRange(int comp)"
 public IntPtr GetRange(int /*(int)*/ comp) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkDataArray.GetRange_1(returnPointer.GetPtr(), this, comp);
 	return (IntPtr)returnPointer;
 }
@@ -531,8 +510,7 @@ public IntPtr GetRange(int /*(int)*/ comp) {
 // double* GetRange()
 // "double* GetRange()"
 public IntPtr GetRange() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkDataArray.GetRange_2(returnPointer.GetPtr(), this);
 	return (IntPtr)returnPointer;
 }
@@ -555,8 +533,7 @@ public void GetFiniteRange(double /*(double[2])*/ []range, int /*(int)*/ comp) {
 // double* GetFiniteRange(int comp)
 // "double *GetFiniteRange(int comp)"
 public IntPtr GetFiniteRange(int /*(int)*/ comp) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkDataArray.GetFiniteRange_1(returnPointer.GetPtr(), this, comp);
 	return (IntPtr)returnPointer;
 }
@@ -565,8 +542,7 @@ public IntPtr GetFiniteRange(int /*(int)*/ comp) {
 // double* GetFiniteRange()
 // "double *GetFiniteRange()"
 public IntPtr GetFiniteRange() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkDataArray.GetFiniteRange_2(returnPointer.GetPtr(), this);
 	return (IntPtr)returnPointer;
 }
@@ -589,8 +565,7 @@ public void GetDataTypeRange(double /*(double[2])*/ []range) {
 // double GetDataTypeMin()
 // "double GetDataTypeMin()"
 public double GetDataTypeMin() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new double(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new double());
 	VTK_API.API_vtkDataArray.GetDataTypeMin_0(returnPointer.GetPtr(), this);
 	return (double)returnPointer;
 }
@@ -599,8 +574,7 @@ public double GetDataTypeMin() {
 // double GetDataTypeMax()
 // "double GetDataTypeMax()"
 public double GetDataTypeMax() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new double(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new double());
 	VTK_API.API_vtkDataArray.GetDataTypeMax_0(returnPointer.GetPtr(), this);
 	return (double)returnPointer;
 }
@@ -616,8 +590,7 @@ public static void GetDataTypeRange(int /*(int)*/ type, double /*(double[2])*/ [
 // static double GetDataTypeMin(int type)
 // "static double GetDataTypeMin(int type)"
 public static double GetDataTypeMin(int /*(int)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new double(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new double());
 	VTK_API.API_vtkDataArray.GetDataTypeMin_1(returnPointer.GetPtr(), type);
 	return (double)returnPointer;
 }
@@ -626,8 +599,7 @@ public static double GetDataTypeMin(int /*(int)*/ type) {
 // static double GetDataTypeMax(int type)
 // "static double GetDataTypeMax(int type)"
 public static double GetDataTypeMax(int /*(int)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new double(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new double());
 	VTK_API.API_vtkDataArray.GetDataTypeMax_1(returnPointer.GetPtr(), type);
 	return (double)returnPointer;
 }
@@ -636,8 +608,7 @@ public static double GetDataTypeMax(int /*(int)*/ type) {
 // virtual double GetMaxNorm()
 // "virtual double GetMaxNorm()"
 public double GetMaxNorm() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new double(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new double());
 	VTK_API.API_vtkDataArray.GetMaxNorm_0(returnPointer.GetPtr(), this);
 	return (double)returnPointer;
 }
@@ -646,8 +617,7 @@ public double GetMaxNorm() {
 // static vtkDataArray* CreateDataArray(int dataType)
 // "static vtkDataArray* CreateDataArray(int dataType)"
 public static vtkDataArray CreateDataArray(int /*(int)*/ dataType) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkDataArray.CreateDataArray_0(returnPointer.GetPtr(), dataType);
 	return (vtkDataArray)(IntPtr)returnPointer;
 }
@@ -663,8 +633,7 @@ public void Modified() {
 // int GetArrayType()
 // "int GetArrayType()"
 public int GetArrayType() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkDataArray.GetArrayType_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }

@@ -13,8 +13,7 @@ public partial class vtkXMLPolyDataReader : vtkXMLUnstructuredDataReader {
 // static vtkTypeBool IsTypeOf(const char * type)
 // "static vtkTypeBool IsTypeOf(const char *type)"
 public static bool IsTypeOf(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkXMLPolyDataReader.IsTypeOf_0(returnPointer.GetPtr(), type);
 	return (bool)returnPointer;
 }
@@ -23,8 +22,7 @@ public static bool IsTypeOf(string /*(char*)*/ type) {
 // vtkTypeBool IsA(const char * type)
 // "vtkTypeBool IsA(const char *type)"
 public bool IsA(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkXMLPolyDataReader.IsA_0(returnPointer.GetPtr(), this, type);
 	return (bool)returnPointer;
 }
@@ -33,8 +31,7 @@ public bool IsA(string /*(char*)*/ type) {
 // static vtkXMLPolyDataReader* SafeDownCast(vtkObjectBase * o)
 // "static vtkXMLPolyDataReader* SafeDownCast(vtkObjectBase *o)"
 public static vtkXMLPolyDataReader SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkXMLPolyDataReader.SafeDownCast_0(returnPointer.GetPtr(), o);
 	return (vtkXMLPolyDataReader)(IntPtr)returnPointer;
 }
@@ -43,8 +40,7 @@ public static vtkXMLPolyDataReader SafeDownCast(vtkObjectBase /*(vtkObjectBase*)
 // vtkXMLPolyDataReader* NewInstance()
 // "vtkXMLPolyDataReader *NewInstance()"
 public vtkXMLPolyDataReader NewInstance() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkXMLPolyDataReader.NewInstance_0(returnPointer.GetPtr(), this);
 	return (vtkXMLPolyDataReader)(IntPtr)returnPointer;
 }
@@ -53,8 +49,7 @@ public vtkXMLPolyDataReader NewInstance() {
 // static vtkXMLPolyDataReader* New()
 // "static vtkXMLPolyDataReader *New()"
 public static vtkXMLPolyDataReader New() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkXMLPolyDataReader.New_0(returnPointer.GetPtr());
 	return (vtkXMLPolyDataReader)(IntPtr)returnPointer;
 }
@@ -63,8 +58,7 @@ public static vtkXMLPolyDataReader New() {
 // vtkPolyData* GetOutput()
 // "vtkPolyData *GetOutput()"
 public vtkPolyData GetOutput() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkXMLPolyDataReader.GetOutput_0(returnPointer.GetPtr(), this);
 	return (vtkPolyData)(IntPtr)returnPointer;
 }
@@ -73,8 +67,7 @@ public vtkPolyData GetOutput() {
 // vtkPolyData* GetOutput(int idx)
 // "vtkPolyData *GetOutput(int idx)"
 public vtkPolyData GetOutput(int /*(int)*/ idx) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkXMLPolyDataReader.GetOutput_1(returnPointer.GetPtr(), this, idx);
 	return (vtkPolyData)(IntPtr)returnPointer;
 }
@@ -83,8 +76,7 @@ public vtkPolyData GetOutput(int /*(int)*/ idx) {
 // virtual vtkIdType GetNumberOfVerts()
 // "virtual vtkIdType GetNumberOfVerts()"
 public long GetNumberOfVerts() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new long());
 	VTK_API.API_vtkXMLPolyDataReader.GetNumberOfVerts_0(returnPointer.GetPtr(), this);
 	return (long)returnPointer;
 }
@@ -93,8 +85,7 @@ public long GetNumberOfVerts() {
 // virtual vtkIdType GetNumberOfLines()
 // "virtual vtkIdType GetNumberOfLines()"
 public long GetNumberOfLines() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new long());
 	VTK_API.API_vtkXMLPolyDataReader.GetNumberOfLines_0(returnPointer.GetPtr(), this);
 	return (long)returnPointer;
 }
@@ -103,8 +94,7 @@ public long GetNumberOfLines() {
 // virtual vtkIdType GetNumberOfStrips()
 // "virtual vtkIdType GetNumberOfStrips()"
 public long GetNumberOfStrips() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new long());
 	VTK_API.API_vtkXMLPolyDataReader.GetNumberOfStrips_0(returnPointer.GetPtr(), this);
 	return (long)returnPointer;
 }
@@ -113,8 +103,7 @@ public long GetNumberOfStrips() {
 // virtual vtkIdType GetNumberOfPolys()
 // "virtual vtkIdType GetNumberOfPolys()"
 public long GetNumberOfPolys() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new long());
 	VTK_API.API_vtkXMLPolyDataReader.GetNumberOfPolys_0(returnPointer.GetPtr(), this);
 	return (long)returnPointer;
 }

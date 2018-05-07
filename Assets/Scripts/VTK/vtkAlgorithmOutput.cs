@@ -13,8 +13,7 @@ public partial class vtkAlgorithmOutput : vtkObject {
 // static vtkAlgorithmOutput* New()
 // "static vtkAlgorithmOutput *New()"
 public static vtkAlgorithmOutput New() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkAlgorithmOutput.New_0(returnPointer.GetPtr());
 	return (vtkAlgorithmOutput)(IntPtr)returnPointer;
 }
@@ -23,8 +22,7 @@ public static vtkAlgorithmOutput New() {
 // static vtkTypeBool IsTypeOf(const char * type)
 // "static vtkTypeBool IsTypeOf(const char *type)"
 public static bool IsTypeOf(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkAlgorithmOutput.IsTypeOf_0(returnPointer.GetPtr(), type);
 	return (bool)returnPointer;
 }
@@ -33,8 +31,7 @@ public static bool IsTypeOf(string /*(char*)*/ type) {
 // vtkTypeBool IsA(const char * type)
 // "vtkTypeBool IsA(const char *type)"
 public bool IsA(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkAlgorithmOutput.IsA_0(returnPointer.GetPtr(), this, type);
 	return (bool)returnPointer;
 }
@@ -43,8 +40,7 @@ public bool IsA(string /*(char*)*/ type) {
 // static vtkAlgorithmOutput* SafeDownCast(vtkObjectBase * o)
 // "static vtkAlgorithmOutput* SafeDownCast(vtkObjectBase *o)"
 public static vtkAlgorithmOutput SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkAlgorithmOutput.SafeDownCast_0(returnPointer.GetPtr(), o);
 	return (vtkAlgorithmOutput)(IntPtr)returnPointer;
 }
@@ -53,8 +49,7 @@ public static vtkAlgorithmOutput SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/
 // vtkAlgorithmOutput* NewInstance()
 // "vtkAlgorithmOutput *NewInstance()"
 public vtkAlgorithmOutput NewInstance() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkAlgorithmOutput.NewInstance_0(returnPointer.GetPtr(), this);
 	return (vtkAlgorithmOutput)(IntPtr)returnPointer;
 }
@@ -70,8 +65,7 @@ public void SetIndex(int /*(int)*/ index) {
 // int GetIndex()
 // "int GetIndex()"
 public int GetIndex() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkAlgorithmOutput.GetIndex_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -80,8 +74,7 @@ public int GetIndex() {
 // vtkAlgorithm* GetProducer()
 // "vtkAlgorithm* GetProducer()"
 public vtkAlgorithm GetProducer() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkAlgorithmOutput.GetProducer_0(returnPointer.GetPtr(), this);
 	return (vtkAlgorithm)(IntPtr)returnPointer;
 }

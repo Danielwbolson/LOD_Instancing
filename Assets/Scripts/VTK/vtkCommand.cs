@@ -13,8 +13,7 @@ public partial class vtkCommand : vtkObjectBase {
 // static vtkTypeBool IsTypeOf(const char * type)
 // "static vtkTypeBool IsTypeOf(const char *type)"
 public static bool IsTypeOf(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkCommand.IsTypeOf_0(returnPointer.GetPtr(), type);
 	return (bool)returnPointer;
 }
@@ -23,8 +22,7 @@ public static bool IsTypeOf(string /*(char*)*/ type) {
 // vtkTypeBool IsA(const char * type)
 // "vtkTypeBool IsA(const char *type)"
 public bool IsA(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkCommand.IsA_0(returnPointer.GetPtr(), this, type);
 	return (bool)returnPointer;
 }
@@ -33,8 +31,7 @@ public bool IsA(string /*(char*)*/ type) {
 // static vtkCommand* SafeDownCast(vtkObjectBase * o)
 // "static vtkCommand* SafeDownCast(vtkObjectBase *o)"
 public static vtkCommand SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkCommand.SafeDownCast_0(returnPointer.GetPtr(), o);
 	return (vtkCommand)(IntPtr)returnPointer;
 }
@@ -43,8 +40,7 @@ public static vtkCommand SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
 // vtkCommand* NewInstance()
 // "vtkCommand *NewInstance()"
 public vtkCommand NewInstance() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkCommand.NewInstance_0(returnPointer.GetPtr(), this);
 	return (vtkCommand)(IntPtr)returnPointer;
 }
@@ -74,8 +70,7 @@ public void Execute(vtkObject /*(vtkObject*)*/ caller, ulong /*(unsigned long)*/
 // static char* GetStringFromEventId(unsigned long event)
 // "static const char *GetStringFromEventId(unsigned long event)"
 public static string GetStringFromEventId(ulong /*(unsigned long)*/ evt) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkCommand.GetStringFromEventId_0(returnPointer.GetPtr(), evt);
 	return (string)returnPointer;
 }
@@ -84,8 +79,7 @@ public static string GetStringFromEventId(ulong /*(unsigned long)*/ evt) {
 // static long GetEventIdFromString(const char * event)
 // "static unsigned long GetEventIdFromString(const char *event)"
 public static ulong GetEventIdFromString(string /*(char*)*/ evt) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new ulong(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new ulong());
 	VTK_API.API_vtkCommand.GetEventIdFromString_0(returnPointer.GetPtr(), evt);
 	return (ulong)returnPointer;
 }
@@ -94,8 +88,7 @@ public static ulong GetEventIdFromString(string /*(char*)*/ evt) {
 // static bool EventHasData(unsigned long event)
 // "static bool EventHasData(unsigned long event)"
 public static bool EventHasData(ulong /*(unsigned long)*/ evt) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkCommand.EventHasData_0(returnPointer.GetPtr(), evt);
 	return (bool)returnPointer;
 }
@@ -111,8 +104,7 @@ public void SetAbortFlag(int /*(int)*/ f) {
 // int GetAbortFlag()
 // "int GetAbortFlag()"
 public int GetAbortFlag() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkCommand.GetAbortFlag_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -142,8 +134,7 @@ public void SetPassiveObserver(int /*(int)*/ f) {
 // int GetPassiveObserver()
 // "int GetPassiveObserver()"
 public int GetPassiveObserver() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkCommand.GetPassiveObserver_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }

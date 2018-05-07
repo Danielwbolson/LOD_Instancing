@@ -13,8 +13,7 @@ public partial class vtkProgressObserver : vtkObject {
 // static vtkProgressObserver* New()
 // "static vtkProgressObserver *New()"
 public static vtkProgressObserver New() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkProgressObserver.New_0(returnPointer.GetPtr());
 	return (vtkProgressObserver)(IntPtr)returnPointer;
 }
@@ -23,8 +22,7 @@ public static vtkProgressObserver New() {
 // static vtkTypeBool IsTypeOf(const char * type)
 // "static vtkTypeBool IsTypeOf(const char *type)"
 public static bool IsTypeOf(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkProgressObserver.IsTypeOf_0(returnPointer.GetPtr(), type);
 	return (bool)returnPointer;
 }
@@ -33,8 +31,7 @@ public static bool IsTypeOf(string /*(char*)*/ type) {
 // vtkTypeBool IsA(const char * type)
 // "vtkTypeBool IsA(const char *type)"
 public bool IsA(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkProgressObserver.IsA_0(returnPointer.GetPtr(), this, type);
 	return (bool)returnPointer;
 }
@@ -43,8 +40,7 @@ public bool IsA(string /*(char*)*/ type) {
 // static vtkProgressObserver* SafeDownCast(vtkObjectBase * o)
 // "static vtkProgressObserver* SafeDownCast(vtkObjectBase *o)"
 public static vtkProgressObserver SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkProgressObserver.SafeDownCast_0(returnPointer.GetPtr(), o);
 	return (vtkProgressObserver)(IntPtr)returnPointer;
 }
@@ -53,8 +49,7 @@ public static vtkProgressObserver SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*
 // vtkProgressObserver* NewInstance()
 // "vtkProgressObserver *NewInstance()"
 public vtkProgressObserver NewInstance() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkProgressObserver.NewInstance_0(returnPointer.GetPtr(), this);
 	return (vtkProgressObserver)(IntPtr)returnPointer;
 }
@@ -70,8 +65,7 @@ public void UpdateProgress(double /*(double)*/ amount) {
 // virtual double GetProgress()
 // "virtual double GetProgress ()"
 public double GetProgress() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new double(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new double());
 	VTK_API.API_vtkProgressObserver.GetProgress_0(returnPointer.GetPtr(), this);
 	return (double)returnPointer;
 }

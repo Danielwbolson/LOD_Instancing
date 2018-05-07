@@ -13,8 +13,7 @@ public partial class vtkUnsignedCharArray : vtkDataArray {
 // static vtkTypeBool IsTypeOf(const char * type)
 // "static vtkTypeBool IsTypeOf(const char *type)"
 public static bool IsTypeOf(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkUnsignedCharArray.IsTypeOf_0(returnPointer.GetPtr(), type);
 	return (bool)returnPointer;
 }
@@ -23,8 +22,7 @@ public static bool IsTypeOf(string /*(char*)*/ type) {
 // vtkTypeBool IsA(const char * type)
 // "vtkTypeBool IsA(const char *type)"
 public bool IsA(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkUnsignedCharArray.IsA_0(returnPointer.GetPtr(), this, type);
 	return (bool)returnPointer;
 }
@@ -33,8 +31,7 @@ public bool IsA(string /*(char*)*/ type) {
 // static vtkUnsignedCharArray* SafeDownCast(vtkObjectBase * o)
 // "static vtkUnsignedCharArray* SafeDownCast(vtkObjectBase *o)"
 public static vtkUnsignedCharArray SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkUnsignedCharArray.SafeDownCast_0(returnPointer.GetPtr(), o);
 	return (vtkUnsignedCharArray)(IntPtr)returnPointer;
 }
@@ -43,8 +40,7 @@ public static vtkUnsignedCharArray SafeDownCast(vtkObjectBase /*(vtkObjectBase*)
 // vtkUnsignedCharArray* NewInstance()
 // "vtkUnsignedCharArray *NewInstance()"
 public vtkUnsignedCharArray NewInstance() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkUnsignedCharArray.NewInstance_0(returnPointer.GetPtr(), this);
 	return (vtkUnsignedCharArray)(IntPtr)returnPointer;
 }
@@ -53,8 +49,7 @@ public vtkUnsignedCharArray NewInstance() {
 // static vtkUnsignedCharArray* New()
 // "static vtkUnsignedCharArray* New()"
 public static vtkUnsignedCharArray New() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkUnsignedCharArray.New_0(returnPointer.GetPtr());
 	return (vtkUnsignedCharArray)(IntPtr)returnPointer;
 }
@@ -63,8 +58,7 @@ public static vtkUnsignedCharArray New() {
 // static vtkUnsignedCharArray* FastDownCast(vtkAbstractArray * source)
 // "static vtkUnsignedCharArray* FastDownCast(vtkAbstractArray *source)"
 public static vtkUnsignedCharArray FastDownCast(vtkAbstractArray /*(vtkAbstractArray*)*/ source) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkUnsignedCharArray.FastDownCast_0(returnPointer.GetPtr(), source);
 	return (vtkUnsignedCharArray)(IntPtr)returnPointer;
 }
@@ -73,8 +67,7 @@ public static vtkUnsignedCharArray FastDownCast(vtkAbstractArray /*(vtkAbstractA
 // static char GetDataTypeValueMin()
 // "static unsigned char GetDataTypeValueMin()"
 public static char GetDataTypeValueMin() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new char(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new char());
 	VTK_API.API_vtkUnsignedCharArray.GetDataTypeValueMin_0(returnPointer.GetPtr());
 	return (char)returnPointer;
 }
@@ -83,8 +76,7 @@ public static char GetDataTypeValueMin() {
 // static char GetDataTypeValueMax()
 // "static unsigned char GetDataTypeValueMax()"
 public static char GetDataTypeValueMax() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new char(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new char());
 	VTK_API.API_vtkUnsignedCharArray.GetDataTypeValueMax_0(returnPointer.GetPtr());
 	return (char)returnPointer;
 }

@@ -13,8 +13,7 @@ public partial class vtkImageData : vtkDataSet {
 // static vtkImageData* New()
 // "static vtkImageData *New()"
 public static vtkImageData New() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkImageData.New_0(returnPointer.GetPtr());
 	return (vtkImageData)(IntPtr)returnPointer;
 }
@@ -23,8 +22,7 @@ public static vtkImageData New() {
 // static vtkTypeBool IsTypeOf(const char * type)
 // "static vtkTypeBool IsTypeOf(const char *type)"
 public static bool IsTypeOf(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkImageData.IsTypeOf_0(returnPointer.GetPtr(), type);
 	return (bool)returnPointer;
 }
@@ -33,8 +31,7 @@ public static bool IsTypeOf(string /*(char*)*/ type) {
 // vtkTypeBool IsA(const char * type)
 // "vtkTypeBool IsA(const char *type)"
 public bool IsA(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkImageData.IsA_0(returnPointer.GetPtr(), this, type);
 	return (bool)returnPointer;
 }
@@ -43,8 +40,7 @@ public bool IsA(string /*(char*)*/ type) {
 // static vtkImageData* SafeDownCast(vtkObjectBase * o)
 // "static vtkImageData* SafeDownCast(vtkObjectBase *o)"
 public static vtkImageData SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkImageData.SafeDownCast_0(returnPointer.GetPtr(), o);
 	return (vtkImageData)(IntPtr)returnPointer;
 }
@@ -53,8 +49,7 @@ public static vtkImageData SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
 // vtkImageData* NewInstance()
 // "vtkImageData *NewInstance()"
 public vtkImageData NewInstance() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkImageData.NewInstance_0(returnPointer.GetPtr(), this);
 	return (vtkImageData)(IntPtr)returnPointer;
 }
@@ -70,8 +65,7 @@ public void CopyStructure(vtkDataSet /*(vtkDataSet*)*/ ds) {
 // int GetDataObjectType()
 // "int GetDataObjectType()"
 public int GetDataObjectType() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkImageData.GetDataObjectType_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -80,8 +74,7 @@ public int GetDataObjectType() {
 // vtkIdType GetNumberOfCells()
 // "vtkIdType GetNumberOfCells()"
 public long GetNumberOfCells() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new long());
 	VTK_API.API_vtkImageData.GetNumberOfCells_0(returnPointer.GetPtr(), this);
 	return (long)returnPointer;
 }
@@ -90,8 +83,7 @@ public long GetNumberOfCells() {
 // vtkIdType GetNumberOfPoints()
 // "vtkIdType GetNumberOfPoints()"
 public long GetNumberOfPoints() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new long());
 	VTK_API.API_vtkImageData.GetNumberOfPoints_0(returnPointer.GetPtr(), this);
 	return (long)returnPointer;
 }
@@ -100,8 +92,7 @@ public long GetNumberOfPoints() {
 // double* GetPoint(vtkIdType ptId)
 // "double *GetPoint(vtkIdType ptId)"
 public IntPtr GetPoint(long /*(vtkIdType)*/ ptId) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkImageData.GetPoint_0(returnPointer.GetPtr(), this, ptId);
 	return (IntPtr)returnPointer;
 }
@@ -117,8 +108,7 @@ public void GetPoint(long /*(vtkIdType)*/ id, double /*(double[3])*/ []x) {
 // vtkCell* GetCell(vtkIdType cellId)
 // "vtkCell *GetCell(vtkIdType cellId)"
 public vtkCell GetCell(long /*(vtkIdType)*/ cellId) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkImageData.GetCell_0(returnPointer.GetPtr(), this, cellId);
 	return (vtkCell)(IntPtr)returnPointer;
 }
@@ -127,8 +117,7 @@ public vtkCell GetCell(long /*(vtkIdType)*/ cellId) {
 // vtkCell* GetCell(int i, int j, int k)
 // "vtkCell *GetCell(int i, int j, int k)"
 public vtkCell GetCell(int /*(int)*/ i, int /*(int)*/ j, int /*(int)*/ k) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkImageData.GetCell_1(returnPointer.GetPtr(), this, i, j, k);
 	return (vtkCell)(IntPtr)returnPointer;
 }
@@ -151,8 +140,7 @@ public void GetCellBounds(long /*(vtkIdType)*/ cellId, double /*(double[6])*/ []
 // virtual vtkIdType FindPoint(double x, double y, double z)
 // "virtual vtkIdType FindPoint(double x, double y, double z)"
 public long FindPoint(double /*(double)*/ x, double /*(double)*/ y, double /*(double)*/ z) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new long());
 	VTK_API.API_vtkImageData.FindPoint_0(returnPointer.GetPtr(), this, x, y, z);
 	return (long)returnPointer;
 }
@@ -161,8 +149,7 @@ public long FindPoint(double /*(double)*/ x, double /*(double)*/ y, double /*(do
 // vtkIdType FindPoint(double x[3])
 // "vtkIdType FindPoint(double x[3])"
 public long FindPoint(double /*(double[3])*/ []x) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new long());
 	VTK_API.API_vtkImageData.FindPoint_1(returnPointer.GetPtr(), this, x);
 	return (long)returnPointer;
 }
@@ -171,8 +158,7 @@ public long FindPoint(double /*(double[3])*/ []x) {
 // vtkIdType FindCell(double x[3], vtkCell * cell, vtkIdType cellId, double tol2, int & subId, double pcoords[3], double * weights)
 // "vtkIdType FindCell( double x[3], vtkCell *cell, vtkIdType cellId, double tol2, int& subId, double pcoords[3], double *weights)"
 public long FindCell(double /*(double[3])*/ []x, vtkCell /*(vtkCell*)*/ cell, long /*(vtkIdType)*/ cellId, double /*(double)*/ tol2, IntPtr /*(int&)*/ subId, double /*(double[3])*/ []pcoords, IntPtr /*(double*)*/ weights) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new long());
 	VTK_API.API_vtkImageData.FindCell_0(returnPointer.GetPtr(), this, x, cell, cellId, tol2, subId, pcoords, weights);
 	return (long)returnPointer;
 }
@@ -181,8 +167,7 @@ public long FindCell(double /*(double[3])*/ []x, vtkCell /*(vtkCell*)*/ cell, lo
 // vtkIdType FindCell(double x[3], vtkCell * cell, vtkGenericCell * gencell, vtkIdType cellId, double tol2, int & subId, double pcoords[3], double * weights)
 // "vtkIdType FindCell( double x[3], vtkCell *cell, vtkGenericCell *gencell, vtkIdType cellId, double tol2, int& subId, double pcoords[3], double *weights)"
 public long FindCell(double /*(double[3])*/ []x, vtkCell /*(vtkCell*)*/ cell, vtkGenericCell /*(vtkGenericCell*)*/ gencell, long /*(vtkIdType)*/ cellId, double /*(double)*/ tol2, IntPtr /*(int&)*/ subId, double /*(double[3])*/ []pcoords, IntPtr /*(double*)*/ weights) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new long());
 	VTK_API.API_vtkImageData.FindCell_1(returnPointer.GetPtr(), this, x, cell, gencell, cellId, tol2, subId, pcoords, weights);
 	return (long)returnPointer;
 }
@@ -191,8 +176,7 @@ public long FindCell(double /*(double[3])*/ []x, vtkCell /*(vtkCell*)*/ cell, vt
 // vtkCell* FindAndGetCell(double x[3], vtkCell * cell, vtkIdType cellId, double tol2, int & subId, double pcoords[3], double * weights)
 // "vtkCell *FindAndGetCell(double x[3], vtkCell *cell, vtkIdType cellId, double tol2, int& subId, double pcoords[3], double *weights)"
 public vtkCell FindAndGetCell(double /*(double[3])*/ []x, vtkCell /*(vtkCell*)*/ cell, long /*(vtkIdType)*/ cellId, double /*(double)*/ tol2, IntPtr /*(int&)*/ subId, double /*(double[3])*/ []pcoords, IntPtr /*(double*)*/ weights) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkImageData.FindAndGetCell_0(returnPointer.GetPtr(), this, x, cell, cellId, tol2, subId, pcoords, weights);
 	return (vtkCell)(IntPtr)returnPointer;
 }
@@ -201,8 +185,7 @@ public vtkCell FindAndGetCell(double /*(double[3])*/ []x, vtkCell /*(vtkCell*)*/
 // int GetCellType(vtkIdType cellId)
 // "int GetCellType(vtkIdType cellId)"
 public int GetCellType(long /*(vtkIdType)*/ cellId) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkImageData.GetCellType_0(returnPointer.GetPtr(), this, cellId);
 	return (int)returnPointer;
 }
@@ -232,8 +215,7 @@ public void ComputeBounds() {
 // int GetMaxCellSize()
 // "int GetMaxCellSize()"
 public int GetMaxCellSize() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkImageData.GetMaxCellSize_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -263,8 +245,7 @@ public void SetDimensions(int /*(int[3])*/ []dims) {
 // virtual int* GetDimensions()
 // "virtual int *GetDimensions()"
 public IntPtr GetDimensions() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkImageData.GetDimensions_0(returnPointer.GetPtr(), this);
 	return (IntPtr)returnPointer;
 }
@@ -280,8 +261,7 @@ public void GetDimensions(int /*(int[3])*/ []dims) {
 // virtual int ComputeStructuredCoordinates(const double x[3], int ijk[3], double pcoords[3])
 // "virtual int ComputeStructuredCoordinates( const double x[3], int ijk[3], double pcoords[3])"
 public int ComputeStructuredCoordinates(double /*(double[3])*/ []x, int /*(int[3])*/ []ijk, double /*(double[3])*/ []pcoords) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkImageData.ComputeStructuredCoordinates_0(returnPointer.GetPtr(), this, x, ijk, pcoords);
 	return (int)returnPointer;
 }
@@ -290,8 +270,7 @@ public int ComputeStructuredCoordinates(double /*(double[3])*/ []x, int /*(int[3
 // static int ComputeStructuredCoordinates(const double x[3], int ijk[3], double pcoords[3], const int * extent, const double * spacing, const double * origin, const double * bounds)
 // "static int ComputeStructuredCoordinates( const double x[3], int ijk[3], double pcoords[3], const int* extent, const double* spacing, const double* origin, const double* bounds)"
 public static int ComputeStructuredCoordinates(double /*(double[3])*/ []x, int /*(int[3])*/ []ijk, double /*(double[3])*/ []pcoords, IntPtr /*(int*)*/ extent, IntPtr /*(double*)*/ spacing, IntPtr /*(double*)*/ origin, IntPtr /*(double*)*/ bounds) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkImageData.ComputeStructuredCoordinates_1(returnPointer.GetPtr(), x, ijk, pcoords, extent, spacing, origin, bounds);
 	return (int)returnPointer;
 }
@@ -314,8 +293,7 @@ public void GetPointGradient(int /*(int)*/ i, int /*(int)*/ j, int /*(int)*/ k, 
 // virtual int GetDataDimension()
 // "virtual int GetDataDimension()"
 public int GetDataDimension() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkImageData.GetDataDimension_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -324,8 +302,7 @@ public int GetDataDimension() {
 // virtual vtkIdType ComputePointId(int ijk[3])
 // "virtual vtkIdType ComputePointId(int ijk[3])"
 public long ComputePointId(int /*(int[3])*/ []ijk) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new long());
 	VTK_API.API_vtkImageData.ComputePointId_0(returnPointer.GetPtr(), this, ijk);
 	return (long)returnPointer;
 }
@@ -334,8 +311,7 @@ public long ComputePointId(int /*(int[3])*/ []ijk) {
 // virtual vtkIdType ComputeCellId(int ijk[3])
 // "virtual vtkIdType ComputeCellId(int ijk[3])"
 public long ComputeCellId(int /*(int[3])*/ []ijk) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new long());
 	VTK_API.API_vtkImageData.ComputeCellId_0(returnPointer.GetPtr(), this, ijk);
 	return (long)returnPointer;
 }
@@ -372,8 +348,7 @@ public void SetExtent(int /*(int)*/ x1, int /*(int)*/ x2, int /*(int)*/ y1, int 
 // virtual int* GetExtent()
 // "virtual int *GetExtent ()"
 public IntPtr GetExtent() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkImageData.GetExtent_0(returnPointer.GetPtr(), this);
 	return (IntPtr)returnPointer;
 }
@@ -396,8 +371,7 @@ public void GetExtent(int /*(int[6])*/ []_arg) {
 // virtual double GetScalarTypeMin()
 // "virtual double GetScalarTypeMin()"
 public double GetScalarTypeMin() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new double(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new double());
 	VTK_API.API_vtkImageData.GetScalarTypeMin_0(returnPointer.GetPtr(), this);
 	return (double)returnPointer;
 }
@@ -406,8 +380,7 @@ public double GetScalarTypeMin() {
 // virtual double GetScalarTypeMax()
 // "virtual double GetScalarTypeMax()"
 public double GetScalarTypeMax() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new double(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new double());
 	VTK_API.API_vtkImageData.GetScalarTypeMax_0(returnPointer.GetPtr(), this);
 	return (double)returnPointer;
 }
@@ -416,8 +389,7 @@ public double GetScalarTypeMax() {
 // virtual int GetScalarSize()
 // "virtual int GetScalarSize()"
 public int GetScalarSize() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkImageData.GetScalarSize_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -426,8 +398,7 @@ public int GetScalarSize() {
 // virtual vtkIdType* GetIncrements()
 // "virtual vtkIdType *GetIncrements()"
 public IntPtr GetIncrements() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkImageData.GetIncrements_0(returnPointer.GetPtr(), this);
 	return (IntPtr)returnPointer;
 }
@@ -450,8 +421,7 @@ public void GetIncrements(long /*(vtkIdType[3])*/ []inc) {
 // virtual vtkIdType* GetIncrements(vtkDataArray * scalars)
 // "virtual vtkIdType *GetIncrements(vtkDataArray *scalars)"
 public IntPtr GetIncrements(vtkDataArray /*(vtkDataArray*)*/ scalars) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkImageData.GetIncrements_3(returnPointer.GetPtr(), this, scalars);
 	return (IntPtr)returnPointer;
 }
@@ -488,8 +458,7 @@ public void GetContinuousIncrements(vtkDataArray /*(vtkDataArray*)*/ scalars, in
 // virtual void* GetScalarPointerForExtent(int extent[6])
 // "virtual void *GetScalarPointerForExtent(int extent[6])"
 public IntPtr GetScalarPointerForExtent(int /*(int[6])*/ []extent) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkImageData.GetScalarPointerForExtent_0(returnPointer.GetPtr(), this, extent);
 	return (IntPtr)returnPointer;
 }
@@ -498,8 +467,7 @@ public IntPtr GetScalarPointerForExtent(int /*(int[6])*/ []extent) {
 // virtual void* GetScalarPointer(int coordinates[3])
 // "virtual void *GetScalarPointer(int coordinates[3])"
 public IntPtr GetScalarPointer(int /*(int[3])*/ []coordinates) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkImageData.GetScalarPointer_0(returnPointer.GetPtr(), this, coordinates);
 	return (IntPtr)returnPointer;
 }
@@ -508,8 +476,7 @@ public IntPtr GetScalarPointer(int /*(int[3])*/ []coordinates) {
 // virtual void* GetScalarPointer(int x, int y, int z)
 // "virtual void *GetScalarPointer(int x, int y, int z)"
 public IntPtr GetScalarPointer(int /*(int)*/ x, int /*(int)*/ y, int /*(int)*/ z) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkImageData.GetScalarPointer_1(returnPointer.GetPtr(), this, x, y, z);
 	return (IntPtr)returnPointer;
 }
@@ -518,8 +485,7 @@ public IntPtr GetScalarPointer(int /*(int)*/ x, int /*(int)*/ y, int /*(int)*/ z
 // virtual void* GetScalarPointer()
 // "virtual void *GetScalarPointer()"
 public IntPtr GetScalarPointer() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkImageData.GetScalarPointer_2(returnPointer.GetPtr(), this);
 	return (IntPtr)returnPointer;
 }
@@ -528,8 +494,7 @@ public IntPtr GetScalarPointer() {
 // virtual float GetScalarComponentAsFloat(int x, int y, int z, int component)
 // "virtual float GetScalarComponentAsFloat(int x, int y, int z, int component)"
 public float GetScalarComponentAsFloat(int /*(int)*/ x, int /*(int)*/ y, int /*(int)*/ z, int /*(int)*/ component) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new float(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new float());
 	VTK_API.API_vtkImageData.GetScalarComponentAsFloat_0(returnPointer.GetPtr(), this, x, y, z, component);
 	return (float)returnPointer;
 }
@@ -545,8 +510,7 @@ public void SetScalarComponentFromFloat(int /*(int)*/ x, int /*(int)*/ y, int /*
 // virtual double GetScalarComponentAsDouble(int x, int y, int z, int component)
 // "virtual double GetScalarComponentAsDouble(int x, int y, int z, int component)"
 public double GetScalarComponentAsDouble(int /*(int)*/ x, int /*(int)*/ y, int /*(int)*/ z, int /*(int)*/ component) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new double(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new double());
 	VTK_API.API_vtkImageData.GetScalarComponentAsDouble_0(returnPointer.GetPtr(), this, x, y, z, component);
 	return (double)returnPointer;
 }
@@ -590,8 +554,7 @@ public void Crop(IntPtr /*(int*)*/ updateExtent) {
 // long GetActualMemorySize()
 // "unsigned long GetActualMemorySize()"
 public ulong GetActualMemorySize() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new ulong(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new ulong());
 	VTK_API.API_vtkImageData.GetActualMemorySize_0(returnPointer.GetPtr(), this);
 	return (ulong)returnPointer;
 }
@@ -614,8 +577,7 @@ public void SetSpacing(double /*(double[3])*/ []_arg) {
 // virtual double* GetSpacing()
 // "virtual double *GetSpacing ()"
 public IntPtr GetSpacing() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkImageData.GetSpacing_0(returnPointer.GetPtr(), this);
 	return (IntPtr)returnPointer;
 }
@@ -652,8 +614,7 @@ public void SetOrigin(double /*(double[3])*/ []_arg) {
 // virtual double* GetOrigin()
 // "virtual double *GetOrigin ()"
 public IntPtr GetOrigin() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkImageData.GetOrigin_0(returnPointer.GetPtr(), this);
 	return (IntPtr)returnPointer;
 }
@@ -676,8 +637,7 @@ public void GetOrigin(double /*(double[3])*/ []_arg) {
 // int GetScalarType()
 // "int GetScalarType()"
 public int GetScalarType() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkImageData.GetScalarType_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -686,8 +646,7 @@ public int GetScalarType() {
 // char* GetScalarTypeAsString()
 // "const char* GetScalarTypeAsString()"
 public string GetScalarTypeAsString() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkImageData.GetScalarTypeAsString_0(returnPointer.GetPtr(), this);
 	return (string)returnPointer;
 }
@@ -696,8 +655,7 @@ public string GetScalarTypeAsString() {
 // int GetNumberOfScalarComponents()
 // "int GetNumberOfScalarComponents()"
 public int GetNumberOfScalarComponents() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkImageData.GetNumberOfScalarComponents_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -727,8 +685,7 @@ public void DeepCopy(vtkDataObject /*(vtkDataObject*)*/ src) {
 // void* GetArrayPointerForExtent(vtkDataArray * array, int extent[6])
 // "void *GetArrayPointerForExtent(vtkDataArray* array, int extent[6])"
 public IntPtr GetArrayPointerForExtent(vtkDataArray /*(vtkDataArray*)*/ array, int /*(int[6])*/ []extent) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkImageData.GetArrayPointerForExtent_0(returnPointer.GetPtr(), this, array, extent);
 	return (IntPtr)returnPointer;
 }
@@ -737,8 +694,7 @@ public IntPtr GetArrayPointerForExtent(vtkDataArray /*(vtkDataArray*)*/ array, i
 // void* GetArrayPointer(vtkDataArray * array, int coordinates[3])
 // "void *GetArrayPointer(vtkDataArray* array, int coordinates[3])"
 public IntPtr GetArrayPointer(vtkDataArray /*(vtkDataArray*)*/ array, int /*(int[3])*/ []coordinates) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkImageData.GetArrayPointer_0(returnPointer.GetPtr(), this, array, coordinates);
 	return (IntPtr)returnPointer;
 }
@@ -761,8 +717,7 @@ public void ComputeInternalExtent(IntPtr /*(int*)*/ intExt, IntPtr /*(int*)*/ tg
 // int GetExtentType()
 // "int GetExtentType()"
 public int GetExtentType() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkImageData.GetExtentType_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }

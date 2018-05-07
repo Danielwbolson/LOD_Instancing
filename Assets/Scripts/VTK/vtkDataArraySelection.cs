@@ -13,8 +13,7 @@ public partial class vtkDataArraySelection : vtkObject {
 // static vtkTypeBool IsTypeOf(const char * type)
 // "static vtkTypeBool IsTypeOf(const char *type)"
 public static bool IsTypeOf(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkDataArraySelection.IsTypeOf_0(returnPointer.GetPtr(), type);
 	return (bool)returnPointer;
 }
@@ -23,8 +22,7 @@ public static bool IsTypeOf(string /*(char*)*/ type) {
 // vtkTypeBool IsA(const char * type)
 // "vtkTypeBool IsA(const char *type)"
 public bool IsA(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkDataArraySelection.IsA_0(returnPointer.GetPtr(), this, type);
 	return (bool)returnPointer;
 }
@@ -33,8 +31,7 @@ public bool IsA(string /*(char*)*/ type) {
 // static vtkDataArraySelection* SafeDownCast(vtkObjectBase * o)
 // "static vtkDataArraySelection* SafeDownCast(vtkObjectBase *o)"
 public static vtkDataArraySelection SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkDataArraySelection.SafeDownCast_0(returnPointer.GetPtr(), o);
 	return (vtkDataArraySelection)(IntPtr)returnPointer;
 }
@@ -43,8 +40,7 @@ public static vtkDataArraySelection SafeDownCast(vtkObjectBase /*(vtkObjectBase*
 // vtkDataArraySelection* NewInstance()
 // "vtkDataArraySelection *NewInstance()"
 public vtkDataArraySelection NewInstance() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkDataArraySelection.NewInstance_0(returnPointer.GetPtr(), this);
 	return (vtkDataArraySelection)(IntPtr)returnPointer;
 }
@@ -53,8 +49,7 @@ public vtkDataArraySelection NewInstance() {
 // static vtkDataArraySelection* New()
 // "static vtkDataArraySelection* New()"
 public static vtkDataArraySelection New() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkDataArraySelection.New_0(returnPointer.GetPtr());
 	return (vtkDataArraySelection)(IntPtr)returnPointer;
 }
@@ -77,8 +72,7 @@ public void DisableArray(string /*(char*)*/ name) {
 // int ArrayIsEnabled(const char * name)
 // "int ArrayIsEnabled(const char* name)"
 public int ArrayIsEnabled(string /*(char*)*/ name) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkDataArraySelection.ArrayIsEnabled_0(returnPointer.GetPtr(), this, name);
 	return (int)returnPointer;
 }
@@ -87,8 +81,7 @@ public int ArrayIsEnabled(string /*(char*)*/ name) {
 // int ArrayExists(const char * name)
 // "int ArrayExists(const char* name)"
 public int ArrayExists(string /*(char*)*/ name) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkDataArraySelection.ArrayExists_0(returnPointer.GetPtr(), this, name);
 	return (int)returnPointer;
 }
@@ -111,8 +104,7 @@ public void DisableAllArrays() {
 // int GetNumberOfArrays()
 // "int GetNumberOfArrays()"
 public int GetNumberOfArrays() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkDataArraySelection.GetNumberOfArrays_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -121,8 +113,7 @@ public int GetNumberOfArrays() {
 // int GetNumberOfArraysEnabled()
 // "int GetNumberOfArraysEnabled()"
 public int GetNumberOfArraysEnabled() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkDataArraySelection.GetNumberOfArraysEnabled_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -131,8 +122,7 @@ public int GetNumberOfArraysEnabled() {
 // char* GetArrayName(int index)
 // "const char* GetArrayName(int index)"
 public string GetArrayName(int /*(int)*/ index) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkDataArraySelection.GetArrayName_0(returnPointer.GetPtr(), this, index);
 	return (string)returnPointer;
 }
@@ -141,8 +131,7 @@ public string GetArrayName(int /*(int)*/ index) {
 // int GetArrayIndex(const char * name)
 // "int GetArrayIndex(const char *name)"
 public int GetArrayIndex(string /*(char*)*/ name) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkDataArraySelection.GetArrayIndex_0(returnPointer.GetPtr(), this, name);
 	return (int)returnPointer;
 }
@@ -151,8 +140,7 @@ public int GetArrayIndex(string /*(char*)*/ name) {
 // int GetEnabledArrayIndex(const char * name)
 // "int GetEnabledArrayIndex(const char* name)"
 public int GetEnabledArrayIndex(string /*(char*)*/ name) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkDataArraySelection.GetEnabledArrayIndex_0(returnPointer.GetPtr(), this, name);
 	return (int)returnPointer;
 }
@@ -161,8 +149,7 @@ public int GetEnabledArrayIndex(string /*(char*)*/ name) {
 // int GetArraySetting(const char * name)
 // "int GetArraySetting(const char* name)"
 public int GetArraySetting(string /*(char*)*/ name) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkDataArraySelection.GetArraySetting_0(returnPointer.GetPtr(), this, name);
 	return (int)returnPointer;
 }
@@ -171,8 +158,7 @@ public int GetArraySetting(string /*(char*)*/ name) {
 // int GetArraySetting(int index)
 // "int GetArraySetting(int index)"
 public int GetArraySetting(int /*(int)*/ index) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkDataArraySelection.GetArraySetting_1(returnPointer.GetPtr(), this, index);
 	return (int)returnPointer;
 }
@@ -188,8 +174,7 @@ public void RemoveAllArrays() {
 // int AddArray(const char * name)
 // "int AddArray(const char* name)"
 public int AddArray(string /*(char*)*/ name) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkDataArraySelection.AddArray_0(returnPointer.GetPtr(), this, name);
 	return (int)returnPointer;
 }

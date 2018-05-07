@@ -13,8 +13,7 @@ public partial class vtkLocator : vtkObject {
 // static vtkTypeBool IsTypeOf(const char * type)
 // "static vtkTypeBool IsTypeOf(const char *type)"
 public static bool IsTypeOf(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkLocator.IsTypeOf_0(returnPointer.GetPtr(), type);
 	return (bool)returnPointer;
 }
@@ -23,8 +22,7 @@ public static bool IsTypeOf(string /*(char*)*/ type) {
 // vtkTypeBool IsA(const char * type)
 // "vtkTypeBool IsA(const char *type)"
 public bool IsA(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkLocator.IsA_0(returnPointer.GetPtr(), this, type);
 	return (bool)returnPointer;
 }
@@ -33,8 +31,7 @@ public bool IsA(string /*(char*)*/ type) {
 // static vtkLocator* SafeDownCast(vtkObjectBase * o)
 // "static vtkLocator* SafeDownCast(vtkObjectBase *o)"
 public static vtkLocator SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkLocator.SafeDownCast_0(returnPointer.GetPtr(), o);
 	return (vtkLocator)(IntPtr)returnPointer;
 }
@@ -43,8 +40,7 @@ public static vtkLocator SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
 // vtkLocator* NewInstance()
 // "vtkLocator *NewInstance()"
 public vtkLocator NewInstance() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkLocator.NewInstance_0(returnPointer.GetPtr(), this);
 	return (vtkLocator)(IntPtr)returnPointer;
 }
@@ -60,8 +56,7 @@ public void SetDataSet(vtkDataSet /*(vtkDataSet*)*/ ARG_0) {
 // virtual vtkDataSet* GetDataSet()
 // "virtual vtkDataSet *GetDataSet ()"
 public vtkDataSet GetDataSet() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkLocator.GetDataSet_0(returnPointer.GetPtr(), this);
 	return (vtkDataSet)(IntPtr)returnPointer;
 }
@@ -77,8 +72,7 @@ public void SetMaxLevel(int /*(int)*/ _arg) {
 // virtual int GetMaxLevelMinValue()
 // "virtual int GetMaxLevelMinValue ()"
 public int GetMaxLevelMinValue() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkLocator.GetMaxLevelMinValue_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -87,8 +81,7 @@ public int GetMaxLevelMinValue() {
 // virtual int GetMaxLevelMaxValue()
 // "virtual int GetMaxLevelMaxValue ()"
 public int GetMaxLevelMaxValue() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkLocator.GetMaxLevelMaxValue_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -97,8 +90,7 @@ public int GetMaxLevelMaxValue() {
 // virtual int GetMaxLevel()
 // "virtual int GetMaxLevel ()"
 public int GetMaxLevel() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkLocator.GetMaxLevel_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -107,8 +99,7 @@ public int GetMaxLevel() {
 // virtual int GetLevel()
 // "virtual int GetLevel ()"
 public int GetLevel() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkLocator.GetLevel_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -124,8 +115,7 @@ public void SetAutomatic(int /*(int)*/ _arg) {
 // virtual int GetAutomatic()
 // "virtual int GetAutomatic ()"
 public int GetAutomatic() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkLocator.GetAutomatic_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
@@ -155,8 +145,7 @@ public void SetTolerance(double /*(double)*/ _arg) {
 // virtual double GetToleranceMinValue()
 // "virtual double GetToleranceMinValue ()"
 public double GetToleranceMinValue() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new double(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new double());
 	VTK_API.API_vtkLocator.GetToleranceMinValue_0(returnPointer.GetPtr(), this);
 	return (double)returnPointer;
 }
@@ -165,8 +154,7 @@ public double GetToleranceMinValue() {
 // virtual double GetToleranceMaxValue()
 // "virtual double GetToleranceMaxValue ()"
 public double GetToleranceMaxValue() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new double(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new double());
 	VTK_API.API_vtkLocator.GetToleranceMaxValue_0(returnPointer.GetPtr(), this);
 	return (double)returnPointer;
 }
@@ -175,8 +163,7 @@ public double GetToleranceMaxValue() {
 // virtual double GetTolerance()
 // "virtual double GetTolerance ()"
 public double GetTolerance() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new double(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new double());
 	VTK_API.API_vtkLocator.GetTolerance_0(returnPointer.GetPtr(), this);
 	return (double)returnPointer;
 }
@@ -220,8 +207,7 @@ public void GenerateRepresentation(int /*(int)*/ level, vtkPolyData /*(vtkPolyDa
 // virtual vtkMTimeType GetBuildTime()
 // "virtual vtkMTimeType GetBuildTime ()"
 public ulong GetBuildTime() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new ulong(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new ulong());
 	VTK_API.API_vtkLocator.GetBuildTime_0(returnPointer.GetPtr(), this);
 	return (ulong)returnPointer;
 }

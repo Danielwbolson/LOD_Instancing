@@ -13,8 +13,7 @@ public partial class vtkPointSet : vtkDataSet {
 // static vtkTypeBool IsTypeOf(const char * type)
 // "static vtkTypeBool IsTypeOf(const char *type)"
 public static bool IsTypeOf(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkPointSet.IsTypeOf_0(returnPointer.GetPtr(), type);
 	return (bool)returnPointer;
 }
@@ -23,8 +22,7 @@ public static bool IsTypeOf(string /*(char*)*/ type) {
 // vtkTypeBool IsA(const char * type)
 // "vtkTypeBool IsA(const char *type)"
 public bool IsA(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkPointSet.IsA_0(returnPointer.GetPtr(), this, type);
 	return (bool)returnPointer;
 }
@@ -33,8 +31,7 @@ public bool IsA(string /*(char*)*/ type) {
 // static vtkPointSet* SafeDownCast(vtkObjectBase * o)
 // "static vtkPointSet* SafeDownCast(vtkObjectBase *o)"
 public static vtkPointSet SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkPointSet.SafeDownCast_0(returnPointer.GetPtr(), o);
 	return (vtkPointSet)(IntPtr)returnPointer;
 }
@@ -43,8 +40,7 @@ public static vtkPointSet SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
 // vtkPointSet* NewInstance()
 // "vtkPointSet *NewInstance()"
 public vtkPointSet NewInstance() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkPointSet.NewInstance_0(returnPointer.GetPtr(), this);
 	return (vtkPointSet)(IntPtr)returnPointer;
 }
@@ -67,8 +63,7 @@ public void CopyStructure(vtkDataSet /*(vtkDataSet*)*/ pd) {
 // vtkIdType GetNumberOfPoints()
 // "vtkIdType GetNumberOfPoints()"
 public long GetNumberOfPoints() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new long());
 	VTK_API.API_vtkPointSet.GetNumberOfPoints_0(returnPointer.GetPtr(), this);
 	return (long)returnPointer;
 }
@@ -84,8 +79,7 @@ public void GetPoint(long /*(vtkIdType)*/ ptId, double /*(double[3])*/ []x) {
 // vtkIdType FindPoint(double x[3])
 // "vtkIdType FindPoint(double x[3])"
 public long FindPoint(double /*(double[3])*/ []x) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new long());
 	VTK_API.API_vtkPointSet.FindPoint_0(returnPointer.GetPtr(), this, x);
 	return (long)returnPointer;
 }
@@ -94,8 +88,7 @@ public long FindPoint(double /*(double[3])*/ []x) {
 // vtkIdType FindPoint(double x, double y, double z)
 // "vtkIdType FindPoint(double x, double y, double z)"
 public long FindPoint(double /*(double)*/ x, double /*(double)*/ y, double /*(double)*/ z) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new long());
 	VTK_API.API_vtkPointSet.FindPoint_1(returnPointer.GetPtr(), this, x, y, z);
 	return (long)returnPointer;
 }
@@ -104,8 +97,7 @@ public long FindPoint(double /*(double)*/ x, double /*(double)*/ y, double /*(do
 // vtkIdType FindCell(double x[3], vtkCell * cell, vtkIdType cellId, double tol2, int & subId, double pcoords[3], double * weights)
 // "vtkIdType FindCell(double x[3], vtkCell *cell, vtkIdType cellId, double tol2, int& subId, double pcoords[3], double *weights)"
 public long FindCell(double /*(double[3])*/ []x, vtkCell /*(vtkCell*)*/ cell, long /*(vtkIdType)*/ cellId, double /*(double)*/ tol2, IntPtr /*(int&)*/ subId, double /*(double[3])*/ []pcoords, IntPtr /*(double*)*/ weights) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new long());
 	VTK_API.API_vtkPointSet.FindCell_0(returnPointer.GetPtr(), this, x, cell, cellId, tol2, subId, pcoords, weights);
 	return (long)returnPointer;
 }
@@ -114,8 +106,7 @@ public long FindCell(double /*(double[3])*/ []x, vtkCell /*(vtkCell*)*/ cell, lo
 // vtkIdType FindCell(double x[3], vtkCell * cell, vtkGenericCell * gencell, vtkIdType cellId, double tol2, int & subId, double pcoords[3], double * weights)
 // "vtkIdType FindCell(double x[3], vtkCell *cell, vtkGenericCell *gencell, vtkIdType cellId, double tol2, int& subId, double pcoords[3], double *weights)"
 public long FindCell(double /*(double[3])*/ []x, vtkCell /*(vtkCell*)*/ cell, vtkGenericCell /*(vtkGenericCell*)*/ gencell, long /*(vtkIdType)*/ cellId, double /*(double)*/ tol2, IntPtr /*(int&)*/ subId, double /*(double[3])*/ []pcoords, IntPtr /*(double*)*/ weights) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new long());
 	VTK_API.API_vtkPointSet.FindCell_1(returnPointer.GetPtr(), this, x, cell, gencell, cellId, tol2, subId, pcoords, weights);
 	return (long)returnPointer;
 }
@@ -124,8 +115,7 @@ public long FindCell(double /*(double[3])*/ []x, vtkCell /*(vtkCell*)*/ cell, vt
 // double* GetPoint(vtkIdType ptId)
 // "double *GetPoint(vtkIdType ptId)"
 public IntPtr GetPoint(long /*(vtkIdType)*/ ptId) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkPointSet.GetPoint_1(returnPointer.GetPtr(), this, ptId);
 	return (IntPtr)returnPointer;
 }
@@ -134,8 +124,7 @@ public IntPtr GetPoint(long /*(vtkIdType)*/ ptId) {
 // vtkCellIterator* NewCellIterator()
 // "vtkCellIterator* NewCellIterator()"
 public vtkCellIterator NewCellIterator() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkPointSet.NewCellIterator_0(returnPointer.GetPtr(), this);
 	return (vtkCellIterator)(IntPtr)returnPointer;
 }
@@ -144,8 +133,7 @@ public vtkCellIterator NewCellIterator() {
 // vtkMTimeType GetMTime()
 // "vtkMTimeType GetMTime()"
 public ulong GetMTime() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new ulong(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new ulong());
 	VTK_API.API_vtkPointSet.GetMTime_0(returnPointer.GetPtr(), this);
 	return (ulong)returnPointer;
 }
@@ -175,8 +163,7 @@ public void SetPoints(vtkPoints /*(vtkPoints*)*/ ARG_0) {
 // virtual vtkPoints* GetPoints()
 // "virtual vtkPoints *GetPoints ()"
 public vtkPoints GetPoints() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkPointSet.GetPoints_0(returnPointer.GetPtr(), this);
 	return (vtkPoints)(IntPtr)returnPointer;
 }
@@ -185,8 +172,7 @@ public vtkPoints GetPoints() {
 // long GetActualMemorySize()
 // "unsigned long GetActualMemorySize()"
 public ulong GetActualMemorySize() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new ulong(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new ulong());
 	VTK_API.API_vtkPointSet.GetActualMemorySize_0(returnPointer.GetPtr(), this);
 	return (ulong)returnPointer;
 }

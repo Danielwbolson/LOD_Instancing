@@ -13,8 +13,7 @@ public partial class vtkXMLStructuredDataReader : vtkXMLDataReader {
 // static vtkTypeBool IsTypeOf(const char * type)
 // "static vtkTypeBool IsTypeOf(const char *type)"
 public static bool IsTypeOf(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkXMLStructuredDataReader.IsTypeOf_0(returnPointer.GetPtr(), type);
 	return (bool)returnPointer;
 }
@@ -23,8 +22,7 @@ public static bool IsTypeOf(string /*(char*)*/ type) {
 // vtkTypeBool IsA(const char * type)
 // "vtkTypeBool IsA(const char *type)"
 public bool IsA(string /*(char*)*/ type) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new bool(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
 	VTK_API.API_vtkXMLStructuredDataReader.IsA_0(returnPointer.GetPtr(), this, type);
 	return (bool)returnPointer;
 }
@@ -33,8 +31,7 @@ public bool IsA(string /*(char*)*/ type) {
 // static vtkXMLStructuredDataReader* SafeDownCast(vtkObjectBase * o)
 // "static vtkXMLStructuredDataReader* SafeDownCast(vtkObjectBase *o)"
 public static vtkXMLStructuredDataReader SafeDownCast(vtkObjectBase /*(vtkObjectBase*)*/ o) {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkXMLStructuredDataReader.SafeDownCast_0(returnPointer.GetPtr(), o);
 	return (vtkXMLStructuredDataReader)(IntPtr)returnPointer;
 }
@@ -43,8 +40,7 @@ public static vtkXMLStructuredDataReader SafeDownCast(vtkObjectBase /*(vtkObject
 // vtkXMLStructuredDataReader* NewInstance()
 // "vtkXMLStructuredDataReader *NewInstance()"
 public vtkXMLStructuredDataReader NewInstance() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new IntPtr(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkXMLStructuredDataReader.NewInstance_0(returnPointer.GetPtr(), this);
 	return (vtkXMLStructuredDataReader)(IntPtr)returnPointer;
 }
@@ -53,8 +49,7 @@ public vtkXMLStructuredDataReader NewInstance() {
 // vtkIdType GetNumberOfPoints()
 // "vtkIdType GetNumberOfPoints()"
 public long GetNumberOfPoints() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new long());
 	VTK_API.API_vtkXMLStructuredDataReader.GetNumberOfPoints_0(returnPointer.GetPtr(), this);
 	return (long)returnPointer;
 }
@@ -63,8 +58,7 @@ public long GetNumberOfPoints() {
 // vtkIdType GetNumberOfCells()
 // "vtkIdType GetNumberOfCells()"
 public long GetNumberOfCells() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new long(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new long());
 	VTK_API.API_vtkXMLStructuredDataReader.GetNumberOfCells_0(returnPointer.GetPtr(), this);
 	return (long)returnPointer;
 }
@@ -80,8 +74,7 @@ public void SetWholeSlices(int /*(int)*/ _arg) {
 // virtual int GetWholeSlices()
 // "virtual int GetWholeSlices ()"
 public int GetWholeSlices() {
-	int return_elements = 1;
-	ReturnPointer returnPointer = new ReturnPointer(new int(), return_elements);
+	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkXMLStructuredDataReader.GetWholeSlices_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
