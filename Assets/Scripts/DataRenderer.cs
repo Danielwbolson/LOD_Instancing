@@ -21,7 +21,7 @@ public static class Extension
 
 public class DataRenderer : MonoBehaviour {
 
-    public string filePath = "";
+    public Material dataMaterial;
     public vtkDataSet dataSet = IntPtr.Zero;
 
     public GameObject dataMeshPreFab;
@@ -43,25 +43,10 @@ public class DataRenderer : MonoBehaviour {
             return;
         }
 
-        for (int i = 0; i < dataSet.GetPointData().GetNumberOfArrays(); i++)
-        {
-            print(i + ": " + dataSet.GetPointData().GetArrayName(i));
-        }
-
-        //vtkGeometryFilter geometryFilter = vtkGeometryFilter.New();
-        //geometryFilter.SetInputData(dataSet);
-        //vtkPolyDataNormals polyDataNormals = vtkPolyDataNormals.New();
-        //polyDataNormals.SetInputConnection(geometryFilter.GetOutputPort());
-
-
-
-        //polyDataNormals.Update();
-
-        //vtkPolyData polyData = vtkPolyData.SafeDownCast(polyDataNormals.GetOutput());
-        //print(polyData.GetPoints().GetNumberOfPoints());
-
-
-        //print("Loaded a " + polyData.GetClassName() + " with " + polyData.GetNumberOfPoints().ToString() + " points and " + polyData.GetNumberOfCells().ToString() + " cells.");
+        //for (int i = 0; i < dataSet.GetPointData().GetNumberOfArrays(); i++)
+        //{
+        //    print(i + ": " + dataSet.GetPointData().GetArrayName(i));
+        //}
 
         vtkPointData pointData = dataSet.GetPointData();
 
@@ -69,15 +54,13 @@ public class DataRenderer : MonoBehaviour {
         vtkDataArray dataArray = pointData.GetArray(121);
         long numberOfTuples = dataArray.GetNumberOfTuples();
         float[] data = new float[numberOfTuples];
-        //float[] data = new float[60000];
-        //for (int i = 0; i < 60000; i++)
-        //data[i] = i * 1.0f / 60000;
+
 
         Marshal.Copy(dataArray.GetVoidPointer(0), data, 0, (Int32)data.Length);
 
         ComputeBuffer dataBuffer = new ComputeBuffer((int)data.Length, sizeof(float));
         dataBuffer.SetData(data);
-        GetComponent<MeshRenderer>().material.SetBuffer("_data", dataBuffer);
+
 
         if (true && dataSet.IsA("vtkPointSet"))
         {
@@ -133,15 +116,20 @@ public class DataRenderer : MonoBehaviour {
 
             int maxMeshes = 20;
             DateTime before2 = DateTime.Now;
+            foreach (Transform child in transform)
+            {
+
+                GameObject.Destroy(child.gameObject);
+            }
 
             while (indicesLeft > indicesLoaded && maxMeshes > 0)
             {
                 maxMeshes--;
                 GameObject dataMesh = Instantiate(dataMeshPreFab);
-                dataMesh.transform.parent = this.transform;
+                dataMesh.transform.SetParent(this.transform, false);
                 Mesh mesh = new Mesh();
                 dataMesh.GetComponent<MeshFilter>().mesh = mesh;
-                dataMesh.GetComponent<MeshRenderer>().material = GetComponent<MeshRenderer>().material;
+                dataMesh.GetComponent<MeshRenderer>().material = dataMaterial;
                 int indicesToLoad = Math.Min(60000, indicesLeft - indicesLoaded);
                 Vector3[] vertices = new Vector3[indicesToLoad];
 
@@ -157,6 +145,8 @@ public class DataRenderer : MonoBehaviour {
                 indexBuffer.SetData(triangleIndices.SubArray(indicesLoaded, indicesToLoad));
 
                 dataMesh.GetComponent<MeshRenderer>().material.SetBuffer("_index", indexBuffer);
+                dataMesh.GetComponent<MeshRenderer>().material.SetBuffer("_data", dataBuffer);
+
                 mesh.RecalculateNormals();
 
                 indicesLoaded += indicesToLoad;
@@ -169,6 +159,7 @@ public class DataRenderer : MonoBehaviour {
     public void SetDataSet(vtkDataSet dataset) {
         dataSet = dataset;
         print("Set to render a " + dataSet);
+        print(dataSet.GetClassName());
         print("Loaded a " + dataSet.GetClassName() + " with " + dataSet.GetNumberOfPoints().ToString() + " points and " + dataSet.GetNumberOfCells().ToString() + " cells.");
 
 	}

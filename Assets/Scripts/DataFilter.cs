@@ -5,23 +5,15 @@ using VTK;
 
 public class DataFilter : DataAlgorithm {
 
-    vtkDataObject GetInput(int port = 0) {
+    public string[] inputArrays; 
+
+    protected vtkDataObject GetInput(int port = 0) {
         GameObject parent = transform.parent.gameObject;
         return (parent.GetComponent<DataAlgorithm>()).GetDataObject(port);
 
     }
 	// Use this for initialization
 	void Start () {
-        algorithm_ = vtkThreshold.New();
-        print("INPUT:" + GetInput());
-        algorithm_.SetInputDataObject(0, GetInput());
-        ProcessConnections();
-        print(algorithm_.GetInputPortInformation(0).GetNumberOfKeys());
-        //print(algorithm_.GetInputPortInformation(0))
+        inputArrays = new string[1];
 	}
-	
-	//// Update is called once per frame
-	//void Update () {
-		
-	//}
 }
