@@ -12,7 +12,7 @@ using UnityEngine.SceneManagement;
 public class DataPointRenderer : MonoBehaviour {
 
 
-	public DataObject dataObject;
+	public DataObject1 dataObject;
 	static Material glMaterial;
 
 

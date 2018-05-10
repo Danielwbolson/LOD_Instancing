@@ -47,6 +47,11 @@ bool GetOutput_1(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkPolyDataAlgori
 [DllImport("vtkplugin", EntryPoint="vtkPolyDataAlgorithm_SetOutput_0")] public static extern 
 bool SetOutput_0(IntPtr /*(vtkPolyDataAlgorithm*)*/ callingObject, IntPtr /*(vtkDataObject*)*/ d);
 
+// int ProcessRequest(vtkInformation * ARG_0, vtkInformationVector ** ARG_1, vtkInformationVector * ARG_2)
+// int ProcessRequest(vtkInformation*, vtkInformationVector**, vtkInformationVector*)
+[DllImport("vtkplugin", EntryPoint="vtkPolyDataAlgorithm_ProcessRequest_0")] public static extern 
+bool ProcessRequest_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkPolyDataAlgorithm*)*/ callingObject, IntPtr /*(vtkInformation*)*/ ARG_0, IntPtr /*(vtkInformationVector**)*/ ARG_1, IntPtr /*(vtkInformationVector*)*/ ARG_2);
+
 // vtkDataObject* GetInput()
 // vtkDataObject* GetInput()
 [DllImport("vtkplugin", EntryPoint="vtkPolyDataAlgorithm_GetInput_0")] public static extern 

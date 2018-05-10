@@ -417,10 +417,35 @@ bool GetMaxNorm_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkDataArray*)*/ 
 [DllImport("vtkplugin", EntryPoint="vtkDataArray_CreateDataArray_0")] public static extern 
 bool CreateDataArray_0(IntPtr /*(IntPtr**)*/ return_value, int /*(int)*/ dataType);
 
+// static vtkInformationDoubleVectorKey* COMPONENT_RANGE()
+// static vtkInformationDoubleVectorKey* COMPONENT_RANGE()
+[DllImport("vtkplugin", EntryPoint="vtkDataArray_COMPONENT_RANGE_0")] public static extern 
+bool COMPONENT_RANGE_0(IntPtr /*(IntPtr**)*/ return_value);
+
+// static vtkInformationDoubleVectorKey* L2_NORM_RANGE()
+// static vtkInformationDoubleVectorKey* L2_NORM_RANGE()
+[DllImport("vtkplugin", EntryPoint="vtkDataArray_L2_NORM_RANGE_0")] public static extern 
+bool L2_NORM_RANGE_0(IntPtr /*(IntPtr**)*/ return_value);
+
+// static vtkInformationDoubleVectorKey* L2_NORM_FINITE_RANGE()
+// static vtkInformationDoubleVectorKey* L2_NORM_FINITE_RANGE()
+[DllImport("vtkplugin", EntryPoint="vtkDataArray_L2_NORM_FINITE_RANGE_0")] public static extern 
+bool L2_NORM_FINITE_RANGE_0(IntPtr /*(IntPtr**)*/ return_value);
+
 // void Modified()
 // void Modified()
 [DllImport("vtkplugin", EntryPoint="vtkDataArray_Modified_0")] public static extern 
 bool Modified_0(IntPtr /*(vtkDataArray*)*/ callingObject);
+
+// static vtkInformationStringKey* UNITS_LABEL()
+// static vtkInformationStringKey *UNITS_LABEL()
+[DllImport("vtkplugin", EntryPoint="vtkDataArray_UNITS_LABEL_0")] public static extern 
+bool UNITS_LABEL_0(IntPtr /*(IntPtr**)*/ return_value);
+
+// int CopyInformation(vtkInformation * infoFrom, int deep = 1)
+// int CopyInformation(vtkInformation *infoFrom, int deep=1)
+[DllImport("vtkplugin", EntryPoint="vtkDataArray_CopyInformation_0")] public static extern 
+bool CopyInformation_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkDataArray*)*/ callingObject, IntPtr /*(vtkInformation*)*/ infoFrom, int /*(int)*/ deep);
 
 // int GetArrayType()
 // int GetArrayType()

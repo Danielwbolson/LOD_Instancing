@@ -376,6 +376,24 @@ public void Crop(IntPtr /*(int*)*/ updateExtent) {
 }
 
 
+// static vtkStructuredGrid* GetData(vtkInformation * info)
+// "static vtkStructuredGrid* GetData(vtkInformation* info)"
+public static vtkStructuredGrid GetData(vtkInformation /*(vtkInformation*)*/ info) {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkStructuredGrid.GetData_0(returnPointer.GetPtr(), info);
+	return (vtkStructuredGrid)(IntPtr)returnPointer;
+}
+
+
+// static vtkStructuredGrid* GetData(vtkInformationVector * v, int i = 0)
+// "static vtkStructuredGrid* GetData(vtkInformationVector* v, int i=0)"
+public static vtkStructuredGrid GetData(vtkInformationVector /*(vtkInformationVector*)*/ v, int /*(int)*/ i) {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkStructuredGrid.GetData_1(returnPointer.GetPtr(), v, i);
+	return (vtkStructuredGrid)(IntPtr)returnPointer;
+}
+
+
 // void GetPoint(int i, int j, int k, double p[3], bool adjustForExtent = true)
 // "void GetPoint(int i, int j, int k, double p[3], bool adjustForExtent = true)"
 public void GetPoint(int /*(int)*/ i, int /*(int)*/ j, int /*(int)*/ k, double /*(double[3])*/ []p, bool /*(bool)*/ adjustForExtent) {

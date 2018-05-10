@@ -249,7 +249,7 @@ public class DataLineRenderer : MonoBehaviour {
 	}
 
 
-	public DataObject dataObject;
+	public DataObject1 dataObject;
 
 	// Use this for initialization
 	void Start () {

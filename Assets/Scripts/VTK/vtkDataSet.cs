@@ -386,6 +386,24 @@ public void GenerateGhostArray(int /*(int[6])*/ []zeroExt, bool /*(bool)*/ cellO
 }
 
 
+// static vtkDataSet* GetData(vtkInformation * info)
+// "static vtkDataSet* GetData(vtkInformation* info)"
+public static vtkDataSet GetData(vtkInformation /*(vtkInformation*)*/ info) {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataSet.GetData_0(returnPointer.GetPtr(), info);
+	return (vtkDataSet)(IntPtr)returnPointer;
+}
+
+
+// static vtkDataSet* GetData(vtkInformationVector * v, int i = 0)
+// "static vtkDataSet* GetData(vtkInformationVector* v, int i=0)"
+public static vtkDataSet GetData(vtkInformationVector /*(vtkInformationVector*)*/ v, int /*(int)*/ i) {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataSet.GetData_1(returnPointer.GetPtr(), v, i);
+	return (vtkDataSet)(IntPtr)returnPointer;
+}
+
+
 // vtkFieldData* GetAttributesAsFieldData(int type)
 // "vtkFieldData* GetAttributesAsFieldData(int type)"
 public vtkFieldData GetAttributesAsFieldData(int /*(int)*/ type) {

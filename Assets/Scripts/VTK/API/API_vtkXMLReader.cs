@@ -147,6 +147,11 @@ bool GetColumnArrayStatus_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkXMLR
 [DllImport("vtkplugin", EntryPoint="vtkXMLReader_SetColumnArrayStatus_0")] public static extern 
 bool SetColumnArrayStatus_0(IntPtr /*(vtkXMLReader*)*/ callingObject, string /*(char*)*/ name, int /*(int)*/ status);
 
+// virtual void CopyOutputInformation(vtkInformation * ARG_0, int ARG_1)
+// virtual void CopyOutputInformation(vtkInformation *, int )
+[DllImport("vtkplugin", EntryPoint="vtkXMLReader_CopyOutputInformation_0")] public static extern 
+bool CopyOutputInformation_0(IntPtr /*(vtkXMLReader*)*/ callingObject, IntPtr /*(vtkInformation*)*/ ARG_0, int /*(int)*/ ARG_1);
+
 // virtual void SetTimeStep(int _arg)
 // virtual void SetTimeStep (int _arg)
 [DllImport("vtkplugin", EntryPoint="vtkXMLReader_SetTimeStep_0")] public static extern 
@@ -191,6 +196,11 @@ bool SetTimeStepRange_1(IntPtr /*(vtkXMLReader*)*/ callingObject, int /*(int[2])
 // vtkXMLDataParser* GetXMLParser()
 [DllImport("vtkplugin", EntryPoint="vtkXMLReader_GetXMLParser_0")] public static extern 
 bool GetXMLParser_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkXMLReader*)*/ callingObject);
+
+// int ProcessRequest(vtkInformation * request, vtkInformationVector ** inputVector, vtkInformationVector * outputVector)
+// int ProcessRequest(vtkInformation *request, vtkInformationVector **inputVector, vtkInformationVector *outputVector)
+[DllImport("vtkplugin", EntryPoint="vtkXMLReader_ProcessRequest_0")] public static extern 
+bool ProcessRequest_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkXMLReader*)*/ callingObject, IntPtr /*(vtkInformation*)*/ request, IntPtr /*(vtkInformationVector**)*/ inputVector, IntPtr /*(vtkInformationVector*)*/ outputVector);
 
 // void SetReaderErrorObserver(vtkCommand * ARG_0)
 // void SetReaderErrorObserver(vtkCommand *)

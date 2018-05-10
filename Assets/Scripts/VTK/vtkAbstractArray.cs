@@ -425,6 +425,15 @@ public void ClearLookup() {
 }
 
 
+// vtkInformation* GetInformation()
+// "vtkInformation* GetInformation()"
+public vtkInformation GetInformation() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkAbstractArray.GetInformation_0(returnPointer.GetPtr(), this);
+	return (vtkInformation)(IntPtr)returnPointer;
+}
+
+
 // bool HasInformation()
 // "bool HasInformation()"
 public bool HasInformation() {
@@ -434,10 +443,64 @@ public bool HasInformation() {
 }
 
 
+// virtual int CopyInformation(vtkInformation * infoFrom, int deep = 1)
+// "virtual int CopyInformation(vtkInformation *infoFrom, int deep=1)"
+public int CopyInformation(vtkInformation /*(vtkInformation*)*/ infoFrom, int /*(int)*/ deep) {
+	ReturnPointer returnPointer = new ReturnPointer(new int());
+	VTK_API.API_vtkAbstractArray.CopyInformation_0(returnPointer.GetPtr(), this, infoFrom, deep);
+	return (int)returnPointer;
+}
+
+
+// static vtkInformationIntegerKey* GUI_HIDE()
+// "static vtkInformationIntegerKey* GUI_HIDE()"
+public static vtkInformationIntegerKey GUI_HIDE() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkAbstractArray.GUI_HIDE_0(returnPointer.GetPtr());
+	return (vtkInformationIntegerKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationInformationVectorKey* PER_COMPONENT()
+// "static vtkInformationInformationVectorKey* PER_COMPONENT()"
+public static vtkInformationInformationVectorKey PER_COMPONENT() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkAbstractArray.PER_COMPONENT_0(returnPointer.GetPtr());
+	return (vtkInformationInformationVectorKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationInformationVectorKey* PER_FINITE_COMPONENT()
+// "static vtkInformationInformationVectorKey* PER_FINITE_COMPONENT()"
+public static vtkInformationInformationVectorKey PER_FINITE_COMPONENT() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkAbstractArray.PER_FINITE_COMPONENT_0(returnPointer.GetPtr());
+	return (vtkInformationInformationVectorKey)(IntPtr)returnPointer;
+}
+
+
 // void Modified()
 // "void Modified()"
 public void Modified() {
 	VTK_API.API_vtkAbstractArray.Modified_0(this);
+}
+
+
+// static vtkInformationVariantVectorKey* DISCRETE_VALUES()
+// "static vtkInformationVariantVectorKey* DISCRETE_VALUES()"
+public static vtkInformationVariantVectorKey DISCRETE_VALUES() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkAbstractArray.DISCRETE_VALUES_0(returnPointer.GetPtr());
+	return (vtkInformationVariantVectorKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationDoubleVectorKey* DISCRETE_VALUE_SAMPLE_PARAMETERS()
+// "static vtkInformationDoubleVectorKey* DISCRETE_VALUE_SAMPLE_PARAMETERS()"
+public static vtkInformationDoubleVectorKey DISCRETE_VALUE_SAMPLE_PARAMETERS() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkAbstractArray.DISCRETE_VALUE_SAMPLE_PARAMETERS_0(returnPointer.GetPtr());
+	return (vtkInformationDoubleVectorKey)(IntPtr)returnPointer;
 }
 
 

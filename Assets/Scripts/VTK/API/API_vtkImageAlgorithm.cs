@@ -42,6 +42,11 @@ bool GetOutput_1(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkImageAlgorithm
 [DllImport("vtkplugin", EntryPoint="vtkImageAlgorithm_SetOutput_0")] public static extern 
 bool SetOutput_0(IntPtr /*(vtkImageAlgorithm*)*/ callingObject, IntPtr /*(vtkDataObject*)*/ d);
 
+// int ProcessRequest(vtkInformation * ARG_0, vtkInformationVector ** ARG_1, vtkInformationVector * ARG_2)
+// int ProcessRequest(vtkInformation*, vtkInformationVector**, vtkInformationVector*)
+[DllImport("vtkplugin", EntryPoint="vtkImageAlgorithm_ProcessRequest_0")] public static extern 
+bool ProcessRequest_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkImageAlgorithm*)*/ callingObject, IntPtr /*(vtkInformation*)*/ ARG_0, IntPtr /*(vtkInformationVector**)*/ ARG_1, IntPtr /*(vtkInformationVector*)*/ ARG_2);
+
 // void SetInputData(vtkDataObject * ARG_0)
 // void SetInputData(vtkDataObject *)
 [DllImport("vtkplugin", EntryPoint="vtkImageAlgorithm_SetInputData_0")] public static extern 

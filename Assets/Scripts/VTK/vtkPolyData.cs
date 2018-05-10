@@ -566,6 +566,24 @@ public void RemoveGhostCells() {
 }
 
 
+// static vtkPolyData* GetData(vtkInformation * info)
+// "static vtkPolyData* GetData(vtkInformation* info)"
+public static vtkPolyData GetData(vtkInformation /*(vtkInformation*)*/ info) {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkPolyData.GetData_0(returnPointer.GetPtr(), info);
+	return (vtkPolyData)(IntPtr)returnPointer;
+}
+
+
+// static vtkPolyData* GetData(vtkInformationVector * v, int i = 0)
+// "static vtkPolyData* GetData(vtkInformationVector* v, int i=0)"
+public static vtkPolyData GetData(vtkInformationVector /*(vtkInformationVector*)*/ v, int /*(int)*/ i) {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkPolyData.GetData_1(returnPointer.GetPtr(), v, i);
+	return (vtkPolyData)(IntPtr)returnPointer;
+}
+
+
 // int GetScalarFieldCriticalIndex(vtkIdType pointId, vtkDataArray * scalarField)
 // "int GetScalarFieldCriticalIndex (vtkIdType pointId, vtkDataArray *scalarField)"
 public int GetScalarFieldCriticalIndex(long /*(vtkIdType)*/ pointId, vtkDataArray /*(vtkDataArray*)*/ scalarField) {

@@ -262,15 +262,50 @@ bool DataChanged_0(IntPtr /*(vtkAbstractArray*)*/ callingObject);
 [DllImport("vtkplugin", EntryPoint="vtkAbstractArray_ClearLookup_0")] public static extern 
 bool ClearLookup_0(IntPtr /*(vtkAbstractArray*)*/ callingObject);
 
+// vtkInformation* GetInformation()
+// vtkInformation* GetInformation()
+[DllImport("vtkplugin", EntryPoint="vtkAbstractArray_GetInformation_0")] public static extern 
+bool GetInformation_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkAbstractArray*)*/ callingObject);
+
 // bool HasInformation()
 // bool HasInformation()
 [DllImport("vtkplugin", EntryPoint="vtkAbstractArray_HasInformation_0")] public static extern 
 bool HasInformation_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAbstractArray*)*/ callingObject);
 
+// virtual int CopyInformation(vtkInformation * infoFrom, int deep = 1)
+// virtual int CopyInformation(vtkInformation *infoFrom, int deep=1)
+[DllImport("vtkplugin", EntryPoint="vtkAbstractArray_CopyInformation_0")] public static extern 
+bool CopyInformation_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkAbstractArray*)*/ callingObject, IntPtr /*(vtkInformation*)*/ infoFrom, int /*(int)*/ deep);
+
+// static vtkInformationIntegerKey* GUI_HIDE()
+// static vtkInformationIntegerKey* GUI_HIDE()
+[DllImport("vtkplugin", EntryPoint="vtkAbstractArray_GUI_HIDE_0")] public static extern 
+bool GUI_HIDE_0(IntPtr /*(IntPtr**)*/ return_value);
+
+// static vtkInformationInformationVectorKey* PER_COMPONENT()
+// static vtkInformationInformationVectorKey* PER_COMPONENT()
+[DllImport("vtkplugin", EntryPoint="vtkAbstractArray_PER_COMPONENT_0")] public static extern 
+bool PER_COMPONENT_0(IntPtr /*(IntPtr**)*/ return_value);
+
+// static vtkInformationInformationVectorKey* PER_FINITE_COMPONENT()
+// static vtkInformationInformationVectorKey* PER_FINITE_COMPONENT()
+[DllImport("vtkplugin", EntryPoint="vtkAbstractArray_PER_FINITE_COMPONENT_0")] public static extern 
+bool PER_FINITE_COMPONENT_0(IntPtr /*(IntPtr**)*/ return_value);
+
 // void Modified()
 // void Modified()
 [DllImport("vtkplugin", EntryPoint="vtkAbstractArray_Modified_0")] public static extern 
 bool Modified_0(IntPtr /*(vtkAbstractArray*)*/ callingObject);
+
+// static vtkInformationVariantVectorKey* DISCRETE_VALUES()
+// static vtkInformationVariantVectorKey* DISCRETE_VALUES()
+[DllImport("vtkplugin", EntryPoint="vtkAbstractArray_DISCRETE_VALUES_0")] public static extern 
+bool DISCRETE_VALUES_0(IntPtr /*(IntPtr**)*/ return_value);
+
+// static vtkInformationDoubleVectorKey* DISCRETE_VALUE_SAMPLE_PARAMETERS()
+// static vtkInformationDoubleVectorKey* DISCRETE_VALUE_SAMPLE_PARAMETERS()
+[DllImport("vtkplugin", EntryPoint="vtkAbstractArray_DISCRETE_VALUE_SAMPLE_PARAMETERS_0")] public static extern 
+bool DISCRETE_VALUE_SAMPLE_PARAMETERS_0(IntPtr /*(IntPtr**)*/ return_value);
 
 // virtual int GetMaxDiscreteValues()
 // virtual unsigned int GetMaxDiscreteValues ()

@@ -192,6 +192,16 @@ bool GetFirstNonZeroValue_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkPiec
 [DllImport("vtkplugin", EntryPoint="vtkPiecewiseFunction_Initialize_0")] public static extern 
 bool Initialize_0(IntPtr /*(vtkPiecewiseFunction*)*/ callingObject);
 
+// static vtkPiecewiseFunction* GetData(vtkInformation * info)
+// static vtkPiecewiseFunction* GetData(vtkInformation* info)
+[DllImport("vtkplugin", EntryPoint="vtkPiecewiseFunction_GetData_0")] public static extern 
+bool GetData_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkInformation*)*/ info);
+
+// static vtkPiecewiseFunction* GetData(vtkInformationVector * v, int i = 0)
+// static vtkPiecewiseFunction* GetData(vtkInformationVector* v, int i=0)
+[DllImport("vtkplugin", EntryPoint="vtkPiecewiseFunction_GetData_1")] public static extern 
+bool GetData_1(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkInformationVector*)*/ v, int /*(int)*/ i);
+
 // virtual void SetAllowDuplicateScalars(int _arg)
 // virtual void SetAllowDuplicateScalars (int _arg)
 [DllImport("vtkplugin", EntryPoint="vtkPiecewiseFunction_SetAllowDuplicateScalars_0")] public static extern 

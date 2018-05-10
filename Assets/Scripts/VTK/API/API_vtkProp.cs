@@ -167,6 +167,31 @@ bool PokeMatrix_0(IntPtr /*(vtkProp*)*/ callingObject, IntPtr /*(vtkMatrix4x4*)*
 [DllImport("vtkplugin", EntryPoint="vtkProp_GetMatrix_0")] public static extern 
 bool GetMatrix_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkProp*)*/ callingObject);
 
+// virtual vtkInformation* GetPropertyKeys()
+// virtual vtkInformation *GetPropertyKeys ()
+[DllImport("vtkplugin", EntryPoint="vtkProp_GetPropertyKeys_0")] public static extern 
+bool GetPropertyKeys_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkProp*)*/ callingObject);
+
+// virtual void SetPropertyKeys(vtkInformation * keys)
+// virtual void SetPropertyKeys(vtkInformation *keys)
+[DllImport("vtkplugin", EntryPoint="vtkProp_SetPropertyKeys_0")] public static extern 
+bool SetPropertyKeys_0(IntPtr /*(vtkProp*)*/ callingObject, IntPtr /*(vtkInformation*)*/ keys);
+
+// virtual bool HasKeys(vtkInformation * requiredKeys)
+// virtual bool HasKeys(vtkInformation *requiredKeys)
+[DllImport("vtkplugin", EntryPoint="vtkProp_HasKeys_0")] public static extern 
+bool HasKeys_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkProp*)*/ callingObject, IntPtr /*(vtkInformation*)*/ requiredKeys);
+
+// static vtkInformationIntegerKey* GeneralTextureUnit()
+// static vtkInformationIntegerKey *GeneralTextureUnit()
+[DllImport("vtkplugin", EntryPoint="vtkProp_GeneralTextureUnit_0")] public static extern 
+bool GeneralTextureUnit_0(IntPtr /*(IntPtr**)*/ return_value);
+
+// static vtkInformationDoubleVectorKey* GeneralTextureTransform()
+// static vtkInformationDoubleVectorKey *GeneralTextureTransform()
+[DllImport("vtkplugin", EntryPoint="vtkProp_GeneralTextureTransform_0")] public static extern 
+bool GeneralTextureTransform_0(IntPtr /*(IntPtr**)*/ return_value);
+
 // virtual int RenderOpaqueGeometry(vtkViewport * ARG_0)
 // virtual int RenderOpaqueGeometry(vtkViewport *)
 [DllImport("vtkplugin", EntryPoint="vtkProp_RenderOpaqueGeometry_0")] public static extern 
@@ -186,6 +211,26 @@ bool RenderVolumetricGeometry_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtk
 // virtual int RenderOverlay(vtkViewport *)
 [DllImport("vtkplugin", EntryPoint="vtkProp_RenderOverlay_0")] public static extern 
 bool RenderOverlay_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkProp*)*/ callingObject, IntPtr /*(vtkViewport*)*/ ARG_0);
+
+// virtual bool RenderFilteredOpaqueGeometry(vtkViewport * v, vtkInformation * requiredKeys)
+// virtual bool RenderFilteredOpaqueGeometry(vtkViewport *v, vtkInformation *requiredKeys)
+[DllImport("vtkplugin", EntryPoint="vtkProp_RenderFilteredOpaqueGeometry_0")] public static extern 
+bool RenderFilteredOpaqueGeometry_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkProp*)*/ callingObject, IntPtr /*(vtkViewport*)*/ v, IntPtr /*(vtkInformation*)*/ requiredKeys);
+
+// virtual bool RenderFilteredTranslucentPolygonalGeometry(vtkViewport * v, vtkInformation * requiredKeys)
+// virtual bool RenderFilteredTranslucentPolygonalGeometry( vtkViewport *v, vtkInformation *requiredKeys)
+[DllImport("vtkplugin", EntryPoint="vtkProp_RenderFilteredTranslucentPolygonalGeometry_0")] public static extern 
+bool RenderFilteredTranslucentPolygonalGeometry_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkProp*)*/ callingObject, IntPtr /*(vtkViewport*)*/ v, IntPtr /*(vtkInformation*)*/ requiredKeys);
+
+// virtual bool RenderFilteredVolumetricGeometry(vtkViewport * v, vtkInformation * requiredKeys)
+// virtual bool RenderFilteredVolumetricGeometry(vtkViewport *v, vtkInformation *requiredKeys)
+[DllImport("vtkplugin", EntryPoint="vtkProp_RenderFilteredVolumetricGeometry_0")] public static extern 
+bool RenderFilteredVolumetricGeometry_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkProp*)*/ callingObject, IntPtr /*(vtkViewport*)*/ v, IntPtr /*(vtkInformation*)*/ requiredKeys);
+
+// virtual bool RenderFilteredOverlay(vtkViewport * v, vtkInformation * requiredKeys)
+// virtual bool RenderFilteredOverlay(vtkViewport *v, vtkInformation *requiredKeys)
+[DllImport("vtkplugin", EntryPoint="vtkProp_RenderFilteredOverlay_0")] public static extern 
+bool RenderFilteredOverlay_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkProp*)*/ callingObject, IntPtr /*(vtkViewport*)*/ v, IntPtr /*(vtkInformation*)*/ requiredKeys);
 
 // virtual int HasTranslucentPolygonalGeometry()
 // virtual int HasTranslucentPolygonalGeometry()

@@ -206,5 +206,23 @@ public void UnRegister(vtkObjectBase /*(vtkObjectBase*)*/ o) {
 }
 
 
+// static vtkPointSet* GetData(vtkInformation * info)
+// "static vtkPointSet* GetData(vtkInformation* info)"
+public static vtkPointSet GetData(vtkInformation /*(vtkInformation*)*/ info) {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkPointSet.GetData_0(returnPointer.GetPtr(), info);
+	return (vtkPointSet)(IntPtr)returnPointer;
+}
+
+
+// static vtkPointSet* GetData(vtkInformationVector * v, int i = 0)
+// "static vtkPointSet* GetData(vtkInformationVector* v, int i=0)"
+public static vtkPointSet GetData(vtkInformationVector /*(vtkInformationVector*)*/ v, int /*(int)*/ i) {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkPointSet.GetData_1(returnPointer.GetPtr(), v, i);
+	return (vtkPointSet)(IntPtr)returnPointer;
+}
+
+
 }
 };

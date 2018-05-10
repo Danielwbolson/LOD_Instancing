@@ -260,6 +260,49 @@ public vtkMatrix4x4 GetMatrix() {
 }
 
 
+// virtual vtkInformation* GetPropertyKeys()
+// "virtual vtkInformation *GetPropertyKeys ()"
+public vtkInformation GetPropertyKeys() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkProp.GetPropertyKeys_0(returnPointer.GetPtr(), this);
+	return (vtkInformation)(IntPtr)returnPointer;
+}
+
+
+// virtual void SetPropertyKeys(vtkInformation * keys)
+// "virtual void SetPropertyKeys(vtkInformation *keys)"
+public void SetPropertyKeys(vtkInformation /*(vtkInformation*)*/ keys) {
+	VTK_API.API_vtkProp.SetPropertyKeys_0(this, keys);
+}
+
+
+// virtual bool HasKeys(vtkInformation * requiredKeys)
+// "virtual bool HasKeys(vtkInformation *requiredKeys)"
+public bool HasKeys(vtkInformation /*(vtkInformation*)*/ requiredKeys) {
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
+	VTK_API.API_vtkProp.HasKeys_0(returnPointer.GetPtr(), this, requiredKeys);
+	return (bool)returnPointer;
+}
+
+
+// static vtkInformationIntegerKey* GeneralTextureUnit()
+// "static vtkInformationIntegerKey *GeneralTextureUnit()"
+public static vtkInformationIntegerKey GeneralTextureUnit() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkProp.GeneralTextureUnit_0(returnPointer.GetPtr());
+	return (vtkInformationIntegerKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationDoubleVectorKey* GeneralTextureTransform()
+// "static vtkInformationDoubleVectorKey *GeneralTextureTransform()"
+public static vtkInformationDoubleVectorKey GeneralTextureTransform() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkProp.GeneralTextureTransform_0(returnPointer.GetPtr());
+	return (vtkInformationDoubleVectorKey)(IntPtr)returnPointer;
+}
+
+
 // virtual int RenderOpaqueGeometry(vtkViewport * ARG_0)
 // "virtual int RenderOpaqueGeometry(vtkViewport *)"
 public int RenderOpaqueGeometry(vtkViewport /*(vtkViewport*)*/ ARG_0) {
@@ -293,6 +336,42 @@ public int RenderOverlay(vtkViewport /*(vtkViewport*)*/ ARG_0) {
 	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkProp.RenderOverlay_0(returnPointer.GetPtr(), this, ARG_0);
 	return (int)returnPointer;
+}
+
+
+// virtual bool RenderFilteredOpaqueGeometry(vtkViewport * v, vtkInformation * requiredKeys)
+// "virtual bool RenderFilteredOpaqueGeometry(vtkViewport *v, vtkInformation *requiredKeys)"
+public bool RenderFilteredOpaqueGeometry(vtkViewport /*(vtkViewport*)*/ v, vtkInformation /*(vtkInformation*)*/ requiredKeys) {
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
+	VTK_API.API_vtkProp.RenderFilteredOpaqueGeometry_0(returnPointer.GetPtr(), this, v, requiredKeys);
+	return (bool)returnPointer;
+}
+
+
+// virtual bool RenderFilteredTranslucentPolygonalGeometry(vtkViewport * v, vtkInformation * requiredKeys)
+// "virtual bool RenderFilteredTranslucentPolygonalGeometry( vtkViewport *v, vtkInformation *requiredKeys)"
+public bool RenderFilteredTranslucentPolygonalGeometry(vtkViewport /*(vtkViewport*)*/ v, vtkInformation /*(vtkInformation*)*/ requiredKeys) {
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
+	VTK_API.API_vtkProp.RenderFilteredTranslucentPolygonalGeometry_0(returnPointer.GetPtr(), this, v, requiredKeys);
+	return (bool)returnPointer;
+}
+
+
+// virtual bool RenderFilteredVolumetricGeometry(vtkViewport * v, vtkInformation * requiredKeys)
+// "virtual bool RenderFilteredVolumetricGeometry(vtkViewport *v, vtkInformation *requiredKeys)"
+public bool RenderFilteredVolumetricGeometry(vtkViewport /*(vtkViewport*)*/ v, vtkInformation /*(vtkInformation*)*/ requiredKeys) {
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
+	VTK_API.API_vtkProp.RenderFilteredVolumetricGeometry_0(returnPointer.GetPtr(), this, v, requiredKeys);
+	return (bool)returnPointer;
+}
+
+
+// virtual bool RenderFilteredOverlay(vtkViewport * v, vtkInformation * requiredKeys)
+// "virtual bool RenderFilteredOverlay(vtkViewport *v, vtkInformation *requiredKeys)"
+public bool RenderFilteredOverlay(vtkViewport /*(vtkViewport*)*/ v, vtkInformation /*(vtkInformation*)*/ requiredKeys) {
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
+	VTK_API.API_vtkProp.RenderFilteredOverlay_0(returnPointer.GetPtr(), this, v, requiredKeys);
+	return (bool)returnPointer;
 }
 
 

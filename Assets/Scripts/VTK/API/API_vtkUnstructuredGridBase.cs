@@ -72,6 +72,16 @@ bool GetIdsOfCellsOfType_0(IntPtr /*(vtkUnstructuredGridBase*)*/ callingObject, 
 [DllImport("vtkplugin", EntryPoint="vtkUnstructuredGridBase_IsHomogeneous_0")] public static extern 
 bool IsHomogeneous_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkUnstructuredGridBase*)*/ callingObject);
 
+// static vtkUnstructuredGridBase* GetData(vtkInformation * info)
+// static vtkUnstructuredGridBase* GetData(vtkInformation* info)
+[DllImport("vtkplugin", EntryPoint="vtkUnstructuredGridBase_GetData_0")] public static extern 
+bool GetData_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkInformation*)*/ info);
+
+// static vtkUnstructuredGridBase* GetData(vtkInformationVector * v, int i = 0)
+// static vtkUnstructuredGridBase* GetData(vtkInformationVector* v, int i=0)
+[DllImport("vtkplugin", EntryPoint="vtkUnstructuredGridBase_GetData_1")] public static extern 
+bool GetData_1(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkInformationVector*)*/ v, int /*(int)*/ i);
+
 // int GetDataObjectType()
 // int GetDataObjectType()
 [DllImport("vtkplugin", EntryPoint="vtkUnstructuredGridBase_GetDataObjectType_1")] public static extern 
@@ -116,6 +126,16 @@ bool GetIdsOfCellsOfType_1(IntPtr /*(vtkUnstructuredGridBase*)*/ callingObject, 
 // virtual int IsHomogeneous()
 [DllImport("vtkplugin", EntryPoint="vtkUnstructuredGridBase_IsHomogeneous_1")] public static extern 
 bool IsHomogeneous_1(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkUnstructuredGridBase*)*/ callingObject);
+
+// static vtkUnstructuredGridBase* GetData(vtkInformation * info)
+// static vtkUnstructuredGridBase* GetData(vtkInformation* info)
+[DllImport("vtkplugin", EntryPoint="vtkUnstructuredGridBase_GetData_2")] public static extern 
+bool GetData_2(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkInformation*)*/ info);
+
+// static vtkUnstructuredGridBase* GetData(vtkInformationVector * v, int i = 0)
+// static vtkUnstructuredGridBase* GetData(vtkInformationVector* v, int i=0)
+[DllImport("vtkplugin", EntryPoint="vtkUnstructuredGridBase_GetData_3")] public static extern 
+bool GetData_3(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkInformationVector*)*/ v, int /*(int)*/ i);
 
 }
 };

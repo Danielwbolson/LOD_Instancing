@@ -42,5 +42,10 @@ bool GetOutput_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkXMLImageDataRe
 [DllImport("vtkplugin", EntryPoint="vtkXMLImageDataReader_GetOutput_1")] public static extern 
 bool GetOutput_1(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkXMLImageDataReader*)*/ callingObject, int /*(int)*/ idx);
 
+// void CopyOutputInformation(vtkInformation * outInfo, int port)
+// void CopyOutputInformation(vtkInformation *outInfo, int port)
+[DllImport("vtkplugin", EntryPoint="vtkXMLImageDataReader_CopyOutputInformation_0")] public static extern 
+bool CopyOutputInformation_0(IntPtr /*(vtkXMLImageDataReader*)*/ callingObject, IntPtr /*(vtkInformation*)*/ outInfo, int /*(int)*/ port);
+
 }
 };

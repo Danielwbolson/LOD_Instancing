@@ -1,25 +1,16 @@
 ﻿<Properties StartupConfiguration="{EB9A728C-7939-3A00-1C86-C0182D8D3BAF}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/TestScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/DataRenderer.cs">
     <Files>
-      <File FileName="Assets/Scripts/VRDetector.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Datatoggle.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/FilePickerButton.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/FileScrollList.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/DataObjectManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/AlignmentComputer.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/DataPointRenderer.cs" Line="24" Column="14" />
-      <File FileName="Assets/Scripts/VTK/vtkDataSetAttributes.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/VTK/vtkUnstructuredGridBase.cs" Line="1" Column="1" />
-      <File FileName="Assets/Shaders/SplineFollower.shader" Line="1" Column="1" />
-      <File FileName="Assets/TestScript.cs" Line="56" Column="49" />
-      <File FileName="Assets/Scripts/VTKSampleSet.cs" Line="54" Column="21" />
-      <File FileName="Assets/Scripts/VTK/vtkAbstractArray.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/VTK/vtkXMLPolyDataReader.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/VTK/vtkDoubleArray.cs" Line="50" Column="2" />
-      <File FileName="Assets/Scripts/DataGlyphRenderer.cs" Line="23" Column="1" />
-      <File FileName="Assets/Scripts/StreamlineRenderer.cs" Line="211" Column="28" />
-      <File FileName="Assets/Scripts/VTK/vtkCUSTOM.cs" Line="156" Column="45" />
+      <File FileName="Assets/Scripts/DataLoader.cs" Line="65" Column="25" />
+      <File FileName="Assets/Scripts/DataAlgorithm.cs" Line="51" Column="32" />
+      <File FileName="Assets/Scripts/vtkCUSTOM.cs" Line="170" Column="1" />
+      <File FileName="Assets/Scripts/VTK/vtkRenderState.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/DataFilter.cs" Line="20" Column="11" />
+      <File FileName="Assets/3rd-Party/SteamVR/Editor/SteamVR_Settings.cs" Line="614" Column="40" />
+      <File FileName="Assets/Scripts/DataRenderer.cs" Line="137" Column="13" />
+      <File FileName="Assets/Scripts/DataObject.cs" Line="19" Column="34" />
+      <File FileName="Assets/Scripts/DataObject1.cs" Line="16" Column="56" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

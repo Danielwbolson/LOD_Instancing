@@ -568,5 +568,21 @@ public float GetShadowAttenuation() {
 }
 
 
+// virtual vtkInformation* GetInformation()
+// "virtual vtkInformation *GetInformation ()"
+public vtkInformation GetInformation() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkLight.GetInformation_0(returnPointer.GetPtr(), this);
+	return (vtkInformation)(IntPtr)returnPointer;
+}
+
+
+// virtual void SetInformation(vtkInformation * ARG_0)
+// "virtual void SetInformation(vtkInformation*)"
+public void SetInformation(vtkInformation /*(vtkInformation*)*/ ARG_0) {
+	VTK_API.API_vtkLight.SetInformation_0(this, ARG_0);
+}
+
+
 }
 };

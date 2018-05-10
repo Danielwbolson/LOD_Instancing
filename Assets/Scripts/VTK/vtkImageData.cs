@@ -368,11 +368,29 @@ public void GetExtent(int /*(int[6])*/ []_arg) {
 }
 
 
+// virtual double GetScalarTypeMin(vtkInformation * meta_data)
+// "virtual double GetScalarTypeMin(vtkInformation* meta_data)"
+public double GetScalarTypeMin(vtkInformation /*(vtkInformation*)*/ meta_data) {
+	ReturnPointer returnPointer = new ReturnPointer(new double());
+	VTK_API.API_vtkImageData.GetScalarTypeMin_0(returnPointer.GetPtr(), this, meta_data);
+	return (double)returnPointer;
+}
+
+
 // virtual double GetScalarTypeMin()
 // "virtual double GetScalarTypeMin()"
 public double GetScalarTypeMin() {
 	ReturnPointer returnPointer = new ReturnPointer(new double());
-	VTK_API.API_vtkImageData.GetScalarTypeMin_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkImageData.GetScalarTypeMin_1(returnPointer.GetPtr(), this);
+	return (double)returnPointer;
+}
+
+
+// virtual double GetScalarTypeMax(vtkInformation * meta_data)
+// "virtual double GetScalarTypeMax(vtkInformation* meta_data)"
+public double GetScalarTypeMax(vtkInformation /*(vtkInformation*)*/ meta_data) {
+	ReturnPointer returnPointer = new ReturnPointer(new double());
+	VTK_API.API_vtkImageData.GetScalarTypeMax_0(returnPointer.GetPtr(), this, meta_data);
 	return (double)returnPointer;
 }
 
@@ -381,8 +399,17 @@ public double GetScalarTypeMin() {
 // "virtual double GetScalarTypeMax()"
 public double GetScalarTypeMax() {
 	ReturnPointer returnPointer = new ReturnPointer(new double());
-	VTK_API.API_vtkImageData.GetScalarTypeMax_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkImageData.GetScalarTypeMax_1(returnPointer.GetPtr(), this);
 	return (double)returnPointer;
+}
+
+
+// virtual int GetScalarSize(vtkInformation * meta_data)
+// "virtual int GetScalarSize(vtkInformation* meta_data)"
+public int GetScalarSize(vtkInformation /*(vtkInformation*)*/ meta_data) {
+	ReturnPointer returnPointer = new ReturnPointer(new int());
+	VTK_API.API_vtkImageData.GetScalarSize_0(returnPointer.GetPtr(), this, meta_data);
+	return (int)returnPointer;
 }
 
 
@@ -390,7 +417,7 @@ public double GetScalarTypeMax() {
 // "virtual int GetScalarSize()"
 public int GetScalarSize() {
 	ReturnPointer returnPointer = new ReturnPointer(new int());
-	VTK_API.API_vtkImageData.GetScalarSize_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkImageData.GetScalarSize_1(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
 
@@ -530,6 +557,13 @@ public void AllocateScalars(int /*(int)*/ dataType, int /*(int)*/ numComponents)
 }
 
 
+// virtual void AllocateScalars(vtkInformation * pipeline_info)
+// "virtual void AllocateScalars(vtkInformation* pipeline_info)"
+public void AllocateScalars(vtkInformation /*(vtkInformation*)*/ pipeline_info) {
+	VTK_API.API_vtkImageData.AllocateScalars_1(this, pipeline_info);
+}
+
+
 // virtual void CopyAndCastFrom(vtkImageData * inData, int extent[6])
 // "virtual void CopyAndCastFrom(vtkImageData *inData, int extent[6])"
 public void CopyAndCastFrom(vtkImageData /*(vtkImageData*)*/ inData, int /*(int[6])*/ []extent) {
@@ -634,11 +668,36 @@ public void GetOrigin(double /*(double[3])*/ []_arg) {
 }
 
 
+// static void SetScalarType(int ARG_0, vtkInformation * meta_data)
+// "static void SetScalarType(int, vtkInformation* meta_data)"
+public static void SetScalarType(int /*(int)*/ ARG_0, vtkInformation /*(vtkInformation*)*/ meta_data) {
+	VTK_API.API_vtkImageData.SetScalarType_0(ARG_0, meta_data);
+}
+
+
+// static int GetScalarType(vtkInformation * meta_data)
+// "static int GetScalarType(vtkInformation* meta_data)"
+public static int GetScalarType(vtkInformation /*(vtkInformation*)*/ meta_data) {
+	ReturnPointer returnPointer = new ReturnPointer(new int());
+	VTK_API.API_vtkImageData.GetScalarType_0(returnPointer.GetPtr(), meta_data);
+	return (int)returnPointer;
+}
+
+
+// static bool HasScalarType(vtkInformation * meta_data)
+// "static bool HasScalarType(vtkInformation* meta_data)"
+public static bool HasScalarType(vtkInformation /*(vtkInformation*)*/ meta_data) {
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
+	VTK_API.API_vtkImageData.HasScalarType_0(returnPointer.GetPtr(), meta_data);
+	return (bool)returnPointer;
+}
+
+
 // int GetScalarType()
 // "int GetScalarType()"
 public int GetScalarType() {
 	ReturnPointer returnPointer = new ReturnPointer(new int());
-	VTK_API.API_vtkImageData.GetScalarType_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkImageData.GetScalarType_1(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
 }
 
@@ -652,12 +711,51 @@ public string GetScalarTypeAsString() {
 }
 
 
+// static void SetNumberOfScalarComponents(int n, vtkInformation * meta_data)
+// "static void SetNumberOfScalarComponents( int n, vtkInformation* meta_data)"
+public static void SetNumberOfScalarComponents(int /*(int)*/ n, vtkInformation /*(vtkInformation*)*/ meta_data) {
+	VTK_API.API_vtkImageData.SetNumberOfScalarComponents_0(n, meta_data);
+}
+
+
+// static int GetNumberOfScalarComponents(vtkInformation * meta_data)
+// "static int GetNumberOfScalarComponents(vtkInformation* meta_data)"
+public static int GetNumberOfScalarComponents(vtkInformation /*(vtkInformation*)*/ meta_data) {
+	ReturnPointer returnPointer = new ReturnPointer(new int());
+	VTK_API.API_vtkImageData.GetNumberOfScalarComponents_0(returnPointer.GetPtr(), meta_data);
+	return (int)returnPointer;
+}
+
+
+// static bool HasNumberOfScalarComponents(vtkInformation * meta_data)
+// "static bool HasNumberOfScalarComponents(vtkInformation* meta_data)"
+public static bool HasNumberOfScalarComponents(vtkInformation /*(vtkInformation*)*/ meta_data) {
+	ReturnPointer returnPointer = new ReturnPointer(new bool());
+	VTK_API.API_vtkImageData.HasNumberOfScalarComponents_0(returnPointer.GetPtr(), meta_data);
+	return (bool)returnPointer;
+}
+
+
 // int GetNumberOfScalarComponents()
 // "int GetNumberOfScalarComponents()"
 public int GetNumberOfScalarComponents() {
 	ReturnPointer returnPointer = new ReturnPointer(new int());
-	VTK_API.API_vtkImageData.GetNumberOfScalarComponents_0(returnPointer.GetPtr(), this);
+	VTK_API.API_vtkImageData.GetNumberOfScalarComponents_1(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
+}
+
+
+// void CopyInformationFromPipeline(vtkInformation * information)
+// "void CopyInformationFromPipeline(vtkInformation* information)"
+public void CopyInformationFromPipeline(vtkInformation /*(vtkInformation*)*/ information) {
+	VTK_API.API_vtkImageData.CopyInformationFromPipeline_0(this, information);
+}
+
+
+// void CopyInformationToPipeline(vtkInformation * information)
+// "void CopyInformationToPipeline(vtkInformation* information)"
+public void CopyInformationToPipeline(vtkInformation /*(vtkInformation*)*/ information) {
+	VTK_API.API_vtkImageData.CopyInformationToPipeline_0(this, information);
 }
 
 
@@ -720,6 +818,24 @@ public int GetExtentType() {
 	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkImageData.GetExtentType_0(returnPointer.GetPtr(), this);
 	return (int)returnPointer;
+}
+
+
+// static vtkImageData* GetData(vtkInformation * info)
+// "static vtkImageData* GetData(vtkInformation* info)"
+public static vtkImageData GetData(vtkInformation /*(vtkInformation*)*/ info) {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkImageData.GetData_0(returnPointer.GetPtr(), info);
+	return (vtkImageData)(IntPtr)returnPointer;
+}
+
+
+// static vtkImageData* GetData(vtkInformationVector * v, int i = 0)
+// "static vtkImageData* GetData(vtkInformationVector* v, int i=0)"
+public static vtkImageData GetData(vtkInformationVector /*(vtkInformationVector*)*/ v, int /*(int)*/ i) {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkImageData.GetData_1(returnPointer.GetPtr(), v, i);
+	return (vtkImageData)(IntPtr)returnPointer;
 }
 
 

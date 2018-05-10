@@ -9,18 +9,6 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Linq;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-
-
 public class DataGlyphRenderer : MonoBehaviour {
 
 	[DllImport("vtkplugin")] unsafe private static extern void free_data (IntPtr h);
@@ -30,7 +18,7 @@ public class DataGlyphRenderer : MonoBehaviour {
 	[DllImport("vtkplugin")] private static extern IntPtr get_dimensions (IntPtr h);
 	[DllImport("vtkplugin")] private static extern int   ComputePointId (IntPtr h, int i, int j, int k);
 
-	public DataObject dataObject;
+	public DataObject1 dataObject;
 	public float glyphScale = 0.01f;
 	public int glyphCount = 500;
 

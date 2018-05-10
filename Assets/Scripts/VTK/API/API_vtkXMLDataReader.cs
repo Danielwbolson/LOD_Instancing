@@ -37,5 +37,10 @@ bool GetNumberOfPoints_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkXMLData
 [DllImport("vtkplugin", EntryPoint="vtkXMLDataReader_GetNumberOfCells_0")] public static extern 
 bool GetNumberOfCells_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkXMLDataReader*)*/ callingObject);
 
+// void CopyOutputInformation(vtkInformation * outInfo, int port)
+// void CopyOutputInformation(vtkInformation *outInfo, int port)
+[DllImport("vtkplugin", EntryPoint="vtkXMLDataReader_CopyOutputInformation_0")] public static extern 
+bool CopyOutputInformation_0(IntPtr /*(vtkXMLDataReader*)*/ callingObject, IntPtr /*(vtkInformation*)*/ outInfo, int /*(int)*/ port);
+
 }
 };

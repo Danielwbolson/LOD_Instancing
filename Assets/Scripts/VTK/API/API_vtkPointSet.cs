@@ -127,5 +127,15 @@ bool Register_0(IntPtr /*(vtkPointSet*)*/ callingObject, IntPtr /*(vtkObjectBase
 [DllImport("vtkplugin", EntryPoint="vtkPointSet_UnRegister_0")] public static extern 
 bool UnRegister_0(IntPtr /*(vtkPointSet*)*/ callingObject, IntPtr /*(vtkObjectBase*)*/ o);
 
+// static vtkPointSet* GetData(vtkInformation * info)
+// static vtkPointSet* GetData(vtkInformation* info)
+[DllImport("vtkplugin", EntryPoint="vtkPointSet_GetData_0")] public static extern 
+bool GetData_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkInformation*)*/ info);
+
+// static vtkPointSet* GetData(vtkInformationVector * v, int i = 0)
+// static vtkPointSet* GetData(vtkInformationVector* v, int i=0)
+[DllImport("vtkplugin", EntryPoint="vtkPointSet_GetData_1")] public static extern 
+bool GetData_1(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkInformationVector*)*/ v, int /*(int)*/ i);
+
 }
 };

@@ -80,6 +80,15 @@ public void SetOutput(vtkDataObject /*(vtkDataObject*)*/ d) {
 }
 
 
+// int ProcessRequest(vtkInformation * ARG_0, vtkInformationVector ** ARG_1, vtkInformationVector * ARG_2)
+// "int ProcessRequest(vtkInformation*, vtkInformationVector**, vtkInformationVector*)"
+public int ProcessRequest(vtkInformation /*(vtkInformation*)*/ ARG_0, vtkInformationVector /*(vtkInformationVector**)*/ ARG_1, vtkInformationVector /*(vtkInformationVector*)*/ ARG_2) {
+	ReturnPointer returnPointer = new ReturnPointer(new int());
+	VTK_API.API_vtkPolyDataAlgorithm.ProcessRequest_0(returnPointer.GetPtr(), this, ARG_0, ARG_1, ARG_2);
+	return (int)returnPointer;
+}
+
+
 // vtkDataObject* GetInput()
 // "vtkDataObject* GetInput()"
 public vtkDataObject GetInput() {

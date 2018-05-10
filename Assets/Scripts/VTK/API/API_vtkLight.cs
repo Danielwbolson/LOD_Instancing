@@ -367,5 +367,15 @@ bool SetShadowAttenuation_0(IntPtr /*(vtkLight*)*/ callingObject, float /*(float
 [DllImport("vtkplugin", EntryPoint="vtkLight_GetShadowAttenuation_0")] public static extern 
 bool GetShadowAttenuation_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkLight*)*/ callingObject);
 
+// virtual vtkInformation* GetInformation()
+// virtual vtkInformation *GetInformation ()
+[DllImport("vtkplugin", EntryPoint="vtkLight_GetInformation_0")] public static extern 
+bool GetInformation_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkLight*)*/ callingObject);
+
+// virtual void SetInformation(vtkInformation * ARG_0)
+// virtual void SetInformation(vtkInformation*)
+[DllImport("vtkplugin", EntryPoint="vtkLight_SetInformation_0")] public static extern 
+bool SetInformation_0(IntPtr /*(vtkLight*)*/ callingObject, IntPtr /*(vtkInformation*)*/ ARG_0);
+
 }
 };

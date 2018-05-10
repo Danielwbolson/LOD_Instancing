@@ -248,6 +248,13 @@ public void SetColumnArrayStatus(string /*(char*)*/ name, int /*(int)*/ status) 
 }
 
 
+// virtual void CopyOutputInformation(vtkInformation * ARG_0, int ARG_1)
+// "virtual void CopyOutputInformation(vtkInformation *, int )"
+public void CopyOutputInformation(vtkInformation /*(vtkInformation*)*/ ARG_0, int /*(int)*/ ARG_1) {
+	VTK_API.API_vtkXMLReader.CopyOutputInformation_0(this, ARG_0, ARG_1);
+}
+
+
 // virtual void SetTimeStep(int _arg)
 // "virtual void SetTimeStep (int _arg)"
 public void SetTimeStep(int /*(int)*/ _arg) {
@@ -316,6 +323,15 @@ public vtkXMLDataParser GetXMLParser() {
 	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
 	VTK_API.API_vtkXMLReader.GetXMLParser_0(returnPointer.GetPtr(), this);
 	return (vtkXMLDataParser)(IntPtr)returnPointer;
+}
+
+
+// int ProcessRequest(vtkInformation * request, vtkInformationVector ** inputVector, vtkInformationVector * outputVector)
+// "int ProcessRequest(vtkInformation *request, vtkInformationVector **inputVector, vtkInformationVector *outputVector)"
+public int ProcessRequest(vtkInformation /*(vtkInformation*)*/ request, vtkInformationVector /*(vtkInformationVector**)*/ inputVector, vtkInformationVector /*(vtkInformationVector*)*/ outputVector) {
+	ReturnPointer returnPointer = new ReturnPointer(new int());
+	VTK_API.API_vtkXMLReader.ProcessRequest_0(returnPointer.GetPtr(), this, request, inputVector, outputVector);
+	return (int)returnPointer;
 }
 
 

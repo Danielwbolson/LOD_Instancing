@@ -111,6 +111,19 @@ namespace VTK
         private IntPtr data_;
         public IntPtr GetPtr() { return data_; }
 
+        public bool IsVoid() {
+            return data_ == IntPtr.Zero;
+        }
+
+        public override string ToString()
+        {
+            if(GetPtr() == IntPtr.Zero) {
+                return "Null VTK Object";
+            } else {
+                return GetClassName() + " object at address " + GetPtr().ToString();
+            }
+             
+        }
     }
 
 

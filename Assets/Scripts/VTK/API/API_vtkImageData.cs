@@ -227,20 +227,35 @@ bool GetExtent_1(IntPtr /*(vtkImageData*)*/ callingObject, IntPtr /*(int&)*/ _ar
 [DllImport("vtkplugin", EntryPoint="vtkImageData_GetExtent_2")] public static extern 
 bool GetExtent_2(IntPtr /*(vtkImageData*)*/ callingObject, int /*(int[6])*/ []_arg);
 
-// virtual double GetScalarTypeMin()
-// virtual double GetScalarTypeMin()
+// virtual double GetScalarTypeMin(vtkInformation * meta_data)
+// virtual double GetScalarTypeMin(vtkInformation* meta_data)
 [DllImport("vtkplugin", EntryPoint="vtkImageData_GetScalarTypeMin_0")] public static extern 
-bool GetScalarTypeMin_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkImageData*)*/ callingObject);
+bool GetScalarTypeMin_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkImageData*)*/ callingObject, IntPtr /*(vtkInformation*)*/ meta_data);
 
-// virtual double GetScalarTypeMax()
-// virtual double GetScalarTypeMax()
+// virtual double GetScalarTypeMin()
+// virtual double GetScalarTypeMin()
+[DllImport("vtkplugin", EntryPoint="vtkImageData_GetScalarTypeMin_1")] public static extern 
+bool GetScalarTypeMin_1(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkImageData*)*/ callingObject);
+
+// virtual double GetScalarTypeMax(vtkInformation * meta_data)
+// virtual double GetScalarTypeMax(vtkInformation* meta_data)
 [DllImport("vtkplugin", EntryPoint="vtkImageData_GetScalarTypeMax_0")] public static extern 
-bool GetScalarTypeMax_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkImageData*)*/ callingObject);
+bool GetScalarTypeMax_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkImageData*)*/ callingObject, IntPtr /*(vtkInformation*)*/ meta_data);
+
+// virtual double GetScalarTypeMax()
+// virtual double GetScalarTypeMax()
+[DllImport("vtkplugin", EntryPoint="vtkImageData_GetScalarTypeMax_1")] public static extern 
+bool GetScalarTypeMax_1(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkImageData*)*/ callingObject);
+
+// virtual int GetScalarSize(vtkInformation * meta_data)
+// virtual int GetScalarSize(vtkInformation* meta_data)
+[DllImport("vtkplugin", EntryPoint="vtkImageData_GetScalarSize_0")] public static extern 
+bool GetScalarSize_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkImageData*)*/ callingObject, IntPtr /*(vtkInformation*)*/ meta_data);
 
 // virtual int GetScalarSize()
 // virtual int GetScalarSize()
-[DllImport("vtkplugin", EntryPoint="vtkImageData_GetScalarSize_0")] public static extern 
-bool GetScalarSize_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkImageData*)*/ callingObject);
+[DllImport("vtkplugin", EntryPoint="vtkImageData_GetScalarSize_1")] public static extern 
+bool GetScalarSize_1(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkImageData*)*/ callingObject);
 
 // virtual vtkIdType* GetIncrements()
 // virtual vtkIdType *GetIncrements()
@@ -327,6 +342,11 @@ bool SetScalarComponentFromDouble_0(IntPtr /*(vtkImageData*)*/ callingObject, in
 [DllImport("vtkplugin", EntryPoint="vtkImageData_AllocateScalars_0")] public static extern 
 bool AllocateScalars_0(IntPtr /*(vtkImageData*)*/ callingObject, int /*(int)*/ dataType, int /*(int)*/ numComponents);
 
+// virtual void AllocateScalars(vtkInformation * pipeline_info)
+// virtual void AllocateScalars(vtkInformation* pipeline_info)
+[DllImport("vtkplugin", EntryPoint="vtkImageData_AllocateScalars_1")] public static extern 
+bool AllocateScalars_1(IntPtr /*(vtkImageData*)*/ callingObject, IntPtr /*(vtkInformation*)*/ pipeline_info);
+
 // virtual void CopyAndCastFrom(vtkImageData * inData, int extent[6])
 // virtual void CopyAndCastFrom(vtkImageData *inData, int extent[6])
 [DllImport("vtkplugin", EntryPoint="vtkImageData_CopyAndCastFrom_0")] public static extern 
@@ -397,20 +417,60 @@ bool GetOrigin_1(IntPtr /*(vtkImageData*)*/ callingObject, IntPtr /*(double&)*/ 
 [DllImport("vtkplugin", EntryPoint="vtkImageData_GetOrigin_2")] public static extern 
 bool GetOrigin_2(IntPtr /*(vtkImageData*)*/ callingObject, double /*(double[3])*/ []_arg);
 
-// int GetScalarType()
-// int GetScalarType()
+// static void SetScalarType(int ARG_0, vtkInformation * meta_data)
+// static void SetScalarType(int, vtkInformation* meta_data)
+[DllImport("vtkplugin", EntryPoint="vtkImageData_SetScalarType_0")] public static extern 
+bool SetScalarType_0(int /*(int)*/ ARG_0, IntPtr /*(vtkInformation*)*/ meta_data);
+
+// static int GetScalarType(vtkInformation * meta_data)
+// static int GetScalarType(vtkInformation* meta_data)
 [DllImport("vtkplugin", EntryPoint="vtkImageData_GetScalarType_0")] public static extern 
-bool GetScalarType_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkImageData*)*/ callingObject);
+bool GetScalarType_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkInformation*)*/ meta_data);
+
+// static bool HasScalarType(vtkInformation * meta_data)
+// static bool HasScalarType(vtkInformation* meta_data)
+[DllImport("vtkplugin", EntryPoint="vtkImageData_HasScalarType_0")] public static extern 
+bool HasScalarType_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkInformation*)*/ meta_data);
+
+// int GetScalarType()
+// int GetScalarType()
+[DllImport("vtkplugin", EntryPoint="vtkImageData_GetScalarType_1")] public static extern 
+bool GetScalarType_1(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkImageData*)*/ callingObject);
 
 // char* GetScalarTypeAsString()
 // const char* GetScalarTypeAsString()
 [DllImport("vtkplugin", EntryPoint="vtkImageData_GetScalarTypeAsString_0")] public static extern 
 bool GetScalarTypeAsString_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkImageData*)*/ callingObject);
 
-// int GetNumberOfScalarComponents()
-// int GetNumberOfScalarComponents()
+// static void SetNumberOfScalarComponents(int n, vtkInformation * meta_data)
+// static void SetNumberOfScalarComponents( int n, vtkInformation* meta_data)
+[DllImport("vtkplugin", EntryPoint="vtkImageData_SetNumberOfScalarComponents_0")] public static extern 
+bool SetNumberOfScalarComponents_0(int /*(int)*/ n, IntPtr /*(vtkInformation*)*/ meta_data);
+
+// static int GetNumberOfScalarComponents(vtkInformation * meta_data)
+// static int GetNumberOfScalarComponents(vtkInformation* meta_data)
 [DllImport("vtkplugin", EntryPoint="vtkImageData_GetNumberOfScalarComponents_0")] public static extern 
-bool GetNumberOfScalarComponents_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkImageData*)*/ callingObject);
+bool GetNumberOfScalarComponents_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkInformation*)*/ meta_data);
+
+// static bool HasNumberOfScalarComponents(vtkInformation * meta_data)
+// static bool HasNumberOfScalarComponents(vtkInformation* meta_data)
+[DllImport("vtkplugin", EntryPoint="vtkImageData_HasNumberOfScalarComponents_0")] public static extern 
+bool HasNumberOfScalarComponents_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkInformation*)*/ meta_data);
+
+// int GetNumberOfScalarComponents()
+// int GetNumberOfScalarComponents()
+[DllImport("vtkplugin", EntryPoint="vtkImageData_GetNumberOfScalarComponents_1")] public static extern 
+bool GetNumberOfScalarComponents_1(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkImageData*)*/ callingObject);
+
+// void CopyInformationFromPipeline(vtkInformation * information)
+// void CopyInformationFromPipeline(vtkInformation* information)
+[DllImport("vtkplugin", EntryPoint="vtkImageData_CopyInformationFromPipeline_0")] public static extern 
+bool CopyInformationFromPipeline_0(IntPtr /*(vtkImageData*)*/ callingObject, IntPtr /*(vtkInformation*)*/ information);
+
+// void CopyInformationToPipeline(vtkInformation * information)
+// void CopyInformationToPipeline(vtkInformation* information)
+[DllImport("vtkplugin", EntryPoint="vtkImageData_CopyInformationToPipeline_0")] public static extern 
+bool CopyInformationToPipeline_0(IntPtr /*(vtkImageData*)*/ callingObject, IntPtr /*(vtkInformation*)*/ information);
 
 // void PrepareForNewData()
 // void PrepareForNewData()
@@ -451,6 +511,16 @@ bool ComputeInternalExtent_0(IntPtr /*(vtkImageData*)*/ callingObject, IntPtr /*
 // int GetExtentType()
 [DllImport("vtkplugin", EntryPoint="vtkImageData_GetExtentType_0")] public static extern 
 bool GetExtentType_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkImageData*)*/ callingObject);
+
+// static vtkImageData* GetData(vtkInformation * info)
+// static vtkImageData* GetData(vtkInformation* info)
+[DllImport("vtkplugin", EntryPoint="vtkImageData_GetData_0")] public static extern 
+bool GetData_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkInformation*)*/ info);
+
+// static vtkImageData* GetData(vtkInformationVector * v, int i = 0)
+// static vtkImageData* GetData(vtkInformationVector* v, int i=0)
+[DllImport("vtkplugin", EntryPoint="vtkImageData_GetData_1")] public static extern 
+bool GetData_1(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkInformationVector*)*/ v, int /*(int)*/ i);
 
 }
 };

@@ -357,6 +357,16 @@ bool DeepCopy_0(IntPtr /*(vtkPolyData*)*/ callingObject, IntPtr /*(vtkDataObject
 [DllImport("vtkplugin", EntryPoint="vtkPolyData_RemoveGhostCells_0")] public static extern 
 bool RemoveGhostCells_0(IntPtr /*(vtkPolyData*)*/ callingObject);
 
+// static vtkPolyData* GetData(vtkInformation * info)
+// static vtkPolyData* GetData(vtkInformation* info)
+[DllImport("vtkplugin", EntryPoint="vtkPolyData_GetData_0")] public static extern 
+bool GetData_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkInformation*)*/ info);
+
+// static vtkPolyData* GetData(vtkInformationVector * v, int i = 0)
+// static vtkPolyData* GetData(vtkInformationVector* v, int i=0)
+[DllImport("vtkplugin", EntryPoint="vtkPolyData_GetData_1")] public static extern 
+bool GetData_1(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkInformationVector*)*/ v, int /*(int)*/ i);
+
 // int GetScalarFieldCriticalIndex(vtkIdType pointId, vtkDataArray * scalarField)
 // int GetScalarFieldCriticalIndex (vtkIdType pointId, vtkDataArray *scalarField)
 [DllImport("vtkplugin", EntryPoint="vtkPolyData_GetScalarFieldCriticalIndex_0")] public static extern 

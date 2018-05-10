@@ -257,6 +257,16 @@ bool IsHomogeneous_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkUnstructure
 [DllImport("vtkplugin", EntryPoint="vtkUnstructuredGrid_RemoveGhostCells_0")] public static extern 
 bool RemoveGhostCells_0(IntPtr /*(vtkUnstructuredGrid*)*/ callingObject);
 
+// static vtkUnstructuredGrid* GetData(vtkInformation * info)
+// static vtkUnstructuredGrid* GetData(vtkInformation* info)
+[DllImport("vtkplugin", EntryPoint="vtkUnstructuredGrid_GetData_0")] public static extern 
+bool GetData_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkInformation*)*/ info);
+
+// static vtkUnstructuredGrid* GetData(vtkInformationVector * v, int i = 0)
+// static vtkUnstructuredGrid* GetData(vtkInformationVector* v, int i=0)
+[DllImport("vtkplugin", EntryPoint="vtkUnstructuredGrid_GetData_1")] public static extern 
+bool GetData_1(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkInformationVector*)*/ v, int /*(int)*/ i);
+
 // vtkIdType* GetFaces(vtkIdType cellId)
 // vtkIdType *GetFaces(vtkIdType cellId)
 [DllImport("vtkplugin", EntryPoint="vtkUnstructuredGrid_GetFaces_0")] public static extern 

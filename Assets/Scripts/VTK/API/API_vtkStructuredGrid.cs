@@ -237,6 +237,16 @@ bool GetCellDims_0(IntPtr /*(vtkStructuredGrid*)*/ callingObject, int /*(int[3])
 [DllImport("vtkplugin", EntryPoint="vtkStructuredGrid_Crop_0")] public static extern 
 bool Crop_0(IntPtr /*(vtkStructuredGrid*)*/ callingObject, IntPtr /*(int*)*/ updateExtent);
 
+// static vtkStructuredGrid* GetData(vtkInformation * info)
+// static vtkStructuredGrid* GetData(vtkInformation* info)
+[DllImport("vtkplugin", EntryPoint="vtkStructuredGrid_GetData_0")] public static extern 
+bool GetData_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkInformation*)*/ info);
+
+// static vtkStructuredGrid* GetData(vtkInformationVector * v, int i = 0)
+// static vtkStructuredGrid* GetData(vtkInformationVector* v, int i=0)
+[DllImport("vtkplugin", EntryPoint="vtkStructuredGrid_GetData_1")] public static extern 
+bool GetData_1(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkInformationVector*)*/ v, int /*(int)*/ i);
+
 // void GetPoint(int i, int j, int k, double p[3], bool adjustForExtent = true)
 // void GetPoint(int i, int j, int k, double p[3], bool adjustForExtent = true)
 [DllImport("vtkplugin", EntryPoint="vtkStructuredGrid_GetPoint_2")] public static extern 

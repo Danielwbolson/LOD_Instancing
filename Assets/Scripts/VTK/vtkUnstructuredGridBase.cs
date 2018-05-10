@@ -119,5 +119,23 @@ public int IsHomogeneous() {
 }
 
 
+// static vtkUnstructuredGridBase* GetData(vtkInformation * info)
+// "static vtkUnstructuredGridBase* GetData(vtkInformation* info)"
+public static vtkUnstructuredGridBase GetData(vtkInformation /*(vtkInformation*)*/ info) {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkUnstructuredGridBase.GetData_0(returnPointer.GetPtr(), info);
+	return (vtkUnstructuredGridBase)(IntPtr)returnPointer;
+}
+
+
+// static vtkUnstructuredGridBase* GetData(vtkInformationVector * v, int i = 0)
+// "static vtkUnstructuredGridBase* GetData(vtkInformationVector* v, int i=0)"
+public static vtkUnstructuredGridBase GetData(vtkInformationVector /*(vtkInformationVector*)*/ v, int /*(int)*/ i) {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkUnstructuredGridBase.GetData_1(returnPointer.GetPtr(), v, i);
+	return (vtkUnstructuredGridBase)(IntPtr)returnPointer;
+}
+
+
 }
 };

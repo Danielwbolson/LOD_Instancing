@@ -94,5 +94,12 @@ public void WholeSlicesOff() {
 }
 
 
+// void CopyOutputInformation(vtkInformation * outInfo, int port)
+// "void CopyOutputInformation(vtkInformation *outInfo, int port)"
+public void CopyOutputInformation(vtkInformation /*(vtkInformation*)*/ outInfo, int /*(int)*/ port) {
+	VTK_API.API_vtkXMLStructuredDataReader.CopyOutputInformation_0(this, outInfo, port);
+}
+
+
 }
 };

@@ -777,5 +777,15 @@ bool SetPass_0(IntPtr /*(vtkRenderer*)*/ callingObject, IntPtr /*(vtkRenderPass*
 [DllImport("vtkplugin", EntryPoint="vtkRenderer_GetPass_0")] public static extern 
 bool GetPass_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkRenderer*)*/ callingObject);
 
+// virtual vtkInformation* GetInformation()
+// virtual vtkInformation *GetInformation ()
+[DllImport("vtkplugin", EntryPoint="vtkRenderer_GetInformation_0")] public static extern 
+bool GetInformation_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkRenderer*)*/ callingObject);
+
+// virtual void SetInformation(vtkInformation * ARG_0)
+// virtual void SetInformation(vtkInformation*)
+[DllImport("vtkplugin", EntryPoint="vtkRenderer_SetInformation_0")] public static extern 
+bool SetInformation_0(IntPtr /*(vtkRenderer*)*/ callingObject, IntPtr /*(vtkInformation*)*/ ARG_0);
+
 }
 };

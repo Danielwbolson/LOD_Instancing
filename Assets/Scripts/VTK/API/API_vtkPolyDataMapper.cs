@@ -62,6 +62,16 @@ bool Update_0(IntPtr /*(vtkPolyDataMapper*)*/ callingObject, int /*(int)*/ port)
 [DllImport("vtkplugin", EntryPoint="vtkPolyDataMapper_Update_1")] public static extern 
 bool Update_1(IntPtr /*(vtkPolyDataMapper*)*/ callingObject);
 
+// int Update(int port, vtkInformationVector * requests)
+// int Update(int port, vtkInformationVector* requests)
+[DllImport("vtkplugin", EntryPoint="vtkPolyDataMapper_Update_2")] public static extern 
+bool Update_2(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkPolyDataMapper*)*/ callingObject, int /*(int)*/ port, IntPtr /*(vtkInformationVector*)*/ requests);
+
+// int Update(vtkInformation * requests)
+// int Update(vtkInformation* requests)
+[DllImport("vtkplugin", EntryPoint="vtkPolyDataMapper_Update_3")] public static extern 
+bool Update_3(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkPolyDataMapper*)*/ callingObject, IntPtr /*(vtkInformation*)*/ requests);
+
 // virtual void SetPiece(int _arg)
 // virtual void SetPiece (int _arg)
 [DllImport("vtkplugin", EntryPoint="vtkPolyDataMapper_SetPiece_0")] public static extern 
@@ -126,6 +136,11 @@ bool RemoveVertexAttributeMapping_0(IntPtr /*(vtkPolyDataMapper*)*/ callingObjec
 // virtual void RemoveAllVertexAttributeMappings()
 [DllImport("vtkplugin", EntryPoint="vtkPolyDataMapper_RemoveAllVertexAttributeMappings_0")] public static extern 
 bool RemoveAllVertexAttributeMappings_0(IntPtr /*(vtkPolyDataMapper*)*/ callingObject);
+
+// int ProcessRequest(vtkInformation * ARG_0, vtkInformationVector ** ARG_1, vtkInformationVector * ARG_2)
+// int ProcessRequest(vtkInformation*, vtkInformationVector**, vtkInformationVector*)
+[DllImport("vtkplugin", EntryPoint="vtkPolyDataMapper_ProcessRequest_0")] public static extern 
+bool ProcessRequest_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkPolyDataMapper*)*/ callingObject, IntPtr /*(vtkInformation*)*/ ARG_0, IntPtr /*(vtkInformationVector**)*/ ARG_1, IntPtr /*(vtkInformationVector*)*/ ARG_2);
 
 }
 };

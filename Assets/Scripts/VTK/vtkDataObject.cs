@@ -55,6 +55,22 @@ public vtkDataObject NewInstance() {
 }
 
 
+// virtual vtkInformation* GetInformation()
+// "virtual vtkInformation *GetInformation ()"
+public vtkInformation GetInformation() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataObject.GetInformation_0(returnPointer.GetPtr(), this);
+	return (vtkInformation)(IntPtr)returnPointer;
+}
+
+
+// virtual void SetInformation(vtkInformation * ARG_0)
+// "virtual void SetInformation(vtkInformation*)"
+public void SetInformation(vtkInformation /*(vtkInformation*)*/ ARG_0) {
+	VTK_API.API_vtkDataObject.SetInformation_0(this, ARG_0);
+}
+
+
 // vtkMTimeType GetMTime()
 // "vtkMTimeType GetMTime()"
 public ulong GetMTime() {
@@ -160,6 +176,68 @@ public ulong GetActualMemorySize() {
 }
 
 
+// virtual void CopyInformationFromPipeline(vtkInformation * ARG_0)
+// "virtual void CopyInformationFromPipeline(vtkInformation* )"
+public void CopyInformationFromPipeline(vtkInformation /*(vtkInformation*)*/ ARG_0) {
+	VTK_API.API_vtkDataObject.CopyInformationFromPipeline_0(this, ARG_0);
+}
+
+
+// virtual void CopyInformationToPipeline(vtkInformation * ARG_0)
+// "virtual void CopyInformationToPipeline(vtkInformation* )"
+public void CopyInformationToPipeline(vtkInformation /*(vtkInformation*)*/ ARG_0) {
+	VTK_API.API_vtkDataObject.CopyInformationToPipeline_0(this, ARG_0);
+}
+
+
+// static vtkInformation* GetActiveFieldInformation(vtkInformation * info, int fieldAssociation, int attributeType)
+// "static vtkInformation *GetActiveFieldInformation(vtkInformation *info, int fieldAssociation, int attributeType)"
+public static vtkInformation GetActiveFieldInformation(vtkInformation /*(vtkInformation*)*/ info, int /*(int)*/ fieldAssociation, int /*(int)*/ attributeType) {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataObject.GetActiveFieldInformation_0(returnPointer.GetPtr(), info, fieldAssociation, attributeType);
+	return (vtkInformation)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformation* GetNamedFieldInformation(vtkInformation * info, int fieldAssociation, const char * name)
+// "static vtkInformation *GetNamedFieldInformation(vtkInformation *info, int fieldAssociation, const char *name)"
+public static vtkInformation GetNamedFieldInformation(vtkInformation /*(vtkInformation*)*/ info, int /*(int)*/ fieldAssociation, string /*(char*)*/ name) {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataObject.GetNamedFieldInformation_0(returnPointer.GetPtr(), info, fieldAssociation, name);
+	return (vtkInformation)(IntPtr)returnPointer;
+}
+
+
+// static void RemoveNamedFieldInformation(vtkInformation * info, int fieldAssociation, const char * name)
+// "static void RemoveNamedFieldInformation(vtkInformation *info, int fieldAssociation, const char *name)"
+public static void RemoveNamedFieldInformation(vtkInformation /*(vtkInformation*)*/ info, int /*(int)*/ fieldAssociation, string /*(char*)*/ name) {
+	VTK_API.API_vtkDataObject.RemoveNamedFieldInformation_0(info, fieldAssociation, name);
+}
+
+
+// static vtkInformation* SetActiveAttribute(vtkInformation * info, int fieldAssociation, const char * attributeName, int attributeType)
+// "static vtkInformation *SetActiveAttribute(vtkInformation *info, int fieldAssociation, const char *attributeName, int attributeType)"
+public static vtkInformation SetActiveAttribute(vtkInformation /*(vtkInformation*)*/ info, int /*(int)*/ fieldAssociation, string /*(char*)*/ attributeName, int /*(int)*/ attributeType) {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataObject.SetActiveAttribute_0(returnPointer.GetPtr(), info, fieldAssociation, attributeName, attributeType);
+	return (vtkInformation)(IntPtr)returnPointer;
+}
+
+
+// static void SetActiveAttributeInfo(vtkInformation * info, int fieldAssociation, int attributeType, const char * name, int arrayType, int numComponents, int numTuples)
+// "static void SetActiveAttributeInfo(vtkInformation *info, int fieldAssociation, int attributeType, const char *name, int arrayType, int numComponents, int numTuples)"
+public static void SetActiveAttributeInfo(vtkInformation /*(vtkInformation*)*/ info, int /*(int)*/ fieldAssociation, int /*(int)*/ attributeType, string /*(char*)*/ name, int /*(int)*/ arrayType, int /*(int)*/ numComponents, int /*(int)*/ numTuples) {
+	VTK_API.API_vtkDataObject.SetActiveAttributeInfo_0(info, fieldAssociation, attributeType, name, arrayType, numComponents, numTuples);
+}
+
+
+// static void SetPointDataActiveScalarInfo(vtkInformation * info, int arrayType, int numComponents)
+// "static void SetPointDataActiveScalarInfo(vtkInformation *info, int arrayType, int numComponents)"
+public static void SetPointDataActiveScalarInfo(vtkInformation /*(vtkInformation*)*/ info, int /*(int)*/ arrayType, int /*(int)*/ numComponents) {
+	VTK_API.API_vtkDataObject.SetPointDataActiveScalarInfo_0(info, arrayType, numComponents);
+}
+
+
 // void DataHasBeenGenerated()
 // "void DataHasBeenGenerated()"
 public void DataHasBeenGenerated() {
@@ -255,6 +333,267 @@ public static int GetAssociationTypeFromString(string /*(char*)*/ associationTyp
 	ReturnPointer returnPointer = new ReturnPointer(new int());
 	VTK_API.API_vtkDataObject.GetAssociationTypeFromString_0(returnPointer.GetPtr(), associationType);
 	return (int)returnPointer;
+}
+
+
+// static vtkInformationStringKey* DATA_TYPE_NAME()
+// "static vtkInformationStringKey* DATA_TYPE_NAME()"
+public static vtkInformationStringKey DATA_TYPE_NAME() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataObject.DATA_TYPE_NAME_0(returnPointer.GetPtr());
+	return (vtkInformationStringKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationDataObjectKey* DATA_OBJECT()
+// "static vtkInformationDataObjectKey* DATA_OBJECT()"
+public static vtkInformationDataObjectKey DATA_OBJECT() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataObject.DATA_OBJECT_0(returnPointer.GetPtr());
+	return (vtkInformationDataObjectKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationIntegerKey* DATA_EXTENT_TYPE()
+// "static vtkInformationIntegerKey* DATA_EXTENT_TYPE()"
+public static vtkInformationIntegerKey DATA_EXTENT_TYPE() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataObject.DATA_EXTENT_TYPE_0(returnPointer.GetPtr());
+	return (vtkInformationIntegerKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationIntegerPointerKey* DATA_EXTENT()
+// "static vtkInformationIntegerPointerKey* DATA_EXTENT()"
+public static vtkInformationIntegerPointerKey DATA_EXTENT() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataObject.DATA_EXTENT_0(returnPointer.GetPtr());
+	return (vtkInformationIntegerPointerKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationIntegerVectorKey* ALL_PIECES_EXTENT()
+// "static vtkInformationIntegerVectorKey* ALL_PIECES_EXTENT()"
+public static vtkInformationIntegerVectorKey ALL_PIECES_EXTENT() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataObject.ALL_PIECES_EXTENT_0(returnPointer.GetPtr());
+	return (vtkInformationIntegerVectorKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationIntegerKey* DATA_PIECE_NUMBER()
+// "static vtkInformationIntegerKey* DATA_PIECE_NUMBER()"
+public static vtkInformationIntegerKey DATA_PIECE_NUMBER() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataObject.DATA_PIECE_NUMBER_0(returnPointer.GetPtr());
+	return (vtkInformationIntegerKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationIntegerKey* DATA_NUMBER_OF_PIECES()
+// "static vtkInformationIntegerKey* DATA_NUMBER_OF_PIECES()"
+public static vtkInformationIntegerKey DATA_NUMBER_OF_PIECES() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataObject.DATA_NUMBER_OF_PIECES_0(returnPointer.GetPtr());
+	return (vtkInformationIntegerKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationIntegerKey* DATA_NUMBER_OF_GHOST_LEVELS()
+// "static vtkInformationIntegerKey* DATA_NUMBER_OF_GHOST_LEVELS()"
+public static vtkInformationIntegerKey DATA_NUMBER_OF_GHOST_LEVELS() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataObject.DATA_NUMBER_OF_GHOST_LEVELS_0(returnPointer.GetPtr());
+	return (vtkInformationIntegerKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationDoubleKey* DATA_TIME_STEP()
+// "static vtkInformationDoubleKey* DATA_TIME_STEP()"
+public static vtkInformationDoubleKey DATA_TIME_STEP() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataObject.DATA_TIME_STEP_0(returnPointer.GetPtr());
+	return (vtkInformationDoubleKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationInformationVectorKey* POINT_DATA_VECTOR()
+// "static vtkInformationInformationVectorKey* POINT_DATA_VECTOR()"
+public static vtkInformationInformationVectorKey POINT_DATA_VECTOR() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataObject.POINT_DATA_VECTOR_0(returnPointer.GetPtr());
+	return (vtkInformationInformationVectorKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationInformationVectorKey* CELL_DATA_VECTOR()
+// "static vtkInformationInformationVectorKey* CELL_DATA_VECTOR()"
+public static vtkInformationInformationVectorKey CELL_DATA_VECTOR() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataObject.CELL_DATA_VECTOR_0(returnPointer.GetPtr());
+	return (vtkInformationInformationVectorKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationInformationVectorKey* VERTEX_DATA_VECTOR()
+// "static vtkInformationInformationVectorKey* VERTEX_DATA_VECTOR()"
+public static vtkInformationInformationVectorKey VERTEX_DATA_VECTOR() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataObject.VERTEX_DATA_VECTOR_0(returnPointer.GetPtr());
+	return (vtkInformationInformationVectorKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationInformationVectorKey* EDGE_DATA_VECTOR()
+// "static vtkInformationInformationVectorKey* EDGE_DATA_VECTOR()"
+public static vtkInformationInformationVectorKey EDGE_DATA_VECTOR() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataObject.EDGE_DATA_VECTOR_0(returnPointer.GetPtr());
+	return (vtkInformationInformationVectorKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationIntegerKey* FIELD_ARRAY_TYPE()
+// "static vtkInformationIntegerKey* FIELD_ARRAY_TYPE()"
+public static vtkInformationIntegerKey FIELD_ARRAY_TYPE() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataObject.FIELD_ARRAY_TYPE_0(returnPointer.GetPtr());
+	return (vtkInformationIntegerKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationIntegerKey* FIELD_ASSOCIATION()
+// "static vtkInformationIntegerKey* FIELD_ASSOCIATION()"
+public static vtkInformationIntegerKey FIELD_ASSOCIATION() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataObject.FIELD_ASSOCIATION_0(returnPointer.GetPtr());
+	return (vtkInformationIntegerKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationIntegerKey* FIELD_ATTRIBUTE_TYPE()
+// "static vtkInformationIntegerKey* FIELD_ATTRIBUTE_TYPE()"
+public static vtkInformationIntegerKey FIELD_ATTRIBUTE_TYPE() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataObject.FIELD_ATTRIBUTE_TYPE_0(returnPointer.GetPtr());
+	return (vtkInformationIntegerKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationIntegerKey* FIELD_ACTIVE_ATTRIBUTE()
+// "static vtkInformationIntegerKey* FIELD_ACTIVE_ATTRIBUTE()"
+public static vtkInformationIntegerKey FIELD_ACTIVE_ATTRIBUTE() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataObject.FIELD_ACTIVE_ATTRIBUTE_0(returnPointer.GetPtr());
+	return (vtkInformationIntegerKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationIntegerKey* FIELD_NUMBER_OF_COMPONENTS()
+// "static vtkInformationIntegerKey* FIELD_NUMBER_OF_COMPONENTS()"
+public static vtkInformationIntegerKey FIELD_NUMBER_OF_COMPONENTS() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataObject.FIELD_NUMBER_OF_COMPONENTS_0(returnPointer.GetPtr());
+	return (vtkInformationIntegerKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationIntegerKey* FIELD_NUMBER_OF_TUPLES()
+// "static vtkInformationIntegerKey* FIELD_NUMBER_OF_TUPLES()"
+public static vtkInformationIntegerKey FIELD_NUMBER_OF_TUPLES() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataObject.FIELD_NUMBER_OF_TUPLES_0(returnPointer.GetPtr());
+	return (vtkInformationIntegerKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationIntegerKey* FIELD_OPERATION()
+// "static vtkInformationIntegerKey* FIELD_OPERATION()"
+public static vtkInformationIntegerKey FIELD_OPERATION() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataObject.FIELD_OPERATION_0(returnPointer.GetPtr());
+	return (vtkInformationIntegerKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationDoubleVectorKey* FIELD_RANGE()
+// "static vtkInformationDoubleVectorKey* FIELD_RANGE()"
+public static vtkInformationDoubleVectorKey FIELD_RANGE() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataObject.FIELD_RANGE_0(returnPointer.GetPtr());
+	return (vtkInformationDoubleVectorKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationIntegerVectorKey* PIECE_EXTENT()
+// "static vtkInformationIntegerVectorKey* PIECE_EXTENT()"
+public static vtkInformationIntegerVectorKey PIECE_EXTENT() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataObject.PIECE_EXTENT_0(returnPointer.GetPtr());
+	return (vtkInformationIntegerVectorKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationStringKey* FIELD_NAME()
+// "static vtkInformationStringKey* FIELD_NAME()"
+public static vtkInformationStringKey FIELD_NAME() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataObject.FIELD_NAME_0(returnPointer.GetPtr());
+	return (vtkInformationStringKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationDoubleVectorKey* ORIGIN()
+// "static vtkInformationDoubleVectorKey* ORIGIN()"
+public static vtkInformationDoubleVectorKey ORIGIN() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataObject.ORIGIN_0(returnPointer.GetPtr());
+	return (vtkInformationDoubleVectorKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationDoubleVectorKey* SPACING()
+// "static vtkInformationDoubleVectorKey* SPACING()"
+public static vtkInformationDoubleVectorKey SPACING() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataObject.SPACING_0(returnPointer.GetPtr());
+	return (vtkInformationDoubleVectorKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationDoubleVectorKey* BOUNDING_BOX()
+// "static vtkInformationDoubleVectorKey* BOUNDING_BOX()"
+public static vtkInformationDoubleVectorKey BOUNDING_BOX() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataObject.BOUNDING_BOX_0(returnPointer.GetPtr());
+	return (vtkInformationDoubleVectorKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationDataObjectKey* SIL()
+// "static vtkInformationDataObjectKey* SIL()"
+public static vtkInformationDataObjectKey SIL() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataObject.SIL_0(returnPointer.GetPtr());
+	return (vtkInformationDataObjectKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkDataObject* GetData(vtkInformation * info)
+// "static vtkDataObject* GetData(vtkInformation* info)"
+public static vtkDataObject GetData(vtkInformation /*(vtkInformation*)*/ info) {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataObject.GetData_0(returnPointer.GetPtr(), info);
+	return (vtkDataObject)(IntPtr)returnPointer;
+}
+
+
+// static vtkDataObject* GetData(vtkInformationVector * v, int i = 0)
+// "static vtkDataObject* GetData(vtkInformationVector* v, int i=0)"
+public static vtkDataObject GetData(vtkInformationVector /*(vtkInformationVector*)*/ v, int /*(int)*/ i) {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataObject.GetData_1(returnPointer.GetPtr(), v, i);
+	return (vtkDataObject)(IntPtr)returnPointer;
 }
 
 

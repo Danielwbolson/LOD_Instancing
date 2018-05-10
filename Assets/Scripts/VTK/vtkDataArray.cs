@@ -623,10 +623,55 @@ public static vtkDataArray CreateDataArray(int /*(int)*/ dataType) {
 }
 
 
+// static vtkInformationDoubleVectorKey* COMPONENT_RANGE()
+// "static vtkInformationDoubleVectorKey* COMPONENT_RANGE()"
+public static vtkInformationDoubleVectorKey COMPONENT_RANGE() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataArray.COMPONENT_RANGE_0(returnPointer.GetPtr());
+	return (vtkInformationDoubleVectorKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationDoubleVectorKey* L2_NORM_RANGE()
+// "static vtkInformationDoubleVectorKey* L2_NORM_RANGE()"
+public static vtkInformationDoubleVectorKey L2_NORM_RANGE() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataArray.L2_NORM_RANGE_0(returnPointer.GetPtr());
+	return (vtkInformationDoubleVectorKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationDoubleVectorKey* L2_NORM_FINITE_RANGE()
+// "static vtkInformationDoubleVectorKey* L2_NORM_FINITE_RANGE()"
+public static vtkInformationDoubleVectorKey L2_NORM_FINITE_RANGE() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataArray.L2_NORM_FINITE_RANGE_0(returnPointer.GetPtr());
+	return (vtkInformationDoubleVectorKey)(IntPtr)returnPointer;
+}
+
+
 // void Modified()
 // "void Modified()"
 public void Modified() {
 	VTK_API.API_vtkDataArray.Modified_0(this);
+}
+
+
+// static vtkInformationStringKey* UNITS_LABEL()
+// "static vtkInformationStringKey *UNITS_LABEL()"
+public static vtkInformationStringKey UNITS_LABEL() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkDataArray.UNITS_LABEL_0(returnPointer.GetPtr());
+	return (vtkInformationStringKey)(IntPtr)returnPointer;
+}
+
+
+// int CopyInformation(vtkInformation * infoFrom, int deep = 1)
+// "int CopyInformation(vtkInformation *infoFrom, int deep=1)"
+public int CopyInformation(vtkInformation /*(vtkInformation*)*/ infoFrom, int /*(int)*/ deep) {
+	ReturnPointer returnPointer = new ReturnPointer(new int());
+	VTK_API.API_vtkDataArray.CopyInformation_0(returnPointer.GetPtr(), this, infoFrom, deep);
+	return (int)returnPointer;
 }
 
 

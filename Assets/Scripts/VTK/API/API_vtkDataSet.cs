@@ -237,6 +237,16 @@ bool GenerateGhostArray_0(IntPtr /*(vtkDataSet*)*/ callingObject, int /*(int[6])
 [DllImport("vtkplugin", EntryPoint="vtkDataSet_GenerateGhostArray_1")] public static extern 
 bool GenerateGhostArray_1(IntPtr /*(vtkDataSet*)*/ callingObject, int /*(int[6])*/ []zeroExt, bool /*(bool)*/ cellOnly);
 
+// static vtkDataSet* GetData(vtkInformation * info)
+// static vtkDataSet* GetData(vtkInformation* info)
+[DllImport("vtkplugin", EntryPoint="vtkDataSet_GetData_0")] public static extern 
+bool GetData_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkInformation*)*/ info);
+
+// static vtkDataSet* GetData(vtkInformationVector * v, int i = 0)
+// static vtkDataSet* GetData(vtkInformationVector* v, int i=0)
+[DllImport("vtkplugin", EntryPoint="vtkDataSet_GetData_1")] public static extern 
+bool GetData_1(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkInformationVector*)*/ v, int /*(int)*/ i);
+
 // vtkFieldData* GetAttributesAsFieldData(int type)
 // vtkFieldData* GetAttributesAsFieldData(int type)
 [DllImport("vtkplugin", EntryPoint="vtkDataSet_GetAttributesAsFieldData_0")] public static extern 

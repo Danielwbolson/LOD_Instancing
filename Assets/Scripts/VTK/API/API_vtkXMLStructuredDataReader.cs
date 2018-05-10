@@ -57,5 +57,10 @@ bool WholeSlicesOn_0(IntPtr /*(vtkXMLStructuredDataReader*)*/ callingObject);
 [DllImport("vtkplugin", EntryPoint="vtkXMLStructuredDataReader_WholeSlicesOff_0")] public static extern 
 bool WholeSlicesOff_0(IntPtr /*(vtkXMLStructuredDataReader*)*/ callingObject);
 
+// void CopyOutputInformation(vtkInformation * outInfo, int port)
+// void CopyOutputInformation(vtkInformation *outInfo, int port)
+[DllImport("vtkplugin", EntryPoint="vtkXMLStructuredDataReader_CopyOutputInformation_0")] public static extern 
+bool CopyOutputInformation_0(IntPtr /*(vtkXMLStructuredDataReader*)*/ callingObject, IntPtr /*(vtkInformation*)*/ outInfo, int /*(int)*/ port);
+
 }
 };

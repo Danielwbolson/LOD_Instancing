@@ -99,6 +99,24 @@ public void Update() {
 }
 
 
+// int Update(int port, vtkInformationVector * requests)
+// "int Update(int port, vtkInformationVector* requests)"
+public int Update(int /*(int)*/ port, vtkInformationVector /*(vtkInformationVector*)*/ requests) {
+	ReturnPointer returnPointer = new ReturnPointer(new int());
+	VTK_API.API_vtkPolyDataMapper.Update_2(returnPointer.GetPtr(), this, port, requests);
+	return (int)returnPointer;
+}
+
+
+// int Update(vtkInformation * requests)
+// "int Update(vtkInformation* requests)"
+public int Update(vtkInformation /*(vtkInformation*)*/ requests) {
+	ReturnPointer returnPointer = new ReturnPointer(new int());
+	VTK_API.API_vtkPolyDataMapper.Update_3(returnPointer.GetPtr(), this, requests);
+	return (int)returnPointer;
+}
+
+
 // virtual void SetPiece(int _arg)
 // "virtual void SetPiece (int _arg)"
 public void SetPiece(int /*(int)*/ _arg) {
@@ -197,6 +215,15 @@ public void RemoveVertexAttributeMapping(string /*(char*)*/ vertexAttributeName)
 // "virtual void RemoveAllVertexAttributeMappings()"
 public void RemoveAllVertexAttributeMappings() {
 	VTK_API.API_vtkPolyDataMapper.RemoveAllVertexAttributeMappings_0(this);
+}
+
+
+// int ProcessRequest(vtkInformation * ARG_0, vtkInformationVector ** ARG_1, vtkInformationVector * ARG_2)
+// "int ProcessRequest(vtkInformation*, vtkInformationVector**, vtkInformationVector*)"
+public int ProcessRequest(vtkInformation /*(vtkInformation*)*/ ARG_0, vtkInformationVector /*(vtkInformationVector**)*/ ARG_1, vtkInformationVector /*(vtkInformationVector*)*/ ARG_2) {
+	ReturnPointer returnPointer = new ReturnPointer(new int());
+	VTK_API.API_vtkPolyDataMapper.ProcessRequest_0(returnPointer.GetPtr(), this, ARG_0, ARG_1, ARG_2);
+	return (int)returnPointer;
 }
 
 

@@ -408,6 +408,24 @@ public void RemoveGhostCells() {
 }
 
 
+// static vtkUnstructuredGrid* GetData(vtkInformation * info)
+// "static vtkUnstructuredGrid* GetData(vtkInformation* info)"
+public static vtkUnstructuredGrid GetData(vtkInformation /*(vtkInformation*)*/ info) {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkUnstructuredGrid.GetData_0(returnPointer.GetPtr(), info);
+	return (vtkUnstructuredGrid)(IntPtr)returnPointer;
+}
+
+
+// static vtkUnstructuredGrid* GetData(vtkInformationVector * v, int i = 0)
+// "static vtkUnstructuredGrid* GetData(vtkInformationVector* v, int i=0)"
+public static vtkUnstructuredGrid GetData(vtkInformationVector /*(vtkInformationVector*)*/ v, int /*(int)*/ i) {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkUnstructuredGrid.GetData_1(returnPointer.GetPtr(), v, i);
+	return (vtkUnstructuredGrid)(IntPtr)returnPointer;
+}
+
+
 // vtkIdType* GetFaces(vtkIdType cellId)
 // "vtkIdType *GetFaces(vtkIdType cellId)"
 public IntPtr GetFaces(long /*(vtkIdType)*/ cellId) {

@@ -302,6 +302,24 @@ public void Initialize() {
 }
 
 
+// static vtkPiecewiseFunction* GetData(vtkInformation * info)
+// "static vtkPiecewiseFunction* GetData(vtkInformation* info)"
+public static vtkPiecewiseFunction GetData(vtkInformation /*(vtkInformation*)*/ info) {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkPiecewiseFunction.GetData_0(returnPointer.GetPtr(), info);
+	return (vtkPiecewiseFunction)(IntPtr)returnPointer;
+}
+
+
+// static vtkPiecewiseFunction* GetData(vtkInformationVector * v, int i = 0)
+// "static vtkPiecewiseFunction* GetData(vtkInformationVector* v, int i=0)"
+public static vtkPiecewiseFunction GetData(vtkInformationVector /*(vtkInformationVector*)*/ v, int /*(int)*/ i) {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkPiecewiseFunction.GetData_1(returnPointer.GetPtr(), v, i);
+	return (vtkPiecewiseFunction)(IntPtr)returnPointer;
+}
+
+
 // virtual void SetAllowDuplicateScalars(int _arg)
 // "virtual void SetAllowDuplicateScalars (int _arg)"
 public void SetAllowDuplicateScalars(int /*(int)*/ _arg) {

@@ -732,5 +732,15 @@ bool GetNumberOfTextures_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkPrope
 [DllImport("vtkplugin", EntryPoint="vtkProperty_ReleaseGraphicsResources_0")] public static extern 
 bool ReleaseGraphicsResources_0(IntPtr /*(vtkProperty*)*/ callingObject, IntPtr /*(vtkWindow*)*/ win);
 
+// virtual vtkInformation* GetInformation()
+// virtual vtkInformation *GetInformation ()
+[DllImport("vtkplugin", EntryPoint="vtkProperty_GetInformation_0")] public static extern 
+bool GetInformation_0(IntPtr /*(IntPtr**)*/ return_value, IntPtr /*(vtkProperty*)*/ callingObject);
+
+// virtual void SetInformation(vtkInformation * ARG_0)
+// virtual void SetInformation(vtkInformation*)
+[DllImport("vtkplugin", EntryPoint="vtkProperty_SetInformation_0")] public static extern 
+bool SetInformation_0(IntPtr /*(vtkProperty*)*/ callingObject, IntPtr /*(vtkInformation*)*/ ARG_0);
+
 }
 };

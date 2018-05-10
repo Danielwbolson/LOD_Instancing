@@ -64,6 +64,76 @@ public int HasExecutive() {
 }
 
 
+// virtual int ProcessRequest(vtkInformation * request, vtkInformationVector ** inInfo, vtkInformationVector * outInfo)
+// "virtual int ProcessRequest(vtkInformation* request, vtkInformationVector** inInfo, vtkInformationVector* outInfo)"
+public int ProcessRequest(vtkInformation /*(vtkInformation*)*/ request, vtkInformationVector /*(vtkInformationVector**)*/ inInfo, vtkInformationVector /*(vtkInformationVector*)*/ outInfo) {
+	ReturnPointer returnPointer = new ReturnPointer(new int());
+	VTK_API.API_vtkAlgorithm.ProcessRequest_0(returnPointer.GetPtr(), this, request, inInfo, outInfo);
+	return (int)returnPointer;
+}
+
+
+// int ProcessRequest(vtkInformation * request, vtkCollection * inInfo, vtkInformationVector * outInfo)
+// "int ProcessRequest(vtkInformation* request, vtkCollection* inInfo, vtkInformationVector* outInfo)"
+public int ProcessRequest(vtkInformation /*(vtkInformation*)*/ request, vtkCollection /*(vtkCollection*)*/ inInfo, vtkInformationVector /*(vtkInformationVector*)*/ outInfo) {
+	ReturnPointer returnPointer = new ReturnPointer(new int());
+	VTK_API.API_vtkAlgorithm.ProcessRequest_1(returnPointer.GetPtr(), this, request, inInfo, outInfo);
+	return (int)returnPointer;
+}
+
+
+// virtual int ComputePipelineMTime(vtkInformation * request, vtkInformationVector ** inInfoVec, vtkInformationVector * outInfoVec, int requestFromOutputPort, vtkMTimeType * mtime)
+// "virtual int ComputePipelineMTime(vtkInformation* request, vtkInformationVector** inInfoVec, vtkInformationVector* outInfoVec, int requestFromOutputPort, vtkMTimeType* mtime)"
+public int ComputePipelineMTime(vtkInformation /*(vtkInformation*)*/ request, vtkInformationVector /*(vtkInformationVector**)*/ inInfoVec, vtkInformationVector /*(vtkInformationVector*)*/ outInfoVec, int /*(int)*/ requestFromOutputPort, IntPtr /*(vtkMTimeType*)*/ mtime) {
+	ReturnPointer returnPointer = new ReturnPointer(new int());
+	VTK_API.API_vtkAlgorithm.ComputePipelineMTime_0(returnPointer.GetPtr(), this, request, inInfoVec, outInfoVec, requestFromOutputPort, mtime);
+	return (int)returnPointer;
+}
+
+
+// virtual int ModifyRequest(vtkInformation * request, int when)
+// "virtual int ModifyRequest(vtkInformation* request, int when)"
+public int ModifyRequest(vtkInformation /*(vtkInformation*)*/ request, int /*(int)*/ when) {
+	ReturnPointer returnPointer = new ReturnPointer(new int());
+	VTK_API.API_vtkAlgorithm.ModifyRequest_0(returnPointer.GetPtr(), this, request, when);
+	return (int)returnPointer;
+}
+
+
+// vtkInformation* GetInputPortInformation(int port)
+// "vtkInformation* GetInputPortInformation(int port)"
+public vtkInformation GetInputPortInformation(int /*(int)*/ port) {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkAlgorithm.GetInputPortInformation_0(returnPointer.GetPtr(), this, port);
+	return (vtkInformation)(IntPtr)returnPointer;
+}
+
+
+// vtkInformation* GetOutputPortInformation(int port)
+// "vtkInformation* GetOutputPortInformation(int port)"
+public vtkInformation GetOutputPortInformation(int /*(int)*/ port) {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkAlgorithm.GetOutputPortInformation_0(returnPointer.GetPtr(), this, port);
+	return (vtkInformation)(IntPtr)returnPointer;
+}
+
+
+// virtual vtkInformation* GetInformation()
+// "virtual vtkInformation *GetInformation ()"
+public vtkInformation GetInformation() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkAlgorithm.GetInformation_0(returnPointer.GetPtr(), this);
+	return (vtkInformation)(IntPtr)returnPointer;
+}
+
+
+// virtual void SetInformation(vtkInformation * ARG_0)
+// "virtual void SetInformation(vtkInformation*)"
+public void SetInformation(vtkInformation /*(vtkInformation*)*/ ARG_0) {
+	VTK_API.API_vtkAlgorithm.SetInformation_0(this, ARG_0);
+}
+
+
 // int GetNumberOfInputPorts()
 // "int GetNumberOfInputPorts()"
 public int GetNumberOfInputPorts() {
@@ -192,6 +262,87 @@ public ulong GetErrorCode() {
 }
 
 
+// static vtkInformationIntegerKey* INPUT_IS_OPTIONAL()
+// "static vtkInformationIntegerKey* INPUT_IS_OPTIONAL()"
+public static vtkInformationIntegerKey INPUT_IS_OPTIONAL() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkAlgorithm.INPUT_IS_OPTIONAL_0(returnPointer.GetPtr());
+	return (vtkInformationIntegerKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationIntegerKey* INPUT_IS_REPEATABLE()
+// "static vtkInformationIntegerKey* INPUT_IS_REPEATABLE()"
+public static vtkInformationIntegerKey INPUT_IS_REPEATABLE() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkAlgorithm.INPUT_IS_REPEATABLE_0(returnPointer.GetPtr());
+	return (vtkInformationIntegerKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationInformationVectorKey* INPUT_REQUIRED_FIELDS()
+// "static vtkInformationInformationVectorKey* INPUT_REQUIRED_FIELDS()"
+public static vtkInformationInformationVectorKey INPUT_REQUIRED_FIELDS() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkAlgorithm.INPUT_REQUIRED_FIELDS_0(returnPointer.GetPtr());
+	return (vtkInformationInformationVectorKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationStringVectorKey* INPUT_REQUIRED_DATA_TYPE()
+// "static vtkInformationStringVectorKey* INPUT_REQUIRED_DATA_TYPE()"
+public static vtkInformationStringVectorKey INPUT_REQUIRED_DATA_TYPE() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkAlgorithm.INPUT_REQUIRED_DATA_TYPE_0(returnPointer.GetPtr());
+	return (vtkInformationStringVectorKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationInformationVectorKey* INPUT_ARRAYS_TO_PROCESS()
+// "static vtkInformationInformationVectorKey* INPUT_ARRAYS_TO_PROCESS()"
+public static vtkInformationInformationVectorKey INPUT_ARRAYS_TO_PROCESS() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkAlgorithm.INPUT_ARRAYS_TO_PROCESS_0(returnPointer.GetPtr());
+	return (vtkInformationInformationVectorKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationIntegerKey* INPUT_PORT()
+// "static vtkInformationIntegerKey* INPUT_PORT()"
+public static vtkInformationIntegerKey INPUT_PORT() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkAlgorithm.INPUT_PORT_0(returnPointer.GetPtr());
+	return (vtkInformationIntegerKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationIntegerKey* INPUT_CONNECTION()
+// "static vtkInformationIntegerKey* INPUT_CONNECTION()"
+public static vtkInformationIntegerKey INPUT_CONNECTION() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkAlgorithm.INPUT_CONNECTION_0(returnPointer.GetPtr());
+	return (vtkInformationIntegerKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationIntegerKey* CAN_PRODUCE_SUB_EXTENT()
+// "static vtkInformationIntegerKey* CAN_PRODUCE_SUB_EXTENT()"
+public static vtkInformationIntegerKey CAN_PRODUCE_SUB_EXTENT() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkAlgorithm.CAN_PRODUCE_SUB_EXTENT_0(returnPointer.GetPtr());
+	return (vtkInformationIntegerKey)(IntPtr)returnPointer;
+}
+
+
+// static vtkInformationIntegerKey* CAN_HANDLE_PIECE_REQUEST()
+// "static vtkInformationIntegerKey* CAN_HANDLE_PIECE_REQUEST()"
+public static vtkInformationIntegerKey CAN_HANDLE_PIECE_REQUEST() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkAlgorithm.CAN_HANDLE_PIECE_REQUEST_0(returnPointer.GetPtr());
+	return (vtkInformationIntegerKey)(IntPtr)returnPointer;
+}
+
+
 // virtual void SetInputArrayToProcess(int idx, int port, int connection, int fieldAssociation, const char * name)
 // "virtual void SetInputArrayToProcess(int idx, int port, int connection, int fieldAssociation, const char *name)"
 public void SetInputArrayToProcess(int /*(int)*/ idx, int /*(int)*/ port, int /*(int)*/ connection, int /*(int)*/ fieldAssociation, string /*(char*)*/ name) {
@@ -206,10 +357,26 @@ public void SetInputArrayToProcess(int /*(int)*/ idx, int /*(int)*/ port, int /*
 }
 
 
+// virtual void SetInputArrayToProcess(int idx, vtkInformation * info)
+// "virtual void SetInputArrayToProcess(int idx, vtkInformation *info)"
+public void SetInputArrayToProcess(int /*(int)*/ idx, vtkInformation /*(vtkInformation*)*/ info) {
+	VTK_API.API_vtkAlgorithm.SetInputArrayToProcess_2(this, idx, info);
+}
+
+
 // virtual void SetInputArrayToProcess(int idx, int port, int connection, const char * fieldAssociation, const char * attributeTypeorName)
 // "virtual void SetInputArrayToProcess(int idx, int port, int connection, const char* fieldAssociation, const char* attributeTypeorName)"
 public void SetInputArrayToProcess(int /*(int)*/ idx, int /*(int)*/ port, int /*(int)*/ connection, string /*(char*)*/ fieldAssociation, string /*(char*)*/ attributeTypeorName) {
-	VTK_API.API_vtkAlgorithm.SetInputArrayToProcess_2(this, idx, port, connection, fieldAssociation, attributeTypeorName);
+	VTK_API.API_vtkAlgorithm.SetInputArrayToProcess_3(this, idx, port, connection, fieldAssociation, attributeTypeorName);
+}
+
+
+// vtkInformation* GetInputArrayInformation(int idx)
+// "vtkInformation *GetInputArrayInformation(int idx)"
+public vtkInformation GetInputArrayInformation(int /*(int)*/ idx) {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkAlgorithm.GetInputArrayInformation_0(returnPointer.GetPtr(), this, idx);
+	return (vtkInformation)(IntPtr)returnPointer;
 }
 
 
@@ -387,6 +554,33 @@ public vtkAlgorithm GetInputAlgorithm() {
 }
 
 
+// vtkInformation* GetInputInformation(int port, int index)
+// "vtkInformation* GetInputInformation(int port, int index)"
+public vtkInformation GetInputInformation(int /*(int)*/ port, int /*(int)*/ index) {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkAlgorithm.GetInputInformation_0(returnPointer.GetPtr(), this, port, index);
+	return (vtkInformation)(IntPtr)returnPointer;
+}
+
+
+// vtkInformation* GetInputInformation()
+// "vtkInformation* GetInputInformation()"
+public vtkInformation GetInputInformation() {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkAlgorithm.GetInputInformation_1(returnPointer.GetPtr(), this);
+	return (vtkInformation)(IntPtr)returnPointer;
+}
+
+
+// vtkInformation* GetOutputInformation(int port)
+// "vtkInformation* GetOutputInformation(int port)"
+public vtkInformation GetOutputInformation(int /*(int)*/ port) {
+	ReturnPointer returnPointer = new ReturnPointer(new IntPtr());
+	VTK_API.API_vtkAlgorithm.GetOutputInformation_0(returnPointer.GetPtr(), this, port);
+	return (vtkInformation)(IntPtr)returnPointer;
+}
+
+
 // virtual void Update(int port)
 // "virtual void Update(int port)"
 public void Update(int /*(int)*/ port) {
@@ -398,6 +592,24 @@ public void Update(int /*(int)*/ port) {
 // "virtual void Update()"
 public void Update() {
 	VTK_API.API_vtkAlgorithm.Update_1(this);
+}
+
+
+// virtual int Update(int port, vtkInformationVector * requests)
+// "virtual int Update(int port, vtkInformationVector* requests)"
+public int Update(int /*(int)*/ port, vtkInformationVector /*(vtkInformationVector*)*/ requests) {
+	ReturnPointer returnPointer = new ReturnPointer(new int());
+	VTK_API.API_vtkAlgorithm.Update_2(returnPointer.GetPtr(), this, port, requests);
+	return (int)returnPointer;
+}
+
+
+// virtual int Update(vtkInformation * requests)
+// "virtual int Update(vtkInformation* requests)"
+public int Update(vtkInformation /*(vtkInformation*)*/ requests) {
+	ReturnPointer returnPointer = new ReturnPointer(new int());
+	VTK_API.API_vtkAlgorithm.Update_3(returnPointer.GetPtr(), this, requests);
+	return (int)returnPointer;
 }
 
 
@@ -472,6 +684,24 @@ public void ReleaseDataFlagOn() {
 // "void ReleaseDataFlagOff()"
 public void ReleaseDataFlagOff() {
 	VTK_API.API_vtkAlgorithm.ReleaseDataFlagOff_0(this);
+}
+
+
+// int UpdateExtentIsEmpty(vtkInformation * pinfo, vtkDataObject * output)
+// "int UpdateExtentIsEmpty(vtkInformation *pinfo, vtkDataObject *output)"
+public int UpdateExtentIsEmpty(vtkInformation /*(vtkInformation*)*/ pinfo, vtkDataObject /*(vtkDataObject*)*/ output) {
+	ReturnPointer returnPointer = new ReturnPointer(new int());
+	VTK_API.API_vtkAlgorithm.UpdateExtentIsEmpty_0(returnPointer.GetPtr(), this, pinfo, output);
+	return (int)returnPointer;
+}
+
+
+// int UpdateExtentIsEmpty(vtkInformation * pinfo, int extentType)
+// "int UpdateExtentIsEmpty(vtkInformation *pinfo, int extentType)"
+public int UpdateExtentIsEmpty(vtkInformation /*(vtkInformation*)*/ pinfo, int /*(int)*/ extentType) {
+	ReturnPointer returnPointer = new ReturnPointer(new int());
+	VTK_API.API_vtkAlgorithm.UpdateExtentIsEmpty_1(returnPointer.GetPtr(), this, pinfo, extentType);
+	return (int)returnPointer;
 }
 
 

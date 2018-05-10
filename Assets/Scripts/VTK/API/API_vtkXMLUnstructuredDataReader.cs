@@ -47,5 +47,10 @@ bool GetNumberOfPieces_0(IntPtr /*(IntPtr*)*/ return_value, IntPtr /*(vtkXMLUnst
 [DllImport("vtkplugin", EntryPoint="vtkXMLUnstructuredDataReader_SetupUpdateExtent_0")] public static extern 
 bool SetupUpdateExtent_0(IntPtr /*(vtkXMLUnstructuredDataReader*)*/ callingObject, int /*(int)*/ piece, int /*(int)*/ numberOfPieces, int /*(int)*/ ghostLevel);
 
+// void CopyOutputInformation(vtkInformation * outInfo, int port)
+// void CopyOutputInformation(vtkInformation *outInfo, int port)
+[DllImport("vtkplugin", EntryPoint="vtkXMLUnstructuredDataReader_CopyOutputInformation_0")] public static extern 
+bool CopyOutputInformation_0(IntPtr /*(vtkXMLUnstructuredDataReader*)*/ callingObject, IntPtr /*(vtkInformation*)*/ outInfo, int /*(int)*/ port);
+
 }
 };

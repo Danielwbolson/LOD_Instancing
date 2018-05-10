@@ -80,5 +80,12 @@ public void SetupUpdateExtent(int /*(int)*/ piece, int /*(int)*/ numberOfPieces,
 }
 
 
+// void CopyOutputInformation(vtkInformation * outInfo, int port)
+// "void CopyOutputInformation(vtkInformation *outInfo, int port)"
+public void CopyOutputInformation(vtkInformation /*(vtkInformation*)*/ outInfo, int /*(int)*/ port) {
+	VTK_API.API_vtkXMLUnstructuredDataReader.CopyOutputInformation_0(this, outInfo, port);
+}
+
+
 }
 };
