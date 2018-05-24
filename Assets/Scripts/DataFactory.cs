@@ -26,41 +26,41 @@ public class DataFactory : MonoBehaviour
 	public Data CreateDataset (DataFile file)
 	{
 		Data newData = null;
-		string ext = Path.GetExtension (file.filePath);
-		if (ext.Contains ("vt")) {
-			print (ext);
+		//string ext = Path.GetExtension (file.filePath);
+		//if (ext.Contains ("vt")) {
+		//	print (ext);
 
-			newData = new VTKData ();
-			newData.SetFileName (file.filePath);
+		//	newData = new VTKData ();
+		//	newData.SetFileName (file.filePath);
 
-			//if(newData.IsType("
-		}
+		//	//if(newData.IsType("
+		//}
 	
-		if (newData != null) {newData.LoadData ();
-			GameObject dataObject = Instantiate (dataObjectPrefab);
-			dataObject.transform.SetParent (dataRoot);
-			dataObject.GetComponent<DataObject1> ().data = newData;
-			if (newData.GetNumberOfLines () > 0) {
-				print ("Has Lines");
-				GameObject lineRenderer = Instantiate (lineRendererPrefab);
-				lineRenderer.transform.SetParent (dataObject.transform);
-				lineRenderer.GetComponent<DataLineRenderer> ().dataObject = dataObject.GetComponent<DataObject1> ();
-				lineRenderer.GetComponent<DataLineRenderer> ().getLines ();
-			}
-			if (newData.IsType("vtkImageData")) {
-				print("Is image data");
-				GameObject glyphRenderer = Instantiate (glyphRendererPrefab);
-				glyphRenderer.transform.SetParent (dataObject.transform);
-				glyphRenderer.GetComponent<DataGlyphRenderer> ().dataObject = dataObject.GetComponent<DataObject1> ();
+		//if (newData != null) {newData.LoadData ();
+		//	GameObject dataObject = Instantiate (dataObjectPrefab);
+		//	dataObject.transform.SetParent (dataRoot);
+		//	dataObject.GetComponent<DataObject1> ().data = newData;
+		//	if (newData.GetNumberOfLines () > 0) {
+		//		print ("Has Lines");
+		//		GameObject lineRenderer = Instantiate (lineRendererPrefab);
+		//		lineRenderer.transform.SetParent (dataObject.transform);
+		//		lineRenderer.GetComponent<DataLineRenderer> ().dataObject = dataObject.GetComponent<DataObject1> ();
+		//		lineRenderer.GetComponent<DataLineRenderer> ().getLines ();
+		//	}
+		//	if (newData.IsType("vtkImageData")) {
+		//		print("Is image data");
+		//		GameObject glyphRenderer = Instantiate (glyphRendererPrefab);
+		//		glyphRenderer.transform.SetParent (dataObject.transform);
+		//		glyphRenderer.GetComponent<DataGlyphRenderer> ().dataObject = dataObject.GetComponent<DataObject1> ();
 
-			}
+		//	}
 
-			GameObject pointRenderer = Instantiate (pointRendererPrefab);
-			pointRenderer.transform.SetParent (dataObject.transform);
-			pointRenderer.GetComponent<DataPointRenderer> ().dataObject = dataObject.GetComponent<DataObject1> ();
+		//	GameObject pointRenderer = Instantiate (pointRendererPrefab);
+		//	pointRenderer.transform.SetParent (dataObject.transform);
+		//	pointRenderer.GetComponent<DataPointRenderer> ().dataObject = dataObject.GetComponent<DataObject1> ();
 
 
-		}
+		//}
 
 		return newData;
 	}
