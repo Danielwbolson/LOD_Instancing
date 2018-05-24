@@ -38,7 +38,7 @@ Shader "Instanced/GlyphShader"
 				float _glyphLength;
 				int _glyphType;
 		sampler2D _NormTex;
-		float4x4 _DataTransform;
+		float4x4 _Datagizorm;
 	struct Input {
 		float2 uv_MainTex;
 		float2 uv_MainTex2;

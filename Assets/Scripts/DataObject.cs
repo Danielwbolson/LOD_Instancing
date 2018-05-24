@@ -10,10 +10,33 @@ public class DataObject : MonoBehaviour
 
     public vtkDataObject dataObject_;
 
+	public void OnDrawGizmos()
+	{
+        if (dataObject_ != null)
+        {
+            if (dataObject_.IsA("vtkDataSet"))
+            {
+                vtkDataSet dataSet = vtkDataSet.SafeDownCast(dataObject_);
+                Bounds b = dataSet.GetBounds();
+                //b.size = new Vector3(300, 145, 145);
+                Gizmos.matrix = transform.localToWorldMatrix;
+                Gizmos.DrawWireCube (b.center, b.size);
 
-    public void SetDataObject(vtkDataObject dataObject)
+            }
+
+        }
+	}
+	public void SetDataObject(vtkDataObject dataObject)
     {
         dataObject_ = dataObject;
+
+        if (dataObject_.IsA("vtkDataSet"))
+        {
+            vtkDataSet dataSet = vtkDataSet.SafeDownCast(dataObject_);
+
+
+        }
+
     }
 
     public void RefreshChildren()
