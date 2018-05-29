@@ -1,17 +1,17 @@
 ﻿<Properties StartupConfiguration="{EB9A728C-7939-3A00-1C86-C0182D8D3BAF}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/RandomPosition.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/vtkCUSTOM.cs">
     <Files>
       <File FileName="Assets/Scripts/DataLoader.cs" Line="65" Column="25" />
       <File FileName="Assets/Scripts/DataAlgorithm.cs" Line="55" Column="33" />
-      <File FileName="Assets/Scripts/VTK/vtkDataSet.cs" Line="272" Column="13" />
       <File FileName="Assets/Scripts/DataMeshRenderer.cs" Line="12" Column="41" />
       <File FileName="Assets/Scripts/DataSliceRenderer.cs" Line="131" Column="1" />
       <File FileName="Assets/DataSliceShader.shader" Line="61" Column="15" />
       <File FileName="Assets/Shaders/GlyphShader.shader" Line="74" Column="35" />
-      <File FileName="Assets/Scripts/vtkCUSTOM.cs" Line="137" Column="134" />
       <File FileName="Assets/Scripts/DataObject.cs" Line="14" Column="3" />
       <File FileName="Assets/Data.shader" Line="26" Column="13" />
+      <File FileName="Assets/Scripts/VTKData.cs" Line="134" Column="20" />
+      <File FileName="Assets/Scripts/vtkCUSTOM.cs" Line="5" Column="1" />
       <File FileName="Assets/Scripts/DataGlyphRenderer.cs" Line="111" Column="77" NotebookId="1" />
       <File FileName="Assets/Scripts/DataFactory.cs" Line="63" Column="6" NotebookId="1" />
       <File FileName="Assets/DataGlyphMaterial.shader" Line="84" Column="34" NotebookId="1" />
