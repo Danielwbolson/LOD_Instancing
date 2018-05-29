@@ -1,0 +1,15 @@
+﻿// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel Transparency
+#pragma kernel LOD
+
+RWStructuredBuffer<float4> Result;
+
+[numthreads(16,1,1)]
+void LOD(uint3 id : SV_DispatchThreadID) {
+
+}
+
+[numthreads(16,1,1)]
+void Transparency(uint3 id : SV_DispatchThreadID) {
+
+}
