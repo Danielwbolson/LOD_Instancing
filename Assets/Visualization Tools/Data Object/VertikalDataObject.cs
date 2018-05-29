@@ -13,9 +13,16 @@ public class VertikalDataObject : MonoBehaviour
     {
         _dataSet = dataSet;
     }
+    public vtkDataSet GetDataSet()
+    {
+        return _dataSet;
+    }
 
-      public void OnDrawGizmos()
-      {
+    public void OnDrawGizmos()
+    {
+
+
+
         if (_dataSet != null)
         {
             if (_dataSet.IsA("vtkDataSet"))
@@ -23,6 +30,7 @@ public class VertikalDataObject : MonoBehaviour
                 vtkDataSet dataSet = vtkDataSet.SafeDownCast(_dataSet);
                 Bounds b = dataSet.GetBounds();
                 //b.size = new Vector3(300, 145, 145);
+
                 Gizmos.matrix = transform.localToWorldMatrix;
                 Gizmos.DrawWireCube(b.center, b.size);
 
@@ -37,8 +45,8 @@ public class VertikalDataObject : MonoBehaviour
 
 //    public vtkDataObject dataObject_;
 
-//	public void OnDrawGizmos()
-//	{
+//  public void OnDrawGizmos()
+//  {
 //        if (dataObject_ != null)
 //        {
 //            if (dataObject_.IsA("vtkDataSet"))
@@ -52,8 +60,8 @@ public class VertikalDataObject : MonoBehaviour
 //            }
 
 //        }
-//	}
-//	public void SetDataObject(vtkDataObject dataObject)
+//  }
+//  public void SetDataObject(vtkDataObject dataObject)
 //    {
 //        dataObject_ = dataObject;
 
@@ -87,13 +95,13 @@ public class VertikalDataObject : MonoBehaviour
 //        print("Updating dataObject " + dataObject_);
 //        RefreshChildren();
 //    }
-//	void Start ()
-//	{
-	
-//	}
+//  void Start ()
+//  {
+
+//  }
 
 //    void Update() {
-        
+
 //    }
 //}
 

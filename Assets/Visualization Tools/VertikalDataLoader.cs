@@ -8,7 +8,7 @@ using UnityEditor;
 
 
 [CustomEditor(typeof(VertikalDataLoader))]
-public class ObjectBuilderEditor : Editor
+public class VertikalDataLoaderEditor : Editor
 {
     public override void OnInspectorGUI()
     {

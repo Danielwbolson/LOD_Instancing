@@ -1,17 +1,16 @@
 ﻿<Properties StartupConfiguration="{EB9A728C-7939-3A00-1C86-C0182D8D3BAF}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/DataFilterThreshold.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/VertikalCreateRenderer.cs">
     <Files>
-      <File FileName="Assets/Scripts/DataAlgorithm.cs" Line="48" Column="35" />
-      <File FileName="Assets/Scripts/DataMeshRenderer.cs" Line="12" Column="41" />
-      <File FileName="Assets/Scripts/DataSliceRenderer.cs" Line="131" Column="1" />
-      <File FileName="Assets/Shaders/GlyphShader.shader" Line="74" Column="35" />
-      <File FileName="Assets/Scripts/DataRenderer.cs" Line="1" Column="1" />
-      <File FileName="Assets/Visualization Tools/VertikalDataLoader.cs" Line="31" Column="29" />
-      <File FileName="Assets/Visualization Tools/VertikalDataObject.cs" Line="11" Column="5" />
+      <File FileName="Assets/Visualization Tools/VertikalDataLoader.cs" Line="7" Column="18" />
       <File FileName="Assets/3rd-Party/Vertikal/Scripts/vtkObject.cs" Line="15" Column="20" />
       <File FileName="Assets/Scripts/DataFilter.cs" Line="1" Column="3" />
-      <File FileName="Assets/Scripts/DataFilterThreshold.cs" Line="14" Column="34" />
+      <File FileName="Assets/Scripts/DataFilterThreshold.cs" Line="21" Column="8" />
+      <File FileName="Assets/Visualization Tools/Slice Renderer/VertikalDataSliceRenderer.cs" Line="97" Column="10" />
+      <File FileName="Assets/Visualization Tools/Data Object/VertikalDataObject.cs" Line="17" Column="6" />
+      <File FileName="Assets/Shaders/DataSliceShader.shader" Line="63" Column="15" />
+      <File FileName="Assets/VertikalCreateRenderer.cs" Line="25" Column="1" />
+      <File FileName="Assets/Scripts/DataSliceRenderer.cs" Line="69" Column="42" NotebookId="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
