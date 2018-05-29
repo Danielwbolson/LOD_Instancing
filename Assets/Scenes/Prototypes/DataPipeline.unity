@@ -1843,7 +1843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12cb56321fbe645be8ba3b4d0c091378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  filePath: example_data/VTK/brain.vti
+  filePath: example_data/VTK/local/brain.vti
 --- !u!1 &191715937
 GameObject:
   m_ObjectHideFlags: 0
