@@ -12,20 +12,15 @@ using VTK;
 public class DataMeshRenderer : DataRenderer {
 
     public Material dataMaterial;
-    public vtkDataSet dataSet = IntPtr.Zero;
+
     public int arrayId = 0; 
     public GameObject dataMeshPreFab;
 
-    [DllImport("kernel32.dll", EntryPoint = "CopyMemory", SetLastError = false)]
-    public static extern void CopyMemory(IntPtr dest, IntPtr src, uint count);
-    public int[] triangleIndices;
-
-
-        // Use this for initialization
+    // Use this for initialization
     void Start()
     {
     }
-    public void RefreshDataRenderer() {
+    public override void RefreshDataRenderer() {
 
         if (dataSet.IsVoid())
         {
