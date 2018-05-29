@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114652340314414636}
   - component: {fileID: 120741849253376346}
   m_Layer: 0
-  m_Name: DataObject
+  m_Name: VertikalDataObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,9 +52,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5002eec4d01741ffaefd3c592bc3941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 0}
-  scaleFactor: 1
-  shouldNormalize: 1
 --- !u!120 &120741849253376346
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -68,6 +65,7 @@ LineRenderer:
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 0}
   - {fileID: 2100000, guid: 84d1cb047966c2c4688793a6d21f0019, type: 2}
@@ -97,12 +95,15 @@ LineRenderer:
     widthCurve:
       serializedVersion: 2
       m_Curve:
-      - serializedVersion: 2
+      - serializedVersion: 3
         time: 0
         value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4

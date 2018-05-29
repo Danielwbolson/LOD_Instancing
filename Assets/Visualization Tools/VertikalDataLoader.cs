@@ -7,37 +7,50 @@ using System.IO;
 using UnityEditor;
 
 
-[CustomEditor(typeof(DataLoader))]
+[CustomEditor(typeof(VertikalDataLoader))]
 public class ObjectBuilderEditor : Editor
 {
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
 
-        DataLoader myScript = (DataLoader)target;
+        VertikalDataLoader myScript = (VertikalDataLoader)target;
         if (GUILayout.Button("Load Data"))
         {
-            myScript.FilePathChangeHandler();
+            myScript.LoadData();
         }
     }
 }
 
 
 
-public class DataLoader : DataAlgorithm {
-    
+public class VertikalDataLoader : MonoBehaviour {
 
-  
+    public GameObject _root;
+    public GameObject _dataObjectPrefab;
+    public string _filePath;
 
-    public void FilePathChangeHandler()
+    public void LoadData()
     {
-
-        string path = Application.streamingAssetsPath + "/" + filePath;
+        if (_dataObjectPrefab)
+        {
+            GameObject newData = Instantiate(_dataObjectPrefab);
+            newData.GetComponent<VertikalDataObject>().SetDataSet(LoadVTKDataSet());
+            if (_root)
+            {
+                newData.transform.SetParent(_root.transform,false);
+            }
+        }
+    }
+    protected vtkDataSet LoadVTKDataSet()
+    {
+    
+        string path = Application.streamingAssetsPath + "/" + _filePath;
         vtkXMLDataReader reader = IntPtr.Zero;
         if (!File.Exists(path))
         {
             print("File [" + path + "] does not exist");
-            return;
+            return IntPtr.Zero;
         }
 
         string ext = Path.GetExtension(path);
@@ -52,34 +65,22 @@ public class DataLoader : DataAlgorithm {
         foreach (var r in readers)
             if (r.CanReadFile(path) == 1)
             {
-                reader = r; break;
+                reader = r; 
+                break;
             }
 
 
-        algorithm_ = reader;
-        if(!reader.IsVoid()) {
+        vtkXMLDataReader algorithm_ = reader;
+        if (!reader.IsVoid())
+        {
             reader.SetFileName(path);
             algorithm_ = reader;
             print("Set file path " + path);
         }
-        RefreshAlgorithm();
+
+        algorithm_.Update();
+
+        return reader.GetOutputAsDataSet();
     }
-	
 
-	public string filePath;
-
-  
-	// Use this for initialization
-	void Start () {
-
-        vtkDataObject dataObject = GetDataObject();
-        print(dataObject);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-   
-
-	}
 }

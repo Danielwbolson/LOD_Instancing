@@ -1843,7 +1843,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12cb56321fbe645be8ba3b4d0c091378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  filePath: example_data/VTK/local/brain.vti
+  _root: {fileID: 0}
+  _dataObjectPrefab: {fileID: 1146214586725082, guid: c848b23aa04f34f4ab7f67f0fa2827ae,
+    type: 2}
+  _filePath: example_data/VTK/contour.vtp
 --- !u!1 &191715937
 GameObject:
   m_ObjectHideFlags: 0
@@ -8462,7 +8465,6 @@ MonoBehaviour:
   dataMaterial: {fileID: 0}
   arrayId: 0
   dataMeshPreFab: {fileID: 0}
-  triangleIndices: 
 --- !u!1 &1041730838
 GameObject:
   m_ObjectHideFlags: 0
