@@ -33,7 +33,7 @@ public class Instanced : RenderStrategy {
 
     public Instanced(GameObject p, GameObject o, Material mat, List<Vector3> poses, int total) : 
         base(p, o, mat, poses, total) {
-        _LODArgs = new uint[][4];
+        //_LODArgs = new uint[][4];
         LODArgsBuffer = new ComputeBuffer[4];
         _LODPositions = new List<Vector3>[4];
 
