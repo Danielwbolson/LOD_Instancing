@@ -26,7 +26,7 @@ public class Instanced : RenderStrategy {
     private float LOD3 = 100;
 
     private string[] _keywords = { "LOD0", "LOD1", "LOD2", "LOD3" };
-    private string _recentKeyword = "LOD0";
+    private string _recentKeyword;
 
     private List<uint>[] _LODArgs;
     private List<ObjInfo>[] _LODData;
@@ -102,7 +102,8 @@ public class Instanced : RenderStrategy {
 
         // Render based on LOD section
         for (int i = 0; i < _LODArgsBuffer.Length; i++) {
-            _objMat.DisableKeyword(_recentKeyword);
+            if (_recentKeyword != null)
+                _objMat.DisableKeyword(_recentKeyword);
             _objMat.EnableKeyword(_keywords[i]);
             _recentKeyword = _keywords[i];
             if (_LODArgsBuffer[i] != null)
