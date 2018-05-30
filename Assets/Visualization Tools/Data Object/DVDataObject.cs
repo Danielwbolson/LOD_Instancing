@@ -5,7 +5,7 @@ using System.Linq;
 
 using VTK;
 
-public class VertikalDataObject : MonoBehaviour
+public class DVDataObject : MonoBehaviour
 {
     protected vtkDataSet _dataSet;
     protected Bounds _bounds;

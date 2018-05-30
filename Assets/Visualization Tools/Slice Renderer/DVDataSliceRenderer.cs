@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System;
 using UnityEngine.UI;
 
-public class VertikalDataSliceRenderer: VertikalDataRenderer {
+public class DVDataSliceRenderer: DVDataRenderer {
 
 
 

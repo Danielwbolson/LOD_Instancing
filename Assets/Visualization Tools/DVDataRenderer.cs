@@ -1,10 +1,10 @@
 using UnityEngine;
 using System.Collections;
 
-public class VertikalDataRenderer : MonoBehaviour
+public class DVDataRenderer : MonoBehaviour
 {
-    public VertikalDataObject _dataObject = null;
-    private VertikalDataObject _cachedDataObject = null;
+    public DVDataObject _dataObject = null;
+    private DVDataObject _cachedDataObject = null;
     private bool _needsUpdate = false;
 
     protected void LockTransform()

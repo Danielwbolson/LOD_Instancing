@@ -2,27 +2,27 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class VertikalSampleStrategy : MonoBehaviour
+public class DVSampleStrategy : MonoBehaviour
 {
-    public struct VertikalSample
+    public struct DVSample
     {
         public Vector3 position;
     }
-    public void SetDataSet(VertikalDataObject dataObject)
+    public void SetDataSet(DVDataObject dataObject)
     {
         _dataObject = dataObject;
 
     }
-    protected VertikalDataObject _dataObject;
+    protected DVDataObject _dataObject;
 
-    protected VertikalSample[] _samples;
+    protected DVSample[] _samples;
 
     public int GetNumberOfSamples()
     {
         if (_samples == null) return 0;
         return _samples.Length;
     }
-    public VertikalSample[] GetSamples()
+    public DVSample[] GetSamples()
     {
         return _samples;
     }

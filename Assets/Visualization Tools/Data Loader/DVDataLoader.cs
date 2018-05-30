@@ -7,14 +7,14 @@ using System.IO;
 using UnityEditor;
 
 
-[CustomEditor(typeof(VertikalDataLoader))]
-public class VertikalDataLoaderEditor : Editor
+[CustomEditor(typeof(DVDataLoader))]
+public class DVDataLoaderEditor : Editor
 {
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
 
-        VertikalDataLoader myScript = (VertikalDataLoader)target;
+        DVDataLoader myScript = (DVDataLoader)target;
         if (GUILayout.Button("Load Data"))
         {
             myScript.LoadData();
@@ -24,7 +24,7 @@ public class VertikalDataLoaderEditor : Editor
 
 
 
-public class VertikalDataLoader : MonoBehaviour {
+public class DVDataLoader : MonoBehaviour {
 
     public GameObject _root;
     public GameObject _dataObjectPrefab;
@@ -35,7 +35,7 @@ public class VertikalDataLoader : MonoBehaviour {
         if (_dataObjectPrefab)
         {
             GameObject newData = Instantiate(_dataObjectPrefab);
-            newData.GetComponent<VertikalDataObject>().SetDataSet(LoadVTKDataSet());
+            newData.GetComponent<DVDataObject>().SetDataSet(LoadVTKDataSet());
             if (_root)
             {
                 newData.transform.SetParent(_root.transform,false);

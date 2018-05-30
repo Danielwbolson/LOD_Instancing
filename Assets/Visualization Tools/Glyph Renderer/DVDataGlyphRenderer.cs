@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class VertikalDataGlyphRenderer : VertikalDataRenderer {
+public class DVDataGlyphRenderer : DVDataRenderer {
 
-    public VertikalSampleStrategy _strategy;
+    public DVSampleStrategy _strategy;
 
 	// Use this for initialization
 	void Start () {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VertikalSampleStrategyRegular : VertikalSampleStrategy {
+public class DVSampleStrategyRegular : DVSampleStrategy {
     override public void Report()
     {
         print("A Regular Sampling Strategy");

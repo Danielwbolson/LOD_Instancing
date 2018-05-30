@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 23096090047262236}
   - component: {fileID: 114934702941839558}
   m_Layer: 0
-  m_Name: VertikalDataSliceRenderer
+  m_Name: DVDataSliceRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -546,7 +546,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dataObject: {fileID: 0}
-  arrayId: 0
+  _arrayId: 0
   _variableDisplayText: {fileID: 114913758236388088}
 --- !u!222 &222117172050182676
 CanvasRenderer:

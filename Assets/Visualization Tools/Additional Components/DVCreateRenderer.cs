@@ -5,14 +5,14 @@ using UnityEditor;
 
 
 
-[CustomEditor(typeof(VertikalCreateRenderer))]
-public class VertikalCreateRendererEditor : Editor
+[CustomEditor(typeof(DVCreateRenderer))]
+public class DVCreateRendererEditor : Editor
 {
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
 
-        VertikalCreateRenderer myScript = (VertikalCreateRenderer)target;
+        DVCreateRenderer myScript = (DVCreateRenderer)target;
         if (GUILayout.Button("Add Slice"))
         {
             myScript.AddNewDataSliceRenderer();
@@ -21,7 +21,7 @@ public class VertikalCreateRendererEditor : Editor
 }
 
 
-public class VertikalCreateRenderer : MonoBehaviour {
+public class DVCreateRenderer : MonoBehaviour {
 
     public GameObject _root;
     public GameObject _dataSlicePrefab;
@@ -37,8 +37,8 @@ public class VertikalCreateRenderer : MonoBehaviour {
         {
             GameObject dataSlice = Instantiate(_dataSlicePrefab);
 
-            dataSlice.GetComponent<VertikalDataSliceRenderer>()._dataObject = this.gameObject.GetComponent<VertikalDataObject>();
-            dataSlice.GetComponent<VertikalDataSliceRenderer>()._arrayId = _arrayID;
+            dataSlice.GetComponent<DVDataSliceRenderer>()._dataObject = this.gameObject.GetComponent<DVDataObject>();
+            dataSlice.GetComponent<DVDataSliceRenderer>()._arrayId = _arrayID;
             if (_root)
             {
                 dataSlice.transform.SetParent(_root.transform, false);

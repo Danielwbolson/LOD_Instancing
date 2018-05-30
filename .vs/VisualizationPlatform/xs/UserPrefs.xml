@@ -1,20 +1,28 @@
 ﻿<Properties StartupConfiguration="{EB9A728C-7939-3A00-1C86-C0182D8D3BAF}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Visualization Tools/Sampling Strategies/Random/VertikalSampleStrategyRandom.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Visualization Tools/DVDataRenderer.cs">
     <Files>
-      <File FileName="Assets/Visualization Tools/Data Object/VertikalDataObject.cs" Line="1" Column="1" />
-      <File FileName="Assets/Visualization Tools/Data Loader/VertikalDataLoader.cs" Line="1" Column="1" />
-      <File FileName="Assets/Visualization Tools/Slice Renderer/VertikalDataSliceRenderer.cs" Line="114" Column="29" />
-      <File FileName="Assets/Visualization Tools/Glyph Renderer/VertikalDataGlyphRenderer.cs" Line="17" Column="9" />
-      <File FileName="Assets/Visualization Tools/VertikalDataRenderer.cs" Line="15" Column="15" />
-      <File FileName="Assets/Visualization Tools/Additional Components/VertikalCreateRenderer.cs" Line="41" Column="73" />
-      <File FileName="Assets/Visualization Tools/Sampling Strategies/VertikalSampleStrategy.cs" Line="14" Column="1" />
-      <File FileName="Assets/Visualization Tools/Sampling Strategies/Random/VertikalSampleStrategyRandom.cs" Line="7" Column="13" />
+      <File FileName="Assets/_Scripts/ObjRenderer.cs" Line="1" Column="1" />
+      <File FileName="Assets/_Scripts/RenderStrategies/Instanced.cs" Line="1" Column="1" />
+      <File FileName="Assets/_Scripts/RenderStrategies/Instantiated.cs" Line="1" Column="1" />
+      <File FileName="Assets/Shaders/ComputeShaders/ComputeInstanced.compute" Line="15" Column="2" />
+      <File FileName="Assets/Shaders/DemoShader.shader" Line="1" Column="29" />
+      <File FileName="Assets/Visualization Tools/Additional Components/DVCreateRenderer.cs" Line="22" Column="1" />
+      <File FileName="Assets/Visualization Tools/Data Loader/DVDataLoader.cs" Line="8" Column="1" />
+      <File FileName="Assets/Visualization Tools/Data Object/DVDataObject.cs" Line="12" Column="5" />
+      <File FileName="Assets/Visualization Tools/Glyph Renderer/DVDataGlyphRenderer.cs" Line="27" Column="10" />
+      <File FileName="Assets/Visualization Tools/Sampling Strategies/Random/DVSampleStrategyRandom.cs" Line="1" Column="1" />
+      <File FileName="Assets/Visualization Tools/Sampling Strategies/Regular/DVSampleStrategyRegular.cs" Line="8" Column="45" />
+      <File FileName="Assets/Visualization Tools/Sampling Strategies/DVSampleStrategy.cs" Line="12" Column="6" />
+      <File FileName="Assets/Visualization Tools/Slice Renderer/DVDataSliceRenderer.cs" Line="29" Column="6" />
+      <File FileName="Assets/Visualization Tools/DVDataRenderer.cs" Line="28" Column="6" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/sethjohnson/NSF-Sculpting-Vis-Platform/unity/VisualizationPlatform/Assets/Visualization Tools/Glyph Renderer/VertikalDataGlyphRenderer.cs" relfile="Assets/Visualization Tools/Glyph Renderer/VertikalDataGlyphRenderer.cs" line="7" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
