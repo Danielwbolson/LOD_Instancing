@@ -14,10 +14,19 @@ public class ObjRenderer : MonoBehaviour {
     private List<Vector3> _objPositions;
     private RenderStrategy _renderStrategy;
 
+    /*
+     * CLASS DOCUMENTATION: ObjRenderer
+     * This class acts as a layer and user interface. It has a series of objects in its slice that move 
+     * with it, as well as giving the option to have the objects rendered in different forms:
+     *  Instantiated Gameobects
+     *  GPU Instanced
+     */
+
     // Use this for initialization
     void Start () {
         InitializePositions();
 
+        // Initialize our new RenderStrategy
         _renderStrategy = new Instantiated(this.gameObject, _obj, _objMat, _objPositions, _numObjects);
         _instancedRendering = false;
         _cachedInstanceRendering = _instancedRendering;
@@ -25,10 +34,12 @@ public class ObjRenderer : MonoBehaviour {
     
     // Update is called once per frame
     void Update () {
+        // If the user changes what kind of rendering they want, update
         if (_cachedInstanceRendering != _instancedRendering) {
             ToggleInstancedRendering();
         }
 
+        // Update our objects based on our render strategy
         _renderStrategy.UpdateObjects();
     }
 
@@ -46,6 +57,10 @@ public class ObjRenderer : MonoBehaviour {
         }
     }
 
+    /*
+     * Based on user input, decide whether to render objects using GPU Instancing
+     * or Gameobject Instantiation
+     */
     void ToggleInstancedRendering() {
         List<Vector3> newObjPositions = _renderStrategy.GetPositions();
 
@@ -59,6 +74,9 @@ public class ObjRenderer : MonoBehaviour {
         _cachedInstanceRendering = _instancedRendering;
     }
 
+    /*
+     * Call the renderStrategy destroy function when we disabled
+     */
     void OnDisable() {
         if (_instancedRendering) {
             _renderStrategy.Destroy();

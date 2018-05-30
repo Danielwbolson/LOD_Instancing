@@ -29,7 +29,6 @@
         };
 
 #ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
-        StructuredBuffer<ObjInfo> dataBuffer;
         StructuredBuffer<ObjInfo> LOD0Buffer;
         StructuredBuffer<ObjInfo> LOD1Buffer;
         StructuredBuffer<ObjInfo> LOD2Buffer;

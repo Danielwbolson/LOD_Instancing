@@ -11,6 +11,12 @@ public class RenderStrategy {
     protected List<Vector3> _objPositions;
     protected int TOTALOBJECTS;
 
+    /*
+     * CLASS DOCUMENTATION: RenderStrategy
+     * This is a parent class utilizing the Strategy pattern for different rendering techniques.
+     * This class stores relevent information that any of its strategies could use, while also
+     * allowing them to share, and send data further up where is is more accessibly by the user
+     */
     public RenderStrategy(GameObject p, GameObject o, Material mat, List<Vector3> poses, int total) {
         _parent = p;
         _obj = o;
