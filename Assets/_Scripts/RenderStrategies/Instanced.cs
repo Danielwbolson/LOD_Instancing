@@ -106,6 +106,7 @@ public class Instanced : RenderStrategy {
                 _objMat.DisableKeyword(_recentKeyword);
             _objMat.EnableKeyword(_keywords[i]);
             _recentKeyword = _keywords[i];
+
             if (_LODArgsBuffer[i] != null)
                 Graphics.DrawMeshInstancedIndirect(_objMeshArray[i], subMeshIndex, _objMat, new Bounds(Vector3.zero, new Vector3(100.0f, 100.0f, 100.0f)), _LODArgsBuffer[i]);
         }
@@ -139,6 +140,7 @@ public class Instanced : RenderStrategy {
             float dist = Vector3.Distance(data[i].position, _cachedCamPosition);
             float scal = data[i].scale.magnitude;
 
+            // Based on the distance from the camera and an objects scale, assign it to a different LOD group
             if (1 / dist * scal < 0.00967f && 1 / dist * scal > 0.001f) {
                 data[i].color = Color.white;
                 _LODData[3].Add(data[i]);
