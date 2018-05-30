@@ -13,7 +13,8 @@
         CGPROGRAM
         // Physically based Standard lighting model
 #pragma surface surf Standard addshadow fullforwardshadows
-#pragma multi_compile_instancing LOD0 LOD1 LOD2 LOD3
+#pragma multi_compile_instancing
+#pragma multi_compile LOD0 LOD1 LOD2 LOD3
 #pragma instancing_options procedural:setup
 
         sampler2D _MainTex;
@@ -44,34 +45,31 @@
         void setup() {
 #ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
 # ifdef LOD0
-            pos = LOD0Buffer[unity_InstnceID].position;
+            pos = LOD0Buffer[unity_InstanceID].position;
             unity_ObjectToWorld._11_21_31_41 = float4(pos.w, 0, 0, 0) *
                 LOD0Buffer[unity_InstanceID].scale[0];
             unity_ObjectToWorld._12_22_32_42 = float4(0, pos.w, 0, 0) *
                 LOD0Buffer[unity_InstanceID].scale[1];
             unity_ObjectToWorld._13_23_33_43 = float4(0, 0, pos.w, 0) *
                 LOD0Buffer[unity_InstanceID].scale[2];
-# endif
-# ifdef LOD1
-            pos = LOD1Buffer[unity_InstnceID].position;
+# elif LOD1
+            pos = LOD1Buffer[unity_InstanceID].position;
             unity_ObjectToWorld._11_21_31_41 = float4(pos.w, 0, 0, 0) *
                 LOD1Buffer[unity_InstanceID].scale[0];
             unity_ObjectToWorld._12_22_32_42 = float4(0, pos.w, 0, 0) *
                 LOD1Buffer[unity_InstanceID].scale[1];
             unity_ObjectToWorld._13_23_33_43 = float4(0, 0, pos.w, 0) *
                 LOD1Buffer[unity_InstanceID].scale[2];
-# endif
-# ifdef LOD2
-            pos = LOD2Buffer[unity_InstnceID].position;
+# elif LOD2
+            pos = LOD2Buffer[unity_InstanceID].position;
             unity_ObjectToWorld._11_21_31_41 = float4(pos.w, 0, 0, 0) *
                 LOD2Buffer[unity_InstanceID].scale[0];
             unity_ObjectToWorld._12_22_32_42 = float4(0, pos.w, 0, 0) *
                 LOD2Buffer[unity_InstanceID].scale[1];
             unity_ObjectToWorld._13_23_33_43 = float4(0, 0, pos.w, 0) *
                 LOD2Buffer[unity_InstanceID].scale[2];
-# endif
-# ifdef LOD3
-            pos = LOD3Buffer[unity_InstnceID].position;
+# elif LOD3
+            pos = LOD3Buffer[unity_InstanceID].position;
             unity_ObjectToWorld._11_21_31_41 = float4(pos.w, 0, 0, 0) *
                 LOD3Buffer[unity_InstanceID].scale[0];
             unity_ObjectToWorld._12_22_32_42 = float4(0, pos.w, 0, 0) *
@@ -98,16 +96,13 @@
 # ifdef LOD0
             float4 col = LOD0Buffer[unity_InstanceID].color;
             c = tex2D(_MainTex, IN.uv_MainTex) * col;
-# endif
-# ifdef LOD1
+# elif LOD1
             float4 col = LOD1Buffer[unity_InstanceID].color;
             c = tex2D(_MainTex, IN.uv_MainTex) * col;
-# endif
-# ifdef LOD2
+# elif LOD2
             float4 col = LOD2Buffer[unity_InstanceID].color;
             c = tex2D(_MainTex, IN.uv_MainTex) * col;
-# endif
-# ifdef LOD3
+# elif LOD3
             float4 col = LOD3Buffer[unity_InstanceID].color;
             c = tex2D(_MainTex, IN.uv_MainTex) * col;
 # endif
