@@ -8,10 +8,17 @@ using VTK;
 public class VertikalDataObject : MonoBehaviour
 {
     protected vtkDataSet _dataSet;
+    protected Bounds _bounds;
 
+    public Bounds GetBounds()
+    {
+        if (_bounds == null) _bounds = GetDataSet().GetBounds();
+        return _bounds;
+    }
     public void SetDataSet(vtkDataSet dataSet)
     {
         _dataSet = dataSet;
+        _bounds = GetDataSet().GetBounds();
     }
     public vtkDataSet GetDataSet()
     {

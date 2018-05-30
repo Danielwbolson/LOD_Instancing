@@ -4,17 +4,17 @@ using UnityEngine;
 using VTK;
 using System.Runtime.InteropServices;
 using System;
+using UnityEngine.UI;
 
-public class VertikalDataSliceRenderer: MonoBehaviour {
+public class VertikalDataSliceRenderer: VertikalDataRenderer {
 
 
-    public VertikalDataObject _dataObject = null;
 
-    private VertikalDataObject _cachedDataObject = null;
-
-    public int arrayId = 0;
+    public int _arrayId = 0;
     private int _cachedArrayId = 0;
+
     Bounds bounds;
+    public Text _variableDisplayText;
 
     private Vector3Int GetImageDimensions(vtkImageData imageData)
     {
@@ -35,20 +35,24 @@ public class VertikalDataSliceRenderer: MonoBehaviour {
     private Texture3D _volumeBuffer;
 
 
-    void RefreshDataSet()
+    override protected void RefreshDataSet()
     {
         print("Slice Renderer pointed to a " + _dataObject.GetDataSet().GetClassName() + " with " + _dataObject.GetDataSet().GetNumberOfPoints().ToString() + " points and " + _dataObject.GetDataSet().GetNumberOfCells().ToString() + " cells.");
+
         vtkDataSet dataSet = _dataObject.GetDataSet();
 
+        if (_variableDisplayText)
+            _variableDisplayText.text = _dataObject.GetDataSet().GetPointData().GetArrayName(_arrayId);
         vtkPointData pointData = dataSet.GetPointData();
+
         bounds = dataSet.GetBounds();
         //bounds.size = new Vector3(300, 145, 145);
 
         ComputeBuffer dataBuffer = null;
-        if (pointData.GetNumberOfArrays() > arrayId)
+        if (pointData.GetNumberOfArrays() > _arrayId)
         {
 
-            vtkDataArray dataArray = pointData.GetArray(arrayId);
+            vtkDataArray dataArray = pointData.GetArray(_arrayId);
             long numberOfTuples = dataArray.GetNumberOfTuples();
 
             if (dataArray.GetNumberOfComponents() > 1)
@@ -98,23 +102,16 @@ public class VertikalDataSliceRenderer: MonoBehaviour {
             _volumeBuffer.Apply();
         }
         GetComponent<MeshRenderer>().material.SetTexture("_DataVolume", _volumeBuffer);
-        _cachedDataObject = _dataObject;
-        _cachedArrayId = arrayId;
+        _cachedArrayId = _arrayId;
 
     }
-	// Update is called once per frame
-	void Update () {
 
-        if (!_dataObject)
-            return;
-        if (_cachedDataObject != _dataObject)
-        {
-            RefreshDataSet();
-        }
+    override protected void UpdateDataRenderer()
+    {
 
-        if (_cachedArrayId != arrayId)
+        if (_cachedArrayId != _arrayId)
         {
-            RefreshDataSet();
+            RequestUpdate();
         }
 
         Bounds bounds = _dataObject.GetDataSet().GetBounds();
@@ -131,18 +128,19 @@ public class VertikalDataSliceRenderer: MonoBehaviour {
         GetComponent<MeshRenderer>().material.SetMatrix("_ModelMatrix", _dataObject.transform.localToWorldMatrix);
 
         GetComponent<MeshRenderer>().material.SetMatrix("_ModelMatrixInv", _dataObject.transform.worldToLocalMatrix);
-       
+
         GetComponent<MeshRenderer>().material.SetMatrix("_DataMatrix", dataMatrix);
 
         GetComponent<MeshRenderer>().material.SetMatrix("_DataMatrixInv", dataMatrix.inverse);
-       
+
         if (_dataObject.GetDataSet().IsA("vtkImageData"))
 
         {
             Vector3Int d = GetImageDimensions(vtkImageData.SafeDownCast(_dataObject.GetDataSet()));
-            GetComponent<MeshRenderer>().material.SetVector("_Dimensions",new Vector3(d.x,d.y,d.z));
+            GetComponent<MeshRenderer>().material.SetVector("_Dimensions", new Vector3(d.x, d.y, d.z));
 
         }
 
     }
+
 }

@@ -38,7 +38,7 @@ public class VertikalCreateRenderer : MonoBehaviour {
             GameObject dataSlice = Instantiate(_dataSlicePrefab);
 
             dataSlice.GetComponent<VertikalDataSliceRenderer>()._dataObject = this.gameObject.GetComponent<VertikalDataObject>();
-            dataSlice.GetComponent<VertikalDataSliceRenderer>().arrayId = _arrayID;
+            dataSlice.GetComponent<VertikalDataSliceRenderer>()._arrayId = _arrayID;
             if (_root)
             {
                 dataSlice.transform.SetParent(_root.transform, false);

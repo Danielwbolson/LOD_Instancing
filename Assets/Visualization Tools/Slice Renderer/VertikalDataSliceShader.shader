@@ -9,12 +9,14 @@
 
 	}
 	SubShader {
-		Tags { "RenderType"="Opaque" }
+        Tags { "RenderType"="Opaque" }    
+		//Tags { "Queue"="Transparent" "RenderType"="Transparent" }
 		LOD 200
-
+        //Blend SrcAlpha OneMinusSrcAlpha
+        //ZWrite Off
 		CGPROGRAM
 		// Physically based Standard lighting model, and enable shadows on all light types
-		#pragma surface surf Standard fullforwardshadows
+		#pragma surface surf Standard fullforwardshadows //alpha
 
 		// Use shader model 3.0 target, to get nicer looking lighting
 		#pragma target 3.0
@@ -57,7 +59,6 @@
             float3 textureSpace = (modelSpace.xyz+0.5);
 			float val = tex3D (_DataVolume, textureSpace);
             val = map(val, _DataMin, _DataMax,0,1);
-            //if (val > 1 || val < 0 ) discard;
             fixed4 c = float4(1,1,1,1)*tex2D(_MainTex,float2(val,0.5));
             c.a = 1;
             //c.rgb = (textureSpace.xyz);
@@ -67,7 +68,10 @@
 			// Metallic and smoothness come from slider variables
 			o.Metallic = _Metallic;
 			o.Smoothness = _Glossiness;
+
 			o.Alpha = c.a;
+            if (val >= 1 || val <= 0 ) discard;
+
 		}
 		ENDCG
 	}
