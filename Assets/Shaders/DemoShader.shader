@@ -91,13 +91,28 @@
 
         half _Glossiness;
         half _Metallic;
+        fixed4 c;
 
         void surf(Input IN, inout SurfaceOutputStandard o) {
 #ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
-            float4 col = dataBuffer[unity_InstanceID].color;
-            fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * col;
+# ifdef LOD0
+            float4 col = LOD0Buffer[unity_InstanceID].color;
+            c = tex2D(_MainTex, IN.uv_MainTex) * col;
+# endif
+# ifdef LOD1
+            float4 col = LOD1Buffer[unity_InstanceID].color;
+            c = tex2D(_MainTex, IN.uv_MainTex) * col;
+# endif
+# ifdef LOD2
+            float4 col = LOD2Buffer[unity_InstanceID].color;
+            c = tex2D(_MainTex, IN.uv_MainTex) * col;
+# endif
+# ifdef LOD3
+            float4 col = LOD3Buffer[unity_InstanceID].color;
+            c = tex2D(_MainTex, IN.uv_MainTex) * col;
+# endif
 #else
-            fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * color;
+            c = tex2D(_MainTex, IN.uv_MainTex) * color;
 #endif
             o.Albedo = c.rgb;
             o.Metallic = _Metallic;

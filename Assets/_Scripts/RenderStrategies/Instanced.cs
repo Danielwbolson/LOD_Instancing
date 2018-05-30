@@ -54,6 +54,11 @@ public class Instanced : RenderStrategy {
         _LODArgsBuffer = new ComputeBuffer[4];
         _LODData = new List<ObjInfo>[4];
 
+        // Disable all keywords at the beginning
+        for (int i = 0; i < _keywords.Length; i++) {
+            _objMat.DisableKeyword(_keywords[i]);
+        }
+
         // Each list inside our _LODArgs is a 5 long, unisigned int array that holds arguments for
         // our draw call
         for (int i = 0; i < 4; i++) {
@@ -104,11 +109,13 @@ public class Instanced : RenderStrategy {
         for (int i = 0; i < _LODArgsBuffer.Length; i++) {
             if (_recentKeyword != null)
                 _objMat.DisableKeyword(_recentKeyword);
-            _objMat.EnableKeyword(_keywords[i]);
-            _recentKeyword = _keywords[i];
 
-            if (_LODArgsBuffer[i] != null)
+            if (_LODBuffers[i] != null) {
+                _objMat.EnableKeyword(_keywords[i]);
+                _recentKeyword = _keywords[i];
+
                 Graphics.DrawMeshInstancedIndirect(_objMeshArray[i], subMeshIndex, _objMat, new Bounds(Vector3.zero, new Vector3(100.0f, 100.0f, 100.0f)), _LODArgsBuffer[i]);
+            }
         }
     }
 
