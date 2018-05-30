@@ -239,8 +239,13 @@ public class Instanced : RenderStrategy {
                 _LODArgsBuffer[i].Release();
             }
             _LODArgsBuffer[i] = null;
+
+            if (_LODBuffers[i] != null)
+                _LODBuffers[i].Release();
+            _LODBuffers[i] = null;
         }
         _LODArgsBuffer = null;
+        _LODBuffers = null;
     }
 }
  
