@@ -6,81 +6,84 @@ using System;
 using System.IO;
 using UnityEditor;
 
-
-[CustomEditor(typeof(DVDataLoader))]
-public class DVDataLoaderEditor : Editor
+namespace DV
 {
-    public override void OnInspectorGUI()
+    [CustomEditor(typeof(DVDataLoader))]
+    public class DVDataLoaderEditor : Editor
     {
-        DrawDefaultInspector();
-
-        DVDataLoader myScript = (DVDataLoader)target;
-        if (GUILayout.Button("Load Data"))
+        public override void OnInspectorGUI()
         {
-            myScript.LoadData();
-        }
-    }
-}
+            DrawDefaultInspector();
 
-
-
-public class DVDataLoader : MonoBehaviour {
-
-    public GameObject _root;
-    public GameObject _dataObjectPrefab;
-    public string _filePath;
-
-    public void LoadData()
-    {
-        if (_dataObjectPrefab)
-        {
-            GameObject newData = Instantiate(_dataObjectPrefab);
-            newData.GetComponent<DVDataObject>().SetDataSet(LoadVTKDataSet());
-            if (_root)
+            DVDataLoader myScript = (DVDataLoader)target;
+            if (GUILayout.Button("Load Data"))
             {
-                newData.transform.SetParent(_root.transform,false);
+                myScript.LoadData();
             }
         }
     }
-    protected vtkDataSet LoadVTKDataSet()
+
+
+
+    public class DVDataLoader : MonoBehaviour
     {
-    
-        string path = Application.streamingAssetsPath + "/" + _filePath;
-        vtkXMLDataReader reader = IntPtr.Zero;
-        if (!File.Exists(path))
+
+        public GameObject _root;
+        public GameObject _dataObjectPrefab;
+        public string _filePath;
+
+        public void LoadData()
         {
-            print("File [" + path + "] does not exist");
-            return IntPtr.Zero;
+            if (_dataObjectPrefab)
+            {
+                GameObject newData = Instantiate(_dataObjectPrefab);
+                newData.GetComponent<DVDataObject>().SetDataSet(LoadVTKDataSet());
+                if (_root)
+                {
+                    newData.transform.SetParent(_root.transform, false);
+                }
+            }
         }
+        protected vtkDataSet LoadVTKDataSet()
+        {
 
-        string ext = Path.GetExtension(path);
+            string path = Application.streamingAssetsPath + "/" + _filePath;
+            vtkXMLDataReader reader = IntPtr.Zero;
+            if (!File.Exists(path))
+            {
+                print("File [" + path + "] does not exist");
+                return IntPtr.Zero;
+            }
 
-        vtkXMLDataReader[] readers = {
+            string ext = Path.GetExtension(path);
+
+            vtkXMLDataReader[] readers = {
             vtkXMLImageDataReader.New(),
             vtkXMLPolyDataReader.New(),
             vtkXMLStructuredGridReader.New(),
             vtkXMLUnstructuredGridReader.New()
         };
 
-        foreach (var r in readers)
-            if (r.CanReadFile(path) == 1)
+            foreach (var r in readers)
+                if (r.CanReadFile(path) == 1)
+                {
+                    reader = r;
+                    break;
+                }
+
+
+            vtkXMLDataReader algorithm_ = reader;
+            if (!reader.IsVoid())
             {
-                reader = r; 
-                break;
+                reader.SetFileName(path);
+                algorithm_ = reader;
+                print("Set file path " + path);
             }
 
+            algorithm_.Update();
 
-        vtkXMLDataReader algorithm_ = reader;
-        if (!reader.IsVoid())
-        {
-            reader.SetFileName(path);
-            algorithm_ = reader;
-            print("Set file path " + path);
+            return reader.GetOutputAsDataSet();
         }
 
-        algorithm_.Update();
-
-        return reader.GetOutputAsDataSet();
     }
-
 }

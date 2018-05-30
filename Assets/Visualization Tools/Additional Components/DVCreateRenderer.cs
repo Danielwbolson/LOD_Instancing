@@ -5,51 +5,57 @@ using UnityEditor;
 
 
 
-[CustomEditor(typeof(DVCreateRenderer))]
-public class DVCreateRendererEditor : Editor
+namespace DV
 {
-    public override void OnInspectorGUI()
+    [CustomEditor(typeof(DVCreateRenderer))]
+    public class DVCreateRendererEditor : Editor
     {
-        DrawDefaultInspector();
-
-        DVCreateRenderer myScript = (DVCreateRenderer)target;
-        if (GUILayout.Button("Add Slice"))
+        public override void OnInspectorGUI()
         {
-            myScript.AddNewDataSliceRenderer();
-        }
-    }
-}
+            DrawDefaultInspector();
 
-
-public class DVCreateRenderer : MonoBehaviour {
-
-    public GameObject _root;
-    public GameObject _dataSlicePrefab;
-    public int _arrayID;
-	// Use this for initialization
-	void Start () {
-		
-	}
-
-    public void AddNewDataSliceRenderer()
-    {
-        if (_dataSlicePrefab)
-        {
-            GameObject dataSlice = Instantiate(_dataSlicePrefab);
-
-            dataSlice.GetComponent<DVDataSliceRenderer>()._dataObject = this.gameObject.GetComponent<DVDataObject>();
-            dataSlice.GetComponent<DVDataSliceRenderer>()._arrayId = _arrayID;
-            if (_root)
+            DVCreateRenderer myScript = (DVCreateRenderer)target;
+            if (GUILayout.Button("Add Slice"))
             {
-                dataSlice.transform.SetParent(_root.transform, false);
-
+                myScript.AddNewDataSliceRenderer();
             }
-            print(gameObject.transform.position);
-            dataSlice.transform.position = gameObject.transform.position;
         }
     }
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+
+    public class DVCreateRenderer : MonoBehaviour
+    {
+
+        public GameObject _root;
+        public GameObject _dataSlicePrefab;
+        public int _arrayID;
+        // Use this for initialization
+        void Start()
+        {
+
+        }
+
+        public void AddNewDataSliceRenderer()
+        {
+            if (_dataSlicePrefab)
+            {
+                GameObject dataSlice = Instantiate(_dataSlicePrefab);
+
+                dataSlice.GetComponent<DVDataSliceRenderer>()._dataObject = this.gameObject.GetComponent<DVDataObject>();
+                dataSlice.GetComponent<DVDataSliceRenderer>()._arrayId = _arrayID;
+                if (_root)
+                {
+                    dataSlice.transform.SetParent(_root.transform, false);
+
+                }
+                print(gameObject.transform.position);
+                dataSlice.transform.position = gameObject.transform.position;
+            }
+        }
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
+    }
 }
