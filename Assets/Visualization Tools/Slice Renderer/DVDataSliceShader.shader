@@ -23,13 +23,13 @@
         float _DataMin;
         float _DataMax;
         sampler3D _DataVolume;
-        float4x4 _ModelMatrix;
-        float4x4 _ModelMatrixInv;
-        float4x4 _DataMatrix;
-        float4x4 _DataMatrixInv;
+        float4x4 _DataModelMatrix;
+        float4x4 _DataModelMatrixInv;
+        float4x4 _DataBoundsMatrix;
+        float4x4 _DataBoundsMatrixInv;
 		sampler2D _MainTex;
         
-        float3 _Dimensions;
+        float3 _DataImageDimensions;
 		struct Input {
 			float2 uv_MainTex;
             float3 worldPos;
@@ -55,7 +55,7 @@
 		void surf (Input IN, inout SurfaceOutputStandard o) {
 			// Albedo comes from a texture tinted by color
             float4 worldSpace = float4(IN.worldPos,1);
-            float4 modelSpace = mul(mul(_DataMatrixInv,_ModelMatrixInv),worldSpace);
+            float4 modelSpace = mul(mul(_DataBoundsMatrixInv,_DataModelMatrixInv),worldSpace);
             float3 textureSpace = (modelSpace.xyz+0.5);
 			float val = tex3D (_DataVolume, textureSpace);
             val = map(val, _DataMin, _DataMax,0,1);
