@@ -48,22 +48,8 @@ namespace DV
             {
                 RequestUpdate();
             }
-          
-            GetComponent<MeshRenderer>().material.SetMatrix("_DataModelMatrix", GetData().transform.localToWorldMatrix);
+            GetComponent<MeshRenderer>().material.SetInt("_ArrayID", _arrayId);
 
-            GetComponent<MeshRenderer>().material.SetMatrix("_DataModelMatrixInv", GetData().transform.worldToLocalMatrix);
-
-            GetComponent<MeshRenderer>().material.SetMatrix("_DataBoundsMatrix", GetData().GetBoundsMatrix());
-
-            GetComponent<MeshRenderer>().material.SetMatrix("_DataBoundsMatrixInv", GetData().GetBoundsMatrix().inverse);
-            GetComponent<MeshRenderer>().material.SetFloat("_DataMin",(float)GetData().GetRangeOfPointArrays(_arrayId,0)[0]);
-            GetComponent<MeshRenderer>().material.SetFloat("_DataMax",(float)GetData().GetRangeOfPointArrays(_arrayId,0)[1]);
-
-            if (GetData().GetDataSet().IsA("vtkImageData")) {
-                GetComponent<MeshRenderer>().material.SetVector("_DataImageDimensions", GetData().GetImageDataDimensions());
-                GetComponent<MeshRenderer>().material.SetTexture("_DataVolume", GetData().GetImageDataTexture(_arrayId));
-                
-            }
 
         }
 

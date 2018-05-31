@@ -152,11 +152,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114465786258941990, guid: c1797d4d7de66441285b3e13a836e040,
-        type: 2}
-      propertyPath: _filePath
-      value: example_data/VTK/wavelet.vti
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c1797d4d7de66441285b3e13a836e040, type: 2}
   m_IsPrefabParent: 0
