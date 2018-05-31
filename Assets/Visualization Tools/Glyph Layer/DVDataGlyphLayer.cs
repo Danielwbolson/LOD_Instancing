@@ -5,7 +5,7 @@ using UnityEditor;
 
 namespace DV
 {
-    public class DVDataGlyphRenderer : DVDataRenderer
+    public class DVDataGlyphLayer : DVDataLayer
     {
 
         public DVSampleStrategy _strategy;

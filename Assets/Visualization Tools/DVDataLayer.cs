@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace DV
 {
-    public class DVDataRenderer : MonoBehaviour
+    public class DVDataLayer : MonoBehaviour
     {
         public DVDataObject _dataObject = null;
         private DVDataObject _cachedDataObject = null;
@@ -39,7 +39,7 @@ namespace DV
         virtual protected void RefreshDataSet() { }
 
 
-        virtual protected void UpdateDataRenderer() { }
+        virtual protected void UpdateDataLayer() { }
 
         // Use this for initialization
         void Start() { }
@@ -57,7 +57,7 @@ namespace DV
                 _refreshDataSet();
 
 
-            UpdateDataRenderer();
+            UpdateDataLayer();
         }
     }
 }

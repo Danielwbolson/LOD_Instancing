@@ -56,9 +56,9 @@ GameObject:
   - component: {fileID: 4596987200027734}
   - component: {fileID: 33315240224532088}
   - component: {fileID: 23096090047262236}
-  - component: {fileID: 114934702941839558}
+  - component: {fileID: 114378150912179114}
   m_Layer: 0
-  m_Name: DVDataSliceRenderer
+  m_Name: DVDataSliceLayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -464,6 +464,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114378150912179114
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1186870003355656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd519ab7355854622888728e53f12667, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dataObject: {fileID: 0}
+  _arrayId: 0
+  _variableDisplayText: {fileID: 114913758236388088}
 --- !u!114 &114385989783311782
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -534,20 +548,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: New Text
---- !u!114 &114934702941839558
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1186870003355656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2c3e873fa19a434883b1ef56ccbb635, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dataObject: {fileID: 0}
-  _arrayId: 0
-  _variableDisplayText: {fileID: 114913758236388088}
 --- !u!222 &222117172050182676
 CanvasRenderer:
   m_ObjectHideFlags: 1

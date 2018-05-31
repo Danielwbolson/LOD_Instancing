@@ -7,23 +7,23 @@ using UnityEditor;
 
 namespace DV
 {
-    [CustomEditor(typeof(DVCreateRenderer))]
-    public class DVCreateRendererEditor : Editor
+    [CustomEditor(typeof(DVCreateLayer))]
+    public class DVCreateLayerEditor : Editor
     {
         public override void OnInspectorGUI()
         {
             DrawDefaultInspector();
 
-            DVCreateRenderer myScript = (DVCreateRenderer)target;
+            DVCreateLayer myScript = (DVCreateLayer)target;
             if (GUILayout.Button("Add Slice"))
             {
-                myScript.AddNewDataSliceRenderer();
+                myScript.AddNewDataSliceLayer();
             }
         }
     }
 
 
-    public class DVCreateRenderer : MonoBehaviour
+    public class DVCreateLayer : MonoBehaviour
     {
 
         public GameObject _root;
@@ -35,14 +35,14 @@ namespace DV
 
         }
 
-        public void AddNewDataSliceRenderer()
+        public void AddNewDataSliceLayer()
         {
             if (_dataSlicePrefab)
             {
                 GameObject dataSlice = Instantiate(_dataSlicePrefab);
 
-                dataSlice.GetComponent<DVDataSliceRenderer>()._dataObject = this.gameObject.GetComponent<DVDataObject>();
-                dataSlice.GetComponent<DVDataSliceRenderer>()._arrayId = _arrayID;
+                dataSlice.GetComponent<DVDataSliceLayer>()._dataObject = this.gameObject.GetComponent<DVDataObject>();
+                dataSlice.GetComponent<DVDataSliceLayer>()._arrayId = _arrayID;
                 if (_root)
                 {
                     dataSlice.transform.SetParent(_root.transform, false);

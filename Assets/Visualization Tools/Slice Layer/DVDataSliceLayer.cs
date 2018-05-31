@@ -9,7 +9,7 @@ using UnityEngine.UI;
 namespace DV
 {
 
-    public class DVDataSliceRenderer : DVDataRenderer
+    public class DVDataSliceLayer : DVDataLayer
     {
 
 
@@ -25,11 +25,10 @@ namespace DV
         {
 
 
-
             if (_dataObject.GetNumberOfPointArrays() <= _arrayId)
                 _arrayId = _dataObject.GetNumberOfPointArrays() - 1;
             
-            print("Slice Renderer pointed to a " + _dataObject.GetDataSet().GetClassName() + " with " + _dataObject.GetDataSet().GetNumberOfPoints().ToString() + " points and " + _dataObject.GetDataSet().GetNumberOfCells().ToString() + " cells.");
+            print("Slice Layer pointed to a " + _dataObject.GetDataSet().GetClassName() + " with " + _dataObject.GetDataSet().GetNumberOfPoints().ToString() + " points and " + _dataObject.GetDataSet().GetNumberOfCells().ToString() + " cells.");
 
 
             if (_variableDisplayText)
@@ -40,7 +39,7 @@ namespace DV
 
         }
 
-        override protected void UpdateDataRenderer()
+        override protected void UpdateDataLayer()
         {
 
             if (_cachedArrayId != _arrayId)
@@ -59,7 +58,7 @@ namespace DV
             if (_dataObject.GetDataSet().IsA("vtkImageData")) {
                 GetComponent<MeshRenderer>().material.SetVector("_DataImageDimensions", _dataObject.GetImageDataDimensions());
                 GetComponent<MeshRenderer>().material.SetTexture("_DataVolume", _dataObject.GetImageDataTexture(_arrayId));
-
+                
             }
 
         }
