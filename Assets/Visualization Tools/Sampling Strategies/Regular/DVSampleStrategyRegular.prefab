@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4914981999599470}
   - component: {fileID: 114349724191935522}
   m_Layer: 0
-  m_Name: SampleStrategyRegular
+  m_Name: DVSampleStrategyRegular
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
