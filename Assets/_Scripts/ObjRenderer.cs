@@ -7,6 +7,7 @@ public class ObjRenderer : MonoBehaviour {
     public GameObject _obj;
     public Material _objMat;
     public int _numObjects;
+    private int _cachedNumObjects;
 
     public bool _instancedRendering;
     private bool _cachedInstanceRendering;
@@ -30,6 +31,7 @@ public class ObjRenderer : MonoBehaviour {
         _renderStrategy = new Instantiated(this.gameObject, _obj, _objMat, _objPositions, _numObjects);
         _instancedRendering = false;
         _cachedInstanceRendering = _instancedRendering;
+        _cachedNumObjects = _numObjects;
     }
     
     // Update is called once per frame
@@ -37,6 +39,13 @@ public class ObjRenderer : MonoBehaviour {
         // If the user changes what kind of rendering they want, update
         if (_cachedInstanceRendering != _instancedRendering) {
             ToggleInstancedRendering();
+        }
+
+        if (_cachedNumObjects != _numObjects) {
+            InitializePositions();
+            _renderStrategy.SetNumObjects(_numObjects);
+            _renderStrategy.SetPositions(_objPositions);
+            _cachedNumObjects = _numObjects;
         }
 
         // Update our objects based on our render strategy

@@ -7,6 +7,7 @@ public class RenderStrategy {
     protected GameObject _parent;
     protected GameObject _obj;
     protected Material _objMat;
+    protected Material[] _objMatArray;
     protected Mesh[] _objMeshArray;
     protected List<Vector3> _objPositions;
     protected int TOTALOBJECTS;
@@ -21,6 +22,10 @@ public class RenderStrategy {
         _parent = p;
         _obj = o;
         _objMat = mat;
+        _objMatArray = new Material[4];
+        for (int i = 0; i < 4; i++) {
+            _objMatArray[i] = new Material(_objMat);
+        }
         _objPositions = poses;
         TOTALOBJECTS = total;
 
@@ -37,5 +42,13 @@ public class RenderStrategy {
 
     public List<Vector3> GetPositions() {
         return _objPositions;
+    }
+
+    public void SetPositions(List<Vector3> objposes) {
+        _objPositions = objposes;
+    }
+
+    public void SetNumObjects(int num) {
+        TOTALOBJECTS = num;
     }
 }

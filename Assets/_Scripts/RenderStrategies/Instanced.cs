@@ -15,27 +15,23 @@ public class Instanced : RenderStrategy {
 
     private Camera cam = Camera.main;
     private Vector3 _cachedCamPosition;
-    private int subMeshIndex = 0;
     private Matrix4x4 _modelMatrix;
-    private Mesh _objMesh;
-    private GameObject _instancedObject;
-    private MaterialPropertyBlock _MPB;
+    private MaterialPropertyBlock _mpb;
 
-    private float LOD0 = 0.60f;
-    private float LOD1 = 0.25f;
-    private float LOD2 = 0.08f;
-    private float LOD3 = 100;
+    private readonly float LOD1 = 0.0689f;
+    private readonly float LOD2 = 0.0295f;
+    private readonly float LOD3 = 0.00967f;
+    private readonly float LODCULL = 0.001f;
 
-    private string[] _keywords = { "LOD0", "LOD1", "LOD2", "LOD3" };
+    private readonly string[] _keywords = { "LOD0", "LOD1", "LOD2", "LOD3" };
     private string _recentKeyword;
 
-    private string[] _LODMatStrings = { "LOD0Buffer", "LOD1Buffer", "LOD2Buffer", "LOD3Buffer" };
+    private readonly string[] _LODMatStrings = { "LOD0Buffer", "LOD1Buffer", "LOD2Buffer", "LOD3Buffer" };
 
     private List<uint>[] _LODArgs;
     private List<ObjInfo>[] _LODData;
 
     private int cachedInstanceCount = -1;
-    private int cachedSubMeshIndex = -1;
     private ComputeBuffer[] _LODBuffers;
     private ComputeBuffer[] _LODArgsBuffer;
 
@@ -57,7 +53,7 @@ public class Instanced : RenderStrategy {
         _LODArgsBuffer = new ComputeBuffer[4];
         _LODData = new List<ObjInfo>[4];
 
-        _MPB = new MaterialPropertyBlock();
+        _mpb = new MaterialPropertyBlock();
 
         // Disable all keywords at the beginning
         for (int i = 0; i < _keywords.Length; i++) {
@@ -74,10 +70,6 @@ public class Instanced : RenderStrategy {
         for (int i = 0; i < _LODArgsBuffer.Length; i++) {
             _LODArgsBuffer[i] = new ComputeBuffer(1, _LODArgs[i].Count * sizeof(uint), ComputeBufferType.IndirectArguments);
         }
-
-        // Get references to our object and our mesh
-        _instancedObject = o;
-        _objMesh = _objMeshArray[1];
 
         // Cache our cameras position
         _cachedCamPosition = cam.transform.position;
@@ -109,7 +101,7 @@ public class Instanced : RenderStrategy {
         }
 
         // Update starting position buffer
-        if (cachedInstanceCount != TOTALOBJECTS || cachedSubMeshIndex != subMeshIndex)
+        if (cachedInstanceCount != TOTALOBJECTS)
             UpdateBuffers();
 
         RotatePositions();
@@ -122,9 +114,9 @@ public class Instanced : RenderStrategy {
             if (_LODBuffers[i] != null) {
                 _objMat.EnableKeyword(_keywords[i]);
                 _recentKeyword = _keywords[i];
-                _MPB.SetBuffer(_LODMatStrings[i], _LODBuffers[i]);
+                _mpb.SetBuffer(_LODMatStrings[i], _LODBuffers[i]);
 
-                Graphics.DrawMeshInstancedIndirect(_objMeshArray[i], subMeshIndex, _objMat, new Bounds(Vector3.zero, new Vector3(100.0f, 100.0f, 100.0f)), _LODArgsBuffer[i], 0, _MPB);
+                Graphics.DrawMeshInstancedIndirect(_objMeshArray[i], 0, _objMatArray[i], _objMeshArray[i].bounds, _LODArgsBuffer[i], 0, _mpb);
             }
         }
     }
@@ -134,10 +126,6 @@ public class Instanced : RenderStrategy {
      * then finally resets all of our buffers with our new information inside our LODData
      */
     void UpdateBuffers() {
-        // Ensure submesh index is in range
-        /*if (_objMesh != null)
-            subMeshIndex = Mathf.Clamp(subMeshIndex, 0, _objMesh.subMeshCount - 1);*/
-
         ObjInfo[] data = new ObjInfo[TOTALOBJECTS];
         for (int i = 0; i < _LODData.Length; i++) {
             _LODData[i] = new List<ObjInfo>();
@@ -161,13 +149,15 @@ public class Instanced : RenderStrategy {
             float LODTest = 1f / dist * scal;
 
             // Based on the distance from the camera and an objects scale, assign it to a different LOD group
-            if (LODTest < 0.00967f && LODTest > 0.001f) {
+            if (LODTest < LODCULL) {
+                continue;
+            } else if (LODTest < LOD3) {
                 data[i].color = Color.white;
                 _LODData[3].Add(data[i]);
-            } else if (LODTest < 0.0295f) {
+            } else if (LODTest < LOD2) {
                 data[i].color = Color.green;
                 _LODData[2].Add(data[i]);
-            } else if (LODTest < 0.0689f) {
+            } else if (LODTest < LOD1) {
                 data[i].color = Color.blue;
                 _LODData[1].Add(data[i]);
             } else {
@@ -176,6 +166,7 @@ public class Instanced : RenderStrategy {
             }
         }
 
+        // Initialize our Level-of-Detail computebuffers for our material
         for (int i = 0; i < _LODBuffers.Length; i++) {
             if (_LODBuffers[i] != null) {
                 _LODBuffers[i].Release();
@@ -194,15 +185,13 @@ public class Instanced : RenderStrategy {
         }
 
         // Information for out LODArgs
-        if (_objMesh != null) {
-            for (int i = 0; i < _LODArgs.Length; i++) {
-                _LODArgs[i][0] = (uint)_objMeshArray[i].GetIndexCount(subMeshIndex);
+        for (int i = 0; i < _LODArgs.Length; i++) {
+            if (_objMeshArray[i] != null) {
+                _LODArgs[i][0] = (uint)_objMeshArray[i].GetIndexCount(0);
                 _LODArgs[i][1] = (uint)_LODData[i].Count;
-                _LODArgs[i][2] = (uint)_objMeshArray[i].GetIndexStart(subMeshIndex);
-                _LODArgs[i][3] = (uint)_objMeshArray[i].GetBaseVertex(subMeshIndex);
-            }
-        } else {
-            for (int i = 0; i < _LODArgs.Length; i++) {
+                _LODArgs[i][2] = (uint)_objMeshArray[i].GetIndexStart(0);
+                _LODArgs[i][3] = (uint)_objMeshArray[i].GetBaseVertex(0);
+            } else {
                 _LODArgs[i][0] = _LODArgs[i][1] = _LODArgs[i][2] = _LODArgs[i][3] = 0;
             }
         }
@@ -217,7 +206,6 @@ public class Instanced : RenderStrategy {
         }
 
         cachedInstanceCount = TOTALOBJECTS;
-        cachedSubMeshIndex = subMeshIndex;
     }
 
     /*

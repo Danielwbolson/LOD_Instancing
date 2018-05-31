@@ -5,6 +5,7 @@ using UnityEngine;
 public class Instantiated : RenderStrategy {
 
     private List<GameObject> _gameObjects;
+    private int _cachedNumObjects;
 
     /*
  * CLASS DOCUMENTATION: Instantiated : RenderStrategy
@@ -18,8 +19,13 @@ public class Instantiated : RenderStrategy {
  */
     public Instantiated(GameObject p, GameObject o, Material mat, List<Vector3> poses, int total) : 
         base(p, o, mat, poses, total) {
-        _gameObjects = new List<GameObject>();
         _objMat.enableInstancing = false;
+
+        InitializeObjects();
+    }
+
+    public void InitializeObjects() {
+        _gameObjects = new List<GameObject>();
 
         for (int i = 0; i < TOTALOBJECTS; i++) {
             // Instantiate object and set parent
@@ -54,12 +60,18 @@ public class Instantiated : RenderStrategy {
             float zScale = Random.Range(0.01f, 0.15f);
             temp_obj.transform.localScale = new Vector3(xScale, yScale, zScale);
         }
+        _cachedNumObjects = TOTALOBJECTS;
     }
 
     /*
      * Called each frame, updates our gameobjects
      */
     public override void UpdateObjects() {
+        if (_cachedNumObjects != TOTALOBJECTS) {
+            Destroy();
+            InitializeObjects();
+        }
+
         RotatePositions();
     }
 
