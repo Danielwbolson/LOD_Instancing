@@ -5,11 +5,27 @@ using UnityEngine;
 public class Instantiated : RenderStrategy {
 
     private List<GameObject> _gameObjects;
+    private int _cachedNumObjects;
 
+    /*
+ * CLASS DOCUMENTATION: Instantiated : RenderStrategy
+ * In this class, we render a given set of objects as instantiated GameObjects.
+ * This is the default way to render objects in Unity. We instantiate a gameobject, 
+ * give it some data, and have unit render it as a gameobject.
+ * 
+ * We also have Level-Of-Detail working with this strategy. We have 4 LOD groups, varying
+ * by polygon count, that all share the same material. We are using Unity's built in
+ * LOD system as it is made to work with their gameobjects.
+ */
     public Instantiated(GameObject p, GameObject o, Material mat, List<Vector3> poses, int total) : 
         base(p, o, mat, poses, total) {
-        _gameObjects = new List<GameObject>();
         _objMat.enableInstancing = false;
+
+        InitializeObjects();
+    }
+
+    public void InitializeObjects() {
+        _gameObjects = new List<GameObject>();
 
         for (int i = 0; i < TOTALOBJECTS; i++) {
             // Instantiate object and set parent
@@ -44,12 +60,24 @@ public class Instantiated : RenderStrategy {
             float zScale = Random.Range(0.01f, 0.15f);
             temp_obj.transform.localScale = new Vector3(xScale, yScale, zScale);
         }
+        _cachedNumObjects = TOTALOBJECTS;
     }
 
+    /*
+     * Called each frame, updates our gameobjects
+     */
     public override void UpdateObjects() {
+        if (_cachedNumObjects != TOTALOBJECTS) {
+            Destroy();
+            InitializeObjects();
+        }
+
         RotatePositions();
     }
 
+    /*
+     * Rotates our gameobjects around the vertical axis at a rate dependant on their scale
+     */
     public void RotatePositions() {
         for (int i = 0; i < TOTALOBJECTS; i++) {
             float rotation = _gameObjects[i].transform.localScale.magnitude * _gameObjects[i].transform.localScale.magnitude * Time.deltaTime * 100;
@@ -58,6 +86,9 @@ public class Instantiated : RenderStrategy {
         }
     }
 
+    /*
+     * When we exit this render strategy, we need to destroy all gameobjects
+     */
     public override void Destroy() {
         foreach (GameObject g in _gameObjects) {
             GameObject.Destroy(g);
