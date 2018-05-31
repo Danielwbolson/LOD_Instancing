@@ -12,7 +12,9 @@ namespace DV
     public class DVDataSliceLayer : DVDataLayer
     {
 
-
+        override public string GetName() {
+            return "Slice";
+        }    
 
         public int _arrayId = 0;
         private int _cachedArrayId = 0;
@@ -25,14 +27,14 @@ namespace DV
         {
 
 
-            if (_dataObject.GetNumberOfPointArrays() <= _arrayId)
-                _arrayId = _dataObject.GetNumberOfPointArrays() - 1;
+            if (GetData().GetNumberOfPointArrays() <= _arrayId)
+                _arrayId = GetData().GetNumberOfPointArrays() - 1;
             
-            print("Slice Layer pointed to a " + _dataObject.GetDataSet().GetClassName() + " with " + _dataObject.GetDataSet().GetNumberOfPoints().ToString() + " points and " + _dataObject.GetDataSet().GetNumberOfCells().ToString() + " cells.");
+            print("Slice Layer pointed to a " + GetData().GetDataSet().GetClassName() + " with " + GetData().GetDataSet().GetNumberOfPoints().ToString() + " points and " + GetData().GetDataSet().GetNumberOfCells().ToString() + " cells.");
 
 
             if (_variableDisplayText)
-                _variableDisplayText.text = _dataObject.GetDataSet().GetPointData().GetArrayName(_arrayId);
+                _variableDisplayText.text = GetData().GetDataSet().GetPointData().GetArrayName(_arrayId);
 
 
             _cachedArrayId = _arrayId;
@@ -47,17 +49,19 @@ namespace DV
                 RequestUpdate();
             }
           
-            GetComponent<MeshRenderer>().material.SetMatrix("_DataModelMatrix", _dataObject.transform.localToWorldMatrix);
+            GetComponent<MeshRenderer>().material.SetMatrix("_DataModelMatrix", GetData().transform.localToWorldMatrix);
 
-            GetComponent<MeshRenderer>().material.SetMatrix("_DataModelMatrixInv", _dataObject.transform.worldToLocalMatrix);
+            GetComponent<MeshRenderer>().material.SetMatrix("_DataModelMatrixInv", GetData().transform.worldToLocalMatrix);
 
-            GetComponent<MeshRenderer>().material.SetMatrix("_DataBoundsMatrix", _dataObject.GetBoundsMatrix());
+            GetComponent<MeshRenderer>().material.SetMatrix("_DataBoundsMatrix", GetData().GetBoundsMatrix());
 
-            GetComponent<MeshRenderer>().material.SetMatrix("_DataBoundsMatrixInv", _dataObject.GetBoundsMatrix().inverse);
+            GetComponent<MeshRenderer>().material.SetMatrix("_DataBoundsMatrixInv", GetData().GetBoundsMatrix().inverse);
+            GetComponent<MeshRenderer>().material.SetFloat("_DataMin",(float)GetData().GetRangeOfPointArrays(_arrayId,0)[0]);
+            GetComponent<MeshRenderer>().material.SetFloat("_DataMax",(float)GetData().GetRangeOfPointArrays(_arrayId,0)[1]);
 
-            if (_dataObject.GetDataSet().IsA("vtkImageData")) {
-                GetComponent<MeshRenderer>().material.SetVector("_DataImageDimensions", _dataObject.GetImageDataDimensions());
-                GetComponent<MeshRenderer>().material.SetTexture("_DataVolume", _dataObject.GetImageDataTexture(_arrayId));
+            if (GetData().GetDataSet().IsA("vtkImageData")) {
+                GetComponent<MeshRenderer>().material.SetVector("_DataImageDimensions", GetData().GetImageDataDimensions());
+                GetComponent<MeshRenderer>().material.SetTexture("_DataVolume", GetData().GetImageDataTexture(_arrayId));
                 
             }
 

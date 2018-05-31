@@ -5,7 +5,15 @@ namespace DV
 {
     public class DVDataLayer : MonoBehaviour
     {
-        public DVDataObject _dataObject = null;
+
+        public DVLayerManager _layerManager;
+        virtual public string GetName() {
+            return "Undefined";
+        }
+
+        public DVDataObject GetData() {
+            return _layerManager.GetData();
+        }
         private DVDataObject _cachedDataObject = null;
         private bool _needsUpdate = false;
 
@@ -32,7 +40,7 @@ namespace DV
             RefreshDataSet();
 
 
-            _cachedDataObject = _dataObject;
+            _cachedDataObject = GetData();
             _needsUpdate = false;
         }
 
@@ -47,10 +55,10 @@ namespace DV
         // Update is called once per frame
         void Update()
         {
-            if (!_dataObject)
+            if (!GetData())
                 return;
 
-            if (_cachedDataObject != _dataObject)
+            if (_cachedDataObject != GetData())
                 RequestUpdate();
 
             if (_needsUpdate)

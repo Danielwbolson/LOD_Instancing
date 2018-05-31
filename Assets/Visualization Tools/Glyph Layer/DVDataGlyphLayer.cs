@@ -7,7 +7,9 @@ namespace DV
 {
     public class DVDataGlyphLayer : DVDataLayer
     {
-
+        override public string GetName() {
+            return "Glyph";
+        }       
         public DVSampleStrategy _strategy;
 
         // Use this for initialization
@@ -19,9 +21,9 @@ namespace DV
 
         private void OnDrawGizmos()
         {
-            if (_dataObject == null) return;
+            if (GetData() == null) return;
 
-            Gizmos.matrix = _dataObject.transform.localToWorldMatrix;
+            Gizmos.matrix = GetData().transform.localToWorldMatrix;
 
             for (int i = 0; i < _strategy.GetNumberOfSamples(); i++)
             {
@@ -32,7 +34,7 @@ namespace DV
         }
         override protected void RefreshDataSet()
         {
-            _strategy.SetDataSet(_dataObject);
+            _strategy.SetDataSet(GetData());
             _strategy.UpdateStrategy();
 
         }

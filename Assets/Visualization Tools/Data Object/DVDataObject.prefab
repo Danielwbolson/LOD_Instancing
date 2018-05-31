@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4239558590440688}
   - component: {fileID: 114652340314414636}
-  - component: {fileID: 114473677750805742}
+  - component: {fileID: 114293957807477892}
   m_Layer: 0
   m_Name: DVDataObject
   m_TagString: Untagged
@@ -41,7 +41,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114473677750805742
+--- !u!114 &114293957807477892
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -49,13 +49,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1146214586725082}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c203c464adec4cc3aa57a77dba4cfa9, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d8f31533d91345688aa307b1e4244f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _root: {fileID: 0}
-  _dataSlicePrefab: {fileID: 1186870003355656, guid: 0b94a1592cfec410daba36a83f8de762,
-    type: 2}
-  _arrayID: 0
+  _layerTypePrefabs:
+  - {fileID: 114735668952164790, guid: c7351548c923f44dba4823d61f7f9637, type: 2}
+  - {fileID: 114378150912179114, guid: 0b94a1592cfec410daba36a83f8de762, type: 2}
 --- !u!114 &114652340314414636
 MonoBehaviour:
   m_ObjectHideFlags: 1

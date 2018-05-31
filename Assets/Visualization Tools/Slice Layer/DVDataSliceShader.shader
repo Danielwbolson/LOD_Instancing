@@ -70,7 +70,7 @@
 			o.Smoothness = _Glossiness;
 
 			o.Alpha = c.a;
-            if (val >= 1 || val <= 0 ) discard;
+            if (val > 1 || val <= 0 ) discard;
 
 		}
 		ENDCG

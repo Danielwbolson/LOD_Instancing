@@ -40,6 +40,11 @@ namespace DV
         public int GetNumberOfPointArrays() {
             return _dataSet.GetPointData().GetNumberOfArrays();
         }
+        public double [] GetRangeOfPointArrays(int pointArray, int component) {
+            double [] range = new double[2];
+            _dataSet.GetPointData().GetArray(pointArray).GetRange(range,component);
+            return range;
+        }
         public float[] GetPointArrayData(int pointArray) {
             vtkDataArray array = GetPointArray(pointArray);
             long numberOfElements = array.GetNumberOfTuples();
