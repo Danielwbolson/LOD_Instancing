@@ -6,7 +6,7 @@
     }
     SubShader {
         Tags{ "RenderType" = "Opaque" }
-        LOD 600
+        LOD 200
 
         Cull Back
 
@@ -14,7 +14,6 @@
         // Physically based Standard lighting model
 #pragma surface surf Standard addshadow fullforwardshadows
 #pragma multi_compile_instancing
-#pragma multi_compile LOD0 LOD1 LOD2 LOD3
 #pragma instancing_options procedural:setup
 
         sampler2D _MainTex;
@@ -30,10 +29,8 @@
         };
 
 #ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
-        StructuredBuffer<ObjInfo> LOD0Buffer;
-        StructuredBuffer<ObjInfo> LOD1Buffer;
-        StructuredBuffer<ObjInfo> LOD2Buffer;
-        StructuredBuffer<ObjInfo> LOD3Buffer;
+        StructuredBuffer<ObjInfo> dataBuffer;
+        float DummyForShadows;
 #else
         float4 color;
 #endif
@@ -44,39 +41,13 @@
 
         void setup() {
 #ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
-# ifdef LOD0
-            pos = LOD0Buffer[unity_InstanceID].position;
+            pos = dataBuffer[unity_InstanceID].position;
             unity_ObjectToWorld._11_21_31_41 = float4(pos.w, 0, 0, 0) *
-                LOD0Buffer[unity_InstanceID].scale[0];
+                dataBuffer[unity_InstanceID].scale[0];
             unity_ObjectToWorld._12_22_32_42 = float4(0, pos.w, 0, 0) *
-                LOD0Buffer[unity_InstanceID].scale[1];
+                dataBuffer[unity_InstanceID].scale[1];
             unity_ObjectToWorld._13_23_33_43 = float4(0, 0, pos.w, 0) *
-                LOD0Buffer[unity_InstanceID].scale[2];
-# elif LOD1
-            pos = LOD1Buffer[unity_InstanceID].position;
-            unity_ObjectToWorld._11_21_31_41 = float4(pos.w, 0, 0, 0) *
-                LOD1Buffer[unity_InstanceID].scale[0];
-            unity_ObjectToWorld._12_22_32_42 = float4(0, pos.w, 0, 0) *
-                LOD1Buffer[unity_InstanceID].scale[1];
-            unity_ObjectToWorld._13_23_33_43 = float4(0, 0, pos.w, 0) *
-                LOD1Buffer[unity_InstanceID].scale[2];
-# elif LOD2
-            pos = LOD2Buffer[unity_InstanceID].position;
-            unity_ObjectToWorld._11_21_31_41 = float4(pos.w, 0, 0, 0) *
-                LOD2Buffer[unity_InstanceID].scale[0];
-            unity_ObjectToWorld._12_22_32_42 = float4(0, pos.w, 0, 0) *
-                LOD2Buffer[unity_InstanceID].scale[1];
-            unity_ObjectToWorld._13_23_33_43 = float4(0, 0, pos.w, 0) *
-                LOD2Buffer[unity_InstanceID].scale[2];
-# elif LOD3
-            pos = LOD3Buffer[unity_InstanceID].position;
-            unity_ObjectToWorld._11_21_31_41 = float4(pos.w, 0, 0, 0) *
-                LOD3Buffer[unity_InstanceID].scale[0];
-            unity_ObjectToWorld._12_22_32_42 = float4(0, pos.w, 0, 0) *
-                LOD3Buffer[unity_InstanceID].scale[1];
-            unity_ObjectToWorld._13_23_33_43 = float4(0, 0, pos.w, 0) *
-                LOD3Buffer[unity_InstanceID].scale[2];
-# endif
+                dataBuffer[unity_InstanceID].scale[2];
 
             unity_ObjectToWorld._14_24_34_44 = float4(pos.xyz, 1);
             unity_ObjectToWorld = mul(modelMatrix, unity_ObjectToWorld);
@@ -93,19 +64,8 @@
 
         void surf(Input IN, inout SurfaceOutputStandard o) {
 #ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
-# ifdef LOD0
-            float4 col = LOD0Buffer[unity_InstanceID].color;
+            float4 col = dataBuffer[unity_InstanceID].color;
             c = tex2D(_MainTex, IN.uv_MainTex) * col;
-# elif LOD1
-            float4 col = LOD1Buffer[unity_InstanceID].color;
-            c = tex2D(_MainTex, IN.uv_MainTex) * col;
-# elif LOD2
-            float4 col = LOD2Buffer[unity_InstanceID].color;
-            c = tex2D(_MainTex, IN.uv_MainTex) * col;
-# elif LOD3
-            float4 col = LOD3Buffer[unity_InstanceID].color;
-            c = tex2D(_MainTex, IN.uv_MainTex) * col;
-# endif
 #else
             c = tex2D(_MainTex, IN.uv_MainTex) * color;
 #endif
