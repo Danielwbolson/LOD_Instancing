@@ -17,8 +17,8 @@ public class Instantiated : RenderStrategy {
  * by polygon count, that all share the same material. We are using Unity's built in
  * LOD system as it is made to work with their gameobjects.
  */
-    public Instantiated(GameObject p, GameObject o, Material mat, List<Vector3> poses, int total) : 
-        base(p, o, mat, poses, total) {
+    public Instantiated(GameObject p, GameObject o, Material mat, List<ObjInfo> data, int total) : 
+        base(p, o, mat, data, total) {
         _objMat.enableInstancing = false;
 
         InitializeObjects();
@@ -52,13 +52,9 @@ public class Instantiated : RenderStrategy {
             }
 
             // Set our position based on what was passed in
-            temp_obj.transform.position = _objPositions[i];
+            temp_obj.transform.position = _masterData[i].position;
 
-            // Set our random scale
-            float xScale = Random.Range(0.01f, 0.15f);
-            float yScale = Random.Range(0.01f, 0.15f);
-            float zScale = Random.Range(0.01f, 0.15f);
-            temp_obj.transform.localScale = new Vector3(xScale, yScale, zScale);
+            temp_obj.transform.localScale = _masterData[i].scale;
         }
         _cachedNumObjects = TOTALOBJECTS;
     }
@@ -81,8 +77,10 @@ public class Instantiated : RenderStrategy {
     public void RotatePositions() {
         for (int i = 0; i < TOTALOBJECTS; i++) {
             float rotation = _gameObjects[i].transform.localScale.magnitude * _gameObjects[i].transform.localScale.magnitude * Time.deltaTime * 100;
-            _objPositions[i] = Quaternion.AngleAxis(rotation, Vector3.up) * _objPositions[i];
-            _gameObjects[i].transform.position = _objPositions[i];
+            ObjInfo temp = _masterData[i];
+            temp.position = Quaternion.AngleAxis(rotation, Vector3.up) * temp.position;
+            _gameObjects[i].transform.position = temp.position;
+            _masterData[i] = temp;
         }
     }
 

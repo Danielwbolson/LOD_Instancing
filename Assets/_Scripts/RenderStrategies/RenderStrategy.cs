@@ -9,7 +9,7 @@ public class RenderStrategy {
     protected Material _objMat;
     protected Material[] _objMatArray;
     protected Mesh[] _objMeshArray;
-    protected List<Vector3> _objPositions;
+    protected List<ObjInfo> _masterData;
     protected int TOTALOBJECTS;
 
     /*
@@ -18,7 +18,7 @@ public class RenderStrategy {
      * This class stores relevent information that any of its strategies could use, while also
      * allowing them to share, and send data further up where is is more accessibly by the user
      */
-    public RenderStrategy(GameObject p, GameObject o, Material mat, List<Vector3> poses, int total) {
+    public RenderStrategy(GameObject p, GameObject o, Material mat, List<ObjInfo> data, int total) {
         _parent = p;
         _obj = o;
         _objMat = mat;
@@ -26,7 +26,7 @@ public class RenderStrategy {
         for (int i = 0; i < 4; i++) {
             _objMatArray[i] = new Material(_objMat);
         }
-        _objPositions = poses;
+        _masterData = data;
         TOTALOBJECTS = total;
 
         MeshFilter[] tempArray = _obj.GetComponentsInChildren<MeshFilter>();
@@ -40,12 +40,12 @@ public class RenderStrategy {
 
     public virtual void Destroy() { }
 
-    public List<Vector3> GetPositions() {
-        return _objPositions;
+    public List<ObjInfo> GetObjInfo() {
+        return _masterData;
     }
 
-    public void SetPositions(List<Vector3> objposes) {
-        _objPositions = objposes;
+    public void SetObjInfo(List<ObjInfo> data) {
+        _masterData = data;
     }
 
     public void SetNumObjects(int num) {

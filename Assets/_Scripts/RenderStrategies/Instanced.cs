@@ -4,32 +4,26 @@ using UnityEngine;
 
 public class Instanced : RenderStrategy {
 
-    /*
-     * Data struct of information for each mesh
-     */
-    struct ObjInfo {
-        public Vector4 position;
-        public Vector4 color;
-        public Vector4 scale;
-    };
-
     private const int LODSIZE = 4;
     private Camera cam = Camera.main;
     private Vector3 _cachedCamPosition;
     private Matrix4x4 _modelMatrix;
     private readonly MaterialPropertyBlock[] _mpb;
+    private Vector3 _meshBoundsSize;
 
-    private readonly float LOD1 = 0.0689f;
-    private readonly float LOD2 = 0.0295f;
-    private readonly float LOD3 = 0.00967f;
-    private readonly float LODCULL = 0.001f;
+    private const float LOD1 = 0.0689f;
+    private const float LOD2 = 0.0295f;
+    private const float LOD3 = 0.00967f;
+    private const float LODCULL = 0.001f;
 
-    private List<uint>[] _LODArgs;
+    private readonly List<uint>[] _LODArgs;
     private List<ObjInfo>[] _LODData;
+    private List<Matrix4x4>[] _MatrixData;
 
     private int cachedInstanceCount = -1;
     private ComputeBuffer[] _LODBuffers;
     private ComputeBuffer[] _LODArgsBuffer;
+    private ComputeBuffer[] _matrixBuffer;
 
     /*
      * CLASS DOCUMENTATION: Instanced : RenderStrategy
@@ -37,22 +31,29 @@ public class Instanced : RenderStrategy {
      * gameobjects. This gives us a big boost in performance as we are able to utilize
      * the GPU instead of the CPU, as well as send much fewer calls to the GPU.
      * 
-     * We also are working on Level-Of-Detail in combination with instance rendering.
-     * Currently, not functional. However, basic idea is that we have Lists of data and 
-     * ComputeBuffers which forward that data to the shader, so that we can draw the meshes.
+     * We also are utilizing Level-of-Detail. We have copies of our material for each
+     * LOD, as for whatever reason they cannot share materials, or else not all are drawn to the
+     * screen. Right now, level-of-detail is recalculated at each frame that the camera position
+     * is not as it was. Meshes are changed depending on which group they are calculated to join.
+     * 
+     * Next step: Frustrum culling.
      */
-    public Instanced(GameObject p, GameObject o, Material mat, List<Vector3> poses, int total) : 
-        base(p, o, mat, poses, total) {
+    public Instanced(GameObject p, GameObject o, Material mat, List<ObjInfo> data, int total) : 
+        base(p, o, mat, data, total) {
         // Initialize our ComputeBuffers and lists
         _LODData = new List<ObjInfo>[LODSIZE];
+        _MatrixData = new List<Matrix4x4>[LODSIZE];
         _LODBuffers = new ComputeBuffer[LODSIZE];
         _LODArgs = new List<uint>[LODSIZE];
         _LODArgsBuffer = new ComputeBuffer[LODSIZE];
+        _matrixBuffer = new ComputeBuffer[LODSIZE];
 
         _mpb = new MaterialPropertyBlock[LODSIZE];
         for (int i = 0; i < LODSIZE; i++) {
             _mpb[i] = new MaterialPropertyBlock();
         }
+
+        _meshBoundsSize= _objMeshArray[0].bounds.size;
 
         // Each list inside our _LODArgs is a 5 long, unisigned int array that holds arguments for
         // our draw call
@@ -86,17 +87,14 @@ public class Instanced : RenderStrategy {
             _objMat.SetMatrix("modelMatrix", _modelMatrix);
         }
 
-        // If our camera has moved
-        if (_cachedCamPosition != cam.transform.position) {
-            _cachedCamPosition = cam.transform.position;
-            UpdateBuffers();
-        }
+        _cachedCamPosition = cam.transform.position;
 
         // Update starting position buffer
         if (cachedInstanceCount != TOTALOBJECTS)
             InitializeBuffers();
 
         RotatePositions();
+        UpdateBuffers();
 
         // Render based on LOD section
         for (int i = 0; i < LODSIZE; i++) {
@@ -110,87 +108,95 @@ public class Instanced : RenderStrategy {
     }
 
     /*
-     * UpdateBuffers releases all of our buffers, calculates new LOD sections, and 
+     * Initialize releases all of our buffers, calculates new LOD sections, and 
      * then finally resets all of our buffers with our new information inside our LODData
      */
     void InitializeBuffers() {
-        ObjInfo[] data = new ObjInfo[TOTALOBJECTS];
+        ObjInfo[] tempData = new ObjInfo[TOTALOBJECTS];
         for (int i = 0; i < LODSIZE; i++) {
             _LODData[i] = new List<ObjInfo>();
+            _MatrixData[i] = new List<Matrix4x4>();
         }
 
         for (int i = 0; i < TOTALOBJECTS; i++) {
             // Set the position of our instance
-            data[i].position = new Vector4(_objPositions[i].x, _objPositions[i].y, _objPositions[i].z, 1);
+            tempData[i].position = _masterData[i].position;
 
-            // Set the scale of our instance
-            float xScale = Random.Range(0.01f, 0.15f);
-            float yScale = Random.Range(0.01f, 0.15f);
-            float zScale = Random.Range(0.01f, 0.15f);
-            float w = 1;
-            data[i].scale = new Vector4(xScale, yScale, zScale, w);
+            tempData[i].scale = _masterData[i].scale;
 
-            Vector3 tempDataPos = new Vector3(data[i].position.x, data[i].position.y, data[i].position.z);
+            Vector3 tempDataPos = new Vector3(tempData[i].position.x, tempData[i].position.y, tempData[i].position.z);
 
             float dist = Vector3.Distance(tempDataPos, _cachedCamPosition);
-            float scal = data[i].scale.magnitude;
+            float scal = tempData[i].scale.magnitude;
             float LODTest = 1f / dist * scal;
 
             // Based on the distance from the camera and an objects scale, assign it to a different LOD group
             if (LODTest < LODCULL) {
                 continue;
             } else if (LODTest < LOD3) {
-                data[i].color = Color.white;
-                _LODData[3].Add(data[i]);
+                tempData[i].color = Color.white;
+                _LODData[3].Add(tempData[i]);
             } else if (LODTest < LOD2) {
-                data[i].color = Color.green;
-                _LODData[2].Add(data[i]);
+                tempData[i].color = Color.green;
+                _LODData[2].Add(tempData[i]);
             } else if (LODTest < LOD1) {
-                data[i].color = Color.blue;
-                _LODData[1].Add(data[i]);
+                tempData[i].color = Color.blue;
+                _LODData[1].Add(tempData[i]);
             } else {
-                data[i].color = Color.yellow;
-                _LODData[0].Add(data[i]);
+                tempData[i].color = Color.yellow;
+                _LODData[0].Add(tempData[i]);
             }
+
+            _masterData[i] = tempData[i];
         }
 
         UpdateLODBuffers();
         cachedInstanceCount = TOTALOBJECTS;
     }
 
+    /*
+     * Instead of initializing all data, we want to preserve what we already had. So instead we recalculate
+     * LOD distancing and change up our buffers and data sets accordingly, all while preserving data
+     */
     public void UpdateBuffers() {
-        List<ObjInfo>[] tempLODData = new List<ObjInfo>[4];
-        for (int i = 0; i < 4; i++) {
+        List<ObjInfo>[] tempLODData = new List<ObjInfo>[LODSIZE];
+        for (int i = 0; i < LODSIZE; i++) {
             tempLODData[i] = new List<ObjInfo>();
         }
 
-        for (int i = 0; i < LODSIZE; i++) {
-            for (int j = 0; j < _LODData[i].Count; j++) {
-                Vector3 tempDataPos = new Vector3(_LODData[i][j].position.x, _LODData[i][j].position.y, _LODData[i][j].position.z);
+        Plane[] planes = GeometryUtility.CalculateFrustumPlanes(cam);
+        for (int i = 0; i < TOTALOBJECTS; i++) {
+            Vector3 tempDataPos = new Vector3(_masterData[i].position.x, _masterData[i].position.y, _masterData[i].position.z);
+            Vector3 tempScale = new Vector3(_masterData[i].scale.x, _masterData[i].scale.y, _masterData[i].scale.z);
 
+            Bounds meshBounds = new Bounds(tempDataPos, new Vector3(
+                _meshBoundsSize.x * tempScale.x,
+                _meshBoundsSize.y * tempScale.y,
+                _meshBoundsSize.z * tempScale.z));
+
+            if (GeometryUtility.TestPlanesAABB(planes, meshBounds)) {
                 float dist = Vector3.Distance(tempDataPos, _cachedCamPosition);
-                float scal = _LODData[i][j].scale.magnitude;
+                float scal = _masterData[i].scale.magnitude;
                 float LODTest = 1f / dist * scal;
-                ObjInfo temp = _LODData[i][j];
+                ObjInfo temp = _masterData[i];
 
-                // Based on the distance from the camera and an objects scale, assign it to a different LOD group
                 if (LODTest < LODCULL) {
                     continue;
                 } else if (LODTest < LOD3) {
                     temp.color = Color.white;
-                    _LODData[i][j] = temp;
+                    _masterData[i] = temp;
                     tempLODData[3].Add(temp);
                 } else if (LODTest < LOD2) {
                     temp.color = Color.green;
-                    _LODData[i][j] = temp;
+                    _masterData[i] = temp;
                     tempLODData[2].Add(temp);
                 } else if (LODTest < LOD1) {
                     temp.color = Color.blue;
-                    _LODData[i][j] = temp;
+                    _masterData[i] = temp;
                     tempLODData[1].Add(temp);
                 } else {
                     temp.color = Color.yellow;
-                    _LODData[i][j] = temp;
+                    _masterData[i] = temp;
                     tempLODData[0].Add(temp);
                 }
             }
@@ -200,10 +206,14 @@ public class Instanced : RenderStrategy {
             _LODData[i] = tempLODData[i];
         }
 
-        UpdateLODBuffers();
-        cachedInstanceCount = TOTALOBJECTS;
+            UpdateLODBuffers();
+            cachedInstanceCount = TOTALOBJECTS;
     }
 
+    /*
+     * Reconfigures our material buffers for Level-of-Detail, assuming that we have new information or
+     * at least information has changed locations
+     */
     private void UpdateLODBuffers() {
         // Initialize our Level-of-Detail computebuffers for our material
         for (int i = 0; i < LODSIZE; i++) {
@@ -211,6 +221,7 @@ public class Instanced : RenderStrategy {
                 _LODBuffers[i].Release();
                 _LODBuffers[i] = null;
             }
+
             if (_LODData[i].Count > 0) {
                 _LODBuffers[i] = new ComputeBuffer(_LODData[i].Count, 12 * sizeof(float));
                 _LODBuffers[i].SetData(_LODData[i]);
@@ -243,25 +254,21 @@ public class Instanced : RenderStrategy {
      * different render modes
      */
     public void RotatePositions() {
-        _objPositions = new List<Vector3>();
-        for (int i = 0; i < LODSIZE; i++) {
-            for (int j = 0; j < _LODData[i].Count; j++) {
-                // Set the positions of our instance based on our input List
-                float scaleMag = new Vector3(_LODData[i][j].scale.x, _LODData[i][j].scale.y, _LODData[i][j].scale.z).magnitude;
-                Vector3 newPos = Quaternion.AngleAxis(
-                    scaleMag * scaleMag * Time.deltaTime * 100,
-                    Vector3.up) * _LODData[i][j].position;
-                ObjInfo temp = _LODData[i][j];
-                temp.position = new Vector4(newPos.x, newPos.y, newPos.z, 1);
-                _LODData[i][j] = temp;
-
-                _objPositions.Add(temp.position);
-            }
-
+        for (int i = 0; i < TOTALOBJECTS; i++) {
+            // Set the positions of our instance based on our input List
+            float scaleMag = new Vector3(_masterData[i].scale.x, _masterData[i].scale.y, _masterData[i].scale.z).magnitude;
+            Vector3 newPos = Quaternion.AngleAxis(
+                scaleMag * scaleMag * Time.deltaTime * 100,
+                Vector3.up) * _masterData[i].position;
+            ObjInfo temp = _masterData[i];
+            temp.position = new Vector4(newPos.x, newPos.y, newPos.z, 1);
+            _masterData[i] = temp;
+        }
+        /*for (int i = 0; i < _LODBuffers.Length; i++) {
             if (_LODBuffers[i] != null)
                 _LODBuffers[i].SetData(_LODData[i]);
             _objMatArray[i].SetBuffer("dataBuffer", _LODBuffers[i]);
-        }
+        }*/
     }
 
     /*

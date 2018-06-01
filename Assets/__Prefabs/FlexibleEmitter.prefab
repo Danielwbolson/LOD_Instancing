@@ -53,5 +53,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _obj: {fileID: 1418742655499132, guid: 5ba78ed931d540d40887f6ff07532913, type: 2}
   _objMat: {fileID: 2100000, guid: 205db7c5de1efcc4eaf78b973d1671d6, type: 2}
-  _numObjects: 100
+  _numObjects: 10000
   _instancedRendering: 0
