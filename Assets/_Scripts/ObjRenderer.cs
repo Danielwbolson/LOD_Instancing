@@ -28,8 +28,8 @@ public class ObjRenderer : MonoBehaviour {
         InitializeInfo();
 
         // Initialize our new RenderStrategy
-        _renderStrategy = new Instanced(this.gameObject, _obj, _objMat, _objInfo, _numObjects);
-        _instancedRendering = true;
+        _renderStrategy = new Instantiated(this.gameObject, _obj, _objMat, _objInfo, _numObjects);
+        _instancedRendering = false;
         _cachedInstanceRendering = _instancedRendering;
         _cachedNumObjects = _numObjects;
     }

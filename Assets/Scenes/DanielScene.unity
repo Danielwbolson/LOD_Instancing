@@ -258,7 +258,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 282840810}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 40, z: 0.3}
+  m_LocalPosition: {x: 0, y: 93, z: 0.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -303,9 +303,58 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114238101545568506, guid: 286e8ce8a82e52442b107cdc64722353,
+        type: 2}
+      propertyPath: _obj
+      value: 
+      objectReference: {fileID: 1678047477874902, guid: 30c4cc1610f66f144a5daf621b17fe29,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 286e8ce8a82e52442b107cdc64722353, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1672481241
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1672481243}
+  - component: {fileID: 1672481242}
+  m_Layer: 0
+  m_Name: TestEmitter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1672481242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1672481241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d96d1e91535f741802bcbfbe192931, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mesh: {fileID: 4300000, guid: c3b2b690240cf744faabbbc4de3ebd0a, type: 3}
+  mat: {fileID: 2100000, guid: f4959fd67e400064698bafb27c3c7d9b, type: 2}
+  computeShader: {fileID: 7200000, guid: 9104bf1eafbc93f40b0dc456642b51d9, type: 3}
+--- !u!4 &1672481243
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1672481241}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1917260752
 Prefab:
   m_ObjectHideFlags: 0

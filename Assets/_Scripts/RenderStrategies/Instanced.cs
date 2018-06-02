@@ -18,12 +18,10 @@ public class Instanced : RenderStrategy {
 
     private readonly List<uint>[] _LODArgs;
     private List<ObjInfo>[] _LODData;
-    private List<Matrix4x4>[] _MatrixData;
 
     private int cachedInstanceCount = -1;
     private ComputeBuffer[] _LODBuffers;
     private ComputeBuffer[] _LODArgsBuffer;
-    private ComputeBuffer[] _matrixBuffer;
 
     /*
      * CLASS DOCUMENTATION: Instanced : RenderStrategy
@@ -42,11 +40,9 @@ public class Instanced : RenderStrategy {
         base(p, o, mat, data, total) {
         // Initialize our ComputeBuffers and lists
         _LODData = new List<ObjInfo>[LODSIZE];
-        _MatrixData = new List<Matrix4x4>[LODSIZE];
         _LODBuffers = new ComputeBuffer[LODSIZE];
         _LODArgs = new List<uint>[LODSIZE];
         _LODArgsBuffer = new ComputeBuffer[LODSIZE];
-        _matrixBuffer = new ComputeBuffer[LODSIZE];
 
         _mpb = new MaterialPropertyBlock[LODSIZE];
         for (int i = 0; i < LODSIZE; i++) {
@@ -115,7 +111,6 @@ public class Instanced : RenderStrategy {
         ObjInfo[] tempData = new ObjInfo[TOTALOBJECTS];
         for (int i = 0; i < LODSIZE; i++) {
             _LODData[i] = new List<ObjInfo>();
-            _MatrixData[i] = new List<Matrix4x4>();
         }
 
         for (int i = 0; i < TOTALOBJECTS; i++) {
@@ -264,11 +259,6 @@ public class Instanced : RenderStrategy {
             temp.position = new Vector4(newPos.x, newPos.y, newPos.z, 1);
             _masterData[i] = temp;
         }
-        /*for (int i = 0; i < _LODBuffers.Length; i++) {
-            if (_LODBuffers[i] != null)
-                _LODBuffers[i].SetData(_LODData[i]);
-            _objMatArray[i].SetBuffer("dataBuffer", _LODBuffers[i]);
-        }*/
     }
 
     /*
