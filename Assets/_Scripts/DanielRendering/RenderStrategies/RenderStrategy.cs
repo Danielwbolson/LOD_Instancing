@@ -13,7 +13,6 @@ public class RenderStrategy {
 
     protected List<ObjInfo> _masterData;
     protected Material[] _objMatArray;
-    protected ComputeShader[] _computeShaderArray;
 
     /*
      * CLASS DOCUMENTATION: RenderStrategy
@@ -32,10 +31,6 @@ public class RenderStrategy {
         _objMatArray = new Material[4];
         for (int i = 0; i < 4; i++) {
             _objMatArray[i] = new Material(_objMat);
-        }
-        _computeShaderArray = new ComputeShader[4];
-        for (int i = 0; i < 4; i++) {
-            _computeShaderArray[i] = Object.Instantiate(_computeShader) as ComputeShader;
         }
 
         MeshFilter[] tempArray = _obj.GetComponentsInChildren<MeshFilter>();

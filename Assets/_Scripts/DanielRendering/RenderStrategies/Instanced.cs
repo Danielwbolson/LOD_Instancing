@@ -73,9 +73,9 @@ public class Instanced : RenderStrategy {
         // Set our parent model matrix and enable instancing
         _modelMatrix = _parent.transform.localToWorldMatrix;
         for (int i = 0; i < LODSIZE; i++) {
-            _computeShaderArray[i].SetMatrix("modelMatrix", _modelMatrix);
             _objMatArray[i].enableInstancing = true;
         }
+        _computeShader.SetMatrix("modelMatrix", _modelMatrix);
 
         _Kernel = _computeShader.FindKernel("InstanceMatrix");
 
@@ -91,9 +91,7 @@ public class Instanced : RenderStrategy {
         // If the emitter has moved
         if (_modelMatrix != _parent.transform.localToWorldMatrix) {
             _modelMatrix = _parent.transform.localToWorldMatrix;
-            for (int i = 0; i < LODSIZE; i++) {
-                _computeShaderArray[i].SetMatrix("modelMatrix", _modelMatrix);
-            }
+            _computeShader.SetMatrix("modelMatrix", _modelMatrix);
         }
 
         _cachedCamPosition = cam.transform.position;
@@ -109,7 +107,9 @@ public class Instanced : RenderStrategy {
         for (int i = 0; i < LODSIZE; i++) {
 
             if (_LODBuffers[i] != null) {
-                _computeShaderArray[i].Dispatch(_Kernel, _LODData[i].Count, 1, 1);
+                _computeShader.SetBuffer(_Kernel, "matrixBuffer", _matrixBuffers[i]);
+                _computeShader.SetBuffer(_Kernel, "dataBuffer", _LODBuffers[i]);
+                _computeShader.Dispatch(_Kernel, _LODData[i].Count, 1, 1);
 
                 _mpb[i].SetFloat("DummyForShadows", i);
 
@@ -145,22 +145,18 @@ public class Instanced : RenderStrategy {
                 continue;
             } else if (LODTest < LOD3) {
                 tempData[i].color = Color.white;
-                _masterData[i] = tempData[i];
                 _LODData[3].Add(tempData[i]);
             } else if (LODTest < LOD2) {
                 tempData[i].color = Color.green;
-                _masterData[i] = tempData[i];
                 _LODData[2].Add(tempData[i]);
             } else if (LODTest < LOD1) {
                 tempData[i].color = Color.blue;
-                _masterData[i] = tempData[i];
                 _LODData[1].Add(tempData[i]);
             } else {
                 tempData[i].color = Color.yellow;
-                _masterData[i] = tempData[i];
                 _LODData[0].Add(tempData[i]);
             }
-
+            _masterData[i] = tempData[i];
         }
 
         UpdateLODBuffers();
@@ -248,9 +244,6 @@ public class Instanced : RenderStrategy {
                 _matrixBuffers[i] = new ComputeBuffer(_LODData[i].Count, 16 * sizeof(float));
                 _matrixBuffers[i].SetData(_matrixData);
 
-                _computeShaderArray[i].SetBuffer(_Kernel, "dataBuffer", _LODBuffers[i]);
-                _computeShaderArray[i].SetBuffer(_Kernel, "matrixBuffer", _matrixBuffers[i]);
-
                 _objMatArray[i].SetBuffer("dataBuffer", _LODBuffers[i]);
                 _objMatArray[i].SetBuffer("matrixBuffer", _matrixBuffers[i]);
             }
@@ -308,10 +301,14 @@ public class Instanced : RenderStrategy {
                 _LODBuffers[i].Release();
             _LODBuffers[i] = null;
 
-            _computeShaderArray[i] = null;
+            if (_matrixBuffers[i] != null) {
+                _matrixBuffers[i].Release();
+            }
+            _matrixBuffers[i] = null;
         }
         _LODArgsBuffer = null;
         _LODBuffers = null;
+        _matrixBuffers = null;
     }
 }
  
