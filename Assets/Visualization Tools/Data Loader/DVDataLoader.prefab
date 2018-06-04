@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4550316137586788}
   - component: {fileID: 114465786258941990}
   m_Layer: 0
-  m_Name: VertikalDataLoader
+  m_Name: DVDataLoader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
