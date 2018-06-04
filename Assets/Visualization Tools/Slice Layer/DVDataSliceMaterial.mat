@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: VertikalDataSliceMaterial
+  m_Name: DVDataSliceMaterial
   m_Shader: {fileID: 4800000, guid: e57a7d00442b1445d9fa5bc7fc4a909a, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4

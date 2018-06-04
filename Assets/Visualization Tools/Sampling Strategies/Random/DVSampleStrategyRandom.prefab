@@ -9,50 +9,45 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1084119310966890}
+  m_RootGameObject: {fileID: 1427397153582100}
   m_IsPrefabParent: 1
---- !u!1 &1084119310966890
+--- !u!1 &1427397153582100
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4537381569865920}
-  - component: {fileID: 114067990886793088}
+  - component: {fileID: 4914981999599470}
+  - component: {fileID: 114511698231039738}
   m_Layer: 0
-  m_Name: FlexibleEmitter
+  m_Name: DVSampleStrategyRandom
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4537381569865920
+--- !u!4 &4914981999599470
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1084119310966890}
+  m_GameObject: {fileID: 1427397153582100}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114067990886793088
+--- !u!114 &114511698231039738
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1084119310966890}
+  m_GameObject: {fileID: 1427397153582100}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d3ae6ed3c0926b47b46d86ab98f2038, type: 3}
+  m_Script: {fileID: 11500000, guid: 96f16ec9efbb44d90a2282ba5a0503d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _obj: {fileID: 1678047477874902, guid: 30c4cc1610f66f144a5daf621b17fe29, type: 2}
-  _objMat: {fileID: 2100000, guid: 205db7c5de1efcc4eaf78b973d1671d6, type: 2}
-  _computeShader: {fileID: 7200000, guid: 9104bf1eafbc93f40b0dc456642b51d9, type: 3}
-  _numObjects: 1000
-  _instancedRendering: 0

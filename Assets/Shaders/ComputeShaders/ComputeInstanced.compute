@@ -9,22 +9,22 @@ struct ObjInfo {
 
 RWStructuredBuffer<ObjInfo> dataBuffer;
 RWStructuredBuffer<float4x4> matrixBuffer;
-RWStructuredBuffer<float4x4> inverseMatrixBuffer;
+float4x4 modelMatrix;
 
 
 [numthreads(64, 1, 1)]
 void InstanceMatrix(uint3 dispatchID : SV_DispatchThreadID) {
     int id = dispatchID.x;
 
-    matrixBuffer[id] = float4x4(
-        float4(dataBuffer[id].scale.x, 0, 0, dataBuffer[id].position.x),
-        float4(0, dataBuffer[id].scale.y, 0, dataBuffer[id].position.y),
-        float4(0, 0, dataBuffer[id].scale.z, dataBuffer[id].position.z),
+    float4 tempScal = dataBuffer[id].scale;
+    float4 tempPos = dataBuffer[id].position;
+
+
+    float4x4 tempMatrix = float4x4(
+        float4(tempScal.x, 0, 0, tempPos.x),
+        float4(0, tempScal.y, 0, tempPos.y),
+        float4(0, 0, tempScal.z, tempPos.z),
         float4(0, 0, 0, 1));
 
-    inverseMatrixBuffer[id] = float4x4(
-        float4(1.0f / dataBuffer[id].scale.x, 0, 0, -dataBuffer[id].position.x),
-        float4(0, 1.0f / dataBuffer[id].scale.y, 0, -dataBuffer[id].position.y),
-        float4(0, 0, 1.0f / dataBuffer[id].scale.z, -dataBuffer[id].position.z),
-        float4(0, 0, 0, 1));
+    matrixBuffer[id] = mul(modelMatrix, tempMatrix);
 }
