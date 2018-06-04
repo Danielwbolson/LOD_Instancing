@@ -94,7 +94,7 @@ public class Instanced : RenderStrategy {
             InitializeBuffers();
 
         RotatePositions();
-        //UpdateBuffers();
+        UpdateBuffers();
 
         // Render based on LOD section
         for (int i = 0; i < LODSIZE; i++) {
