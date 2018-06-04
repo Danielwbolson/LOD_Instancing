@@ -7,10 +7,13 @@ public class RenderStrategy {
     protected GameObject _parent;
     protected GameObject _obj;
     protected Material _objMat;
-    protected Material[] _objMatArray;
+    protected ComputeShader _computeShader;
     protected Mesh[] _objMeshArray;
-    protected List<ObjInfo> _masterData;
     protected int TOTALOBJECTS;
+
+    protected List<ObjInfo> _masterData;
+    protected Material[] _objMatArray;
+    protected ComputeShader[] _computeShaderArray;
 
     /*
      * CLASS DOCUMENTATION: RenderStrategy
@@ -18,16 +21,22 @@ public class RenderStrategy {
      * This class stores relevent information that any of its strategies could use, while also
      * allowing them to share, and send data further up where is is more accessibly by the user
      */
-    public RenderStrategy(GameObject p, GameObject o, Material mat, List<ObjInfo> data, int total) {
+    public RenderStrategy(GameObject p, GameObject o, Material mat, ComputeShader cs, List<ObjInfo> data, int total) {
         _parent = p;
         _obj = o;
         _objMat = mat;
+        _computeShader = cs;
+        _masterData = data;
+        TOTALOBJECTS = total;
+
         _objMatArray = new Material[4];
         for (int i = 0; i < 4; i++) {
             _objMatArray[i] = new Material(_objMat);
         }
-        _masterData = data;
-        TOTALOBJECTS = total;
+        _computeShaderArray = new ComputeShader[4];
+        for (int i = 0; i < 4; i++) {
+            _computeShaderArray[i] = Object.Instantiate(_computeShader) as ComputeShader;
+        }
 
         MeshFilter[] tempArray = _obj.GetComponentsInChildren<MeshFilter>();
         _objMeshArray = new Mesh[tempArray.Length];

@@ -303,12 +303,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114238101545568506, guid: 286e8ce8a82e52442b107cdc64722353,
-        type: 2}
-      propertyPath: _obj
-      value: 
-      objectReference: {fileID: 1678047477874902, guid: 30c4cc1610f66f144a5daf621b17fe29,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 286e8ce8a82e52442b107cdc64722353, type: 2}
   m_IsPrefabParent: 0
@@ -339,7 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9d96d1e91535f741802bcbfbe192931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mesh: {fileID: 4300000, guid: c3b2b690240cf744faabbbc4de3ebd0a, type: 3}
+  mesh: {fileID: 4300006, guid: 05a5f8724e812c549ace784305834576, type: 3}
   mat: {fileID: 2100000, guid: f4959fd67e400064698bafb27c3c7d9b, type: 2}
   computeShader: {fileID: 7200000, guid: 9104bf1eafbc93f40b0dc456642b51d9, type: 3}
 --- !u!4 &1672481243

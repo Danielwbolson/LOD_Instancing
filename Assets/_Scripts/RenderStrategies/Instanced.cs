@@ -10,6 +10,7 @@ public class Instanced : RenderStrategy {
     private Matrix4x4 _modelMatrix;
     private readonly MaterialPropertyBlock[] _mpb;
     private Vector3 _meshBoundsSize;
+    private int _Kernel;
 
     private const float LOD1 = 0.0689f;
     private const float LOD2 = 0.0295f;
@@ -18,10 +19,12 @@ public class Instanced : RenderStrategy {
 
     private readonly List<uint>[] _LODArgs;
     private List<ObjInfo>[] _LODData;
+    private Matrix4x4[] _matrixData;
 
     private int cachedInstanceCount = -1;
     private ComputeBuffer[] _LODBuffers;
     private ComputeBuffer[] _LODArgsBuffer;
+    private ComputeBuffer[] _matrixBuffers;
 
     /*
      * CLASS DOCUMENTATION: Instanced : RenderStrategy
@@ -36,40 +39,47 @@ public class Instanced : RenderStrategy {
      * 
      * Next step: Frustrum culling.
      */
-    public Instanced(GameObject p, GameObject o, Material mat, List<ObjInfo> data, int total) : 
-        base(p, o, mat, data, total) {
+    public Instanced(GameObject p, GameObject o, Material mat, ComputeShader cs, List<ObjInfo> data, int total) : 
+        base(p, o, mat, cs, data, total) {
         // Initialize our ComputeBuffers and lists
         _LODData = new List<ObjInfo>[LODSIZE];
         _LODBuffers = new ComputeBuffer[LODSIZE];
+
+        _matrixBuffers = new ComputeBuffer[LODSIZE];
+
         _LODArgs = new List<uint>[LODSIZE];
         _LODArgsBuffer = new ComputeBuffer[LODSIZE];
-
-        _mpb = new MaterialPropertyBlock[LODSIZE];
-        for (int i = 0; i < LODSIZE; i++) {
-            _mpb[i] = new MaterialPropertyBlock();
-        }
-
-        _meshBoundsSize= _objMeshArray[0].bounds.size;
 
         // Each list inside our _LODArgs is a 5 long, unisigned int array that holds arguments for
         // our draw call
         for (int i = 0; i < LODSIZE; i++) {
             _LODArgs[i] = new List<uint>(new uint[] { 0, 0, 0, 0, 0 });
 
-        // Initialize our LODArgsBuffer, where each one holds one LODArgs
+            // Initialize our LODArgsBuffer, where each one holds one LODArgs
             _LODArgsBuffer[i] = new ComputeBuffer(1, _LODArgs[i].Count * sizeof(uint), ComputeBufferType.IndirectArguments);
         }
+
+        _mpb = new MaterialPropertyBlock[LODSIZE];
+        for (int i = 0; i < LODSIZE; i++) {
+            _mpb[i] = new MaterialPropertyBlock();
+        }
+
+        _meshBoundsSize = _objMeshArray[0].bounds.size;
 
         // Cache our cameras position
         _cachedCamPosition = cam.transform.position;
 
+        // Set our parent model matrix and enable instancing
+        _modelMatrix = _parent.transform.localToWorldMatrix;
+        for (int i = 0; i < LODSIZE; i++) {
+            _computeShaderArray[i].SetMatrix("modelMatrix", _modelMatrix);
+            _objMatArray[i].enableInstancing = true;
+        }
+
+        _Kernel = _computeShader.FindKernel("InstanceMatrix");
+
         // Initialize our buffers
         InitializeBuffers();
-
-        // Set our parent model matrix
-        _modelMatrix = _parent.transform.localToWorldMatrix;
-        _objMat.SetMatrix("modelMatrix", _modelMatrix);
-        _objMat.enableInstancing = true;
     }
 
     /*
@@ -80,6 +90,7 @@ public class Instanced : RenderStrategy {
         // If the emitter has moved
         if (_modelMatrix != _parent.transform.localToWorldMatrix) {
             _modelMatrix = _parent.transform.localToWorldMatrix;
+            _computeShader.SetMatrix("modelMatrix", _modelMatrix);
             _objMat.SetMatrix("modelMatrix", _modelMatrix);
         }
 
@@ -90,12 +101,14 @@ public class Instanced : RenderStrategy {
             InitializeBuffers();
 
         RotatePositions();
-        UpdateBuffers();
+        //UpdateBuffers();
 
         // Render based on LOD section
         for (int i = 0; i < LODSIZE; i++) {
 
             if (_LODBuffers[i] != null) {
+                _computeShaderArray[i].Dispatch(_Kernel, _LODData[i].Count, 1, 1);
+
                 _mpb[i].SetFloat("DummyForShadows", i);
 
                 Graphics.DrawMeshInstancedIndirect(_objMeshArray[i], 0, _objMatArray[i], _objMeshArray[i].bounds, _LODArgsBuffer[i], 0, _mpb[i]);
@@ -217,10 +230,24 @@ public class Instanced : RenderStrategy {
                 _LODBuffers[i] = null;
             }
 
+            if (_matrixBuffers[i] != null) {
+                _matrixBuffers[i].Release();
+                _matrixBuffers[i] = null;
+            }
+
             if (_LODData[i].Count > 0) {
                 _LODBuffers[i] = new ComputeBuffer(_LODData[i].Count, 12 * sizeof(float));
                 _LODBuffers[i].SetData(_LODData[i]);
+
+                _matrixData = new Matrix4x4[_LODData[i].Count];
+                _matrixBuffers[i] = new ComputeBuffer(_LODData[i].Count, 16 * sizeof(float));
+                _matrixBuffers[i].SetData(_matrixData);
+
+                _computeShaderArray[i].SetBuffer(_Kernel, "dataBuffer", _LODBuffers[i]);
+                _computeShaderArray[i].SetBuffer(_Kernel, "matrixBuffer", _matrixBuffers[i]);
+
                 _objMatArray[i].SetBuffer("dataBuffer", _LODBuffers[i]);
+                _objMatArray[i].SetBuffer("matrixBuffer", _matrixBuffers[i]);
             }
 
             // Information for out LODArgs

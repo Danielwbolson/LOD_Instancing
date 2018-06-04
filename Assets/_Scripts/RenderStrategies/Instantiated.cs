@@ -17,8 +17,8 @@ public class Instantiated : RenderStrategy {
  * by polygon count, that all share the same material. We are using Unity's built in
  * LOD system as it is made to work with their gameobjects.
  */
-    public Instantiated(GameObject p, GameObject o, Material mat, List<ObjInfo> data, int total) : 
-        base(p, o, mat, data, total) {
+    public Instantiated(GameObject p, GameObject o, Material mat, ComputeShader cs, List<ObjInfo> data, int total) : 
+        base(p, o, mat, cs, data, total) {
         _objMat.enableInstancing = false;
 
         InitializeObjects();

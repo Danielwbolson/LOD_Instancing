@@ -6,6 +6,7 @@ public class ObjRenderer : MonoBehaviour {
 
     public GameObject _obj;
     public Material _objMat;
+    public ComputeShader _computeShader;
     public int _numObjects;
     private int _cachedNumObjects;
 
@@ -28,7 +29,7 @@ public class ObjRenderer : MonoBehaviour {
         InitializeInfo();
 
         // Initialize our new RenderStrategy
-        _renderStrategy = new Instantiated(this.gameObject, _obj, _objMat, _objInfo, _numObjects);
+        _renderStrategy = new Instantiated(this.gameObject, _obj, _objMat, _computeShader, _objInfo, _numObjects);
         _instancedRendering = false;
         _cachedInstanceRendering = _instancedRendering;
         _cachedNumObjects = _numObjects;
@@ -82,10 +83,10 @@ public class ObjRenderer : MonoBehaviour {
 
         if (_instancedRendering == true) {
             _renderStrategy.Destroy();
-            _renderStrategy = new Instanced(this.gameObject, _obj, _objMat, newObjInfo, _numObjects);
+            _renderStrategy = new Instanced(this.gameObject, _obj, _objMat, _computeShader, newObjInfo, _numObjects);
         } else {
             _renderStrategy.Destroy();
-            _renderStrategy = new Instantiated(this.gameObject, _obj, _objMat, newObjInfo, _numObjects);
+            _renderStrategy = new Instantiated(this.gameObject, _obj, _objMat, _computeShader, newObjInfo, _numObjects);
         }
         _cachedInstanceRendering = _instancedRendering;
     }
