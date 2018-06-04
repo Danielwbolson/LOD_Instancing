@@ -293,7 +293,7 @@ public class Instanced : RenderStrategy {
      * of instance rendering
      */
     public override void Destroy() {
-        for (int i = 0; i < _LODArgsBuffer.Length; i++) {
+        for (int i = 0; i < LODSIZE; i++) {
             if (_LODArgsBuffer[i] != null) {
                 _LODArgsBuffer[i].Release();
             }
@@ -302,6 +302,8 @@ public class Instanced : RenderStrategy {
             if (_LODBuffers[i] != null)
                 _LODBuffers[i].Release();
             _LODBuffers[i] = null;
+
+            _computeShaderArray[i] = null;
         }
         _LODArgsBuffer = null;
         _LODBuffers = null;
