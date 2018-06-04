@@ -49,7 +49,7 @@ public class Instanced : RenderStrategy {
             _mpb[i] = new MaterialPropertyBlock();
         }
 
-        _meshBoundsSize= _objMeshArray[0].bounds.size;
+        _meshBoundsSize = _objMeshArray[0].bounds.size;
 
         // Each list inside our _LODArgs is a 5 long, unisigned int array that holds arguments for
         // our draw call
@@ -63,13 +63,15 @@ public class Instanced : RenderStrategy {
         // Cache our cameras position
         _cachedCamPosition = cam.transform.position;
 
-        // Initialize our buffers
-        InitializeBuffers();
-
         // Set our parent model matrix
         _modelMatrix = _parent.transform.localToWorldMatrix;
-        _objMat.SetMatrix("modelMatrix", _modelMatrix);
-        _objMat.enableInstancing = true;
+        for (int i = 0; i < LODSIZE; i++) {
+            _objMatArray[i].SetMatrix("modelMatrix", _modelMatrix);
+            _objMatArray[i].enableInstancing = true;
+        }
+
+        // Initialize our buffers
+        InitializeBuffers();
     }
 
     /*
@@ -80,7 +82,9 @@ public class Instanced : RenderStrategy {
         // If the emitter has moved
         if (_modelMatrix != _parent.transform.localToWorldMatrix) {
             _modelMatrix = _parent.transform.localToWorldMatrix;
-            _objMat.SetMatrix("modelMatrix", _modelMatrix);
+            for (int i = 0; i < LODSIZE; i++) {
+                _objMatArray[i].SetMatrix("modelMatrix", _modelMatrix);
+            }
         }
 
         _cachedCamPosition = cam.transform.position;
@@ -90,7 +94,7 @@ public class Instanced : RenderStrategy {
             InitializeBuffers();
 
         RotatePositions();
-        UpdateBuffers();
+        //UpdateBuffers();
 
         // Render based on LOD section
         for (int i = 0; i < LODSIZE; i++) {
@@ -130,19 +134,22 @@ public class Instanced : RenderStrategy {
                 continue;
             } else if (LODTest < LOD3) {
                 tempData[i].color = Color.white;
+                _masterData[i] = tempData[i];
                 _LODData[3].Add(tempData[i]);
             } else if (LODTest < LOD2) {
                 tempData[i].color = Color.green;
+                _masterData[i] = tempData[i];
                 _LODData[2].Add(tempData[i]);
             } else if (LODTest < LOD1) {
                 tempData[i].color = Color.blue;
+                _masterData[i] = tempData[i];
                 _LODData[1].Add(tempData[i]);
             } else {
                 tempData[i].color = Color.yellow;
+                _masterData[i] = tempData[i];
                 _LODData[0].Add(tempData[i]);
             }
 
-            _masterData[i] = tempData[i];
         }
 
         UpdateLODBuffers();

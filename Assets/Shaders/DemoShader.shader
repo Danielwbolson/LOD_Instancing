@@ -30,7 +30,6 @@
 
 #ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
         StructuredBuffer<ObjInfo> dataBuffer;
-        StructuredBuffer<float4x4> matrixBuffer;
         float DummyForShadows;
 #else
         float4 color;

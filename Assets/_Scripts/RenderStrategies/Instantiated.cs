@@ -78,7 +78,8 @@ public class Instantiated : RenderStrategy {
         for (int i = 0; i < TOTALOBJECTS; i++) {
             float rotation = _gameObjects[i].transform.localScale.magnitude * _gameObjects[i].transform.localScale.magnitude * Time.deltaTime * 100;
             ObjInfo temp = _masterData[i];
-            temp.position = Quaternion.AngleAxis(rotation, Vector3.up) * temp.position;
+            Vector3 rot = Quaternion.AngleAxis(rotation, Vector3.up) * temp.position;
+            temp.position = new Vector4(rot.x, rot.y, rot.z, 1);
             _gameObjects[i].transform.position = temp.position;
             _masterData[i] = temp;
         }
