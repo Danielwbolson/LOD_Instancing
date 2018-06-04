@@ -35,7 +35,7 @@ public class RenderStrategy {
         }
         _computeShaderArray = new ComputeShader[4];
         for (int i = 0; i < 4; i++) {
-            _computeShaderArray[i] = (ComputeShader)Object.Instantiate(_computeShader);
+            _computeShaderArray[i] = Object.Instantiate(_computeShader) as ComputeShader;
         }
 
         MeshFilter[] tempArray = _obj.GetComponentsInChildren<MeshFilter>();
