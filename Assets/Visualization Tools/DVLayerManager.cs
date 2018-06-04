@@ -10,12 +10,12 @@ namespace DV{
     {
         public override void OnInspectorGUI()
         {
-            DVLayerManager myScript = (DVLayerManager)target;
+            DVLayerManager layerManager = (DVLayerManager)target;
 
             DrawDefaultInspector();
-            for(int i = 0; i < myScript._layerTypePrefabs.Length; i++) {
-                if (GUILayout.Button("Add " + myScript._layerTypePrefabs[i].GetName() + " layer")) {
-                    myScript.AddLayer(i);
+            for(int i = 0; i < layerManager._layerTypePrefabs.Length; i++) {
+                if (GUILayout.Button("Add " + layerManager._layerTypePrefabs[i].GetName() + " layer")) {
+                    layerManager.AddLayer(i);
                 }
 
             }

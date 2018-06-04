@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _layerManager: {fileID: 0}
-  _glyphMesh: {fileID: 4300004, guid: c3b2b690240cf744faabbbc4de3ebd0a, type: 3}
+  _glyphMesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
   _strategy: {fileID: 114511698231039738, guid: a833bfa24ab26461799252e93ac9ab62,
     type: 2}
   _GlyphPrefab: {fileID: 1383675545585238, guid: d126ab817d6e7452ba13b78f37e0d663,

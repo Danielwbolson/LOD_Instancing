@@ -4,8 +4,8 @@
 		_MainTex ("Albedo (RGB)", 2D) = "white" {}
 		_Glossiness ("Smoothness", Range(0,1)) = 0.5
 		_Metallic ("Metallic", Range(0,1)) = 0.0
-        _DataMin("Min Value",Range(-20,20)) = 0.0
-        _DataMax("Max Value",Range(-20,20)) = 1.0
+		_ArrayID("Which Array to use?", Range(0,6)) = 0
+
 
 	}
 	SubShader {
@@ -60,7 +60,7 @@
             float4 modelSpace = mul(mul(_DataBoundsMatrixInv,_DataModelMatrixInv),worldSpace);
             float3 textureSpace = (modelSpace.xyz+0.5);
             o.dataPos = textureSpace;
-            float3 direction = tex3Dlod (_DataVolume1, float4(textureSpace,0)).rgb;
+            float3 direction = normalize(tex3Dlod (_DataVolume1, float4(textureSpace,0)).rgb);
 
             float3 i = float3(1,0,0);
             float3 j = float3(0,1,0);
@@ -88,16 +88,16 @@
 		void surf (Input IN, inout SurfaceOutputStandard o) {
 			// Albedo comes from a texture tinted by color
             
-            float4 worldSpace = float4(IN.worldPos,1);
-            float4 modelSpace = mul(mul(_DataBoundsMatrixInv,_DataModelMatrixInv),worldSpace);
-            float3 textureSpace = (modelSpace.xyz+0.5);
+            // float4 worldSpace = float4(IN.worldPos,1);
+            // float4 modelSpace = mul(mul(_DataBoundsMatrixInv,_DataModelMatrixInv),worldSpace);
+            float3 textureSpace = IN.dataPos;//(modelSpace.xyz+0.5);
             float V1 = tex3D (_DataVolume0, textureSpace);
             if(V1 <0.1) discard;
 
-			float val = tex3D (_DataVolume0, textureSpace);
-            val = map(val, _DataMin[0], _DataMax[0],0,1);
+			float val = tex3D (_DataVolume4, textureSpace);
+            val = map(val, _DataMin[4], _DataMax[4],0,1);
             //if (val > 1 || val < 0 ) discard;
-            fixed4 c = float4(1,1,1,1)*tex2D(_MainTex,float2(val,0.5));
+            fixed4 c = float4(1,1,1,1)*tex2D(_MainTex,float2(val,0.5));;
             c.a = 1;
             //c.rgb = (textureSpace.xyz);
             if(textureSpace.r > 1 || textureSpace.r < 0  || textureSpace.g >1 || textureSpace.g < 0 || textureSpace.b > 1 || textureSpace.b < 0) 

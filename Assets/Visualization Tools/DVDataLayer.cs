@@ -43,11 +43,11 @@ namespace DV
                 GetComponent<MeshRenderer>().material.SetVector("_DataImageDimensions", GetData().GetImageDataDimensions());
                 GetComponent<MeshRenderer>().material.SetTexture("_DataVolume0", GetData().GetImageDataTexture(0));
                 GetComponent<MeshRenderer>().material.SetTexture("_DataVolume1", GetData().GetImageDataTexture(1));
-                // GetComponent<MeshRenderer>().material.SetTexture("_DataVolume2", GetData().GetImageDataTexture(2));
-                // GetComponent<MeshRenderer>().material.SetTexture("_DataVolume3", GetData().GetImageDataTexture(3));
-                //GetComponent<MeshRenderer>().material.SetTexture("_DataVolume4", GetData().GetImageDataTexture(4));
-                // GetComponent<MeshRenderer>().material.SetTexture("_DataVolume5", GetData().GetImageDataTexture(5));
-                // GetComponent<MeshRenderer>().material.SetTexture("_DataVolume6", GetData().GetImageDataTexture(6));
+                GetComponent<MeshRenderer>().material.SetTexture("_DataVolume2", GetData().GetImageDataTexture(2));
+                GetComponent<MeshRenderer>().material.SetTexture("_DataVolume3", GetData().GetImageDataTexture(3));
+                GetComponent<MeshRenderer>().material.SetTexture("_DataVolume4", GetData().GetImageDataTexture(4));
+                GetComponent<MeshRenderer>().material.SetTexture("_DataVolume5", GetData().GetImageDataTexture(5));
+                GetComponent<MeshRenderer>().material.SetTexture("_DataVolume6", GetData().GetImageDataTexture(6));
             }
 
             int numArrays = GetData().GetDataSet().GetPointData().GetNumberOfArrays();

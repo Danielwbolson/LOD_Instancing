@@ -14,7 +14,7 @@ namespace DV
             return "Glyph";
         }       
         public DVSampleStrategy _strategy;
-
+        private DVSampleStrategy _strategyCached = null;
         // Use this for initialization
         void Start()
         {
@@ -41,11 +41,16 @@ namespace DV
         public Material _GlyphMaterial;
         List<GameObject> _glyphs;
 
-
+        override protected void UpdateDataLayer() {
+            if(_strategyCached != _strategy) {
+                RequestUpdate();
+            }
+         }
         override protected void RefreshDataSet()
         {
             _strategy.SetDataSet(GetData());
             _strategy.UpdateStrategy();
+            _strategyCached = _strategy;
             if(_glyphs == null) _glyphs = new  List<GameObject>();
             foreach(var glyph in _glyphs) {
                 Destroy(glyph);
@@ -54,6 +59,7 @@ namespace DV
 
             for(int i =0; i < _strategy.GetNumberOfSamples(); i++) {
                 GameObject glyph = Instantiate(_GlyphPrefab);
+                _glyphs.Add(glyph);
                 glyph.GetComponent<MeshFilter>().mesh = _glyphMesh;
                 glyph.GetComponent<MeshRenderer>().material = GetComponent<MeshRenderer>().material;
                 glyph.transform.SetParent(GetData().transform,false);
