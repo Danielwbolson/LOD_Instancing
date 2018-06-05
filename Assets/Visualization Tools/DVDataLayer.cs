@@ -71,7 +71,7 @@ namespace DV
         virtual protected void RefreshDataSet() { }
 
 
-        virtual protected void UpdateDataLayer() { }
+        virtual protected void UpdateLayer() { }
 
         // Use this for initialization
         void Start() { }
@@ -104,7 +104,7 @@ namespace DV
 
 
             
-            UpdateDataLayer();
+            UpdateLayer();
         }
     }
 }

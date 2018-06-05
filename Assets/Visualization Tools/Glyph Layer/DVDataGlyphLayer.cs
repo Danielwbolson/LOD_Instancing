@@ -41,19 +41,17 @@ namespace DV
         public Material _GlyphMaterial;
         List<GameObject> _glyphs;
 
-        override protected void UpdateDataLayer() {
+        override protected void UpdateLayer() {
             if(_strategyCached != _strategy) {
                 RequestUpdate();
             }
+            DrawMeshes();
          }
-        override protected void RefreshDataSet()
-        {
-            _strategy.SetDataSet(GetData());
-            _strategy.UpdateStrategy();
-            _strategyCached = _strategy;
+
+        void PopulateMeshData() {
             if(_glyphs == null) _glyphs = new  List<GameObject>();
-            foreach(var glyph in _glyphs) {
-                Destroy(glyph);
+                foreach(var glyph in _glyphs) {
+                    Destroy(glyph);
             }
             _glyphs.Clear();
 
@@ -66,6 +64,20 @@ namespace DV
                 glyph.transform.localScale = new Vector3(1,1,1)*1.0f/_glyphMesh.bounds.size.y*4;
                 glyph.transform.localPosition = _strategy.GetSamples()[i].position;
             }
+
+        } 
+
+        void DrawMeshes() {
+
+        }
+        override protected void RefreshDataSet()
+        {
+            _strategy.SetDataSet(GetData());
+            _strategy.UpdateStrategy();
+            _strategyCached = _strategy;
+           
+            PopulateMeshData();
+
         }
     }
 }
