@@ -4,8 +4,8 @@
 		_MainTex ("Albedo (RGB)", 2D) = "white" {}
 		_Glossiness ("Smoothness", Range(0,1)) = 0.5
 		_Metallic ("Metallic", Range(0,1)) = 0.0
-        _DataMin("Min Value",Range(-20,20)) = 0.0
-        _DataMax("Max Value",Range(-20,20)) = 1.0
+		_ArrayID("Which Array to use?", Range(0,6)) = 0
+
 
 	}
 	SubShader {
@@ -18,16 +18,25 @@
 
 		// Use shader model 3.0 target, to get nicer looking lighting
 		#pragma target 3.0
-        float _DataMin;
-        float _DataMax;
-        sampler3D _DataVolume;
-        sampler3D _DataVolume2;
+       float _DataMin[1000];
+        float _DataMax[1000];
+        sampler3D _DataVolume0;
+		sampler3D _DataVolume1;
+		sampler3D _DataVolume2;
+		sampler3D _DataVolume3;
+		sampler3D _DataVolume4;
+		sampler3D _DataVolume5;
+		sampler3D _DataVolume6;
+		int _ArrayID;
+        float4x4 _DataModelMatrix;
+        float4x4 _DataModelMatrixInv;
+        float4x4 _DataBoundsMatrix;
+        float4x4 _DataBoundsMatrixInv;
+        float3 _DataImageDimensions;
 
-        float4x4 _ModelMatrix;
-        float4x4 _ModelMatrixInv;
 		sampler2D _MainTex;
-        
-        float3 _Dimensions;
+
+
 		struct Input {
 			float2 uv_MainTex;
             float3 worldPos;
@@ -48,10 +57,10 @@
                 UNITY_INITIALIZE_OUTPUT(Input,o);
 
             float4 worldSpace = mul(unity_ObjectToWorld,float4(0,0,0,1));
-            float4 modelSpace = mul(_ModelMatrixInv,worldSpace);
+            float4 modelSpace = mul(mul(_DataBoundsMatrixInv,_DataModelMatrixInv),worldSpace);
             float3 textureSpace = (modelSpace.xyz+0.5);
             o.dataPos = textureSpace;
-            float3 direction = tex3Dlod (_DataVolume, float4(textureSpace,0)).rgb;
+            float3 direction = normalize(tex3Dlod (_DataVolume1, float4(textureSpace,0)).rgb);
 
             float3 i = float3(1,0,0);
             float3 j = float3(0,1,0);
@@ -78,17 +87,21 @@
 
 		void surf (Input IN, inout SurfaceOutputStandard o) {
 			// Albedo comes from a texture tinted by color
-            float4 worldSpace = float4(IN.worldPos,1);
-            float4 modelSpace = mul(_ModelMatrixInv,worldSpace);
-            float3 textureSpace = (modelSpace.xyz+0.5);
-			float val = tex3D (_DataVolume, textureSpace);
-            val = map(val, _DataMin, _DataMax,0,1);
-            if (val > 1 || val < 0 ) discard;
-            fixed4 c = float4(1,1,1,1)*tex2D(_MainTex,float2(val,0.5));
+            
+            // float4 worldSpace = float4(IN.worldPos,1);
+            // float4 modelSpace = mul(mul(_DataBoundsMatrixInv,_DataModelMatrixInv),worldSpace);
+            float3 textureSpace = IN.dataPos;//(modelSpace.xyz+0.5);
+            float V1 = tex3D (_DataVolume0, textureSpace);
+            if(V1 <0.1) discard;
+
+			float val = tex3D (_DataVolume4, textureSpace);
+            val = map(val, _DataMin[4], _DataMax[4],0,1);
+            //if (val > 1 || val < 0 ) discard;
+            fixed4 c = float4(1,1,1,1)*tex2D(_MainTex,float2(val,0.5));;
             c.a = 1;
             //c.rgb = (textureSpace.xyz);
             if(textureSpace.r > 1 || textureSpace.r < 0  || textureSpace.g >1 || textureSpace.g < 0 || textureSpace.b > 1 || textureSpace.b < 0) 
-                discard;
+                ;//discard;
 			o.Albedo = float3(c.x,c.y,c.z);
 			// Metallic and smoothness come from slider variables
 			o.Metallic = _Metallic;

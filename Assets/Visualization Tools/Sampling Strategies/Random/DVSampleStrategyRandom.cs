@@ -9,12 +9,13 @@ namespace DV
 
         override public void UpdateStrategy()
         {
+            Random.seed = 0;
             List<DVSample> sampleList = new List<DVSample>();
 
             Vector3 min = _dataObject.GetBounds().min;
             Vector3 max = _dataObject.GetBounds().max;
             print(min + ";" + max);
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 1000; i++)
             {
                 DVSample sample = new DVSample();
 
