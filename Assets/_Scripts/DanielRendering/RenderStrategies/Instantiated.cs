@@ -17,7 +17,7 @@ public class Instantiated : RenderStrategy {
  * by polygon count, that all share the same material. We are using Unity's built in
  * LOD system as it is made to work with their gameobjects.
  */
-    public Instantiated(GameObject p, GameObject o, Material mat, ComputeShader cs, List<ObjInfo> data, int total) : 
+    public Instantiated(GameObject p, GameObject[] o, Material mat, ComputeShader cs, List<ObjInfo> data, int total) : 
         base(p, o, mat, cs, data, total) {
         _objMat.enableInstancing = false;
 
@@ -29,7 +29,7 @@ public class Instantiated : RenderStrategy {
 
         for (int i = 0; i < TOTALOBJECTS; i++) {
             // Instantiate object and set parent
-            GameObject temp_obj = GameObject.Instantiate(_obj) as GameObject;
+            GameObject temp_obj = GameObject.Instantiate(_objs[_masterData[i].objIndex]) as GameObject;
             temp_obj.transform.parent = _parent.transform;
             _gameObjects.Add(temp_obj);
 
@@ -54,7 +54,9 @@ public class Instantiated : RenderStrategy {
             // Set our position based on what was passed in
             temp_obj.transform.position = _masterData[i].position;
 
-            temp_obj.transform.localScale = _masterData[i].scale;
+            float scal = _masterData[i].scale;
+
+            temp_obj.transform.localScale = new Vector3(scal, scal, scal);
         }
         _cachedNumObjects = TOTALOBJECTS;
     }

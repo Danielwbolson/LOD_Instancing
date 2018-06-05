@@ -5,14 +5,15 @@ using UnityEngine;
 public class RenderStrategy {
 
     protected GameObject _parent;
-    protected GameObject _obj;
+    protected GameObject[] _objs;
     protected Material _objMat;
     protected ComputeShader _computeShader;
-    protected Mesh[] _objMeshArray;
+    protected Mesh[][] _objMeshArray;
     protected int TOTALOBJECTS;
+    protected int DIFFERENTOBJECTS;
 
     protected List<ObjInfo> _masterData;
-    protected Material[] _objMatArray;
+    protected Material[][] _objMatArray;
 
     /*
      * CLASS DOCUMENTATION: RenderStrategy
@@ -20,23 +21,31 @@ public class RenderStrategy {
      * This class stores relevent information that any of its strategies could use, while also
      * allowing them to share, and send data further up where is is more accessibly by the user
      */
-    public RenderStrategy(GameObject p, GameObject o, Material mat, ComputeShader cs, List<ObjInfo> data, int total) {
+    public RenderStrategy(GameObject p, GameObject[] o, Material mat, ComputeShader cs, List<ObjInfo> data, int total) {
         _parent = p;
-        _obj = o;
+        _objs = o;
         _objMat = mat;
         _computeShader = cs;
         _masterData = data;
         TOTALOBJECTS = total;
+        DIFFERENTOBJECTS = _objs.Length;
 
-        _objMatArray = new Material[4];
-        for (int i = 0; i < 4; i++) {
-            _objMatArray[i] = new Material(_objMat);
+        _objMatArray = new Material[DIFFERENTOBJECTS][];
+        for (int i = 0; i < DIFFERENTOBJECTS; i++) {
+            _objMatArray[i] = new Material[4];
+            for (int j = 0; j < 4; j++) {
+                _objMatArray[i][j] = new Material(_objMat);
+            }
         }
 
-        MeshFilter[] tempArray = _obj.GetComponentsInChildren<MeshFilter>();
-        _objMeshArray = new Mesh[tempArray.Length];
-        for (int i = 0; i < tempArray.Length; i++) {
-            _objMeshArray[i] = tempArray[i].sharedMesh;
+        MeshFilter[][] tempArray = new MeshFilter[DIFFERENTOBJECTS][];
+        _objMeshArray = new Mesh[DIFFERENTOBJECTS][];
+        for (int i = 0; i < DIFFERENTOBJECTS; i++) {
+            tempArray[i] = _objs[i].GetComponentsInChildren<MeshFilter>();
+            _objMeshArray[i] = new Mesh[4];
+            for (int j = 0; j < 4; j++) {
+                _objMeshArray[i][j] = tempArray[i][j].sharedMesh;
+            }
         }
     }
 

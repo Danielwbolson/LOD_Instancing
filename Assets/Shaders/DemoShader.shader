@@ -23,9 +23,10 @@
         };
 
         struct ObjInfo {
+            int meshIndex;
             float4 position;
             float4 color;
-            float4 scale;
+            float scale;
         };
 
 #ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED

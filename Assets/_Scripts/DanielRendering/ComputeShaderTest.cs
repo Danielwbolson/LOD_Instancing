@@ -71,7 +71,7 @@ public class ComputeShaderTest : MonoBehaviour {
                 Random.Range(-10f, 10f),
                 Random.Range(-10f, 10f),
                 1);
-            data[i].scale = new Vector4(0.1f, 0.1f, 0.1f, 1);
+            data[i].scale = 0.1f;
         }
         //dataBuffer = new ComputeBuffer(data.Length, 12 * sizeof(float));
         dataBuffer.SetData(data);
