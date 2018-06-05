@@ -5,26 +5,27 @@ using UnityEngine;
 public class Instanced : RenderStrategy {
 
     private const int LODSIZE = 4;
+    private int cachedInstanceCount = -1;
+
     private Camera cam = Camera.main;
     private Vector3 _cachedCamPosition;
     private Matrix4x4 _modelMatrix;
-    private readonly MaterialPropertyBlock[] _mpb;
-    private Vector3 _meshBoundsSize;
-    private int _Kernel;
+    private readonly Vector3[] _meshBoundsSize;
+    private readonly int _Kernel;
 
     private const float LOD1 = 0.0689f;
     private const float LOD2 = 0.0295f;
     private const float LOD3 = 0.00967f;
     private const float LODCULL = 0.001f;
 
-    private readonly List<uint>[] _LODArgs;
-    private List<ObjInfo>[] _LODData;
+    private readonly List<uint>[][] _LODArgs;
+    private List<ObjInfo>[][] _LODData;
     private Matrix4x4[] _matrixData;
+    private readonly MaterialPropertyBlock[][] _mpbs;
 
-    private int cachedInstanceCount = -1;
-    private ComputeBuffer[] _LODBuffers;
-    private ComputeBuffer[] _LODArgsBuffer;
-    private ComputeBuffer[] _matrixBuffers;
+    private ComputeBuffer[][] _LODBuffers;
+    private ComputeBuffer[][] _LODArgsBuffer;
+    private ComputeBuffer[][] _matrixBuffers;
 
     /*
      * CLASS DOCUMENTATION: Instanced : RenderStrategy
@@ -39,45 +40,50 @@ public class Instanced : RenderStrategy {
      * 
      * Next step: Frustrum culling.
      */
-    public Instanced(GameObject p, GameObject o, Material mat, ComputeShader cs, List<ObjInfo> data, int total) : 
+    public Instanced(GameObject p, GameObject[] o, Material mat, ComputeShader cs, List<ObjInfo> data, int total) :
         base(p, o, mat, cs, data, total) {
         // Initialize our ComputeBuffers and lists
-        _LODData = new List<ObjInfo>[LODSIZE];
-        _LODBuffers = new ComputeBuffer[LODSIZE];
+        _LODBuffers = new ComputeBuffer[DIFFERENTOBJECTS][];
+        _matrixBuffers = new ComputeBuffer[DIFFERENTOBJECTS][];
+        _LODArgs = new List<uint>[DIFFERENTOBJECTS][];
+        _LODArgsBuffer = new ComputeBuffer[DIFFERENTOBJECTS][];
 
-        _matrixBuffers = new ComputeBuffer[LODSIZE];
-
-
-        _LODArgs = new List<uint>[LODSIZE];
-        _LODArgsBuffer = new ComputeBuffer[LODSIZE];
+        for (int i = 0; i < DIFFERENTOBJECTS; i++) {
+            _LODBuffers[i] = new ComputeBuffer[LODSIZE];
+            _matrixBuffers[i] = new ComputeBuffer[LODSIZE];
+            _LODArgs[i] = new List<uint>[LODSIZE];
+            _LODArgsBuffer[i] = new ComputeBuffer[LODSIZE];
+        }
 
         // Each list inside our _LODArgs is a 5 long, unisigned int array that holds arguments for
-        // our draw call
-        for (int i = 0; i < LODSIZE; i++) {
-            _LODArgs[i] = new List<uint>(new uint[] { 0, 0, 0, 0, 0 });
+        // our draw call. We need to set up our buffer to deal with that
+        _meshBoundsSize = new Vector3[DIFFERENTOBJECTS];
+        _mpbs = new MaterialPropertyBlock[DIFFERENTOBJECTS][];
+        for (int i = 0; i < DIFFERENTOBJECTS; i++) {
+            _meshBoundsSize[i] = _objMeshArray[i][LODSIZE - 1].bounds.size;
+            _mpbs[i] = new MaterialPropertyBlock[LODSIZE];
+            for (int j = 0; j < LODSIZE; j++) {
+                _LODArgs[i][j] = new List<uint>(new uint[] { 0, 0, 0, 0, 0 });
 
-            // Initialize our LODArgsBuffer, where each one holds one LODArgs
-            _LODArgsBuffer[i] = new ComputeBuffer(1, _LODArgs[i].Count * sizeof(uint), ComputeBufferType.IndirectArguments);
+                // Initialize our LODArgsBuffer, where each one holds one LODArgs
+                _LODArgsBuffer[i][j] = new ComputeBuffer(1, _LODArgs[i][j].Count * sizeof(uint), ComputeBufferType.IndirectArguments);
+
+                // Setup our materials
+                _objMatArray[i][j].enableInstancing = true;
+
+                // Setup our dummy materialproperty blocks for shadowing
+                _mpbs[i][j] = new MaterialPropertyBlock();
+            }
         }
-
-        _mpb = new MaterialPropertyBlock[LODSIZE];
-        for (int i = 0; i < LODSIZE; i++) {
-            _mpb[i] = new MaterialPropertyBlock();
-        }
-
-        _meshBoundsSize = _objMeshArray[0].bounds.size;
 
         // Cache our cameras position
         _cachedCamPosition = cam.transform.position;
 
         // Set our parent model matrix and enable instancing
         _modelMatrix = _parent.transform.localToWorldMatrix;
-        for (int i = 0; i < LODSIZE; i++) {
-            _objMatArray[i].enableInstancing = true;
-        }
         _computeShader.SetMatrix("modelMatrix", _modelMatrix);
 
-        _Kernel = _computeShader.FindKernel("InstanceMatrix");
+        _Kernel = _computeShader.FindKernel("CSMain");
 
         // Initialize our buffers
         InitializeBuffers();
@@ -104,16 +110,18 @@ public class Instanced : RenderStrategy {
         UpdateBuffers();
 
         // Render based on LOD section
-        for (int i = 0; i < LODSIZE; i++) {
+        for (int i = 0; i < DIFFERENTOBJECTS; i++) {
+            for (int j = 0; j < LODSIZE; j++) {
 
-            if (_LODBuffers[i] != null) {
-                _computeShader.SetBuffer(_Kernel, "matrixBuffer", _matrixBuffers[i]);
-                _computeShader.SetBuffer(_Kernel, "dataBuffer", _LODBuffers[i]);
-                _computeShader.Dispatch(_Kernel, _LODData[i].Count, 1, 1);
+                if (_LODBuffers[i][j] != null) {
+                    _computeShader.SetBuffer(_Kernel, "matrixBuffer", _matrixBuffers[i][j]);
+                    _computeShader.SetBuffer(_Kernel, "dataBuffer", _LODBuffers[i][j]);
+                    _computeShader.Dispatch(_Kernel, _LODData[i][j].Count, 1, 1);
+                    _mpbs[i][j].SetFloat("DummyForShadows", i * LODSIZE + j);
 
-                _mpb[i].SetFloat("DummyForShadows", i);
-
-                Graphics.DrawMeshInstancedIndirect(_objMeshArray[i], 0, _objMatArray[i], _objMeshArray[i].bounds, _LODArgsBuffer[i], 0, _mpb[i]);
+                    Graphics.DrawMeshInstancedIndirect(_objMeshArray[i][j], 0, _objMatArray[i][j],
+                        _objMeshArray[i][j].bounds, _LODArgsBuffer[i][j], 0, _mpbs[i][j]);
+                }
             }
         }
     }
@@ -124,37 +132,40 @@ public class Instanced : RenderStrategy {
      */
     void InitializeBuffers() {
         ObjInfo[] tempData = new ObjInfo[TOTALOBJECTS];
-        for (int i = 0; i < LODSIZE; i++) {
-            _LODData[i] = new List<ObjInfo>();
+
+        _LODData = new List<ObjInfo>[DIFFERENTOBJECTS][];
+        for (int i = 0; i < DIFFERENTOBJECTS; i++) {
+            _LODData[i] = new List<ObjInfo>[LODSIZE];
+            for (int j = 0; j < LODSIZE; j++) {
+                _LODData[i][j] = new List<ObjInfo>();
+            }
         }
 
         for (int i = 0; i < TOTALOBJECTS; i++) {
             // Set the position of our instance
-            tempData[i].position = _masterData[i].position;
-
-            tempData[i].scale = _masterData[i].scale;
+            tempData[i] = _masterData[i];
+            int index = _masterData[i].objIndex;
 
             Vector3 tempDataPos = new Vector3(tempData[i].position.x, tempData[i].position.y, tempData[i].position.z);
 
             float dist = Vector3.Distance(tempDataPos, _cachedCamPosition);
-            float scal = tempData[i].scale.magnitude;
-            float LODTest = 1f / dist * scal;
+            float LODTest = 1f / dist * tempData[i].scale * 8;
 
             // Based on the distance from the camera and an objects scale, assign it to a different LOD group
             if (LODTest < LODCULL) {
                 continue;
             } else if (LODTest < LOD3) {
                 tempData[i].color = Color.white;
-                _LODData[3].Add(tempData[i]);
+                _LODData[index][3].Add(tempData[i]);
             } else if (LODTest < LOD2) {
                 tempData[i].color = Color.green;
-                _LODData[2].Add(tempData[i]);
+                _LODData[index][2].Add(tempData[i]);
             } else if (LODTest < LOD1) {
                 tempData[i].color = Color.blue;
-                _LODData[1].Add(tempData[i]);
+                _LODData[index][1].Add(tempData[i]);
             } else {
                 tempData[i].color = Color.yellow;
-                _LODData[0].Add(tempData[i]);
+                _LODData[index][0].Add(tempData[i]);
             }
             _masterData[i] = tempData[i];
         }
@@ -168,25 +179,27 @@ public class Instanced : RenderStrategy {
      * LOD distancing and change up our buffers and data sets accordingly, all while preserving data
      */
     public void UpdateBuffers() {
-        List<ObjInfo>[] tempLODData = new List<ObjInfo>[LODSIZE];
-        for (int i = 0; i < LODSIZE; i++) {
-            tempLODData[i] = new List<ObjInfo>();
+        List<ObjInfo>[][] tempLODData = new List<ObjInfo>[DIFFERENTOBJECTS][];
+        for (int i = 0; i < DIFFERENTOBJECTS; i++) {
+            tempLODData[i] = new List<ObjInfo>[LODSIZE];
+            for (int j = 0; j < LODSIZE; j++) {
+                tempLODData[i][j] = new List<ObjInfo>();
+            }
         }
 
         Plane[] planes = GeometryUtility.CalculateFrustumPlanes(cam);
         for (int i = 0; i < TOTALOBJECTS; i++) {
             Vector3 tempDataPos = new Vector3(_masterData[i].position.x, _masterData[i].position.y, _masterData[i].position.z);
-            Vector3 tempScale = new Vector3(_masterData[i].scale.x, _masterData[i].scale.y, _masterData[i].scale.z);
+            float tempScale = _masterData[i].scale;
 
             Bounds meshBounds = new Bounds(tempDataPos, new Vector3(
-                _meshBoundsSize.x * tempScale.x,
-                _meshBoundsSize.y * tempScale.y,
-                _meshBoundsSize.z * tempScale.z));
+                _meshBoundsSize[_masterData[i].objIndex].x * tempScale,
+                _meshBoundsSize[_masterData[i].objIndex].y * tempScale,
+                _meshBoundsSize[_masterData[i].objIndex].z * tempScale));
 
             if (GeometryUtility.TestPlanesAABB(planes, meshBounds)) {
                 float dist = Vector3.Distance(tempDataPos, _cachedCamPosition);
-                float scal = _masterData[i].scale.magnitude;
-                float LODTest = 1f / dist * scal;
+                float LODTest = 1f / dist * tempScale * 8;
                 ObjInfo temp = _masterData[i];
 
                 if (LODTest < LODCULL) {
@@ -194,29 +207,31 @@ public class Instanced : RenderStrategy {
                 } else if (LODTest < LOD3) {
                     temp.color = Color.white;
                     _masterData[i] = temp;
-                    tempLODData[3].Add(temp);
+                    tempLODData[_masterData[i].objIndex][3].Add(temp);
                 } else if (LODTest < LOD2) {
                     temp.color = Color.green;
                     _masterData[i] = temp;
-                    tempLODData[2].Add(temp);
+                    tempLODData[_masterData[i].objIndex][2].Add(temp);
                 } else if (LODTest < LOD1) {
                     temp.color = Color.blue;
                     _masterData[i] = temp;
-                    tempLODData[1].Add(temp);
+                    tempLODData[_masterData[i].objIndex][1].Add(temp);
                 } else {
                     temp.color = Color.yellow;
                     _masterData[i] = temp;
-                    tempLODData[0].Add(temp);
+                    tempLODData[_masterData[i].objIndex][0].Add(temp);
                 }
             }
         }
 
-        for (int i = 0; i < _LODData.Length; i++) {
-            _LODData[i] = tempLODData[i];
+        for (int i = 0; i < DIFFERENTOBJECTS; i++) {
+            for (int j = 0; j < LODSIZE; j++) {
+                _LODData[i][j] = tempLODData[i][j];
+            }
         }
 
-            UpdateLODBuffers();
-            cachedInstanceCount = TOTALOBJECTS;
+        UpdateLODBuffers();
+        cachedInstanceCount = TOTALOBJECTS;
     }
 
     /*
@@ -225,46 +240,46 @@ public class Instanced : RenderStrategy {
      */
     private void UpdateLODBuffers() {
         // Initialize our Level-of-Detail computebuffers for our material
-        for (int i = 0; i < LODSIZE; i++) {
-            if (_LODBuffers[i] != null) {
-                _LODBuffers[i].Release();
-                _LODBuffers[i] = null;
+        for (int i = 0; i < DIFFERENTOBJECTS; i++) {
+            for (int j = 0; j < LODSIZE; j++) {
+                // Release current buffers
+                if (_LODBuffers[i][j] != null) {
+                    _LODBuffers[i][j].Release();
+                    _LODBuffers[i][j] = null;
+                }
+                if (_LODArgsBuffer[i][j] != null) {
+                    _LODArgsBuffer[i][j].Release();
+                    _LODArgsBuffer[i][j] = null;
+                }
+                if (_matrixBuffers[i][j] != null) {
+                    _matrixBuffers[i][j].Release();
+                    _matrixBuffers[i][j] = null;
+                }
+                if (_objMeshArray[i][j] != null) {
+                    _LODArgs[i][j][0] = (uint)_objMeshArray[i][j].GetIndexCount(0);
+                    _LODArgs[i][j][1] = (uint)_LODData[i][j].Count;
+                    _LODArgs[i][j][2] = (uint)_objMeshArray[i][j].GetIndexStart(0);
+                    _LODArgs[i][j][3] = (uint)_objMeshArray[i][j].GetBaseVertex(0);
+                } else {
+                    _LODArgs[i][j][0] = _LODArgs[i][j][1] = _LODArgs[i][j][2] = _LODArgs[i][j][3] = 0;
+                }
+
+                // If we have data waiting to enter a buffer, set up our model
+                if (_LODData[i][j].Count > 0) {
+                    _LODBuffers[i][j] = new ComputeBuffer(_LODData[i][j].Count, 9 * sizeof(float) + 1 * sizeof(int));
+                    _LODBuffers[i][j].SetData(_LODData[i][j]);
+
+                    _LODArgsBuffer[i][j] = new ComputeBuffer(1, _LODArgs[i][j].Count * sizeof(uint), ComputeBufferType.IndirectArguments);
+                    _LODArgsBuffer[i][j].SetData(_LODArgs[i][j]);
+
+                    _matrixData = new Matrix4x4[_LODData[i][j].Count];
+                    _matrixBuffers[i][j] = new ComputeBuffer(_LODData[i][j].Count, 16 * sizeof(float));
+                    _matrixBuffers[i][j].SetData(_matrixData);
+
+                    _objMatArray[i][j].SetBuffer("dataBuffer", _LODBuffers[i][j]);
+                    _objMatArray[i][j].SetBuffer("matrixBuffer", _matrixBuffers[i][j]);
+                }
             }
-
-            if (_matrixBuffers[i] != null) {
-                _matrixBuffers[i].Release();
-                _matrixBuffers[i] = null;
-            }
-
-            if (_LODData[i].Count > 0) {
-                _LODBuffers[i] = new ComputeBuffer(_LODData[i].Count, 12 * sizeof(float));
-                _LODBuffers[i].SetData(_LODData[i]);
-
-                _matrixData = new Matrix4x4[_LODData[i].Count];
-                _matrixBuffers[i] = new ComputeBuffer(_LODData[i].Count, 16 * sizeof(float));
-                _matrixBuffers[i].SetData(_matrixData);
-
-                _objMatArray[i].SetBuffer("dataBuffer", _LODBuffers[i]);
-                _objMatArray[i].SetBuffer("matrixBuffer", _matrixBuffers[i]);
-            }
-
-            // Information for out LODArgs
-            if (_objMeshArray[i] != null) {
-                _LODArgs[i][0] = (uint)_objMeshArray[i].GetIndexCount(0);
-                _LODArgs[i][1] = (uint)_LODData[i].Count;
-                _LODArgs[i][2] = (uint)_objMeshArray[i].GetIndexStart(0);
-                _LODArgs[i][3] = (uint)_objMeshArray[i].GetBaseVertex(0);
-            } else {
-                _LODArgs[i][0] = _LODArgs[i][1] = _LODArgs[i][2] = _LODArgs[i][3] = 0;
-            }
-
-            // Information for our LODArgsBuffers
-            if (_LODArgsBuffer[i] != null) {
-                _LODArgsBuffer[i].Release();
-                _LODArgsBuffer[i] = null;
-            }
-            _LODArgsBuffer[i] = new ComputeBuffer(1, _LODArgs[i].Count * sizeof(uint), ComputeBufferType.IndirectArguments);
-            _LODArgsBuffer[i].SetData(_LODArgs[i]);
         }
     }
 
@@ -276,9 +291,9 @@ public class Instanced : RenderStrategy {
     public void RotatePositions() {
         for (int i = 0; i < TOTALOBJECTS; i++) {
             // Set the positions of our instance based on our input List
-            float scaleMag = new Vector3(_masterData[i].scale.x, _masterData[i].scale.y, _masterData[i].scale.z).magnitude;
+            float scaleMag = _masterData[i].scale;
             Vector3 newPos = Quaternion.AngleAxis(
-                scaleMag * scaleMag * Time.deltaTime * 100,
+                scaleMag * Time.deltaTime * 40,
                 Vector3.up) * _masterData[i].position;
             ObjInfo temp = _masterData[i];
             temp.position = new Vector4(newPos.x, newPos.y, newPos.z, 1);
@@ -291,20 +306,22 @@ public class Instanced : RenderStrategy {
      * of instance rendering
      */
     public override void Destroy() {
-        for (int i = 0; i < LODSIZE; i++) {
-            if (_LODArgsBuffer[i] != null) {
-                _LODArgsBuffer[i].Release();
-            }
-            _LODArgsBuffer[i] = null;
+        for (int i = 0; i < DIFFERENTOBJECTS; i++) {
+            for (int j = 0; j < LODSIZE; j++) {
+                if (_LODArgsBuffer[i][j] != null) {
+                    _LODArgsBuffer[i][j].Release();
+                }
+                _LODArgsBuffer[i][j] = null;
 
-            if (_LODBuffers[i] != null)
-                _LODBuffers[i].Release();
-            _LODBuffers[i] = null;
+                if (_LODBuffers[i][j] != null)
+                    _LODBuffers[i][j].Release();
+                _LODBuffers[i][j] = null;
 
-            if (_matrixBuffers[i] != null) {
-                _matrixBuffers[i].Release();
+                if (_matrixBuffers[i][j] != null) {
+                    _matrixBuffers[i][j].Release();
+                }
+                _matrixBuffers[i][j] = null;
             }
-            _matrixBuffers[i] = null;
         }
         _LODArgsBuffer = null;
         _LODBuffers = null;

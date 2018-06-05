@@ -1,7 +1,5 @@
 fileFormatVersion: 2
 guid: 364cd843de68a48168170e1ed6c52897
-timeCreated: 1521741678
-licenseType: Pro
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -21,7 +19,7 @@ ModelImporter:
     4300002: Table_mesh_polySurface21
   externalObjects: {}
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -38,6 +36,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5

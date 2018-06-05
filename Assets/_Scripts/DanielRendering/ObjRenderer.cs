@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ObjRenderer : MonoBehaviour {
 
-    public GameObject _obj;
+    public GameObject[] _objs;
     public Material _objMat;
     public ComputeShader _computeShader;
-    public int _numObjects;
+    public int _totalNumObjects;
     private int _cachedNumObjects;
 
     public bool _instancedRendering;
@@ -29,10 +29,10 @@ public class ObjRenderer : MonoBehaviour {
         InitializeInfo();
 
         // Initialize our new RenderStrategy
-        _renderStrategy = new Instantiated(this.gameObject, _obj, _objMat, _computeShader, _objInfo, _numObjects);
+        _renderStrategy = new Instantiated(this.gameObject, _objs, _objMat, _computeShader, _objInfo, _totalNumObjects);
         _instancedRendering = false;
         _cachedInstanceRendering = _instancedRendering;
-        _cachedNumObjects = _numObjects;
+        _cachedNumObjects = _totalNumObjects;
     }
     
     // Update is called once per frame
@@ -42,11 +42,11 @@ public class ObjRenderer : MonoBehaviour {
             ToggleInstancedRendering();
         }
 
-        if (_cachedNumObjects != _numObjects) {
+        if (_cachedNumObjects != _totalNumObjects) {
             InitializeInfo();
-            _renderStrategy.SetNumObjects(_numObjects);
+            _renderStrategy.SetNumObjects(_totalNumObjects);
             _renderStrategy.SetObjInfo(_objInfo);
-            _cachedNumObjects = _numObjects;
+            _cachedNumObjects = _totalNumObjects;
         }
 
         // Update our objects based on our render strategy
@@ -55,7 +55,7 @@ public class ObjRenderer : MonoBehaviour {
 
     void InitializeInfo() {
         _objInfo = new List<ObjInfo>();
-        for (int i = 0; i < _numObjects; i++) {
+        for (int i = 0; i < _totalNumObjects; i++) {
             ObjInfo temp = new ObjInfo();
 
             float angle = Random.Range(0.0f, Mathf.PI * 2.0f);
@@ -64,11 +64,18 @@ public class ObjRenderer : MonoBehaviour {
 
             temp.position = new Vector4(Mathf.Sin(angle) * distance, height, Mathf.Cos(angle) * distance, 1);
 
-            float scalx = Random.Range(0.01f, 0.15f);
-            float scaly = Random.Range(0.01f, 0.15f);
-            float scalz = Random.Range(0.01f, 0.15f);
+            //float scalx = Random.Range(0.01f, 0.15f);
+            //float scaly = Random.Range(0.01f, 0.15f);
+            //float scalz = Random.Range(0.01f, 0.15f);
 
-            temp.scale = new Vector4(scalx, scaly, scalz, 1);
+            //temp.scale = new Vector4(scalx, scaly, scalz, 1);
+            temp.scale = 0.1f;
+
+            temp.objIndex = Random.Range(0, _objs.Length);
+
+            /*
+             * Add rotation
+             */
 
             _objInfo.Add(temp);
         }
@@ -83,10 +90,10 @@ public class ObjRenderer : MonoBehaviour {
 
         if (_instancedRendering == true) {
             _renderStrategy.Destroy();
-            _renderStrategy = new Instanced(this.gameObject, _obj, _objMat, _computeShader, newObjInfo, _numObjects);
+            _renderStrategy = new Instanced(this.gameObject, _objs, _objMat, _computeShader, newObjInfo, _totalNumObjects);
         } else {
             _renderStrategy.Destroy();
-            _renderStrategy = new Instantiated(this.gameObject, _obj, _objMat, _computeShader, newObjInfo, _numObjects);
+            _renderStrategy = new Instantiated(this.gameObject, _objs, _objMat, _computeShader, newObjInfo, _totalNumObjects);
         }
         _cachedInstanceRendering = _instancedRendering;
     }
