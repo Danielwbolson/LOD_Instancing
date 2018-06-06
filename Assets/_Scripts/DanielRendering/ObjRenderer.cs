@@ -62,6 +62,7 @@ public class ObjRenderer : MonoBehaviour {
 
             ObjInfo temp = new ObjInfo {
                 objIndex = Random.Range(0, _objs.Length),
+                LODIndex = -1,
                 position = new Vector4(Mathf.Sin(angle) * distance, height, Mathf.Cos(angle) * distance, 1),
                 color = new Vector4(0, 0, 0, Random.Range(0.20f, 1.0f)),
                 scale = 0.1f,

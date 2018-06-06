@@ -24,6 +24,7 @@
 
         struct ObjInfo {
             int meshIndex;
+            int LODIndex;
             float4 position;
             float4 color;
             float scale;
