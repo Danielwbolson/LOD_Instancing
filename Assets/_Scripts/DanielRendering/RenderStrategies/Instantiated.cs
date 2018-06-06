@@ -47,7 +47,7 @@ public class Instantiated : RenderStrategy {
                     Mathf.Clamp(0 + j * (1f / (color.Length - 1)), 0, 1),
                     Mathf.Clamp(1 - j * (1f / (color.Length - 1)), 0, 1),
                     0,
-                    1);
+                    _masterData[i].color[3]);
                 _tempMatArray[j].SetVector("color", color[j]);
             }
 

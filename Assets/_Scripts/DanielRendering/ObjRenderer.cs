@@ -56,24 +56,17 @@ public class ObjRenderer : MonoBehaviour {
     void InitializeInfo() {
         _objInfo = new List<ObjInfo>();
         for (int i = 0; i < _totalNumObjects; i++) {
-            ObjInfo temp = new ObjInfo();
-
             float angle = Random.Range(0.0f, Mathf.PI * 2.0f);
             float distance = Random.Range(10.0f, 50.0f);
             float height = Random.Range(-2.0f, 2.0f);
 
-            temp.position = new Vector4(Mathf.Sin(angle) * distance, height, Mathf.Cos(angle) * distance, 1);
-
-            //float scalx = Random.Range(0.01f, 0.15f);
-            //float scaly = Random.Range(0.01f, 0.15f);
-            //float scalz = Random.Range(0.01f, 0.15f);
-
-            //temp.scale = new Vector4(scalx, scaly, scalz, 1);
-            temp.scale = 0.1f;
-
-            temp.objIndex = Random.Range(0, _objs.Length);
-
-            temp.direction = Vector3.Normalize(new Vector3(Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0, 1f)));
+            ObjInfo temp = new ObjInfo {
+                objIndex = Random.Range(0, _objs.Length),
+                position = new Vector4(Mathf.Sin(angle) * distance, height, Mathf.Cos(angle) * distance, 1),
+                color = new Vector4(0, 0, 0, Random.Range(0.20f, 1.0f)),
+                scale = 0.1f,
+                direction = Vector3.Normalize(new Vector3(Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0, 1f)))
+            };
 
             _objInfo.Add(temp);
         }

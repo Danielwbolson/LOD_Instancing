@@ -86,7 +86,7 @@ public class Instanced : RenderStrategy {
         _Kernel = _computeShader.FindKernel("CSMain");
 
         // Initialize our buffers
-        InitializeBuffers();
+        UpdateBuffers();
     }
 
     /*
@@ -102,10 +102,7 @@ public class Instanced : RenderStrategy {
 
         _cachedCamPosition = cam.transform.position;
 
-        // Update starting position buffer
-        if (cachedInstanceCount != TOTALOBJECTS)
-            InitializeBuffers();
-
+        _masterData.Sort(SortByTransparency);
         RotatePositions();
         UpdateBuffers();
 
@@ -127,63 +124,15 @@ public class Instanced : RenderStrategy {
     }
 
     /*
-     * Initialize releases all of our buffers, calculates new LOD sections, and 
-     * then finally resets all of our buffers with our new information inside our LODData
+     * Instead of initializing all data, we want to preserve what we already had. So instead we recalculate
+     * LOD distancing and change up our buffers and data sets accordingly, all while preserving data
      */
-    void InitializeBuffers() {
-        ObjInfo[] tempData = new ObjInfo[TOTALOBJECTS];
-
+    public void UpdateBuffers() {
         _LODData = new List<ObjInfo>[DIFFERENTOBJECTS][];
         for (int i = 0; i < DIFFERENTOBJECTS; i++) {
             _LODData[i] = new List<ObjInfo>[LODSIZE];
             for (int j = 0; j < LODSIZE; j++) {
                 _LODData[i][j] = new List<ObjInfo>();
-            }
-        }
-
-        for (int i = 0; i < TOTALOBJECTS; i++) {
-            // Set the position of our instance
-            tempData[i] = _masterData[i];
-            int index = _masterData[i].objIndex;
-
-            Vector3 tempDataPos = new Vector3(tempData[i].position.x, tempData[i].position.y, tempData[i].position.z);
-
-            float dist = Vector3.Distance(tempDataPos, _cachedCamPosition);
-            float LODTest = 1f / dist * tempData[i].scale * 8;
-
-            // Based on the distance from the camera and an objects scale, assign it to a different LOD group
-            if (LODTest < LODCULL) {
-                continue;
-            } else if (LODTest < LOD3) {
-                tempData[i].color = Color.white;
-                _LODData[index][3].Add(tempData[i]);
-            } else if (LODTest < LOD2) {
-                tempData[i].color = Color.green;
-                _LODData[index][2].Add(tempData[i]);
-            } else if (LODTest < LOD1) {
-                tempData[i].color = Color.blue;
-                _LODData[index][1].Add(tempData[i]);
-            } else {
-                tempData[i].color = Color.yellow;
-                _LODData[index][0].Add(tempData[i]);
-            }
-            _masterData[i] = tempData[i];
-        }
-
-        UpdateLODBuffers();
-        cachedInstanceCount = TOTALOBJECTS;
-    }
-
-    /*
-     * Instead of initializing all data, we want to preserve what we already had. So instead we recalculate
-     * LOD distancing and change up our buffers and data sets accordingly, all while preserving data
-     */
-    public void UpdateBuffers() {
-        List<ObjInfo>[][] tempLODData = new List<ObjInfo>[DIFFERENTOBJECTS][];
-        for (int i = 0; i < DIFFERENTOBJECTS; i++) {
-            tempLODData[i] = new List<ObjInfo>[LODSIZE];
-            for (int j = 0; j < LODSIZE; j++) {
-                tempLODData[i][j] = new List<ObjInfo>();
             }
         }
 
@@ -200,31 +149,27 @@ public class Instanced : RenderStrategy {
 
             if (GeometryUtility.TestPlanesAABB(planes, meshBounds)) {
                 float dist = Vector3.Distance(tempDataPos, _cachedCamPosition);
-                float LODTest = 1f / dist * tempScale * 8;
+                float LODTest = 0.9f / dist;
                 ObjInfo temp = _masterData[i];
 
+                // Based on the distance from the camera and an objects scale, assign it to a different LOD group
                 if (LODTest < LODCULL) {
                     continue;
                 } else if (LODTest < LOD3) {
                     temp.color = Color.white;
-                    tempLODData[index][3].Add(temp);
+                    _LODData[index][3].Add(temp);
                 } else if (LODTest < LOD2) {
                     temp.color = Color.green;
-                    tempLODData[index][2].Add(temp);
+                    _LODData[index][2].Add(temp);
                 } else if (LODTest < LOD1) {
                     temp.color = Color.blue;
-                    tempLODData[index][1].Add(temp);
+                    _LODData[index][1].Add(temp);
                 } else {
                     temp.color = Color.yellow;
-                    tempLODData[index][0].Add(temp);
+                    _LODData[index][0].Add(temp);
                 }
+                temp.color[3] = _masterData[i].color[3];
                 _masterData[i] = temp;
-            }
-        }
-
-        for (int i = 0; i < DIFFERENTOBJECTS; i++) {
-            for (int j = 0; j < LODSIZE; j++) {
-                _LODData[i][j] = tempLODData[i][j];
             }
         }
 
@@ -325,6 +270,17 @@ public class Instanced : RenderStrategy {
         _LODArgsBuffer = null;
         _LODBuffers = null;
         _matrixBuffers = null;
+    }
+
+    /*
+     * What we want to do is sort by transparency, so that we can draw all opaque objects first
+     * Second, we want to sort by distance from the camera, drawing objects from back to front
+     */
+    public int SortByTransparency(ObjInfo a, ObjInfo b) {
+        return b.color[3].CompareTo(a.color[3]);
+    }
+    public int SortByDistanceFromCamera(ObjInfo a, ObjInfo b) {
+        return Vector3.Distance(_cachedCamPosition, a.position).CompareTo(Vector3.Distance(_cachedCamPosition, b.position));
     }
 }
  
