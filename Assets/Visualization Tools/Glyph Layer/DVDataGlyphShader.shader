@@ -15,10 +15,11 @@
 		CGPROGRAM
 		// Physically based Standard lighting model, and enable shadows on all light types
 		#pragma surface surf Standard fullforwardshadows vertex:vert
-
+		#pragma multi_compile_instancing
+		#pragma instancing_options procedural:setup
 		// Use shader model 3.0 target, to get nicer looking lighting
 		#pragma target 3.0
-       float _DataMin[1000];
+       	float _DataMin[1000];
         float _DataMax[1000];
         sampler3D _DataVolume0;
 		sampler3D _DataVolume1;
@@ -37,6 +38,10 @@
 		sampler2D _MainTex;
 
 
+
+#ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
+
+#endif
 		struct Input {
 			float2 uv_MainTex;
             float3 worldPos;
@@ -68,11 +73,14 @@
 
             float3 B =normalize(cross(direction,j));
 
-            float3x3 transform;
-            transform[0] = B;
-            transform[1] = direction;
-            transform[2] = cross(direction,B);
+            float4x4 transform;
+            transform[0] = float4(B,0);
+            transform[1] = float4(direction,0);
+            transform[2] = float4(cross(direction.xyz,B.xyz),0);
+			transform[3] = float4(0,0,0,1);
+
             transform = transpose(transform);
+			unity_WorldToObject =  mul(transform,unity_WorldToObject);
             v.vertex.xyz = mul(transform,v.vertex.xyz);
             v.normal.xyz = mul(transform,v.normal.xyz);
 

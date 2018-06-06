@@ -90,9 +90,10 @@ MonoBehaviour:
   _material: {fileID: 2100000, guid: fce158952f0994f2eb317b042023b483, type: 2}
   _layerManager: {fileID: 0}
   _glyphMesh:
-  - {fileID: 100008, guid: 22711da39a0e3694698978d0f459216f, type: 3}
-  - {fileID: 1600544389364626, guid: 30c4cc1610f66f144a5daf621b17fe29, type: 2}
+  - {fileID: 1125397418768840, guid: c3fe23cd53a46054b92109ccc1b13658, type: 2}
+  - {fileID: 1678047477874902, guid: 30c4cc1610f66f144a5daf621b17fe29, type: 2}
+  - {fileID: 1944725153098484, guid: 0f11390a419c1431cbacb13866ad0623, type: 2}
   _samplingStrategy: {fileID: 114511698231039738, guid: a833bfa24ab26461799252e93ac9ab62,
     type: 2}
-  _renderingStrategy: {fileID: 114017162216762242, guid: c550b044b239ecf46803b992e3821b20,
+  _renderingStrategy: {fileID: 114609741037690590, guid: 3d19c174b66864aba845f68706f0ae0b,
     type: 2}
