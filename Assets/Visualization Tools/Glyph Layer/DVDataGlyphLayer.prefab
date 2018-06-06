@@ -87,11 +87,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d68e62aaf332421995858c6844c7cbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _material: {fileID: 2100000, guid: fce158952f0994f2eb317b042023b483, type: 2}
   _layerManager: {fileID: 0}
   _glyphMesh:
   - {fileID: 100008, guid: 22711da39a0e3694698978d0f459216f, type: 3}
+  - {fileID: 1600544389364626, guid: 30c4cc1610f66f144a5daf621b17fe29, type: 2}
   _samplingStrategy: {fileID: 114511698231039738, guid: a833bfa24ab26461799252e93ac9ab62,
     type: 2}
   _renderingStrategy: {fileID: 114017162216762242, guid: c550b044b239ecf46803b992e3821b20,
     type: 2}
-  _GlyphMaterial: {fileID: 2100000, guid: fce158952f0994f2eb317b042023b483, type: 2}
