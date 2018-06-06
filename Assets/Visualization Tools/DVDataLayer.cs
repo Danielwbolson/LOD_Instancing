@@ -1,10 +1,13 @@
-using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEditor;
 
 namespace DV
 {
     public class DVDataLayer : MonoBehaviour
     {
+        public Material _material;
 
         public DVLayerManager _layerManager;
         virtual public string GetName() {
@@ -40,14 +43,14 @@ namespace DV
             RefreshDataSet();
             print("REFRESHING DATA SET");
             if (GetData().GetDataSet().IsA("vtkImageData")) {
-                GetComponent<MeshRenderer>().material.SetVector("_DataImageDimensions", GetData().GetImageDataDimensions());
-                GetComponent<MeshRenderer>().material.SetTexture("_DataVolume0", GetData().GetImageDataTexture(0));
-                GetComponent<MeshRenderer>().material.SetTexture("_DataVolume1", GetData().GetImageDataTexture(1));
-                GetComponent<MeshRenderer>().material.SetTexture("_DataVolume2", GetData().GetImageDataTexture(2));
-                GetComponent<MeshRenderer>().material.SetTexture("_DataVolume3", GetData().GetImageDataTexture(3));
-                GetComponent<MeshRenderer>().material.SetTexture("_DataVolume4", GetData().GetImageDataTexture(4));
-                GetComponent<MeshRenderer>().material.SetTexture("_DataVolume5", GetData().GetImageDataTexture(5));
-                GetComponent<MeshRenderer>().material.SetTexture("_DataVolume6", GetData().GetImageDataTexture(6));
+                _material.SetVector("_DataImageDimensions", GetData().GetImageDataDimensions());
+                _material.SetTexture("_DataVolume0", GetData().GetImageDataTexture(0));
+                _material.SetTexture("_DataVolume1", GetData().GetImageDataTexture(1));
+                _material.SetTexture("_DataVolume2", GetData().GetImageDataTexture(2));
+                _material.SetTexture("_DataVolume3", GetData().GetImageDataTexture(3));
+                _material.SetTexture("_DataVolume4", GetData().GetImageDataTexture(4));
+                _material.SetTexture("_DataVolume5", GetData().GetImageDataTexture(5));
+                _material.SetTexture("_DataVolume6", GetData().GetImageDataTexture(6));
             }
 
             int numArrays = GetData().GetDataSet().GetPointData().GetNumberOfArrays();
@@ -61,8 +64,8 @@ namespace DV
 
             }
 
-            GetComponent<MeshRenderer>().material.SetFloatArray("_DataMin",mins);
-            GetComponent<MeshRenderer>().material.SetFloatArray("_DataMax",maxes);
+            _material.SetFloatArray("_DataMin",mins);
+            _material.SetFloatArray("_DataMax",maxes);
 
             _cachedDataObject = GetData();
             _needsUpdate = false;
@@ -92,13 +95,13 @@ namespace DV
 
 
 
-            GetComponent<MeshRenderer>().material.SetMatrix("_DataModelMatrix", GetData().transform.localToWorldMatrix);
+            _material.SetMatrix("_DataModelMatrix", GetData().transform.localToWorldMatrix);
 
-            GetComponent<MeshRenderer>().material.SetMatrix("_DataModelMatrixInv", GetData().transform.worldToLocalMatrix);
+            _material.SetMatrix("_DataModelMatrixInv", GetData().transform.worldToLocalMatrix);
 
-            GetComponent<MeshRenderer>().material.SetMatrix("_DataBoundsMatrix", GetData().GetBoundsMatrix());
+            _material.SetMatrix("_DataBoundsMatrix", GetData().GetBoundsMatrix());
 
-            GetComponent<MeshRenderer>().material.SetMatrix("_DataBoundsMatrixInv", GetData().GetBoundsMatrix().inverse);
+            _material.SetMatrix("_DataBoundsMatrixInv", GetData().GetBoundsMatrix().inverse);
 
 
 

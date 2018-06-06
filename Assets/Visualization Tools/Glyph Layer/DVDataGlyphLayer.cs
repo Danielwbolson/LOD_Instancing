@@ -8,13 +8,17 @@ namespace DV
     public class DVDataGlyphLayer : DVDataLayer
     {
 
-        public Mesh _glyphMesh;
+        public GameObject [] _glyphMesh;
 
         override public string GetName() {
             return "Glyph";
         }       
-        public DVSampleStrategy _strategy;
-        private DVSampleStrategy _strategyCached = null;
+        public DVSampleStrategy _samplingStrategy;
+        private DVSampleStrategy _samplingStrategyCached = null;
+
+        public DVMeshFieldRenderingStrategy _renderingStrategy;
+        private DVMeshFieldRenderingStrategy _renderingStrategyCached = null;
+
         // Use this for initialization
         void Start()
         {
@@ -29,54 +33,44 @@ namespace DV
 
             Gizmos.matrix = GetData().transform.localToWorldMatrix;
 
-            for (int i = 0; i < _strategy.GetNumberOfSamples(); i++)
+            for (int i = 0; i < _samplingStrategy.GetNumberOfSamples(); i++)
             {
                 //print(_strategy.GetSamples()[i].position);
-                Gizmos.DrawSphere(_strategy.GetSamples()[i].position, 1);
+                Gizmos.DrawSphere(_samplingStrategy.GetSamples()[i].position, 1);
 
             }
         }
 
-        public GameObject _GlyphPrefab;
-        public Material _GlyphMaterial;
-        List<GameObject> _glyphs;
-
         override protected void UpdateLayer() {
-            if(_strategyCached != _strategy) {
+            if(_samplingStrategyCached != _samplingStrategy) {
+                RequestUpdate();
+            }
+            if(_renderingStrategy != _renderingStrategyCached) {
                 RequestUpdate();
             }
             DrawMeshes();
          }
 
         void PopulateMeshData() {
-            if(_glyphs == null) _glyphs = new  List<GameObject>();
-                foreach(var glyph in _glyphs) {
-                    Destroy(glyph);
-            }
-            _glyphs.Clear();
-
-            for(int i =0; i < _strategy.GetNumberOfSamples(); i++) {
-                GameObject glyph = Instantiate(_GlyphPrefab);
-                _glyphs.Add(glyph);
-                glyph.GetComponent<MeshFilter>().mesh = _glyphMesh;
-                glyph.GetComponent<MeshRenderer>().material = GetComponent<MeshRenderer>().material;
-                glyph.transform.SetParent(GetData().transform,false);
-                glyph.transform.localScale = new Vector3(1,1,1)*1.0f/_glyphMesh.bounds.size.y*4;
-                glyph.transform.localPosition = _strategy.GetSamples()[i].position;
-            }
+          
 
         } 
 
         void DrawMeshes() {
-
+            _renderingStrategy.DrawMeshes();
         }
         override protected void RefreshDataSet()
         {
-            _strategy.SetDataSet(GetData());
-            _strategy.UpdateStrategy();
-            _strategyCached = _strategy;
+            _samplingStrategy.SetDataSet(GetData());
+            _samplingStrategy.UpdateStrategy();
+            _samplingStrategyCached = _samplingStrategy;
            
-            PopulateMeshData();
+           _renderingStrategyCached = _renderingStrategy;
+            _renderingStrategy.SetParent(GetData().transform);
+            _renderingStrategy.SetMaterial(_material);
+            _renderingStrategy.SetMeshes(_glyphMesh);
+            _renderingStrategy.SetSamples(_samplingStrategy.GetSamples());
+            _renderingStrategy.UpdateMeshData();
 
         }
     }

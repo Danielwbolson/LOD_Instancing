@@ -2,17 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace DV
+{
 public class DVMeshFieldRenderingStrategy : MonoBehaviour {
 	
-	GameObject [] _meshes; 
-	Material _material;
+	protected GameObject [] _meshes; 
+	protected Material _material;
+	protected Transform _parent;
+ 	protected DVSample[] _samples;
 
-	void SetMeshes(GameObject[] meshes) {
+	public void SetSamples(DVSample[] samples) {
+		_samples = samples;
+	}
+	public void SetParent(Transform parent) {
+		_parent = parent;
+	}
+
+	public void SetMeshes(GameObject[] meshes) {
 		_meshes = meshes;
 	}
 	
 
-	void SetMaterial(Material material) {
+	public void SetMaterial(Material material) {
 		_material = material;
 	}
 
@@ -23,4 +34,5 @@ public class DVMeshFieldRenderingStrategy : MonoBehaviour {
 
 	}
 
+}
 }
