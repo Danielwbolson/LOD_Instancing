@@ -1,15 +1,32 @@
 ﻿// Each #kernel tells which function to compile; you can have many kernels
-#pragma kernel Transparency
-#pragma kernel LOD
+#pragma kernel CSMain
 
-RWStructuredBuffer<float4> Result;
+struct ObjInfo {
+    int objIndex;
+    float4 position;
+    float4 color;
+    float scale;
+    float3 direction;
+};
 
-[numthreads(16,1,1)]
-void LOD(uint3 id : SV_DispatchThreadID) {
+RWStructuredBuffer<ObjInfo> dataBuffer;
+RWStructuredBuffer<float4x4> matrixBuffer;
+float4x4 modelMatrix;
 
-}
 
-[numthreads(16,1,1)]
-void Transparency(uint3 id : SV_DispatchThreadID) {
+[numthreads(64, 1, 1)]
+void CSMain(uint3 dispatchID : SV_DispatchThreadID) {
+    int id = dispatchID.x;
 
+    float tempScal = dataBuffer[id].scale;
+    float4 tempPos = dataBuffer[id].position;
+
+
+    float4x4 tempMatrix = float4x4(
+        float4(tempScal, 0, 0, tempPos.x),
+        float4(0, tempScal, 0, tempPos.y),
+        float4(0, 0, tempScal, tempPos.z),
+        float4(0, 0, 0, 1));
+
+    matrixBuffer[id] = mul(modelMatrix, tempMatrix);
 }

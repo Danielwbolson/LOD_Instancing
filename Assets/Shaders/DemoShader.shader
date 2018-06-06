@@ -23,38 +23,24 @@
         };
 
         struct ObjInfo {
+            int meshIndex;
             float4 position;
             float4 color;
-            float4 scale;
+            float scale;
+            float3 direction;
         };
 
 #ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
         StructuredBuffer<ObjInfo> dataBuffer;
+        StructuredBuffer<float4x4> matrixBuffer;
         float DummyForShadows;
 #else
         float4 color;
 #endif
 
-        // Emitter matrix
-        float4x4 modelMatrix;
-        float4 pos;
-
         void setup() {
 #ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
-            pos = dataBuffer[unity_InstanceID].position;
-            unity_ObjectToWorld._11_21_31_41 = float4(pos.w, 0, 0, 0) *
-                dataBuffer[unity_InstanceID].scale[0];
-            unity_ObjectToWorld._12_22_32_42 = float4(0, pos.w, 0, 0) *
-                dataBuffer[unity_InstanceID].scale[1];
-            unity_ObjectToWorld._13_23_33_43 = float4(0, 0, pos.w, 0) *
-                dataBuffer[unity_InstanceID].scale[2];
-
-            unity_ObjectToWorld._14_24_34_44 = float4(pos.xyz, 1);
-            unity_ObjectToWorld = mul(modelMatrix, unity_ObjectToWorld);
-
-            unity_WorldToObject = unity_ObjectToWorld;
-            unity_WorldToObject._14_24_34 *= -1;
-            unity_WorldToObject._11_22_33 = 1.0f / unity_WorldToObject._11_22_33;
+            unity_ObjectToWorld = matrixBuffer[unity_InstanceID];
 #endif
         }
 
