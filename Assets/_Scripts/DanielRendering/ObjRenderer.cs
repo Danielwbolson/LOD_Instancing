@@ -73,9 +73,7 @@ public class ObjRenderer : MonoBehaviour {
 
             temp.objIndex = Random.Range(0, _objs.Length);
 
-            /*
-             * Add rotation
-             */
+            temp.direction = Vector3.Normalize(new Vector3(Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0, 1f)));
 
             _objInfo.Add(temp);
         }

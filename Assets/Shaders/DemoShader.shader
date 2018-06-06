@@ -27,6 +27,7 @@
             float4 position;
             float4 color;
             float scale;
+            float3 direction;
         };
 
 #ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED

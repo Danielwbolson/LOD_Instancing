@@ -6,6 +6,7 @@ struct ObjInfo {
     float4 position;
     float4 color;
     float scale;
+    float3 direction;
 };
 
 RWStructuredBuffer<ObjInfo> dataBuffer;

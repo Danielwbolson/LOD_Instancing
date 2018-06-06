@@ -191,11 +191,12 @@ public class Instanced : RenderStrategy {
         for (int i = 0; i < TOTALOBJECTS; i++) {
             Vector3 tempDataPos = new Vector3(_masterData[i].position.x, _masterData[i].position.y, _masterData[i].position.z);
             float tempScale = _masterData[i].scale;
+            int index = _masterData[i].objIndex;
 
             Bounds meshBounds = new Bounds(tempDataPos, new Vector3(
-                _meshBoundsSize[_masterData[i].objIndex].x * tempScale,
-                _meshBoundsSize[_masterData[i].objIndex].y * tempScale,
-                _meshBoundsSize[_masterData[i].objIndex].z * tempScale));
+                _meshBoundsSize[index].x * tempScale,
+                _meshBoundsSize[index].y * tempScale,
+                _meshBoundsSize[index].z * tempScale));
 
             if (GeometryUtility.TestPlanesAABB(planes, meshBounds)) {
                 float dist = Vector3.Distance(tempDataPos, _cachedCamPosition);
@@ -206,21 +207,18 @@ public class Instanced : RenderStrategy {
                     continue;
                 } else if (LODTest < LOD3) {
                     temp.color = Color.white;
-                    _masterData[i] = temp;
-                    tempLODData[_masterData[i].objIndex][3].Add(temp);
+                    tempLODData[index][3].Add(temp);
                 } else if (LODTest < LOD2) {
                     temp.color = Color.green;
-                    _masterData[i] = temp;
-                    tempLODData[_masterData[i].objIndex][2].Add(temp);
+                    tempLODData[index][2].Add(temp);
                 } else if (LODTest < LOD1) {
                     temp.color = Color.blue;
-                    _masterData[i] = temp;
-                    tempLODData[_masterData[i].objIndex][1].Add(temp);
+                    tempLODData[index][1].Add(temp);
                 } else {
                     temp.color = Color.yellow;
-                    _masterData[i] = temp;
-                    tempLODData[_masterData[i].objIndex][0].Add(temp);
+                    tempLODData[index][0].Add(temp);
                 }
+                _masterData[i] = temp;
             }
         }
 
@@ -266,7 +264,7 @@ public class Instanced : RenderStrategy {
 
                 // If we have data waiting to enter a buffer, set up our model
                 if (_LODData[i][j].Count > 0) {
-                    _LODBuffers[i][j] = new ComputeBuffer(_LODData[i][j].Count, 9 * sizeof(float) + 1 * sizeof(int));
+                    _LODBuffers[i][j] = new ComputeBuffer(_LODData[i][j].Count, 12 * sizeof(float) + 1 * sizeof(int));
                     _LODBuffers[i][j].SetData(_LODData[i][j]);
 
                     _LODArgsBuffer[i][j] = new ComputeBuffer(1, _LODArgs[i][j].Count * sizeof(uint), ComputeBufferType.IndirectArguments);
@@ -313,8 +311,9 @@ public class Instanced : RenderStrategy {
                 }
                 _LODArgsBuffer[i][j] = null;
 
-                if (_LODBuffers[i][j] != null)
+                if (_LODBuffers[i][j] != null) {
                     _LODBuffers[i][j].Release();
+                }
                 _LODBuffers[i][j] = null;
 
                 if (_matrixBuffers[i][j] != null) {

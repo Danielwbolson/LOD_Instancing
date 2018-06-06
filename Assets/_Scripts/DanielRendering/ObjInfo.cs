@@ -7,8 +7,5 @@ public struct ObjInfo {
     public Vector4 position;
     public Vector4 color;
     public float scale;
-
-    /*
-     * Add rotation
-     */
+    public Vector3 direction;
 };

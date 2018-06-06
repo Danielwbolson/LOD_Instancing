@@ -57,6 +57,8 @@ public class Instantiated : RenderStrategy {
             float scal = _masterData[i].scale;
 
             temp_obj.transform.localScale = new Vector3(scal, scal, scal);
+
+            temp_obj.transform.forward = _masterData[i].direction;
         }
         _cachedNumObjects = TOTALOBJECTS;
     }
