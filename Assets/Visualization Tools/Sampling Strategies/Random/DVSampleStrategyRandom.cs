@@ -14,7 +14,6 @@ namespace DV
 
             Vector3 min = _dataObject.GetBounds().min;
             Vector3 max = _dataObject.GetBounds().max;
-            print(min + ";" + max);
             for (int i = 0; i < 1000; i++)
             {
                 DVSample sample = new DVSample();
@@ -30,7 +29,7 @@ namespace DV
 
         override public void Report()
         {
-            print("A Random Sampling Strategy");
+            Debug.Log("A Random Sampling Strategy");
         }
     }
 }

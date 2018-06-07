@@ -475,6 +475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd519ab7355854622888728e53f12667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _material: {fileID: 2100000, guid: 77cd01b70fc484ea290f5e8324862c52, type: 2}
   _layerManager: {fileID: 0}
   _arrayId: 0
   _variableDisplayText: {fileID: 114913758236388088}

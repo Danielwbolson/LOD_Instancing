@@ -41,7 +41,7 @@ namespace DV
 
         }
 
-        override protected void UpdateDataLayer()
+        override protected void UpdateLayer()
         {
 
             if (_cachedArrayId != _arrayId)

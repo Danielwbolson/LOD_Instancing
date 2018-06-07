@@ -17,7 +17,6 @@ namespace DV
 
             Vector3 min = _dataObject.GetBounds().min;
             Vector3 max = _dataObject.GetBounds().max;
-            print(min + ";" + max);
             for (int i = 0; i < 10; i++)
             for (int j = 0; j < 10; j++)
             for (int k = 0; k < 10; k++)
@@ -35,7 +34,7 @@ namespace DV
 
         override public void Report()
         {
-            print("A Regular Sampling Strategy");
+            Debug.Log("A Regular Sampling Strategy");
         }
     }
 }
