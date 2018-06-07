@@ -149,12 +149,6 @@ public class Instanced : RenderStrategy {
             }
         }
 
-        //for (int i = 0; i < DIFFERENTOBJECTS; i++) {
-        //    for (int j = 0; j < LODSIZE; j++) {
-        //        _LODData[i][j].Clear();
-        //    }
-        //}
-
         GeometryUtility.CalculateFrustumPlanes(cam, _planes);
         Bounds meshBounds = new Bounds();
         for (int i = 0; i < TOTALOBJECTS; i++) {
@@ -179,15 +173,19 @@ public class Instanced : RenderStrategy {
                     continue;
                 } else if (LODTest < LOD3) {
                     temp.color = Color.white;
+                    temp.LODIndex = 3;
                     _LODData[index][3].Add(temp);
                 } else if (LODTest < LOD2) {
                     temp.color = Color.green;
+                    temp.LODIndex = 2;
                     _LODData[index][2].Add(temp);
                 } else if (LODTest < LOD1) {
                     temp.color = Color.blue;
+                    temp.LODIndex = 1;
                     _LODData[index][1].Add(temp);
                 } else {
                     temp.color = Color.yellow;
+                    temp.LODIndex = 0;
                     _LODData[index][0].Add(temp);
                 }
 

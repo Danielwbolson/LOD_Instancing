@@ -14,11 +14,7 @@ RWStructuredBuffer<ObjInfo> dataBuffer;
 RWStructuredBuffer<float4x4> matrixBuffer;
 float4x4 modelMatrix;
 
-
-[numthreads(64, 1, 1)]
-void CSMain(uint3 dispatchID : SV_DispatchThreadID) {
-    int id = dispatchID.x;
-
+inline void ObjectToWorldMatrix(uint id) {
     float tempScal = dataBuffer[id].scale;
     float4 tempPos = dataBuffer[id].position;
 
@@ -30,4 +26,11 @@ void CSMain(uint3 dispatchID : SV_DispatchThreadID) {
         float4(0, 0, 0, 1));
 
     matrixBuffer[id] = mul(modelMatrix, tempMatrix);
+}
+
+[numthreads(64, 1, 1)]
+void CSMain(uint3 dispatchID : SV_DispatchThreadID) {
+    int id = dispatchID.x;
+
+    ObjectToWorldMatrix(id);
 }
