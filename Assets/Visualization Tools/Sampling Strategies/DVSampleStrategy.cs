@@ -4,12 +4,13 @@ using System.Collections.Generic;
 
 namespace DV
 {
+    public struct DVSample
+    {
+        public Vector3 position;
+    }
     public class DVSampleStrategy : MonoBehaviour
     {
-        public struct DVSample
-        {
-            public Vector3 position;
-        }
+
         public void SetDataSet(DVDataObject dataObject)
         {
             _dataObject = dataObject;
