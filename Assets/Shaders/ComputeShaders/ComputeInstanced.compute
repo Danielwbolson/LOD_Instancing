@@ -1,6 +1,8 @@
 ﻿// Each #kernel tells which function to compile; you can have many kernels
 #pragma kernel CSMain
 
+#define threadCount 64
+
 struct ObjInfo {
     int objIndex;
     int LODIndex;
@@ -13,6 +15,7 @@ struct ObjInfo {
 RWStructuredBuffer<ObjInfo> dataBuffer;
 RWStructuredBuffer<float4x4> matrixBuffer;
 float4x4 modelMatrix;
+int instanceCount;
 
 inline void ObjectToWorldMatrix(uint id) {
     float tempScal = dataBuffer[id].scale;
@@ -28,9 +31,13 @@ inline void ObjectToWorldMatrix(uint id) {
     matrixBuffer[id] = mul(modelMatrix, tempMatrix);
 }
 
-[numthreads(64, 1, 1)]
+[numthreads(threadCount, 1, 1)]
 void CSMain(uint3 dispatchID : SV_DispatchThreadID) {
     int id = dispatchID.x;
+
+    if (id > instanceCount) {
+        return;
+    }
 
     ObjectToWorldMatrix(id);
 }

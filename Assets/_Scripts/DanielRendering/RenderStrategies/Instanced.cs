@@ -6,6 +6,7 @@ public class Instanced : RenderStrategy {
 
     private const int LODSIZE = 4;
     private int cachedInstanceCount = -1;
+    float threadCount = 64.0f;
 
     private Camera cam = Camera.main;
     private Vector3 _cachedCamPosition;
@@ -126,7 +127,8 @@ public class Instanced : RenderStrategy {
                 if (_LODBuffers[i][j] != null) {
                     _computeShader.SetBuffer(_Kernel, "matrixBuffer", _matrixBuffers[i][j]);
                     _computeShader.SetBuffer(_Kernel, "dataBuffer", _LODBuffers[i][j]);
-                    _computeShader.Dispatch(_Kernel, _cachedLODDataCount[i][j], 1, 1);
+                    _computeShader.SetInt("instanceCount", _cachedLODDataCount[i][j]);
+                    _computeShader.Dispatch(_Kernel, Mathf.CeilToInt(_cachedLODDataCount[i][j]/threadCount), 1, 1);
                     _mpbs[i][j].SetFloat("DummyForShadows", i * LODSIZE + j);
 
                     Graphics.DrawMeshInstancedIndirect(_objMeshArray[i][j], 0, _objMatArray[i][j],
