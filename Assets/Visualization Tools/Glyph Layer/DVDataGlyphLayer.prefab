@@ -89,9 +89,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _material: {fileID: 2100000, guid: fce158952f0994f2eb317b042023b483, type: 2}
   _layerManager: {fileID: 0}
+  _UseDirection: 1
+  _DirectionArray: 1
+  _UseMask: 1
+  _MaskArray: 0
+  _UseColor: 1
+  _ColorArray: 4
+  _UseTransparency: 0
+  _TransparencyArray: 0
   _glyphMesh:
-  - {fileID: 100008, guid: 22711da39a0e3694698978d0f459216f, type: 3}
-  - {fileID: 1600544389364626, guid: 30c4cc1610f66f144a5daf621b17fe29, type: 2}
+  - {fileID: 100000, guid: 754083607191c4024ac5531928db366d, type: 3}
+  - {fileID: 100000, guid: 2a2d24221369048fd9200f6ddc2b8b97, type: 3}
+  - {fileID: 100000, guid: 2fe5b2b2692a2425c873584d234ceffd, type: 3}
+  _MainTex: {fileID: 2800000, guid: 14e3722fa24a4477dbab3e3861b22df6, type: 3}
   _samplingStrategy: {fileID: 114511698231039738, guid: a833bfa24ab26461799252e93ac9ab62,
     type: 2}
   _renderingStrategy: {fileID: 114017162216762242, guid: c550b044b239ecf46803b992e3821b20,

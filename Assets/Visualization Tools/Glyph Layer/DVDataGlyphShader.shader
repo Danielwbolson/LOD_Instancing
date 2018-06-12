@@ -23,7 +23,7 @@
         ZWrite Off
         Blend SrcAlpha OneMinusSrcAlpha
 
-        Cull Off
+        Cull Back
 		CGPROGRAM
 		// Physically based Standard lighting model, and enable shadows on all light types
 		#pragma surface surf Standard fullforwardshadows vertex:vert

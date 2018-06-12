@@ -23,7 +23,7 @@ public class DVGameObjectMeshFieldRenderingStrategy : DVMeshFieldRenderingStrate
                 _glyphs.Add(glyph);
                 int meshIndex = Random.Range(0,_meshes.Length);
                 GameObject meshContainer = _meshes[meshIndex];
-                MeshFilter meshFilter = meshContainer.GetComponent<MeshFilter>();
+                MeshFilter meshFilter = meshContainer.GetComponentInChildren<MeshFilter>();
                 Mesh mesh =  meshFilter.sharedMesh;
                 glyph.GetComponent<MeshFilter>().mesh = mesh;
                 glyph.GetComponent<MeshRenderer>().material = _material;
