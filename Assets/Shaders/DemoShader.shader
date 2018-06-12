@@ -25,6 +25,7 @@
         struct ObjInfo {
             int meshIndex;
             int LODIndex;
+            int matrixIndex;
             float4 position;
             float4 color;
             float scale;
@@ -41,7 +42,13 @@
 
         void setup() {
 #ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
-            unity_ObjectToWorld = matrixBuffer[unity_InstanceID];
+            unity_ObjectToWorld = matrixBuffer[dataBuffer[unity_InstanceID].matrixIndex];
+
+            /*unity_ObjectToWorld = float4x4(
+                1, 0, 0, 0, //50 * dataBuffer[unity_InstanceID].matrixIndex,
+                0, 1, 0, 0, //50 * dataBuffer[unity_InstanceID].LODIndex,
+                0, 0, 1, 0, //50 * dataBuffer[unity_InstanceID].meshIndex,
+                0, 0, 0, 1);*/
 #endif
         }
 

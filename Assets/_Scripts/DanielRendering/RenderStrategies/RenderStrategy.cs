@@ -12,7 +12,7 @@ public class RenderStrategy {
     protected int TOTALOBJECTS;
     protected int DIFFERENTOBJECTS;
 
-    protected List<ObjInfo> _masterData;
+    protected List<ObjInfo>[] _masterData;
     protected Material[][] _objMatArray;
 
     /*
@@ -21,7 +21,7 @@ public class RenderStrategy {
      * This class stores relevent information that any of its strategies could use, while also
      * allowing them to share, and send data further up where is is more accessibly by the user
      */
-    public RenderStrategy(GameObject p, GameObject[] o, Material mat, ComputeShader cs, List<ObjInfo> data, int total) {
+    public RenderStrategy(GameObject p, GameObject[] o, Material mat, ComputeShader cs, List<ObjInfo>[] data, int total) {
         _parent = p;
         _objs = o;
         _objMat = mat;
@@ -53,11 +53,11 @@ public class RenderStrategy {
 
     public virtual void Destroy() { }
 
-    public List<ObjInfo> GetObjInfo() {
+    public List<ObjInfo>[] GetObjInfo() {
         return _masterData;
     }
 
-    public void SetObjInfo(List<ObjInfo> data) {
+    public void SetObjInfo(List<ObjInfo>[] data) {
         _masterData = data;
     }
 

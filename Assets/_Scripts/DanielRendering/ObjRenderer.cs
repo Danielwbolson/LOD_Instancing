@@ -13,7 +13,7 @@ public class ObjRenderer : MonoBehaviour {
     public bool _instancedRendering;
     private bool _cachedInstanceRendering;
 
-    private List<ObjInfo> _objInfo;
+    private List<ObjInfo>[] _objInfo;
     private RenderStrategy _renderStrategy;
 
     /*
@@ -54,7 +54,11 @@ public class ObjRenderer : MonoBehaviour {
     }
 
     void InitializeInfo() {
-        _objInfo = new List<ObjInfo>();
+        _objInfo = new List<ObjInfo>[_objs.Length];
+        for (int i = 0; i < _objs.Length; i++) {
+            _objInfo[i] = new List<ObjInfo>();
+        }
+
         for (int i = 0; i < _totalNumObjects; i++) {
             float angle = Random.Range(0.0f, Mathf.PI * 2.0f);
             float distance = Random.Range(10.0f, 50.0f);
@@ -63,13 +67,14 @@ public class ObjRenderer : MonoBehaviour {
             ObjInfo temp = new ObjInfo {
                 objIndex = Random.Range(0, _objs.Length),
                 LODIndex = -1,
+                matrixIndex = i,
                 position = new Vector4(Mathf.Sin(angle) * distance, height, Mathf.Cos(angle) * distance, 1),
                 color = new Vector4(0, 0, 0, Random.Range(0.20f, 1.0f)),
                 scale = 0.1f,
                 direction = Vector3.Normalize(new Vector3(Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0, 1f)))
             };
 
-            _objInfo.Add(temp);
+            _objInfo[temp.objIndex].Add(temp);
         }
     }
 
@@ -78,7 +83,7 @@ public class ObjRenderer : MonoBehaviour {
      * or Gameobject Instantiation
      */
     void ToggleInstancedRendering() {
-        List<ObjInfo> newObjInfo = _renderStrategy.GetObjInfo();
+        List<ObjInfo>[] newObjInfo = _renderStrategy.GetObjInfo();
 
         if (_instancedRendering == true) {
             _renderStrategy.Destroy();

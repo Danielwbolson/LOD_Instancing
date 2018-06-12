@@ -1,11 +1,23 @@
 ﻿// Each #kernel tells which function to compile; you can have many kernels
+// https://github.com/ellioman/Unity3D-HierarchicalZBufferOcclusionCulling/blob/795bbbaabd6508984ae104e76d84abcf1d9cd26f/Assets/Shaders/ComputeShader.compute
 #pragma kernel CSMain
 
 #define threadCount 64
 
+struct BoundingSphere {
+    float3 center;
+    float radius;
+};
+
+struct FrustrumPlane {
+    float4 normal;
+    float3 pointOnPlane;
+};
+
 struct ObjInfo {
     int objIndex;
     int LODIndex;
+    int matrixIndex;
     float4 position;
     float4 color;
     float scale;
@@ -13,7 +25,16 @@ struct ObjInfo {
 };
 
 RWStructuredBuffer<ObjInfo> dataBuffer;
+AppendStructuredBuffer<ObjInfo> lod0Buffer;
+AppendStructuredBuffer<ObjInfo> lod1Buffer;
+AppendStructuredBuffer<ObjInfo> lod2Buffer;
+AppendStructuredBuffer<ObjInfo> lod3Buffer;
+
 RWStructuredBuffer<float4x4> matrixBuffer;
+RWStructuredBuffer<BoundingSphere> boundingBuffer;
+float4x4 MVP;
+float3 camPos;
+float4 LODRanges;
 float4x4 modelMatrix;
 int instanceCount;
 
@@ -28,16 +49,136 @@ inline void ObjectToWorldMatrix(uint id) {
         float4(0, 0, tempScal, tempPos.z),
         float4(0, 0, 0, 1));
 
-    matrixBuffer[id] = mul(modelMatrix, tempMatrix);
+    matrixBuffer[dataBuffer[id].matrixIndex] = mul(modelMatrix, tempMatrix);
+}
+
+inline void CalculateCameraPlanes(inout FrustrumPlane mPlanes[5])
+{
+    // Here we are using Column Major matrix
+    // We skip the far plane and assume the user always has the furthest LOD distace closer than the far plane!
+
+    // Left clipping plane.
+    mPlanes[0].normal = float4(
+        MVP._m30 + MVP._m00,
+        MVP._m31 + MVP._m01,
+        MVP._m32 + MVP._m02,
+        MVP._m33 + MVP._m03
+        );
+
+    // Right clipping plane.
+    mPlanes[1].normal = float4(
+        MVP._m30 - MVP._m00,
+        MVP._m31 - MVP._m01,
+        MVP._m32 - MVP._m02,
+        MVP._m33 - MVP._m03
+        );
+
+    // Bottom clipping plane.
+    mPlanes[2].normal = float4(
+        MVP._m30 + MVP._m10,
+        MVP._m31 + MVP._m11,
+        MVP._m32 + MVP._m12,
+        MVP._m33 + MVP._m13
+        );
+
+    // Top clipping plane.
+    mPlanes[3].normal = float4(
+        MVP._m30 - MVP._m10,
+        MVP._m31 - MVP._m11,
+        MVP._m32 - MVP._m12,
+        MVP._m33 - MVP._m13
+        );
+
+    // Near clipping plane.
+    mPlanes[4].normal = float4(
+        MVP._m30 + MVP._m20,
+        MVP._m31 + MVP._m21,
+        MVP._m32 + MVP._m22,
+        MVP._m33 + MVP._m23
+        );
+
+    for (int i = 0; i < 5; i++) {
+        // Normalize the planes => normalizedPlane = (plane.xyzw) / sqrt(plane.x^2 + plane.y^2 + plane.z^2)
+        // plane.xyz is now the normal and plane.w contains the distance from zero pos to the plane
+        mPlanes[i].normal /= sqrt(mPlanes[i].normal.x * mPlanes[i].normal.x + mPlanes[i].normal.y * mPlanes[i].normal.y + mPlanes[i].normal.z * mPlanes[i].normal.z);
+        
+        // Assign a single point that's on the plane
+        mPlanes[i].pointOnPlane = camPos;
+    }
+}
+
+inline void AssignLOD(uint id, float camDist) {
+    if (camDist < LODRanges[0]) {
+        dataBuffer[id].color = float4(1, 0, 0, dataBuffer[id].color[3]);
+        dataBuffer[id].LODIndex = 0;
+        lod0Buffer.Append(dataBuffer[id]);
+    } 
+    else if (camDist < LODRanges[1]) {
+        dataBuffer[id].color = float4(0, 1, 0, dataBuffer[id].color[3]);
+        dataBuffer[id].LODIndex = 1;
+        lod1Buffer.Append(dataBuffer[id]);
+    }
+    else if (camDist < LODRanges[2]) {
+        dataBuffer[id].color = float4(0, 0, 1, dataBuffer[id].color[3]);
+        dataBuffer[id].LODIndex = 2;
+        lod2Buffer.Append(dataBuffer[id]);
+    }
+    else if (camDist < LODRanges[3]) {
+        dataBuffer[id].color = float4(0, 0, 0, dataBuffer[id].color[3]);
+        dataBuffer[id].LODIndex = 3;
+        lod3Buffer.Append(dataBuffer[id]);
+    }
+}
+
+inline bool ShouldFrustrumCull(BoundingSphere b) {
+
+    FrustrumPlane planes[5];
+    CalculateCameraPlanes(planes);
+
+    int result = 0;
+
+    for (int i = 0; i < 5; i++) {
+        result = 0;
+        result += ((dot(planes[i].normal.xyz, float3(b.center.x - b.radius, b.center.y - b.radius, b.center.z - b.radius) - planes[i].pointOnPlane) <= 0.0) ? 1 : 0);
+        result += ((dot(planes[i].normal.xyz, float3(b.center.x + b.radius, b.center.y - b.radius, b.center.z - b.radius) - planes[i].pointOnPlane) <= 0.0) ? 1 : 0);
+        result += ((dot(planes[i].normal.xyz, float3(b.center.x - b.radius, b.center.y + b.radius, b.center.z - b.radius) - planes[i].pointOnPlane) <= 0.0) ? 1 : 0);
+        result += ((dot(planes[i].normal.xyz, float3(b.center.x + b.radius, b.center.y + b.radius, b.center.z - b.radius) - planes[i].pointOnPlane) <= 0.0) ? 1 : 0);
+        result += ((dot(planes[i].normal.xyz, float3(b.center.x - b.radius, b.center.y - b.radius, b.center.z + b.radius) - planes[i].pointOnPlane) <= 0.0) ? 1 : 0);
+        result += ((dot(planes[i].normal.xyz, float3(b.center.x + b.radius, b.center.y - b.radius, b.center.z + b.radius) - planes[i].pointOnPlane) <= 0.0) ? 1 : 0);
+        result += ((dot(planes[i].normal.xyz, float3(b.center.x - b.radius, b.center.y + b.radius, b.center.z + b.radius) - planes[i].pointOnPlane) <= 0.0) ? 1 : 0);
+        result += ((dot(planes[i].normal.xyz, float3(b.center.x + b.radius, b.center.y + b.radius, b.center.z + b.radius) - planes[i].pointOnPlane) <= 0.0) ? 1 : 0);
+
+        if (result == 8)
+            return true;
+    }
+    return false;
 }
 
 [numthreads(threadCount, 1, 1)]
-void CSMain(uint3 dispatchID : SV_DispatchThreadID) {
+inline void CSMain(uint3 dispatchID : SV_DispatchThreadID) {
     int id = dispatchID.x;
 
-    if (id > instanceCount) {
+    if (id >= instanceCount) {
         return;
     }
+
+    ObjInfo instance = dataBuffer[id];
+    float camDist = abs(distance(dataBuffer[id].position.xyz, camPos));
+
+    // IF our instance is too far away, ignore it
+    if (camDist >= LODRanges[3]) {
+        return;
+    }
+
+    BoundingSphere b;
+    b.center = instance.position.xyz;
+    b.radius = boundingBuffer[instance.objIndex].radius;
+
+    if (ShouldFrustrumCull(b)) {
+        return;
+    }
+
+    AssignLOD(id, camDist);
 
     ObjectToWorldMatrix(id);
 }
