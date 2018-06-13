@@ -21,10 +21,10 @@ public class Instanced : RenderStrategy {
     private BoundingSphere[] _boundingSpheres;
     private int _kCSMain;
 
-    private const float LOD0 = 10;
-    private const float LOD1 = 30;
-    private const float LOD2 = 93;
-    private const float LOD3 = 500;
+    private const float LOD0 = .7f;
+    private const float LOD1 = .3f;
+    private const float LOD2 = .07f;
+    private const float LOD3 = .01f;
 
     Vector4 _LODRanges = new Vector4(LOD0, LOD1, LOD2, LOD3 );
     string[] lodBuffers = new string[4] { "lod0Buffer", "lod1Buffer", "lod2Buffer", "lod3Buffer" };
@@ -230,6 +230,7 @@ public class Instanced : RenderStrategy {
         }
 
         _cachedCamPosition = cam.transform.position;
+        Vector3 up = cam.transform.up;
 
         // Calculate our MVP matrix for use in the computeshader
         Matrix4x4 M = Matrix4x4.identity;
@@ -241,6 +242,7 @@ public class Instanced : RenderStrategy {
 
         _computeShader.SetVector("camPos", _cachedCamPosition);
         _computeShader.SetMatrix("MVP", _MVP);
+        _computeShader.SetVector("up", up);
 
         for (int i = 0; i < DIFFERENTOBJECTS; i++) {
 
@@ -270,14 +272,6 @@ public class Instanced : RenderStrategy {
                     Graphics.DrawMeshInstancedIndirect(_objMeshArray[i][j], 0, _objMatArray[i][j],
                         new Bounds(Vector3.zero, new Vector3(1000, 1000, 1000)), _LODArgsBuffer[i][j], 0, _mpbs[i][j]);
                 }
-            }
-        }
-    }
-
-    public void OnDrawGizmos() {
-        for (int i = 0; i < DIFFERENTOBJECTS; i++) {
-            for (int j = 0; j < LODSIZE; j++) {
-                Gizmos.DrawWireCube(_objMeshArray[i][j].bounds.center, _objMeshArray[i][j].bounds.size);
             }
         }
     }

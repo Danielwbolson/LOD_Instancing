@@ -33,6 +33,7 @@ AppendStructuredBuffer<ObjInfo> lod3Buffer;
 RWStructuredBuffer<float4x4> matrixBuffer;
 RWStructuredBuffer<BoundingSphere> boundingBuffer;
 float4x4 MVP;
+float3 up;
 float3 camPos;
 float4 LODRanges;
 float4x4 modelMatrix;
@@ -111,28 +112,33 @@ inline void CalculateCameraPlanes(inout FrustrumPlane mPlanes[5])
 
 // Assign data to a level of detail buffer depending on its distance from the camera
 // Currently assigning color here as well
-inline void AssignLOD(uint id, float camDist) {
+inline void AssignLOD(uint id, float screenSize) {
     //camDist = camDist * (1f / dataBuffer[id].scale);
-    if (camDist < LODRanges[0]) {
+    if (screenSize > LODRanges[0]) {
         dataBuffer[id].color = float4(1, 0, 0, dataBuffer[id].color[3]);
         dataBuffer[id].LODIndex = 0;
         lod0Buffer.Append(dataBuffer[id]);
     } 
-    else if (camDist < LODRanges[1]) {
+    else if (screenSize > LODRanges[1]) {
         dataBuffer[id].color = float4(0, 1, 0, dataBuffer[id].color[3]);
         dataBuffer[id].LODIndex = 1;
         lod1Buffer.Append(dataBuffer[id]);
     }
-    else if (camDist < LODRanges[2]) {
+    else if (screenSize > LODRanges[2]) {
         dataBuffer[id].color = float4(0, 0, 1, dataBuffer[id].color[3]);
         dataBuffer[id].LODIndex = 2;
         lod2Buffer.Append(dataBuffer[id]);
     }
-    else if (camDist < LODRanges[3]) {
+    else if (screenSize > LODRanges[3]) {
         dataBuffer[id].color = float4(0, 0, 0, dataBuffer[id].color[3]);
         dataBuffer[id].LODIndex = 3;
         lod3Buffer.Append(dataBuffer[id]);
     }
+
+    //if (true) {
+    //    dataBuffer[id].color = float4(camDist, camDist, camDist, dataBuffer[id].color[3]);
+    //    lod3Buffer.Append(dataBuffer[id]);
+    //}
 }
 
 // Using a position and a radius, check if a bounding box is inside each camera plane
@@ -179,17 +185,24 @@ inline void CSMain(uint3 dispatchID : SV_DispatchThreadID) {
 
     // Cache our data and get the distance from the camera
     ObjInfo instance = dataBuffer[id];
-    float camDist = abs(distance(instance.position.xyz, camPos));
-
-    // If our instance is further than our furthest LOD allows, ignore it
-    if (camDist >= LODRanges[3]) {
-        return;
-    }
 
     // Get our bounding sphere and set it to the position of our data
     BoundingSphere b;
     b.center = instance.position.xyz;
     b.radius = boundingBuffer[instance.objIndex].radius * dataBuffer[id].scale;
+
+    // Calculating screen height
+    float4 mvpInstance = mul(MVP, instance.position);
+    float2 s_pointOne = mvpInstance.xy / mvpInstance.w;
+
+    float4 mvpUp = mul(MVP, instance.position + float4(up, 0) * b.radius);
+    float2 s_pointTwo = mvpUp.xy / mvpUp.w;
+    float screenSize = abs(s_pointOne.y - s_pointTwo.y);
+
+    // If our instance is further than our furthest LOD allows, ignore it
+    if (screenSize <= LODRanges[3]) {
+        return;
+    }
 
     // Calculate if we should frustrum cull this instance, if so, quit
     if (ShouldFrustrumCull(b)) {
@@ -198,7 +211,7 @@ inline void CSMain(uint3 dispatchID : SV_DispatchThreadID) {
 
     // The instance is within distance and within the camera's view, Assign
     // it to a LOD append buffer
-    AssignLOD(id, camDist);
+    AssignLOD(id, screenSize);
 
     // Calculate the instances matrix info and save it in the matrix buffer
     ObjectToWorldMatrix(id);
