@@ -5,10 +5,12 @@ using UnityEngine;
 public class ObjRenderer : MonoBehaviour {
 
     public GameObject[] _objs;
+    private GameObject[] _cachedObjs;
     public Material _objMat;
     public ComputeShader _computeShader;
-    public int _totalNumObjects;
-    private int _cachedNumObjects;
+
+    public int _totalNumMeshes;
+    private int _cachedNumMeshes;
 
     public bool _instancedRendering;
     private bool _cachedInstanceRendering;
@@ -29,37 +31,46 @@ public class ObjRenderer : MonoBehaviour {
         InitializeInfo();
 
         // Initialize our new RenderStrategy
-        _renderStrategy = new Instantiated(this.gameObject, _objs, _objMat, _computeShader, _objInfo, _totalNumObjects);
+        _renderStrategy = new Instantiated(this.gameObject, _objs, _objMat, _computeShader, _objInfo, _totalNumMeshes);
         _instancedRendering = false;
         _cachedInstanceRendering = _instancedRendering;
-        _cachedNumObjects = _totalNumObjects;
+        _cachedNumMeshes = _totalNumMeshes;
+        _cachedObjs = _objs;
     }
     
     // Update is called once per frame
     void Update () {
+
         // If the user changes what kind of rendering they want, update
         if (_cachedInstanceRendering != _instancedRendering) {
             ToggleInstancedRendering();
         }
 
-        if (_cachedNumObjects != _totalNumObjects) {
+        if (_cachedNumMeshes != _totalNumMeshes || _cachedObjs != _objs) {
             InitializeInfo();
-            _renderStrategy.SetNumObjects(_totalNumObjects);
-            _renderStrategy.SetObjInfo(_objInfo);
-            _cachedNumObjects = _totalNumObjects;
+            if (_instancedRendering == true) {
+                _renderStrategy.Destroy();
+                _renderStrategy = new Instanced(this.gameObject, _objs, _objMat, _computeShader, _objInfo, _totalNumMeshes);
+            } else {
+                _renderStrategy.Destroy();
+                _renderStrategy = new Instantiated(this.gameObject, _objs, _objMat, _computeShader, _objInfo, _totalNumMeshes);
+            }
+            _cachedNumMeshes = _totalNumMeshes;
+            _cachedObjs = _objs;
         }
 
         // Update our objects based on our render strategy
-        _renderStrategy.UpdateObjects();
+        _renderStrategy.UpdateMeshes();
     }
 
     void InitializeInfo() {
         _objInfo = new List<ObjInfo>[_objs.Length];
+
         for (int i = 0; i < _objs.Length; i++) {
             _objInfo[i] = new List<ObjInfo>();
         }
 
-        for (int i = 0; i < _totalNumObjects; i++) {
+        for (int i = 0; i < _totalNumMeshes; i++) {
             float angle = Random.Range(0.0f, Mathf.PI * 2.0f);
             float distance = Random.Range(10.0f, 50.0f);
             float height = Random.Range(-2.0f, 2.0f);
@@ -87,10 +98,10 @@ public class ObjRenderer : MonoBehaviour {
 
         if (_instancedRendering == true) {
             _renderStrategy.Destroy();
-            _renderStrategy = new Instanced(this.gameObject, _objs, _objMat, _computeShader, newObjInfo, _totalNumObjects);
+            _renderStrategy = new Instanced(this.gameObject, _objs, _objMat, _computeShader, newObjInfo, _totalNumMeshes);
         } else {
             _renderStrategy.Destroy();
-            _renderStrategy = new Instantiated(this.gameObject, _objs, _objMat, _computeShader, newObjInfo, _totalNumObjects);
+            _renderStrategy = new Instantiated(this.gameObject, _objs, _objMat, _computeShader, newObjInfo, _totalNumMeshes);
         }
         _cachedInstanceRendering = _instancedRendering;
     }

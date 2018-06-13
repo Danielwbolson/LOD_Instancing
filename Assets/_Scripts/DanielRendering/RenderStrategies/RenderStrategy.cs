@@ -49,19 +49,11 @@ public class RenderStrategy {
         }
     }
 
-    public virtual void UpdateObjects() { }
+    public virtual void UpdateMeshes() { }
 
     public virtual void Destroy() { }
 
     public List<ObjInfo>[] GetObjInfo() {
         return _masterData;
-    }
-
-    public void SetObjInfo(List<ObjInfo>[] data) {
-        _masterData = data;
-    }
-
-    public void SetNumObjects(int num) {
-        TOTALOBJECTS = num;
     }
 }

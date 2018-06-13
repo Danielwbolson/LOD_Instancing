@@ -56,5 +56,5 @@ MonoBehaviour:
   - {fileID: 1678047477874902, guid: 30c4cc1610f66f144a5daf621b17fe29, type: 2}
   _objMat: {fileID: 2100000, guid: 205db7c5de1efcc4eaf78b973d1671d6, type: 2}
   _computeShader: {fileID: 7200000, guid: 9104bf1eafbc93f40b0dc456642b51d9, type: 3}
-  _totalNumObjects: 100
+  _totalNumMeshes: 100
   _instancedRendering: 0

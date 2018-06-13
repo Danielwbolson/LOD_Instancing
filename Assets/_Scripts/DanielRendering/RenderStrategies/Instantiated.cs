@@ -67,7 +67,7 @@ public class Instantiated : RenderStrategy {
     /*
      * Called each frame, updates our gameobjects
      */
-    public override void UpdateObjects() {
+    public override void UpdateMeshes() {
         if (_cachedNumObjects != TOTALOBJECTS) {
             Destroy();
             InitializeObjects();
