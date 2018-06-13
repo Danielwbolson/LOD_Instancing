@@ -144,7 +144,7 @@ public class Instanced : RenderStrategy {
 
             // Get the maximum bounds size of our mesh and use it as our radius
             _boundingSpheres[i] = new BoundingSphere();
-            _boundingSpheres[i].radius = Mathf.Max(Mathf.Max(_meshBoundsSize[i].x, _meshBoundsSize[i].y), _meshBoundsSize[i].z) * 0.1f;
+            _boundingSpheres[i].radius = Mathf.Max(Mathf.Max(_meshBoundsSize[i].x, _meshBoundsSize[i].y), _meshBoundsSize[i].z);
 
             for (int j = 0; j < LODSIZE; j++) {
                 // Initialize our lod-buffers, much the same as our dataBuffers but will be expanding

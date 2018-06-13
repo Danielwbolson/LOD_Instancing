@@ -112,6 +112,7 @@ inline void CalculateCameraPlanes(inout FrustrumPlane mPlanes[5])
 // Assign data to a level of detail buffer depending on its distance from the camera
 // Currently assigning color here as well
 inline void AssignLOD(uint id, float camDist) {
+    //camDist = camDist * (1f / dataBuffer[id].scale);
     if (camDist < LODRanges[0]) {
         dataBuffer[id].color = float4(1, 0, 0, dataBuffer[id].color[3]);
         dataBuffer[id].LODIndex = 0;
@@ -188,7 +189,7 @@ inline void CSMain(uint3 dispatchID : SV_DispatchThreadID) {
     // Get our bounding sphere and set it to the position of our data
     BoundingSphere b;
     b.center = instance.position.xyz;
-    b.radius = boundingBuffer[instance.objIndex].radius;
+    b.radius = boundingBuffer[instance.objIndex].radius * dataBuffer[id].scale;
 
     // Calculate if we should frustrum cull this instance, if so, quit
     if (ShouldFrustrumCull(b)) {
