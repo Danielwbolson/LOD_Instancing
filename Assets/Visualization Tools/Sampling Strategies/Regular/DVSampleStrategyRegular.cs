@@ -13,6 +13,8 @@ namespace DV
         }
         override public void UpdateStrategy()
         {
+            if(_dataObject == null) return;
+
             List<DVSample> sampleList = new List<DVSample>();
 
             Vector3 min = _dataObject.GetBounds().min;
@@ -31,6 +33,7 @@ namespace DV
             }
 
             _samples = sampleList.ToArray();
+            _needsUpdate = false;
 
         }
 

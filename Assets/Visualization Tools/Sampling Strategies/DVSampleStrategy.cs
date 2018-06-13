@@ -11,14 +11,27 @@ namespace DV
     public class DVSampleStrategy : MonoBehaviour
     {
 
+        void Update() {
+            print("Updating");
+            if(_needsUpdate) {
+                UpdateStrategy();
+            }
+        }
+        protected bool _needsUpdate = false;
+        public void RequestUpdate() {
+            _needsUpdate = true;
+            Update();
+        }
         int _numberOfSamples = 0;
         public void SetNumberOfSamples(int n) {
             _numberOfSamples = n;
-            UpdateStrategy();
+            RequestUpdate();
         }
         public void SetDataSet(DVDataObject dataObject)
         {
             _dataObject = dataObject;
+            RequestUpdate();
+
 
         }
         protected DVDataObject _dataObject;

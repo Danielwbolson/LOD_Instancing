@@ -45,6 +45,7 @@ namespace DV
             // Call the virtual Refresh method
             RefreshDataSet();
             print("REFRESHING DATA SET");
+            if(GetData() == null || GetData().GetDataSet() == null) return;
             if (GetData().GetDataSet().IsA("vtkImageData")) {
                 _material.SetVector("_DataImageDimensions", GetData().GetImageDataDimensions());
                 _material.SetTexture("_DataVolume0", GetData().GetImageDataTexture(0));

@@ -10,7 +10,14 @@ namespace DV
 
         int meshCount = 0;
         public override void RenderGUI() {
-		    meshCount = EditorGUILayout.IntField("Number of glyphs:", _samplingStrategy.GetNumberOfSamples());
+            int result = EditorGUILayout.IntField("Number of glyphs:", _samplingStrategy.GetNumberOfSamples());
+            if(result != _samplingStrategy.GetNumberOfSamples()) {
+                Debug.Log("Changed");
+                _samplingStrategy.SetNumberOfSamples( result);
+                _renderingStrategy.SetSamples(_samplingStrategy.GetSamples());
+                _renderingStrategy.UpdateMeshData();
+            }
+		   
 	    }
 
         public GameObject [] _glyphMesh;

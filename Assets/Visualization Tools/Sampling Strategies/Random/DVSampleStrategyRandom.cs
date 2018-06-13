@@ -9,9 +9,11 @@ namespace DV
 
         override public void UpdateStrategy()
         {
-            Random.seed = 0;
-            List<DVSample> sampleList = new List<DVSample>();
+            if(_dataObject == null) return;
 
+            Random.seed = 0;
+
+            List<DVSample> sampleList = new List<DVSample>();
             Vector3 min = _dataObject.GetBounds().min;
             Vector3 max = _dataObject.GetBounds().max;
             for (int i = 0; i < GetNumberOfSamples(); i++)
@@ -23,6 +25,7 @@ namespace DV
             }
 
             _samples = sampleList.ToArray();
+            _needsUpdate = false;
 
         }
 
