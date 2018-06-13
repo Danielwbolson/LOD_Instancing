@@ -210,7 +210,7 @@ public class Instanced : RenderStrategy {
     }
 
     /*
-     * In general, UpdateObjects checks for some conditions, and then sets up our 
+     * In general, UpdateMeshes checks for some conditions, and then sets up our 
      * computeShader accordingly with new information. It then calls the computeshader
      * and draws the results.
      */
@@ -342,6 +342,7 @@ public class Instanced : RenderStrategy {
         return Vector3.Distance(_cachedCamPosition, a.position).CompareTo(Vector3.Distance(_cachedCamPosition, b.position));
     }
 
+    // Recalls our Initialization
     public void Reset() {
         InitializeArguments();
         InitializeBuffers();

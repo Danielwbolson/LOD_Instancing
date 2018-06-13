@@ -42,13 +42,9 @@
 
         void setup() {
 #ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
+            // Set the instance position to the stored positiosn in the matrix buffer
+            // using the datas saved matrix position
             unity_ObjectToWorld = matrixBuffer[dataBuffer[unity_InstanceID].matrixIndex];
-
-            /*unity_ObjectToWorld = float4x4(
-                1, 0, 0, 0, //50 * dataBuffer[unity_InstanceID].matrixIndex,
-                0, 1, 0, 0, //50 * dataBuffer[unity_InstanceID].LODIndex,
-                0, 0, 1, 0, //50 * dataBuffer[unity_InstanceID].meshIndex,
-                0, 0, 0, 1);*/
 #endif
         }
 
@@ -58,6 +54,7 @@
 
         void surf(Input IN, inout SurfaceOutputStandard o) {
 #ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
+            // Color from data
             float4 col = dataBuffer[unity_InstanceID].color;
             c = tex2D(_MainTex, IN.uv_MainTex) * col;
 #else

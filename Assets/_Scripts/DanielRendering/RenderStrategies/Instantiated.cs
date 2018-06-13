@@ -7,7 +7,7 @@ public class Instantiated : RenderStrategy {
     private List<GameObject> _gameObjects;
     private int _cachedNumObjects;
 
-    /*
+/*
  * CLASS DOCUMENTATION: Instantiated : RenderStrategy
  * In this class, we render a given set of objects as instantiated GameObjects.
  * This is the default way to render objects in Unity. We instantiate a gameobject, 
@@ -19,11 +19,13 @@ public class Instantiated : RenderStrategy {
  */
     public Instantiated(GameObject p, GameObject[] o, Material mat, ComputeShader cs, List<ObjInfo>[] data, int total) : 
         base(p, o, mat, cs, data, total) {
+
         _objMat.enableInstancing = false;
 
         InitializeObjects();
     }
 
+    // Initialize all our gameobjects with the data sent in from our ObjRenderer
     public void InitializeObjects() {
         _gameObjects = new List<GameObject>();
 

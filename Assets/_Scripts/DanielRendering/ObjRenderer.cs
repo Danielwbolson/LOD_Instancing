@@ -46,6 +46,7 @@ public class ObjRenderer : MonoBehaviour {
             ToggleInstancedRendering();
         }
 
+        // If the user changes how many meshes or unique objects they want, create new renderings
         if (_cachedNumMeshes != _totalNumMeshes || _cachedObjs != _objs) {
             InitializeInfo();
             if (_instancedRendering == true) {
@@ -63,6 +64,7 @@ public class ObjRenderer : MonoBehaviour {
         _renderStrategy.UpdateMeshes();
     }
 
+    // Initialize our set of data
     void InitializeInfo() {
         _objInfo = new List<ObjInfo>[_objs.Length];
 
