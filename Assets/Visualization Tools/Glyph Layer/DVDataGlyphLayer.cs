@@ -8,6 +8,11 @@ namespace DV
     public class DVDataGlyphLayer : DVDataLayer
     {
 
+        int meshCount = 0;
+        public override void RenderGUI() {
+		    meshCount = EditorGUILayout.IntField("Number of glyphs:", _samplingStrategy.GetNumberOfSamples());
+	    }
+
         public GameObject [] _glyphMesh;
 
         override public string GetName() {

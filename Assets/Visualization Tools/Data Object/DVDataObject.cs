@@ -8,6 +8,9 @@ using VTK;
 
 namespace DV
 {
+
+    [ExecuteInEditMode]
+
     public class DVDataObject : MonoBehaviour
     {
         protected vtkDataSet _dataSet;
@@ -135,9 +138,14 @@ namespace DV
                     Gizmos.matrix = transform.localToWorldMatrix;
                     Gizmos.DrawWireCube(b.center, b.size);
 
-                }
+                } 
 
-            }
+            } else {
+
+                    Gizmos.matrix = transform.localToWorldMatrix;
+                    Gizmos.color = Color.red;
+                    Gizmos.DrawWireCube(new Vector3(0,0,0), new Vector3(1,1,1));
+                }
         }
     }
 }

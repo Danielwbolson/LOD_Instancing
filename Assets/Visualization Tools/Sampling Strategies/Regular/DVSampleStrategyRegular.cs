@@ -17,10 +17,13 @@ namespace DV
 
             Vector3 min = _dataObject.GetBounds().min;
             Vector3 max = _dataObject.GetBounds().max;
-            for (int i = 0; i < 10; i++)
-            for (int j = 0; j < 10; j++)
-            for (int k = 0; k < 10; k++)
+            int sideLength = (int)Mathf.Ceil(Mathf.Pow((float)GetNumberOfSamples(),1.0f/3.0f));
+
+            for (int i = 0; i < sideLength; i++)
+            for (int j = 0; j < sideLength; j++)
+            for (int k = 0; k < sideLength; k++)
             {
+                if(sampleList.Count > GetNumberOfSamples()) break;
                 DVSample sample = new DVSample();
 
                 sample.position = new Vector3(map(i,0,10,min.x, max.x), map(j,0,10,min.y, max.y), map(k,0,10,min.z, max.z));

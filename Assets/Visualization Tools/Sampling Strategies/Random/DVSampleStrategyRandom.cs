@@ -14,7 +14,7 @@ namespace DV
 
             Vector3 min = _dataObject.GetBounds().min;
             Vector3 max = _dataObject.GetBounds().max;
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < GetNumberOfSamples(); i++)
             {
                 DVSample sample = new DVSample();
 

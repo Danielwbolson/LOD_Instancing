@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d8f31533d91345688aa307b1e4244f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _availableLayers: {fileID: 11400000, guid: 3c3e21b26da86411598bb3f32036ea9b, type: 2}
   _layerTypePrefabs:
   - {fileID: 114735668952164790, guid: c7351548c923f44dba4823d61f7f9637, type: 2}
   - {fileID: 114378150912179114, guid: 0b94a1592cfec410daba36a83f8de762, type: 2}

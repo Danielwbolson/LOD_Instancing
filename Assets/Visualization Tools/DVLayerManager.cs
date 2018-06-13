@@ -14,25 +14,27 @@ namespace DV{
     [CustomEditor(typeof(DVLayerManager))]
     public class DVLayerManagerEditor : Editor
     {
+
+        
         public override void OnInspectorGUI()
         {
             DVLayerManager layerManager = (DVLayerManager)target;
 
             //DrawDefaultInspector();
 
-            GUILayout.Label("Layer Options: " +  (Layer.allLayers != null? Layer.allLayers.Count : 0).ToString());
+            GUILayout.Label("Layer Options: " +  (layerManager.GetAvailableLayers() != null? layerManager.GetAvailableLayers().layers.Count : 0).ToString());
 
             int selected = 0;
 
-             string[] options = new string[Layer.GetAllInstances<Layer>().Length];
+             string[] options = new string[layerManager.GetAvailableLayers().layers.Count];
 
-             for(int i  = 0; i < Layer.GetAllInstances<Layer>().Length; i++) {
-                 options[i] = Layer.GetAllInstances<Layer>()[i].name;
+             for(int i  = 0; i < layerManager.GetAvailableLayers().layers.Count; i++) {
+                 options[i] = layerManager.GetAvailableLayers().layers[i].GetName();
              }
 
             GUILayout.BeginVertical("box");
             GUILayout.BeginHorizontal();
-            GUILayout.Label(layerManager._layers.Count.ToString() + " layers.");
+            GUILayout.Label(layerManager.GetLayers().Count.ToString() + " layers.");
             if(GUILayout.Button("+", GUILayout.Width(20))) {
                 Debug.Log("Adding a new layer");
                 layerManager.AddLayer(0);
@@ -47,7 +49,7 @@ namespace DV{
                 int s = 0;
                 foreach (string x in options)
                 {
-                    if (x.Equals (layerManager._layers[i].layerType.name.ToString()))
+                    if (x.Equals (layerManager._layers[i] .GetName()))
                     {
                         selected = s; 
                     }
@@ -57,15 +59,18 @@ namespace DV{
                 selected = EditorGUILayout.Popup("Layer Type", selected, options);
                 if(selected != s2){
                     Debug.Log(s2 + " " + selected.ToString());
-                    layerManager._layers[i].layerType = Layer.GetAllInstances<Layer>()[selected];
+                    DestroyImmediate(layerManager._layers[i].gameObject);
+
+                    layerManager._layers[i] = layerManager.NewLayer(selected);
     
                 } 
                 if(GUILayout.Button("-", GUILayout.Width(20))) {
                     Debug.Log("Deleting this layer");
-                    layerManager._layers.Remove(layerManager._layers[i]);
+                    layerManager.RemoveLayer(layerManager._layers[i].gameObject);
+                    break;
                 }
                 GUILayout.EndHorizontal();
-                layerManager._layers[i].layerType.RenderGUI();
+                layerManager.GetLayers()[i].RenderGUI();
                 GUILayout.EndVertical();
             }
  
@@ -86,10 +91,16 @@ namespace DV{
 
 
 
+[ExecuteInEditMode]
 	public class DVLayerManager : MonoBehaviour {
 
+    [SerializeField]
+    private LayerSet _availableLayers;
+    public LayerSet GetAvailableLayers() {
+        return _availableLayers;
+    }
     public DVDataLayer[] _layerTypePrefabs;
-	public List<LayerInstance> _layers;
+	public List<DVDataLayer> _layers;
 
 	DVDataObject _dataObject;
 
@@ -97,9 +108,14 @@ namespace DV{
         return _dataObject;
     }
 
+    public List<DVDataLayer> GetLayers() {
+        if(_layers == null) _layers = new List<DVDataLayer>();
+        return _layers;
+
+    }
 	// Use this for initialization
 	void Start () {
-        _layers = new List<LayerInstance>();
+        
 		_dataObject = gameObject.GetComponent<DVDataObject>();
 		print(_dataObject.GetDataSet());
 	}
@@ -108,15 +124,23 @@ namespace DV{
 	void Update () {
 		
 	}
-    public void AddLayer(int index) {
+
+    public void RemoveLayer(GameObject layer ) {
+
+        _layers.Remove(layer.GetComponent<DVDataLayer>());
+        DestroyImmediate(layer);
+    }
+    public DVDataLayer NewLayer(int index) {
         print("Adding new " + _layerTypePrefabs[index].GetName() + " layer");
-        // GameObject layer = Instantiate(_layerTypePrefabs[index].gameObject);
+         GameObject layer = Instantiate( GetAvailableLayers().layers[index].gameObject);
         // print(layer);
 
-        // layer.GetComponent<DVDataLayer>()._layerManager = this;
-        LayerInstance l = new LayerInstance();
-        l.layerType = Layer.GetAllInstances<Layer>()[index];
-        _layers.Add(l);
+        layer.GetComponent<DVDataLayer>()._layerManager = this;
+        return layer.GetComponent<DVDataLayer>();
+    }
+    public void AddLayer(int index) {
+        
+        GetLayers().Add(NewLayer(index));
 
     }
 	}

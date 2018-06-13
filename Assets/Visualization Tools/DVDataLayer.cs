@@ -7,6 +7,9 @@ namespace DV
 {
     public class DVDataLayer : MonoBehaviour
     {
+
+        public virtual void RenderGUI() {
+        }
         public Material _material;
 
         public DVLayerManager _layerManager;

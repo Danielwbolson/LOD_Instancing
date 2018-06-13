@@ -11,6 +11,11 @@ namespace DV
     public class DVSampleStrategy : MonoBehaviour
     {
 
+        int _numberOfSamples = 0;
+        public void SetNumberOfSamples(int n) {
+            _numberOfSamples = n;
+            UpdateStrategy();
+        }
         public void SetDataSet(DVDataObject dataObject)
         {
             _dataObject = dataObject;
@@ -22,8 +27,7 @@ namespace DV
 
         public int GetNumberOfSamples()
         {
-            if (_samples == null) return 0;
-            return _samples.Length;
+            return _numberOfSamples;
         }
         public DVSample[] GetSamples()
         {
