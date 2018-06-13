@@ -268,8 +268,16 @@ public class Instanced : RenderStrategy {
                     ComputeBuffer.CopyCount(_LODBuffers[i][j], _LODArgsBuffer[i][j], 4);
 
                     Graphics.DrawMeshInstancedIndirect(_objMeshArray[i][j], 0, _objMatArray[i][j],
-                        _objMeshArray[i][j].bounds, _LODArgsBuffer[i][j], 0, _mpbs[i][j]);
+                        new Bounds(Vector3.zero, new Vector3(1000, 1000, 1000)), _LODArgsBuffer[i][j], 0, _mpbs[i][j]);
                 }
+            }
+        }
+    }
+
+    public void OnDrawGizmos() {
+        for (int i = 0; i < DIFFERENTOBJECTS; i++) {
+            for (int j = 0; j < LODSIZE; j++) {
+                Gizmos.DrawWireCube(_objMeshArray[i][j].bounds.center, _objMeshArray[i][j].bounds.size);
             }
         }
     }
