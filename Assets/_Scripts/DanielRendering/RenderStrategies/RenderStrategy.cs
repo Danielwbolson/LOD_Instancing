@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RenderStrategy {
 
+
     protected GameObject _parent;
     protected GameObject[] _objs;
     protected Material _objMat;

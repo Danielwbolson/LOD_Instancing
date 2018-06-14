@@ -59,7 +59,7 @@ public class ObjRenderer : MonoBehaviour {
             if (_instancedRendering == true) {
                 _renderStrategy.Destroy();
                 _renderStrategy = new Instanced(this.gameObject, _objs, _objMat, _computeShader, _objInfo, _totalNumMeshes);
-                _renderStrategy.SetDebug(_debug);
+                _renderStrategy.SetDebug(_debug);   
             } else {
                 _renderStrategy.Destroy();
                 _renderStrategy = new Instantiated(this.gameObject, _objs, _objMat, _computeShader, _objInfo, _totalNumMeshes);

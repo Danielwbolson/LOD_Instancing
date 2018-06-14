@@ -18,6 +18,7 @@ public class Instantiated : RenderStrategy {
  * LOD system as it is made to work with their gameobjects.
  */
     public Instantiated(GameObject p, GameObject[] o, Material mat, ComputeShader cs, List<ObjInfo>[] data, int total) : 
+        
         base(p, o, mat, cs, data, total) {
 
         _objMat.enableInstancing = false;
@@ -54,7 +55,8 @@ public class Instantiated : RenderStrategy {
                 }
 
                 // Set our position based on what was passed in
-                temp_obj.transform.position = _masterData[i][j].position;
+                
+                temp_obj.transform.localPosition = _masterData[i][j].position;
 
                 float scal = _masterData[i][j].scale;
 
@@ -87,7 +89,7 @@ public class Instantiated : RenderStrategy {
             _cachedDebug = _debug;
         }
 
-        RotatePositions();
+        //RotatePositions();
     }
 
     /*
@@ -107,7 +109,7 @@ public class Instantiated : RenderStrategy {
                 Vector3 rot = Quaternion.AngleAxis(rotation, Vector3.up) * temp.position;
                 temp.position = new Vector4(rot.x, rot.y, rot.z, 1);
 
-                _gameObjects[index + j].transform.position = temp.position;
+                _gameObjects[index + j].transform.localPosition = temp.position;
                 _masterData[i][j] = temp;
             }
         }

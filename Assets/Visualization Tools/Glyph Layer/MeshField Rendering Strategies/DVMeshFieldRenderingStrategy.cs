@@ -5,7 +5,7 @@ using UnityEngine;
 namespace DV
 {
 public class DVMeshFieldRenderingStrategy : MonoBehaviour {
-	
+
 	protected GameObject [] _meshes; 
 	protected Material _material;
 	protected Transform _parent;

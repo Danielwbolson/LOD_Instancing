@@ -20,7 +20,7 @@ public class Instanced : RenderStrategy {
     private Vector3[] _meshBoundsSize;
     private BoundingSphere[] _boundingSpheres;
     private int _kCSMain;
-
+ 
     private const float LOD0 = .7f;
     private const float LOD1 = .3f;
     private const float LOD2 = .07f;
@@ -248,7 +248,7 @@ public class Instanced : RenderStrategy {
         Matrix4x4 P = cam.projectionMatrix;
         Matrix4x4 _MVP = P * V * M;
 
-        RotatePositions();
+        //RotatePositions();
 
         _computeShader.SetVector("camPos", _cachedCamPosition);
         _computeShader.SetMatrix("MVP", _MVP);

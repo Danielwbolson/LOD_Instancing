@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4601125404738822}
-  - component: {fileID: 114609741037690590}
+  - component: {fileID: 114954694160263060}
   m_Layer: 0
   m_Name: DVInstancingLODMeshFieldRenderingStrategy
   m_TagString: Untagged
@@ -40,7 +40,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114609741037690590
+--- !u!114 &114954694160263060
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -48,8 +48,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1710354510471696}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a45e43fedf1fe44d0bb3299f7b239d06, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f9ab293f16d94f729ef2edc2be2f5e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _GlyphPrefab: {fileID: 1360630974983654, guid: c62f276584b0142c0be4659391fb403c,
-    type: 2}
+  _objs:
+  - {fileID: 1125397418768840, guid: c3fe23cd53a46054b92109ccc1b13658, type: 2}
+  - {fileID: 1678047477874902, guid: 30c4cc1610f66f144a5daf621b17fe29, type: 2}
+  _objMat: {fileID: 2100000, guid: 205db7c5de1efcc4eaf78b973d1671d6, type: 2}
+  _computeShader: {fileID: 7200000, guid: 9104bf1eafbc93f40b0dc456642b51d9, type: 3}
+  _totalNumMeshes: 100
+  _instancedRendering: 1
+  _debug: 1
