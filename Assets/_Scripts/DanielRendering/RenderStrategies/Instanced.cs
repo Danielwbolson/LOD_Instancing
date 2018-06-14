@@ -12,7 +12,7 @@ public class Instanced : RenderStrategy {
     private const int LODSIZE = 4;
     private int cachedInstanceCount;
     private int cachedObjCount;
-    float threadCount = 64.0f;
+    private const float threadCount = 64.0f;
 
     private Camera cam = Camera.main;
     private Vector3 _cachedCamPosition;
@@ -26,8 +26,8 @@ public class Instanced : RenderStrategy {
     private const float LOD2 = .07f;
     private const float LOD3 = .01f;
 
-    Vector4 _LODRanges = new Vector4(LOD0, LOD1, LOD2, LOD3 );
-    string[] lodBuffers = new string[4] { "lod0Buffer", "lod1Buffer", "lod2Buffer", "lod3Buffer" };
+    private readonly Vector4 _LODRanges = new Vector4(LOD0, LOD1, LOD2, LOD3 );
+    private readonly string[] lodBuffers = new string[4] { "lod0Buffer", "lod1Buffer", "lod2Buffer", "lod3Buffer" };
 
     private Matrix4x4[] _matrixData;
     private MaterialPropertyBlock[][] _mpbs;
@@ -143,8 +143,9 @@ public class Instanced : RenderStrategy {
             _meshBoundsSize[i] = _objMeshArray[i][LODSIZE - 1].bounds.size;
 
             // Get the maximum bounds size of our mesh and use it as our radius
-            _boundingSpheres[i] = new BoundingSphere();
-            _boundingSpheres[i].radius = Mathf.Max(Mathf.Max(_meshBoundsSize[i].x, _meshBoundsSize[i].y), _meshBoundsSize[i].z);
+            _boundingSpheres[i] = new BoundingSphere {
+                radius = Mathf.Max(Mathf.Max(_meshBoundsSize[i].x, _meshBoundsSize[i].y), _meshBoundsSize[i].z)
+            };
 
             for (int j = 0; j < LODSIZE; j++) {
                 // Initialize our lod-buffers, much the same as our dataBuffers but will be expanding
