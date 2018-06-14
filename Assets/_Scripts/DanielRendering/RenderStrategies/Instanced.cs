@@ -229,6 +229,15 @@ public class Instanced : RenderStrategy {
             Reset();
         }
 
+        if (_cachedDebug != _debug) {
+            for (int i = 0; i < DIFFERENTOBJECTS; i++) {
+                for (int j = 0; j < LODSIZE; j++) {
+                    _objMatArray[i][j].SetInt("debug", _debug);
+                }
+            }
+            _cachedDebug = _debug;
+        }
+
         _cachedCamPosition = cam.transform.position;
         Vector3 up = cam.transform.up;
 

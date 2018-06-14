@@ -113,32 +113,22 @@ inline void CalculateCameraPlanes(inout FrustrumPlane mPlanes[5])
 // Assign data to a level of detail buffer depending on its distance from the camera
 // Currently assigning color here as well
 inline void AssignLOD(uint id, float screenSize) {
-    //camDist = camDist * (1f / dataBuffer[id].scale);
     if (screenSize > LODRanges[0]) {
-        dataBuffer[id].color = float4(1, 0, 0, dataBuffer[id].color[3]);
         dataBuffer[id].LODIndex = 0;
         lod0Buffer.Append(dataBuffer[id]);
-    } 
+    }
     else if (screenSize > LODRanges[1]) {
-        dataBuffer[id].color = float4(0, 1, 0, dataBuffer[id].color[3]);
         dataBuffer[id].LODIndex = 1;
         lod1Buffer.Append(dataBuffer[id]);
     }
     else if (screenSize > LODRanges[2]) {
-        dataBuffer[id].color = float4(0, 0, 1, dataBuffer[id].color[3]);
         dataBuffer[id].LODIndex = 2;
         lod2Buffer.Append(dataBuffer[id]);
     }
     else if (screenSize > LODRanges[3]) {
-        dataBuffer[id].color = float4(0, 0, 0, dataBuffer[id].color[3]);
         dataBuffer[id].LODIndex = 3;
         lod3Buffer.Append(dataBuffer[id]);
     }
-
-    //if (true) {
-    //    dataBuffer[id].color = float4(camDist, camDist, camDist, dataBuffer[id].color[3]);
-    //    lod3Buffer.Append(dataBuffer[id]);
-    //}
 }
 
 // Using a position and a radius, check if a bounding box is inside each camera plane

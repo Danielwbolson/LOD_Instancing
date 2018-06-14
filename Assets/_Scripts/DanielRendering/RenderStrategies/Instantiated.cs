@@ -75,6 +75,18 @@ public class Instantiated : RenderStrategy {
             InitializeObjects();
         }
 
+        if (_cachedDebug != _debug) {
+            for (int i = 0; i < TOTALOBJECTS; i++) {
+                MeshRenderer[] _MeshArray = _gameObjects[i].GetComponentsInChildren<MeshRenderer>();
+                Material[] _tempMatArray = new Material[_MeshArray.Length];
+                for (int k = 0; k < _tempMatArray.Length; k++) {
+                    _tempMatArray[k] = _MeshArray[k].material;
+                    _tempMatArray[k].SetInt("debug", _debug);
+                }
+            }
+            _cachedDebug = _debug;
+        }
+
         RotatePositions();
     }
 

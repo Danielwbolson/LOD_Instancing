@@ -36,8 +36,6 @@
         StructuredBuffer<ObjInfo> dataBuffer;
         StructuredBuffer<float4x4> matrixBuffer;
         float DummyForShadows;
-#else
-        float4 color;
 #endif
 
         void setup() {
@@ -52,14 +50,37 @@
         half _Metallic;
         fixed4 c;
 
+        float4 color;
+        int debug;
+        int lodIndex;
+
         void surf(Input IN, inout SurfaceOutputStandard o) {
 #ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
-            // Color from data
-            float4 col = dataBuffer[unity_InstanceID].color;
-            c = tex2D(_MainTex, IN.uv_MainTex) * col;
+            lodIndex = dataBuffer[unity_InstanceID].LODIndex;
+
+            if (debug == 1) {
+                if (lodIndex == 0)
+                    color = float4(1, 0, 0, 1);
+                else if (lodIndex == 1)
+                    color = float4(0, 1, 0, 1);
+                else if (lodIndex == 2)
+                    color = float4(0, 0, 1, 1);
+                else if (lodIndex == 3)
+                    color = float4(0, 0, 0, 1);
+                c = tex2D(_MainTex, IN.uv_MainTex) * color;
+            }
+            else {
+                c = tex2D(_MainTex, IN.uv_MainTex);
+            }
 #else
-            c = tex2D(_MainTex, IN.uv_MainTex) * color;
+            if (debug == 1) {
+                c = tex2D(_MainTex, IN.uv_MainTex) * color;
+            }
+            else {
+                c = tex2D(_MainTex, IN.uv_MainTex);
+            }
 #endif
+
             o.Albedo = c.rgb;
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;

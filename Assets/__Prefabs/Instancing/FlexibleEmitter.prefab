@@ -58,3 +58,4 @@ MonoBehaviour:
   _computeShader: {fileID: 7200000, guid: 9104bf1eafbc93f40b0dc456642b51d9, type: 3}
   _totalNumMeshes: 100
   _instancedRendering: 0
+  _debug: 0

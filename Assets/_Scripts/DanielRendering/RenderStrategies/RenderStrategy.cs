@@ -12,6 +12,9 @@ public class RenderStrategy {
     protected int TOTALOBJECTS;
     protected int DIFFERENTOBJECTS;
 
+    protected int _debug = 0;
+    protected int _cachedDebug = 0;
+
     protected List<ObjInfo>[] _masterData;
     protected Material[][] _objMatArray;
 
@@ -55,5 +58,13 @@ public class RenderStrategy {
 
     public List<ObjInfo>[] GetObjInfo() {
         return _masterData;
+    }
+
+    public void SetDebug(bool d) {
+        if (d == true) {
+            _debug = 1;
+        } else {
+            _debug = 0;
+        }
     }
 }
