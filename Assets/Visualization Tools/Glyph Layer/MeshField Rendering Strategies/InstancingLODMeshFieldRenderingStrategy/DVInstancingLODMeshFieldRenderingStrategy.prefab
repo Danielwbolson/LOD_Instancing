@@ -9,30 +9,30 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1084119310966890}
+  m_RootGameObject: {fileID: 1710354510471696}
   m_IsPrefabParent: 1
---- !u!1 &1084119310966890
+--- !u!1 &1710354510471696
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4537381569865920}
-  - component: {fileID: 114067990886793088}
+  - component: {fileID: 4601125404738822}
+  - component: {fileID: 114609741037690590}
   m_Layer: 0
-  m_Name: FlexibleEmitter
+  m_Name: DVInstancingLODMeshFieldRenderingStrategy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4537381569865920
+--- !u!4 &4601125404738822
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1084119310966890}
+  m_GameObject: {fileID: 1710354510471696}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -40,22 +40,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114067990886793088
+--- !u!114 &114609741037690590
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1084119310966890}
+  m_GameObject: {fileID: 1710354510471696}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d3ae6ed3c0926b47b46d86ab98f2038, type: 3}
+  m_Script: {fileID: 11500000, guid: a45e43fedf1fe44d0bb3299f7b239d06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objs:
-  - {fileID: 1125397418768840, guid: c3fe23cd53a46054b92109ccc1b13658, type: 2}
-  - {fileID: 1678047477874902, guid: 30c4cc1610f66f144a5daf621b17fe29, type: 2}
-  _objMat: {fileID: 2100000, guid: 205db7c5de1efcc4eaf78b973d1671d6, type: 2}
-  _computeShader: {fileID: 7200000, guid: 9104bf1eafbc93f40b0dc456642b51d9, type: 3}
-  _totalNumMeshes: 100
-  _instancedRendering: 0
-  _debug: 0
+  _GlyphPrefab: {fileID: 1360630974983654, guid: c62f276584b0142c0be4659391fb403c,
+    type: 2}
