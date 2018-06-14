@@ -9,6 +9,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf1631bddfdcf41a08616cfd02808b79, type: 3}
-  m_Name: Volume Layer
+  m_Name: Placeholder Layer Type
   m_EditorClassIdentifier: 
-  name: Volume
+  _name: Placeholder
+  _dataStrategyFactory: {fileID: 11400000, guid: 656f084f925184bb39a90698310ff1f9,
+    type: 2}
+  _renderStrategyFactory: {fileID: 11400000, guid: c365ae37b56364a6b98655e464d63a70,
+    type: 2}

@@ -8,8 +8,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b537891bfa7614f2e8f8cc439a909e03, type: 3}
-  m_Name: Glyph Layer
-  m_EditorClassIdentifier: 
-  name: Glyph
-  meshCount: 0
+  m_Script: {fileID: 0}
+  m_Name: Placeholder Layer Data Strategy Factory
+  m_EditorClassIdentifier: Assembly-CSharp::PlaceholderLayerDataStrategyFactory

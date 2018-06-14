@@ -9,6 +9,7 @@ using UnityEngine.UI;
 namespace DV
 {
 
+[ExecuteInEditMode]
     public class DVDataSliceLayer : DVDataLayer
     {
 

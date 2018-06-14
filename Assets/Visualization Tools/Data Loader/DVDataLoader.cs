@@ -6,6 +6,23 @@ using System;
 using System.IO;
 using UnityEditor;
 
+
+[CreateAssetMenu()]
+public class Database : ScriptableObject {
+        public List<vtkDataSet> _datasets;
+        public List<string> _datasetNames;
+        public List<DV.DVDataObject> _dataObjects;
+        public int GetDatasetCount() {return _datasets != null? _datasets.Count : 0;}
+        public void AddDataset(vtkDataSet dataset, string datasetName, DV.DVDataObject dataObject) {
+            if(_datasets == null) _datasets = new List<vtkDataSet>();
+            if(_datasetNames == null) _datasetNames = new List<string>();
+            if(_dataObjects == null) _dataObjects = new List<DV.DVDataObject>();
+            _datasets.Add(dataset);
+            _datasetNames.Add(datasetName);
+            _dataObjects.Add(dataObject);
+        }
+
+}
 namespace DV
 {
     [CustomEditor(typeof(DVDataLoader))]
@@ -32,18 +49,24 @@ namespace DV
         public GameObject _dataObjectPrefab;
         public string _filePath;
 
+        public Database _database;
         public void LoadData()
         {
             if (_dataObjectPrefab)
             {
                 GameObject newData = Instantiate(_dataObjectPrefab);
-                newData.GetComponent<DVDataObject>().SetDataSet(LoadVTKDataSet());
+                VTK.vtkDataSet ds = LoadVTKDataSet();
+
+                newData.GetComponent<DVDataObject>().SetDataSet(ds);
+                _database.AddDataset(ds,Path.GetFileName(_filePath), newData.GetComponent<DV.DVDataObject>());
                 if (_root)
                 {
                     newData.transform.SetParent(_root.transform, false);
                 }
             }
         }
+
+
         protected vtkDataSet LoadVTKDataSet()
         {
 
@@ -81,7 +104,6 @@ namespace DV
             }
 
             algorithm_.Update();
-
             return reader.GetOutputAsDataSet();
         }
 

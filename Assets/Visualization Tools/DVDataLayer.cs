@@ -5,6 +5,7 @@ using UnityEditor;
 
 namespace DV
 {
+    [ExecuteInEditMode]
     public class DVDataLayer : MonoBehaviour
     {
 
@@ -12,13 +13,15 @@ namespace DV
         }
         public Material _material;
 
-        public DVLayerManager _layerManager;
+        // public DVLayerManager _layerManager;
+        public Layer _layer;
+
         virtual public string GetName() {
             return "Undefined";
         }
 
         public DVDataObject GetData() {
-            return _layerManager.GetData();
+            return _layer.GetData();
         }
         private DVDataObject _cachedDataObject = null;
         private bool _needsUpdate = false;

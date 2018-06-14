@@ -55,3 +55,4 @@ MonoBehaviour:
   _dataObjectPrefab: {fileID: 1146214586725082, guid: c848b23aa04f34f4ab7f67f0fa2827ae,
     type: 2}
   _filePath: example_data/VTK/local/brain.vti
+  _database: {fileID: 11400000, guid: 4740545a2c01c4023a9368cb5aadcb79, type: 2}

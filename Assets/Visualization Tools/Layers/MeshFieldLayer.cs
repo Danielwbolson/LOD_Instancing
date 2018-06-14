@@ -5,7 +5,7 @@ using UnityEditor;
 
 [CreateAssetMenu()]
 
-public class MeshFieldLayer : Layer {
+public class MeshFieldLayer : LayerType {
 
 	public int meshCount; 
 
