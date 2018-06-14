@@ -185,7 +185,7 @@ inline void CSMain(uint3 dispatchID : SV_DispatchThreadID) {
     float4 mvpInstance = mul(MVP, instance.position);
     float2 s_pointOne = mvpInstance.xy / mvpInstance.w;
 
-    float4 mvpUp = mul(MVP, instance.position + float4(up, 0) * b.radius);
+    float4 mvpUp = mul(MVP, instance.position + float4(-up, 0) * b.radius);
     float2 s_pointTwo = mvpUp.xy / mvpUp.w;
     float screenSize = abs(s_pointOne.y - s_pointTwo.y);
 

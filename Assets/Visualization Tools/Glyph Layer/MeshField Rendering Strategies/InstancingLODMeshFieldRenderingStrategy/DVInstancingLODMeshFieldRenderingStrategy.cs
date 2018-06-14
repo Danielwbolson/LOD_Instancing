@@ -96,7 +96,8 @@ public class DVInstancingLODMeshFieldRenderingStrategy : DV.DVMeshFieldRendering
                 objIndex = Random.Range(0, _objs.Length),
                 LODIndex = -1,
                 matrixIndex = i,
-                position = _samples[i].position,// new Vector4(Mathf.Sin(angle) * distance, height, Mathf.Cos(angle) * distance, 1),
+                position = new Vector4(_samples[i].position.x, _samples[i].position.y, _samples[i].position.z, 1), 
+                //new Vector4(Mathf.Sin(angle) * distance, height, Mathf.Cos(angle) * distance, 1),
                 color = new Vector4(0, 0, 0, Random.Range(0.20f, 1.0f)),
                 scale = Random.Range(0.05f, 0.2f),
                 direction = Vector3.Normalize(new Vector3(Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0, 1f)))

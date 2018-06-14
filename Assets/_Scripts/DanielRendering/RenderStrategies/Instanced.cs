@@ -239,11 +239,11 @@ public class Instanced : RenderStrategy {
             _cachedDebug = _debug;
         }
 
-        _cachedCamPosition = cam.transform.position;
-        Vector3 up = cam.transform.up;
+        _cachedCamPosition = cam.gameObject.transform.position;
+        Vector3 up = cam.gameObject.transform.up;
 
         // Calculate our MVP matrix for use in the computeshader
-        Matrix4x4 M = Matrix4x4.identity;
+        Matrix4x4 M = _modelMatrix;
         Matrix4x4 V = cam.worldToCameraMatrix;
         Matrix4x4 P = cam.projectionMatrix;
         Matrix4x4 _MVP = P * V * M;
