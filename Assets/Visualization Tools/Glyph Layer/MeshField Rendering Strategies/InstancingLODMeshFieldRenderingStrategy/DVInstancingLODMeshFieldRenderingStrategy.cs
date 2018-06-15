@@ -22,7 +22,7 @@ public class DVInstancingLODMeshFieldRenderingStrategy : DV.DVMeshFieldRendering
 
 
 
-	    /*
+    /*
      * CLASS DOCUMENTATION: ObjRenderer
      * This class acts as a layer and user interface. It has a series of objects in its slice that move 
      * with it, as well as giving the option to have the objects rendered in different forms:
@@ -32,8 +32,8 @@ public class DVInstancingLODMeshFieldRenderingStrategy : DV.DVMeshFieldRendering
 
     // Use this for initialization
     void Start () {
-		_totalNumMeshes = _samples.Length;
-		_objs = _meshes;
+        _totalNumMeshes = _samples.Length;
+        _objs = _meshes;
 
         InitializeInfo();
         // Initialize our new RenderStrategy
@@ -99,7 +99,7 @@ public class DVInstancingLODMeshFieldRenderingStrategy : DV.DVMeshFieldRendering
                 position = new Vector4(_samples[i].position.x, _samples[i].position.y, _samples[i].position.z, 1), 
                 //new Vector4(Mathf.Sin(angle) * distance, height, Mathf.Cos(angle) * distance, 1),
                 color = new Vector4(0, 0, 0, Random.Range(0.20f, 1.0f)),
-                scale = Random.Range(0.05f, 0.2f),
+                scale = new Vector3(Random.Range(0.05f, 0.2f), Random.Range(0.05f, 0.2f), Random.Range(0.05f, 0.2f)),
                 direction = Vector3.Normalize(new Vector3(Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0, 1f)))
             };
 
@@ -137,12 +137,12 @@ public class DVInstancingLODMeshFieldRenderingStrategy : DV.DVMeshFieldRendering
 
 
 
-	// Use this for initialization
-	public override void UpdateMeshData() {
-		 Start();
-	}
-	public override void DrawMeshes() {
-		Update();
-	}
+    // Use this for initialization
+    public override void UpdateMeshData() {
+         Start();
+    }
+    public override void DrawMeshes() {
+        Update();
+    }
 
 }

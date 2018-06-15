@@ -28,7 +28,7 @@
             int matrixIndex;
             float4 position;
             float4 color;
-            float scale;
+            float3 scale;
             float3 direction;
         };
 

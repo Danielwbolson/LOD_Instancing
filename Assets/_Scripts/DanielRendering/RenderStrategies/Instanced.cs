@@ -132,7 +132,7 @@ public class Instanced : RenderStrategy {
             int currDataCount = _masterData[i].Count;
             if (currDataCount > 0) {
                 // Our dataBuffer corresponds with our section of MasterData for that object
-                _dataBuffer[i] = new ComputeBuffer(currDataCount, 12 * sizeof(float) + 3 * sizeof(int));
+                _dataBuffer[i] = new ComputeBuffer(currDataCount, 14 * sizeof(float) + 3 * sizeof(int));
                 _dataBuffer[i].SetData(_masterData[i]);
             }
 
@@ -151,7 +151,7 @@ public class Instanced : RenderStrategy {
                 // Initialize our lod-buffers, much the same as our dataBuffers but will be expanding
                 // and changing based on which lod meshes fit in at each update
                 if (currDataCount > 0) {
-                    _LODBuffers[i][j] = new ComputeBuffer(currDataCount, 12 * sizeof(float) + 3 * sizeof(int), ComputeBufferType.Append);
+                    _LODBuffers[i][j] = new ComputeBuffer(currDataCount, 14 * sizeof(float) + 3 * sizeof(int), ComputeBufferType.Append);
                     _LODBuffers[i][j].SetCounterValue(0);
                 }
             }
@@ -296,7 +296,7 @@ public class Instanced : RenderStrategy {
             if (_dataBuffer[i] != null) {
                 for (int j = 0; j < _masterData[i].Count; j++) {
                     // Set the positions of our instance based on our input List
-                    float scaleMag = _masterData[i][j].scale;
+                    float scaleMag = _masterData[i][j].scale.magnitude;
                     Vector3 newPos = Quaternion.AngleAxis(
                         scaleMag * Time.deltaTime * 40,
                         Vector3.up) * _masterData[i][j].position;

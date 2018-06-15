@@ -20,7 +20,7 @@ struct ObjInfo {
     int matrixIndex;
     float4 position;
     float4 color;
-    float scale;
+    float3 scale;
     float3 direction;
 };
 
@@ -41,14 +41,14 @@ int instanceCount;
 
 // Set the data's position in the matrix buffer
 inline void ObjectToWorldMatrix(uint id) {
-    float tempScal = dataBuffer[id].scale;
+    float3 tempScal = dataBuffer[id].scale;
     float4 tempPos = dataBuffer[id].position;
 
 
     float4x4 tempMatrix = float4x4(
-        float4(tempScal, 0, 0, tempPos.x),
-        float4(0, tempScal, 0, tempPos.y),
-        float4(0, 0, tempScal, tempPos.z),
+        float4(tempScal.x, 0, 0, tempPos.x),
+        float4(0, tempScal.y, 0, tempPos.y),
+        float4(0, 0, tempScal.z, tempPos.z),
         float4(0, 0, 0, 1));
 
     matrixBuffer[dataBuffer[id].matrixIndex] = mul(modelMatrix, tempMatrix);
@@ -137,24 +137,26 @@ inline void AssignLOD(uint id, float screenSize) {
 // get culled. This will allow some meshes to be seen that technically should be culled
 // The normals are not the planes coming out from the camera, but instead the normals of the planes,
 // facing inwards towards where the camera should see
-inline bool ShouldFrustrumCull(BoundingSphere b) {
+inline bool ShouldFrustrumCull(BoundingSphere b, ObjInfo instance) {
 
     FrustrumPlane planes[5];
     CalculateCameraPlanes(planes);
+
+    float3 radScal = float3(b.radius * instance.scale.x, b.radius * instance.scale.y, b.radius * instance.scale.z);
 
     int result = 0;
 
     for (int i = 0; i < 5; i++) {
         result = 0;
         // If a result is < 0, the positions is behind the plane
-        result += ((dot(planes[i].normal.xyz, float3(b.center.x - b.radius, b.center.y - b.radius, b.center.z - b.radius) - planes[i].pointOnPlane) <= 0.0) ? 1 : 0);
-        result += ((dot(planes[i].normal.xyz, float3(b.center.x + b.radius, b.center.y - b.radius, b.center.z - b.radius) - planes[i].pointOnPlane) <= 0.0) ? 1 : 0);
-        result += ((dot(planes[i].normal.xyz, float3(b.center.x - b.radius, b.center.y + b.radius, b.center.z - b.radius) - planes[i].pointOnPlane) <= 0.0) ? 1 : 0);
-        result += ((dot(planes[i].normal.xyz, float3(b.center.x + b.radius, b.center.y + b.radius, b.center.z - b.radius) - planes[i].pointOnPlane) <= 0.0) ? 1 : 0);
-        result += ((dot(planes[i].normal.xyz, float3(b.center.x - b.radius, b.center.y - b.radius, b.center.z + b.radius) - planes[i].pointOnPlane) <= 0.0) ? 1 : 0);
-        result += ((dot(planes[i].normal.xyz, float3(b.center.x + b.radius, b.center.y - b.radius, b.center.z + b.radius) - planes[i].pointOnPlane) <= 0.0) ? 1 : 0);
-        result += ((dot(planes[i].normal.xyz, float3(b.center.x - b.radius, b.center.y + b.radius, b.center.z + b.radius) - planes[i].pointOnPlane) <= 0.0) ? 1 : 0);
-        result += ((dot(planes[i].normal.xyz, float3(b.center.x + b.radius, b.center.y + b.radius, b.center.z + b.radius) - planes[i].pointOnPlane) <= 0.0) ? 1 : 0);
+        result += ((dot(planes[i].normal.xyz, float3(b.center.x - radScal.x, b.center.y - radScal.y, b.center.z - radScal.z) - planes[i].pointOnPlane) <= 0.0) ? 1 : 0);
+        result += ((dot(planes[i].normal.xyz, float3(b.center.x + radScal.x, b.center.y - radScal.y, b.center.z - radScal.z) - planes[i].pointOnPlane) <= 0.0) ? 1 : 0);
+        result += ((dot(planes[i].normal.xyz, float3(b.center.x - radScal.x, b.center.y + radScal.y, b.center.z - radScal.z) - planes[i].pointOnPlane) <= 0.0) ? 1 : 0);
+        result += ((dot(planes[i].normal.xyz, float3(b.center.x + radScal.x, b.center.y + radScal.y, b.center.z - radScal.z) - planes[i].pointOnPlane) <= 0.0) ? 1 : 0);
+        result += ((dot(planes[i].normal.xyz, float3(b.center.x - radScal.x, b.center.y - radScal.y, b.center.z + radScal.z) - planes[i].pointOnPlane) <= 0.0) ? 1 : 0);
+        result += ((dot(planes[i].normal.xyz, float3(b.center.x + radScal.x, b.center.y - radScal.y, b.center.z + radScal.z) - planes[i].pointOnPlane) <= 0.0) ? 1 : 0);
+        result += ((dot(planes[i].normal.xyz, float3(b.center.x - radScal.x, b.center.y + radScal.y, b.center.z + radScal.z) - planes[i].pointOnPlane) <= 0.0) ? 1 : 0);
+        result += ((dot(planes[i].normal.xyz, float3(b.center.x + radScal.x, b.center.y + radScal.y, b.center.z + radScal.z) - planes[i].pointOnPlane) <= 0.0) ? 1 : 0);
 
         if (result == 8)
             return true;
@@ -179,7 +181,7 @@ inline void CSMain(uint3 dispatchID : SV_DispatchThreadID) {
     // Get our bounding sphere and set it to the position of our data
     BoundingSphere b;
     b.center = instance.position.xyz;
-    b.radius = boundingBuffer[instance.objIndex].radius * dataBuffer[id].scale;
+    b.radius = boundingBuffer[instance.objIndex].radius;
 
     // Calculating screen height
     float4 mvpInstance = mul(MVP, instance.position);
@@ -195,7 +197,7 @@ inline void CSMain(uint3 dispatchID : SV_DispatchThreadID) {
     }
 
     // Calculate if we should frustrum cull this instance, if so, quit
-    if (ShouldFrustrumCull(b)) {
+    if (ShouldFrustrumCull(b, instance)) {
         return;
     }
 

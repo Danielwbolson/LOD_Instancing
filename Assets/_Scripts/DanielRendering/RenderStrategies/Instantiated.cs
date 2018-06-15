@@ -58,9 +58,9 @@ public class Instantiated : RenderStrategy {
                 
                 temp_obj.transform.localPosition = _masterData[i][j].position;
 
-                float scal = _masterData[i][j].scale;
+                Vector3 scal = _masterData[i][j].scale;
 
-                temp_obj.transform.localScale = new Vector3(scal, scal, scal);
+                temp_obj.transform.localScale = new Vector3(scal.x, scal.y, scal.z);
 
                 temp_obj.transform.forward = _masterData[i][j].direction;
             }
@@ -104,7 +104,7 @@ public class Instantiated : RenderStrategy {
             }
 
             for (int j = 0; j < _masterData[i].Count; j++) {
-                float rotation = _masterData[i][j].scale * Time.deltaTime * 100;
+                float rotation = _masterData[i][j].scale.magnitude * Time.deltaTime * 100;
                 ObjInfo temp = _masterData[i][j];
                 Vector3 rot = Quaternion.AngleAxis(rotation, Vector3.up) * temp.position;
                 temp.position = new Vector4(rot.x, rot.y, rot.z, 1);
