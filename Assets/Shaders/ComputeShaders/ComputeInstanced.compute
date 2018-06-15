@@ -183,11 +183,13 @@ inline void CSMain(uint3 dispatchID : SV_DispatchThreadID) {
     b.center = instance.position.xyz;
     b.radius = boundingBuffer[instance.objIndex].radius;
 
+    float avgScale = (instance.scale.x + instance.scale.y + instance.scale.z) / 3.0f;
+
     // Calculating screen height
     float4 mvpInstance = mul(MVP, instance.position);
     float2 s_pointOne = mvpInstance.xy / mvpInstance.w;
 
-    float4 mvpUp = mul(MVP, instance.position + float4(-up, 0) * b.radius);
+    float4 mvpUp = mul(MVP, instance.position + float4(-up, 0) * b.radius * avgScale);
     float2 s_pointTwo = mvpUp.xy / mvpUp.w;
     float screenSize = abs(s_pointOne.y - s_pointTwo.y);
 
