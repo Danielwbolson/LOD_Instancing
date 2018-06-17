@@ -21,7 +21,7 @@ namespace DV
         }
 
         public DVDataObject GetData() {
-            return _layer.GetData();
+            return null;//_layer.GetData();
         }
         private DVDataObject _cachedDataObject = null;
         private bool _needsUpdate = false;

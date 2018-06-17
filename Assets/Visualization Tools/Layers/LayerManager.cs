@@ -10,6 +10,7 @@ using UnityEditor;
     public class LayerManagerEditor : Editor
     {
 
+
         
         public override void OnInspectorGUI()
         {
@@ -91,7 +92,9 @@ using UnityEditor;
 
 [ExecuteInEditMode]
 public class LayerManager : MonoBehaviour {
-
+        public Database GetDatabase() {
+            return gameObject.GetComponent<Database>();
+        }
     [SerializeField]
     private LayerTypeSet _availableLayerTypes;
     public List<LayerType> GetAvailableLayerTypes() {
@@ -123,6 +126,11 @@ public class LayerManager : MonoBehaviour {
         
     }
     public Layer NewLayer(int index) {
+        if(index >= GetAvailableLayerTypes().Count)
+        {
+            Debug.LogError("Tried to access index " + index + " of " + GetAvailableLayerTypes().Count + " available layer types.");
+            return null;
+        }
         print("Adding new " + GetAvailableLayerTypes()[index].GetName() + " layer");
          //GameObject layer = GetAvailableLayerTypes().layerTypes[index];
         // print(layer);
@@ -131,8 +139,9 @@ public class LayerManager : MonoBehaviour {
         return layer;
     }
     public void AddLayer(int index) {
-        
-        GetLayers().Add(NewLayer(index));
+        Layer l = NewLayer(index);
+        if(l != null)
+            GetLayers().Add(l);
 
     }
 

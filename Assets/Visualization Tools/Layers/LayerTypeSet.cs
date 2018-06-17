@@ -5,6 +5,7 @@ using UnityEditor;
 using System;
 
 
+
 [CreateAssetMenu()]
 public class LayerTypeSet : ScriptableObject {
 	

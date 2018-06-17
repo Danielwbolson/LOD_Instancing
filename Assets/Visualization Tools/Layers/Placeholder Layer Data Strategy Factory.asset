@@ -8,6 +8,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: bc7f07875cf9b4802b117ea51db09a18, type: 3}
   m_Name: Placeholder Layer Data Strategy Factory
-  m_EditorClassIdentifier: Assembly-CSharp::PlaceholderLayerDataStrategyFactory
+  m_EditorClassIdentifier: 
