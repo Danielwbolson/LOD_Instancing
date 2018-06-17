@@ -6,21 +6,16 @@ using System;
 
 
 [Serializable]
-public class Layer {
+public class Layer : System.Object{
 
-		DataObject _dataObject = null;
+	// DataObject _dataObject = null;
 	
 	public LayerManager GetLayerManager() {
 		return _layerManager;
 	}
 	public DataObject GetDataObject() {
-		if(_dataObject == null) {
-			_dataObject = _layerDataStrategy.GetDataObject();
-		}	
-		return _dataObject;
-	}
-	public void SetDataObject(DataObject dataObject) {
-		_dataObject = dataObject;
+		return  _layerDataStrategy.GetDataObject();
+;
 	}
 	public LayerRenderStrategy GetLayerRenderStrategy() {
 		return _layerRenderStrategy;
@@ -31,17 +26,22 @@ public class Layer {
 	public Layer(LayerManager layerManager) {
 		_layerManager = layerManager;
 	}
+	[SerializeField]
 	private LayerManager _layerManager;
+	[SerializeField]
 	private LayerType _type;
 
-	private LayerRenderStrategy _layerRenderStrategy;
-	private LayerDataStrategy _layerDataStrategy;
+	[SerializeField]
+	public LayerRenderStrategy _layerRenderStrategy;
+	[SerializeField]
+	public LayerDataStrategy _layerDataStrategy;
 	
 
 	public void SetLayerType(LayerType type) {
 		_type = type;
 		_layerRenderStrategy = type.CreateRenderStrategy(this);
 		_layerDataStrategy = type.CreateDataStrategy(this);
+		
 	}
 	public string GetLayerTypeName() {return _type != null ? _type.GetName() : "No type specified"; }
 
@@ -54,15 +54,12 @@ public class Layer {
 
     }
 
-	public void Destroy() {
-		Debug.Log("Removing layer " + this );
-		_layerDataStrategy.Destroy();
-		_layerRenderStrategy.Destroy();
+
+	public Layer() {
 	}
+	public void Destroy() {
 
-
-	 ~Layer()
-    {
-        Destroy();
-    }
+		if(_layerDataStrategy != null) _layerDataStrategy.Destroy();
+		if(_layerRenderStrategy != null) _layerRenderStrategy.Destroy();
+	}
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using System;
 
-
+[System.Serializable]
 public class PlaceholderLayerRenderStrategy  : LayerRenderStrategy {
 	public PlaceholderLayerRenderStrategy(Layer layer): base(layer) {}
 

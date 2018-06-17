@@ -39,7 +39,7 @@ public class DataLoader : MonoBehaviour {
         // Want to change this to be a loading strategy
     public void LoadData()
     {
-        VTK.vtkDataSet ds = LoadVTKDataSet();
+        VTK.vtkDataSet ds = LoadVTKDataSet(_filePath);
         if(ds.IsVoid()) return;
 
 
@@ -50,7 +50,7 @@ public class DataLoader : MonoBehaviour {
 
             newData.GetComponent<DataObject>().SetDataBase(_database);
             newData.GetComponent<DataObject>().SetFilePath(_filePath);
-
+            newData.GetComponent<DataObject>().SetDataLoader(this);
             _database.AddDataObject(newData.GetComponent<DataObject>());
             if (_root)
             {
@@ -60,10 +60,10 @@ public class DataLoader : MonoBehaviour {
     }
 
 
-    protected vtkDataSet LoadVTKDataSet()
+    static public vtkDataSet LoadVTKDataSet(string filePath)
         {
 
-        string path = Application.streamingAssetsPath + "/" + _filePath;
+        string path = Application.streamingAssetsPath + "/" + filePath;
         vtkXMLDataReader reader = IntPtr.Zero;
         if (!File.Exists(path))
         {
@@ -93,7 +93,7 @@ public class DataLoader : MonoBehaviour {
         {
             reader.SetFileName(path);
             algorithm_ = reader;
-            print("Set file path " + path);
+            //print("Set file path " + path);
 
             algorithm_.Update();
             return reader.GetOutputAsDataSet();

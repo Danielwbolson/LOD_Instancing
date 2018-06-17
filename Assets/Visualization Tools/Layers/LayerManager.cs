@@ -32,7 +32,6 @@ using UnityEditor;
             GUILayout.BeginHorizontal();
             GUILayout.Label(layerManager.GetLayers().Count.ToString() + " layers.");
             if(GUILayout.Button("+", GUILayout.Width(20))) {
-                Debug.Log("Adding a new layer");
                 layerManager.AddLayer(0);
 
             }
@@ -61,14 +60,13 @@ using UnityEditor;
                    //layerManager.RemoveLayer(layerManager.GetLayers()[i]);
     
                 } 
-                if(GUILayout.Button("-", GUILayout.Width(20))) {
-                    Debug.Log("Deleting this layer");
-                    
+                if(GUILayout.Button("-", GUILayout.Width(20))) {                    
                     layerManager.RemoveLayer(layerManager.GetLayers()[i]);
                     break;
                 }
                 GUILayout.EndHorizontal();
-                 layerManager.GetLayers()[i].RenderGUI();
+                Layer layer = layerManager.GetLayers()[i];
+                 layer.RenderGUI();
                 //layerManager.GetLayers()[i].RenderGUI();
                 GUILayout.EndVertical();
             }
@@ -100,7 +98,7 @@ public class LayerManager : MonoBehaviour {
     public List<LayerType> GetAvailableLayerTypes() {
         return _availableLayerTypes != null? _availableLayerTypes.layerTypes : new List<LayerType>();
     }
-
+    [SerializeField]
 	private List<Layer> _layers;
 
 
@@ -121,6 +119,7 @@ public class LayerManager : MonoBehaviour {
 
     public void RemoveLayer(Layer toRemove ) {
         toRemove.Destroy();
+        print("Removing " + toRemove.GetLayerTypeName() + " layer");
         _layers.Remove(toRemove);
         
         

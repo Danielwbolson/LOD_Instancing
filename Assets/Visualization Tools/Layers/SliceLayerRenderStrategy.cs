@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System;
+using VTK;
 
 
 public class SliceLayerRenderStrategy  : LayerRenderStrategy {
 
-	public SliceLayerRenderStrategy(Layer layer, GameObject slicePrefab): base(layer) {
+	public SliceLayerRenderStrategy(Layer layer, DataRenderer slicePrefab): base(layer) {
 		_slicePrefab = slicePrefab;
 		_slice = UnityEngine.Object.Instantiate(_slicePrefab);
-		_slice.GetComponent<DV.DVDataSliceLayer>()._layer = layer;
+		AddDataRenderer(_slice);
+
+		//_slice.GetComponent<SliceDataRenderer>()._layer = layer;
 
 		}
 	public override void Destroy(){
@@ -19,25 +22,26 @@ public class SliceLayerRenderStrategy  : LayerRenderStrategy {
 
 	}
 
-	GameObject _slicePrefab;
-	GameObject _slice;
+	DataRenderer _slicePrefab;
+	DataRenderer _slice;
 	string selectedArray; 
 	
 	void SetArray(int array) {
-		_slice.GetComponent<DV.DVDataSliceLayer>()._arrayId = array;
+		//_slice.GetComponent<SliceDataRenderer>()._arrayId = array;
 	}
 	public override void RenderGUI() {
 		GUILayout.BeginVertical();
 		GUILayout.BeginHorizontal();
-			VTK.vtkDataSet ds = GetLayer().GetLayerDataStrategy().GetDataObject().GetDataSet();
+		DataObject dataObject = GetLayer().GetDataObject();
+		if(dataObject != null) {
+	VTK.vtkDataSet ds = dataObject.GetDataSet();
+			
 			VTK.vtkPointData pd = ds.GetPointData();
 			int numArrays = pd.GetNumberOfArrays();
 			
-			string[] options = new string[numArrays];
+			string[] options = GetLayer().GetDataObject().GetVariableList().GetVariableNames();
 
-			for(int i  = 0; i < numArrays; i++) {
-				options[i] = pd.GetArrayName(i);
-			}
+
 			int selected = 0;
 			int s = 0;
 			foreach (string x in options)
@@ -51,10 +55,13 @@ public class SliceLayerRenderStrategy  : LayerRenderStrategy {
 			int s2 = selected;
 			selected = EditorGUILayout.Popup("Choose variable:", selected, options);
 			if(selected != s2){
-				Debug.Log(s2 + " " + selected.ToString());
 				SetArray(selected);
 					selectedArray =  options[selected];
 			} 
+		} else {
+			GUILayout.Label("No data variables available.");
+		}
+		
 
 
 		GUILayout.EndHorizontal();

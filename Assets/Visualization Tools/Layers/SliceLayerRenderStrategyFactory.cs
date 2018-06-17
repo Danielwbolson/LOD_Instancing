@@ -7,7 +7,7 @@ using System;
 [CreateAssetMenu()]
 public class SliceLayerRenderStrategyFactory : LayerRenderStrategyFactory {
 	[SerializeField]
-	GameObject _slicePrefab;
+	DataRenderer _slicePrefab;
 	
 	public override LayerRenderStrategy Create(Layer layer) {
 		return new SliceLayerRenderStrategy(layer, _slicePrefab);

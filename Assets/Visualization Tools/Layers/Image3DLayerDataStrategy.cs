@@ -30,7 +30,7 @@ public class Image3DLayerDataStrategy : LayerDataStrategy {
 	string _datasetName = "";
 
 	void SetDataObject(DataObject dataObject) {
-		GetLayer().SetDataObject(dataObject);;
+		_dataObject = dataObject;
 		
 	}
 

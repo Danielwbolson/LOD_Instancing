@@ -11,5 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33d04b946b0904a39bc85dabe3a55f18, type: 3}
   m_Name: Slice Layer Render Strategy Factory
   m_EditorClassIdentifier: 
-  _slicePrefab: {fileID: 1186870003355656, guid: 0b94a1592cfec410daba36a83f8de762,
+  _slicePrefab: {fileID: 114012085571053418, guid: 48777154274b645dfa670ab57f95df58,
     type: 2}

@@ -5,6 +5,7 @@ using UnityEditor;
 using System;
 
 
+[System.Serializable]
 
 public class PlaceholderLayerDataStrategy : LayerDataStrategy {
 	public PlaceholderLayerDataStrategy(Layer layer) : base(layer) {}

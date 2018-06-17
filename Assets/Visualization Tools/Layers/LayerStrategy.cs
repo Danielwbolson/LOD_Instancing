@@ -5,8 +5,10 @@ using UnityEditor;
 using System;
 
 [Serializable]
-public abstract class Strategy {
-	Layer _layer;
+public abstract class Strategy : ScriptableObject {
+	public int test;
+	[SerializeField]
+	public Layer _layer;
 	public Layer GetLayer() {
 		return _layer;
 	}
@@ -15,10 +17,7 @@ public abstract class Strategy {
 	}
 	public virtual void Destroy() { isDestroyed = true;}
 	private bool isDestroyed = false;
-	 ~Strategy() {
-		//if(!isDestroyed)
-		//	Destroy();
-	}
+
 	public abstract void RenderGUI();
 
 }
