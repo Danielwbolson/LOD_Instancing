@@ -16,19 +16,13 @@ public class SliceLayerRenderStrategy  : LayerRenderStrategy {
 		//_slice.GetComponent<SliceDataRenderer>()._layer = layer;
 
 		}
-	public override void Destroy(){
-		base.Destroy();
-		UnityEngine.Object.DestroyImmediate(_slice);
 
-	}
 
 	DataRenderer _slicePrefab;
 	DataRenderer _slice;
-	string selectedArray; 
-	
-	void SetArray(int array) {
-		//_slice.GetComponent<SliceDataRenderer>()._arrayId = array;
-	}
+	Variable _selectedVariable;
+
+
 	public override void RenderGUI() {
 		GUILayout.BeginVertical();
 		GUILayout.BeginHorizontal();
@@ -44,9 +38,9 @@ public class SliceLayerRenderStrategy  : LayerRenderStrategy {
 
 			int selected = 0;
 			int s = 0;
-			foreach (string x in options)
+			for(int i = 0; i <  GetLayer().GetDataObject().GetVariableList().GetVariables().Count; i++)
 			{
-				if (x.Equals (selectedArray))
+				if (GetVariable(0) != null && GetLayer().GetDataObject().GetVariableList().GetVariables()[i].GetVariableName().Equals (GetVariable(0).GetVariableName()))
 				{
 					selected = s; 
 				}
@@ -54,9 +48,9 @@ public class SliceLayerRenderStrategy  : LayerRenderStrategy {
 			}
 			int s2 = selected;
 			selected = EditorGUILayout.Popup("Choose variable:", selected, options);
-			if(selected != s2){
-				SetArray(selected);
-					selectedArray =  options[selected];
+			if(selected != s2 || GetVariable() == null){
+				SetVariable(GetLayer().GetDataObject().GetVariableList().GetVariables()[selected], 0);
+				
 			} 
 		} else {
 			GUILayout.Label("No data variables available.");

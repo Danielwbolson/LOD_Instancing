@@ -144,9 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _availableLayerTypes: {fileID: 11400000, guid: 048d5393026c84f64b94285177a2c096,
     type: 2}
-  _layers:
-  - _layerManager: {fileID: 208021488}
-    _type: {fileID: 11400000, guid: a85b95a4ffad749ca8955379d91bd3b7, type: 2}
+  _layers: []
 --- !u!4 &208021489
 Transform:
   m_ObjectHideFlags: 0
@@ -154,7 +152,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 208021487}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 105.1, y: 48.267258, z: 47.992172}
+  m_LocalPosition: {x: -45.6, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -171,8 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fefea41c96ae34c7e993a7f613c309c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dataObjects:
-  - {fileID: 975189628}
+  _dataObjects: []
 --- !u!114 &208021491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,48 +251,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &975189627
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 975189629}
-  - component: {fileID: 975189628}
-  m_Layer: 0
-  m_Name: DataObject(Clone)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &975189628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 975189627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7cb742ee7ee74f49b8e25b04f240cf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _database: {fileID: 208021490}
-  _filePathOfOrigin: example_data/VTK/local/brain.vti
---- !u!4 &975189629
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 975189627}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1255172967
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,4 +12,5 @@ public abstract class LayerDataStrategy : Strategy {
 	public virtual DataObject GetDataObject() {return null;}
 	public virtual DataObject [] GetDataObjects() {return null;}
 
+
 }

@@ -53,9 +53,8 @@ using UnityEditor;
                 int s2 = selected;
                 selected = EditorGUILayout.Popup("Layer Type", selected, options);
                 if(selected != s2){
-                    Debug.Log(s2 + " " + selected.ToString());
                     Layer l = layerManager.GetLayers()[i];
-                    l.Destroy();
+                    l.Reset();
                     layerManager.GetLayers()[i].SetLayerType(layerManager.GetAvailableLayerTypes()[selected]);
                    //layerManager.RemoveLayer(layerManager.GetLayers()[i]);
     
@@ -66,7 +65,8 @@ using UnityEditor;
                 }
                 GUILayout.EndHorizontal();
                 Layer layer = layerManager.GetLayers()[i];
-                 layer.RenderGUI();
+                layer.RenderGUI();
+
                 //layerManager.GetLayers()[i].RenderGUI();
                 GUILayout.EndVertical();
             }
@@ -130,7 +130,7 @@ public class LayerManager : MonoBehaviour {
             Debug.LogError("Tried to access index " + index + " of " + GetAvailableLayerTypes().Count + " available layer types.");
             return null;
         }
-        print("Adding new " + GetAvailableLayerTypes()[index].GetName() + " layer");
+        // print("Adding new " + GetAvailableLayerTypes()[index].GetName() + " layer");
          //GameObject layer = GetAvailableLayerTypes().layerTypes[index];
         // print(layer);
         Layer layer = new Layer(this);

@@ -15,8 +15,7 @@ public abstract class Strategy : ScriptableObject {
 	public Strategy(Layer layer) {
 		_layer = layer;
 	}
-	public virtual void Destroy() { isDestroyed = true;}
-	private bool isDestroyed = false;
+	public virtual void Destroy() {}
 
 	public abstract void RenderGUI();
 

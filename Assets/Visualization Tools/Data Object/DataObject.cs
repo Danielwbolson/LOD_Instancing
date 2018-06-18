@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using System;
 
 
-public class Variable {
+public class Variable : ScriptableObject {
 	public Variable(DataObject dataObject) {
 		_dataObject = dataObject;	
 	}
@@ -39,7 +39,26 @@ public class Variable {
         return _abstractArray.GetNumberOfTuples();
     }
 
+    public Vector4 GetMinValue() {
+        return _min;
+    }
 
+    public Vector4 GetMaxValue() {
+        return _max;
+    }
+
+    Vector4 _min;
+    Vector4 _max;
+    void SetMinAndMax(vtkDataArray dataArray) {
+        _min = new Vector4();
+        _max = new Vector4();
+        for(int i = 0; i < GetVariableComponentCount(); i++) {
+            double [] range = new double[2]; 
+            dataArray.GetRange(range,i);
+            _min[i] = (float)range[0];
+            _max[i] = (float)range[1];
+        }
+    }
 	public bool SetPointVariableName(string name) {
 		vtkPointData pd = _dataObject.GetDataSet().GetPointData();
 		int pd_array_count = pd.GetNumberOfArrays();
@@ -52,6 +71,7 @@ public class Variable {
 			_arrayID = index.ToInt32();
 			_arrayName = name;
 			_variableType = VariableType.POINT;
+            SetMinAndMax(vtkDataArray.SafeDownCast(_abstractArray));
 			return true;
 		}
 	}
@@ -68,6 +88,8 @@ public class Variable {
 			_arrayID = index.ToInt32();
 			_arrayName = name;
 			_variableType = VariableType.CELL;
+            SetMinAndMax(vtkDataArray.SafeDownCast(_abstractArray));
+            
 			return true;
 		}
 	}
@@ -87,6 +109,7 @@ public class Variable {
 			_arrayName = cd.GetArrayName(index);
 			_variableType = VariableType.CELL;
 			_abstractArray = cd.GetAbstractArray(index);
+            SetMinAndMax(vtkDataArray.SafeDownCast(_abstractArray));
 			return true;
 		}
 	}
@@ -102,6 +125,7 @@ public class Variable {
 			_arrayName = pd.GetArrayName(index);
 			_variableType = VariableType.POINT;
 			_abstractArray = pd.GetAbstractArray(index);
+            SetMinAndMax(vtkDataArray.SafeDownCast(_abstractArray));
 			return true;
 		}
 	}

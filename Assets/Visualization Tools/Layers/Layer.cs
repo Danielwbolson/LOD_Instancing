@@ -39,6 +39,8 @@ public class Layer : System.Object{
 
 	public void SetLayerType(LayerType type) {
 		_type = type;
+		if(_layerDataStrategy != null) _layerDataStrategy.Destroy();
+		if(_layerRenderStrategy != null) _layerRenderStrategy.Destroy();
 		_layerRenderStrategy = type.CreateRenderStrategy(this);
 		_layerDataStrategy = type.CreateDataStrategy(this);
 		
@@ -57,9 +59,18 @@ public class Layer : System.Object{
 
 	public Layer() {
 	}
+	bool destroying = false;
+	public void Reset() {
+			if(_layerDataStrategy != null)
+			 	_layerDataStrategy.Destroy();
+			if(_layerRenderStrategy != null) 
+				_layerRenderStrategy.Destroy();
+	}
 	public void Destroy() {
-
-		if(_layerDataStrategy != null) _layerDataStrategy.Destroy();
-		if(_layerRenderStrategy != null) _layerRenderStrategy.Destroy();
+		if(!destroying) {
+			destroying = true;
+			Reset();
+			GetLayerManager().RemoveLayer(this);
+		}
 	}
 }

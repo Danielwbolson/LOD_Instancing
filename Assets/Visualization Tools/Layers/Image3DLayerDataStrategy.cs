@@ -64,8 +64,7 @@ public class Image3DLayerDataStrategy : LayerDataStrategy {
 			}
 			int s2 = selected;
 			selected = EditorGUILayout.Popup("Choose dataset:", selected, options);
-			if(selected != s2 || (_dataSet.IsVoid() && options.Length > 0) ){
-				Debug.Log(s2 + " " + selected.ToString());
+			if(selected != s2 || (_dataSet!= null && _dataSet.IsVoid() && options.Length > 0) ){
 				SetDataObject(GetAvailableDataObjects()[selected]);
 
 			} 
