@@ -7,6 +7,7 @@
 		_ArrayID("Which Array to use?", Range(0,6)) = 0
 
 	}
+
 	SubShader {
         Tags { "RenderType"="Opaque" }    
 		//Tags { "Queue"="Transparent" "RenderType"="Transparent" }
@@ -19,15 +20,59 @@
 
 		// Use shader model 3.0 target, to get nicer looking lighting
 		#pragma target 3.0
-        float4 _DataMin;
-        float4 _DataMax;
-        sampler3D _DataVolume0;
-	
+
+///////////////////////////////////////////////////
+// DATA RENDERER BOILER PLATE
+
+
+		float3 _DataImageDimensions;
+		
+        float4 _DataMin0;
+		float4 _DataMin1;
+
+        float4 _DataMax0;
+        float4 _DataMax1;
+
+
+        int _VariableType0;
+        int _VariableType1;
+
+		
+
+// DATA VOLUMES
+		sampler3D _DataVolume0;
+		sampler3D _DataVolume1;
+
+// DATA BUFFERS
+
+	#ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
+		StructuredBuffer<float4> _DataBuffer0;
+		StructuredBuffer<float4> _DataBuffer1;
+	#else
+		float4 _DataBuffer0[1];
+		float4 _DataBuffer1[1];
+	#endif
+
+
+
+	#ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
+		StructuredBuffer<int> _DataIndexBuffer0;
+		StructuredBuffer<int> _DataIndexBuffer1;
+	#else
+		int _DataIndexBuffer0[1];
+		int _DataIndexBuffer1[1];
+	#endif
+
+
+
         float4x4 _DataModelMatrix;
         float4x4 _DataModelMatrixInv;
         float4x4 _DataBoundsMatrix;
         float4x4 _DataBoundsMatrixInv;
-		float3 _DataImageDimensions;
+		
+// END BOILER PLATE
+///////////////////////////////////////////////////
+
 
 		sampler2D _MainTex;
         
@@ -64,7 +109,7 @@
 			val = tex3D (_DataVolume0, textureSpace);
 		
 
-            val = map(val, _DataMin.x, _DataMax.x,0,1);
+            val = map(val, _DataMin0.x, _DataMax0.x,0,1);
             fixed4 c = float4(1,1,1,1)*tex2D(_MainTex,float2(val,0.5));
 			//c = float4(1,1,1,1)*val;
             c.a = 1;

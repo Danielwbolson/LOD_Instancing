@@ -8,6 +8,10 @@ using System;
 
 
 public class Variable : ScriptableObject {
+    public enum StorageType {
+        TEXTURE,
+        BUFFER
+    }
 	public Variable(DataObject dataObject) {
 		_dataObject = dataObject;	
 	}
@@ -23,6 +27,12 @@ public class Variable : ScriptableObject {
 	VariableType _variableType;
 	vtkAbstractArray _abstractArray;
 
+    public StorageType GetStorageType() {
+        if(_dataObject.GetDataSet().IsA("vtkImageData"))
+            return StorageType.TEXTURE;
+        else
+            return StorageType.BUFFER;
+    }
     public string GetVariableName() {
         return _arrayName;
     }
