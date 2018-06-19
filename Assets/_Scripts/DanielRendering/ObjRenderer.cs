@@ -10,10 +10,12 @@ public class ObjRenderer : MonoBehaviour {
     public int _totalNumMeshes;
     public bool _instancedRendering = false;
     public bool _debug = false;
+    public bool _normalMapsEnabled = false;
 
     private int _cachedNumMeshes;
     private bool _cachedInstanceRendering;
     private bool _cachedDebug;
+    private bool _cachedNormalMapsEnabled;
 
     private GameObject[] _cachedObjs;
     private List<ObjInfo>[] _objInfo;
@@ -38,6 +40,7 @@ public class ObjRenderer : MonoBehaviour {
         _cachedNumMeshes = _totalNumMeshes;
         _cachedObjs = _objs;
         _cachedDebug = _debug;
+        _cachedNormalMapsEnabled = _normalMapsEnabled;
     }
     
     // Update is called once per frame
@@ -67,6 +70,11 @@ public class ObjRenderer : MonoBehaviour {
             }
             _cachedNumMeshes = _totalNumMeshes;
             _cachedObjs = _objs;
+        }
+
+        if (_cachedNormalMapsEnabled != _normalMapsEnabled) {
+            _renderStrategy.SetNormalMapsEnabled(_normalMapsEnabled);
+            _cachedNormalMapsEnabled = _normalMapsEnabled;
         }
 
         // Update our objects based on our render strategy

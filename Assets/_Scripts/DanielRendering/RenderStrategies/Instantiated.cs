@@ -52,6 +52,14 @@ public class Instantiated : RenderStrategy {
                         0,
                         _masterData[i][j].color[3]);
                     _tempMatArray[k].SetVector("color", color[k]);
+
+                    if (_bumpMaps[i][k] != null) {
+                        _tempMatArray[k].SetTexture("_BumpMap", _bumpMaps[i][k]);
+                        _tempMatArray[k].shaderKeywords = new string[1] { "_NORMALMAP" };
+                    } else {
+                        _tempMatArray[k].SetTexture("_BumpMap", null);
+                        _tempMatArray[k].shaderKeywords = new string[0];
+                    }
                 }
 
                 // Set our position based on what was passed in
@@ -78,18 +86,52 @@ public class Instantiated : RenderStrategy {
         }
 
         if (_cachedDebug != _debug) {
-            for (int i = 0; i < TOTALOBJECTS; i++) {
-                MeshRenderer[] _MeshArray = _gameObjects[i].GetComponentsInChildren<MeshRenderer>();
-                Material[] _tempMatArray = new Material[_MeshArray.Length];
-                for (int k = 0; k < _tempMatArray.Length; k++) {
-                    _tempMatArray[k] = _MeshArray[k].material;
-                    _tempMatArray[k].SetInt("debug", _debug);
+            for (int i = 0; i < DIFFERENTOBJECTS; i++) {
+
+                int index = 0;
+                if (i != 0) {
+                    index += i * _masterData[i - 1].Count;
+                }
+
+                for (int j = 0; j < _masterData[i].Count; j++) {
+                    MeshRenderer[] _MeshArray = _gameObjects[index + j].GetComponentsInChildren<MeshRenderer>();
+                    Material[] _tempMatArray = new Material[_MeshArray.Length];
+                    for (int k = 0; k < _tempMatArray.Length; k++) {
+                        _tempMatArray[k] = _MeshArray[k].material;
+                        _tempMatArray[k].SetInt("debug", _debug);
+                    }
                 }
             }
             _cachedDebug = _debug;
         }
 
-        //RotatePositions();
+        if (_cachedBumpMapsEnabled != _bumpMapsEnabled) {
+            for (int i = 0; i < DIFFERENTOBJECTS; i++) {
+
+                int index = 0;
+                if (i != 0) {
+                    index += i * _masterData[i - 1].Count;
+                }
+
+                for (int j = 0; j < _masterData[i].Count; j++) {
+                    MeshRenderer[] _MeshArray = _gameObjects[index + j].GetComponentsInChildren<MeshRenderer>();
+                    Material[] _tempMatArray = new Material[_MeshArray.Length];
+                    for (int k = 0; k < _tempMatArray.Length; k++) {
+                        _tempMatArray[k] = _MeshArray[k].material;
+                        if (_bumpMaps[i][k] != null && _bumpMapsEnabled) {
+                            _tempMatArray[k].SetTexture("_BumpMap", _bumpMaps[i][k]);
+                            _tempMatArray[k].shaderKeywords = new string[1] { "_NORMALMAP" };
+                        } else {
+                            _tempMatArray[k].SetTexture("_BumpMap", null);
+                            _tempMatArray[k].shaderKeywords = new string[0];
+                        }
+                    }
+                }
+            }
+            _cachedBumpMapsEnabled = _bumpMapsEnabled;
+        }
+
+        RotatePositions();
     }
 
     /*
@@ -104,7 +146,7 @@ public class Instantiated : RenderStrategy {
             }
 
             for (int j = 0; j < _masterData[i].Count; j++) {
-                float rotation = _masterData[i][j].scale.magnitude * Time.deltaTime * 100;
+                float rotation = _masterData[i][j].scale.magnitude * Time.deltaTime * 40;
                 ObjInfo temp = _masterData[i][j];
                 Vector3 rot = Quaternion.AngleAxis(rotation, Vector3.up) * temp.position;
                 temp.position = new Vector4(rot.x, rot.y, rot.z, 1);

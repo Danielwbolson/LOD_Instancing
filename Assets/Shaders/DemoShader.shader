@@ -1,6 +1,7 @@
 ﻿Shader "Custom/DemoShader" {
     Properties{
         _MainTex("Albedo (RGB)", 2D) = "white" {}
+        _BumpMap("Bumpmap", 2D) = "bump" {}
         _Glossiness("Smoothness", Range(0,1)) = 0.5
         _Metallic("Metallic", Range(0,1)) = 0.0
     }
@@ -17,9 +18,11 @@
 #pragma instancing_options procedural:setup
 
         sampler2D _MainTex;
+        sampler2D _BumpMap;
 
         struct Input {
             float2 uv_MainTex;
+            float2 uv_BumpMap;
         };
 
         struct ObjInfo {
@@ -80,6 +83,7 @@
                 c = tex2D(_MainTex, IN.uv_MainTex);
             }
 #endif
+            o.Normal = UnpackNormal(tex2D(_BumpMap, IN.uv_BumpMap));
 
             o.Albedo = c.rgb;
             o.Metallic = _Metallic;

@@ -13,11 +13,15 @@ public class RenderStrategy {
     protected int TOTALOBJECTS;
     protected int DIFFERENTOBJECTS;
 
+    protected bool _bumpMapsEnabled = false;
+    protected bool _cachedBumpMapsEnabled = false;
+
     protected int _debug = 0;
     protected int _cachedDebug = 0;
 
     protected List<ObjInfo>[] _masterData;
     protected Material[][] _objMatArray;
+    protected Texture[][] _bumpMaps;
 
     /*
      * CLASS DOCUMENTATION: RenderStrategy
@@ -51,6 +55,15 @@ public class RenderStrategy {
                 _objMeshArray[i][j] = tempArray[i][j].sharedMesh;
             }
         }
+
+        _bumpMaps = new Texture[DIFFERENTOBJECTS][];
+        for (int i = 0; i < DIFFERENTOBJECTS; i++) {
+            _bumpMaps[i] = new Texture[4];
+            for (int j = 0; j < 4; j++) {
+                string path = "ArtWork/Meshes/" + _objs[i].name + "/NormalMaps/LOD" + j;
+                _bumpMaps[i][j] = Resources.Load(path) as Texture;
+            }
+        }
     }
 
     public virtual void UpdateMeshes() { }
@@ -67,5 +80,9 @@ public class RenderStrategy {
         } else {
             _debug = 0;
         }
+    }
+
+    public void SetNormalMapsEnabled(bool n) {
+        _bumpMapsEnabled = n;
     }
 }

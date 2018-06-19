@@ -158,9 +158,6 @@ public class Instanced : RenderStrategy {
         }
         if (_boundingBuffer != null)
             _boundingBuffer.SetData(_boundingSpheres);
-
-        // Get our ComputeShader Kernel
-        _kCSMain = _computeShader.FindKernel("CSMain");
     }
 
     /*
@@ -188,6 +185,14 @@ public class Instanced : RenderStrategy {
                     if (_matrixBuffer != null)
                         _objMatArray[i][j].SetBuffer("matrixBuffer", _matrixBuffer);
 
+                    if (_bumpMaps[i][j] != null && _bumpMapsEnabled) {
+                        _objMatArray[i][j].SetTexture("_BumpMap", _bumpMaps[i][j]);
+                        _objMatArray[i][j].shaderKeywords = new string[1] { "_NORMALMAP" };
+                    } else {
+                        _objMatArray[i][j].SetTexture("_BumpMap", null);
+                        _objMatArray[i][j].shaderKeywords = new string[0];
+                    }
+
                     // Setup our dummy materialproperty blocks for shadowing
                     _mpbs[i][j] = new MaterialPropertyBlock();
                     _mpbs[i][j].SetFloat("DummyForShadows", i * LODSIZE + j);
@@ -208,6 +213,9 @@ public class Instanced : RenderStrategy {
             _computeShader.SetBuffer(_kCSMain, "boundingBuffer", _boundingBuffer);
 
         _computeShader.SetVector("LODRanges", _LODRanges);
+
+        // Get our ComputeShader Kernel
+        _kCSMain = _computeShader.FindKernel("CSMain");
     }
 
     /*
@@ -239,6 +247,21 @@ public class Instanced : RenderStrategy {
             _cachedDebug = _debug;
         }
 
+        if (_cachedBumpMapsEnabled != _bumpMapsEnabled) {
+            for (int i = 0; i < DIFFERENTOBJECTS; i++) {
+                for (int j = 0; j < LODSIZE; j++) {
+                    if (_bumpMaps[i][j] != null && _bumpMapsEnabled) {
+                        _objMatArray[i][j].SetTexture("_BumpMap", _bumpMaps[i][j]);
+                        _objMatArray[i][j].shaderKeywords = new string[1] { "_NORMALMAP" };
+                    } else {
+                        _objMatArray[i][j].SetTexture("_BumpMap", null);
+                        _objMatArray[i][j].shaderKeywords = new string[0];
+                    }
+                }
+            }
+            _cachedBumpMapsEnabled = _bumpMapsEnabled;
+        }
+
         _cachedCamPosition = cam.gameObject.transform.position;
         Vector3 up = cam.gameObject.transform.up;
 
@@ -248,7 +271,7 @@ public class Instanced : RenderStrategy {
         Matrix4x4 P = cam.projectionMatrix;
         Matrix4x4 _MVP = P * V * M;
 
-        //RotatePositions();
+        RotatePositions();
 
         _computeShader.SetVector("camPos", _cachedCamPosition);
         _computeShader.SetMatrix("MVP", _MVP);
