@@ -14,6 +14,7 @@ public class Image3DLayerDataStrategy : LayerDataStrategy {
 	public override DataObject GetDataObject() {return _dataObject;}
 	[SerializeField]
 	Database	_database;
+	[SerializeField]
 	DataObject _dataObject;
 	
 	List<DataObject> GetAvailableDataObjects() {
@@ -26,7 +27,9 @@ public class Image3DLayerDataStrategy : LayerDataStrategy {
 
 		return dataObjects;
 	}
+	[SerializeField]
 	VTK.vtkDataSet _dataSet = IntPtr.Zero;
+	[SerializeField]
 	string _datasetName = "";
 
 	void SetDataObject(DataObject dataObject) {

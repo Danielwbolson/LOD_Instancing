@@ -10,6 +10,15 @@ public class Layer : System.Object{
 
 	// DataObject _dataObject = null;
 	
+	public void Update() {
+		_layerRenderStrategy.UpdateRender();
+	}
+	public void Setup() {
+		_layerRenderStrategy.SetupRender();
+	}
+	public virtual void DrawGizmos() {
+		_layerRenderStrategy.DrawGizmos();
+	}
 	public LayerManager GetLayerManager() {
 		return _layerManager;
 	}

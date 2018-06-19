@@ -6,6 +6,8 @@ using System.Runtime.InteropServices;
 using System;
 using UnityEngine.UI;
 
+
+[ExecuteInEditMode]
 public class SliceDataRenderer : DataRenderer {
 
     [SerializeField]

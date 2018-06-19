@@ -34,6 +34,7 @@ public class DataRenderer : MonoBehaviour
         ApplyMaterial();
     }
 
+    [SerializeField]
     LayerRenderStrategy _layerRenderStrategy;
     public void SetLayerRenderStrategy(LayerRenderStrategy renderStrategy) {
         _layerRenderStrategy = renderStrategy;

@@ -6,22 +6,22 @@ using System;
 using VTK;
 
 
-public class SliceLayerRenderStrategy  : LayerRenderStrategy {
+public class VolumeLayerRenderStrategy  : LayerRenderStrategy {
 
-	public SliceLayerRenderStrategy(Layer layer, DataRenderer slicePrefab): base(layer) {
-		_slicePrefab = slicePrefab;
-		_slice = UnityEngine.Object.Instantiate(_slicePrefab);
-		AddDataRenderer(_slice);
-
-		//_slice.GetComponent<SliceDataRenderer>()._layer = layer;
+	public VolumeLayerRenderStrategy(Layer layer): base(layer) {
 
 		}
 
 
 	public override void UpdateRender() {
+		Debug.Log("Updating!");
 	}
-	DataRenderer _slicePrefab;
-	DataRenderer _slice;
+
+
+	public override void DrawGizmos() {
+		Gizmos.DrawCube(new Vector3(0,0,0), new Vector3(100,100,100));
+	}
+
 	Variable _selectedVariable;
 
 

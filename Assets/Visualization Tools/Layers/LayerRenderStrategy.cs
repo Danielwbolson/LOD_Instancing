@@ -9,13 +9,29 @@ public abstract class LayerRenderStrategy : Strategy {
 	[UnityEngine.SerializeField]
 	List<DataRenderer> _dataRenderers;
 
+
+
+	public virtual void SetupRender() {
+		
+	}
+
+	public virtual void UpdateRender() {
+
+	}
+	
+	public virtual void DrawGizmos() {
+		
+	}
 	protected void AddDataRenderer(DataRenderer dataRenderer) {
 		if(_dataRenderers == null) _dataRenderers = new List<DataRenderer>();
 		dataRenderer.SetLayerRenderStrategy(this);
 		_dataRenderers.Add(dataRenderer);
 	}
 
+	[SerializeField]
 	List<Variable> _variables;
+
+
 
 	public int GetVariableCount() {
 		return _variables != null?  _variables.Count : 0;

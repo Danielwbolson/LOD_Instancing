@@ -114,9 +114,16 @@ public class LayerManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		foreach(var layer in _layers) {
+            layer.Update();
+        }
 	}
 
+    void OnDrawGizmos() {
+        foreach(var layer in _layers) {
+            layer.DrawGizmos();
+        }
+    }
     public void RemoveLayer(Layer toRemove ) {
         toRemove.Destroy();
         print("Removing " + toRemove.GetLayerTypeName() + " layer");
