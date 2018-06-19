@@ -244,7 +244,7 @@ public class Instanced : RenderStrategy {
                     _objMatArray[i][j].SetInt("debug", _debug);
                 }
             }
-            _cachedDebug = _debug;
+            _cachedDebug = _debug; 
         }
 
         if (_cachedBumpMapsEnabled != _bumpMapsEnabled) {
