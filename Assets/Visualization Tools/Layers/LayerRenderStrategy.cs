@@ -20,7 +20,7 @@ public abstract class LayerRenderStrategy : Strategy {
 	}
 	
 	public virtual void DrawGizmos() {
-		
+
 	}
 	protected void AddDataRenderer(DataRenderer dataRenderer) {
 		if(_dataRenderers == null) _dataRenderers = new List<DataRenderer>();
@@ -44,8 +44,9 @@ public abstract class LayerRenderStrategy : Strategy {
 		while(index >= GetVariableCount()) 
 			AddVariable(null);
 		_variables[index] = v;
-		foreach(var dr in _dataRenderers) 
-			dr.RefreshData();
+		if(_dataRenderers!=null)
+			foreach(var dr in _dataRenderers) 
+				dr.RefreshData();
 	}
 	public Variable GetVariable(int index = 0) {
 		if(index >= GetVariableCount()) return null;

@@ -80,9 +80,6 @@ public class DataRenderer : MonoBehaviour
     bool destroyed = false;
     public void Destroy() {
         if(!destroying) {
-            destroying = true;
-            if(GetLayer() != null)
-                GetLayer().Destroy();
             if(!destroyed) {
                 if(Application.isEditor)
                     DestroyImmediate(this.gameObject);

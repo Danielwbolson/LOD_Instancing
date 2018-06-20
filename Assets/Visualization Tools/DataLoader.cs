@@ -27,13 +27,13 @@ public class DataLoaderEditor : Editor
 
 public class DataLoader : MonoBehaviour {
 
-    [SerializeField]
+    [SerializeField, HideInInspector]
     Database _database;
-    [SerializeField]
+    [SerializeField, HideInInspector]
     GameObject _dataObjectPrefab;
     public string _filePath;
 
-    [SerializeField]
+    [SerializeField, HideInInspector]
     Transform _root;
 
         // Want to change this to be a loading strategy

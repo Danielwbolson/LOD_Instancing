@@ -69,6 +69,10 @@ public class DataObject : MonoBehaviour {
     [SerializeField, HideInInspector]
         protected Matrix4x4 _boundMatrix;
         public Matrix4x4 GetBoundsMatrix() {
+            _boundMatrix = new Matrix4x4();
+            _boundMatrix.SetTRS(GetBounds().center, Quaternion.identity, GetBounds().size);
+            _boundMatrix = transform.localToWorldMatrix*_boundMatrix;
+            
             return _boundMatrix;
         }
         public Bounds GetBounds()
@@ -86,8 +90,7 @@ public class DataObject : MonoBehaviour {
                 isValid = true;
             _dataSet = dataSet;
             _bounds = GetDataSet().GetBounds();
-            _boundMatrix = new Matrix4x4();
-            _boundMatrix.SetTRS(GetBounds().center, Quaternion.identity, GetBounds().size);
+
 
         }
         public void SetDataLoader(DataLoader dataLoader) {
