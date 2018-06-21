@@ -8,15 +8,42 @@ public abstract class LayerRenderStrategy : Strategy {
 	public LayerRenderStrategy(Layer layer): base(layer) {}
 	[UnityEngine.SerializeField]
 	List<DataRenderer> _dataRenderers;
+	[SerializeField]
+	Material _material;
 
-
-
+	public void SetMaterial(Material material) {
+		_material = material;
+	}
+	public Material GetMaterial() {
+		return _material;
+	}
 	public virtual void SetupRender() {
 		
 	}
 
 	public virtual void UpdateRender() {
+		if(_material) {
+			_material.SetMatrix("_DataModelMatrix", GetLayer().GetDataObject().transform.localToWorldMatrix);
+			_material.SetMatrix("_DataModelMatrixInv", GetLayer().GetDataObject().transform.worldToLocalMatrix);
+			_material.SetMatrix("_DataBoundsMatrix", GetLayer().GetDataObject().GetBoundsMatrix());
+			_material.SetMatrix("_DataBoundsMatrixInv", GetLayer().GetDataObject().GetBoundsMatrix().inverse);
 
+			for(int v = 0; v < GetVariableCount(); v++) {
+				Vector4 min = GetVariable(v).GetMinValue();
+				Vector4 max = GetVariable(v).GetMaxValue();
+				_material.SetVector("_DataMin" + v, min);
+				_material.SetVector("_DataMax" + v, max);
+				_material.SetInt("_VariableStorage" + v, (int)GetVariable(v).GetStorageType());
+				_material.SetInt("_VariableType" + v, (int)GetVariable(v).GetVariableType());
+
+				if(GetVariable(v).GetStorageType() == Variable.StorageType.TEXTURE) {
+					Texture t = GetLayer().GetDataObject().GetImageDataTexture(GetLayer().GetLayerRenderStrategy().GetVariable(0).GetVariableIndex());
+					_material.SetTexture("_DataVolume" + v, t);
+				} else {
+					
+				}
+			}
+		}
 	}
 	
 	public virtual void DrawGizmos() {

@@ -9,29 +9,29 @@ public class DataRenderer : MonoBehaviour
 
 
     void Update() {
-        Material _material = _dataMaterial;
-        _material.SetMatrix("_DataModelMatrix", GetLayer().GetDataObject().transform.localToWorldMatrix);
-        _material.SetMatrix("_DataModelMatrixInv", GetLayer().GetDataObject().transform.worldToLocalMatrix);
-        _material.SetMatrix("_DataBoundsMatrix", GetLayer().GetDataObject().GetBoundsMatrix());
-        _material.SetMatrix("_DataBoundsMatrixInv", GetLayer().GetDataObject().GetBoundsMatrix().inverse);
+        // Material _material = _dataMaterial;
+        // _material.SetMatrix("_DataModelMatrix", GetLayer().GetDataObject().transform.localToWorldMatrix);
+        // _material.SetMatrix("_DataModelMatrixInv", GetLayer().GetDataObject().transform.worldToLocalMatrix);
+        // _material.SetMatrix("_DataBoundsMatrix", GetLayer().GetDataObject().GetBoundsMatrix());
+        // _material.SetMatrix("_DataBoundsMatrixInv", GetLayer().GetDataObject().GetBoundsMatrix().inverse);
 
-        for(int v = 0; v < GetLayerRenderStrategy().GetVariableCount(); v++) {
-            Vector4 min = GetLayerRenderStrategy().GetVariable(v).GetMinValue();
-            Vector4 max = GetLayerRenderStrategy().GetVariable(v).GetMaxValue();
-            _material.SetVector("_DataMin" + v, min);
-            _material.SetVector("_DataMax" + v, max);
-            _material.SetInt("_VariableStorage" + v, (int)GetLayerRenderStrategy().GetVariable(v).GetStorageType());
-            _material.SetInt("_VariableType" + v, (int)GetLayerRenderStrategy().GetVariable(v).GetVariableType());
+        // for(int v = 0; v < GetLayerRenderStrategy().GetVariableCount(); v++) {
+        //     Vector4 min = GetLayerRenderStrategy().GetVariable(v).GetMinValue();
+        //     Vector4 max = GetLayerRenderStrategy().GetVariable(v).GetMaxValue();
+        //     _material.SetVector("_DataMin" + v, min);
+        //     _material.SetVector("_DataMax" + v, max);
+        //     _material.SetInt("_VariableStorage" + v, (int)GetLayerRenderStrategy().GetVariable(v).GetStorageType());
+        //     _material.SetInt("_VariableType" + v, (int)GetLayerRenderStrategy().GetVariable(v).GetVariableType());
 
-            if(GetLayerRenderStrategy().GetVariable(v).GetStorageType() == Variable.StorageType.TEXTURE) {
-                Texture t = GetLayer().GetDataObject().GetImageDataTexture(GetLayer().GetLayerRenderStrategy().GetVariable(0).GetVariableIndex());
-                _material.SetTexture("_DataVolume" + v, t);
-            } else {
+        //     if(GetLayerRenderStrategy().GetVariable(v).GetStorageType() == Variable.StorageType.TEXTURE) {
+        //         Texture t = GetLayer().GetDataObject().GetImageDataTexture(GetLayer().GetLayerRenderStrategy().GetVariable(0).GetVariableIndex());
+        //         _material.SetTexture("_DataVolume" + v, t);
+        //     } else {
                 
-            }
-        }
-        //SetMaterialSource(_material);
-        ApplyMaterial();
+        //     }
+        // }
+        // //SetMaterialSource(_material);
+        // ApplyMaterial();
     }
 
     [SerializeField]
@@ -48,14 +48,14 @@ public class DataRenderer : MonoBehaviour
     public virtual void ApplyMaterial() {
         
     }
-    public void SetMaterialSource(Material material) {
-        if(_dataMaterial != null) 
-            if(Application.isEditor) 
-                DestroyImmediate(_dataMaterial);
-            else
-                Destroy(_dataMaterial);
+    public void SetMaterial(Material material) {
+        // if(_dataMaterial != null) 
+        //     if(Application.isEditor) 
+        //         DestroyImmediate(_dataMaterial);
+        //     else
+        //         Destroy(_dataMaterial);
 
-        _dataMaterial = Instantiate(material);
+        _dataMaterial = (material);
         
     }
 

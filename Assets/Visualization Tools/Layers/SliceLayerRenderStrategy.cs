@@ -8,22 +8,30 @@ using VTK;
 
 public class SliceLayerRenderStrategy  : LayerRenderStrategy {
 
-	public SliceLayerRenderStrategy(Layer layer, DataRenderer slicePrefab): base(layer) {
+	public SliceLayerRenderStrategy(Layer layer, DataRenderer slicePrefab, Material sliceMaterial): base(layer) {
 		_slicePrefab = slicePrefab;
 		_slice = UnityEngine.Object.Instantiate(_slicePrefab);
 		AddDataRenderer(_slice);
-
+		SetMaterial(sliceMaterial);
 		//_slice.GetComponent<SliceDataRenderer>()._layer = layer;
 
 		}
 
 
 	public override void UpdateRender() {
+		base.UpdateRender();
+		_slice.SetMaterial(GetMaterial());
 	}
+
+	[SerializeField]
 	DataRenderer _slicePrefab;
+	[SerializeField]
 	DataRenderer _slice;
+	[SerializeField]
 	Variable _selectedVariable;
 
+	// [SerializeField]
+	// Material _sliceMaterial;
 
 	public override void RenderGUI() {
 		GUILayout.BeginVertical();

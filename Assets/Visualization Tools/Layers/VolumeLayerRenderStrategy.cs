@@ -10,43 +10,41 @@ public class VolumeLayerRenderStrategy  : LayerRenderStrategy {
 
 	[SerializeField]
 	Mesh _cubeMesh;
-	[SerializeField]
-	Material _volumeMaterial;
-
+	
 	public VolumeLayerRenderStrategy(Layer layer, Mesh cube, Material volumeMaterial): base(layer) {
 			_cubeMesh = cube;
-			_volumeMaterial = Instantiate(volumeMaterial);
+			SetMaterial(Instantiate(volumeMaterial));
 		}
 
 
 	public override void UpdateRender() {
+		base.UpdateRender();
+        // Material _material = _volumeMaterial;
+        // _material.SetMatrix("_DataModelMatrix", GetLayer().GetDataObject().transform.localToWorldMatrix);
+        // _material.SetMatrix("_DataModelMatrixInv", GetLayer().GetDataObject().transform.worldToLocalMatrix);
+        // _material.SetMatrix("_DataBoundsMatrix", GetLayer().GetDataObject().GetBoundsMatrix());
+        // _material.SetMatrix("_DataBoundsMatrixInv", GetLayer().GetDataObject().GetBoundsMatrix().inverse);
 
-        Material _material = _volumeMaterial;
-        _material.SetMatrix("_DataModelMatrix", GetLayer().GetDataObject().transform.localToWorldMatrix);
-        _material.SetMatrix("_DataModelMatrixInv", GetLayer().GetDataObject().transform.worldToLocalMatrix);
-        _material.SetMatrix("_DataBoundsMatrix", GetLayer().GetDataObject().GetBoundsMatrix());
-        _material.SetMatrix("_DataBoundsMatrixInv", GetLayer().GetDataObject().GetBoundsMatrix().inverse);
+        // for(int v = 0; v <  GetVariableCount(); v++) {
+        //     Vector4 min = GetVariable(v).GetMinValue();
+        //     Vector4 max = GetVariable(v).GetMaxValue();
+        //     _material.SetVector("_DataMin" + v, min);
+        //     _material.SetVector("_DataMax" + v, max);
+        //     _material.SetInt("_VariableStorage" + v, (int)GetVariable(v).GetStorageType());
+        //     _material.SetInt("_VariableType" + v, (int)GetVariable(v).GetVariableType());
 
-        for(int v = 0; v <  GetVariableCount(); v++) {
-            Vector4 min = GetVariable(v).GetMinValue();
-            Vector4 max = GetVariable(v).GetMaxValue();
-            _material.SetVector("_DataMin" + v, min);
-            _material.SetVector("_DataMax" + v, max);
-            _material.SetInt("_VariableStorage" + v, (int)GetVariable(v).GetStorageType());
-            _material.SetInt("_VariableType" + v, (int)GetVariable(v).GetVariableType());
-
-            if(GetVariable(v).GetStorageType() == Variable.StorageType.TEXTURE) {
-                Texture t = GetLayer().GetDataObject().GetImageDataTexture(GetLayer().GetLayerRenderStrategy().GetVariable(0).GetVariableIndex());
-                _material.SetTexture("_DataVolume" + v, t);
-            } else {
+        //     if(GetVariable(v).GetStorageType() == Variable.StorageType.TEXTURE) {
+        //         Texture t = GetLayer().GetDataObject().GetImageDataTexture(GetLayer().GetLayerRenderStrategy().GetVariable(0).GetVariableIndex());
+        //         _material.SetTexture("_DataVolume" + v, t);
+        //     } else {
                 
-            }
-        }
+        //     }
+        // }
 
 		
 
 		Bounds b = GetLayer().GetDataObject().GetBounds();
-		Graphics.DrawMesh(_cubeMesh, GetLayer().GetDataObject().GetBoundsMatrix(),_volumeMaterial,0);
+		Graphics.DrawMesh(_cubeMesh, GetLayer().GetDataObject().GetBoundsMatrix(),GetMaterial(),0);
 	}
 
 
