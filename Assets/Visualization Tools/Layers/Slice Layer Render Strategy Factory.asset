@@ -13,3 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _slicePrefab: {fileID: 114012085571053418, guid: 48777154274b645dfa670ab57f95df58,
     type: 2}
+  _sliceMaterial: {fileID: 2100000, guid: 5abe1e435aeff49d3a1849fa99652a4d, type: 2}

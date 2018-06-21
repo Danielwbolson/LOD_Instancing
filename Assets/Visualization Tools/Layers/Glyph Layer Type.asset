@@ -14,5 +14,5 @@ MonoBehaviour:
   _name: Glyph
   _dataStrategyFactory: {fileID: 11400000, guid: ac69061e4044e4606b21ccfb18914908,
     type: 2}
-  _renderStrategyFactory: {fileID: 11400000, guid: c365ae37b56364a6b98655e464d63a70,
+  _renderStrategyFactory: {fileID: 11400000, guid: 01d4bce168df04f0489c5bc70126a25e,
     type: 2}
