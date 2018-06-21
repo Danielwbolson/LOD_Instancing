@@ -7,6 +7,9 @@ public class Instantiated : RenderStrategy {
     private List<GameObject> _gameObjects;
     private int _cachedNumObjects;
 
+    public override void MakeDirty() {
+        _cachedNumObjects = -1;
+    }
     /*
  * CLASS DOCUMENTATION: Instantiated : RenderStrategy
  * In this class, we render a given set of objects as instantiated GameObjects.
@@ -23,6 +26,23 @@ public class Instantiated : RenderStrategy {
 
         InitializeObjects();
     }
+
+
+    public override void SetMaterial(Material material) {
+      base.SetMaterial(material);
+
+    //    for (int i = 0; i < TOTALOBJECTS; i++) {
+    //         // Instantiate object and set parent
+    //         GameObject temp_obj = _gameObjects[i];
+
+    //         // Set our materials for each LOD mesh
+    //         MeshRenderer[] _MeshArray = temp_obj.GetComponentsInChildren<MeshRenderer>();
+    //         Material[] _tempMatArray = new Material[_MeshArray.Length];
+    //         for (int j = 0; j < _tempMatArray.Length; j++) {
+    //          _MeshArray[j].material = material;
+    //         }
+    //     }
+    } 
 
     public void InitializeObjects() {
         _gameObjects = new List<GameObject>();
@@ -52,7 +72,7 @@ public class Instantiated : RenderStrategy {
             }
 
             // Set our position based on what was passed in
-            temp_obj.transform.position = _masterData[i].position;
+            temp_obj.transform.localPosition = _masterData[i].position;
 
             float scal = _masterData[i].scale;
 
@@ -72,7 +92,7 @@ public class Instantiated : RenderStrategy {
             InitializeObjects();
         }
 
-        RotatePositions();
+        //RotatePositions();
     }
 
     /*
@@ -84,7 +104,7 @@ public class Instantiated : RenderStrategy {
             ObjInfo temp = _masterData[i];
             Vector3 rot = Quaternion.AngleAxis(rotation, Vector3.up) * temp.position;
             temp.position = new Vector4(rot.x, rot.y, rot.z, 1);
-            _gameObjects[i].transform.position = temp.position;
+            _gameObjects[i].transform.localPosition = temp.position;
             _masterData[i] = temp;
         }
     }

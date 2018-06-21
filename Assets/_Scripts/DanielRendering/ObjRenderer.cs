@@ -65,7 +65,7 @@ public class ObjRenderer : MonoBehaviour {
                 LODIndex = -1,
                 position = new Vector4(Mathf.Sin(angle) * distance, height, Mathf.Cos(angle) * distance, 1),
                 color = new Vector4(0, 0, 0, Random.Range(0.20f, 1.0f)),
-                scale = 0.1f,
+                scale = 1f,
                 direction = Vector3.Normalize(new Vector3(Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0, 1f)))
             };
 

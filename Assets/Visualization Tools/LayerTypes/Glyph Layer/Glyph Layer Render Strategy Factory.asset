@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Name: Glyph Layer Render Strategy Factory
   m_EditorClassIdentifier: 
   _glyphMeshes:
-  - {fileID: 1125397418768840, guid: c3fe23cd53a46054b92109ccc1b13658, type: 2}
-  - {fileID: 1678047477874902, guid: 30c4cc1610f66f144a5daf621b17fe29, type: 2}
+  - {fileID: 1125397418768840, guid: ff1c22115187140e3a91b641a373222e, type: 2}
+  - {fileID: 1125397418768840, guid: 46a860b8490a8453ebef2dcdb36afd69, type: 2}
+  - {fileID: 1125397418768840, guid: 175f281931a40417b879a8e37b032978, type: 2}
   _glyphMaterial: {fileID: 2100000, guid: 8f116293094bc804c80eaf2acaed2655, type: 3}
+  _sampleStrategy: {fileID: 114511698231039738, guid: a833bfa24ab26461799252e93ac9ab62,
+    type: 2}

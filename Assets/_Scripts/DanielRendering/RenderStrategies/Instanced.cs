@@ -117,7 +117,7 @@ public class Instanced : RenderStrategy {
         _cachedCamPosition = cam.transform.position;
 
         //TransparencySorting();
-        RotatePositions();
+        //RotatePositions();
         UpdateBuffers();
 
         // Render based on LOD section

@@ -12,7 +12,7 @@ namespace DV
     {
 
         void Update() {
-            print("Updating");
+            //print("Updating");
             if(_needsUpdate) {
                 UpdateStrategy();
             }
@@ -27,14 +27,14 @@ namespace DV
             _numberOfSamples = n;
             RequestUpdate();
         }
-        public void SetDataSet(DVDataObject dataObject)
+        public void SetDataSet(DataObject dataObject)
         {
             _dataObject = dataObject;
             RequestUpdate();
 
 
         }
-        protected DVDataObject _dataObject;
+        protected DataObject _dataObject;
 
         protected DVSample[] _samples;
 

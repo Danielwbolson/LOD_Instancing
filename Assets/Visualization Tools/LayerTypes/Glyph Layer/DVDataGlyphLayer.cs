@@ -73,7 +73,7 @@ namespace DV
         }
         override protected void RefreshDataSet()
         {
-            _samplingStrategy.SetDataSet(GetData());
+           // _samplingStrategy.SetDataSet(GetData());
             _samplingStrategy.UpdateStrategy();
             _samplingStrategyCached = _samplingStrategy;
            

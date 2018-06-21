@@ -52,7 +52,7 @@ public class Layer : System.Object{
 		if(_layerRenderStrategy != null) _layerRenderStrategy.Destroy();
 		_layerRenderStrategy = type.CreateRenderStrategy(this);
 		_layerDataStrategy = type.CreateDataStrategy(this);
-		
+		Setup();
 	}
 	public string GetLayerTypeName() {return _type != null ? _type.GetName() : "No type specified"; }
 

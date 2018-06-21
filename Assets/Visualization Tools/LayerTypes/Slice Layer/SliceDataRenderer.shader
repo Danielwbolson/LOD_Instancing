@@ -343,11 +343,7 @@
             float4 modelSpace = mul(_DataBoundsMatrixInv,worldSpace);
             float3 textureSpace = (modelSpace.xyz+0.5);
 			float val = 0;
-
-
 			val = tex3D (_DataVolume0, textureSpace);
-		
-
             val = map(val, _DataMin0.x, _DataMax0.x,0,1);
             fixed4 c = float4(1,1,1,1)*tex2D(_MainTex,float2(val,0.5));
 			//c = float4(textureSpace,1);
