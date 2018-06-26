@@ -38,7 +38,7 @@ public class GlyphLayerRenderStrategy  : LayerRenderStrategy {
 	public GlyphLayerRenderStrategy(Layer layer, List<GameObject> meshes, Material glyphMaterial, DV.DVSampleStrategy sampleStategy,  ComputeShader computeShader): base(layer) {
 			_glyphMeshes = meshes;
 
-			SetMaterial(Instantiate(glyphMaterial));
+			SetMaterial((glyphMaterial));
 
 			_sampleStrategy = sampleStategy;
 		
@@ -66,7 +66,7 @@ public class GlyphLayerRenderStrategy  : LayerRenderStrategy {
 		_renderStrategy.SetMaterial(GetMaterial());
 		}
 		
-
+	
 				_sampleStrategy.SetNumberOfSamples(_numberOfSamples);
 		_sampleStrategy.SetDataSet(GetLayer().GetDataObject());
 		_sampleStrategy.UpdateStrategy();
@@ -86,7 +86,7 @@ public class GlyphLayerRenderStrategy  : LayerRenderStrategy {
 		Mesh M = _glyphMeshes[0].GetComponentInChildren<MeshFilter>().sharedMesh;
 
 
-		// Bounds b = GetLayer().GetDataObject().GetBounds();
+		Bounds b = GetLayer().GetDataObject().GetBounds();
 	 	//Graphics.DrawMesh(M, GetLayer().GetDataObject().GetBoundsMatrix(),GetMaterial(),0);
 		//Graphics.DrawMeshInstancedIndirect(M,)
 		   // If the user changes what kind of rendering they want, update
@@ -118,7 +118,6 @@ public class GlyphLayerRenderStrategy  : LayerRenderStrategy {
 
 	public override void RenderGUI() {
 		GUILayout.BeginVertical();
-		GUILayout.BeginHorizontal();
 		DataObject dataObject = GetLayer().GetDataObject();
 		if(dataObject != null) {
 	VTK.vtkDataSet ds = dataObject.GetDataSet();
@@ -126,32 +125,92 @@ public class GlyphLayerRenderStrategy  : LayerRenderStrategy {
 			VTK.vtkPointData pd = ds.GetPointData();
 			int numArrays = pd.GetNumberOfArrays();
 			
-			string[] options = GetLayer().GetDataObject().GetVariableList().GetVariableNames();
-
-
-			int selected = 0;
-			int s = 0;
-			for(int i = 0; i <  GetLayer().GetDataObject().GetVariableList().GetVariables().Count; i++)
 			{
-				if (GetVariable(0) != null && GetLayer().GetDataObject().GetVariableList().GetVariables()[i].GetVariableName().Equals (GetVariable(0).GetVariableName()))
+						GUILayout.BeginHorizontal();
+
+				string[] options = GetLayer().GetDataObject().GetVariableList().GetVariableNames();
+
+
+				int selected = 0;
+				int s = 0;
+				for(int i = 0; i <  GetLayer().GetDataObject().GetVariableList().GetVariables().Count; i++)
 				{
-					selected = s; 
+					if (GetVariable(0) != null && GetLayer().GetDataObject().GetVariableList().GetVariables()[i].GetVariableName().Equals (GetVariable(0).GetVariableName()))
+					{
+						selected = s; 
+					}
+					s++;
 				}
-				s++;
+				int s2 = selected;
+				selected = EditorGUILayout.Popup("Choose Mask Variable:", selected, options);
+				if(selected != s2 || GetVariable(0) == null){
+					SetVariable(GetLayer().GetDataObject().GetVariableList().GetVariables()[selected], 0);
+					
+				} 
+				GUILayout.EndHorizontal();
 			}
-			int s2 = selected;
-			selected = EditorGUILayout.Popup("Choose variable:", selected, options);
-			if(selected != s2 || GetVariable() == null){
-				SetVariable(GetLayer().GetDataObject().GetVariableList().GetVariables()[selected], 0);
-				
-			} 
+
+
+			{
+						GUILayout.BeginHorizontal();
+
+				string[] options = GetLayer().GetDataObject().GetVariableList().GetVariableNames();
+
+
+				int selected = 0;
+				int s = 0;
+				for(int i = 0; i <  GetLayer().GetDataObject().GetVariableList().GetVariables().Count; i++)
+				{
+					if (GetVariable(1) != null && GetLayer().GetDataObject().GetVariableList().GetVariables()[i].GetVariableName().Equals (GetVariable(1).GetVariableName()))
+					{
+						selected = s; 
+					}
+					s++;
+				}
+				int s2 = selected;
+				selected = EditorGUILayout.Popup("Choose Color Variable:", selected, options);
+				if(selected != s2 || GetVariable(1) == null){
+					SetVariable(GetLayer().GetDataObject().GetVariableList().GetVariables()[selected], 1);
+					
+				} 
+				GUILayout.EndHorizontal();
+			}
+
+
+
+			{
+						GUILayout.BeginHorizontal();
+
+				string[] options = GetLayer().GetDataObject().GetVariableList().GetVariableNames();
+
+
+				int selected = 0;
+				int s = 0;
+				for(int i = 0; i <  GetLayer().GetDataObject().GetVariableList().GetVariables().Count; i++)
+				{
+					if (GetVariable(2) != null && GetLayer().GetDataObject().GetVariableList().GetVariables()[i].GetVariableName().Equals (GetVariable(2).GetVariableName()))
+					{
+						selected = s; 
+					}
+					s++;
+				}
+				int s2 = selected;
+				selected = EditorGUILayout.Popup("Choose Direction Variable:", selected, options);
+				if(selected != s2 || GetVariable(2) == null){
+					SetVariable(GetLayer().GetDataObject().GetVariableList().GetVariables()[selected], 2);
+					
+				} 
+							GUILayout.EndHorizontal();
+
+			}
+
+
 		} else {
 			GUILayout.Label("No data variables available.");
 		}
+			
 		
 
-
-		GUILayout.EndHorizontal();
 
 		GUILayout.BeginHorizontal();
 		GUILayout.Label("Number of Glyphs: ");

@@ -37,7 +37,7 @@ public abstract class LayerRenderStrategy : Strategy {
 				_material.SetInt("_VariableType" + v, (int)GetVariable(v).GetVariableType());
 
 				if(GetVariable(v).GetStorageType() == Variable.StorageType.TEXTURE) {
-					Texture t = GetLayer().GetDataObject().GetImageDataTexture(GetLayer().GetLayerRenderStrategy().GetVariable(0).GetVariableIndex());
+					Texture t = GetLayer().GetDataObject().GetImageDataTexture(GetLayer().GetLayerRenderStrategy().GetVariable(v).GetVariableIndex());
 					_material.SetTexture("_DataVolume" + v, t);
 				} else {
 					
