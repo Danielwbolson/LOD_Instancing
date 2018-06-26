@@ -5,23 +5,42 @@ using UnityEditor;
 
 namespace DV
 {
+
+        [CustomEditor(typeof(DVDataGlyphLayer))]
+    public class DVDataGlyphLayerEditor : Editor
+    {
+        public override void OnInspectorGUI()
+        {
+            DrawDefaultInspector();
+
+            DVDataGlyphLayer myScript = (DVDataGlyphLayer)target;
+            if (GUILayout.Button("Refresh Layer"))
+            {
+                myScript.RequestUpdate();
+            }
+        }
+    }
+
+
     public class DVDataGlyphLayer : DVDataLayer
     {
 
-        int meshCount = 0;
-        public override void RenderGUI() {
-            int result = EditorGUILayout.IntField("Number of glyphs:", _samplingStrategy.GetNumberOfSamples());
-            if(result != _samplingStrategy.GetNumberOfSamples()) {
-                Debug.Log("Changed");
-                _samplingStrategy.SetNumberOfSamples( result);
-                _renderingStrategy.SetSamples(_samplingStrategy.GetSamples());
-                _renderingStrategy.UpdateMeshData();
-            }
-		   
-	    }
 
+
+		public bool _UseDirection;
+        [Range(0,6)] public int _DirectionArray;
+		public bool _UseMask;
+		[Range(0,6)] public int _MaskArray;
+		public bool _UseColor;
+		[Range(0,6)] public int _ColorArray;
+		public bool _UseTransparency;
+		[Range(0,6)] public int _TransparencyArray;
         public GameObject [] _glyphMesh;
 
+        private int _glyphMeshCountCached; 
+
+        public Texture _MainTex;
+        
         override public string GetName() {
             return "Glyph";
         }       
@@ -54,10 +73,24 @@ namespace DV
         }
 
         override protected void UpdateLayer() {
+
+            _material.SetInt("_UseDirection",_UseDirection?1:0);
+            _material.SetInt("_DirectionArray",_DirectionArray);
+            _material.SetInt("_UseColor",_UseColor?1:0);
+            _material.SetInt("_ColorArray",_ColorArray);
+            _material.SetInt("_UseMask",_UseMask?1:0);
+            _material.SetInt("_MaskArray",_MaskArray);
+            _material.SetInt("_UseTransparency",_UseTransparency?1:0);
+            _material.SetInt("_TransparencyArray",_TransparencyArray);  
+
+            _material.SetTexture("_MainTex",_MainTex);
             if(_samplingStrategyCached != _samplingStrategy) {
                 RequestUpdate();
             }
             if(_renderingStrategy != _renderingStrategyCached) {
+                RequestUpdate();
+            }
+            if(_glyphMeshCountCached != _glyphMesh.Length) {
                 RequestUpdate();
             }
             DrawMeshes();
@@ -73,7 +106,7 @@ namespace DV
         }
         override protected void RefreshDataSet()
         {
-           // _samplingStrategy.SetDataSet(GetData());
+            _samplingStrategy.SetDataSet(GetData());
             _samplingStrategy.UpdateStrategy();
             _samplingStrategyCached = _samplingStrategy;
            
@@ -84,6 +117,7 @@ namespace DV
             _renderingStrategy.SetSamples(_samplingStrategy.GetSamples());
             _renderingStrategy.UpdateMeshData();
 
+            _glyphMeshCountCached = _glyphMesh.Length;
         }
     }
 }

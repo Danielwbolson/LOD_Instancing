@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RenderStrategy : ScriptableObject{
+public class RenderStrategy {
+
 
     protected GameObject _parent;
     protected GameObject[] _objs;
@@ -12,30 +13,23 @@ public class RenderStrategy : ScriptableObject{
     protected int TOTALOBJECTS;
     protected int DIFFERENTOBJECTS;
 
-    protected List<ObjInfo> _masterData;
+    protected bool _bumpMapsEnabled = false;
+    protected bool _cachedBumpMapsEnabled = false;
+
+    protected int _debug = 0;
+    protected int _cachedDebug = 0;
+
+    protected List<ObjInfo>[] _masterData;
     protected Material[][] _objMatArray;
+    protected Texture[][] _bumpMaps;
 
-    public virtual void MakeDirty() {
-
-    }
     /*
      * CLASS DOCUMENTATION: RenderStrategy
      * This is a parent class utilizing the Strategy pattern for different rendering techniques.
      * This class stores relevent information that any of its strategies could use, while also
      * allowing them to share, and send data further up where is is more accessibly by the user
      */
-
-    public virtual void SetMaterial(Material material) {
-        _objMat = material;
-        _objMatArray = new Material[DIFFERENTOBJECTS][];
-        for (int i = 0; i < DIFFERENTOBJECTS; i++) {
-            _objMatArray[i] = new Material[4];
-            for (int j = 0; j < 4; j++) {
-                _objMatArray[i][j] = _objMat;
-            }
-        }
-    } 
-    public RenderStrategy(GameObject p, GameObject[] o, Material mat, ComputeShader cs, List<ObjInfo> data, int total) {
+    public RenderStrategy(GameObject p, GameObject[] o, Material mat, ComputeShader cs, List<ObjInfo>[] data, int total) {
         _parent = p;
         _objs = o;
         _objMat = mat;
@@ -48,7 +42,7 @@ public class RenderStrategy : ScriptableObject{
         for (int i = 0; i < DIFFERENTOBJECTS; i++) {
             _objMatArray[i] = new Material[4];
             for (int j = 0; j < 4; j++) {
-                _objMatArray[i][j] = _objMat;
+                _objMatArray[i][j] = new Material(_objMat);
             }
         }
 
@@ -61,21 +55,34 @@ public class RenderStrategy : ScriptableObject{
                 _objMeshArray[i][j] = tempArray[i][j].sharedMesh;
             }
         }
+
+        _bumpMaps = new Texture[DIFFERENTOBJECTS][];
+        for (int i = 0; i < DIFFERENTOBJECTS; i++) {
+            _bumpMaps[i] = new Texture[4];
+            for (int j = 0; j < 4; j++) {
+                string path = "ArtWork/Meshes/" + _objs[i].name + "/NormalMaps/LOD" + j;
+                _bumpMaps[i][j] = Resources.Load(path) as Texture;
+            }
+        }
     }
 
-    public virtual void UpdateObjects() { }
+    public virtual void UpdateMeshes() { }
 
     public virtual void Destroy() { }
 
-    public List<ObjInfo> GetObjInfo() {
+    public List<ObjInfo>[] GetObjInfo() {
         return _masterData;
     }
 
-    public void SetObjInfo(List<ObjInfo> data) {
-        _masterData = data;
+    public void SetDebug(bool d) {
+        if (d == true) {
+            _debug = 1;
+        } else {
+            _debug = 0;
+        }
     }
 
-    public void SetNumObjects(int num) {
-        TOTALOBJECTS = num;
+    public void SetNormalMapsEnabled(bool n) {
+        _bumpMapsEnabled = n;
     }
 }

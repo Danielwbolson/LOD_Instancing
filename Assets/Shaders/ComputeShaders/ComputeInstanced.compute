@@ -1,43 +1,212 @@
 ﻿// Each #kernel tells which function to compile; you can have many kernels
+// https://github.com/ellioman/Unity3D-HierarchicalZBufferOcclusionCulling/blob/795bbbaabd6508984ae104e76d84abcf1d9cd26f/Assets/Shaders/ComputeShader.compute
 #pragma kernel CSMain
 
 #define threadCount 64
 
+struct BoundingSphere {
+    float3 center;
+    float radius;
+};
+
+struct FrustrumPlane {
+    float4 normal;
+    float3 pointOnPlane;
+};
+
 struct ObjInfo {
     int objIndex;
     int LODIndex;
+    int matrixIndex;
     float4 position;
     float4 color;
-    float scale;
+    float3 scale;
     float3 direction;
 };
 
 RWStructuredBuffer<ObjInfo> dataBuffer;
+AppendStructuredBuffer<ObjInfo> lod0Buffer;
+AppendStructuredBuffer<ObjInfo> lod1Buffer;
+AppendStructuredBuffer<ObjInfo> lod2Buffer;
+AppendStructuredBuffer<ObjInfo> lod3Buffer;
+
 RWStructuredBuffer<float4x4> matrixBuffer;
+RWStructuredBuffer<BoundingSphere> boundingBuffer;
+float4x4 MVP;
+float3 up;
+float3 camPos;
+float4 LODRanges;
 float4x4 modelMatrix;
 int instanceCount;
 
+// Set the data's position in the matrix buffer
 inline void ObjectToWorldMatrix(uint id) {
-    float tempScal = dataBuffer[id].scale;
+    float3 tempScal = dataBuffer[id].scale;
     float4 tempPos = dataBuffer[id].position;
 
 
     float4x4 tempMatrix = float4x4(
-        float4(tempScal, 0, 0, tempPos.x),
-        float4(0, tempScal, 0, tempPos.y),
-        float4(0, 0, tempScal, tempPos.z),
+        float4(tempScal.x, 0, 0, tempPos.x),
+        float4(0, tempScal.y, 0, tempPos.y),
+        float4(0, 0, tempScal.z, tempPos.z),
         float4(0, 0, 0, 1));
 
-    matrixBuffer[id] = mul(modelMatrix, tempMatrix);
+    matrixBuffer[dataBuffer[id].matrixIndex] = mul(modelMatrix, tempMatrix);
 }
 
+
+inline void CalculateCameraPlanes(inout FrustrumPlane mPlanes[5])
+{
+    // Here we are using Column Major matrix
+    // We skip the far plane and assume the user always has the furthest LOD distace closer than the far plane!
+
+    // Left clipping plane.
+    mPlanes[0].normal = float4(
+        MVP._m30 + MVP._m00,
+        MVP._m31 + MVP._m01,
+        MVP._m32 + MVP._m02,
+        MVP._m33 + MVP._m03
+        );
+
+    // Right clipping plane.
+    mPlanes[1].normal = float4(
+        MVP._m30 - MVP._m00,
+        MVP._m31 - MVP._m01,
+        MVP._m32 - MVP._m02,
+        MVP._m33 - MVP._m03
+        );
+
+    // Bottom clipping plane.
+    mPlanes[2].normal = float4(
+        MVP._m30 + MVP._m10,
+        MVP._m31 + MVP._m11,
+        MVP._m32 + MVP._m12,
+        MVP._m33 + MVP._m13
+        );
+
+    // Top clipping plane.
+    mPlanes[3].normal = float4(
+        MVP._m30 - MVP._m10,
+        MVP._m31 - MVP._m11,
+        MVP._m32 - MVP._m12,
+        MVP._m33 - MVP._m13
+        );
+
+    // Near clipping plane.
+    mPlanes[4].normal = float4(
+        MVP._m30 + MVP._m20,
+        MVP._m31 + MVP._m21,
+        MVP._m32 + MVP._m22,
+        MVP._m33 + MVP._m23
+        );
+
+    for (int i = 0; i < 5; i++) {
+        // Normalize the planes => normalizedPlane = (plane.xyzw) / sqrt(plane.x^2 + plane.y^2 + plane.z^2)
+        // plane.xyz is now the normal and plane.w contains the distance from zero pos to the plane
+        mPlanes[i].normal /= sqrt(mPlanes[i].normal.x * mPlanes[i].normal.x + mPlanes[i].normal.y * mPlanes[i].normal.y + mPlanes[i].normal.z * mPlanes[i].normal.z);
+        
+        // Assign a single point that's on the plane
+        mPlanes[i].pointOnPlane = camPos;
+    }
+}
+
+// Assign data to a level of detail buffer depending on its distance from the camera
+// Currently assigning color here as well
+inline void AssignLOD(uint id, float screenSize) {
+    if (screenSize > LODRanges[0]) {
+        dataBuffer[id].LODIndex = 0;
+        lod0Buffer.Append(dataBuffer[id]);
+    }
+    else if (screenSize > LODRanges[1]) {
+        dataBuffer[id].LODIndex = 1;
+        lod1Buffer.Append(dataBuffer[id]);
+    }
+    else if (screenSize > LODRanges[2]) {
+        dataBuffer[id].LODIndex = 2;
+        lod2Buffer.Append(dataBuffer[id]);
+    }
+    else if (screenSize > LODRanges[3]) {
+        dataBuffer[id].LODIndex = 3;
+        lod3Buffer.Append(dataBuffer[id]);
+    }
+}
+
+// Using a position and a radius, check if a bounding box is inside each camera plane
+// Currently, the radius is the largest scale in any direction for the mesh
+// Therefore, the mesh will never be outside the radius and thus we will never see it
+// get culled. This will allow some meshes to be seen that technically should be culled
+// The normals are not the planes coming out from the camera, but instead the normals of the planes,
+// facing inwards towards where the camera should see
+inline bool ShouldFrustrumCull(BoundingSphere b, ObjInfo instance) {
+
+    FrustrumPlane planes[5];
+    CalculateCameraPlanes(planes);
+
+    float3 radScal = float3(b.radius * instance.scale.x, b.radius * instance.scale.y, b.radius * instance.scale.z);
+
+    int result = 0;
+
+    for (int i = 0; i < 5; i++) {
+        result = 0;
+        // If a result is < 0, the positions is behind the plane
+        result += ((dot(planes[i].normal.xyz, float3(b.center.x - radScal.x, b.center.y - radScal.y, b.center.z - radScal.z) - planes[i].pointOnPlane) <= 0.0) ? 1 : 0);
+        result += ((dot(planes[i].normal.xyz, float3(b.center.x + radScal.x, b.center.y - radScal.y, b.center.z - radScal.z) - planes[i].pointOnPlane) <= 0.0) ? 1 : 0);
+        result += ((dot(planes[i].normal.xyz, float3(b.center.x - radScal.x, b.center.y + radScal.y, b.center.z - radScal.z) - planes[i].pointOnPlane) <= 0.0) ? 1 : 0);
+        result += ((dot(planes[i].normal.xyz, float3(b.center.x + radScal.x, b.center.y + radScal.y, b.center.z - radScal.z) - planes[i].pointOnPlane) <= 0.0) ? 1 : 0);
+        result += ((dot(planes[i].normal.xyz, float3(b.center.x - radScal.x, b.center.y - radScal.y, b.center.z + radScal.z) - planes[i].pointOnPlane) <= 0.0) ? 1 : 0);
+        result += ((dot(planes[i].normal.xyz, float3(b.center.x + radScal.x, b.center.y - radScal.y, b.center.z + radScal.z) - planes[i].pointOnPlane) <= 0.0) ? 1 : 0);
+        result += ((dot(planes[i].normal.xyz, float3(b.center.x - radScal.x, b.center.y + radScal.y, b.center.z + radScal.z) - planes[i].pointOnPlane) <= 0.0) ? 1 : 0);
+        result += ((dot(planes[i].normal.xyz, float3(b.center.x + radScal.x, b.center.y + radScal.y, b.center.z + radScal.z) - planes[i].pointOnPlane) <= 0.0) ? 1 : 0);
+
+        if (result == 8)
+            return true;
+    }
+    return false;
+}
+
+// Main ComputeShader function
 [numthreads(threadCount, 1, 1)]
-void CSMain(uint3 dispatchID : SV_DispatchThreadID) {
+inline void CSMain(uint3 dispatchID : SV_DispatchThreadID) {
+    // get the id of our data
     int id = dispatchID.x;
 
-    if (id > instanceCount) {
+    // If we are past how many objects we should be computing, quit
+    if (id >= instanceCount) {
         return;
     }
 
+    // Cache our data and get the distance from the camera
+    ObjInfo instance = dataBuffer[id];
+
+    // Get our bounding sphere and set it to the position of our data
+    BoundingSphere b;
+    b.center = instance.position.xyz;
+    b.radius = boundingBuffer[instance.objIndex].radius;
+
+    float avgScale = (instance.scale.x + instance.scale.y + instance.scale.z) / 3.0f;
+
+    // Calculating screen height
+    float4 mvpInstance = mul(MVP, instance.position);
+    float2 s_pointOne = mvpInstance.xy / mvpInstance.w;
+
+    float4 mvpUp = mul(MVP, instance.position + float4(-up, 0) * b.radius * avgScale);
+    float2 s_pointTwo = mvpUp.xy / mvpUp.w;
+    float screenSize = abs(s_pointOne.y - s_pointTwo.y);
+
+    // If our instance is further than our furthest LOD allows, ignore it
+    if (screenSize <= LODRanges[3]) {
+        return;
+    }
+
+    // Calculate if we should frustrum cull this instance, if so, quit
+    if (ShouldFrustrumCull(b, instance)) {
+        return;
+    }
+
+    // The instance is within distance and within the camera's view, Assign
+    // it to a LOD append buffer
+    AssignLOD(id, screenSize);
+
+    // Calculate the instances matrix info and save it in the matrix buffer
     ObjectToWorldMatrix(id);
 }

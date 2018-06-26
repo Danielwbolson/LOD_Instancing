@@ -38,7 +38,7 @@ namespace DV
         }
 
 
-        protected void RequestUpdate()
+        public  void RequestUpdate()
         {
             _needsUpdate = true;
         }
