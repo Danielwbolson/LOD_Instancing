@@ -56,14 +56,14 @@ public class GlyphLayerRenderStrategy  : LayerRenderStrategy {
 		}
 
 	public override void SetupRender() {
-		_renderStrategy = new Instantiated(this.GetLayer().GetDataObject().gameObject, _objs, GetMaterial(), _computeShader, _objInfo, _totalNumObjects);
+		//_renderStrategy = new Instantiated(this.GetLayer().GetDataObject().gameObject, _objs, GetMaterial(), _computeShader, _objInfo, _totalNumObjects);
 
 	}
 	public override void UpdateRender() {
 
 		base.UpdateRender();
 		if(_renderStrategy != null) {
-		_renderStrategy.SetMaterial(GetMaterial());
+		//_renderStrategy.SetMaterial(GetMaterial());
 		}
 		
 	
@@ -75,7 +75,7 @@ public class GlyphLayerRenderStrategy  : LayerRenderStrategy {
 		if(_renderStrategy == null) {
 					InitializeInfo();
 
-					_renderStrategy = new Instantiated(this.GetLayer().GetDataObject().gameObject, _objs, GetMaterial(), _computeShader, _objInfo, _totalNumObjects);
+					//_renderStrategy = new Instantiated(this.GetLayer().GetDataObject().gameObject, _objs, GetMaterial(), _computeShader, _objInfo, _totalNumObjects);
 
 		}
 		if(_renderStrategy == null)
@@ -96,13 +96,13 @@ public class GlyphLayerRenderStrategy  : LayerRenderStrategy {
 
         if (_cachedNumObjects != _totalNumObjects) {
             InitializeInfo();
-            _renderStrategy.SetNumObjects(_totalNumObjects);
-            _renderStrategy.SetObjInfo(_objInfo);
+            //_renderStrategy.SetNumObjects(_totalNumObjects);
+            //_renderStrategy.SetObjInfo(_objInfo);
             _cachedNumObjects = _totalNumObjects;
         }
 
         // Update our objects based on our render strategy
-        _renderStrategy.UpdateObjects();
+        //_renderStrategy.UpdateObjects();
 
 	}
 
@@ -219,7 +219,7 @@ public class GlyphLayerRenderStrategy  : LayerRenderStrategy {
 			_sampleStrategy.SetNumberOfSamples((int)newGlyphCount);
 			_totalNumObjects = (int)newGlyphCount;
 			_numberOfSamples = _totalNumObjects;
-			_renderStrategy.MakeDirty();
+			//_renderStrategy.MakeDirty();
 		}
 		GUILayout.EndHorizontal();
 		GUILayout.BeginHorizontal();
@@ -229,7 +229,7 @@ public class GlyphLayerRenderStrategy  : LayerRenderStrategy {
 		if(Mathf.Abs(newScale - _glyphScale)>0.001) {
 			_glyphScale = newScale;
 			_cachedNumObjects = -1;
-			_renderStrategy.MakeDirty();
+			//_renderStrategy.MakeDirty();
 		}
 		GUILayout.EndHorizontal();
 
@@ -247,7 +247,7 @@ void InitializeInfo() {
                 objIndex = UnityEngine.Random.Range(0, _objs.Length),
                 LODIndex = -1,
                 position = new Vector4(_sampleStrategy.GetSamples()[i].position.x,_sampleStrategy.GetSamples()[i].position.y,_sampleStrategy.GetSamples()[i].position.z,1), //new Vector4(Mathf.Sin(angle) * distance, height, Mathf.Cos(angle) * distance, 1),
-                scale = _glyphScale,
+                //scale = _glyphScale,
                 direction = Vector3.Normalize(new Vector3(UnityEngine.Random.Range(0, 1f), UnityEngine.Random.Range(0, 1f), UnityEngine.Random.Range(0, 1f)))
             };
 
@@ -260,14 +260,14 @@ void InitializeInfo() {
      * or Gameobject Instantiation
      */
     void ToggleInstancedRendering() {
-        List<ObjInfo> newObjInfo = _renderStrategy.GetObjInfo();
+       // List<ObjInfo> newObjInfo = _renderStrategy.GetObjInfo();
 
         if (_instancedRendering == true) {
             _renderStrategy.Destroy();
-            _renderStrategy = new Instanced(this.GetLayer().GetDataObject().gameObject, _objs, GetMaterial(), _computeShader, newObjInfo, _totalNumObjects);
+            //_renderStrategy = new Instanced(this.GetLayer().GetDataObject().gameObject, _objs, GetMaterial(), _computeShader, newObjInfo, _totalNumObjects);
         } else {
             _renderStrategy.Destroy();
-            _renderStrategy = new Instantiated(this.GetLayer().GetDataObject().gameObject, _objs, GetMaterial(), _computeShader, newObjInfo, _totalNumObjects);
+            //_renderStrategy = new Instantiated(this.GetLayer().GetDataObject().gameObject, _objs, GetMaterial(), _computeShader, newObjInfo, _totalNumObjects);
         }
         _cachedInstanceRendering = _instancedRendering;
     }
