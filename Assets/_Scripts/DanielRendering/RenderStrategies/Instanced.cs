@@ -271,7 +271,7 @@ public class Instanced : RenderStrategy {
         Matrix4x4 P = cam.projectionMatrix;
         Matrix4x4 _MVP = P * V * M;
 
-        RotatePositions();
+        //RotatePositions();
 
         _computeShader.SetVector("camPos", _cachedCamPosition);
         _computeShader.SetMatrix("MVP", _MVP);

@@ -131,7 +131,7 @@ public class Instantiated : RenderStrategy {
             _cachedBumpMapsEnabled = _bumpMapsEnabled;
         }
 
-        RotatePositions();
+        //RotatePositions();
     }
 
     /*
