@@ -25,12 +25,12 @@ public class ObjRenderer : MonoBehaviour {
      * CLASS DOCUMENTATION: ObjRenderer
      * This class acts as a layer and user interface. It has a series of objects in its slice that move 
      * with it, as well as giving the option to have the objects rendered in different forms:
-     *   Instantiated Gameobects
+     *   Instantiated GameObjects
      *   GPU Instanced
      */
 
     // Use this for initialization
-    void Start () {
+    void Start() {
         InitializeInfo();
 
         // Initialize our new RenderStrategy
@@ -42,9 +42,9 @@ public class ObjRenderer : MonoBehaviour {
         _cachedDebug = _debug;
         _cachedNormalMapsEnabled = _normalMapsEnabled;
     }
-    
+
     // Update is called once per frame
-    void Update () {
+    void Update() {
 
         if (_cachedDebug != _debug) {
             _renderStrategy.SetDebug(_debug);
@@ -59,19 +59,22 @@ public class ObjRenderer : MonoBehaviour {
         // If the user changes how many meshes or unique objects they want, create new renderings
         if (_cachedNumMeshes != _totalNumMeshes || _cachedObjs != _objs) {
             InitializeInfo();
+
+            _renderStrategy.Destroy();
+
             if (_instancedRendering == true) {
-                _renderStrategy.Destroy();
                 _renderStrategy = new Instanced(this.gameObject, _objs, _objMat, _computeShader, _objInfo, _totalNumMeshes);
-                _renderStrategy.SetDebug(_debug);   
             } else {
-                _renderStrategy.Destroy();
                 _renderStrategy = new Instantiated(this.gameObject, _objs, _objMat, _computeShader, _objInfo, _totalNumMeshes);
-                _renderStrategy.SetDebug(_debug);
             }
+            _renderStrategy.SetDebug(_debug);
+            _renderStrategy.SetNormalMapsEnabled(_normalMapsEnabled);
+
             _cachedNumMeshes = _totalNumMeshes;
             _cachedObjs = _objs;
         }
 
+        // IF the user changes whether or not they want to be using normal maps or not
         if (_cachedNormalMapsEnabled != _normalMapsEnabled) {
             _renderStrategy.SetNormalMapsEnabled(_normalMapsEnabled);
             _cachedNormalMapsEnabled = _normalMapsEnabled;
@@ -100,7 +103,7 @@ public class ObjRenderer : MonoBehaviour {
                 matrixIndex = i,
                 position = new Vector4(Mathf.Sin(angle) * distance, height, Mathf.Cos(angle) * distance, 1),
                 color = new Vector4(0, 0, 0, Random.Range(0.20f, 1.0f)),
-                scale = new Vector3(Random.Range(0.05f, 0.2f), Random.Range(0.05f, 0.2f), Random.Range(0.05f, 0.2f)) * 10,
+                scale = new Vector3(4, 4, 4), //new Vector3(Random.Range(0.05f, 0.2f), Random.Range(0.05f, 0.2f), Random.Range(0.05f, 0.2f)),
                 direction = Vector3.Normalize(new Vector3(Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0, 1f)))
             };
 
@@ -115,15 +118,16 @@ public class ObjRenderer : MonoBehaviour {
     void ToggleInstancedRendering() {
         List<ObjInfo>[] newObjInfo = _renderStrategy.GetObjInfo();
 
+        _renderStrategy.Destroy();
+
         if (_instancedRendering == true) {
-            _renderStrategy.Destroy();
             _renderStrategy = new Instanced(this.gameObject, _objs, _objMat, _computeShader, newObjInfo, _totalNumMeshes);
-            _renderStrategy.SetDebug(_debug);
         } else {
-            _renderStrategy.Destroy();
             _renderStrategy = new Instantiated(this.gameObject, _objs, _objMat, _computeShader, newObjInfo, _totalNumMeshes);
-            _renderStrategy.SetDebug(_debug);
         }
+        _renderStrategy.SetDebug(_debug);
+        _renderStrategy.SetNormalMapsEnabled(_normalMapsEnabled);
+
         _cachedInstanceRendering = _instancedRendering;
     }
 
