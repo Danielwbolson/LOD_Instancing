@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d04b946b0904a39bc85dabe3a55f18, type: 3}
+  m_Name: Slice Layer Render Strategy Factory
+  m_EditorClassIdentifier: 
+  _slicePrefab: {fileID: 114012085571053418, guid: 48777154274b645dfa670ab57f95df58,
+    type: 2}
+  _sliceMaterial: {fileID: 2100000, guid: 5abe1e435aeff49d3a1849fa99652a4d, type: 2}

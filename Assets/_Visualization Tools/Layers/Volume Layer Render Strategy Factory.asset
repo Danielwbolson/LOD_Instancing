@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4898c5874aa84621b5c9b192c3e3edc, type: 3}
+  m_Name: Volume Layer Render Strategy Factory
+  m_EditorClassIdentifier: 
+  _volumeMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  _volumeMaterial: {fileID: 2100000, guid: dc758ef6aaf28404d84a55be465d90fb, type: 2}
