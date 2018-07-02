@@ -20,13 +20,13 @@ public class Instanced : RenderStrategy {
     private Vector3[] _meshBoundsSize;
     private BoundingSphere[] _boundingSpheres;
     private int _kCSMain;
- 
+
     private const float LOD0 = .7f;
     private const float LOD1 = .3f;
     private const float LOD2 = .07f;
     private const float LOD3 = .01f;
 
-    private readonly Vector4 _LODRanges = new Vector4(LOD0, LOD1, LOD2, LOD3 );
+    private readonly Vector4 _LODRanges = new Vector4(LOD0, LOD1, LOD2, LOD3);
     private readonly string[] lodBuffers = new string[4] { "lod0Buffer", "lod1Buffer", "lod2Buffer", "lod3Buffer" };
 
     private Matrix4x4[] _matrixData;
@@ -205,7 +205,7 @@ public class Instanced : RenderStrategy {
      * Set up data for our computeShader that will not be changing. Dynamic data is set
      * every update.
      */
-     public void InitializeComputeShader() {
+    public void InitializeComputeShader() {
         if (_matrixBuffer != null)
             _computeShader.SetBuffer(_kCSMain, "matrixBuffer", _matrixBuffer);
 
@@ -244,7 +244,7 @@ public class Instanced : RenderStrategy {
                     _objMatArray[i][j].SetInt("debug", _debug);
                 }
             }
-            _cachedDebug = _debug; 
+            _cachedDebug = _debug;
         }
 
         if (_cachedBumpMapsEnabled != _bumpMapsEnabled) {
