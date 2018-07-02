@@ -1,22 +1,26 @@
 fileFormatVersion: 2
-guid: 05a5f8724e812c549ace784305834576
+guid: c1ee4f7cc2476fa4d9cc6531f3c4a416
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: BlossomP4_LOD0
-    100004: BlossomP4_LOD1
-    100006: BlossomP4_LOD2
-    100008: BlossomP4_LOD3
-    400000: //RootNode
-    400002: BlossomP4_LOD0
-    400004: BlossomP4_LOD1
-    400006: BlossomP4_LOD2
-    400008: BlossomP4_LOD3
-    2100000: BlossomP4_LOD0Mat
-    2100002: BlossomP4_LOD1Mat
-    2100004: BlossomP4_LOD2Mat
-    2100006: BlossomP4_LOD3Mat
+    100000: BlossomP4_LOD0
+    100002: BlossomP4_LOD1
+    100004: BlossomP4_LOD2
+    100006: BlossomP4_LOD3
+    100008: //RootNode
+    400000: BlossomP4_LOD0
+    400002: BlossomP4_LOD1
+    400004: BlossomP4_LOD2
+    400006: BlossomP4_LOD3
+    400008: //RootNode
+    2100000: material_0
+    2100002: material_0.001
+    2100004: material_0.002
+    2100006: material_0.003
+    2100008: BlossomP4_LOD0Mat
+    2100010: BlossomP4_LOD1Mat
+    2100012: BlossomP4_LOD2Mat
+    2100014: BlossomP4_LOD3Mat
     2300000: BlossomP4_LOD0
     2300002: BlossomP4_LOD1
     2300004: BlossomP4_LOD2
