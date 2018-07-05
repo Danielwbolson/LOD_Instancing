@@ -1,34 +1,39 @@
 fileFormatVersion: 2
-guid: 22711da39a0e3694698978d0f459216f
+guid: 745769dc3536c934c9d0fdfec1d81117
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
-    100002: BlossomP2_LOD0
-    100004: BlossomP2_LOD1
-    100006: BlossomP2_LOD2
-    100008: BlossomP2_LOD3
+    100002: default
+    100004: BlossomP2_LOD0
+    100006: BlossomP2_LOD1
+    100008: BlossomP2_LOD2
+    100010: BlossomP2_LOD3
     400000: //RootNode
-    400002: BlossomP2_LOD0
-    400004: BlossomP2_LOD1
-    400006: BlossomP2_LOD2
-    400008: BlossomP2_LOD3
-    2100000: BlossomP2_LOD0Mat
-    2100002: BlossomP2_LOD1Mat
-    2100004: BlossomP2_LOD2Mat
-    2100006: BlossomP2_LOD3Mat
-    2300000: BlossomP2_LOD0
-    2300002: BlossomP2_LOD1
-    2300004: BlossomP2_LOD2
-    2300006: BlossomP2_LOD3
-    3300000: BlossomP2_LOD0
-    3300002: BlossomP2_LOD1
-    3300004: BlossomP2_LOD2
-    3300006: BlossomP2_LOD3
-    4300000: BlossomP2_LOD0
-    4300002: BlossomP2_LOD1
-    4300004: BlossomP2_LOD2
-    4300006: BlossomP2_LOD3
+    400002: default
+    400004: BlossomP2_LOD0
+    400006: BlossomP2_LOD1
+    400008: BlossomP2_LOD2
+    400010: BlossomP2_LOD3
+    2100000: material_0.003
+    2100002: material_0.002
+    2100004: material_0.001
+    2100006: material_0
+    2300000: default
+    2300002: BlossomP2_LOD0
+    2300004: BlossomP2_LOD1
+    2300006: BlossomP2_LOD2
+    2300008: BlossomP2_LOD3
+    3300000: default
+    3300002: BlossomP2_LOD0
+    3300004: BlossomP2_LOD1
+    3300006: BlossomP2_LOD2
+    3300008: BlossomP2_LOD3
+    4300000: default
+    4300002: BlossomP2_LOD0
+    4300004: BlossomP2_LOD1
+    4300006: BlossomP2_LOD2
+    4300008: BlossomP2_LOD3
     20500000: //RootNode
   externalObjects: {}
   materials:
