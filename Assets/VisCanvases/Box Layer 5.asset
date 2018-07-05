@@ -9,12 +9,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00118016eb8a34768880daf17b36092f, type: 3}
-  m_Name: Box Layer 2
+  m_Name: Box Layer 5
   m_EditorClassIdentifier: 
   _visible: 0
   _active: 0
   _boxBounds:
-    m_Center: {x: 0, y: 1, z: 0}
+    m_Center: {x: -1.06, y: 1.11, z: 1.52}
     m_Extent: {x: 0.5, y: 0.5, z: 0.5}
-  _boxMesh: {fileID: 4300000, guid: c84d93f1796a7fd4685e7a210e7df7e2, type: 3}
+  _boxMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
   _boxMaterial: {fileID: 2100000, guid: d64d286c55cec497291b5fbf027fe0e6, type: 2}

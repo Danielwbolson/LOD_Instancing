@@ -16,3 +16,7 @@ MonoBehaviour:
   _layers:
   - {fileID: 11400000, guid: 42229631c58914a3cb7bcfa27234f419, type: 2}
   - {fileID: 11400000, guid: 81621e5040df7406290746d36cbc6c35, type: 2}
+  - {fileID: 11400000, guid: 6dc79d3f81fde4304bd5a1192903d060, type: 2}
+  - {fileID: 11400000, guid: 1fdf2a98fefbf4781835c4dae796aa94, type: 2}
+  - {fileID: 11400000, guid: a77885578de4845d98feb483f020ef62, type: 2}
+  - {fileID: 11400000, guid: 95eb528b431ca40cfa27252b8f65389d, type: 2}

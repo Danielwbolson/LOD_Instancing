@@ -41,12 +41,30 @@ public class Canvas : MonoBehaviour {
 	[SerializeField]
 	bool _fitStyle;
 
+	[SerializeField]
+	bool _selected = false;
+
+	[SerializeField]
+	public Vector4 _color;
+
+	[SerializeField]
+	float _extentThreshold;
+	[SerializeField]
+	float _boundsThreshold = 0.02f;
 	// Use this for initialization
 	void Start () {
 		
 	}
 	
-	
+	public void SetMaterialProperties(Material canvasMaterial) {
+		canvasMaterial.SetColor("_Color", _color);
+		canvasMaterial.SetMatrix("_InverseCanvas", transform.worldToLocalMatrix);
+		canvasMaterial.SetVector("_CanvasBoundsCenter",_bounds.center);
+		canvasMaterial.SetVector("_CanvasBoundsExtent",_bounds.extents);
+		canvasMaterial.SetVector("_CanvasBoundsExtentThreshold",new Vector3(_extentThreshold,_extentThreshold,_extentThreshold));
+		canvasMaterial.SetVector("_CanvasBoundsThreshold",new Vector3(_boundsThreshold,_boundsThreshold,_boundsThreshold));
+		canvasMaterial.SetColor("_CropColor", new Vector4(0,0,0,0.5f));
+	} 
 	void updateBounds() {
 		BoxCollider boxCollider = GetComponent<BoxCollider>();
 		boxCollider.center =_bounds.center;
@@ -71,7 +89,7 @@ public class Canvas : MonoBehaviour {
 	void Update () {
 		if(_fitStyle && _style.HasBounds()) {
 			Vector3 innerScaleDims = _style.GetBounds().size;
-			Vector3 canvasDims = _bounds.size;
+			Vector3 canvasDims = _bounds.size - new Vector3(_boundsThreshold*2 + 0.001f,_boundsThreshold*2+ 0.001f,_boundsThreshold*2+ 0.001f);
 
 			Vector3 ratio = Vector3.Scale(innerScaleDims, canvasDims.reciprocal());
 			float maxRatioDim = ratio.maxDimension();

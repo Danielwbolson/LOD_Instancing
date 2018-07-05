@@ -24,7 +24,8 @@ public class BoxLayer : Layer {
 	}
 
 	public override void DrawLayer(Canvas canvas) {
-		Graphics.DrawMesh(_boxMesh,canvas.GetInnerSceneTransformMatrix()*Matrix4x4.TRS(_boxBounds.center, Quaternion.identity, _boxBounds.size),_boxMaterial,0);
+
+		Graphics.DrawMesh(_boxMesh,canvas.GetInnerSceneTransformMatrix()*Matrix4x4.TRS(_boxBounds.center, Quaternion.identity, _boxBounds.size),GetCanvasMaterial(canvas,_boxMaterial),0);
 	}
 }
 }
