@@ -16,7 +16,9 @@ public class VTKDataVariable : DataVariable {
 	[SerializeField]
 	ArrayType _arrayType;
 
-	public VTKDataVariable(ArrayType arrayType, int arrayID) {
+	public void Init(VTKDataset dataset, ArrayType arrayType, int arrayID) {
+		base.Init(dataset);
+		
 		_arrayType = arrayType;
 		_arrayID = arrayID;
 	}

@@ -9,7 +9,7 @@ public abstract class Dataset : ScriptableObject {
 	private HashSet<DataVariable> _variables;
 
 	protected virtual bool validateVariable(DataVariable variable) {
-		return _variables.Contains(variable);
+		return (_variables!= null) && _variables.Contains(variable);
 	} 
 	public virtual void Bind(DataVariable variable, Material material, int bindSlot, int instanceID = 0, int timeStep = 0) {
 		if(!_variables.Contains(variable)) {
@@ -20,12 +20,17 @@ public abstract class Dataset : ScriptableObject {
 	protected virtual int queryNumberOfVariables() {
 		return 0;
 	}
-	protected virtual Variable generateVarible(int i) {
+	protected virtual DataVariable generateVarible(int i) {
 		return null;
 	}
 	protected void populateVariables() {
+		if(_variables == null) _variables = new HashSet<DataVariable>();
+
 		int numVariables = queryNumberOfVariables();
 		for(int v = 0; v < numVariables; v++) {
+            DataVariable var = generateVarible(v);
+			_variables.Add(var);
+            Debug.Log(v + " : " + var.GetName());
 
 		}
 	}

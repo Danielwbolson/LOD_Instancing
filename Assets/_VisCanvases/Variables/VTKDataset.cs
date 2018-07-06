@@ -13,22 +13,34 @@ public class VTKDataset : Dataset {
 	protected override int queryNumberOfVariables() {
 		return (_dataset.IsA("vtkPointSet")?1:0) /* <- position*/ + _dataset.GetPointData().GetNumberOfArrays() + _dataset.GetCellData().GetNumberOfArrays() ;
 	}
-	protected override Variable generateVarible(int i) {
+	protected override DataVariable generateVarible(int i) {
 		int numPointArrays = _dataset.GetPointData().GetNumberOfArrays();
 		int numCellArrays = _dataset.GetCellData().GetNumberOfArrays();
 		VTK.vtkAbstractArray abstractArray;
 
 		int positionOffset = (_dataset.IsA("vtkPointSet")?1:0);
-
+		DataVariable result = null;
 		if(positionOffset == 1 &&  i == 0 ) {
-			abstractArray = VTK.vtkAbstractArray.SafeDownCast(_dataset.GetPointData());	
+			VTKPositionDataVariable var = ScriptableObject.CreateInstance<VTKPositionDataVariable>();
+			var.Init(this);
+			result = var;
+
 		} else if(i < numPointArrays + positionOffset) {
 			abstractArray = _dataset.GetPointData().GetAbstractArray(i-1);
+			VTKDataVariable var = ScriptableObject.CreateInstance<VTKDataVariable>();
+			var.Init(this, VTKDataVariable.ArrayType.Point, i - positionOffset);
+			result = var;
+
 		} else if (i < numPointArrays + numCellArrays + positionOffset) {
+			VTKDataVariable var = ScriptableObject.CreateInstance<VTKDataVariable>();
+			var.Init(this, VTKDataVariable.ArrayType.Cell,i - numPointArrays - positionOffset);
+			result = var;
+		} else return null;
 
-		}
 
-		return null;
+
+
+		return result;
 	}
 	public void Print() {
 		if(_dataset != null) {
@@ -50,6 +62,7 @@ public class VTKDataset : Dataset {
 	}
 	public void LoadDataset() {
 		_dataset = DataLoader.LoadVTKDataSet(_datasetPath);
+		populateVariables();
 	}
 	protected override bool validateVariable(DataVariable variable) {
 		return base.validateVariable(variable) && (variable is VTKDataVariable || variable is VTKPositionDataVariable);

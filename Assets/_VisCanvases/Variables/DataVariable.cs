@@ -7,7 +7,15 @@ public class DataVariable : Variable {
 	
 	[SerializeField]
 	Dataset _dataset;
+	public  void Init(Dataset dataset)
+    {
+		base.Init();
+		_dataset = dataset;
 
+    }
+	// public virtual bool SetDataset(dataset) {
+	// 	_dataset = dataset;
+	// }
 	protected Dataset GetDataSet() {
 		return _dataset;
 	}

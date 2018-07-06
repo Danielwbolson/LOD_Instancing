@@ -11,6 +11,9 @@ public class Variable : ScriptableObject {
 		Path,
 	}
 
+	public void Init() {
+
+	}
 	public virtual VariableType GetVariableType() {
 		return VariableType.Unknown;
 	}
