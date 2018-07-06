@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System;
+namespace DEPRECATED{
 
 [CreateAssetMenu()]
 public class LayerType : ScriptableObject {
@@ -23,5 +24,6 @@ public class LayerType : ScriptableObject {
 	public LayerRenderStrategy CreateRenderStrategy(Layer layer) {
 		return _renderStrategyFactory != null ? _renderStrategyFactory.Create(layer) : null;
 	}
+}
 }
 

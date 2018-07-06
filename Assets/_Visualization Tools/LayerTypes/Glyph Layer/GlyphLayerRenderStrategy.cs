@@ -5,6 +5,7 @@ using UnityEditor;
 using System;
 using VTK;
 
+namespace DEPRECATED{
 
 public class GlyphLayerRenderStrategy  : LayerRenderStrategy {
 
@@ -314,4 +315,5 @@ float _glyphScale = 10;
 
 
 
+}
 }

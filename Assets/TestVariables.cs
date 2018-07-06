@@ -26,11 +26,15 @@ public class TestVariables : MonoBehaviour {
 		VTKDataset vtkds = new VTKDataset();
 		vtkds.SetDatasetPath("/example_data/VTK/contour.vtp");
 		vtkds.LoadDataset();
+	
 
-		vtkds.Print();
 		Dataset ds = vtkds;
 
-		
+		Variable[] vars = ds.GetVariables();	
+
+		foreach(Variable dv in vars ) {
+			print(dv.ToString());
+		}
 
 	}
 	// Use this for initialization

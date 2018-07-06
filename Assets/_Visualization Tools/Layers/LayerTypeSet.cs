@@ -5,10 +5,12 @@ using UnityEditor;
 using System;
 
 
+namespace DEPRECATED{
 
 [CreateAssetMenu()]
 public class LayerTypeSet : ScriptableObject {
 	
 	public List<LayerType> layerTypes;
 
+}
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System;
+namespace DEPRECATED{
 
 [System.Serializable]
 public class PlaceholderLayerRenderStrategy  : LayerRenderStrategy {
@@ -16,4 +17,5 @@ public class PlaceholderLayerRenderStrategy  : LayerRenderStrategy {
 		GUILayout.EndVertical();
 	}
 
+}
 }

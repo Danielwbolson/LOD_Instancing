@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+namespace DEPRECATED{
 
 namespace DV
 {
@@ -35,4 +36,5 @@ namespace DV
             Debug.Log("A Random Sampling Strategy");
         }
     }
+}
 }

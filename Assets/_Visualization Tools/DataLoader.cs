@@ -7,6 +7,7 @@ using System.IO;
 using UnityEditor;
 
 
+namespace DEPRECATED{
 
 [CustomEditor(typeof(DataLoader))]
 public class DataLoaderEditor : Editor
@@ -102,4 +103,5 @@ public class DataLoader : MonoBehaviour {
         }
 
     }
+}
 }

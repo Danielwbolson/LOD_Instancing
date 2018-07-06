@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+namespace DEPRECATED{
+
 [CreateAssetMenu()]
 
 public class MeshFieldLayer : LayerType {
@@ -13,4 +15,5 @@ public class MeshFieldLayer : LayerType {
 	// 	meshCount = EditorGUILayout.IntField("Number of glyphs:", meshCount);
 	// }
 
+}
 }

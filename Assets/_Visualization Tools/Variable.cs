@@ -4,6 +4,9 @@ using UnityEngine;
 using System;
 using VTK;
 
+namespace DEPRECATED {
+
+
 [Serializable]
 public class Variable : ScriptableObject {
     public enum StorageType {
@@ -144,4 +147,5 @@ public class Variable : ScriptableObject {
 			return true;
 		}
 	}
+}
 }

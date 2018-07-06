@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using System;
 
+namespace DEPRECATED{
 
 [Serializable]
 public class Layer : System.Object{
@@ -82,4 +83,6 @@ public class Layer : System.Object{
 			GetLayerManager().RemoveLayer(this);
 		}
 	}
+}
+
 }

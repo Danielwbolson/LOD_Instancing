@@ -5,6 +5,7 @@ using UnityEditor;
 using System;
 using VTK;
 
+namespace DEPRECATED{
 
 public class VolumeLayerRenderStrategy  : LayerRenderStrategy {
 
@@ -100,4 +101,5 @@ public class VolumeLayerRenderStrategy  : LayerRenderStrategy {
 		GUILayout.EndVertical();
 	}
 
+}
 }

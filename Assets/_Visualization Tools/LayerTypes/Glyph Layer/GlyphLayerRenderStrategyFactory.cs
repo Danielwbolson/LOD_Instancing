@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System;
+namespace DEPRECATED{
 
 [CreateAssetMenu()]
 public class GlyphLayerRenderStrategyFactory : LayerRenderStrategyFactory {
@@ -12,7 +13,8 @@ public class GlyphLayerRenderStrategyFactory : LayerRenderStrategyFactory {
 	public DV.DVSampleStrategy _sampleStrategy;
 	public ComputeShader _computeShader;
 
-	public override LayerRenderStrategy Create(Layer layer) {
+	public override LayerRenderStrategy Create(DEPRECATED.Layer layer) {
 		return new GlyphLayerRenderStrategy(layer,_glyphMeshes, _glyphMaterial, _sampleStrategy,_computeShader);
 	}
+}
 }

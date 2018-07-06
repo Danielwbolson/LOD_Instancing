@@ -10,6 +10,9 @@ public class VTKDataset : Dataset {
 
 	VTK.vtkDataSet _dataset;
 
+	[SerializeField]
+	VTKPositionDataVariable _anchorVariable;
+	
 	protected override int queryNumberOfVariables() {
 		return (_dataset.IsA("vtkPointSet")?1:0) /* <- position*/ + _dataset.GetPointData().GetNumberOfArrays() + _dataset.GetCellData().GetNumberOfArrays() ;
 	}
@@ -60,8 +63,8 @@ public class VTKDataset : Dataset {
 	public void SetDatasetPath(string path) {
 		_datasetPath = path;
 	}
-	public void LoadDataset() {
-		_dataset = DataLoader.LoadVTKDataSet(_datasetPath);
+	public override void LoadDataset() {
+		_dataset = DEPRECATED.DataLoader.LoadVTKDataSet(_datasetPath);
 		populateVariables();
 	}
 	protected override bool validateVariable(DataVariable variable) {
@@ -80,16 +83,38 @@ public class VTKDataset : Dataset {
 	}
 
 	public override bool IsMesh() {
-		if(_dataset is VTK.vtkPolyData && ((VTK.vtkPolyData)_dataset).GetNumberOfPolys() > 0) return true;
+		if(_dataset.IsA("vtkPolyData") && (VTK.vtkPolyData.SafeDownCast(_dataset)).GetNumberOfPolys() > 0) return true;
 		else if(_dataset is VTK.vtkUnstructuredGrid ) return true;
 		else return false;
 	}
 
 	public override bool IsVolume() {
-		return _dataset is VTK.vtkImageData; 
+		return _dataset is VTK.vtkImageData; // /* Perhaps verify the dimensionality of the image?*/ && VTK.vtkImageData.SafeDownCast(_dataset).GetDi; 
 	}
 
 
+	VTK.vtkAbstractArray GetAbstractArray(VTKDataVariable variable ) {
+		if(variable is VTKDataVariable) {
+			VTKDataVariable vtkVariable = (VTKDataVariable)(variable);
+
+			if(vtkVariable.IsCellVariable()) {
+				VTK.vtkAbstractArray abstractArray = _dataset.GetCellData().GetAbstractArray(vtkVariable.GetArrayID());
+				if(abstractArray.IsVoid()) {
+					return null;
+				}
+				return abstractArray;
+			} 
+
+			if(vtkVariable.IsPointVariable()) {
+				VTK.vtkAbstractArray abstractArray = _dataset.GetPointData().GetAbstractArray(vtkVariable.GetArrayID());
+				if(abstractArray.IsVoid()) {
+					return null;
+				}
+				return abstractArray;
+			} 
+		}
+		return null;
+	}
 	public override string GetVariableName(DataVariable variable) {
 		if(!validateVariable(variable)) {
 			Debug.LogError("Variable is not a valid VTK variable for this VTK dataset.");
@@ -97,22 +122,13 @@ public class VTKDataset : Dataset {
 
 		if(variable is VTKDataVariable) {
 			VTKDataVariable vtkVariable = (VTKDataVariable)(variable);
-
-			if(vtkVariable.IsCellVariable()) {
-				VTK.vtkAbstractArray abstractArray = _dataset.GetCellData().GetAbstractArray(vtkVariable.GetArrayID());
-				if(abstractArray.IsVoid()) {
-					return "";
-				}
+			
+			VTK.vtkAbstractArray abstractArray = GetAbstractArray(vtkVariable);
+			if(abstractArray == null) {
+				return "";
+			} else {
 				return abstractArray.GetName();
-			} 
-
-			if(vtkVariable.IsPointVariable()) {
-				VTK.vtkAbstractArray abstractArray = _dataset.GetPointData().GetAbstractArray(vtkVariable.GetArrayID());
-				if(abstractArray.IsVoid()) {
-					return "";
-				}
-				return abstractArray.GetName();
-			} 
+			}
 		} else if(variable is VTKPositionDataVariable) {
 			VTKPositionDataVariable positionVariable = (VTKPositionDataVariable)variable;
 			return "Position";
@@ -121,6 +137,25 @@ public class VTKDataset : Dataset {
 		return "";
 	}
 
+	public override int GetVariableDimensions(DataVariable variable) {
+			if(!validateVariable(variable)) {
+			Debug.LogError("Variable is not a valid VTK variable for this VTK dataset.");
+		}
+
+		if(variable is VTKDataVariable) {
+			VTKDataVariable vtkVariable = (VTKDataVariable)(variable);
+			
+			VTK.vtkAbstractArray abstractArray = GetAbstractArray(vtkVariable);
+			if(abstractArray != null) {
+				return abstractArray.GetNumberOfComponents();
+			}
+		} else if(variable is VTKPositionDataVariable) {
+			VTKPositionDataVariable positionVariable = (VTKPositionDataVariable)variable;
+			return 3;
+		}
+		
+		return 0;
+	}
 	public override bool IsVector(DataVariable variable) {
 		if(variable is VTKDataVariable) {
 			VTKDataVariable vtkVariable = (VTKDataVariable)(variable);

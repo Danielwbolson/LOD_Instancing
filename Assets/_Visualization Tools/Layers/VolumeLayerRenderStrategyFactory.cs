@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System;
+namespace DEPRECATED{
 
 [CreateAssetMenu()]
 public class VolumeLayerRenderStrategyFactory : LayerRenderStrategyFactory {
@@ -12,4 +13,5 @@ public class VolumeLayerRenderStrategyFactory : LayerRenderStrategyFactory {
 	public override LayerRenderStrategy Create(Layer layer) {
 		return new VolumeLayerRenderStrategy(layer,_volumeMesh, _volumeMaterial );
 	}
+}
 }

@@ -28,27 +28,16 @@ public class DataVariable : Variable {
 		return _dataset.GetVariableName(this);
 	}
 
-	public override bool IsVector() {
-		return false;
-	}
-
-	public override bool IsScalar() {
-		return false;
+	public override int GetDimensionality() {
+		return GetDataSet().GetVariableDimensions(this) ;
 	}
 
 	public override void Bind(Material material, int bindSlot, int instanceID = 0, int timeStep = 0) {
 		_dataset.Bind(this, material, bindSlot, instanceID, timeStep);
 	}
 
-	
-	public override VariableType GetVariableType() {
-		if(GetDataSet().IsVolume()) {
-			return VariableType.Volume;
-		} else if(GetDataSet().IsMesh()) {
-			return VariableType.Mesh;
-		} else if(GetDataSet().IsPath()) {
-			return VariableType.Path;
-		} else  return VariableType.Unknown;
+	public override DataDimensionType GetVariableType() {
+		return GetDataSet().GetDataDimensionType();
 	}
 
 }

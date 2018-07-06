@@ -10,6 +10,11 @@ public class VTKPositionDataVariable : DataVariable {
 		return true;
 	}
 
+	
+
+	public virtual DataDimensionType GetVariableDimensionType() {
+		return GetDataSet().GetDataDimensionType();
+	}
 
 }
 }
