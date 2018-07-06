@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17799494, g: 0.22285916, b: 0.30497265, a: 1}
+  m_IndirectSpecularColor: {r: 0.17799479, g: 0.22285886, b: 0.30497253, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -171,27 +171,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4356263491337220, guid: 9723f129ebb084465910186df35f3bd9, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.17102382
+      value: -0.11491739
       objectReference: {fileID: 0}
     - target: {fileID: 4356263491337220, guid: 9723f129ebb084465910186df35f3bd9, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.8369801
+      value: -0.036024276
       objectReference: {fileID: 0}
     - target: {fileID: 4356263491337220, guid: 9723f129ebb084465910186df35f3bd9, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -0.39387298
+      value: -0.14792138
       objectReference: {fileID: 0}
     - target: {fileID: 4356263491337220, guid: 9723f129ebb084465910186df35f3bd9, type: 2}
       propertyPath: m_LocalScale.x
-      value: 0.5182539
+      value: 0.07204855
       objectReference: {fileID: 0}
     - target: {fileID: 4356263491337220, guid: 9723f129ebb084465910186df35f3bd9, type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.5182539
+      value: 0.07204855
       objectReference: {fileID: 0}
     - target: {fileID: 4356263491337220, guid: 9723f129ebb084465910186df35f3bd9, type: 2}
       propertyPath: m_LocalScale.z
-      value: 0.5182539
+      value: 0.07204855
       objectReference: {fileID: 0}
     - target: {fileID: 114724446188682722, guid: 9723f129ebb084465910186df35f3bd9,
         type: 2}
@@ -348,32 +348,32 @@ Prefab:
     - target: {fileID: 114724446188682722, guid: 9723f129ebb084465910186df35f3bd9,
         type: 2}
       propertyPath: _innerSceneScale.x
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 114724446188682722, guid: 9723f129ebb084465910186df35f3bd9,
         type: 2}
       propertyPath: _innerSceneTransform.e00
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 114724446188682722, guid: 9723f129ebb084465910186df35f3bd9,
         type: 2}
       propertyPath: _innerSceneScale.y
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 114724446188682722, guid: 9723f129ebb084465910186df35f3bd9,
         type: 2}
       propertyPath: _innerSceneTransform.e11
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 114724446188682722, guid: 9723f129ebb084465910186df35f3bd9,
         type: 2}
       propertyPath: _innerSceneScale.z
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 114724446188682722, guid: 9723f129ebb084465910186df35f3bd9,
         type: 2}
       propertyPath: _innerSceneTransform.e22
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 114724446188682722, guid: 9723f129ebb084465910186df35f3bd9,
         type: 2}
@@ -388,7 +388,7 @@ Prefab:
     - target: {fileID: 114724446188682722, guid: 9723f129ebb084465910186df35f3bd9,
         type: 2}
       propertyPath: _innerSceneTransform.e13
-      value: -0.43
+      value: -1.61
       objectReference: {fileID: 0}
     - target: {fileID: 4356263491337220, guid: 9723f129ebb084465910186df35f3bd9, type: 2}
       propertyPath: m_LocalRotation.x
@@ -408,27 +408,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4356263491337220, guid: 9723f129ebb084465910186df35f3bd9, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.68
+      value: -1.28
       objectReference: {fileID: 0}
     - target: {fileID: 4356263491337220, guid: 9723f129ebb084465910186df35f3bd9, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.43
+      value: -1.61
       objectReference: {fileID: 0}
     - target: {fileID: 4356263491337220, guid: 9723f129ebb084465910186df35f3bd9, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.21
       objectReference: {fileID: 0}
     - target: {fileID: 4356263491337220, guid: 9723f129ebb084465910186df35f3bd9, type: 2}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4356263491337220, guid: 9723f129ebb084465910186df35f3bd9, type: 2}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4356263491337220, guid: 9723f129ebb084465910186df35f3bd9, type: 2}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 114724446188682722, guid: 9723f129ebb084465910186df35f3bd9,
         type: 2}
@@ -438,12 +438,12 @@ Prefab:
     - target: {fileID: 114724446188682722, guid: 9723f129ebb084465910186df35f3bd9,
         type: 2}
       propertyPath: _innerSceneTransform.e03
-      value: 0.68
+      value: -1.28
       objectReference: {fileID: 0}
     - target: {fileID: 114724446188682722, guid: 9723f129ebb084465910186df35f3bd9,
         type: 2}
       propertyPath: _innerSceneTransform.e23
-      value: 0
+      value: -0.21
       objectReference: {fileID: 0}
     - target: {fileID: 114724446188682722, guid: 9723f129ebb084465910186df35f3bd9,
         type: 2}
@@ -470,12 +470,17 @@ Prefab:
     - target: {fileID: 114724446188682722, guid: 9723f129ebb084465910186df35f3bd9,
         type: 2}
       propertyPath: _innerSceneOrigin.x
-      value: 0.68
+      value: -1.28
       objectReference: {fileID: 0}
     - target: {fileID: 114724446188682722, guid: 9723f129ebb084465910186df35f3bd9,
         type: 2}
       propertyPath: _innerSceneOrigin.y
-      value: -0.43
+      value: -1.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 114724446188682722, guid: 9723f129ebb084465910186df35f3bd9,
+        type: 2}
+      propertyPath: _innerSceneOrigin.z
+      value: -0.21
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9723f129ebb084465910186df35f3bd9, type: 2}
@@ -623,32 +628,32 @@ Prefab:
     - target: {fileID: 114724446188682722, guid: 9723f129ebb084465910186df35f3bd9,
         type: 2}
       propertyPath: _innerSceneScale.x
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 114724446188682722, guid: 9723f129ebb084465910186df35f3bd9,
         type: 2}
       propertyPath: _innerSceneTransform.e00
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 114724446188682722, guid: 9723f129ebb084465910186df35f3bd9,
         type: 2}
       propertyPath: _innerSceneScale.y
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 114724446188682722, guid: 9723f129ebb084465910186df35f3bd9,
         type: 2}
       propertyPath: _innerSceneTransform.e11
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 114724446188682722, guid: 9723f129ebb084465910186df35f3bd9,
         type: 2}
       propertyPath: _innerSceneScale.z
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 114724446188682722, guid: 9723f129ebb084465910186df35f3bd9,
         type: 2}
       propertyPath: _innerSceneTransform.e22
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 114724446188682722, guid: 9723f129ebb084465910186df35f3bd9,
         type: 2}
@@ -663,7 +668,7 @@ Prefab:
     - target: {fileID: 114724446188682722, guid: 9723f129ebb084465910186df35f3bd9,
         type: 2}
       propertyPath: _innerSceneTransform.e13
-      value: -0.43
+      value: -1.61
       objectReference: {fileID: 0}
     - target: {fileID: 4356263491337220, guid: 9723f129ebb084465910186df35f3bd9, type: 2}
       propertyPath: m_LocalRotation.x
@@ -683,11 +688,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4356263491337220, guid: 9723f129ebb084465910186df35f3bd9, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.58
+      value: -1.28
       objectReference: {fileID: 0}
     - target: {fileID: 4356263491337220, guid: 9723f129ebb084465910186df35f3bd9, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.43
+      value: -1.61
       objectReference: {fileID: 0}
     - target: {fileID: 4356263491337220, guid: 9723f129ebb084465910186df35f3bd9, type: 2}
       propertyPath: m_LocalPosition.z
@@ -695,15 +700,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4356263491337220, guid: 9723f129ebb084465910186df35f3bd9, type: 2}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4356263491337220, guid: 9723f129ebb084465910186df35f3bd9, type: 2}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4356263491337220, guid: 9723f129ebb084465910186df35f3bd9, type: 2}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 114724446188682722, guid: 9723f129ebb084465910186df35f3bd9,
         type: 2}
@@ -713,7 +718,7 @@ Prefab:
     - target: {fileID: 114724446188682722, guid: 9723f129ebb084465910186df35f3bd9,
         type: 2}
       propertyPath: _innerSceneTransform.e03
-      value: 0.58
+      value: -1.28
       objectReference: {fileID: 0}
     - target: {fileID: 114724446188682722, guid: 9723f129ebb084465910186df35f3bd9,
         type: 2}
@@ -745,12 +750,12 @@ Prefab:
     - target: {fileID: 114724446188682722, guid: 9723f129ebb084465910186df35f3bd9,
         type: 2}
       propertyPath: _innerSceneOrigin.x
-      value: 0.58
+      value: -1.28
       objectReference: {fileID: 0}
     - target: {fileID: 114724446188682722, guid: 9723f129ebb084465910186df35f3bd9,
         type: 2}
       propertyPath: _innerSceneOrigin.y
-      value: -0.43
+      value: -1.61
       objectReference: {fileID: 0}
     - target: {fileID: 114724446188682722, guid: 9723f129ebb084465910186df35f3bd9,
         type: 2}
@@ -791,7 +796,7 @@ Light:
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -1085,27 +1090,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4356263491337220, guid: 9723f129ebb084465910186df35f3bd9, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.1528298
+      value: -0.11491739
       objectReference: {fileID: 0}
     - target: {fileID: 4356263491337220, guid: 9723f129ebb084465910186df35f3bd9, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.7479397
+      value: -0.036024276
       objectReference: {fileID: 0}
     - target: {fileID: 4356263491337220, guid: 9723f129ebb084465910186df35f3bd9, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -0.35197163
+      value: -0.14792138
       objectReference: {fileID: 0}
     - target: {fileID: 4356263491337220, guid: 9723f129ebb084465910186df35f3bd9, type: 2}
       propertyPath: m_LocalScale.x
-      value: 0.46312055
+      value: 0.07204855
       objectReference: {fileID: 0}
     - target: {fileID: 4356263491337220, guid: 9723f129ebb084465910186df35f3bd9, type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.46312055
+      value: 0.07204855
       objectReference: {fileID: 0}
     - target: {fileID: 4356263491337220, guid: 9723f129ebb084465910186df35f3bd9, type: 2}
       propertyPath: m_LocalScale.z
-      value: 0.46312055
+      value: 0.07204855
       objectReference: {fileID: 0}
     - target: {fileID: 114724446188682722, guid: 9723f129ebb084465910186df35f3bd9,
         type: 2}

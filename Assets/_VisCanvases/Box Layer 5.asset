@@ -14,7 +14,7 @@ MonoBehaviour:
   _visible: 0
   _active: 0
   _boxBounds:
-    m_Center: {x: -1.06, y: 1.11, z: 1.52}
-    m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    m_Center: {x: 10.19, y: -0.5, z: 1.52}
+    m_Extent: {x: 5, y: 5, z: 5}
   _boxMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
   _boxMaterial: {fileID: 2100000, guid: d64d286c55cec497291b5fbf027fe0e6, type: 2}
