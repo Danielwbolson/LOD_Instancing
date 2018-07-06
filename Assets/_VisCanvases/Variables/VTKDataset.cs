@@ -10,13 +10,54 @@ public class VTKDataset : Dataset {
 
 	VTK.vtkDataSet _dataset;
 
-	protected override bool ValidateVariable(DataVariable variable) {
-		return base.ValidateVariable(variable) && (variable is VTKDataVariable || variable is VTKPositionDataVariable);
+	protected override int queryNumberOfVariables() {
+		return (_dataset.IsA("vtkPointSet")?1:0) /* <- position*/ + _dataset.GetPointData().GetNumberOfArrays() + _dataset.GetCellData().GetNumberOfArrays() ;
+	}
+	protected override Variable generateVarible(int i) {
+		int numPointArrays = _dataset.GetPointData().GetNumberOfArrays();
+		int numCellArrays = _dataset.GetCellData().GetNumberOfArrays();
+		VTK.vtkAbstractArray abstractArray;
+
+		int positionOffset = (_dataset.IsA("vtkPointSet")?1:0);
+
+		if(positionOffset == 1 &&  i == 0 ) {
+			abstractArray = VTK.vtkAbstractArray.SafeDownCast(_dataset.GetPointData());	
+		} else if(i < numPointArrays + positionOffset) {
+			abstractArray = _dataset.GetPointData().GetAbstractArray(i-1);
+		} else if (i < numPointArrays + numCellArrays + positionOffset) {
+
+		}
+
+		return null;
+	}
+	public void Print() {
+		if(_dataset != null) {
+			Debug.Log(_dataset.GetClassName());
+			// VTK.vtkAbstractArray abstractArray = _dataset.GetPointData()
+			VTK.vtkPointSet pointSet = null;
+			if(_dataset.IsA("vtkPointSet"))
+				pointSet = VTK.vtkPointSet.SafeDownCast(_dataset);
+			
+			if(pointSet != null)
+				Debug.Log("<Position> " + pointSet.GetNumberOfPoints() );
+			for(int i = 0; i < _dataset.GetPointData().GetNumberOfArrays(); i++) {
+				Debug.Log(_dataset.GetPointData().GetArrayName(i) + _dataset.GetPointData().GetAbstractArray(i).GetNumberOfTuples());
+			}
+		}
+	}
+	public void SetDatasetPath(string path) {
+		_datasetPath = path;
+	}
+	public void LoadDataset() {
+		_dataset = DataLoader.LoadVTKDataSet(_datasetPath);
+	}
+	protected override bool validateVariable(DataVariable variable) {
+		return base.validateVariable(variable) && (variable is VTKDataVariable || variable is VTKPositionDataVariable);
 	} 
 
 
 	public override void Bind(DataVariable variable, Material material, int bindSlot, int instanceID = 0, int timeStep = 0) {
-		if(!ValidateVariable(variable)) {
+		if(!validateVariable(variable)) {
 			Debug.LogError("Variable is not a valid VTK variable for this VTK dataset.");
 		}
 	}
@@ -35,8 +76,9 @@ public class VTKDataset : Dataset {
 		return _dataset is VTK.vtkImageData; 
 	}
 
+
 	public override string GetVariableName(DataVariable variable) {
-		if(!ValidateVariable(variable)) {
+		if(!validateVariable(variable)) {
 			Debug.LogError("Variable is not a valid VTK variable for this VTK dataset.");
 		}
 

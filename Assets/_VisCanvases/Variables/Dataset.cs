@@ -8,7 +8,7 @@ public abstract class Dataset : ScriptableObject {
 	[SerializeField]
 	private HashSet<DataVariable> _variables;
 
-	protected virtual bool ValidateVariable(DataVariable variable) {
+	protected virtual bool validateVariable(DataVariable variable) {
 		return _variables.Contains(variable);
 	} 
 	public virtual void Bind(DataVariable variable, Material material, int bindSlot, int instanceID = 0, int timeStep = 0) {
@@ -17,6 +17,18 @@ public abstract class Dataset : ScriptableObject {
 		}
 	}
 
+	protected virtual int queryNumberOfVariables() {
+		return 0;
+	}
+	protected virtual Variable generateVarible(int i) {
+		return null;
+	}
+	protected void populateVariables() {
+		int numVariables = queryNumberOfVariables();
+		for(int v = 0; v < numVariables; v++) {
+
+		}
+	}
 	public virtual string GetVariableName(DataVariable variable) {
 		if(!_variables.Contains(variable)) {
 			Debug.LogError("Data set does not contain variable.");
