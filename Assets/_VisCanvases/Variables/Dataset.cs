@@ -11,9 +11,44 @@ public abstract class Dataset : ScriptableObject {
 	[SerializeField]
 	private HashSet<DataVariable> _anchors;
 
+
+	[SerializeField]
+	private DatastreamDirectory _streams;
+	
 	protected virtual bool validateVariable(DataVariable variable) {
 		return (_variables!= null) && _variables.Contains(variable);
 	} 
+
+	protected abstract Datastream lookupDataStream(DataVariable variable, DataVariable anchor, int instanceID = 0, int timeStep = 0) ;
+
+	public Datastream GetDatastream(DataVariable variable, DataVariable anchor, int instanceID = 0, int timeStep = 0) {
+		if(variable.IsAnchor()) {
+			Debug.LogError("Datastream Query variable must not be an anchor.");
+		} else if(!anchor.IsAnchor()) {
+			Debug.LogError("Datastream Anchor variable must be an anchor.");
+		} else if (!_variables.Contains(variable) || !_anchors.Contains(anchor)) {
+			Debug.LogError("Dataset does not contain either the variable or the anchor.");
+		} else {
+			lookupDataStream(variable,anchor,instanceID,timeStep);
+		}
+
+		return null;
+	}
+
+	public Datastream GetDatastream(DataVariable variable, int instanceID = 0, int timeStep = 0) {
+		if(variable.IsAnchor()) {
+			Debug.LogError("Datastream Query variable must not be an anchor.");
+		} else if(GetDataDimensionType() != DataDimensionType.Volume) {
+			Debug.LogError("Currently only Volume data can be accessed without an anchor.");
+		} else if (!_variables.Contains(variable)) {
+			Debug.LogError("Dataset does not contain the query variable.");
+		} else {
+			lookupDataStream(variable,null,instanceID,timeStep);
+		}
+
+		return null;
+	}
+
 	public virtual void Bind(DataVariable variable, Material material, int bindSlot, int instanceID = 0, int timeStep = 0) {
 		if(!_variables.Contains(variable)) {
 			Debug.LogError("Data set does not contain variable.");

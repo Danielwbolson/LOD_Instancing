@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace VisBySculpting {
-public class VTKPositionDataVariable : DataVariable {
-	
+public class Datastream : ScriptableObject {
 
-	public override bool IsAnchor() {
-		return true;
-	}
 
 }
+
 }
