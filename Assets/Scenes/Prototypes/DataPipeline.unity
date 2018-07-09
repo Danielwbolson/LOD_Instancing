@@ -216,7 +216,7 @@ MonoBehaviour:
   _database: {fileID: 208021490}
   _dataObjectPrefab: {fileID: 1064973094014948, guid: 7dc21751a8b3d463baf0c46db23ea5a3,
     type: 2}
-  _filePath: /Users/sethjohnson/NSF-Sculpting-Vis-Platform/unity/VisualizationPlatform/Assets/StreamingAssets/example_data/VTK/wavelet.vti
+  _filePath: example_data/VTK/wavelet.vti
   _root: {fileID: 1794577195}
 --- !u!1 &430200851
 GameObject:
