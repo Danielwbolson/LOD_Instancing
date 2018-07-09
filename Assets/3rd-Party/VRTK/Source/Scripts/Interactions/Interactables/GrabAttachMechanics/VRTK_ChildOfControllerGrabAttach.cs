@@ -70,11 +70,21 @@ namespace VRTK.GrabAttachMechanics
 
         protected virtual void SnapObjectToGrabToController(GameObject obj)
         {
+            Debug.Log("test");
             if (!precisionGrab)
             {
                 SetSnappedObjectPosition(obj);
             }
             obj.transform.SetParent(controllerAttachPoint.transform);
+
+
+
+            GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            sphere.AddComponent<MeshFilter>();
+            sphere.AddComponent<SphereCollider>();
+            sphere.AddComponent<MeshRenderer>();
+            sphere.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            sphere.transform.position = controllerAttachPoint.transform.position;
         }
     }
 }
