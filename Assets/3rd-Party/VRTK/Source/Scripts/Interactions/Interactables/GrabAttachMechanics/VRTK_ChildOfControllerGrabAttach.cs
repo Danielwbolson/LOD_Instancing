@@ -69,16 +69,14 @@ namespace VRTK.GrabAttachMechanics
         }
 
         protected virtual void SnapObjectToGrabToController(GameObject obj)
-        {
-            Debug.Log("test");
+        { 
             if (!precisionGrab)
             {
                 SetSnappedObjectPosition(obj);
             }
             obj.transform.SetParent(controllerAttachPoint.transform);
 
-
-
+            // Quick demo showing that we can get a reference to the specific point that we clicked
             GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             sphere.AddComponent<MeshFilter>();
             sphere.AddComponent<SphereCollider>();
