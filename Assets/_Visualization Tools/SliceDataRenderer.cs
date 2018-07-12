@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using System;
 using UnityEngine.UI;
 
+namespace DEPRECATED{
 
 [ExecuteInEditMode]
 public class SliceDataRenderer : DataRenderer {
@@ -27,4 +28,5 @@ public class SliceDataRenderer : DataRenderer {
         GetComponent<MeshRenderer>().material = GetMaterial();
     }
         
+}
 }

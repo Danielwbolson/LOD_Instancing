@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System;
+namespace DEPRECATED{
 
 [Serializable]
 public abstract class Strategy : ScriptableObject {
@@ -19,4 +20,5 @@ public abstract class Strategy : ScriptableObject {
 
 	public abstract void RenderGUI();
 
+}
 }

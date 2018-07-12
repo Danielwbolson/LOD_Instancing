@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using System;
 
+namespace DEPRECATED{
 
 [System.Serializable]
 
@@ -19,4 +20,6 @@ public class PlaceholderLayerDataStrategy : LayerDataStrategy {
 		GUILayout.EndHorizontal();
 		GUILayout.EndVertical();
 	}
+}
+
 }

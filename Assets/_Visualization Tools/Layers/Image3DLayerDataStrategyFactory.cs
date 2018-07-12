@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System;
+namespace DEPRECATED{
 
 [CreateAssetMenu()]
 public class Image3DLayerDataStrategyFactory : LayerDataStrategyFactory {
@@ -10,4 +11,5 @@ public class Image3DLayerDataStrategyFactory : LayerDataStrategyFactory {
 	public override LayerDataStrategy Create(Layer layer) {
 		return new Image3DLayerDataStrategy(layer);
 	}
+}
 }

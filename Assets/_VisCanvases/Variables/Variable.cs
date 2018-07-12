@@ -2,17 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace VisBySculpting {
-public class Variable : ScriptableObject {
-	public enum VariableType {
-		Unknown = 0,
-		Volume,
-		Mesh,
-		Path,
+namespace SculptingVis {
+	public enum DataDimensionType {
+		Point = 0,
+		Path = 1,
+		Mesh = 2,
+		Volume = 3,
+		Unknown = -1,
 	}
 
-	public virtual VariableType GetVariableType() {
-		return VariableType.Unknown;
+public class Variable : ScriptableObject {
+
+
+	// protected abstract Datastream generateDatastream();
+
+	public virtual Datastream GetStream(DataVariable anchor, int instanceID, int timestep) {
+		return null;
+	}
+	public override string ToString()
+    {
+		return GetVariableType() + (GetDimensionality() == 1 ? " scalar" : " "+GetDimensionality() + "D vector")  + (IsAnchor()? " anchor" : "") + " variable \"" + GetName() + "\""; 
+    } 
+
+	public void Init() {
+
+	}
+	public virtual DataDimensionType GetVariableType() {
+		return DataDimensionType.Unknown;
 	}
 
 	public virtual bool IsAnchor() {
@@ -23,12 +39,8 @@ public class Variable : ScriptableObject {
 		return "Unknown";
 	}
 
-	public virtual bool IsVector() {
-		return false;
-	}
-
-	public virtual bool IsScalar() {
-		return false;
+	public virtual int GetDimensionality() {
+		return 0;
 	}
 
 	public virtual void Bind(Material material, int bindSlot, int instanceID = 0, int timeStep = 0) {
