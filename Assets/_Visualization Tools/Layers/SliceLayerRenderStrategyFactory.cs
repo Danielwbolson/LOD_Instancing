@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEditor;
 using System;
 
+namespace DEPRECATED{
+
 [CreateAssetMenu()]
 public class SliceLayerRenderStrategyFactory : LayerRenderStrategyFactory {
 	[SerializeField]
@@ -14,4 +16,5 @@ public class SliceLayerRenderStrategyFactory : LayerRenderStrategyFactory {
 	public override LayerRenderStrategy Create(Layer layer) {
 		return new SliceLayerRenderStrategy(layer, _slicePrefab, _sliceMaterial );
 	}
+}
 }

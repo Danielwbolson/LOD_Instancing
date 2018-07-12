@@ -2,6 +2,9 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+
+namespace DEPRECATED{
+
 namespace DV
 {
     public struct DVSample
@@ -55,4 +58,6 @@ namespace DV
         {
         }
     }
+}
+
 }

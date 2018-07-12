@@ -41,7 +41,7 @@ namespace VRTK.GrabAttachMechanics
         {
             if (base.StartGrab(grabbingObject, givenGrabbedObject, givenControllerAttachPoint))
             {
-                SnapObjectToGrabToController(givenGrabbedObject);
+                SnapObjectToGrabToController(givenGrabbedObject.transform.GetChild(0).gameObject);
                 return true;
             }
             return false;

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+namespace DEPRECATED{
+
 [ExecuteInEditMode]
 public class DataRenderer : MonoBehaviour
 {
@@ -109,4 +111,5 @@ public class DataRenderer : MonoBehaviour
         transform.hideFlags = HideFlags.None;
     }
 
+}
 }

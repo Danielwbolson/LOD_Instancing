@@ -5,6 +5,7 @@ using UnityEditor;
 using System;
 using System.IO;
 
+namespace DEPRECATED{
 
 public class Image3DLayerDataStrategy : LayerDataStrategy {
 	public Image3DLayerDataStrategy(Layer layer) : base(layer) {
@@ -77,5 +78,7 @@ public class Image3DLayerDataStrategy : LayerDataStrategy {
 		GUILayout.EndHorizontal();
 		GUILayout.EndVertical();
 	}
+
+}
 
 }

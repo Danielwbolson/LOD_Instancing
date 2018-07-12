@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace VisBySculpting
+namespace SculptingVis
 {
     // only works for up to two trackers.
     public class ModelAligner : MonoBehaviour

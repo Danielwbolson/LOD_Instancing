@@ -5,6 +5,7 @@ using UnityEditor;
 using System;
 using VTK;
 
+namespace DEPRECATED{
 
 public class SliceLayerRenderStrategy  : LayerRenderStrategy {
 
@@ -77,4 +78,5 @@ public class SliceLayerRenderStrategy  : LayerRenderStrategy {
 		GUILayout.EndVertical();
 	}
 
+}
 }

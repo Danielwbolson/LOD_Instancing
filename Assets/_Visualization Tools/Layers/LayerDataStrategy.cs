@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using System;
 
+namespace DEPRECATED{
 
 [System.Serializable]
 public abstract class LayerDataStrategy : Strategy {
@@ -13,4 +14,5 @@ public abstract class LayerDataStrategy : Strategy {
 	public virtual DataObject [] GetDataObjects() {return null;}
 
 
+}
 }

@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace VisBySculpting {
+namespace SculptingVis 
+{
 public class VTKDataVariable : DataVariable {
 	
 	public enum ArrayType {
@@ -16,10 +17,19 @@ public class VTKDataVariable : DataVariable {
 	[SerializeField]
 	ArrayType _arrayType;
 
-	public VTKDataVariable(ArrayType arrayType, int arrayID) {
+	public void Init(VTKDataset dataset, ArrayType arrayType, int arrayID) {
+		base.Init(dataset);
+
+
+  //      VTKDatastreamChannel vtkchannel = CreateInstance<VTKDatastreamChannel>();
+  //      vtkchannel.Init(dataset.)
+  //      Datastream stream = CreateInstance<Datastream>();
+  //      stream.Init()
+		//SetDatastream()
 		_arrayType = arrayType;
 		_arrayID = arrayID;
 	}
+
 
 	public bool IsCellVariable() {
 		return _arrayType == ArrayType.Cell;

@@ -7,6 +7,7 @@ using System.IO;
 using UnityEditor;
 
 
+namespace DEPRECATED{
 
 [CustomEditor(typeof(DataLoader))]
 public class DataLoaderEditor : Editor
@@ -33,7 +34,7 @@ public class DataLoader : MonoBehaviour {
     GameObject _dataObjectPrefab;
     public string _filePath;
 
-    [SerializeField, HideInInspector]
+    [SerializeField]
     Transform _root;
 
         // Want to change this to be a loading strategy
@@ -63,7 +64,10 @@ public class DataLoader : MonoBehaviour {
     static public vtkDataSet LoadVTKDataSet(string filePath)
         {
 
-        string path = Application.streamingAssetsPath + "/" + filePath;
+            
+        string path;
+        if(filePath[0] == '/') path = filePath;
+        else path = Application.streamingAssetsPath + "/" + filePath;
         vtkXMLDataReader reader = IntPtr.Zero;
         if (!File.Exists(path))
         {
@@ -102,4 +106,5 @@ public class DataLoader : MonoBehaviour {
         }
 
     }
+}
 }

@@ -5,6 +5,7 @@ using System;
 
 using VTK;
 
+namespace DEPRECATED{
 
 public class VariableList {
     [SerializeField, HideInInspector]
@@ -94,4 +95,5 @@ public class VariableList {
         return _names;
     } 
 
+}
 }

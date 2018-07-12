@@ -6,6 +6,7 @@ using VTK;
 using System.Runtime.InteropServices;
 using System;
 
+namespace DEPRECATED{
 
 
 
@@ -219,4 +220,5 @@ public class DataObject : MonoBehaviour {
 
 
    
+}
 }

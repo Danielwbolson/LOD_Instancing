@@ -2,18 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace VisBySculpting {
+namespace SculptingVis {
 public class VTKPositionDataVariable : DataVariable {
 	
-
-	public VTKPositionDataVariable() {
-
-	}
 
 	public override bool IsAnchor() {
 		return true;
 	}
-
 
 }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using System;
 
+namespace DEPRECATED{
 
 public abstract class StrategyFactory<T> : ScriptableObject {
 	private Layer _layer;
@@ -12,4 +13,5 @@ public abstract class StrategyFactory<T> : ScriptableObject {
 	public void SetLayer(Layer l) {
 		_layer = l;
 	}
+}
 }

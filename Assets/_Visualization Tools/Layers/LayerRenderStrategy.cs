@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+namespace DEPRECATED{
 [System.Serializable]
 public abstract class LayerRenderStrategy : Strategy {
 
@@ -88,5 +89,7 @@ public abstract class LayerRenderStrategy : Strategy {
 				}
 		base.Destroy();
 	}
+
+}
 
 }

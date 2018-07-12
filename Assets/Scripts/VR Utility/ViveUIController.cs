@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace VisBySculpting
+namespace SculptingVis
 {
     public class ViveUIController : MonoBehaviour
     {

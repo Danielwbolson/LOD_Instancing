@@ -6,6 +6,7 @@ using System;
 using System.IO;
 using UnityEditor;
 
+namespace DEPRECATED{
 
 [CustomEditor(typeof(Database))]
 public class DatabaseEditor : Editor
@@ -81,4 +82,5 @@ public class Database : MonoBehaviour {
         public DataObject GetDataObject(int index) {
             return _dataObjects[index];
         }
+}
 }

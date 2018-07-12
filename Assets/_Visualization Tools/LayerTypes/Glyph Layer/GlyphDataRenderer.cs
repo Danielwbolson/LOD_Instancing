@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace DEPRECATED{
+
 [ExecuteInEditMode]
 public class GlyphDataRenderer : DataRenderer {
 
@@ -14,4 +16,5 @@ public class GlyphDataRenderer : DataRenderer {
 	void Update () {
 		transform.localPosition = new Vector3(0,0,0);
 	}
+}
 }
