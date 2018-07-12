@@ -23,6 +23,10 @@ public class VTKDataVariable : DataVariable {
 		_arrayID = arrayID;
 	}
 
+	public Datastream GetStream(Variable anchor, int instanceID, int timestep) {
+		return null;
+	}
+
 	public bool IsCellVariable() {
 		return _arrayType == ArrayType.Cell;
 	}

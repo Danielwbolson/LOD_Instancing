@@ -4,7 +4,9 @@ using UnityEngine;
 
 
 namespace VisBySculpting {
-public class VTKDatastream : Datastream {
+public abstract class DatastreamChannel : ScriptableObject {
+    public abstract int GetNumberOfElements();
+
 
 }
 }

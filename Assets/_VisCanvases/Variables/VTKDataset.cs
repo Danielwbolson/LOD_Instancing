@@ -13,6 +13,28 @@ public class VTKDataset : Dataset {
 	[SerializeField]
 	VTKPositionDataVariable _anchorVariable;
 	
+	[SerializeField]
+	int _instanceID = 0;
+
+	[SerializeField]
+	int _timestep = 0;
+
+	public void Init(string path, int instanceID, int timestep) {
+		this.SetDatasetPath(path);
+		_instanceID = instanceID;
+		_timestep = timestep;
+	}
+	protected override Datastream lookupDataStream(DataVariable variable, DataVariable anchor, int instanceID = 0, int timeStep = 0) {
+		return null;
+	}
+
+	public override bool ContainsInstanceID(int instanceID) {
+		return instanceID == _instanceID;
+	}
+	public override bool ContainsTimestep(int timestep) {
+		return timestep == _timestep;
+	}
+
 	protected override int queryNumberOfVariables() {
 		return (_dataset.IsA("vtkPointSet")?1:0) /* <- position*/ + _dataset.GetPointData().GetNumberOfArrays() + _dataset.GetCellData().GetNumberOfArrays() ;
 	}
@@ -29,7 +51,7 @@ public class VTKDataset : Dataset {
 			result = var;
 
 		} else if(i < numPointArrays + positionOffset) {
-			abstractArray = _dataset.GetPointData().GetAbstractArray(i-1);
+			abstractArray = _dataset.GetPointData().GetAbstractArray(i-positionOffset);
 			VTKDataVariable var = ScriptableObject.CreateInstance<VTKDataVariable>();
 			var.Init(this, VTKDataVariable.ArrayType.Point, i - positionOffset);
 			result = var;
@@ -44,6 +66,25 @@ public class VTKDataset : Dataset {
 
 
 		return result;
+	}
+
+	protected override DatastreamChannel generateDatastreamChannel(DataVariable variable) {
+		if(variable is VTKDataVariable) {
+			VTKDatastreamChannel vtkchannel = CreateInstance<VTKDatastreamChannel>();
+			int arrayID = ((VTKDataVariable)variable).GetArrayID();
+			VTK.vtkAbstractArray array;
+			if(((VTKDataVariable)variable).IsCellVariable()) {
+				array = _dataset.GetCellData().GetAbstractArray(arrayID);
+			} else {
+				array = _dataset.GetPointData().GetAbstractArray(arrayID);
+			}
+			vtkchannel.Init(array);
+			return vtkchannel;
+		} else if(variable is VTKPositionDataVariable) {
+			return null;
+		} else {
+			return null;
+		}
 	}
 	public void Print() {
 		if(_dataset != null) {
@@ -118,6 +159,7 @@ public class VTKDataset : Dataset {
 	public override string GetVariableName(DataVariable variable) {
 		if(!validateVariable(variable)) {
 			Debug.LogError("Variable is not a valid VTK variable for this VTK dataset.");
+			return "ERROR";
 		}
 
 		if(variable is VTKDataVariable) {
@@ -140,6 +182,7 @@ public class VTKDataset : Dataset {
 	public override int GetVariableDimensions(DataVariable variable) {
 			if(!validateVariable(variable)) {
 			Debug.LogError("Variable is not a valid VTK variable for this VTK dataset.");
+			return -1;
 		}
 
 		if(variable is VTKDataVariable) {

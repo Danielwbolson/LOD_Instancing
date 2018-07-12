@@ -9,14 +9,21 @@ public abstract class Dataset : ScriptableObject {
 	private HashSet<DataVariable> _variables;
 
 	[SerializeField]
-	private HashSet<DataVariable> _anchors;
+	private List<DataVariable> _anchors;
 
 
-	[SerializeField]
-	private DatastreamDirectory _streams;
+	public abstract bool ContainsInstanceID(int instanceID);
+	public abstract bool ContainsTimestep(int timestep);
+
+	// [SerializeField]
+	// private DatastreamDirectory _streams;
 	
+	// public DatastreamDirectory GetStreams() {
+	// 	if(_streams== null) _streams = CreateInstance<DatastreamDirectory>();
+	// 	return _streams;
+	// }
 	protected virtual bool validateVariable(DataVariable variable) {
-		return (_variables!= null) && _variables.Contains(variable);
+		return variable.IsAnchor()? ((_variables!= null) && _variables.Contains(variable)) :((_anchors!= null) && _anchors.Contains(variable))  ;
 	} 
 
 	protected abstract Datastream lookupDataStream(DataVariable variable, DataVariable anchor, int instanceID = 0, int timeStep = 0) ;
@@ -62,22 +69,32 @@ public abstract class Dataset : ScriptableObject {
 	protected virtual DataVariable generateVarible(int i) {
 		return null;
 	}
+
+	protected abstract DatastreamChannel generateDatastreamChannel(DataVariable variable);
+
 	protected void populateVariables() {
 
 		int numVariables = queryNumberOfVariables();
 		for(int v = 0; v < numVariables; v++) {
             DataVariable var = generateVarible(v);
+		
 			addVariable(var);
+
+			Datastream stream = CreateInstance<Datastream>();
+			stream.Init(generateDatastreamChannel(var));
+			//GetStreams().InsertDatastream(stream, var);
+
 		}
 	}
 
 	protected void addVariable(DataVariable variable) {
 		if(variable.IsAnchor()) {
-			if(_anchors == null) _anchors = new HashSet<DataVariable>();
+			if(_anchors == null) _anchors = new List<DataVariable>();
 			_anchors.Add(variable);
 		} else {
 			if(_variables == null) _variables = new HashSet<DataVariable>();
 			_variables.Add(variable);
+
 		}
 	}
 	public DataVariable[] GetVariables() {
@@ -85,6 +102,13 @@ public abstract class Dataset : ScriptableObject {
 		_variables.CopyTo(output);
 		return output;
 	}
+
+	public DataVariable[] GetAnchors() {
+		DataVariable [] output = new DataVariable[_anchors.Count];
+		_anchors.CopyTo(output);
+		return output;
+	}
+
 	public virtual string GetVariableName(DataVariable variable) {
 		if(!_variables.Contains(variable)) {
 			Debug.LogError("Data set does not contain variable.");

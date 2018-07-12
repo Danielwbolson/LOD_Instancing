@@ -7,12 +7,20 @@ public class DataVariable : Variable {
 	
 	[SerializeField]
 	Dataset _dataset;
+
+	[SerializeField]
+	Datastream _datastream;
+
 	public  void Init(Dataset dataset)
     {
 		base.Init();
 		_dataset = dataset;
 
     }
+
+	public override Datastream GetStream(Variable anchor, int instanceID, int timestep) {
+		return _dataset.GetDatastream(this, anchor is DataVariable? (DataVariable)anchor : null, instanceID,timestep);
+	}
 	// public virtual bool SetDataset(dataset) {
 	// 	_dataset = dataset;
 	// }

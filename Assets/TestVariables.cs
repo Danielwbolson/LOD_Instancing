@@ -23,12 +23,20 @@ public class TestVariablesrEditor : Editor
 public class TestVariables : MonoBehaviour {
 
 	public void Test() {
-		VTKDataset vtkds = new VTKDataset();
-		vtkds.SetDatasetPath("/example_data/VTK/contour.vtp");
+		VTKDataset vtkds = VTKDataset.CreateInstance<VTKDataset>();
+		vtkds.Init("/example_data/VTK/contour.vtp",0,0);
+		
 		vtkds.LoadDataset();
 	
 
 		Dataset ds = vtkds;
+
+
+		Variable[] ancs = ds.GetAnchors();	
+		foreach(Variable a in ancs ) {
+			print(a.ToString());
+		}
+
 
 		Variable[] vars = ds.GetVariables();	
 
