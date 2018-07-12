@@ -45,8 +45,16 @@
 			o.Smoothness = _Glossiness;
 			o.Alpha = c.a;
 
-			MARKBOUNDS;
-			STIPPLE_CROP;
+			// MARKBOUNDS;
+			// STIPPLE_CROP;
+
+
+			c = MarkBounds(IN.worldPos,c);
+			StippleCrop(IN.worldPos,IN.screenPos,_ScreenParams);
+
+			o.Albedo = c.rgb;
+			o.Alpha = c.a;
+
 		}
 		ENDCG
 	}

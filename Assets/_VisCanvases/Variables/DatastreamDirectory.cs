@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace VisBySculpting {
+namespace SculptingVis {
 public class DatastreamDirectory : ScriptableObject {
 
     // Dictionary<Variable/*Query Variable*/, 

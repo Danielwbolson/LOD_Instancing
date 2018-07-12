@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace VisBySculpting {
+namespace SculptingVis {
 public class VTKDataset : Dataset {
 	
 	[SerializeField]
@@ -25,6 +25,14 @@ public class VTKDataset : Dataset {
 		_timestep = timestep;
 	}
 	protected override Datastream lookupDataStream(DataVariable variable, DataVariable anchor, int instanceID = 0, int timeStep = 0) {
+        //if (validateVariable(variable)) {
+        //    if (anchor == null && GetDataDimensionType() == DataDimensionType.Volume)
+        //    {
+                
+        //    }
+        //}
+
+
 		return null;
 	}
 
@@ -78,10 +86,13 @@ public class VTKDataset : Dataset {
 			} else {
 				array = _dataset.GetPointData().GetAbstractArray(arrayID);
 			}
-			vtkchannel.Init(array);
+			vtkchannel.Init(_dataset, array);
 			return vtkchannel;
 		} else if(variable is VTKPositionDataVariable) {
-			return null;
+			VTKPositionDatastreamChannel vtkchannel = CreateInstance<VTKPositionDatastreamChannel>();
+
+			vtkchannel.Init(_dataset);
+			return vtkchannel;;
 		} else {
 			return null;
 		}
@@ -120,17 +131,18 @@ public class VTKDataset : Dataset {
 	}
 
 	public override bool IsPath() {
-		return _dataset is VTK.vtkPolyData &&  ((VTK.vtkPolyData)_dataset).GetNumberOfLines() > 0;
+		return _dataset.IsA("vtkPolyData") &&  (VTK.vtkPolyData.SafeDownCast(_dataset).GetNumberOfLines()) > 0;
 	}
 
 	public override bool IsMesh() {
 		if(_dataset.IsA("vtkPolyData") && (VTK.vtkPolyData.SafeDownCast(_dataset)).GetNumberOfPolys() > 0) return true;
-		else if(_dataset is VTK.vtkUnstructuredGrid ) return true;
+		else if(_dataset.IsA("vtkUnstructuredGrid")) return true;
 		else return false;
 	}
 
 	public override bool IsVolume() {
-		return _dataset is VTK.vtkImageData; // /* Perhaps verify the dimensionality of the image?*/ && VTK.vtkImageData.SafeDownCast(_dataset).GetDi; 
+		if(_dataset == null) return false;
+		return _dataset.IsA("vtkImageData"); // /* Perhaps verify the dimensionality of the image?*/ && VTK.vtkImageData.SafeDownCast(_dataset).GetDi; 
 	}
 
 
@@ -226,5 +238,10 @@ public class VTKDataset : Dataset {
 		return false;
 	}
 
+
+	public override Bounds GetBounds() {
+		if(_dataset == null) new Bounds();
+		return _dataset.GetBounds();
+	}
 }
 }

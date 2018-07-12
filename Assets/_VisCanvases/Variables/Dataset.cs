@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace VisBySculpting {
+namespace SculptingVis {
 public abstract class Dataset : ScriptableObject {
 
 	[SerializeField]
@@ -14,7 +14,7 @@ public abstract class Dataset : ScriptableObject {
 
 	public abstract bool ContainsInstanceID(int instanceID);
 	public abstract bool ContainsTimestep(int timestep);
-
+    public bool ContainsAnchor(DataVariable anchor) { return _anchors.Contains(anchor);}
 	// [SerializeField]
 	// private DatastreamDirectory _streams;
 	
@@ -23,7 +23,7 @@ public abstract class Dataset : ScriptableObject {
 	// 	return _streams;
 	// }
 	protected virtual bool validateVariable(DataVariable variable) {
-		return variable.IsAnchor()? ((_variables!= null) && _variables.Contains(variable)) :((_anchors!= null) && _anchors.Contains(variable))  ;
+		return !variable.IsAnchor()? ((_variables!= null) && _variables.Contains(variable)) :((_anchors!= null) && _anchors.Contains(variable));
 	} 
 
 	protected abstract Datastream lookupDataStream(DataVariable variable, DataVariable anchor, int instanceID = 0, int timeStep = 0) ;
@@ -81,7 +81,8 @@ public abstract class Dataset : ScriptableObject {
 			addVariable(var);
 
 			Datastream stream = CreateInstance<Datastream>();
-			stream.Init(generateDatastreamChannel(var));
+			stream.Init(var,generateDatastreamChannel(var));
+            var.SetStream(stream);
 			//GetStreams().InsertDatastream(stream, var);
 
 		}
@@ -98,12 +99,14 @@ public abstract class Dataset : ScriptableObject {
 		}
 	}
 	public DataVariable[] GetVariables() {
+		if(_variables == null) return new DataVariable[0];
 		DataVariable [] output = new DataVariable[_variables.Count];
 		_variables.CopyTo(output);
 		return output;
 	}
 
 	public DataVariable[] GetAnchors() {
+		if(_anchors == null) return new DataVariable[0];
 		DataVariable [] output = new DataVariable[_anchors.Count];
 		_anchors.CopyTo(output);
 		return output;
@@ -153,5 +156,6 @@ public abstract class Dataset : ScriptableObject {
 
 	public abstract bool IsVector(DataVariable variable);
 
+	public abstract Bounds GetBounds();
 }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace VisBySculpting {
+namespace SculptingVis {
 	public enum DataDimensionType {
 		Point = 0,
 		Path = 1,
@@ -16,7 +16,7 @@ public class Variable : ScriptableObject {
 
 	// protected abstract Datastream generateDatastream();
 
-	public virtual Datastream GetStream(Variable anchor, int instanceID, int timestep) {
+	public virtual Datastream GetStream(DataVariable anchor, int instanceID, int timestep) {
 		return null;
 	}
 	public override string ToString()

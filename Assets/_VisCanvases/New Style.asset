@@ -14,9 +14,4 @@ MonoBehaviour:
   _styleOriginMaterial: {fileID: 2100000, guid: da73a585d9ac37c4983bc612b400fa52,
     type: 2}
   _layers:
-  - {fileID: 11400000, guid: 42229631c58914a3cb7bcfa27234f419, type: 2}
-  - {fileID: 11400000, guid: 81621e5040df7406290746d36cbc6c35, type: 2}
-  - {fileID: 11400000, guid: 6dc79d3f81fde4304bd5a1192903d060, type: 2}
-  - {fileID: 11400000, guid: 1fdf2a98fefbf4781835c4dae796aa94, type: 2}
-  - {fileID: 11400000, guid: a77885578de4845d98feb483f020ef62, type: 2}
-  - {fileID: 11400000, guid: b901a05a7d48d0a4d8bd2e31eea9241a, type: 2}
+  - {fileID: 11400000, guid: 43164c7d0939d3944873669039082089, type: 2}

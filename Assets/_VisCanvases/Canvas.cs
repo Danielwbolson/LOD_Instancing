@@ -25,7 +25,7 @@ public class Canvas : MonoBehaviour {
 
 
 	[SerializeField]
-	Matrix4x4 _innerSceneTransform;
+	Transform _innerSceneTransform;
 
 	[SerializeField]
 	Vector3 _innerSceneOrigin;
@@ -59,6 +59,9 @@ public class Canvas : MonoBehaviour {
 	public void SetMaterialProperties(Material canvasMaterial) {
 		canvasMaterial.SetVector("_Color", _color);
 		canvasMaterial.SetMatrix("_InverseCanvas", transform.worldToLocalMatrix);
+		canvasMaterial.SetMatrix("_InverseCanvasInnerScene", GetInnerSceneTransformMatrix().inverse);
+		canvasMaterial.SetMatrix("_CanvasInnerScene", GetInnerSceneTransformMatrix());
+
 		canvasMaterial.SetVector("_CanvasBoundsCenter",_bounds.center);
 		canvasMaterial.SetVector("_CanvasBoundsExtent",_bounds.extents);
 		canvasMaterial.SetVector("_CanvasBoundsExtentThreshold",new Vector3(_extentThreshold,_extentThreshold,_extentThreshold));
@@ -77,7 +80,7 @@ public class Canvas : MonoBehaviour {
 	}
 
 	public Matrix4x4 GetInnerSceneTransformMatrix() {
-		return transform.localToWorldMatrix*_innerSceneTransform;
+		return _innerSceneTransform.localToWorldMatrix;
 
 	}
 
@@ -87,6 +90,8 @@ public class Canvas : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
+		Transform innerSceneOrigin = transform.Find("InnerSceneOrigin");
+
 		if(_fitStyle && _style.HasBounds()) {
 			Vector3 innerScaleDims = _style.GetBounds().size;
 			Vector3 canvasDims = _bounds.size - new Vector3(_boundsThreshold*2 + 0.001f,_boundsThreshold*2+ 0.001f,_boundsThreshold*2+ 0.001f);
@@ -96,16 +101,24 @@ public class Canvas : MonoBehaviour {
 
 
 			// _innerSceneTransform.SetTRS(_style.GetBounds().center, Quaternion.identity, new Vector3(maxRatioDim,maxRatioDim,maxRatioDim));
-			_innerSceneTransform = Matrix4x4.Scale(new Vector3(1.0f/maxRatioDim,1.0f/maxRatioDim,1.0f/maxRatioDim))*Matrix4x4.Translate(-_style.GetBounds().center);
+			Matrix4x4 M = Matrix4x4.Scale(new Vector3(1.0f/maxRatioDim,1.0f/maxRatioDim,1.0f/maxRatioDim))*Matrix4x4.Translate(-_style.GetBounds().center);
+
+			
+			
+			_innerSceneTransform.localPosition =M.GetPosition();
+			_innerSceneTransform.localScale = M.GetScale();
 			//_innerSceneTransform = _innerSceneTransform.inverse;
+			innerSceneOrigin.localRotation = Quaternion.identity;
+			innerSceneOrigin.localPosition = _innerSceneTransform.localPosition;
+			innerSceneOrigin.localScale = _innerSceneTransform.localScale;
+		
+		
 		} else {
-			_innerSceneTransform.SetTRS(_innerSceneOrigin, Quaternion.identity, _innerSceneScale);
+			_innerSceneTransform = innerSceneOrigin;
 		}
 
-		Transform innerSceneOrigin = transform.Find("InnerSceneOrigin");
-		innerSceneOrigin.localRotation = Quaternion.identity;
-		innerSceneOrigin.localPosition = _innerSceneTransform.GetPosition();
-		innerSceneOrigin.localScale = _innerSceneTransform.GetScale();
+		
+
 
 		Graphics.DrawMesh(_areaMesh,GetBoundsTransformMatrix(),_areaMaterial,0);
 
