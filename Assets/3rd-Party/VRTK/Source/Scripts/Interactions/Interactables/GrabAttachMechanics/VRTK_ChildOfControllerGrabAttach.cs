@@ -31,7 +31,7 @@ namespace VRTK.GrabAttachMechanics
         {
             if (base.StartGrab(grabbingObject, givenGrabbedObject, givenControllerAttachPoint))
             {
-                SnapObjectToGrabToController(givenGrabbedObject.transform.GetChild(0).gameObject);
+                SnapObjectToGrabToController(givenGrabbedObject);
                 grabbedObjectScript.isKinematic = true;
                 return true;
             }
@@ -75,6 +75,14 @@ namespace VRTK.GrabAttachMechanics
                 SetSnappedObjectPosition(obj);
             }
             obj.transform.SetParent(controllerAttachPoint.transform);
+
+            // Quick demo showing that we can get a reference to the specific point that we clicked
+            GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            sphere.GetComponent<SphereCollider>().enabled = false;
+            sphere.AddComponent<MeshFilter>();
+            sphere.AddComponent<MeshRenderer>();
+            sphere.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            sphere.transform.position = controllerAttachPoint.transform.position;
         }
     }
 }

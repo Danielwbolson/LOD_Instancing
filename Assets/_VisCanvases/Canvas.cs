@@ -67,8 +67,9 @@ public class Canvas : MonoBehaviour {
 		canvasMaterial.SetVector("_CanvasBoundsExtentThreshold",new Vector3(_extentThreshold,_extentThreshold,_extentThreshold));
 		canvasMaterial.SetVector("_CanvasBoundsThreshold",new Vector3(_boundsThreshold,_boundsThreshold,_boundsThreshold));
 		canvasMaterial.SetVector("_CropColor", new Vector4(0,0,0,0.5f));
-	} 
-	void updateBounds() {
+	}
+
+	void UpdateBounds() {
 		BoxCollider boxCollider = GetComponent<BoxCollider>();
 		boxCollider.center =_bounds.center;
 		boxCollider.size = _bounds.size;
@@ -83,6 +84,14 @@ public class Canvas : MonoBehaviour {
 		return _innerSceneTransform.localToWorldMatrix;
 
 	}
+
+    public Vector3 GetInnerSceneOrigin() {
+            return _innerSceneOrigin;
+    }
+
+    public Vector3 GetInnerSceneScale() {
+            return _innerSceneScale;
+    }
 
 	public void AddGameObject(GameObject gameobject) {
 		gameobject.transform.SetParent(transform.Find("InnerSceneOrigin"),false);
@@ -133,7 +142,7 @@ public class Canvas : MonoBehaviour {
 			_style.ApplyStyle(this);
 		}
 
-		
+            UpdateBounds();
 	}
 }
 }
