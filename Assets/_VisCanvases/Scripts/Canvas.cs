@@ -56,9 +56,11 @@ namespace SculptingVis {
         public bool _grabChild;
         private bool _cachedGrabChild;
 
+        GameObject _controller = null;
+
         void Start() {
-            _cachedGrabChild = _grabChild;
-            UpdateColliders();
+           // _cachedGrabChild = _grabChild;
+            //UpdateColliders();
         }
 
         public void SetMaterialProperties(Material canvasMaterial) {
@@ -106,8 +108,8 @@ namespace SculptingVis {
         // Update is called once per frame
         void Update() {
 
-            if (_cachedGrabChild != _grabChild)
-                UpdateColliders();
+            //if (_cachedGrabChild != _grabChild)
+                //UpdateColliders();
 
             Transform innerSceneOrigin = transform.Find("InnerSceneOrigin");
 
