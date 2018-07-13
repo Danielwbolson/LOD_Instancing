@@ -8,7 +8,7 @@ namespace SculptingVis {
 [CreateAssetMenu()]
 public class Style : ScriptableObject {
 
-	[SerializeField]
+	[SerializeField] 
 	Material _styleOriginMaterial;
 
 	[SerializeField]
