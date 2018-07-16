@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class MirrorBounds : MonoBehaviour {
 
-    GameObject _parent;
     BoxCollider _boxCollider;
-    BoxCollider _parentBoxCollider;
-    Vector3 _size;
+    Vector3 _parentSize;
+    public float _scaleInteraction = 0.7f;
 
     // Use this for initialization
     void Start() {
-        _parent = transform.parent.gameObject;
         _boxCollider = GetComponent<BoxCollider>();
-        _parentBoxCollider = _parent.GetComponent<BoxCollider>();
-        _size = _parentBoxCollider.size;
+        _parentSize = transform.parent.GetComponent<BoxCollider>().size;
     }
 
     // Update is called once per frame
@@ -23,9 +20,11 @@ public class MirrorBounds : MonoBehaviour {
             -transform.localPosition.x / transform.lossyScale.x,
             -transform.localPosition.y / transform.lossyScale.y,
             -transform.localPosition.z / transform.lossyScale.z);
+
+        // Scale down our box from the canvas
         _boxCollider.size = new Vector3(
-            _size.x / transform.lossyScale.x, 
-            _size.y / transform.lossyScale.y,
-            _size.z / transform.lossyScale.z);
+            _parentSize.x / transform.lossyScale.x,
+            _parentSize.y / transform.lossyScale.y,
+            _parentSize.z / transform.lossyScale.z) * _scaleInteraction;
     }
 }

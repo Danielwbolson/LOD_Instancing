@@ -394,7 +394,7 @@ Rigidbody:
   m_Drag: Infinity
   m_AngularDrag: Infinity
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -460,6 +460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48b06333860f9e44f9e1c3db7d57f9b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _scaleInteraction: 0.7
 --- !u!114 &136499925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -471,7 +472,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0b90bad88696264c8040e19e666ca48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  child: 1
+--- !u!114 &136499926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 136499918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24f6d5f2125ae4f48915bfe7d31c15f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isChild: 1
+  white: {r: 1, g: 1, b: 1, a: 1}
+  lengthOfLineRenderer: 16
 --- !u!1 &239231264 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1810281111781874, guid: 163a3eb8b5c9b3e45aa2660c5e0748f8,
@@ -767,7 +781,7 @@ Rigidbody:
   m_Drag: Infinity
   m_AngularDrag: Infinity
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -833,6 +847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48b06333860f9e44f9e1c3db7d57f9b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _scaleInteraction: 0.7
 --- !u!114 &399442160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -844,7 +859,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0b90bad88696264c8040e19e666ca48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  child: 1
+--- !u!114 &399442161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 399442153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24f6d5f2125ae4f48915bfe7d31c15f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isChild: 1
+  white: {r: 1, g: 1, b: 1, a: 1}
+  lengthOfLineRenderer: 16
 --- !u!1 &413977860 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1965687323262590, guid: 163a3eb8b5c9b3e45aa2660c5e0748f8,
@@ -949,7 +977,7 @@ Rigidbody:
   m_Drag: Infinity
   m_AngularDrag: Infinity
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -973,10 +1001,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 508204403}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0b90bad88696264c8040e19e666ca48, type: 3}
+  m_Script: {fileID: 11500000, guid: 24f6d5f2125ae4f48915bfe7d31c15f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  child: 0
+  _isChild: 0
+  white: {r: 1, g: 1, b: 1, a: 1}
+  lengthOfLineRenderer: 16
 --- !u!1001 &517691186
 Prefab:
   m_ObjectHideFlags: 0
@@ -1844,7 +1874,7 @@ Rigidbody:
   m_Drag: Infinity
   m_AngularDrag: Infinity
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1868,10 +1898,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1693638123}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0b90bad88696264c8040e19e666ca48, type: 3}
+  m_Script: {fileID: 11500000, guid: 24f6d5f2125ae4f48915bfe7d31c15f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  child: 0
+  _isChild: 0
+  white: {r: 1, g: 1, b: 1, a: 1}
+  lengthOfLineRenderer: 16
 --- !u!114 &1701352060 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114205334372148454, guid: 163a3eb8b5c9b3e45aa2660c5e0748f8,
