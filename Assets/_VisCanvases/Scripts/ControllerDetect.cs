@@ -28,7 +28,7 @@ public class ControllerDetect : MonoBehaviour {
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (_controller == null) {
+        if (_controller == null && other.gameObject.GetComponent<VRTK.VRTK_InteractNearTouchCollider>() == null) {
             _controller = other.gameObject;
             _controllerCollider = other;
         }

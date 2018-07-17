@@ -100,24 +100,13 @@ MonoBehaviour:
   _areaMaterial: {fileID: 2100000, guid: c80c8cc9a0cce459da0b70861acd7690, type: 2}
   _cornerMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
   _cornerMaterial: {fileID: 2100000, guid: 9b18f672d1f174a4b93db7892bf59531, type: 3}
-  _innerSceneTransform:
-    e00: 1
-    e01: 0
-    e02: 0
-    e03: 0
-    e10: 0
-    e11: 1
-    e12: 0
-    e13: -0.5
-    e20: 0
-    e21: 0
-    e22: 1
-    e23: 0
-    e30: 0
-    e31: 0
-    e32: 0
-    e33: 1
+  _innerSceneTransform: {fileID: 0}
   _innerSceneOrigin: {x: 0, y: 0, z: 0}
   _innerSceneScale: {x: 0.5, y: 0.5, z: 0.5}
   _style: {fileID: 11400000, guid: 3cc0b38ca5ed446bb8c24134f0d3ea64, type: 2}
   _fitStyle: 1
+  _selected: 0
+  _color: {x: 0, y: 0, z: 0, w: 0}
+  _extentThreshold: 0
+  _boundsThreshold: 0.02
+  _grabChild: 0

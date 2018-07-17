@@ -40,6 +40,8 @@ namespace VRTK.SecondaryControllerGrabActions
         protected Vector3 initialScale;
         protected float initalLength;
         protected float initialScaleFactor;
+        // Daniel
+        protected Transform _primaryGrabPoint;
 
         /// <summary>
         /// The Initalise method is used to set up the state of the secondary action when the Interactable Object is initially grabbed by a secondary Interact Grab.
@@ -53,8 +55,10 @@ namespace VRTK.SecondaryControllerGrabActions
         {
             base.Initialise(currentGrabbdObject, currentPrimaryGrabbingObject, currentSecondaryGrabbingObject, primaryGrabPoint, secondaryGrabPoint);
             initialScale = currentGrabbdObject.transform.localScale;
-            initalLength = (grabbedObject.transform.position - secondaryGrabbingObject.transform.position).magnitude;
+            //initalLength = (grabbedObject.transform.position - secondaryGrabbingObject.transform.position).magnitude;
+            initalLength = (primaryGrabbingObject.transform.position - secondaryGrabbingObject.transform.position).magnitude;
             initialScaleFactor = currentGrabbdObject.transform.localScale.x / initalLength;
+            _primaryGrabPoint = primaryGrabPoint;
 
 #pragma warning disable 618
             if ((lockXAxis || lockYAxis || lockZAxis) && lockAxis == Vector3State.False)
@@ -122,7 +126,7 @@ namespace VRTK.SecondaryControllerGrabActions
 
         protected virtual void UniformScale()
         {
-            float adjustedLength = (grabbedObject.transform.position - secondaryGrabbingObject.transform.position).magnitude;
+            float adjustedLength = (primaryGrabbingObject.transform.position - secondaryGrabbingObject.transform.position).magnitude;
             float adjustedScale = initialScaleFactor * adjustedLength;
 
             Vector3 newScale = new Vector3(adjustedScale, adjustedScale, adjustedScale);

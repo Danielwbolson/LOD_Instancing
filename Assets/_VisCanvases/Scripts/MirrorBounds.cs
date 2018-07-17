@@ -20,15 +20,15 @@ public class MirrorBounds : MonoBehaviour {
         _rotation = transform.localRotation;
 
         _boxCollider.center = new Vector3(
-            -transform.localPosition.x / transform.lossyScale.x,
-            -transform.localPosition.y / transform.lossyScale.y,
-            -transform.localPosition.z / transform.lossyScale.z);
+            -transform.localPosition.x / transform.localScale.x,
+            -transform.localPosition.y / transform.localScale.y,
+            -transform.localPosition.z / transform.localScale.z);
 
         // Scale down our box from the canvas
         _boxCollider.size = new Vector3(
-            _parentSize.x / transform.lossyScale.x,
-            _parentSize.y / transform.lossyScale.y,
-            _parentSize.z / transform.lossyScale.z) * _scaleFactor;
+            _parentSize.x / transform.localScale.x,
+            _parentSize.y / transform.localScale.y,
+            _parentSize.z / transform.localScale.z) * _scaleFactor;
 
         _boxCollider.center = Quaternion.Inverse(_rotation) * _boxCollider.center;
         
