@@ -37,6 +37,7 @@ Shader "Unlit/PointShader"
 				UNITY_FOG_COORDS(1)
 				float4 vertex : SV_POSITION;
 			};
+
 			sampler3D _ColorData;
 			sampler2D _MainTex;
 			sampler2D _ColorMap;
@@ -59,21 +60,13 @@ Shader "Unlit/PointShader"
 			{
 				float val = 0;
 
-				if(_HasColorVariable == 1) {
-					float4 worldSpace = float4(i.worldPos,1);
-					float4 canvasSpace = mul(_CanvasInverse,worldSpace);
-					float4 innerSceneSpace = mul(_CanvasInnerSceneInverse,worldSpace);
-					float4 dataSpace = mul(_DataBoundsMatrixInv,innerSceneSpace);
-					float3 textureSpace = (dataSpace.xyz+0.5);
-					val = tex3D (_ColorData, textureSpace).x/20.0;
-				}
 
-				float3 dataVal = GetData(0,floor(i.uv.x),floor(i.uv.y),GetDataPosition(0,i.worldPos));
-				float3 normalizedDataVal = NormalizeData(0,dataVal);
+				float3 dataVal = GetData(1,floor(i.uv.x),floor(i.uv.y),GetDataPosition(1,i.worldPos));
+				float3 normalizedDataVal = NormalizeData(1,dataVal);
 
 				// sample the texture
 				fixed4 col = tex2D(_ColorMap,float2(normalizedDataVal.x,0.5));
-
+				col.rgb = dataVal.xyz;
 				// apply fog
 				UNITY_APPLY_FOG(i.fogCoord, col);
 

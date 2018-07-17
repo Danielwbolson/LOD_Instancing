@@ -169,7 +169,7 @@ public class Datastream : ScriptableObject {
                 for(int i = 0; i < data.Length; i++)
                     Debug.Log(data[i]);
 
-                _computeBuffer = new ComputeBuffer((int)numberOfElements,(int)numberOfComponents*sizeof(float));
+                _computeBuffer = new ComputeBuffer((int)numberOfElements*(int)numberOfComponents,sizeof(float));
 
                 _computeBuffer.SetData(data);
 

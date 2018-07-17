@@ -262,41 +262,81 @@ float4 GetVariable3DTextureSample(int variableSlot, float3 dataPos) {
     }
 }
 
-StructuredBuffer<float> GetVariableStructuredBuffer(int variableSlot) {
-    switch (variableSlot) {
-       case 0: 
-            return _VariableDataBuffer_0;
-            break;
-        case 1: 
-            return _VariableDataBuffer_1;
-            break;
-        case 2: 
-            return _VariableDataBuffer_2;
-            break;
-        case 3: 
-            return _VariableDataBuffer_3;
-            break;
-        case 4: 
-            return _VariableDataBuffer_4;
-            break;
-        case 5: 
-            return _VariableDataBuffer_5;
-            break;
-        case 6: 
-            return _VariableDataBuffer_6;
-            break;
-        case 7: 
-            return _VariableDataBuffer_7;
-            break;
-        case 8: 
-            return _VariableDataBuffer_8;
-            break;
-        case 9: 
-            return _VariableDataBuffer_9;
-            break;
+float3 GetVariableStructuredBufferSample(int variableSlot, int index) {
+    int components = GetVariableComponents(variableSlot);
+    if(components == 1){
+        switch (variableSlot) {
+            case 0: 
+                return float3(_VariableDataBuffer_0[index],0,0);
+                break;
+            case 1: 
+                return float3(_VariableDataBuffer_1[index],0,0);
+                break;
+            case 2: 
+                return float3(_VariableDataBuffer_2[index],0,0);
+                break;
+            case 3: 
+                return float3(_VariableDataBuffer_3[index],0,0);
+                break;
+            case 4: 
+                return float3(_VariableDataBuffer_4[index],0,0);
+                break;
+            case 5: 
+                return float3(_VariableDataBuffer_5[index],0,0);
+                break;
+            case 6: 
+                return float3(_VariableDataBuffer_6[index],0,0);
+                break;
+            case 7: 
+                return float3(_VariableDataBuffer_7[index],0,0);
+                break;
+            case 8: 
+                return float3(_VariableDataBuffer_8[index],0,0);
+                break;
+            case 9: 
+                return float3(_VariableDataBuffer_9[index],0,0);
+                break;
 
-        default:
-            return _VariableDataBuffer_0;
+            default:
+                return float3(0,0,0);
+        }
+    }else{
+        switch (variableSlot) {
+            
+            case 0: 
+                return float3(_VariableDataBuffer_0[index*3+0],_VariableDataBuffer_0[index*3+1],_VariableDataBuffer_0[index*3+2]);
+                break;
+            case 1: 
+                return float3(_VariableDataBuffer_1[index*3+0],_VariableDataBuffer_1[index*3+1],_VariableDataBuffer_1[index*3+2]);
+                break;
+            case 2: 
+                return float3(_VariableDataBuffer_2[index*3+0],_VariableDataBuffer_2[index*3+1],_VariableDataBuffer_2[index*3+2]);
+                break;
+            case 3: 
+                return float3(_VariableDataBuffer_3[index*3+0],_VariableDataBuffer_3[index*3+1],_VariableDataBuffer_3[index*3+2]);
+                break;
+            case 4: 
+                return float3(_VariableDataBuffer_4[index*3+0],_VariableDataBuffer_4[index*3+1],_VariableDataBuffer_4[index*3+2]);
+                break;
+            case 5: 
+                return float3(_VariableDataBuffer_5[index*3+0],_VariableDataBuffer_5[index*3+1],_VariableDataBuffer_5[index*3+2]);
+                break;
+            case 6: 
+                return float3(_VariableDataBuffer_6[index*3+0],_VariableDataBuffer_6[index*3+1],_VariableDataBuffer_6[index*3+2]);
+                break;
+            case 7: 
+                return float3(_VariableDataBuffer_7[index*3+0],_VariableDataBuffer_7[index*3+1],_VariableDataBuffer_7[index*3+2]);
+                break;
+            case 8: 
+                return float3(_VariableDataBuffer_8[index*3+0],_VariableDataBuffer_8[index*3+1],_VariableDataBuffer_8[index*3+2]);
+                break;
+            case 9: 
+                return float3(_VariableDataBuffer_9[index*3+0],_VariableDataBuffer_9[index*3+1],_VariableDataBuffer_9[index*3+2]);
+                break;
+
+            default:
+                return float3(0,0,0);
+        }
     }
 }
 
@@ -535,7 +575,7 @@ float3 GetData(int variableSlot, int cellId, int vertexId, float3 dataPos) {
             break;
         case 1:
          //result = float3(cellId/20.0,0,0);break;
-            result = _VariableDataBuffer_0[GetVariableArrayType(variableSlot) == 1? vertexId:cellId];
+            result = GetVariableStructuredBufferSample(variableSlot,GetVariableArrayType(variableSlot) == 1? vertexId:cellId);
             break;
         default:
          result = float3(0.5,0.5,0.5);
