@@ -12,6 +12,9 @@ public class Datastream : ScriptableObject {
     [SerializeField]
     DataVariable _owner;
 
+    DataVariable GetVariable() {
+        return _owner;
+    }
     public void Init(DataVariable owner, DatastreamChannel rootChannel) {
         _owner = owner;
         _rootChannel = rootChannel;
@@ -135,6 +138,46 @@ public class Datastream : ScriptableObject {
             return new Vector3(0,0,0);
         }
 
+
+    ComputeBuffer _computeBuffer;
+    public ComputeBuffer GetComputeBuffer() {
+        if(_computeBuffer == null) {
+            if(_rootChannel is VTKDatastreamChannel) {
+                VTK.vtkAbstractArray abstractArray  = ((VTKDatastreamChannel)_rootChannel).GetAbstractArray();
+
+                long numberOfElements = abstractArray.GetNumberOfTuples();
+                long numberOfComponents = abstractArray.GetNumberOfComponents();
+
+
+                float[] data = new float[numberOfElements*numberOfComponents];
+                if( abstractArray.IsA("vtkFloatArray")){
+                    Marshal.Copy(abstractArray.GetVoidPointer(0), data, 0, (int)data.Length);
+
+                } else if(abstractArray.IsA("vtkDoubleArray")){
+                    double[] doubleData = new double[numberOfComponents*numberOfElements];
+
+                    Marshal.Copy(abstractArray.GetVoidPointer(0), doubleData, 0, (int)doubleData.Length);
+                    for(int i = 0; i < doubleData.Length;i++)
+                        data[i] = (float)doubleData[i];
+                } else if(abstractArray.IsA("vtkIntArray")) {
+                    int[] intData = new int[numberOfComponents*numberOfElements];
+                    Marshal.Copy(abstractArray.GetVoidPointer(0), intData, 0, (int)intData.Length);
+
+                    for(int i = 0; i < intData.Length;i++)
+                        data[i] = (float)intData[i];   
+                }
+                for(int i = 0; i < data.Length; i++)
+                    Debug.Log(data[i]);
+
+                _computeBuffer = new ComputeBuffer((int)numberOfElements,(int)numberOfComponents*sizeof(float));
+
+                _computeBuffer.SetData(data);
+
+            }
+        }
+
+        return _computeBuffer;
+    }
     public Texture3D Get3DTexture() {
         if(_3DTexture == null) {
 
@@ -176,6 +219,28 @@ public class Datastream : ScriptableObject {
         }
 
         return _3DTexture;
+    }
+
+    public void Bind(Material material, int bindSlot) {
+        int dim = GetVariable().GetDomainDimensionality();
+        material.SetInt("_VariableDomainDimensionality_" + bindSlot,dim);
+        material.SetMatrix("_VariableBoundsMatrixInv_" + bindSlot,Matrix4x4.TRS(GetVariable().GetBounds().center,Quaternion.identity,GetVariable().GetBounds().size).inverse);
+        material.SetVector("_VariableMin_" + bindSlot, GetVariable().GetMin());
+        material.SetVector("_VariableMax_" + bindSlot, GetVariable().GetMax());
+        material.SetFloat("_VariableComponents_" + bindSlot,GetNumberOfComponents());
+        Debug.Log(GetVariable().GetMin());
+        Debug.Log(GetVariable().GetMax());
+        switch(dim) {
+            case 3: 
+                material.SetTexture("_Variable3DTexture_" + bindSlot,Get3DTexture());
+                break;
+            case 1:
+                material.SetInt("_VariableArrayType_" + bindSlot,GetVariable().IsPointVariable()?1:0);
+                material.SetBuffer("_VariableDataBuffer_" + bindSlot,GetComputeBuffer());
+                break;
+        }
+         
+        
     }
 }
 

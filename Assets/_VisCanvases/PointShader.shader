@@ -21,6 +21,7 @@ Shader "Unlit/PointShader"
 			
 			#include "UnityCG.cginc"
 			#include "CanvasSupport.cginc"
+			#include "VariableSupport.cginc"
 
 			struct appdata
 			{
@@ -53,7 +54,6 @@ Shader "Unlit/PointShader"
 				return o;
 			}
 			
-
 			
 			fixed4 frag (v2f i) : SV_Target
 			{
@@ -61,18 +61,22 @@ Shader "Unlit/PointShader"
 
 				if(_HasColorVariable == 1) {
 					float4 worldSpace = float4(i.worldPos,1);
-					float4 canvasSpace = mul(_InverseCanvas,worldSpace);
-					float4 innerSceneSpace = mul(_InverseCanvasInnerScene,worldSpace);
+					float4 canvasSpace = mul(_CanvasInverse,worldSpace);
+					float4 innerSceneSpace = mul(_CanvasInnerSceneInverse,worldSpace);
 					float4 dataSpace = mul(_DataBoundsMatrixInv,innerSceneSpace);
 					float3 textureSpace = (dataSpace.xyz+0.5);
 					val = tex3D (_ColorData, textureSpace).x/20.0;
 				}
 
+				float3 dataVal = GetData(0,floor(i.uv.x),floor(i.uv.y),GetDataPosition(0,i.worldPos));
+				float3 normalizedDataVal = NormalizeData(0,dataVal);
 
 				// sample the texture
-				fixed4 col = tex2D(_ColorMap,float2(val,0.5));
+				fixed4 col = tex2D(_ColorMap,float2(normalizedDataVal.x,0.5));
+
 				// apply fog
 				UNITY_APPLY_FOG(i.fogCoord, col);
+
 
 				col = MarkBounds(i.worldPos,col);
 				StippleCrop(i.worldPos,i.vertex,_ScreenParams);

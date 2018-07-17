@@ -124,6 +124,16 @@ public abstract class Dataset : ScriptableObject {
 		}
 		return 0;
 	}
+
+
+	public abstract Vector3 GetMin(DataVariable variable);
+	public abstract Vector3 GetMax(DataVariable variable);
+
+
+	public virtual int GetDomainDimensionality() {
+		return (int)GetDataDimensionType();
+	}
+
 	public virtual DataDimensionType GetDataDimensionType() {
 		if(IsVolume()) {
 			return DataDimensionType.Volume;

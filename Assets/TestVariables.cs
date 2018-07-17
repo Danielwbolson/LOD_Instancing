@@ -88,10 +88,10 @@ public class TestVariablesrEditor : Editor
 				SimplePathLayer pathLayer = (SimplePathLayer)myScript._layers[i];
 				GUILayout.BeginHorizontal("box");
 
-				if(pathLayer._anchorVariable == null) {
+				if(!pathLayer._anchorVariable.IsAssigned()) {
 					GUILayout.Label("Anchor" + "["+"]");
 				} else {
-					GUILayout.Label("Anchor" + "["+ pathLayer._anchorVariable.GetName()+"]");
+					GUILayout.Label("Anchor" + "["+ pathLayer._anchorVariable.GetInput().GetName()+"]");
 				
 
 
@@ -112,7 +112,7 @@ public class TestVariablesrEditor : Editor
 						DragAndDrop.AcceptDrag ();
 						int var = int.Parse(DragAndDrop.GetGenericData("int").ToString());
 						_linkedVars["anchor"] = var; 
-						pathLayer._anchorVariable = (DataVariable)myScript._variables[var];
+						pathLayer._anchorVariable.SetInputVariable((DataVariable)myScript._variables[var]);
 					}
 
 
@@ -147,10 +147,10 @@ public class TestVariablesrEditor : Editor
 				
 				GUILayout.BeginHorizontal("box");
 
-				if(pathLayer._colorVariable == null) {
+				if(!pathLayer._colorVariable.IsAssigned()) {
 					GUILayout.Label("Color" + "["+"]");
 				} else {
-					GUILayout.Label("Color" + "["+ pathLayer._colorVariable.GetName()+"]");
+					GUILayout.Label("Color" + "["+ pathLayer._colorVariable.GetInput().GetName()+"]");
 				}
 				
 				GUILayout.Label("•",GUILayout.MaxWidth(10));
@@ -168,7 +168,7 @@ public class TestVariablesrEditor : Editor
 						DragAndDrop.AcceptDrag ();
 						int var = int.Parse(DragAndDrop.GetGenericData("int").ToString());
 						_linkedVars["color"] = var; 
-						pathLayer._colorVariable = (DataVariable)myScript._variables[var];					
+						pathLayer._colorVariable.SetInputVariable((DataVariable)myScript._variables[var]);					
 					}
 
 
@@ -243,10 +243,11 @@ public class TestVariables : MonoBehaviour {
 	public List<Layer> _layers;
 
 	public void Test() {
+		_pathLayer.Init();
 		_layers.Add(_pathLayer);
 
 		VTKDataset vtkds = VTKDataset.CreateInstance<VTKDataset>();
-		vtkds.Init("/example_data/VTK/local/brain.vtp",0,0);
+		vtkds.Init("example_data/VTK/local/brain.vtp",0,0);
 		
 		vtkds.LoadDataset();
 	
@@ -265,11 +266,11 @@ public class TestVariables : MonoBehaviour {
 
 
 		VTKDataset vtkds2 = VTKDataset.CreateInstance<VTKDataset>();
-		vtkds2.Init("/example_data/VTK/local/brain.vti",0,0);
+		vtkds2.Init("example_data/VTK/local/brain.vti",0,0);
 		
 		vtkds2.LoadDataset();
 
-		print(vtkds2.GetVariables()[4]);
+		//print(vtkds2.GetVariables()[4]);
 		//_pathLayer._colorVariable = (vtkds2.GetVariables()[4]);
 
 		foreach(Variable a in vtkds2.GetAnchors())

@@ -9,10 +9,10 @@ namespace SculptingVis {
 public class SimplePathLayer : Layer {
 
 	[SerializeField]
-	public DataVariable _anchorVariable;
+	public VariableSocket _anchorVariable;
 
 	[SerializeField]
-	public DataVariable _colorVariable;
+	public VariableSocket _colorVariable;
 
 
 	[SerializeField]
@@ -21,34 +21,48 @@ public class SimplePathLayer : Layer {
 	[SerializeField]
 	Material _lineMaterial;
 
+
+	public void Init() {
+		_anchorVariable = CreateInstance<VariableSocket>();
+		_anchorVariable.Init();
+		_colorVariable = CreateInstance<VariableSocket>();
+		_colorVariable.Init(0);
+		_colorVariable.SetAnchorVariable(_anchorVariable);
+	}	
 	public override bool HasBounds() {
-		return _anchorVariable!= null;
+		return _anchorVariable != null && _anchorVariable.IsAssigned();
 	}
 	public override Bounds GetBounds() {
-		return _anchorVariable.GetBounds();
+		return _anchorVariable.GetInput().GetBounds();
 	}
 
 	public override void DrawLayer(Canvas canvas) {
-		if(_anchorVariable == null) return;
-		Datastream stream = _anchorVariable.GetStream(null,0,0);
+		if(_anchorVariable == null || !_anchorVariable.IsAssigned()) return;
+		Datastream stream = _anchorVariable.GetInput().GetStream(null,0,0);
+
+
 
 		Mesh[] m = stream.GetMeshes();
-		if(_colorVariable != null) {
-			Texture3D tex = _colorVariable.GetStream(null,0,0).Get3DTexture();
-			_lineMaterial.SetTexture("_ColorData",tex);
-			_lineMaterial.SetInt("_HasColorVariable",1);
-			_lineMaterial.SetMatrix("_DataBoundsMatrixInv",Matrix4x4.TRS(_colorVariable.GetBounds().center,Quaternion.identity,_colorVariable.GetBounds().size).inverse);
+		// if(_colorVariable.IsAssigned()) {
+		// 	Texture3D tex = _colorVariable.GetInput().GetStream(null,0,0).Get3DTexture();
+		// 	_lineMaterial.SetTexture("_ColorData",tex);
+		// 	_lineMaterial.SetInt("_HasColorVariable",1);
+		// 	_lineMaterial.SetMatrix("_DataBoundsMatrixInv",Matrix4x4.TRS(_colorVariable.GetBounds().center,Quaternion.identity,_colorVariable.GetBounds().size).inverse);
 
-		} else {
-			_lineMaterial.SetInt("_HasColorVariable",0);
+		// } else {
+		// 	_lineMaterial.SetInt("_HasColorVariable",0);
 
-		}
+		// }
 				_lineMaterial.SetTexture("_ColorMap",_colorMap);
+
+		Material canvasMaterial = GetCanvasMaterial(canvas,_lineMaterial);
+		_anchorVariable.Bind(canvasMaterial,0,0);
+		_colorVariable.Bind(canvasMaterial,0,0);
 		if(m != null && m.Length > 0) {
 			for(int i = 0; i < Mathf.Min(m.Length,1000); i+=1) {
 				Mesh mesh = m[i];
 				if(mesh!= null) {
-					Graphics.DrawMesh(mesh,canvas.GetInnerSceneTransformMatrix(),GetCanvasMaterial(canvas,_lineMaterial),0);
+					Graphics.DrawMesh(mesh,canvas.GetInnerSceneTransformMatrix(),canvasMaterial,0);
 
 				}
 			}

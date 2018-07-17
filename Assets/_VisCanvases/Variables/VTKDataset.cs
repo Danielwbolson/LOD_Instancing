@@ -146,6 +146,37 @@ public class VTKDataset : Dataset {
 	}
 
 
+	public override Vector3 GetMin(DataVariable variable) {
+		Vector3 result = new Vector3();
+		if(GetAbstractArray((VTKDataVariable)variable).IsA("vtkDataArray")) {
+			VTK.vtkDataArray da = VTK.vtkDataArray.SafeDownCast(GetAbstractArray((VTKDataVariable)variable));
+			double[] r = new double[2];
+			da.GetRange(r,0);
+			result.x = (float)r[0];
+			da.GetRange(r,1);
+			result.y = (float)r[0];
+			da.GetRange(r,2);
+			result.z = (float)r[0];
+		}
+
+		return result;
+	}
+
+	public override Vector3 GetMax(DataVariable variable) {
+		Vector3 result = new Vector3();
+		if(GetAbstractArray((VTKDataVariable)variable).IsA("vtkDataArray")) {
+			VTK.vtkDataArray da = VTK.vtkDataArray.SafeDownCast(GetAbstractArray((VTKDataVariable)variable));
+			double[] r = new double[2];
+			da.GetRange(r,0);
+			result.x = (float)r[1];
+			da.GetRange(r,1);
+			result.y = (float)r[1];
+			da.GetRange(r,2);
+			result.z = (float)r[1];
+		}
+
+		return result;
+	}
 	VTK.vtkAbstractArray GetAbstractArray(VTKDataVariable variable ) {
 		if(variable is VTKDataVariable) {
 			VTKDataVariable vtkVariable = (VTKDataVariable)(variable);

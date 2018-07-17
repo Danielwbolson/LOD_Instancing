@@ -11,22 +11,31 @@ namespace SculptingVis {
 		Unknown = -1,
 	}
 
-public class Variable : ScriptableObject {
+public abstract class Variable : ScriptableObject {
 
 
 	// protected abstract Datastream generateDatastream();
 
-	public virtual Datastream GetStream(DataVariable anchor, int instanceID, int timestep) {
+	public virtual Datastream GetStream(DataVariable anchor, int instanceID = -1, int timestep = -1) {
 		return null;
 	}
 	public override string ToString()
     {
-		return GetVariableType() + (GetDimensionality() == 1 ? " scalar" : " "+GetDimensionality() + "D vector")  + (IsAnchor()? " anchor" : "") + " variable \"" + GetName() + "\""; 
+		return GetVariableType() + (GetComponents() == 1 ? " scalar" : " "+GetComponents() + "D vector")  + (IsAnchor()? " anchor" : "") + " variable \"" + GetName() + "\""; 
     } 
 
 	public void Init() {
 
 	}
+	public abstract bool IsCellVariable();
+
+	public abstract bool IsPointVariable();
+	
+	public abstract Vector3 GetMin();
+	public abstract Vector3 GetMax();
+
+	public abstract Bounds GetBounds();
+
 	public virtual DataDimensionType GetVariableType() {
 		return DataDimensionType.Unknown;
 	}
@@ -38,11 +47,13 @@ public class Variable : ScriptableObject {
 	public virtual string GetName() {
 		return "Unknown";
 	}
-
-	public virtual int GetDimensionality() {
+	
+	public virtual int GetComponents() {
 		return 0;
 	}
-
+	public virtual int GetDomainDimensionality() {
+		return 0;
+	}
 	public virtual void Bind(Material material, int bindSlot, int instanceID = 0, int timeStep = 0) {
 		
 	}

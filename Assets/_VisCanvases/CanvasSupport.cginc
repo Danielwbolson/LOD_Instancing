@@ -1,35 +1,16 @@
 #ifndef CANVASSUPPORT_INCLUDED
 #define CANVASSUPPORT_INCLUDED
 
+#include "GeneralSupport.cginc"
 
-float4x4 _InverseCanvas;
-float4x4 _InverseCanvasInnerScene;
+float4x4 _CanvasInverse;
+float4x4 _CanvasInnerSceneInverse;
 float4x4 _CanvasInnerScene;
 float3 _CanvasBoundsCenter;
 float3 _CanvasBoundsExtent;
 float3 _CanvasBoundsExtentThreshold;
 float3 _CanvasBoundsThreshold;
-float4 _CropColor;
-
-half4 Lerp(half4 colorA, half4 colorB, float tween) {
-    return colorA*(1-tween) + colorB * tween; 
-}
-half4 mix(half4 colorA, half4 colorB) {
-    //return half4(0, colorA.a, 0, 1);//(colorA*(1-colorB.a)+colorB*colorB.a)*0.5;
-    //return half4()
-    //return half4(colorA.rgb*(1-colorB.a)*colorA.a + colorB * colorB.a * colorA.a,colorA.a);
-    return half4((colorA.rgb*colorA.a+colorB.rgb*colorB.a),colorA.a+colorB.a);
-}
-float map(float value, float min1, float max1, float min2, float max2)
-{
-    // Convert the current value to a percentage
-    // 0% - min1, 100% - max1
-    float perc = (value - min1) / (max1 - min1);
-
-    // Do the same operation backwards with min2 and max2
-    return  perc * (max2 - min2) + min2;
-}
-
+float4 _CanvasCropColor;
 
 
 float OutOfBounds(float3 extents, float3 threshold, float3 position) {
@@ -74,15 +55,15 @@ float OnBounds(float3 extents, float3 threshold, float3 position) {
 
 // #define MARKBOUNDS(worldPos);
 
-// #define STIPPLE_CROP(worldPos,screenPos,screenParams) STIPPLE_TRANSPARENCY(screenPos, screenParams,1-OutOfBounds(_CanvasBoundsExtent,_CanvasBoundsExtentThreshold,mul(_InverseCanvas,float4(worldPos.x,worldPos.y,worldPos.z,1))))
+// #define STIPPLE_CROP(worldPos,screenPos,screenParams) STIPPLE_TRANSPARENCY(screenPos, screenParams,1-OutOfBounds(_CanvasBoundsExtent,_CanvasBoundsExtentThreshold,mul(_CanvasInverse,float4(worldPos.x,worldPos.y,worldPos.z,1))))
 // #define STIPPLE_TRANSPARENCY(screenPos, screenParams,transparency) 
 
 fixed4 MarkBounds(float3 worldPos, fixed4 currentColor) {
     half4 result = currentColor; 
-    float onBounds = 5.0*OnBounds(_CanvasBoundsExtent,_CanvasBoundsThreshold,mul(_InverseCanvas,float4(worldPos.x,worldPos.y,worldPos.z,1))); 
+    float onBounds = 5.0*OnBounds(_CanvasBoundsExtent,_CanvasBoundsThreshold,mul(_CanvasInverse,float4(worldPos.x,worldPos.y,worldPos.z,1))); 
     if(onBounds > 0) 
     {
-        result = Lerp(currentColor,half4(_CropColor.r, _CropColor.g,_CropColor.b, 0), _CropColor.a*onBounds);
+        result = Lerp(currentColor,half4(_CanvasCropColor.r, _CanvasCropColor.g,_CanvasCropColor.b, 0), _CanvasCropColor.a*onBounds);
     }
     return result;
 }
@@ -100,7 +81,7 @@ void StippleTransparency(float4 screenPos, float4 screenParams, half transparenc
 }
 
 void StippleCrop(float3 worldPos,float4 screenPos, float4 screenParams) {
-    half t = 1-OutOfBounds(_CanvasBoundsExtent,_CanvasBoundsExtentThreshold,mul(_InverseCanvas,float4(worldPos.x,worldPos.y,worldPos.z,1)));
+    half t = 1-OutOfBounds(_CanvasBoundsExtent,_CanvasBoundsExtentThreshold,mul(_CanvasInverse,float4(worldPos.x,worldPos.y,worldPos.z,1)));
     StippleTransparency(screenPos,screenParams, t);
 }
 

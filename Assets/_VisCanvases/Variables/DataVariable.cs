@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace SculptingVis {
-public class DataVariable : Variable {
+public abstract class DataVariable : Variable {
 	
 	[SerializeField]
 	Dataset _dataset;
@@ -22,10 +22,10 @@ public class DataVariable : Variable {
         _datastream = datastream;
     }
     public override Datastream GetStream(DataVariable anchor, int instanceID, int timestep) {
-        if (GetDataSet().ContainsInstanceID(instanceID) && GetDataSet().ContainsInstanceID(timestep) && (anchor==null || GetDataSet().ContainsAnchor(anchor))) {
+        //if (GetDataSet().ContainsInstanceID(instanceID) && GetDataSet().ContainsInstanceID(timestep) && (anchor==null || GetDataSet().ContainsAnchor(anchor))) {
             return _datastream;
-        }
-        else return null;
+        //}
+        //else return null;
 		
 	}
 
@@ -36,10 +36,19 @@ public class DataVariable : Variable {
 	//// public virtual bool SetDataset(dataset) {
 	// 	_dataset = dataset;
 	// }
+
+	public override Vector3 GetMin() {
+		return GetDataSet().GetMin(this);
+	}
+	public override Vector3 GetMax() {
+		return GetDataSet().GetMax(this);
+	}
+	
+
 	protected Dataset GetDataSet() {
 		return _dataset;
 	}
-	public Bounds GetBounds() {
+	public override Bounds GetBounds() {
 		return GetDataSet().GetBounds();
 	}
 	public override bool IsAnchor() {
@@ -50,8 +59,11 @@ public class DataVariable : Variable {
 		return _dataset.GetVariableName(this);
 	}
 
-	public override int GetDimensionality() {
+	public override int GetComponents() {
 		return GetDataSet().GetVariableDimensions(this) ;
+	}
+	public override int GetDomainDimensionality() {
+		return GetDataSet().GetDomainDimensionality();
 	}
 
 	public override void Bind(Material material, int bindSlot, int instanceID = 0, int timeStep = 0) {

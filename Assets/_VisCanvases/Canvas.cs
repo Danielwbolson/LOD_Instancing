@@ -58,15 +58,15 @@ public class Canvas : MonoBehaviour {
 	
 	public void SetMaterialProperties(Material canvasMaterial) {
 		canvasMaterial.SetVector("_Color", _color);
-		canvasMaterial.SetMatrix("_InverseCanvas", transform.worldToLocalMatrix);
-		canvasMaterial.SetMatrix("_InverseCanvasInnerScene", GetInnerSceneTransformMatrix().inverse);
+		canvasMaterial.SetMatrix("_CanvasInverse", transform.worldToLocalMatrix);
+		canvasMaterial.SetMatrix("_CanvasInnerSceneInverse", GetInnerSceneTransformMatrix().inverse);
 		canvasMaterial.SetMatrix("_CanvasInnerScene", GetInnerSceneTransformMatrix());
 
 		canvasMaterial.SetVector("_CanvasBoundsCenter",_bounds.center);
 		canvasMaterial.SetVector("_CanvasBoundsExtent",_bounds.extents);
 		canvasMaterial.SetVector("_CanvasBoundsExtentThreshold",new Vector3(_extentThreshold,_extentThreshold,_extentThreshold));
 		canvasMaterial.SetVector("_CanvasBoundsThreshold",new Vector3(_boundsThreshold,_boundsThreshold,_boundsThreshold));
-		canvasMaterial.SetVector("_CropColor", new Vector4(0,0,0,0.5f));
+		canvasMaterial.SetVector("_CanvasCropColor", new Vector4(0,0,0,0.5f));
 	} 
 	void updateBounds() {
 		BoxCollider boxCollider = GetComponent<BoxCollider>();
