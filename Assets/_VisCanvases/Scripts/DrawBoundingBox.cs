@@ -7,7 +7,9 @@ public class DrawBoundingBox : MonoBehaviour {
     public bool _isChild;
     BoxCollider _boxCollider;
     LineRenderer _lineRenderer;
+    Vector3[] _p;
     Vector3[] _vertexList;
+    Quaternion _rotation;
 
     GameObject _controller;
     Collider _controllerCollider;
@@ -26,18 +28,22 @@ public class DrawBoundingBox : MonoBehaviour {
 
         _boxCollider = GetComponent<BoxCollider>();
         _interactableObject = GetComponent<VRTK.VRTK_InteractableObject>();
-        UpdateVertexList();
 
         _lineRenderer = gameObject.AddComponent<LineRenderer>();
         _lineRenderer.material = new Material(Shader.Find("Particles/Additive"));
-        _lineRenderer.widthMultiplier = 0.04f;
+        _lineRenderer.widthMultiplier = 0.01f;
         _lineRenderer.positionCount = lengthOfLineRenderer;
 
         _lineRenderer.startColor = white;
         _lineRenderer.endColor = white;
+
+        _p = new Vector3[8];
+
+        UpdateVertexList();
     }
 
     void Update() {
+        _rotation = transform.rotation;
         if (!_interactableObject.IsGrabbed() && !_fellowInteractableObject.IsGrabbed()) {
             _lineRenderer.enabled = true;
             UpdateVertexList();
@@ -48,19 +54,27 @@ public class DrawBoundingBox : MonoBehaviour {
     }
 
     void UpdateVertexList() {
-        Vector3 p1 = _boxCollider.bounds.center - _boxCollider.bounds.extents * 0.96f; // Left, bottom, close
-        Vector3 p2 = _boxCollider.bounds.center + _boxCollider.bounds.extents * 0.96f; // Right, top, far
-        Vector3 p3 = new Vector3(p1.x, p1.y, p2.z); // Left, bottom, far
-        Vector3 p4 = new Vector3(p1.x, p2.y, p1.z); // Left, top, close
-        Vector3 p5 = new Vector3(p2.x, p1.y, p1.z); // Right, bottom, close
-        Vector3 p6 = new Vector3(p1.x, p2.y, p2.z); // Left, top, far
-        Vector3 p7 = new Vector3(p2.x, p1.y, p2.z); // Right, bottom, far
-        Vector3 p8 = new Vector3(p2.x, p2.y, p1.z); // Right, top, close
+        Vector3 center = _boxCollider.center;
+        Vector3 size = _boxCollider.size;
+        Vector3 extents = size / 2.0f;
+
+        _p[0] = center + new Vector3(-extents.x, -extents.y, -extents.z) * 0.96f; // Left, bottom, close
+        _p[1] = center + new Vector3(extents.x, extents.y, extents.z) * 0.96f; // Right, top, far
+        _p[2] = center + new Vector3(-extents.x, -extents.y, extents.z); // Left, bottom, far
+        _p[3] = center + new Vector3(-extents.x, extents.y, -extents.z); // Left, top, close
+        _p[4] = center + new Vector3(extents.x, -extents.y, -extents.z); // Right, bottom, close
+        _p[5] = center + new Vector3(-extents.x, extents.y, extents.z); // Left, top, far
+        _p[6] = center + new Vector3(extents.x, -extents.y, extents.z); // Right, bottom, far
+        _p[7] = center + new Vector3(extents.x, extents.y, -extents.z); // Right, top, close
+
+        for (int i = 0; i < _p.Length; i++) {
+            _p[i] = transform.TransformPoint(_p[i]);
+        }
 
         _vertexList = new Vector3[16] {
-            p1, p3, p7, p5, p1, // bottom
-            p4, p6, p2, p8, p4, // top
-            p6, p3, p7, p2, p8, p5 // axles
+            _p[0], _p[2], _p[6], _p[4], _p[0], // bottom
+            _p[3], _p[5], _p[1], _p[7], _p[3], // top
+            _p[5], _p[2], _p[6], _p[1], _p[7], _p[4] // axles
         };
     }
 }

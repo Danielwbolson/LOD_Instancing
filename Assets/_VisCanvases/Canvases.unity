@@ -460,7 +460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48b06333860f9e44f9e1c3db7d57f9b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scaleInteraction: 0.7
+  _scaleFactor: 0.7
 --- !u!114 &136499925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -486,6 +486,7 @@ MonoBehaviour:
   _isChild: 1
   white: {r: 1, g: 1, b: 1, a: 1}
   lengthOfLineRenderer: 16
+  _scaleFactor: 0.7
 --- !u!1 &239231264 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1810281111781874, guid: 163a3eb8b5c9b3e45aa2660c5e0748f8,
@@ -847,7 +848,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48b06333860f9e44f9e1c3db7d57f9b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scaleInteraction: 0.7
+  _scaleFactor: 0.7
 --- !u!114 &399442160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -873,6 +874,7 @@ MonoBehaviour:
   _isChild: 1
   white: {r: 1, g: 1, b: 1, a: 1}
   lengthOfLineRenderer: 16
+  _scaleFactor: 0.7
 --- !u!1 &413977860 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1965687323262590, guid: 163a3eb8b5c9b3e45aa2660c5e0748f8,
@@ -1007,6 +1009,7 @@ MonoBehaviour:
   _isChild: 0
   white: {r: 1, g: 1, b: 1, a: 1}
   lengthOfLineRenderer: 16
+  _scaleFactor: 0
 --- !u!1001 &517691186
 Prefab:
   m_ObjectHideFlags: 0
@@ -1904,6 +1907,7 @@ MonoBehaviour:
   _isChild: 0
   white: {r: 1, g: 1, b: 1, a: 1}
   lengthOfLineRenderer: 16
+  _scaleFactor: 0
 --- !u!114 &1701352060 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114205334372148454, guid: 163a3eb8b5c9b3e45aa2660c5e0748f8,
