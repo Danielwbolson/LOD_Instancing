@@ -453,43 +453,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &136499924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 136499918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48b06333860f9e44f9e1c3db7d57f9b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _scaleFactor: 0.7
---- !u!114 &136499925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 136499918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0b90bad88696264c8040e19e666ca48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &136499926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 136499918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24f6d5f2125ae4f48915bfe7d31c15f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isChild: 1
-  white: {r: 1, g: 1, b: 1, a: 1}
-  lengthOfLineRenderer: 16
 --- !u!1 &239231264 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1810281111781874, guid: 163a3eb8b5c9b3e45aa2660c5e0748f8,
@@ -840,43 +803,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &399442159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 399442153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48b06333860f9e44f9e1c3db7d57f9b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _scaleFactor: 0.7
---- !u!114 &399442160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 399442153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0b90bad88696264c8040e19e666ca48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &399442161
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 399442153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24f6d5f2125ae4f48915bfe7d31c15f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isChild: 1
-  white: {r: 1, g: 1, b: 1, a: 1}
-  lengthOfLineRenderer: 16
 --- !u!1 &508204403 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1930024565171252, guid: 9723f129ebb084465910186df35f3bd9,
@@ -968,6 +894,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &508204408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 508204403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0b90bad88696264c8040e19e666ca48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &508204409
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1425,6 +1362,14 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1965687323262590, guid: 163a3eb8b5c9b3e45aa2660c5e0748f8, type: 2}
+      propertyPath: m_TagString
+      value: GameController
+      objectReference: {fileID: 0}
+    - target: {fileID: 1609456683179618, guid: 163a3eb8b5c9b3e45aa2660c5e0748f8, type: 2}
+      propertyPath: m_TagString
+      value: GameController
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 163a3eb8b5c9b3e45aa2660c5e0748f8, type: 2}
   m_IsPrefabParent: 0
@@ -1852,6 +1797,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1693638128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1693638123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0b90bad88696264c8040e19e666ca48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &1693638129
 BoxCollider:
   m_ObjectHideFlags: 0

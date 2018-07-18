@@ -1,6 +1,5 @@
 ﻿// Axis Scale Grab Action|SecondaryControllerGrabActions|60030
-namespace VRTK.SecondaryControllerGrabActions
-{
+namespace VRTK.SecondaryControllerGrabActions {
     using UnityEngine;
 
     /// <summary>
@@ -16,8 +15,7 @@ namespace VRTK.SecondaryControllerGrabActions
     /// `VRTK/Examples/043_Controller_SecondaryControllerActions` demonstrates the ability to grab an object with one controller and scale it by grabbing and pulling with the second controller.
     /// </example>
     [AddComponentMenu("VRTK/Scripts/Interactions/Interactables/Secondary Controller Grab Actions/VRTK_AxisScaleGrabAction")]
-    public class VRTK_AxisScaleGrabAction : VRTK_BaseGrabAction
-    {
+    public class VRTK_AxisScaleGrabAction : VRTK_BaseGrabAction {
         [Tooltip("The distance the secondary grabbing object must move away from the original grab position before the secondary grabbing object auto ungrabs the Interactable Object.")]
         public float ungrabDistance = 1f;
         [Tooltip("Locks the specified checked axes so they won't be scaled")]
@@ -51,8 +49,7 @@ namespace VRTK.SecondaryControllerGrabActions
         /// <param name="currentSecondaryGrabbingObject">The Interact Grab script for the object that is associated with the secondary grabbing object.</param>
         /// <param name="primaryGrabPoint">The point on the Interactable Object where the primary Interact Grab initially grabbed the Interactable Object.</param>
         /// <param name="secondaryGrabPoint">The point on the Interactable Object where the secondary Interact Grab initially grabbed the Interactable Object.</param>
-        public override void Initialise(VRTK_InteractableObject currentGrabbdObject, VRTK_InteractGrab currentPrimaryGrabbingObject, VRTK_InteractGrab currentSecondaryGrabbingObject, Transform primaryGrabPoint, Transform secondaryGrabPoint)
-        {
+        public override void Initialise(VRTK_InteractableObject currentGrabbdObject, VRTK_InteractGrab currentPrimaryGrabbingObject, VRTK_InteractGrab currentSecondaryGrabbingObject, Transform primaryGrabPoint, Transform secondaryGrabPoint) {
             base.Initialise(currentGrabbdObject, currentPrimaryGrabbingObject, currentSecondaryGrabbingObject, primaryGrabPoint, secondaryGrabPoint);
             initialScale = currentGrabbdObject.transform.localScale;
             //initalLength = (grabbedObject.transform.position - secondaryGrabbingObject.transform.position).magnitude;
@@ -61,8 +58,7 @@ namespace VRTK.SecondaryControllerGrabActions
             _primaryGrabPoint = primaryGrabPoint;
 
 #pragma warning disable 618
-            if ((lockXAxis || lockYAxis || lockZAxis) && lockAxis == Vector3State.False)
-            {
+            if ((lockXAxis || lockYAxis || lockZAxis) && lockAxis == Vector3State.False) {
                 lockAxis = new Vector3State(lockXAxis, lockYAxis, lockZAxis);
             }
 #pragma warning restore 618
@@ -71,8 +67,7 @@ namespace VRTK.SecondaryControllerGrabActions
         /// <summary>
         /// The ProcessUpdate method runs in every Update on the Interactable Object whilst it is being grabbed by a secondary Interact Grab.
         /// </summary>
-        public override void ProcessUpdate()
-        {
+        public override void ProcessUpdate() {
             base.ProcessUpdate();
             CheckForceStopDistance(ungrabDistance);
         }
@@ -80,38 +75,31 @@ namespace VRTK.SecondaryControllerGrabActions
         /// <summary>
         /// The ProcessFixedUpdate method runs in every FixedUpdate on the Interactable Object whilst it is being grabbed by a secondary Interact Grab and performs the scaling action.
         /// </summary>
-        public override void ProcessFixedUpdate()
-        {
+        public override void ProcessFixedUpdate() {
             base.ProcessFixedUpdate();
-            if (initialised)
-            {
-                if (uniformScaling)
-                {
+            if (initialised) {
+                if (uniformScaling) {
                     UniformScale();
-                }
-                else
-                {
+                } else {
                     NonUniformScale();
                 }
             }
         }
 
-        protected virtual void ApplyScale(Vector3 newScale)
-        {
+        protected virtual void ApplyScale(Vector3 newScale) {
             Vector3 existingScale = grabbedObject.transform.localScale;
 
             float finalScaleX = (lockAxis.xState ? existingScale.x : newScale.x);
             float finalScaleY = (lockAxis.yState ? existingScale.y : newScale.y);
             float finalScaleZ = (lockAxis.zState ? existingScale.z : newScale.z);
 
-            if (finalScaleX > 0 && finalScaleY > 0 && finalScaleZ > 0)
-            {
-                grabbedObject.transform.localScale = new Vector3(finalScaleX, finalScaleY, finalScaleZ); ;
+            if (finalScaleX > 0 && finalScaleY > 0 && finalScaleZ > 0) {
+                ScaleAround(grabbedObject.gameObject, _primaryGrabPoint.position, new Vector3(finalScaleX, finalScaleY, finalScaleZ));
+                //grabbedObject.transform.localScale = new Vector3(finalScaleX, finalScaleY, finalScaleZ); ;
             }
         }
 
-        protected virtual void NonUniformScale()
-        {
+        protected virtual void NonUniformScale() {
             Vector3 initialRotatedPosition = grabbedObject.transform.rotation * grabbedObject.transform.position;
             Vector3 initialSecondGrabRotatedPosition = grabbedObject.transform.rotation * secondaryInitialGrabPoint.position;
             Vector3 currentSecondGrabRotatedPosition = grabbedObject.transform.rotation * secondaryGrabbingObject.transform.position;
@@ -124,8 +112,7 @@ namespace VRTK.SecondaryControllerGrabActions
             ApplyScale(newScale);
         }
 
-        protected virtual void UniformScale()
-        {
+        protected virtual void UniformScale() {
             Vector3 cachedPos = grabbedObject.transform.position;
             grabbedObject.transform.position = primaryGrabbingObject.transform.position;
             float adjustedLength = (primaryGrabbingObject.transform.position - secondaryGrabbingObject.transform.position).magnitude;
@@ -136,11 +123,26 @@ namespace VRTK.SecondaryControllerGrabActions
             grabbedObject.transform.position = cachedPos;
         }
 
-        protected virtual float CalculateAxisScale(float centerPosition, float initialPosition, float currentPosition)
-        {
+        protected virtual float CalculateAxisScale(float centerPosition, float initialPosition, float currentPosition) {
             float distance = currentPosition - initialPosition;
             distance = (centerPosition < initialPosition ? distance : -distance);
             return distance;
+        }
+
+        public void ScaleAround(GameObject target, Vector3 pivot, Vector3 newScale) {
+            Vector3 A = target.transform.localPosition;
+            Vector3 B = pivot;
+
+            Vector3 C = A - B; // diff from object pivot to desired pivot/origin
+
+            float RS = newScale.x / target.transform.localScale.x; // relative scale factor
+
+            // calc final position post-scale
+            Vector3 FP = B + C * RS;
+
+            // finally, actually perform the scale/translation
+            target.transform.localScale = newScale;
+            target.transform.localPosition = FP;
         }
     }
 }
