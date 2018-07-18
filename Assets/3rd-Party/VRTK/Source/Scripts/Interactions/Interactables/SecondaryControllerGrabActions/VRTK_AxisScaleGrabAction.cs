@@ -126,11 +126,14 @@ namespace VRTK.SecondaryControllerGrabActions
 
         protected virtual void UniformScale()
         {
+            Vector3 cachedPos = grabbedObject.transform.position;
+            grabbedObject.transform.position = primaryGrabbingObject.transform.position;
             float adjustedLength = (primaryGrabbingObject.transform.position - secondaryGrabbingObject.transform.position).magnitude;
             float adjustedScale = initialScaleFactor * adjustedLength;
 
             Vector3 newScale = new Vector3(adjustedScale, adjustedScale, adjustedScale);
             ApplyScale(newScale);
+            grabbedObject.transform.position = cachedPos;
         }
 
         protected virtual float CalculateAxisScale(float centerPosition, float initialPosition, float currentPosition)
