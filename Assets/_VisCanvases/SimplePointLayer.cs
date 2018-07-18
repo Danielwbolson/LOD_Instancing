@@ -62,6 +62,8 @@ public class SimplePointLayer : Layer {
 		return _anchorVariable.GetInput().GetBounds();
 	}
 
+
+	ComputeBuffer cellAndPointIndexBuffer;
 	public override void DrawLayer(Canvas canvas) {
 		if(_anchorVariable == null || !_anchorVariable.IsAssigned()) return;
 		Datastream stream = _anchorVariable.GetInput().GetStream(null,0,0);
@@ -70,7 +72,7 @@ public class SimplePointLayer : Layer {
 		// Indirect args
         if (_glyphMesh != null) {
             args[0] = (uint)_glyphMesh.GetIndexCount(0);
-            args[1] = (uint)instanceCount;
+            args[1] = (uint)stream.GetTopologyArray().Length;
             args[2] = (uint)_glyphMesh.GetIndexStart(0);
             args[3] = (uint)_glyphMesh.GetBaseVertex(0);
         }
@@ -84,7 +86,18 @@ public class SimplePointLayer : Layer {
 
 		_pointMaterial.SetTexture("_ColorMap",_colorMap);
 
+		if(cellAndPointIndexBuffer == null) {
+			cellAndPointIndexBuffer = new ComputeBuffer(instanceCount,sizeof(int)*2);
+			Vector2Int [] cellAndPointIndexArray = new Vector2Int[instanceCount];
+			for(int i = 0; i < instanceCount;i++) {
+				cellAndPointIndexArray[i] = new Vector2Int(0,i);
+			}
+			cellAndPointIndexBuffer.SetData(cellAndPointIndexArray);
+		}
+
+		
 		Material canvasMaterial = GetCanvasMaterial(canvas,_pointMaterial);
+		canvasMaterial.SetBuffer("_Indices",cellAndPointIndexBuffer);
 		_anchorVariable.Bind(canvasMaterial,0,0);
 		_colorVariable.Bind(canvasMaterial,0,0);
 		// Graphics.DrawMesh(_glyphMesh,Matrix4x4.identity,_pointMaterial,0);

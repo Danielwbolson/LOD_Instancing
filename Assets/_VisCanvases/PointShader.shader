@@ -35,9 +35,11 @@ Shader "Unlit/PointShader"
 				float2 uv : TEXCOORD0;
 				float2 uv3 : TEXCOORD3;
 				float3 worldPos : TEXCOORD1;
+				float2 indices : TEXCOORD2;
 				UNITY_FOG_COORDS(1)
 				float4 vertex : SV_POSITION;
 			};
+			StructuredBuffer<int2> _Indices;
 
 			sampler3D _ColorData;
 			sampler2D _MainTex;
@@ -59,16 +61,17 @@ Shader "Unlit/PointShader"
 				o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
 				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+				o.indices = float2(_AnchorTopology[instanceID].x,_AnchorTopology[instanceID].y);
 				UNITY_TRANSFER_FOG(o,o.vertex);
 				return o;
 			}
 			
 			
-			fixed4 frag (v2f i, uint instanceID : SV_InstanceID) : SV_Target
+			fixed4 frag (v2f i) : SV_Target
 			{
-	
-
-				float3 dataVal = GetData(1,floor(i.uv.x),instanceID,GetDataPosition(1,i.worldPos));
+				int pointIndex = floor(i.indices.y +0.5);
+				int cellIndex = floor(i.indices.x + 0.5);
+				float3 dataVal = GetData(1,cellIndex,pointIndex,GetDataPosition(1,i.worldPos));
 				float3 normalizedDataVal = NormalizeData(1,dataVal);
 
 				// sample the texture

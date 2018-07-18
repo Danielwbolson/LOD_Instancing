@@ -3,6 +3,11 @@
 
 #include "GeneralSupport.cginc"
 #include "CanvasSupport.cginc"
+
+
+StructuredBuffer<int2> _AnchorTopology;
+StructuredBuffer<int2> _AnchorTopologyCellInfo;
+
 int _VariableAssigned_0;
 int _VariableDomainDimensionality_0;
 int _VariableComponents_0;
@@ -565,6 +570,7 @@ float GetMagnitude(int variableSlot, float3 data) {
     else return 0; 
         
 }
+
 float3 GetData(int variableSlot, int cellId, int vertexId, float3 dataPos) {
     if(VariableIsAssigned(variableSlot) == 0)
         return GetVariableDefaultValue(variableSlot);
