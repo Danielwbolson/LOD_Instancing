@@ -84,8 +84,8 @@ public class TestVariablesrEditor : Editor
 			GUILayout.BeginVertical("box");
 			GUILayout.Label(myScript._layers[i].GetType().ToString());
 			
-			if(myScript._layers[i] is SimplePathLayer) {
-				SimplePathLayer pathLayer = (SimplePathLayer)myScript._layers[i];
+			if(myScript._layers[i] is SimplePointLayer) {
+				SimplePointLayer pathLayer = (SimplePointLayer)myScript._layers[i];
 				GUILayout.BeginHorizontal("box");
 
 				if(!pathLayer._anchorVariable.IsAssigned()) {
@@ -230,7 +230,7 @@ public class TestVariablesrEditor : Editor
 public class TestVariables : MonoBehaviour {
 
 	[SerializeField]
-	SimplePathLayer _pathLayer;
+	SimplePointLayer _pathLayer;
 
 	[SerializeField]
 	string fileToImport;

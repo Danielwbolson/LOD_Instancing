@@ -33,7 +33,7 @@ namespace SculptingVis {
 			material.SetVector("_VariableDefaultValue_" + GetSlot(),new Vector3(0,0,1));
 			if(_input != null) {
 				material.SetInt("_VariableAssigned_" + GetSlot(), 1);
-				_input.GetStream((DataVariable)_anchorVariable.GetInput(),instanceID,timestep).Bind(material,GetSlot());
+				_input.GetStream(_anchorVariable == null? null : (DataVariable)_anchorVariable.GetInput(),instanceID,timestep).Bind(material,GetSlot());
 			} else {
 				material.SetInt("_VariableAssigned_" + GetSlot(), 0);
 

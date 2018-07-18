@@ -226,39 +226,40 @@ int GetVariableComponents(int variableSlot) {
 }
 
 float4 GetVariable3DTextureSample(int variableSlot, float3 dataPos) {
+    float4 uvwt = float4(dataPos+0.5,0);
     switch (variableSlot) {
         case 0: 
-            return tex3D(_Variable3DTexture_0,dataPos+0.5);
+            return tex3Dlod (_Variable3DTexture_0,uvwt);
             break;
         case 1: 
-            return tex3D(_Variable3DTexture_1,dataPos+0.5);
+            return tex3Dlod(_Variable3DTexture_1,uvwt);
             break;
         case 2: 
-            return tex3D(_Variable3DTexture_2,dataPos+0.5);
+            return tex3Dlod(_Variable3DTexture_2,uvwt);
             break;
         case 3: 
-            return tex3D(_Variable3DTexture_3,dataPos+0.5);
+            return tex3Dlod(_Variable3DTexture_3,uvwt);
             break;
         case 4: 
-            return tex3D(_Variable3DTexture_4,dataPos+0.5);
+            return tex3Dlod(_Variable3DTexture_4,uvwt);
             break;
         case 5: 
-            return tex3D(_Variable3DTexture_5,dataPos+0.5);
+            return tex3Dlod(_Variable3DTexture_5,uvwt);
             break;
         case 6: 
-            return tex3D(_Variable3DTexture_6,dataPos+0.5);
+            return tex3Dlod(_Variable3DTexture_6,uvwt);
             break;
         case 7: 
-            return tex3D(_Variable3DTexture_7,dataPos+0.5);
+            return tex3Dlod(_Variable3DTexture_7,uvwt);
             break;
         case 8: 
-            return tex3D(_Variable3DTexture_8,dataPos+0.5);
+            return tex3Dlod(_Variable3DTexture_8,uvwt);
             break;
         case 9: 
-            return tex3D(_Variable3DTexture_9,dataPos+0.5);
+            return tex3Dlod(_Variable3DTexture_9,uvwt);
             break;
         default:
-            return tex3D(_Variable3DTexture_0,dataPos+0.5);
+            return tex3Dlod(_Variable3DTexture_0,uvwt);
     }
 }
 

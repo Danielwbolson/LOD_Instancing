@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -14,7 +14,8 @@ MonoBehaviour:
   _visible: 0
   _active: 0
   _boxBounds:
-    m_Center: {x: -9, y: 9, z: 9}
+    m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 3, y: 3, z: 3}
   _boxMesh: {fileID: 4300000, guid: c84d93f1796a7fd4685e7a210e7df7e2, type: 3}
   _boxMaterial: {fileID: 2100000, guid: d64d286c55cec497291b5fbf027fe0e6, type: 2}
+  _prefab: {fileID: 1737625808242506, guid: 590fb2193fa417949949a3fc742420bc, type: 2}

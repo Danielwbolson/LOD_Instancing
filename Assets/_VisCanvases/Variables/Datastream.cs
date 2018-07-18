@@ -173,6 +173,20 @@ public class Datastream : ScriptableObject {
 
                 _computeBuffer.SetData(data);
 
+            } else if(_rootChannel is VTKPositionDatastreamChannel) {
+                long numberOfElements = _rootChannel.GetNumberOfElements();
+                long numberOfComponents = _rootChannel.GetNumberOfComponents();
+                float[] data = new float[numberOfElements*numberOfComponents];
+
+                VTK.vtkDataSet ds = ((VTKPositionDatastreamChannel)_rootChannel).GetVTKDataSet();
+
+                if(ds.IsA("vtkPointSet")) {
+                    VTK.vtkPointSet ps = VTK.vtkPointSet.SafeDownCast(ds);
+                    Marshal.Copy(ps.GetPoints().GetVoidPointer(0),data,0,data.Length);
+                    _computeBuffer = new ComputeBuffer((int)numberOfElements*(int)numberOfComponents,sizeof(float));
+                    _computeBuffer.SetData(data);
+
+                }
             }
         }
 
@@ -225,11 +239,10 @@ public class Datastream : ScriptableObject {
         int dim = GetVariable().GetDomainDimensionality();
         material.SetInt("_VariableDomainDimensionality_" + bindSlot,dim);
         material.SetMatrix("_VariableBoundsMatrixInv_" + bindSlot,Matrix4x4.TRS(GetVariable().GetBounds().center,Quaternion.identity,GetVariable().GetBounds().size).inverse);
-        material.SetVector("_VariableMin_" + bindSlot, GetVariable().GetMin());
-        material.SetVector("_VariableMax_" + bindSlot, GetVariable().GetMax());
+        if(!GetVariable().IsAnchor()) material.SetVector("_VariableMin_" + bindSlot, GetVariable().GetMin());
+        if(!GetVariable().IsAnchor()) material.SetVector("_VariableMax_" + bindSlot, GetVariable().GetMax());
         material.SetFloat("_VariableComponents_" + bindSlot,GetNumberOfComponents());
-        Debug.Log(GetVariable().GetMin());
-        Debug.Log(GetVariable().GetMax());
+
         switch(dim) {
             case 3: 
                 material.SetTexture("_Variable3DTexture_" + bindSlot,Get3DTexture());

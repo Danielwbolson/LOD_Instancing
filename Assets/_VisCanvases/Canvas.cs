@@ -84,14 +84,16 @@ public class Canvas : MonoBehaviour {
 
 	}
 
+	public Transform GetInnerSceneTransform() {
+		return _innerSceneTransform;
+	}
+
 	public void AddGameObject(GameObject gameobject) {
-		gameobject.transform.SetParent(transform.Find("InnerSceneOrigin"),false);
+		gameobject.transform.SetParent(_innerSceneTransform,false);
 
 	}
 	// Update is called once per frame
 	void Update () {
-		Transform innerSceneOrigin = transform.Find("InnerSceneOrigin");
-
 		if(_fitStyle && _style.HasBounds()) {
 			Vector3 innerScaleDims = _style.GetBounds().size;
 			Vector3 canvasDims = _bounds.size - new Vector3(_boundsThreshold*2 + 0.001f,_boundsThreshold*2+ 0.001f,_boundsThreshold*2+ 0.001f);
@@ -99,26 +101,11 @@ public class Canvas : MonoBehaviour {
 			Vector3 ratio = Vector3.Scale(innerScaleDims, canvasDims.reciprocal());
 			float maxRatioDim = ratio.maxDimension();
 
-
-			// _innerSceneTransform.SetTRS(_style.GetBounds().center, Quaternion.identity, new Vector3(maxRatioDim,maxRatioDim,maxRatioDim));
 			Matrix4x4 M = Matrix4x4.Scale(new Vector3(1.0f/maxRatioDim,1.0f/maxRatioDim,1.0f/maxRatioDim))*Matrix4x4.Translate(-_style.GetBounds().center);
 
-			
-			
 			_innerSceneTransform.localPosition =M.GetPosition();
 			_innerSceneTransform.localScale = M.GetScale();
-			//_innerSceneTransform = _innerSceneTransform.inverse;
-			innerSceneOrigin.localRotation = Quaternion.identity;
-			innerSceneOrigin.localPosition = _innerSceneTransform.localPosition;
-			innerSceneOrigin.localScale = _innerSceneTransform.localScale;
-		
-		
-		} else {
-			_innerSceneTransform = innerSceneOrigin;
-		}
-
-		
-
+		} 
 
 		Graphics.DrawMesh(_areaMesh,GetBoundsTransformMatrix(),_areaMaterial,0);
 

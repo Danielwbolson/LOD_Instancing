@@ -11,7 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf0e09086529a45e6a7a2eebd4552605, type: 3}
   m_Name: New Style
   m_EditorClassIdentifier: 
-  _styleOriginMaterial: {fileID: 2100000, guid: da73a585d9ac37c4983bc612b400fa52,
-    type: 2}
-  _layers:
-  - {fileID: 11400000, guid: 99b77e03b35b73b4c90c6facc69d5c54, type: 2}
+  _styleOriginMaterial: {fileID: 0}
+  _layers: []

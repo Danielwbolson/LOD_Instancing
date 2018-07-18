@@ -18,7 +18,8 @@ Shader "Unlit/PointShader"
 			#pragma fragment frag
 			// make fog work
 			#pragma multi_compile_fog
-			
+			#pragma multi_compile_instancing
+        	#pragma instancing_options procedural:setup
 			#include "UnityCG.cginc"
 			#include "CanvasSupport.cginc"
 			#include "VariableSupport.cginc"
@@ -45,9 +46,16 @@ Shader "Unlit/PointShader"
 			float4 _MainTex_ST;
 			float4x4 _DataBoundsMatrixInv;
 			
-			v2f vert (appdata v)
+
+
+			v2f vert (appdata v, uint instanceID : SV_InstanceID)
 			{
 				v2f o;
+
+				if(VariableIsAssigned(0) == 1) {
+					v.vertex.xyz  += GetData(0,floor(v.uv.x),instanceID,float3(0,0,0));
+				}			
+				v.vertex = mul(_CanvasInnerScene,v.vertex);
 				o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
 				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
@@ -56,17 +64,15 @@ Shader "Unlit/PointShader"
 			}
 			
 			
-			fixed4 frag (v2f i) : SV_Target
+			fixed4 frag (v2f i, uint instanceID : SV_InstanceID) : SV_Target
 			{
-				float val = 0;
+	
 
-
-				float3 dataVal = GetData(1,floor(i.uv.x),floor(i.uv.y),GetDataPosition(1,i.worldPos));
+				float3 dataVal = GetData(1,floor(i.uv.x),instanceID,GetDataPosition(1,i.worldPos));
 				float3 normalizedDataVal = NormalizeData(1,dataVal);
 
 				// sample the texture
 				fixed4 col = tex2D(_ColorMap,float2(normalizedDataVal.x,0.5));
-				col.rgb = dataVal.xyz;
 				// apply fog
 				UNITY_APPLY_FOG(i.fogCoord, col);
 
