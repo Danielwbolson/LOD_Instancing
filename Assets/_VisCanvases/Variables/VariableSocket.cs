@@ -14,14 +14,47 @@ namespace SculptingVis {
 		[SerializeField]
 		int _slot;
 
+		[SerializeField]
+		string _name;
 
-		public void Init(int slot = -1) {
-			_slot = slot;
+
+		[SerializeField]
+		public float LowerBound;
+
+		[SerializeField]
+		public float UpperBound;
+
+
+
+		bool _vectorRequired = false;
+		bool _scalarRequired = false;
+		public void RequireVector() {
+			_vectorRequired = true;
+			_scalarRequired = false;
 		}
-		int GetSlot() {
+		public bool VectorRequired() {
+			return _vectorRequired;
+		}
+		public bool ScalarRequired() {
+			return _scalarRequired;
+		}
+		public void RequireScalar() {
+			_vectorRequired = false;
+			_scalarRequired = true;
+		}
+		public void Init(string name = "Anchor", int slot = -1) {
+			_slot = slot;
+			_name = name;
+		}
+		public int GetSlot() {
 			return _slot;
 		}
-
+		public string GetName() {
+			return _name;
+		}
+		public bool IsAnchor() {
+			return _slot < 0;
+		}
 		public bool IsAssigned() {
 			return _input != null;
 		}
@@ -29,13 +62,15 @@ namespace SculptingVis {
 			return _input;
 		}
 		public void Bind(Material material,int instanceID, int timestep) {
-			if(_slot < 0) return;
-			material.SetVector("_VariableDefaultValue_" + GetSlot(),new Vector3(0,0,1));
+			string slot = IsAnchor()?"Anchor":(""+GetSlot());
+			material.SetVector("_VariableDefaultValue_" + slot,new Vector3(0,0,1));
+			material.SetFloat("_VariableMinOverride_"+slot,LowerBound);
+			material.SetFloat("_VariableMaxOverride_" +slot, UpperBound);
 			if(_input != null) {
-				material.SetInt("_VariableAssigned_" + GetSlot(), 1);
+				material.SetInt("_VariableAssigned_" + slot, 1);
 				_input.GetStream(_anchorVariable == null? null : (DataVariable)_anchorVariable.GetInput(),instanceID,timestep).Bind(material,GetSlot());
 			} else {
-				material.SetInt("_VariableAssigned_" + GetSlot(), 0);
+				material.SetInt("_VariableAssigned_" + slot, 0);
 
 			}
 		}
@@ -57,6 +92,8 @@ namespace SculptingVis {
 
 		public void SetInputVariable(Variable inputVariable) {
 			_input = inputVariable;
+			LowerBound = inputVariable.GetMin().x;
+			UpperBound = inputVariable.GetMax().x;
 		}
 
 

@@ -26,7 +26,7 @@ public class SimplePathLayer : Layer {
 		_anchorVariable = CreateInstance<VariableSocket>();
 		_anchorVariable.Init();
 		_colorVariable = CreateInstance<VariableSocket>();
-		_colorVariable.Init(1);
+		_colorVariable.Init("Color",1);
 		_colorVariable.SetAnchorVariable(_anchorVariable);
 	}	
 	public override bool HasBounds() {

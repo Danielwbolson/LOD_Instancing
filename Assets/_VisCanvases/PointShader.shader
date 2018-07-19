@@ -39,7 +39,7 @@ Shader "Unlit/PointShader"
 				UNITY_FOG_COORDS(1)
 				float4 vertex : SV_POSITION;
 			};
-			StructuredBuffer<int2> _Indices;
+
 
 			sampler3D _ColorData;
 			sampler2D _MainTex;
@@ -50,18 +50,18 @@ Shader "Unlit/PointShader"
 			
 
 
-			v2f vert (appdata v, uint instanceID : SV_InstanceID)
+			v2f vert (appdata v, uint unity_InstanceID : SV_InstanceID)
 			{
 				v2f o;
 
-				if(VariableIsAssigned(0) == 1) {
-					v.vertex.xyz  += GetData(0,floor(v.uv.x),instanceID,float3(0,0,0));
+				if(_VariableAssigned_Anchor == 1) {
+					v.vertex.xyz  += GetAnchorPosition(unity_InstanceID);
 				}			
 				v.vertex = mul(_CanvasInnerScene,v.vertex);
 				o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
 				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-				o.indices = float2(_AnchorTopology[instanceID].x,_AnchorTopology[instanceID].y);
+				o.indices = float2(_AnchorTopology[unity_InstanceID].x,_AnchorTopology[unity_InstanceID].y);
 				UNITY_TRANSFER_FOG(o,o.vertex);
 				return o;
 			}
@@ -72,9 +72,9 @@ Shader "Unlit/PointShader"
 				int pointIndex = floor(i.indices.y +0.5);
 				int cellIndex = floor(i.indices.x + 0.5);
 
-				float3 dataPos = GetData(0,cellIndex,pointIndex,GetDataPosition(1,i.worldPos));
+				float3 dataPos = GetAnchorPosition(pointIndex);
 
-				float3 dataVal = GetData(1,cellIndex,pointIndex,dataPos);
+				float3 dataVal = GetData(1,cellIndex,pointIndex,WorldToDataSpace(i.worldPos));
 				float3 normalizedDataVal = NormalizeData(1,dataVal);
 				//return float4(dataPos,1);
 				// sample the texture
@@ -83,8 +83,8 @@ Shader "Unlit/PointShader"
 				UNITY_APPLY_FOG(i.fogCoord, col);
 
 
-				col = MarkBounds(i.worldPos,col);
-				StippleCrop(i.worldPos,i.vertex,_ScreenParams);
+				//col = MarkBounds(i.worldPos,col);
+				//StippleCrop(i.worldPos,i.vertex,_ScreenParams);
 
 				return col;
 			}

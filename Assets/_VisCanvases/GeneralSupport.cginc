@@ -19,6 +19,10 @@ float map(float value, float min1, float max1, float min2, float max2)
     // Do the same operation backwards with min2 and max2
     return  perc * (max2 - min2) + min2;
 }
-
+float clamp(float value, float min1, float max1)
+{
+    return value;
+    return  max(min(value,max1),min1);
+}
 
 #endif

@@ -14,6 +14,12 @@ public class SimplePointLayer : Layer {
 	[SerializeField]
 	public VariableSocket _colorVariable;
 
+	[SerializeField]
+	public VariableSocket _directionVariable;
+
+	[SerializeField]
+	public VariableSocket _opacityVariable;
+
 
 	[SerializeField]
 	public Texture2D _colorMap;
@@ -25,20 +31,46 @@ public class SimplePointLayer : Layer {
 	Mesh _glyphMesh;
 
 
+	
 	[SerializeField]
-	int instanceCount = 10000;
+	bool _sampleAtCenter;
+
+	[SerializeField]
+	float _glyphScale = 4;
+
+	[SerializeField]
+	int instanceCount;
 
     private ComputeBuffer argsBuffer;
     private uint[] args = new uint[5] { 0, 0, 0, 0, 0 };
 
-
-	public void Init() {
-		_anchorVariable = CreateInstance<VariableSocket>();
-		_anchorVariable.Init(0);
-		_colorVariable = CreateInstance<VariableSocket>();
-		_colorVariable.Init(1);
-		_colorVariable.SetAnchorVariable(_anchorVariable);
 	
+	public void Init() {
+		ClearSockets();
+		_anchorVariable = CreateInstance<VariableSocket>();
+		_anchorVariable.Init();
+		SetAnchorSocket(_anchorVariable);
+
+		_colorVariable = CreateInstance<VariableSocket>();
+		_colorVariable.Init("Color",1);
+		_colorVariable.RequireScalar();
+		_colorVariable.SetAnchorVariable(_anchorVariable);
+
+		_directionVariable = CreateInstance<VariableSocket>();
+		_directionVariable.Init("Direction",2);
+		_directionVariable.RequireVector();
+		_directionVariable.SetAnchorVariable(_anchorVariable);
+
+		_opacityVariable = CreateInstance<VariableSocket>();
+		_opacityVariable.Init("Opacity",3);
+		_opacityVariable.RequireScalar();
+		_opacityVariable.SetAnchorVariable(_anchorVariable);
+
+		GetSockets() .Add(_anchorVariable);
+		GetSockets() .Add(_colorVariable);
+		GetSockets() .Add(_directionVariable);
+		GetSockets().Add(_opacityVariable);
+
 	    argsBuffer = new ComputeBuffer(1, args.Length * sizeof(uint), ComputeBufferType.IndirectArguments);
 
 		// Indirect args
@@ -85,7 +117,8 @@ public class SimplePointLayer : Layer {
 		//Mesh[] m = stream.GetMeshes();
 
 		_pointMaterial.SetTexture("_ColorMap",_colorMap);
-
+		_pointMaterial.SetInt("_SampleAtCenter",_sampleAtCenter?1:0);
+		_pointMaterial.SetFloat("_glyphScale", _glyphScale );
 		if(cellAndPointIndexBuffer == null) {
 			cellAndPointIndexBuffer = new ComputeBuffer(instanceCount,sizeof(int)*2);
 			Vector2Int [] cellAndPointIndexArray = new Vector2Int[instanceCount];
@@ -98,8 +131,14 @@ public class SimplePointLayer : Layer {
 		
 		Material canvasMaterial = GetCanvasMaterial(canvas,_pointMaterial);
 		canvasMaterial.SetBuffer("_Indices",cellAndPointIndexBuffer);
+		foreach(VariableSocket socket in GetSockets()) {
+			
+		}
 		_anchorVariable.Bind(canvasMaterial,0,0);
 		_colorVariable.Bind(canvasMaterial,0,0);
+		_directionVariable.Bind(canvasMaterial,0,0);
+		_opacityVariable.Bind(canvasMaterial,0,0);
+
 		// Graphics.DrawMesh(_glyphMesh,Matrix4x4.identity,_pointMaterial,0);
 		Graphics.DrawMeshInstancedIndirect(_glyphMesh,0,canvasMaterial, new Bounds(Vector3.zero, new Vector3(100.0f, 100.0f, 100.0f)),argsBuffer);
 

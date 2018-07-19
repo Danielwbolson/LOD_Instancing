@@ -15,7 +15,11 @@ MonoBehaviour:
   _active: 0
   _anchorVariable: {fileID: 0}
   _colorVariable: {fileID: 0}
-  _colorMap: {fileID: 2800000, guid: d3eaffa8a16d34ac7846a48409353f35, type: 3}
-  _pointMaterial: {fileID: 2100000, guid: 828e42bd71679c145b63523a84ecc242, type: 2}
-  _glyphMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  _directionVariable: {fileID: 0}
+  _opacityVariable: {fileID: 0}
+  _colorMap: {fileID: 2800000, guid: daadff7be21a948c58820e607370750b, type: 3}
+  _pointMaterial: {fileID: 2100000, guid: f7ee1bab59059bd42b57063aefadc947, type: 2}
+  _glyphMesh: {fileID: 4300000, guid: f26fb77f2ea9d45d9af10c25b14be7ab, type: 3}
+  _sampleAtCenter: 1
+  _glyphScale: 5.66
   instanceCount: 11009

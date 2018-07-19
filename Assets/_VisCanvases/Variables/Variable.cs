@@ -21,7 +21,7 @@ public abstract class Variable : ScriptableObject {
 	}
 	public override string ToString()
     {
-		return (GetAnchorVariable() != null? "<" +GetAnchorVariable().GetName() + "(" + GetAnchorVariable().GetHashCode() + ")>": "") + GetVariableType() + (GetComponents() == 1 ? " scalar" : " "+GetComponents() + "D vector")  + (IsAnchor()? " anchor" : "") + " variable \"" + GetName() + "\""; 
+		return  GetVariableType() + (GetComponents() == 1 ? " scalar" : " "+GetComponents() + "D vector")  + (IsAnchor()? " anchor" : "") + " variable \"" + GetName() + "\""; 
     } 
 
 	public void Init() {
@@ -44,6 +44,9 @@ public abstract class Variable : ScriptableObject {
 		return false;
 	}
 
+	public virtual bool HasAnchor() {
+		return GetDomainDimensionality() != 3 && !IsAnchor();
+	}
 	public virtual string GetName() {
 		return "Unknown";
 	}

@@ -15,8 +15,24 @@ public class Layer : ScriptableObject {
 
 	[SerializeField]
 	bool _active;
-
-	
+	protected void ClearSockets() {
+		_sockets = null;
+	}
+	VariableSocket _anchorSocket;
+	protected void SetAnchorSocket(VariableSocket anchorSocket) {
+		_anchorSocket = anchorSocket;
+	}
+	public VariableSocket GetAnchorSocket() {
+		return _anchorSocket;
+	}
+	public bool HasAnchor() {
+		return _anchorSocket != null;
+	}
+	List<VariableSocket> _sockets;
+	public List<VariableSocket> GetSockets() {
+		if(_sockets== null) _sockets = new List<VariableSocket>();
+		return _sockets;
+	}
 	protected Material GetCanvasMaterial(Canvas canvas, Material layerMaterial) {
 		if(layerMaterial == null) {
 			Debug.LogError("Layer Material is null");

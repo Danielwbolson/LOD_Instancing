@@ -14,6 +14,8 @@ int _VariableDomainDimensionality_Anchor;
 int _VariableComponents_Anchor;
 float3 _VariableMin_Anchor;
 float3 _VariableMax_Anchor;
+float _VariableMinOverride_Anchor;
+float _VariableMaxOverride_Anchor;
 StructuredBuffer<float> _VariableDataBuffer_Anchor;
 float4x4 _VariableBoundsMatrixInv_Anchor;
 
@@ -22,6 +24,8 @@ int _VariableDomainDimensionality_0;
 int _VariableComponents_0;
 float3 _VariableMin_0;
 float3 _VariableMax_0;
+float _VariableMinOverride_0;
+float _VariableMaxOverride_0;
 sampler3D _Variable3DTexture_0;
 int _VariableArrayType_0;
 StructuredBuffer<float> _VariableDataBuffer_0;
@@ -33,6 +37,8 @@ int _VariableDomainDimensionality_1;
 int _VariableComponents_1;
 float3 _VariableMin_1;
 float3 _VariableMax_1;
+float _VariableMinOverride_1;
+float _VariableMaxOverride_1;
 sampler3D _Variable3DTexture_1;
 int _VariableArrayType_1;
 StructuredBuffer<float> _VariableDataBuffer_1;
@@ -44,6 +50,8 @@ int _VariableDomainDimensionality_2;
 int _VariableComponents_2;
 float3 _VariableMin_2;
 float3 _VariableMax_2;
+float _VariableMinOverride_2;
+float _VariableMaxOverride_2;
 sampler3D _Variable3DTexture_2;
 int _VariableArrayType_2;
 StructuredBuffer<float> _VariableDataBuffer_2;
@@ -55,6 +63,8 @@ int _VariableDomainDimensionality_3;
 int _VariableComponents_3;
 float3 _VariableMin_3;
 float3 _VariableMax_3;
+float _VariableMinOverride_3;
+float _VariableMaxOverride_3;
 sampler3D _Variable3DTexture_3;
 int _VariableArrayType_3;
 StructuredBuffer<float> _VariableDataBuffer_3;
@@ -66,6 +76,8 @@ int _VariableDomainDimensionality_4;
 int _VariableComponents_4;
 float3 _VariableMin_4;
 float3 _VariableMax_4;
+float _VariableMinOverride_4;
+float _VariableMaxOverride_4;
 sampler3D _Variable3DTexture_4;
 int _VariableArrayType_4;
 StructuredBuffer<float> _VariableDataBuffer_4;
@@ -77,6 +89,8 @@ int _VariableDomainDimensionality_5;
 int _VariableComponents_5;
 float3 _VariableMin_5;
 float3 _VariableMax_5;
+float _VariableMinOverride_5;
+float _VariableMaxOverride_5;
 sampler3D _Variable3DTexture_5;
 int _VariableArrayType_5;
 StructuredBuffer<float> _VariableDataBuffer_5;
@@ -88,6 +102,8 @@ int _VariableDomainDimensionality_6;
 int _VariableComponents_6;
 float3 _VariableMin_6;
 float3 _VariableMax_6;
+float _VariableMinOverride_6;
+float _VariableMaxOverride_6;
 sampler3D _Variable3DTexture_6;
 int _VariableArrayType_6;
 StructuredBuffer<float> _VariableDataBuffer_6;
@@ -99,6 +115,8 @@ int _VariableDomainDimensionality_7;
 int _VariableComponents_7;
 float3 _VariableMin_7;
 float3 _VariableMax_7;
+float _VariableMinOverride_7;
+float _VariableMaxOverride_7;
 sampler3D _Variable3DTexture_7;
 int _VariableArrayType_7;
 StructuredBuffer<float> _VariableDataBuffer_7;
@@ -110,6 +128,8 @@ int _VariableDomainDimensionality_8;
 int _VariableComponents_8;
 float3 _VariableMin_8;
 float3 _VariableMax_8;
+float _VariableMinOverride_8;
+float _VariableMaxOverride_8;
 sampler3D _Variable3DTexture_8;
 int _VariableArrayType_8;
 StructuredBuffer<float> _VariableDataBuffer_8;
@@ -121,6 +141,8 @@ int _VariableDomainDimensionality_9;
 int _VariableComponents_9;
 float3 _VariableMin_9;
 float3 _VariableMax_9;
+float _VariableMinOverride_9;
+float _VariableMaxOverride_9;
 sampler3D _Variable3DTexture_9;
 int _VariableArrayType_9;
 StructuredBuffer<float> _VariableDataBuffer_9;
@@ -240,7 +262,7 @@ int GetVariableComponents(int variableSlot) {
 }
 
 float4 GetVariable3DTextureSample(int variableSlot, float3 dataPos) {
-    float4 uvwt = float4(dataPos+0.5,0);
+    float4 uvwt = float4(dataPos,0);
     switch (variableSlot) {
         case 0: 
             return tex3Dlod (_Variable3DTexture_0,uvwt);
@@ -464,38 +486,37 @@ float4x4 GetVariableBoundsMatrixInv(int variableSlot) {
             return float4x4(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1);
     }
 }
-
 float3 GetVariableMin(int variableSlot) {
     switch (variableSlot) {
         case 0: 
-            return _VariableMin_0;
+            return _VariableMin_0 > _VariableMinOverride_0?_VariableMin_0 : _VariableMinOverride_0;
             break;
         case 1: 
-            return _VariableMin_1;
+            return _VariableMin_1 > _VariableMinOverride_1?_VariableMin_1 : _VariableMinOverride_1;
             break;
         case 2: 
-            return _VariableMin_2;
+            return _VariableMin_2 > _VariableMinOverride_2?_VariableMin_2 : _VariableMinOverride_2;
             break;
         case 3: 
-            return _VariableMin_3;
+            return _VariableMin_3 > _VariableMinOverride_3?_VariableMin_3 : _VariableMinOverride_3;
             break;
         case 4: 
-            return _VariableMin_4;
+            return _VariableMin_4 > _VariableMinOverride_4?_VariableMin_4 : _VariableMinOverride_4;
             break;
         case 5: 
-            return _VariableMin_5;
+            return _VariableMin_5 > _VariableMinOverride_5?_VariableMin_5 : _VariableMinOverride_5;
             break;
         case 6: 
-            return _VariableMin_6;
+            return _VariableMin_6 > _VariableMinOverride_6?_VariableMin_6 : _VariableMinOverride_6;
             break;
         case 7: 
-            return _VariableMin_7;
+            return _VariableMin_7 > _VariableMinOverride_7?_VariableMin_7 : _VariableMinOverride_7;
             break;
         case 8: 
-            return _VariableMin_8;
+            return _VariableMin_8 > _VariableMinOverride_8?_VariableMin_8 : _VariableMinOverride_8;
             break;
         case 9: 
-            return _VariableMin_9;
+            return _VariableMin_9 > _VariableMinOverride_9?_VariableMin_9 : _VariableMinOverride_9;
             break;
         default:
             return 0;
@@ -505,50 +526,50 @@ float3 GetVariableMin(int variableSlot) {
 float3 GetVariableMax(int variableSlot) {
     switch (variableSlot) {
         case 0: 
-            return _VariableMax_0;
+            return _VariableMax_0 < _VariableMaxOverride_0? _VariableMax_4 : _VariableMaxOverride_0;
             break;
         case 1: 
-            return _VariableMax_1;
+            return _VariableMax_1 < _VariableMaxOverride_1? _VariableMax_4 : _VariableMaxOverride_1;
             break;
         case 2: 
-            return _VariableMax_2;
+            return _VariableMax_2 < _VariableMaxOverride_2? _VariableMax_4 : _VariableMaxOverride_2;
             break;
         case 3: 
-            return _VariableMax_3;
+            return _VariableMax_3 < _VariableMaxOverride_3? _VariableMax_4 : _VariableMaxOverride_3;
             break;
         case 4: 
-            return _VariableMax_4;
+            return _VariableMax_4 < _VariableMaxOverride_4? _VariableMax_4 : _VariableMaxOverride_4;
             break;
         case 5: 
-            return _VariableMax_5;
+            return _VariableMax_5 < _VariableMaxOverride_5? _VariableMax_4 : _VariableMaxOverride_5;
             break;
         case 6: 
-            return _VariableMax_6;
+            return _VariableMax_6 < _VariableMaxOverride_6? _VariableMax_4 : _VariableMaxOverride_6;
             break;
         case 7: 
-            return _VariableMax_7;
+            return _VariableMax_7 < _VariableMaxOverride_7? _VariableMax_4 : _VariableMaxOverride_7;
             break;
         case 8: 
-            return _VariableMax_8;
+            return _VariableMax_8 < _VariableMaxOverride_8? _VariableMax_4 : _VariableMaxOverride_8;
             break;
         case 9: 
-            return _VariableMax_9;
+            return _VariableMax_9 < _VariableMaxOverride_9? _VariableMax_4 : _VariableMaxOverride_9;
             break;
         default:
             return 0;
     }
 }
 
-float3 GetDataPositionFromInnerSceneSpace(int variableSlot, float3 innerSceneSpace) {
-    float4 dataSpace = mul(GetVariableBoundsMatrixInv(variableSlot),innerSceneSpace);
-    return dataSpace;
+float3 GetNormalizedDataSpace(int variableSlot, float3 innerSceneSpace) {
+    float4 normdataSpace = mul(GetVariableBoundsMatrixInv(variableSlot),innerSceneSpace);
+    return normdataSpace;
 }
-float3 GetDataPosition(int variableSlot, float3 worldPos) {
+float3 WorldToDataSpace(float3 worldPos) {
     float4 worldSpace = float4(worldPos,1);
     float4 canvasSpace = mul(_CanvasInverse,worldSpace);
     float4 innerSceneSpace = mul(_CanvasInnerSceneInverse,worldSpace);
-    float4 dataSpace = mul(GetVariableBoundsMatrixInv(variableSlot),innerSceneSpace);
-    return dataSpace;
+    //float4 dataSpace = mul(GetVariableBoundsMatrixInv(variableSlot),innerSceneSpace);
+    return innerSceneSpace;
 }
 float3 NormalizeData(int variableSlot, float3 data) {
     float3 result;
@@ -558,7 +579,7 @@ float3 NormalizeData(int variableSlot, float3 data) {
         if(abs(MIN.x-MAX.x) < 0.0000001)
             result.x = MIN.x; 
         else 
-            result.x = map(data.x,MIN.x,MAX.x,0,1);
+            result.x = clamp(map(data.x,MIN.x,MAX.x,0,1),MIN.x,MAX.x);
 
         if(abs(MIN.y-MAX.y) < 0.0000001)
             result.y = MIN.y; 
@@ -584,21 +605,21 @@ float GetMagnitude(int variableSlot, float3 data) {
         
 }
 float3 GetAnchorPosition(int vertexId) {
-    return _VariableDataBuffer_Anchor[vertexId];
+    return float3(_VariableDataBuffer_Anchor[vertexId*3+0],_VariableDataBuffer_Anchor[vertexId*3+1],_VariableDataBuffer_Anchor[vertexId*3+2]);
 }
 float3 GetData(int variableSlot, int cellId, int vertexId, float3 dataPos) {
-    dataPos = GetDataPositionFromInnerSceneSpace(0,dataPos);
-    // if(_SampleAtCenter && variableSlot != 0) {
-    //     dataPos = GetAnchorPosition(vertexId);
-	// 	dataPos = GetDataPositionFromInnerSceneSpace(0,dataPos);
-    // }
+    float3 normdataPos = GetNormalizedDataSpace(variableSlot,dataPos);
+    if(_SampleAtCenter) {
+        dataPos = GetAnchorPosition(vertexId);
+		normdataPos = GetNormalizedDataSpace(variableSlot,dataPos);
+    }
     if(VariableIsAssigned(variableSlot) == 0)
         return GetVariableDefaultValue(variableSlot);
     float3 result = float3(0,0,0);
     int dim = GetVariableDomainDimensionality(variableSlot);
     switch(dim) {
         case 3:
-            result = GetVariable3DTextureSample(variableSlot,dataPos).xyz;
+            result = GetVariable3DTextureSample(variableSlot,normdataPos).xyz;
             break;
         case 1:
         case 0:

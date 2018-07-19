@@ -332,6 +332,7 @@ public class Datastream : ScriptableObject {
                         colorData[i][c] = data[i * numberOfComponents + c];
                 }
 
+
                 TextureFormat format;
                 if (numberOfComponents == 1)
                     format = TextureFormat.RFloat;
@@ -353,21 +354,22 @@ public class Datastream : ScriptableObject {
     }
 
     public void Bind(Material material, int bindSlot) {
+        string slot = GetVariable().IsAnchor()? "Anchor":(""+bindSlot);
         int dim = GetVariable().GetDomainDimensionality();
-        material.SetInt("_VariableDomainDimensionality_" + bindSlot,dim);
-        material.SetMatrix("_VariableBoundsMatrixInv_" + bindSlot,Matrix4x4.TRS(GetVariable().GetBounds().center,Quaternion.identity,GetVariable().GetBounds().size).inverse);
-        if(!GetVariable().IsAnchor()) material.SetVector("_VariableMin_" + bindSlot, GetVariable().GetMin());
-        if(!GetVariable().IsAnchor()) material.SetVector("_VariableMax_" + bindSlot, GetVariable().GetMax());
-        material.SetFloat("_VariableComponents_" + bindSlot,GetNumberOfComponents());
+        material.SetInt("_VariableDomainDimensionality_" + slot,dim);
+        material.SetMatrix("_VariableBoundsMatrixInv_" + slot,Matrix4x4.TRS(GetVariable().GetBounds().center,Quaternion.identity,GetVariable().GetBounds().size).inverse);
+        if(!GetVariable().IsAnchor()) material.SetVector("_VariableMin_" + slot, GetVariable().GetMin());
+        if(!GetVariable().IsAnchor()) material.SetVector("_VariableMax_" + slot, GetVariable().GetMax());
+        material.SetFloat("_VariableComponents_" + slot,GetNumberOfComponents());
 
         switch(dim) {
             case 3: 
-                material.SetTexture("_Variable3DTexture_" + bindSlot,Get3DTexture());
+                material.SetTexture("_Variable3DTexture_" + slot,Get3DTexture());
                 break;
             case 1:
             case 0:
-                material.SetInt("_VariableArrayType_" + bindSlot,GetVariable().IsPointVariable()?1:0);
-                material.SetBuffer("_VariableDataBuffer_" + bindSlot,GetComputeBuffer());
+                material.SetInt("_VariableArrayType_" + slot,GetVariable().IsPointVariable()?1:0);
+                material.SetBuffer("_VariableDataBuffer_" + slot,GetComputeBuffer());
                 
                 if(GetVariable().IsAnchor()) {
                     material.SetBuffer("_AnchorTopology",GetTopologyBuffer());
