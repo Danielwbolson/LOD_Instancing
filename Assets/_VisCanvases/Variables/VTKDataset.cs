@@ -11,8 +11,16 @@ public class VTKDataset : Dataset {
 	VTK.vtkDataSet _dataset;
 
 	[SerializeField]
-	VTKPositionDataVariable _anchorVariable;
+	VTKAnchorDataVariable _anchorVariable;
 	
+	public override Variable GetAnchor() {
+		return _anchorVariable;
+	}
+
+	public override void SetAnchor(Variable anchor) {
+		if(anchor is VTKAnchorDataVariable)
+		_anchorVariable = (VTKAnchorDataVariable)anchor;
+	}
 	[SerializeField]
 	int _instanceID = 0;
 
@@ -44,19 +52,27 @@ public class VTKDataset : Dataset {
 	}
 
 	protected override int queryNumberOfVariables() {
-		return (_dataset.IsA("vtkPointSet")?1:0) /* <- position*/ + _dataset.GetPointData().GetNumberOfArrays() + _dataset.GetCellData().GetNumberOfArrays() ;
+		return  _dataset.GetPointData().GetNumberOfArrays() + _dataset.GetCellData().GetNumberOfArrays() ;
+	}
+	
+	protected override bool hasAnchor() {
+		return (GetDataDimensionType() != DataDimensionType.Volume);
+	}
+	protected override AnchorVariable generateAnchor() {
+		if(!hasAnchor()) return null;
+		VTKAnchorDataVariable var = ScriptableObject.CreateInstance<VTKAnchorDataVariable>();
+		var.Init(this);
+		return var;
 	}
 	protected override DataVariable generateVarible(int i) {
 		int numPointArrays = _dataset.GetPointData().GetNumberOfArrays();
 		int numCellArrays = _dataset.GetCellData().GetNumberOfArrays();
 		VTK.vtkAbstractArray abstractArray;
 
-		int positionOffset = (_dataset.IsA("vtkPointSet")?1:0);
+		int positionOffset = 0;
 		DataVariable result = null;
 		if(positionOffset == 1 &&  i == 0 ) {
-			VTKPositionDataVariable var = ScriptableObject.CreateInstance<VTKPositionDataVariable>();
-			var.Init(this);
-			result = var;
+			
 
 		} else if(i < numPointArrays + positionOffset) {
 			abstractArray = _dataset.GetPointData().GetAbstractArray(i-positionOffset);
@@ -88,8 +104,8 @@ public class VTKDataset : Dataset {
 			}
 			vtkchannel.Init(_dataset, array);
 			return vtkchannel;
-		} else if(variable is VTKPositionDataVariable) {
-			VTKPositionDatastreamChannel vtkchannel = CreateInstance<VTKPositionDatastreamChannel>();
+		} else if(variable is VTKAnchorDataVariable) {
+			VTKAnchorDatastreamChannel vtkchannel = CreateInstance<VTKAnchorDatastreamChannel>();
 
 			vtkchannel.Init(_dataset);
 			return vtkchannel;;
@@ -120,7 +136,7 @@ public class VTKDataset : Dataset {
 		populateVariables();
 	}
 	protected override bool validateVariable(DataVariable variable) {
-		return base.validateVariable(variable) && (variable is VTKDataVariable || variable is VTKPositionDataVariable);
+		return base.validateVariable(variable) && (variable is VTKDataVariable || variable is VTKAnchorDataVariable);
 	} 
 
 
@@ -200,6 +216,7 @@ public class VTKDataset : Dataset {
 		return null;
 	}
 	public override string GetVariableName(DataVariable variable) {
+		// if(variable.IsAnchor()) return "Anchor";
 		if(!validateVariable(variable)) {
 			Debug.LogError("Variable is not a valid VTK variable for this VTK dataset.");
 			return "ERROR";
@@ -214,15 +231,15 @@ public class VTKDataset : Dataset {
 			} else {
 				return abstractArray.GetName();
 			}
-		} else if(variable is VTKPositionDataVariable) {
-			VTKPositionDataVariable positionVariable = (VTKPositionDataVariable)variable;
+		} else if(variable is VTKAnchorDataVariable) {
+			VTKAnchorDataVariable positionVariable = (VTKAnchorDataVariable)variable;
 			return "Position";
 		}
 		
 		return "";
 	}
 
-	public override int GetVariableDimensions(DataVariable variable) {
+	public override int GetVariableComponents(DataVariable variable) {
 			if(!validateVariable(variable)) {
 			Debug.LogError("Variable is not a valid VTK variable for this VTK dataset.");
 			return -1;
@@ -235,8 +252,8 @@ public class VTKDataset : Dataset {
 			if(abstractArray != null) {
 				return abstractArray.GetNumberOfComponents();
 			}
-		} else if(variable is VTKPositionDataVariable) {
-			VTKPositionDataVariable positionVariable = (VTKPositionDataVariable)variable;
+		} else if(variable is VTKAnchorDataVariable) {
+			VTKAnchorDataVariable positionVariable = (VTKAnchorDataVariable)variable;
 			return 3;
 		}
 		
@@ -261,8 +278,8 @@ public class VTKDataset : Dataset {
 				}
 				return abstractArray.GetNumberOfComponents() > 1;
 			} 
-		} else if(variable is VTKPositionDataVariable) {
-			VTKPositionDataVariable positionVariable = (VTKPositionDataVariable)variable;
+		} else if(variable is VTKAnchorDataVariable) {
+			VTKAnchorDataVariable positionVariable = (VTKAnchorDataVariable)variable;
 			return true;
 		}  
 

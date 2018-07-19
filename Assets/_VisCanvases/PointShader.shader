@@ -71,9 +71,12 @@ Shader "Unlit/PointShader"
 			{
 				int pointIndex = floor(i.indices.y +0.5);
 				int cellIndex = floor(i.indices.x + 0.5);
-				float3 dataVal = GetData(1,cellIndex,pointIndex,GetDataPosition(1,i.worldPos));
-				float3 normalizedDataVal = NormalizeData(1,dataVal);
 
+				float3 dataPos = GetData(0,cellIndex,pointIndex,GetDataPosition(1,i.worldPos));
+
+				float3 dataVal = GetData(1,cellIndex,pointIndex,dataPos);
+				float3 normalizedDataVal = NormalizeData(1,dataVal);
+				//return float4(dataPos,1);
 				// sample the texture
 				fixed4 col = tex2D(_ColorMap,float2(normalizedDataVal.x,0.5));
 				// apply fog

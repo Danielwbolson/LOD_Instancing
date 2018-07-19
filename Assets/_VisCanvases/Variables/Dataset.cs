@@ -8,13 +8,13 @@ public abstract class Dataset : ScriptableObject {
 	[SerializeField]
 	private HashSet<DataVariable> _variables;
 
-	[SerializeField]
-	private List<DataVariable> _anchors;
-
 
 	public abstract bool ContainsInstanceID(int instanceID);
 	public abstract bool ContainsTimestep(int timestep);
-    public bool ContainsAnchor(DataVariable anchor) { return _anchors.Contains(anchor);}
+    // public bool ContainsAnchor(DataVariable anchor) { return _anchors.Contains(anchor);}
+	public abstract Variable GetAnchor() ;
+	public abstract void SetAnchor(Variable anchor) ;
+	
 	// [SerializeField]
 	// private DatastreamDirectory _streams;
 	
@@ -23,7 +23,7 @@ public abstract class Dataset : ScriptableObject {
 	// 	return _streams;
 	// }
 	protected virtual bool validateVariable(DataVariable variable) {
-		return !variable.IsAnchor()? ((_variables!= null) && _variables.Contains(variable)) :((_anchors!= null) && _anchors.Contains(variable));
+		return !variable.IsAnchor()? ((_variables!= null) && _variables.Contains(variable)) : GetAnchor() == variable;
 	} 
 
 	protected abstract Datastream lookupDataStream(DataVariable variable, DataVariable anchor, int instanceID = 0, int timeStep = 0) ;
@@ -33,7 +33,7 @@ public abstract class Dataset : ScriptableObject {
 			Debug.LogError("Datastream Query variable must not be an anchor.");
 		} else if(!anchor.IsAnchor()) {
 			Debug.LogError("Datastream Anchor variable must be an anchor.");
-		} else if (!_variables.Contains(variable) || !_anchors.Contains(anchor)) {
+		} else if (!_variables.Contains(variable) || !GetAnchor() == anchor) {
 			Debug.LogError("Dataset does not contain either the variable or the anchor.");
 		} else {
 			lookupDataStream(variable,anchor,instanceID,timeStep);
@@ -66,6 +66,14 @@ public abstract class Dataset : ScriptableObject {
 	protected virtual int queryNumberOfVariables() {
 		return 0;
 	}
+
+	protected virtual bool hasAnchor() {
+		return false;
+	}
+	protected virtual AnchorVariable generateAnchor() {
+		return null;
+	}
+
 	protected virtual DataVariable generateVarible(int i) {
 		return null;
 	}
@@ -73,7 +81,14 @@ public abstract class Dataset : ScriptableObject {
 	protected abstract DatastreamChannel generateDatastreamChannel(DataVariable variable);
 
 	protected void populateVariables() {
-
+		if(hasAnchor()) {
+			AnchorVariable anchor = generateAnchor();
+			SetAnchor(anchor);
+			
+			Datastream stream = CreateInstance<Datastream>();
+			stream.Init(anchor,generateDatastreamChannel(anchor));
+            anchor.SetStream(stream);
+		}
 		int numVariables = queryNumberOfVariables();
 		for(int v = 0; v < numVariables; v++) {
             DataVariable var = generateVarible(v);
@@ -90,8 +105,7 @@ public abstract class Dataset : ScriptableObject {
 
 	protected void addVariable(DataVariable variable) {
 		if(variable.IsAnchor()) {
-			if(_anchors == null) _anchors = new List<DataVariable>();
-			_anchors.Add(variable);
+			SetAnchor(variable);
 		} else {
 			if(_variables == null) _variables = new HashSet<DataVariable>();
 			_variables.Add(variable);
@@ -105,12 +119,12 @@ public abstract class Dataset : ScriptableObject {
 		return output;
 	}
 
-	public DataVariable[] GetAnchors() {
-		if(_anchors == null) return new DataVariable[0];
-		DataVariable [] output = new DataVariable[_anchors.Count];
-		_anchors.CopyTo(output);
-		return output;
-	}
+	// public DataVariable[] GetAnchors() {
+	// 	if(_anchors == null) return new DataVariable[0];
+	// 	DataVariable [] output = new DataVariable[_anchors.Count];
+	// 	_anchors.CopyTo(output);
+	// 	return output;
+	// }
 
 	public virtual string GetVariableName(DataVariable variable) {
 		if(!_variables.Contains(variable)) {
@@ -118,7 +132,7 @@ public abstract class Dataset : ScriptableObject {
 		}
 		return "Unknown";
 	}
-	public virtual int GetVariableDimensions(DataVariable variable) {
+	public virtual int GetVariableComponents(DataVariable variable) {
 		if(!_variables.Contains(variable)) {
 			Debug.LogError("Data set does not contain variable.");
 		}

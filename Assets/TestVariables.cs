@@ -53,6 +53,7 @@ public class TestVariablesrEditor : Editor
 	public void VariableList() {
 		GUILayout.BeginVertical("box",GUILayout.MaxWidth(100));
 		for(int i = 0; i < myScript._variables.Count; i++) {
+			if(myScript._variables[i] == null) continue;
 			GUILayout.BeginHorizontal("box");
 			GUILayout.Label("•",GUILayout.MaxWidth(10));
 			Rect hook = GUILayoutUtility.GetLastRect();
@@ -253,10 +254,9 @@ public class TestVariables : MonoBehaviour {
 	
 
 		Dataset ds1 = vtkds;
-		Variable[] ancs = ds1.GetAnchors();
+		Variable anc = ds1.GetAnchor();
 			
-		foreach(Variable a in ds1.GetAnchors())
-			_variables.Add(a);
+			_variables.Add(anc);
 
 		foreach(Variable a in ds1.GetVariables())
 			_variables.Add(a);
@@ -273,12 +273,16 @@ public class TestVariables : MonoBehaviour {
 		//print(vtkds2.GetVariables()[4]);
 		//_pathLayer._colorVariable = (vtkds2.GetVariables()[4]);
 
-		foreach(Variable a in vtkds2.GetAnchors())
-			_variables.Add(a);
+		_variables.Add(vtkds2.GetAnchor());
 
 		foreach(Variable a in vtkds2.GetVariables())
 			_variables.Add(a);
 
+
+		PointDataset pointDataset = PointDataset.CreateInstance<PointDataset>();
+		pointDataset.Init(_variables[_variables.Count-1],1000,0,0);
+		pointDataset.LoadDataset();
+		_variables.Add(pointDataset.GetAnchor());
 
 	}
 	// Use this for initialization

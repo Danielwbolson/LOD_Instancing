@@ -19,7 +19,7 @@ public class Datastream : ScriptableObject {
         _owner = owner;
         _rootChannel = rootChannel;
 
-        if(_rootChannel is VTKPositionDatastreamChannel) {
+        if(_rootChannel is VTKAnchorDatastreamChannel) {
 
         }
         if(_rootChannel.GetNumberOfComponents() > 1) {
@@ -42,8 +42,8 @@ public class Datastream : ScriptableObject {
 
     public Vector2Int [] GetTopologyCellInfoArray() {
         if(_topologyCellInfoArray == null) {
-             if(_rootChannel is VTKPositionDatastreamChannel)  {
-                VTKPositionDatastreamChannel vc = (VTKPositionDatastreamChannel)_rootChannel;
+             if(_rootChannel is VTKAnchorDatastreamChannel)  {
+                VTKAnchorDatastreamChannel vc = (VTKAnchorDatastreamChannel)_rootChannel;
                 VTK.vtkDataSet ds = vc.GetVTKDataSet();
                 
                 if(_owner.GetVariableType() != DataDimensionType.Volume) {
@@ -69,15 +69,21 @@ public class Datastream : ScriptableObject {
                 _topologyCellInfoArray = topologyCellInfo.ToArray();
                 }
                 
+            } else if(_rootChannel is PointAnchorDatastreamChannel) {
+                List<Vector2Int> topologyCellInfo = new List<Vector2Int>();
+                topologyCellInfo.Add(new Vector2Int(0,((PointAnchorDatastreamChannel)_rootChannel)._points.Count));
+                _topologyCellInfoArray = topologyCellInfo.ToArray();
+
             }
+
 
         }
         return _topologyCellInfoArray;
     }
     public Vector2Int [] GetTopologyArray() {
         if(_topologyArray==null) {
-            if(_rootChannel is VTKPositionDatastreamChannel)  {
-                VTKPositionDatastreamChannel vc = (VTKPositionDatastreamChannel)_rootChannel;
+            if(_rootChannel is VTKAnchorDatastreamChannel)  {
+                VTKAnchorDatastreamChannel vc = (VTKAnchorDatastreamChannel)_rootChannel;
                 VTK.vtkDataSet ds = vc.GetVTKDataSet();
                 
                 if(_owner.GetVariableType() != DataDimensionType.Volume) {
@@ -103,7 +109,17 @@ public class Datastream : ScriptableObject {
                 _topologyArray = topology.ToArray();
                 }
                 
+            } else if(_rootChannel is PointAnchorDatastreamChannel) {
+                
+                List<Vector2Int> topology = new List<Vector2Int>();
+
+                for(int i = 0; i < ((PointAnchorDatastreamChannel)_rootChannel)._points.Count;i++){
+                    topology.Add(new Vector2Int(0,i));        
+                }
+                _topologyArray = topology.ToArray();
+                
             }
+
 
         }
 
@@ -114,8 +130,8 @@ public class Datastream : ScriptableObject {
         if(_meshes == null) {
             int numMeshes = 1;
 
-            if(_rootChannel is VTKPositionDatastreamChannel)  {
-                VTKPositionDatastreamChannel vc = (VTKPositionDatastreamChannel)_rootChannel;
+            if(_rootChannel is VTKAnchorDatastreamChannel)  {
+                VTKAnchorDatastreamChannel vc = (VTKAnchorDatastreamChannel)_rootChannel;
                 VTK.vtkDataSet ds = vc.GetVTKDataSet();
                 
                 if(_owner.GetVariableType() == DataDimensionType.Path) {
@@ -246,10 +262,10 @@ public class Datastream : ScriptableObject {
 
                 _dataBuffer.SetData(data);
 
-            } else if(_rootChannel is VTKPositionDatastreamChannel) {
+            } else if(_rootChannel is VTKAnchorDatastreamChannel) {
               
 
-                VTK.vtkDataSet ds = ((VTKPositionDatastreamChannel)_rootChannel).GetVTKDataSet();
+                VTK.vtkDataSet ds = ((VTKAnchorDatastreamChannel)_rootChannel).GetVTKDataSet();
 
                 if(ds.IsA("vtkPointSet")) {
                     VTK.vtkPointSet ps = VTK.vtkPointSet.SafeDownCast(ds);
@@ -258,6 +274,9 @@ public class Datastream : ScriptableObject {
                     _dataBuffer.SetData(data);
 
                 }
+            } else if(_rootChannel is PointAnchorDatastreamChannel) {
+                _dataBuffer = new ComputeBuffer((int)numberOfElements*(int)numberOfComponents,sizeof(float));
+                _dataBuffer.SetData(((PointAnchorDatastreamChannel)_rootChannel)._points.ToArray());
             }
         }
 
@@ -266,10 +285,7 @@ public class Datastream : ScriptableObject {
 
     public ComputeBuffer GetTopologyBuffer() {
         if(_topologyBuffer == null) {
-            if(_rootChannel is VTKDatastreamChannel) {
-             
-
-            } else if(GetVariable().IsAnchor()) {
+            if(GetVariable().IsAnchor()) {
                 _topologyBuffer = new ComputeBuffer(GetTopologyArray().Length,sizeof(int)*2);
                 _topologyBuffer.SetData(GetTopologyArray());
             }
@@ -281,11 +297,9 @@ public class Datastream : ScriptableObject {
 
     ComputeBuffer _topologyCellInfoBuffer;
     public ComputeBuffer GetTopologyCellInfoBuffer() {
+        if(GetTopologyArray() == null) return null;
         if(_topologyCellInfoBuffer == null) {
-            if(_rootChannel is VTKDatastreamChannel) {
-             
-
-            } else if(GetVariable().IsAnchor()) {
+            if(GetVariable().IsAnchor()) {
                 _topologyCellInfoBuffer = new ComputeBuffer(GetTopologyCellInfoArray().Length,sizeof(int)*2);
                 _topologyCellInfoBuffer.SetData(GetTopologyCellInfoArray());
             }
@@ -351,12 +365,13 @@ public class Datastream : ScriptableObject {
                 material.SetTexture("_Variable3DTexture_" + bindSlot,Get3DTexture());
                 break;
             case 1:
+            case 0:
                 material.SetInt("_VariableArrayType_" + bindSlot,GetVariable().IsPointVariable()?1:0);
                 material.SetBuffer("_VariableDataBuffer_" + bindSlot,GetComputeBuffer());
                 
                 if(GetVariable().IsAnchor()) {
                     material.SetBuffer("_AnchorTopology",GetTopologyBuffer());
-                    material.SetBuffer("_AnchorTopologyCellInfo",GetTopologyCellInfoBuffer());
+                    if(GetTopologyCellInfoBuffer() != null )material.SetBuffer("_AnchorTopologyCellInfo",GetTopologyCellInfoBuffer());
 
                 }
                 break;

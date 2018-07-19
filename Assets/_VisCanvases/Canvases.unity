@@ -375,15 +375,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4356263491337220, guid: 9723f129ebb084465910186df35f3bd9, type: 2}
       propertyPath: m_LocalScale.x
-      value: 0.6598334
+      value: 0.19795002
       objectReference: {fileID: 0}
     - target: {fileID: 4356263491337220, guid: 9723f129ebb084465910186df35f3bd9, type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.6598334
+      value: 0.19795002
       objectReference: {fileID: 0}
     - target: {fileID: 4356263491337220, guid: 9723f129ebb084465910186df35f3bd9, type: 2}
       propertyPath: m_LocalScale.z
-      value: 0.6598334
+      value: 0.19795002
       objectReference: {fileID: 0}
     - target: {fileID: 114724446188682722, guid: 9723f129ebb084465910186df35f3bd9,
         type: 2}

@@ -21,7 +21,7 @@ public abstract class Variable : ScriptableObject {
 	}
 	public override string ToString()
     {
-		return GetVariableType() + (GetComponents() == 1 ? " scalar" : " "+GetComponents() + "D vector")  + (IsAnchor()? " anchor" : "") + " variable \"" + GetName() + "\""; 
+		return (GetAnchorVariable() != null? "<" +GetAnchorVariable().GetName() + "(" + GetAnchorVariable().GetHashCode() + ")>": "") + GetVariableType() + (GetComponents() == 1 ? " scalar" : " "+GetComponents() + "D vector")  + (IsAnchor()? " anchor" : "") + " variable \"" + GetName() + "\""; 
     } 
 
 	public void Init() {
@@ -35,7 +35,7 @@ public abstract class Variable : ScriptableObject {
 	public abstract Vector3 GetMax();
 
 	public abstract Bounds GetBounds();
-
+	public abstract Variable GetAnchorVariable();
 	public virtual DataDimensionType GetVariableType() {
 		return DataDimensionType.Unknown;
 	}

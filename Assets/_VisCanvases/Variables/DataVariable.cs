@@ -17,25 +17,16 @@ public abstract class DataVariable : Variable {
 		_dataset = dataset;
 
     }
-
+	public override Variable GetAnchorVariable() {
+		return _dataset.GetAnchor();
+	}
     public void SetStream(Datastream datastream) {
         _datastream = datastream;
     }
     public override Datastream GetStream(DataVariable anchor, int instanceID, int timestep) {
-        //if (GetDataSet().ContainsInstanceID(instanceID) && GetDataSet().ContainsInstanceID(timestep) && (anchor==null || GetDataSet().ContainsAnchor(anchor))) {
             return _datastream;
-        //}
-        //else return null;
 		
 	}
-
-	//public override Datastream GetStream(Variable anchor, int instanceID, int timestep) {
-
-	//	return _dataset.GetDatastream(this, anchor is DataVariable? (DataVariable)anchor : null, instanceID,timestep);
-	//}
-	//// public virtual bool SetDataset(dataset) {
-	// 	_dataset = dataset;
-	// }
 
 	public override Vector3 GetMin() {
 		return GetDataSet().GetMin(this);
@@ -60,7 +51,7 @@ public abstract class DataVariable : Variable {
 	}
 
 	public override int GetComponents() {
-		return GetDataSet().GetVariableDimensions(this) ;
+		return GetDataSet().GetVariableComponents(this) ;
 	}
 	public override int GetDomainDimensionality() {
 		return GetDataSet().GetDomainDimensionality();

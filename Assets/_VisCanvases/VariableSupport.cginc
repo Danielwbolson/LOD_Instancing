@@ -7,6 +7,15 @@
 
 StructuredBuffer<int2> _AnchorTopology;
 StructuredBuffer<int2> _AnchorTopologyCellInfo;
+int _SampleAtCenter;
+
+int _VariableAssigned_Anchor;
+int _VariableDomainDimensionality_Anchor;
+int _VariableComponents_Anchor;
+float3 _VariableMin_Anchor;
+float3 _VariableMax_Anchor;
+StructuredBuffer<float> _VariableDataBuffer_Anchor;
+float4x4 _VariableBoundsMatrixInv_Anchor;
 
 int _VariableAssigned_0;
 int _VariableDomainDimensionality_0;
@@ -530,6 +539,10 @@ float3 GetVariableMax(int variableSlot) {
     }
 }
 
+float3 GetDataPositionFromInnerSceneSpace(int variableSlot, float3 innerSceneSpace) {
+    float4 dataSpace = mul(GetVariableBoundsMatrixInv(variableSlot),innerSceneSpace);
+    return dataSpace;
+}
 float3 GetDataPosition(int variableSlot, float3 worldPos) {
     float4 worldSpace = float4(worldPos,1);
     float4 canvasSpace = mul(_CanvasInverse,worldSpace);
@@ -570,8 +583,15 @@ float GetMagnitude(int variableSlot, float3 data) {
     else return 0; 
         
 }
-
+float3 GetAnchorPosition(int vertexId) {
+    return _VariableDataBuffer_Anchor[vertexId];
+}
 float3 GetData(int variableSlot, int cellId, int vertexId, float3 dataPos) {
+    dataPos = GetDataPositionFromInnerSceneSpace(0,dataPos);
+    // if(_SampleAtCenter && variableSlot != 0) {
+    //     dataPos = GetAnchorPosition(vertexId);
+	// 	dataPos = GetDataPositionFromInnerSceneSpace(0,dataPos);
+    // }
     if(VariableIsAssigned(variableSlot) == 0)
         return GetVariableDefaultValue(variableSlot);
     float3 result = float3(0,0,0);
@@ -581,6 +601,7 @@ float3 GetData(int variableSlot, int cellId, int vertexId, float3 dataPos) {
             result = GetVariable3DTextureSample(variableSlot,dataPos).xyz;
             break;
         case 1:
+        case 0:
          //result = float3(cellId/20.0,0,0);break;
             result = GetVariableStructuredBufferSample(variableSlot,GetVariableArrayType(variableSlot) == 1? vertexId:cellId);
             break;
