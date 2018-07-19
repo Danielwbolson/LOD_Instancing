@@ -34,25 +34,73 @@ public class TestVariablesrEditor : Editor
 		GUILayout.BeginVertical();
 		GUILayout.BeginHorizontal();
 
+
+			DrawColorMapList();
+			EditorGUILayout.Space ();
+
 			LayerList();
 			//DropAreaGUI();
 			EditorGUILayout.Space ();
         	VariableList ();
 		GUILayout.EndHorizontal();
 
-		GUILayout.BeginHorizontal("box");
-		GUILayout.Label("ColorMap1");
-		GUILayout.Label("ColorMap2");
-		GUILayout.Label("ColorMap3");
-
-		GUILayout.EndHorizontal();
 		GUILayout.EndVertical();
     }
 
+	public void DrawColorMapList() {
+		GUILayout.BeginVertical("box",GUILayout.MaxWidth(65));
 
+		for(int i = 0; i < myScript._colorMaps.GetColorMaps().Count;i++){
+			GUILayout.BeginHorizontal();
+			GUILayout.Box(myScript._colorMaps.GetColorMaps()[i],GUILayout.Width(50),GUILayout.Height(20));
+			GUILayout.Label("•",GUILayout.MaxWidth(10));
+
+			Rect hook = GUILayoutUtility.GetLastRect();
+			// if(hook.x > 5)
+			// 	_varHooks[i] = hook;
+        	Event evt = Event.current;
+
+			switch (evt.type) {
+        		case EventType.MouseDown:
+					if (!hook.Contains (evt.mousePosition)) break;
+					DragAndDrop.PrepareStartDrag();
+					DragAndDrop.StartDrag("colormap");
+					Object [] objs = new Object[1];
+					objs[0] = myScript._colorMaps.GetColorMaps()[i];
+					DragAndDrop.objectReferences = objs;
+					DragAndDrop.SetGenericData("int",i);
+
+					break;
+        		
+        	}
+
+
+
+			GUILayout.EndHorizontal();
+		}
+		GUILayout.EndVertical();
+	}
 	public void VariableList() {
+
+		AnchorVariable currentAnchor = null;
+		
 		GUILayout.BeginVertical("box",GUILayout.MaxWidth(100));
+		GUILayout.BeginVertical("box",GUILayout.MaxWidth(100));
+
 		for(int i = 0; i < myScript._variables.Count; i++) {
+			if(myScript._variables[i] == null) continue;
+			Variable variable = myScript._variables[i];
+			if(currentAnchor == null && variable.IsAnchor())
+				currentAnchor = (AnchorVariable)variable;
+			if(!variable.HasAnchor() && !variable.IsAnchor() || (variable.IsAnchor() && variable != currentAnchor) ||(!variable.IsAnchor() && variable.HasAnchor() && variable.GetAnchorVariable() != currentAnchor)){
+				if(variable.IsAnchor())
+					currentAnchor = (AnchorVariable)variable;
+				else
+					currentAnchor = (AnchorVariable)variable.GetAnchorVariable();
+				GUILayout.EndVertical();
+				GUILayout.BeginVertical("box",GUILayout.MaxWidth(100));
+
+			}
 			GUILayout.BeginHorizontal("box");
 			GUILayout.Label("•",GUILayout.MaxWidth(10));
 			Rect hook = GUILayoutUtility.GetLastRect();
@@ -65,8 +113,11 @@ public class TestVariablesrEditor : Editor
 					if (!hook.Contains (evt.mousePosition)) break;
 					DragAndDrop.PrepareStartDrag();
 					DragAndDrop.StartDrag("hook");
+					DragAndDrop.activeControlID = 0;
 					DragAndDrop.SetGenericData("int",i);
-
+					Object [] objs = new Object[1];
+					objs[0] = myScript._variables[i];
+					DragAndDrop.objectReferences = objs;
 					break;
         		
         	}
@@ -77,42 +128,103 @@ public class TestVariablesrEditor : Editor
 			GUILayout.EndHorizontal();
 		}	
 		GUILayout.EndVertical();
+
+		GUILayout.EndVertical();
 	}
 	public void LayerList() {
-		GUILayout.BeginVertical("box", GUILayout.MaxWidth(150));
+		GUILayout.BeginVertical("box", GUILayout.MaxWidth(200));
 		for(int i = 0; i < myScript._layers.Count; i++) {
 			GUILayout.BeginVertical("box");
 			GUILayout.Label(myScript._layers[i].GetType().ToString());
 			
-			if(myScript._layers[i] is SimplePathLayer) {
-				SimplePathLayer pathLayer = (SimplePathLayer)myScript._layers[i];
-				GUILayout.BeginHorizontal("box");
+			if(true) {
+				Layer layer = myScript._layers[i];
 
-				if(pathLayer._anchorVariable == null) {
-					GUILayout.Label("Anchor" + "["+"]");
-				} else {
-					GUILayout.Label("Anchor" + "["+ pathLayer._anchorVariable.GetName()+"]");
-				
 
+
+				if(layer is SimplePointLayer) {
+					GUILayout.BeginHorizontal();
+
+					GUILayout.Label("•",GUILayout.MaxWidth(10));
+					Rect hook0 = GUILayoutUtility.GetLastRect();
+
+					Event evt0 = Event.current;
+					switch (evt0.type) {
+					case EventType.DragUpdated:
+					case EventType.DragPerform:
+						if (!hook0.Contains (evt0.mousePosition))
+							break;
+						
+						DragAndDrop.visualMode = DragAndDropVisualMode.Link;
+					
+						while (evt0.type == EventType.DragPerform) {
+							DragAndDrop.AcceptDrag ();Debug.Log(DragAndDrop.objectReferences[0]);
+							if(!(DragAndDrop.objectReferences[0] is Texture)) break;
+							int var = int.Parse(DragAndDrop.GetGenericData("int").ToString());
+							
+							((SimplePointLayer)layer)._colorMap = (Texture2D)DragAndDrop.objectReferences[0];
+							break;
+						}
+
+
+
+						break;
+					}
+
+					GUILayout.Label("Colormap");
+
+					GUILayout.EndHorizontal();
 
 				}
-				GUILayout.Label("•",GUILayout.MaxWidth(10));
-				Rect hook = GUILayoutUtility.GetLastRect();
+				for(int s = 0; s < layer.GetSockets().Count; s++) {
+					VariableSocket socket = layer.GetSockets()[s];
+					GUILayout.BeginHorizontal("box");
+					if(!socket.IsAssigned()) {
+					GUILayout.Label(socket.GetName() + "["+"]");
+					} else {
+						GUILayout.Label(socket.GetName() + "["+ socket.GetInput().GetName()+"]");
+					
 
-				Event evt = Event.current;
-				switch (evt.type) {
+
+					}
+
+
+				float lower = 0.25f;
+				float upper = 0.75f;
+				if(socket.IsAssigned() && socket.GetInput().GetComponents() == 1){
+				EditorGUILayout.MinMaxSlider(ref socket.LowerBound,ref socket.UpperBound,socket.GetInput().GetMin().x,socket.GetInput().GetMax().x,GUILayout.Width(100));
+				Debug.Log(socket.LowerBound + " - " + socket.UpperBound);
+				}else
+				EditorGUILayout.LabelField("", GUI.skin.horizontalSlider,GUILayout.Width(100));
+
+
+				GUILayout.Label("•",GUILayout.MaxWidth(10));
+				Rect hook0 = GUILayoutUtility.GetLastRect();
+
+				Event evt0 = Event.current;
+				switch (evt0.type) {
 				case EventType.DragUpdated:
 				case EventType.DragPerform:
-					if (!hook.Contains (evt.mousePosition))
+					if (!hook0.Contains (evt0.mousePosition))
 						break;
 					
 					DragAndDrop.visualMode = DragAndDropVisualMode.Link;
 				
-					if (evt.type == EventType.DragPerform) {
-						DragAndDrop.AcceptDrag ();
+					while (evt0.type == EventType.DragPerform) {
+						DragAndDrop.AcceptDrag ();Debug.Log(DragAndDrop.objectReferences[0]);
+						if(!(DragAndDrop.objectReferences[0] is Variable)) break;
 						int var = int.Parse(DragAndDrop.GetGenericData("int").ToString());
-						_linkedVars["anchor"] = var; 
-						pathLayer._anchorVariable = (DataVariable)myScript._variables[var];
+						Variable input = (DataVariable)myScript._variables[var];
+						Debug.Log( input.GetComponents());
+						if(socket.ScalarRequired() && input.GetComponents() > 1) break;
+						if(socket.VectorRequired() && input.GetComponents() == 1) break;
+						if(input.HasAnchor() && layer.HasAnchor() && !layer.GetAnchorSocket().IsAssigned()) break;
+						if(input.HasAnchor() && layer.HasAnchor() && layer.GetAnchorSocket().IsAssigned() && layer.GetAnchorSocket().GetInput()!=input.GetAnchorVariable()) break;
+
+
+						_linkedVars[socket.GetName()] = var; 
+						socket.SetInputVariable((DataVariable)myScript._variables[var]);
+						break;
 					}
 
 
@@ -120,9 +232,9 @@ public class TestVariablesrEditor : Editor
 					break;
 				}
 
-				if(pathLayer._anchorVariable != null) {
-					if(_linkedVars.ContainsKey("anchor") ) {
-						Rect A = _varHooks[_linkedVars["anchor"]];
+				if(socket.IsAssigned()) {
+					if(_linkedVars.ContainsKey(socket.GetName()) ) {
+						Rect A = _varHooks[_linkedVars[socket.GetName()]];
 						GL.PushMatrix();
 						//GL.Clear(true, false, Color.black);
 						mat.SetPass(0);
@@ -132,7 +244,7 @@ public class TestVariablesrEditor : Editor
 
 
 						GL.Vertex3(A.center.x, A.center.y, 0);
-						GL.Vertex3(hook.center.x, hook.center.y, 0);
+						GL.Vertex3(hook0.center.x, hook0.center.y, 0);
 						GL.End();
 						GL.PopMatrix();
 
@@ -140,60 +252,7 @@ public class TestVariablesrEditor : Editor
 
 				}
 				GUILayout.EndHorizontal();
-
-
-
-				
-				
-				GUILayout.BeginHorizontal("box");
-
-				if(pathLayer._colorVariable == null) {
-					GUILayout.Label("Color" + "["+"]");
-				} else {
-					GUILayout.Label("Color" + "["+ pathLayer._colorVariable.GetName()+"]");
 				}
-				
-				GUILayout.Label("•",GUILayout.MaxWidth(10));
-				hook = GUILayoutUtility.GetLastRect();
-				evt = Event.current;
-				switch (evt.type) {
-				case EventType.DragUpdated:
-				case EventType.DragPerform:
-					if (!hook.Contains (evt.mousePosition))
-						break;
-					
-					DragAndDrop.visualMode = DragAndDropVisualMode.Link;
-				
-					if (evt.type == EventType.DragPerform) {
-						DragAndDrop.AcceptDrag ();
-						int var = int.Parse(DragAndDrop.GetGenericData("int").ToString());
-						_linkedVars["color"] = var; 
-						pathLayer._colorVariable = (DataVariable)myScript._variables[var];					
-					}
-
-
-
-					break;
-				}
-
-				if(pathLayer._colorVariable != null && _linkedVars.ContainsKey("color")) {
-					Rect A = _varHooks[_linkedVars["color"]];
-
-					GL.PushMatrix();
-					//GL.Clear(true, false, Color.black);
-					mat.SetPass(0);
-					
-					GL.Begin(GL.LINES);
-					GL.Color(Color.black);
-
-					GL.Vertex3(A.center.x, A.center.y, 0);
-					GL.Vertex3(hook.center.x, hook.center.y, 0);
-					GL.End();
-					GL.PopMatrix();
-
-				}
-
-				GUILayout.EndHorizontal();
 
 
 			}
@@ -230,7 +289,7 @@ public class TestVariablesrEditor : Editor
 public class TestVariables : MonoBehaviour {
 
 	[SerializeField]
-	SimplePathLayer _pathLayer;
+	SimplePointLayer _pathLayer;
 
 	[SerializeField]
 	string fileToImport;
@@ -242,20 +301,23 @@ public class TestVariables : MonoBehaviour {
 	[SerializeField]
 	public List<Layer> _layers;
 
+
+	[SerializeField]
+	public ColorMapSet _colorMaps;
 	public void Test() {
+		_pathLayer.Init();
 		_layers.Add(_pathLayer);
 
 		VTKDataset vtkds = VTKDataset.CreateInstance<VTKDataset>();
-		vtkds.Init("example_data/VTK/local/brain.vtp",0,0);
+		vtkds.Init("example_data/VTK/streamlines.vtp",0,0);
 		
 		vtkds.LoadDataset();
 	
 
 		Dataset ds1 = vtkds;
-		Variable[] ancs = ds1.GetAnchors();
+		Variable anc = ds1.GetAnchor();
 			
-		foreach(Variable a in ds1.GetAnchors())
-			_variables.Add(a);
+			_variables.Add(anc);
 
 		foreach(Variable a in ds1.GetVariables())
 			_variables.Add(a);
@@ -265,19 +327,23 @@ public class TestVariables : MonoBehaviour {
 
 
 		VTKDataset vtkds2 = VTKDataset.CreateInstance<VTKDataset>();
-		vtkds2.Init("example_data/VTK/local/brain.vti",0,0);
+		vtkds2.Init("example_data/VTK/wavelet.vti",0,0);
 		
 		vtkds2.LoadDataset();
 
-		print(vtkds2.GetVariables()[4]);
+		//print(vtkds2.GetVariables()[4]);
 		//_pathLayer._colorVariable = (vtkds2.GetVariables()[4]);
 
-		foreach(Variable a in vtkds2.GetAnchors())
-			_variables.Add(a);
+		_variables.Add(vtkds2.GetAnchor());
 
 		foreach(Variable a in vtkds2.GetVariables())
 			_variables.Add(a);
 
+
+		PointDataset pointDataset = PointDataset.CreateInstance<PointDataset>();
+		pointDataset.Init(_variables[_variables.Count-1],1000,0,0);
+		pointDataset.LoadDataset();
+		_variables.Add(pointDataset.GetAnchor());
 
 	}
 	// Use this for initialization

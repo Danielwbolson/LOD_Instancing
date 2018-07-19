@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 namespace SculptingVis {
-public class VTKPositionDatastreamChannel : DatastreamChannel {
+public class VTKAnchorDatastreamChannel : DatastreamChannel {
 
     public void Init(VTK.vtkDataSet dataset) {
         _dataset = dataset;

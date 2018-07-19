@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace SculptingVis {
-public class VTKPositionDataVariable : DataVariable {
-	
+public class VTKAnchorDataVariable : AnchorVariable {
 
-	public override bool IsAnchor() {
-		return true;
-	}
+
 
 }
 }

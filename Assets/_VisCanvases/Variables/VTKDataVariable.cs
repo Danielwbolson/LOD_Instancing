@@ -31,11 +31,12 @@ public class VTKDataVariable : DataVariable {
 	}
 
 
-	public bool IsCellVariable() {
+
+	public override bool IsCellVariable() {
 		return _arrayType == ArrayType.Cell;
 	}
 
-	public bool IsPointVariable() {
+	public override bool IsPointVariable() {
 		return !IsCellVariable();
 	}
 	
