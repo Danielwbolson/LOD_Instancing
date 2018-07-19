@@ -27,11 +27,11 @@ namespace SculptingVis {
         [SerializeField]
         Transform _innerSceneTransform;
 
-        [SerializeField]
-        Vector3 _innerSceneOrigin;
+        //[SerializeField]
+        //Vector3 _innerSceneOrigin;
 
-        [SerializeField]
-        Vector3 _innerSceneScale;
+        //[SerializeField]
+        //Vector3 _innerSceneScale;
 
         [SerializeField]
         Style _style;
@@ -65,8 +65,8 @@ namespace SculptingVis {
         public void SetMaterialProperties(Material canvasMaterial) {
             canvasMaterial.SetColor("_Color", danielColor);
             canvasMaterial.SetVector("_Color", _color);
-            canvasMaterial.SetMatrix("_InverseCanvas", transform.worldToLocalMatrix);
-            canvasMaterial.SetMatrix("_InverseCanvasInnerScene", GetInnerSceneTransformMatrix().inverse);
+            canvasMaterial.SetMatrix("_CanvasInverse", transform.worldToLocalMatrix);
+            canvasMaterial.SetMatrix("_CanvasInnerSceneInverse", GetInnerSceneTransformMatrix().inverse);
             canvasMaterial.SetMatrix("_CanvasInnerScene", GetInnerSceneTransformMatrix());
 
             canvasMaterial.SetVector("_CanvasBoundsCenter", _bounds.center);
@@ -98,11 +98,11 @@ namespace SculptingVis {
         }
 
         public Vector3 GetInnerSceneScale() {
-            return _innerSceneScale;
+            return _innerSceneTransform.localScale;
         }
 
         public Vector3 GetInnerSceneOrigin() {
-            return _innerSceneOrigin;
+            return _innerSceneTransform.position;
         }
 
         // Update is called once per frame

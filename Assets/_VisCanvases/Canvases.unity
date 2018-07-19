@@ -152,6 +152,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114996770596923822, guid: 9723f129ebb084465910186df35f3bd9,
+        type: 2}
+      propertyPath: _fitStyle
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9723f129ebb084465910186df35f3bd9, type: 2}
   m_IsPrefabAsset: 0
@@ -227,6 +232,11 @@ Prefab:
         type: 2}
       propertyPath: m_Size.z
       value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114996770596923822, guid: 9723f129ebb084465910186df35f3bd9,
+        type: 2}
+      propertyPath: _fitStyle
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9723f129ebb084465910186df35f3bd9, type: 2}
@@ -593,7 +603,7 @@ Prefab:
     - target: {fileID: 224671198336696852, guid: 163a3eb8b5c9b3e45aa2660c5e0748f8,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 237
+      value: 369
       objectReference: {fileID: 0}
     - target: {fileID: 224671198336696852, guid: 163a3eb8b5c9b3e45aa2660c5e0748f8,
         type: 2}

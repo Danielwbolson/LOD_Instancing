@@ -104,7 +104,7 @@ public class SimplePointLayer : Layer {
 		// Indirect args
         if (_glyphMesh != null) {
             args[0] = (uint)_glyphMesh.GetIndexCount(0);
-            args[1] = (uint)stream.GetTopologyArray().Length;
+            args[1] = System.Math.Min((uint)stream.GetTopologyArray().Length,50000);
             args[2] = (uint)_glyphMesh.GetIndexStart(0);
             args[3] = (uint)_glyphMesh.GetBaseVertex(0);
         }

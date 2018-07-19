@@ -129,7 +129,7 @@
 
 
 			o.Albedo = MarkBounds(IN.worldPos,c);
-			StippleCrop(IN.worldPos,IN.screenPos,_ScreenParams);
+			//StippleCrop(IN.worldPos,IN.screenPos,_ScreenParams);
 
 		}
 		ENDCG
