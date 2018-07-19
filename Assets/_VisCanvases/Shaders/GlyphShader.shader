@@ -66,7 +66,7 @@
 					float3 N = cross(T,temp);
 					float3 B = cross(T,N);
 					float3x3 transform;
-					transform[0] = -B;
+					transform[0] = B;
 					transform[1] = T;
 					transform[2] = N;
 					transform = transpose(transform);
@@ -129,7 +129,7 @@
 
 
 			o.Albedo = MarkBounds(IN.worldPos,c);
-			//StippleCrop(IN.worldPos,IN.screenPos,_ScreenParams);
+			StippleCrop(IN.worldPos,IN.screenPos,_ScreenParams);
 
 		}
 		ENDCG

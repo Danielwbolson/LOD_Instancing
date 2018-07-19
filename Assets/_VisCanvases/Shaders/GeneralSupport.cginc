@@ -22,7 +22,7 @@ float map(float value, float min1, float max1, float min2, float max2)
 float clamp(float value, float min1, float max1)
 {
     return value;
-    return  max(min(value,max1),min1);
+    return  max(min(value,min1),max1);
 }
 
 #endif

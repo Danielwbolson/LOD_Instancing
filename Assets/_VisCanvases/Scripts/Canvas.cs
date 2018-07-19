@@ -57,11 +57,17 @@ namespace SculptingVis {
         float _boundsThreshold = 0.02f;
 
         ControllerDetect _controllerDetect;
+        VRTK.VRTK_InteractableObject _interactableObject;
+        VRTK.VRTK_InteractableObject _dataInteractableObject;
 
         void Start() {
             _controllerDetect = GetComponent<ControllerDetect>();
+            _interactableObject = GetComponent<VRTK.VRTK_InteractableObject>();
+            _dataInteractableObject = transform.GetChild(0).GetComponent<VRTK.VRTK_InteractableObject>();
         }
-
+        public void SetIsGrabbing(bool isGrabbing) {
+            print(isGrabbing ? "grabbing!" : "releaseing!");
+        }
         public void SetMaterialProperties(Material canvasMaterial) {
             canvasMaterial.SetColor("_Color", danielColor);
             canvasMaterial.SetVector("_Color", _color);
@@ -107,6 +113,14 @@ namespace SculptingVis {
 
         // Update is called once per frame
         void Update() {
+
+            if (_interactableObject.IsGrabbed() || _dataInteractableObject.IsGrabbed()) {
+                _extentThreshold = 1;
+                _fitStyle = false;
+            } else {
+                _extentThreshold = 0;
+            }
+
             // Change color based on users controller
             if (!_controllerDetect._inside) {
                 danielColor = Color.blue;
