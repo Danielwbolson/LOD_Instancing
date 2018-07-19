@@ -120,13 +120,13 @@ namespace SculptingVis {
                 _extentThreshold = 0;
             }
 
-            // Change color based on users controller
-            if (!_controllerDetect._inside) {
-                danielColor = Color.blue;
-            } else {
-                danielColor = Color.green;
-            }
-            _areaMaterial.SetColor("_Color", danielColor);
+            //// Change color based on users controller
+            //if (!_controllerDetect._inside) {
+            //    danielColor = Color.blue;
+            //} else {
+            //    danielColor = Color.green;
+            //}
+            //_areaMaterial.SetColor("_Color", danielColor);
 
             if (_fitStyle && _style.HasBounds()) {
                 Vector3 innerScaleDims = _style.GetBounds().size;
