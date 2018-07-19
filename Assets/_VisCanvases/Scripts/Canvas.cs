@@ -49,6 +49,8 @@ namespace SculptingVis {
         [SerializeField]
         Vector4 _cropColor;
 
+        Color danielColor;
+
         [SerializeField]
         float _extentThreshold;
         [SerializeField]
@@ -61,6 +63,7 @@ namespace SculptingVis {
         }
 
         public void SetMaterialProperties(Material canvasMaterial) {
+            canvasMaterial.SetColor("_Color", danielColor);
             canvasMaterial.SetVector("_Color", _color);
             canvasMaterial.SetMatrix("_InverseCanvas", transform.worldToLocalMatrix);
             canvasMaterial.SetMatrix("_InverseCanvasInnerScene", GetInnerSceneTransformMatrix().inverse);
@@ -106,9 +109,9 @@ namespace SculptingVis {
         void Update() {
             // Change color based on users controller
             if (!_controllerDetect._inside) {
-                _color = new Vector4(0, 0, 1, 1);
+                danielColor = Color.blue;
             } else {
-                _color = new Vector4(0, 1, 0, 1);
+                _color = Color.green;
             }
 
             if (_fitStyle && _style.HasBounds()) {
