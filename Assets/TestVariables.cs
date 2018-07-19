@@ -33,7 +33,9 @@ public class TestVariablesrEditor : Editor
         }
 		GUILayout.BeginVertical();
 		GUILayout.BeginHorizontal();
-			EditorGUILayout.Space ();
+
+
+			DrawColorMapList();
 			EditorGUILayout.Space ();
 
 			LayerList();
@@ -42,16 +44,42 @@ public class TestVariablesrEditor : Editor
         	VariableList ();
 		GUILayout.EndHorizontal();
 
-		GUILayout.BeginHorizontal("box");
-		GUILayout.Label("ColorMap1");
-		GUILayout.Label("ColorMap2");
-		GUILayout.Label("ColorMap3");
-
-		GUILayout.EndHorizontal();
 		GUILayout.EndVertical();
     }
 
+	public void DrawColorMapList() {
+		GUILayout.BeginVertical("box",GUILayout.MaxWidth(65));
 
+		for(int i = 0; i < myScript._colorMaps.GetColorMaps().Count;i++){
+			GUILayout.BeginHorizontal();
+			GUILayout.Box(myScript._colorMaps.GetColorMaps()[i],GUILayout.Width(50),GUILayout.Height(20));
+			GUILayout.Label("•",GUILayout.MaxWidth(10));
+
+			Rect hook = GUILayoutUtility.GetLastRect();
+			// if(hook.x > 5)
+			// 	_varHooks[i] = hook;
+        	Event evt = Event.current;
+
+			switch (evt.type) {
+        		case EventType.MouseDown:
+					if (!hook.Contains (evt.mousePosition)) break;
+					DragAndDrop.PrepareStartDrag();
+					DragAndDrop.StartDrag("colormap");
+					Object [] objs = new Object[1];
+					objs[0] = myScript._colorMaps.GetColorMaps()[i];
+					DragAndDrop.objectReferences = objs;
+					DragAndDrop.SetGenericData("int",i);
+
+					break;
+        		
+        	}
+
+
+
+			GUILayout.EndHorizontal();
+		}
+		GUILayout.EndVertical();
+	}
 	public void VariableList() {
 
 		AnchorVariable currentAnchor = null;
@@ -85,8 +113,11 @@ public class TestVariablesrEditor : Editor
 					if (!hook.Contains (evt.mousePosition)) break;
 					DragAndDrop.PrepareStartDrag();
 					DragAndDrop.StartDrag("hook");
+					DragAndDrop.activeControlID = 0;
 					DragAndDrop.SetGenericData("int",i);
-
+					Object [] objs = new Object[1];
+					objs[0] = myScript._variables[i];
+					DragAndDrop.objectReferences = objs;
 					break;
         		
         	}
@@ -108,6 +139,43 @@ public class TestVariablesrEditor : Editor
 			
 			if(true) {
 				Layer layer = myScript._layers[i];
+
+
+
+				if(layer is SimplePointLayer) {
+					GUILayout.BeginHorizontal();
+
+					GUILayout.Label("•",GUILayout.MaxWidth(10));
+					Rect hook0 = GUILayoutUtility.GetLastRect();
+
+					Event evt0 = Event.current;
+					switch (evt0.type) {
+					case EventType.DragUpdated:
+					case EventType.DragPerform:
+						if (!hook0.Contains (evt0.mousePosition))
+							break;
+						
+						DragAndDrop.visualMode = DragAndDropVisualMode.Link;
+					
+						while (evt0.type == EventType.DragPerform) {
+							DragAndDrop.AcceptDrag ();Debug.Log(DragAndDrop.objectReferences[0]);
+							if(!(DragAndDrop.objectReferences[0] is Texture)) break;
+							int var = int.Parse(DragAndDrop.GetGenericData("int").ToString());
+							
+							((SimplePointLayer)layer)._colorMap = (Texture2D)DragAndDrop.objectReferences[0];
+							break;
+						}
+
+
+
+						break;
+					}
+
+					GUILayout.Label("Colormap");
+
+					GUILayout.EndHorizontal();
+
+				}
 				for(int s = 0; s < layer.GetSockets().Count; s++) {
 					VariableSocket socket = layer.GetSockets()[s];
 					GUILayout.BeginHorizontal("box");
@@ -143,7 +211,8 @@ public class TestVariablesrEditor : Editor
 					DragAndDrop.visualMode = DragAndDropVisualMode.Link;
 				
 					while (evt0.type == EventType.DragPerform) {
-						DragAndDrop.AcceptDrag ();
+						DragAndDrop.AcceptDrag ();Debug.Log(DragAndDrop.objectReferences[0]);
+						if(!(DragAndDrop.objectReferences[0] is Variable)) break;
 						int var = int.Parse(DragAndDrop.GetGenericData("int").ToString());
 						Variable input = (DataVariable)myScript._variables[var];
 						Debug.Log( input.GetComponents());
@@ -232,12 +301,15 @@ public class TestVariables : MonoBehaviour {
 	[SerializeField]
 	public List<Layer> _layers;
 
+
+	[SerializeField]
+	public ColorMapSet _colorMaps;
 	public void Test() {
 		_pathLayer.Init();
 		_layers.Add(_pathLayer);
 
 		VTKDataset vtkds = VTKDataset.CreateInstance<VTKDataset>();
-		vtkds.Init("example_data/VTK/local/brain.vtp",0,0);
+		vtkds.Init("example_data/VTK/streamlines.vtp",0,0);
 		
 		vtkds.LoadDataset();
 	
@@ -255,7 +327,7 @@ public class TestVariables : MonoBehaviour {
 
 
 		VTKDataset vtkds2 = VTKDataset.CreateInstance<VTKDataset>();
-		vtkds2.Init("example_data/VTK/local/brain.vti",0,0);
+		vtkds2.Init("example_data/VTK/wavelet.vti",0,0);
 		
 		vtkds2.LoadDataset();
 
