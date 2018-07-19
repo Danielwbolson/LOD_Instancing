@@ -512,14 +512,6 @@ namespace VRTK
         protected virtual void AttemptGrabObject()
         {
             GameObject objectToGrab = GetGrabbableObject();
-            if (objectToGrab) { 
-                SculptingVis.Canvas can = objectToGrab.GetComponent<SculptingVis.Canvas>();
-                if (can) {
-                    if (can._grabChild) {
-                        objectToGrab = can.gameObject.transform.GetChild(0).gameObject;
-                    }
-                }
-            }
             if (objectToGrab != null)
             {
                 PerformGrabAttempt(objectToGrab);

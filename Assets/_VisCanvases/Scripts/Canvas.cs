@@ -47,20 +47,17 @@ namespace SculptingVis {
         public Vector4 _color;
 
         [SerializeField]
+        Vector4 _cropColor;
+
+        [SerializeField]
         float _extentThreshold;
         [SerializeField]
         float _boundsThreshold = 0.02f;
 
-        bool _beingGrabbed;
-        bool _cachedBeingGrabbed;
-        public bool _grabChild;
-        private bool _cachedGrabChild;
-
-        GameObject _controller = null;
+        ControllerDetect _controllerDetect;
 
         void Start() {
-           // _cachedGrabChild = _grabChild;
-            //UpdateColliders();
+            _controllerDetect = GetComponent<ControllerDetect>();
         }
 
         public void SetMaterialProperties(Material canvasMaterial) {
@@ -73,7 +70,7 @@ namespace SculptingVis {
             canvasMaterial.SetVector("_CanvasBoundsExtent", _bounds.extents);
             canvasMaterial.SetVector("_CanvasBoundsExtentThreshold", new Vector3(_extentThreshold, _extentThreshold, _extentThreshold));
             canvasMaterial.SetVector("_CanvasBoundsThreshold", new Vector3(_boundsThreshold, _boundsThreshold, _boundsThreshold));
-            canvasMaterial.SetVector("_CropColor", new Vector4(0, 0, 0, 0.5f));
+            canvasMaterial.SetVector("_CropColor", _cropColor);
         }
 
         void UpdateBounds() {
@@ -107,11 +104,12 @@ namespace SculptingVis {
 
         // Update is called once per frame
         void Update() {
-
-            //if (_cachedGrabChild != _grabChild)
-                //UpdateColliders();
-
-            Transform innerSceneOrigin = transform.Find("InnerSceneOrigin");
+            // Change color based on users controller
+            if (!_controllerDetect._inside) {
+                _color = new Vector4(0, 0, 1, 1);
+            } else {
+                _color = new Vector4(0, 1, 0, 1);
+            }
 
             if (_fitStyle && _style.HasBounds()) {
                 Vector3 innerScaleDims = _style.GetBounds().size;
@@ -129,17 +127,7 @@ namespace SculptingVis {
                 _innerSceneTransform.localPosition = M.GetPosition();
                 _innerSceneTransform.localScale = M.GetScale();
                 //_innerSceneTransform = _innerSceneTransform.inverse;
-                innerSceneOrigin.localRotation = Quaternion.identity;
-                innerSceneOrigin.localPosition = _innerSceneTransform.localPosition;
-                innerSceneOrigin.localScale = _innerSceneTransform.localScale;
-
-
-            } else {
-                _innerSceneTransform = innerSceneOrigin;
             }
-
-
-
 
             Graphics.DrawMesh(_areaMesh, GetBoundsTransformMatrix(), _areaMaterial, 0);
 
@@ -153,19 +141,6 @@ namespace SculptingVis {
             if (_style) {
                 _style.ApplyStyle(this);
             }
-
-            UpdateBounds();
-        }
-
-        public void UpdateColliders() {
-            if (_grabChild) {
-                gameObject.GetComponent<BoxCollider>().enabled = false;
-                gameObject.transform.GetChild(0).GetComponent<BoxCollider>().enabled = true;
-            } else {
-                gameObject.transform.GetChild(0).GetComponent<BoxCollider>().enabled = false;
-                gameObject.GetComponent<BoxCollider>().enabled = true;
-            }
-            _cachedGrabChild = _grabChild;
         }
     }
 }

@@ -94,7 +94,7 @@ namespace VRTK.SecondaryControllerGrabActions {
             float finalScaleZ = (lockAxis.zState ? existingScale.z : newScale.z);
 
             if (finalScaleX > 0 && finalScaleY > 0 && finalScaleZ > 0) {
-                ScaleAround(grabbedObject.gameObject, _primaryGrabPoint.position, new Vector3(finalScaleX, finalScaleY, finalScaleZ));
+                ScaleAround(grabbedObject.transform, _primaryGrabPoint.transform, new Vector3(finalScaleX, finalScaleY, finalScaleZ));
                 //grabbedObject.transform.localScale = new Vector3(finalScaleX, finalScaleY, finalScaleZ); ;
             }
         }
@@ -113,14 +113,11 @@ namespace VRTK.SecondaryControllerGrabActions {
         }
 
         protected virtual void UniformScale() {
-            Vector3 cachedPos = grabbedObject.transform.position;
-            grabbedObject.transform.position = primaryGrabbingObject.transform.position;
             float adjustedLength = (primaryGrabbingObject.transform.position - secondaryGrabbingObject.transform.position).magnitude;
             float adjustedScale = initialScaleFactor * adjustedLength;
 
             Vector3 newScale = new Vector3(adjustedScale, adjustedScale, adjustedScale);
             ApplyScale(newScale);
-            grabbedObject.transform.position = cachedPos;
         }
 
         protected virtual float CalculateAxisScale(float centerPosition, float initialPosition, float currentPosition) {
@@ -129,20 +126,27 @@ namespace VRTK.SecondaryControllerGrabActions {
             return distance;
         }
 
-        public void ScaleAround(GameObject target, Vector3 pivot, Vector3 newScale) {
-            Vector3 A = target.transform.localPosition;
-            Vector3 B = pivot;
+        public void ScaleAround(Transform target, Transform pivot, Vector3 newScale) {
+            Vector3 p = pivot.position;
+            // Get local coordinates of pivot
+            if (target.parent) {
+                p = target.parent.InverseTransformPoint(pivot.position);
+            }
 
-            Vector3 C = A - B; // diff from object pivot to desired pivot/origin
+            Vector3 targetPos = target.transform.localPosition;
 
-            float RS = newScale.x / target.transform.localScale.x; // relative scale factor
+            // Get difference vector from pivot to the targets position
+            Vector3 dir = targetPos - p;
+
+            // Relative scale factor (uniform scaling assumed)
+            float RS = newScale.x / target.localScale.x;
 
             // calc final position post-scale
-            Vector3 FP = B + C * RS;
+            Vector3 newPos = p + dir * RS;
 
             // finally, actually perform the scale/translation
-            target.transform.localScale = newScale;
-            target.transform.localPosition = FP;
+            target.localScale = newScale;
+            target.localPosition = newPos;
         }
     }
 }

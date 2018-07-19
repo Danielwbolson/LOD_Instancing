@@ -21,6 +21,10 @@ public class ControllerDetect : MonoBehaviour {
 
     string tag = "GameController";
 
+    [HideInInspector]
+    public bool _inside;
+
+
     private void Start() {
         _boxCollider = GetComponent<BoxCollider>();
         _data = transform.GetChild(0).gameObject;
@@ -38,13 +42,14 @@ public class ControllerDetect : MonoBehaviour {
                 // If we are fully inside of the canvas, then we want to be grabbing the data
                 // object instead, otherwise make sure we are touching the canvas
                 if (FullyContains(_controllerCollider)) {
-
+                    _inside = true;
                     // If the canvas is the item being touched, stop touching and touch the data instead
                     if (_interactableObject.IsTouched()) {
                         _controllerTouch.ForceStopTouching();
                         _controllerTouch.ForceTouch(_data);
                     }
                 } else {
+                    _inside = false;
                     // If we are NOT fully contained by the canvas and the canvas is NOT the item being touched, 
                     // force the controllers to touch the canvas
                     if (!_interactableObject.IsTouched()) {

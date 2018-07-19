@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DrawBoundingBox : MonoBehaviour {
 
-    public bool _isChild;
     BoxCollider _boxCollider;
     LineRenderer _lineRenderer;
     Vector3[] _p;
@@ -15,17 +14,11 @@ public class DrawBoundingBox : MonoBehaviour {
     Collider _controllerCollider;
 
     VRTK.VRTK_InteractableObject _interactableObject;
-    VRTK.VRTK_InteractableObject _fellowInteractableObject;
 
     public Color white = Color.white;
     public int lengthOfLineRenderer = 16;
 
     void Start() {
-        if (_isChild)
-            _fellowInteractableObject = transform.parent.GetComponent<VRTK.VRTK_InteractableObject>();
-        else
-            _fellowInteractableObject = transform.GetChild(0).GetComponent<VRTK.VRTK_InteractableObject>();
-
         _boxCollider = GetComponent<BoxCollider>();
         _interactableObject = GetComponent<VRTK.VRTK_InteractableObject>();
 
@@ -44,7 +37,7 @@ public class DrawBoundingBox : MonoBehaviour {
 
     void Update() {
         _rotation = transform.rotation;
-        if (!_interactableObject.IsGrabbed() && !_fellowInteractableObject.IsGrabbed()) {
+        if (!_interactableObject.IsGrabbed()) {
             _lineRenderer.enabled = true;
             UpdateVertexList();
             _lineRenderer.SetPositions(_vertexList);
