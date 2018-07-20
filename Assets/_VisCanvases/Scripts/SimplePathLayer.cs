@@ -16,18 +16,32 @@ public class SimplePathLayer : Layer {
 
 
 	[SerializeField]
+	public VariableSocket _opacityVariable;
+
+	[SerializeField]
 	public Texture2D _colorMap;
 
 	[SerializeField]
-	Material _lineMaterial;
+	public Material _lineMaterial;
 
+	[SerializeField]
+	public int LineCount = 1000;
 
 	public void Init() {
 		_anchorVariable = CreateInstance<VariableSocket>();
 		_anchorVariable.Init();
+		SetAnchorSocket(_anchorVariable);
 		_colorVariable = CreateInstance<VariableSocket>();
 		_colorVariable.Init("Color",1);
 		_colorVariable.SetAnchorVariable(_anchorVariable);
+
+		_opacityVariable = CreateInstance<VariableSocket>();
+		_opacityVariable.Init("Opacity",3);
+		_opacityVariable.SetAnchorVariable(_anchorVariable);
+		GetSockets().Add(_anchorVariable);
+		GetSockets().Add(_colorVariable);
+		GetSockets().Add(_opacityVariable);
+
 	}	
 	public override bool HasBounds() {
 		return _anchorVariable != null && _anchorVariable.IsAssigned();
@@ -58,8 +72,10 @@ public class SimplePathLayer : Layer {
 		Material canvasMaterial = GetCanvasMaterial(canvas,_lineMaterial);
 		_anchorVariable.Bind(canvasMaterial,0,0);
 		_colorVariable.Bind(canvasMaterial,0,0);
+		_opacityVariable.Bind(canvasMaterial,0,0);
+
 		if(m != null && m.Length > 0) {
-			for(int i = 0; i < Mathf.Min(m.Length,1000); i+=1) {
+			for(int i = 0; i < Mathf.Min(m.Length,LineCount); i+=1) {
 				Mesh mesh = m[i];
 				if(mesh!= null) {
 					Graphics.DrawMesh(mesh,canvas.GetInnerSceneTransformMatrix(),canvasMaterial,0);

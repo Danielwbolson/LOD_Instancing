@@ -579,7 +579,7 @@ float3 NormalizeData(int variableSlot, float3 data) {
         if(abs(MIN.x-MAX.x) < 0.0000001)
             result.x = MIN.x; 
         else 
-            result.x = clamp(map(data.x,MIN.x,MAX.x,0,1),MIN.x,MAX.x);
+            result.x = clamp(map(data.x,MIN.x,MAX.x,0,1),0,1);
 
         if(abs(MIN.y-MAX.y) < 0.0000001)
             result.y = MIN.y; 

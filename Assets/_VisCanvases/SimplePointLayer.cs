@@ -25,21 +25,22 @@ public class SimplePointLayer : Layer {
 	public Texture2D _colorMap;
 
 	[SerializeField]
-	Material _pointMaterial;
+	public Material _pointMaterial;
 
 	[SerializeField]
-	Mesh _glyphMesh;
+	public Mesh _glyphMesh;
 
 
 	
 	[SerializeField]
-	bool _sampleAtCenter;
+	bool _sampleAtCenter = true;
 
 	[SerializeField]
-	float _glyphScale = 4;
+	public float GlyphScale = 4;
+
 
 	[SerializeField]
-	int instanceCount;
+	public int instanceCount = 50000;
 
     private ComputeBuffer argsBuffer;
     private uint[] args = new uint[5] { 0, 0, 0, 0, 0 };
@@ -104,7 +105,7 @@ public class SimplePointLayer : Layer {
 		// Indirect args
         if (_glyphMesh != null) {
             args[0] = (uint)_glyphMesh.GetIndexCount(0);
-            args[1] = System.Math.Min((uint)stream.GetTopologyArray().Length,50000);
+            args[1] = (uint)System.Math.Min((uint)stream.GetTopologyArray().Length,instanceCount);
             args[2] = (uint)_glyphMesh.GetIndexStart(0);
             args[3] = (uint)_glyphMesh.GetBaseVertex(0);
         }
@@ -118,11 +119,11 @@ public class SimplePointLayer : Layer {
 
 		_pointMaterial.SetTexture("_ColorMap",_colorMap);
 		_pointMaterial.SetInt("_SampleAtCenter",_sampleAtCenter?1:0);
-		_pointMaterial.SetFloat("_glyphScale", _glyphScale );
+		_pointMaterial.SetFloat("_glyphScale", GlyphScale );
 		if(cellAndPointIndexBuffer == null) {
-			cellAndPointIndexBuffer = new ComputeBuffer(instanceCount,sizeof(int)*2);
-			Vector2Int [] cellAndPointIndexArray = new Vector2Int[instanceCount];
-			for(int i = 0; i < instanceCount;i++) {
+			cellAndPointIndexBuffer = new ComputeBuffer((int)args[1],sizeof(int)*2);
+			Vector2Int [] cellAndPointIndexArray = new Vector2Int[args[1]];
+			for(int i = 0; i < args[1];i++) {
 				cellAndPointIndexArray[i] = new Vector2Int(0,i);
 			}
 			cellAndPointIndexBuffer.SetData(cellAndPointIndexArray);

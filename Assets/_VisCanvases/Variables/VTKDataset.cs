@@ -164,6 +164,7 @@ public class VTKDataset : Dataset {
 
 	public override Vector3 GetMin(DataVariable variable) {
 		Vector3 result = new Vector3();
+		if(variable is VTKDataVariable)
 		if(GetAbstractArray((VTKDataVariable)variable).IsA("vtkDataArray")) {
 			VTK.vtkDataArray da = VTK.vtkDataArray.SafeDownCast(GetAbstractArray((VTKDataVariable)variable));
 			double[] r = new double[2];

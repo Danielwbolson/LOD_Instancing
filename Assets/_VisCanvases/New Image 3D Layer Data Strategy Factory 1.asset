@@ -8,12 +8,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf0e09086529a45e6a7a2eebd4552605, type: 3}
-  m_Name: New Style
+  m_Script: {fileID: 11500000, guid: 29615cfd5b9a947ab81c1bca571e3ac0, type: 3}
+  m_Name: New Image 3D Layer Data Strategy Factory 1
   m_EditorClassIdentifier: 
-  _styleOriginMaterial: {fileID: 2100000, guid: da73a585d9ac37c4983bc612b400fa52,
-    type: 2}
-  _layers:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}

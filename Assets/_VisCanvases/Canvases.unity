@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17799518, g: 0.22285941, b: 0.30497354, a: 1}
+  m_IndirectSpecularColor: {r: 0.17799479, g: 0.22285886, b: 0.30497253, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -603,7 +603,7 @@ Prefab:
     - target: {fileID: 224671198336696852, guid: 163a3eb8b5c9b3e45aa2660c5e0748f8,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 952
+      value: 119
       objectReference: {fileID: 0}
     - target: {fileID: 224671198336696852, guid: 163a3eb8b5c9b3e45aa2660c5e0748f8,
         type: 2}
@@ -908,11 +908,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c88b0b65fcd34754851948b8e668f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pathLayer: {fileID: 11400000, guid: 99b77e03b35b73b4c90c6facc69d5c54, type: 2}
+  _pointLayer: {fileID: 11400000, guid: 99b77e03b35b73b4c90c6facc69d5c54, type: 2}
+  _pathLayer: {fileID: 11400000, guid: d5c19edde110e644596e10f40444bf5e, type: 2}
   fileToImport: example_data/VTK/local/brain.vti
   _variables: []
   _layers: []
+  _style: {fileID: 11400000, guid: 3cc0b38ca5ed446bb8c24134f0d3ea64, type: 2}
   _colorMaps: {fileID: 11400000, guid: 942a6f5b3b87a714bb8f4f767d3d0e08, type: 2}
+  _meshes: {fileID: 11400000, guid: 5340d05951df35e418197ef30914cae4, type: 2}
 --- !u!1 &1906667950 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1201638781289370, guid: 163a3eb8b5c9b3e45aa2660c5e0748f8,

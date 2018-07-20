@@ -14,6 +14,12 @@ public class Style : ScriptableObject {
 	[SerializeField]
 	List<Layer> _layers;
 
+	public void Clear() {
+		_layers.Clear();
+	}
+	public void AddLayer(Layer layer) {
+		_layers.Add(layer);
+	}
 	public void ApplyStyle(Canvas canvas) {
 
 		//Graphics.DrawMesh(_styleIndicatorMesh,canvas.GetInnerSceneTransformMatrix(),_styleOriginMaterial,0);

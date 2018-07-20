@@ -58,9 +58,9 @@
 		int cellIndex =  _AnchorTopology[unity_InstanceID].x;
 			v.vertex.xyz *= _glyphScale;
 
-			if(_VariableAssigned_Anchor) {
+			if( _VariableAssigned_Anchor) {
 				//float3 B = 
-				if(VariableIsAssigned(2)){
+				if( VariableIsAssigned(2)){
 					float3 T = normalize(GetData(2,cellIndex,pointIndex,float3(0,0,0)));
 					float3 temp = normalize(cross(T,float3(1,0,0)));
 					float3 N = cross(T,temp);
@@ -74,6 +74,7 @@
 
 					v.vertex.xyz = mul(transform, v.vertex.xyz);
 					v.normal.xyz = mul(transform,v.normal.xyz);
+					
 				}
 
 				v.vertex.xyz  += GetAnchorPosition(unity_InstanceID);

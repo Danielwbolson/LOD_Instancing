@@ -92,8 +92,11 @@ namespace SculptingVis {
 
 		public void SetInputVariable(Variable inputVariable) {
 			_input = inputVariable;
-			LowerBound = inputVariable.GetMin().x;
-			UpperBound = inputVariable.GetMax().x;
+			if(inputVariable != null) {
+				LowerBound = inputVariable.GetMin().x;
+				UpperBound = inputVariable.GetMax().x;
+			}
+
 		}
 
 
