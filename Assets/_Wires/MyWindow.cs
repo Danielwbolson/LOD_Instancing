@@ -226,7 +226,7 @@ public class MyWindow : EditorWindow
 
             if (i == 0)
             {
-                GUILayout.BeginArea(_columns[i], GUI.skin.box);
+                GUILayout.BeginArea(_columns[i]);
                 
                  if (!_scrollPositions.ContainsKey("VisualElements")) _scrollPositions["VisualElements"] = new Vector2(0, 0);
                 _scrollPositions["VisualElements"] = EditorGUILayout.BeginScrollView(_scrollPositions["VisualElements"],false,true);
@@ -265,7 +265,7 @@ public class MyWindow : EditorWindow
             if (i == 2)
             {
 
-                GUILayout.BeginArea(_columns[i], GUI.skin.box);
+                GUILayout.BeginArea(_columns[i]);
                 if (!_scrollPositions.ContainsKey("Layers")) _scrollPositions["Layers"] = new Vector2(0, 0);
                 _scrollPositions["Layers"] = GUILayout.BeginScrollView(_scrollPositions["Layers"]);
 
