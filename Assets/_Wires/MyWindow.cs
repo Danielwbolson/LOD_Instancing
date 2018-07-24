@@ -111,18 +111,18 @@ public class MyWindow : EditorWindow
     {
         GUILayout.BeginVertical("box");
         GUILayout.Label(module.GetLabel());
-        for (int i = 0; i < module.GetSockets().Count; i++)
+        for (int i = 0; i < module.GetNumberOfSockets(); i++)
         {
 
-            GUILayout.Box(module.GetSockets()[i].GetLabel(),GUILayout.ExpandWidth(true));
+            GUILayout.Box(module.GetSocket(i).GetLabel(),GUILayout.ExpandWidth(true));
                      if (Event.current.type == EventType.Repaint)
  {
 
             Rect hook = GUILayoutUtility.GetLastRect();
             hook.position += nest.position;
-            if(module.GetSockets()[i]!= null)
-            _socketHooks[module.GetSockets()[i].GetUniqueIdentifier()] = hook;
-            _sockets[module.GetSockets()[i].GetUniqueIdentifier()] = module.GetSockets()[i];
+            if(module.GetSocket(i)!= null)
+            _socketHooks[module.GetSocket(i).GetUniqueIdentifier()] = hook;
+            _sockets[module.GetSocket(i).GetUniqueIdentifier()] = module.GetSocket(i);
 
             //Debug.Log("_socketHooks[" + module.GetSockets()[i] + "] = " + hook);
  }

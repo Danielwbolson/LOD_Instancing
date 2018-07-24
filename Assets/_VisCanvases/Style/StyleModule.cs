@@ -8,13 +8,20 @@ namespace SculptingVis{
 		List<StyleSocket> _sockets;
 
 
-		public List<StyleSocket> GetSockets() {
+		List<StyleSocket> GetSockets() {
 			if(_sockets == null) 
 				_sockets = new List<StyleSocket>();
 
 			return _sockets;
 		}
 
+		public int GetNumberOfSockets() {
+			return GetSockets().Count;
+		}
+
+		public StyleSocket GetSocket(int i) {
+			return GetSockets()[i];
+		}
 		public void AddSocket() {
 			StyleSocket socket = ScriptableObject.CreateInstance<StyleSocket>();
 			socket.Init(this,true,true);
