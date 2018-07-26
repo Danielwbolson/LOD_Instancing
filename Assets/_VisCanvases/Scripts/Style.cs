@@ -12,12 +12,16 @@ public class Style : ScriptableObject {
 	Material _styleOriginMaterial;
 
 	[SerializeField]
-	List<Layer> _layers;
+	List<StyleLayer> _layers;
 
+	public List<StyleLayer> GetLayers() {
+		if(_layers == null) _layers = new List<StyleLayer>();
+		return _layers;
+	}
 	public void Clear() {
 		_layers.Clear();
 	}
-	public void AddLayer(Layer layer) {
+	public void AddLayer(StyleLayer layer) {
 		_layers.Add(layer);
 	}
 	public void ApplyStyle(Canvas canvas) {

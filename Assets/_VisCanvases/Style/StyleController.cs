@@ -31,11 +31,19 @@ namespace SculptingVis
 
         }
 
+
+		[SerializeField] 
+		List<StyleLayer> _layerTypes;
+
         [SerializeField]
         List<StyleModule> _visualElements;
 
         [SerializeField]
         List<StyleModule> _layers;
+
+		[SerializeField]
+		Style _style;
+
 
         [SerializeField]
         List<StyleModule> _variables;
@@ -55,7 +63,13 @@ namespace SculptingVis
             if (_linksByDestination == null) _linksByDestination = new Dictionary<string, StyleLink>();
             return _linksByDestination;
         }
-
+        protected  StyleLink GetLinkByDestination(StyleSocket destinationsocket)
+        {
+            if (_linksByDestination == null) _linksByDestination = new Dictionary<string, StyleLink>();
+			if(_linksByDestination.ContainsKey(destinationsocket.GetUniqueIdentifier()))
+				return _linksByDestination[destinationsocket.GetUniqueIdentifier()];
+            return null;
+        }
         protected Dictionary<string, List<StyleLink> > GetLinksBySource()
         {
             if (_linksBySource == null) _linksBySource = new Dictionary<string, List<StyleLink> >();
@@ -71,11 +85,14 @@ namespace SculptingVis
 
 		public void RemoveLink(StyleLink link, bool removeFromIndex = false) {
 			if (link){
+				link.GetDestination().ClearInput();
                 GetLinks().Remove(link);
 				if(link.GetDestination())
             		GetLinksByDestination()[link.GetDestination().GetUniqueIdentifier()] = null;
 				if(removeFromIndex)
 				GetLinksBySource()[link.GetSource().GetUniqueIdentifier()].Remove(link);
+			
+				UpdateModuleLinks(link.GetDestination().GetModule());
 			}
 		}
         public void ClearSocket(StyleSocket socket)
@@ -110,7 +127,9 @@ namespace SculptingVis
 				GetLinksBySource()[link.GetSource().GetUniqueIdentifier()] = new List<StyleLink>();
 			GetLinksBySource()[link.GetSource().GetUniqueIdentifier()].Add(link);
 
+			link.GetDestination().SetInputObject(link.GetSource().GetOutput());
         }
+
 
         public List<StyleModule> GetVisualElements()
         {
@@ -119,11 +138,14 @@ namespace SculptingVis
             return _visualElements;
         }
 
-        public List<StyleModule> GetLayers()
-        {
-            if (_layers == null) _layers = new List<StyleModule>();
+		public Style GetStyle() {
+			if(_style == null) _style = ScriptableObject.CreateInstance<Style>();
+			return _style;
+		}
 
-            return _layers;
+        public List<StyleLayer> GetLayers()
+        {
+            return GetStyle().GetLayers();
         }
 
         public List<StyleModule> GetVariables()
@@ -139,6 +161,19 @@ namespace SculptingVis
 
 
         }
+
+		public void UpdateModuleLinks(StyleModule module) {
+			for(int i = 0; i < module.GetNumberOfSockets(); i++) {
+				StyleSocket socket = module.GetSocket(i);
+				StyleLink link;
+				if((link = GetLinkByDestination(socket))!=null){
+					if(!link.GetDestination().DoesAccept(link.GetSource())) {
+						RemoveLink(link);
+					}
+
+				}
+			}
+		}
 
         // Update is called once per frame
         void Update()
@@ -237,12 +272,16 @@ namespace SculptingVis
 			return _selectedLayerTypeIndex;
 		}
 		public string[] GetLayerTypes() {
-			string [] types =  {"Path Layer", "Point Layer"};
+			string [] types =  new string[_layerTypes.Count];
+			for(int i =0; i < _layerTypes.Count;i++) {
+				types[i] = _layerTypes[i].GetLabel();
+			}
 			return types;
 		}
 
 		public void CreateLayer() {
-            _layers.Add(ScriptableObject.CreateInstance<StyleTestLayer>().Init());
+            //_layers.Add(ScriptableObject.CreateInstance<StyleTestLayer>().Init());
+			_style.AddLayer(((StyleLayer)ScriptableObject.CreateInstance(_layerTypes[GetLayerTypeToCreate()].GetType().ToString())).CopyLayer(_layerTypes[GetLayerTypeToCreate()]));
 
 		}
 
@@ -255,7 +294,9 @@ namespace SculptingVis
 			return _canvases;
 		}
 		public void AddCanvas() {
-		   GetCanvases().Add(Instantiate(_CanvasPrefab));
+			Canvas c = Instantiate(_CanvasPrefab);
+			c.SetStyle(_style);
+		   	GetCanvases().Add(c);
 		}
 
 		public void RemoveCanvas(Canvas canvas) {
@@ -267,7 +308,7 @@ namespace SculptingVis
 			if(module is StyleVisualElement) {
 				GetVisualElements().Remove(module);
 			} else if(module is StyleLayer) {
-				GetLayers().Remove(module);
+				GetLayers().Remove((StyleLayer)module);
 			} else if(module is StyleDataVariable) {
 				GetVariables().Remove(module);
 			}

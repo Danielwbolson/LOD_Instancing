@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e594beb04b33b8343a121fa6e5ec74f4, type: 3}
+  m_Name: New Style Test Layer
+  m_EditorClassIdentifier: 
+  _sockets: []
+  _boxBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 1, y: 1, z: 1}
+  _boxMesh: {fileID: 4300000, guid: c84d93f1796a7fd4685e7a210e7df7e2, type: 3}
+  _boxMaterial: {fileID: 2100000, guid: d64d286c55cec497291b5fbf027fe0e6, type: 2}

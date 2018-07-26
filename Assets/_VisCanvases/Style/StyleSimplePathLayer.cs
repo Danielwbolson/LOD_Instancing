@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SculptingVis{
 	[CreateAssetMenu()]
-	public class StyleTestLayer : StyleLayer {
+	public class StyleSimplePathLayer : StyleLayer {
 
 
 
@@ -56,7 +56,7 @@ namespace SculptingVis{
 
         
 		public override string GetLabel() {
-			return "Test Layer";
+			return "Simple Path Layer";
 		}
 
 	}

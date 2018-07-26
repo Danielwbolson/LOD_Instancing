@@ -183,7 +183,7 @@ public class VTKDataset : Dataset {
 
 	public override Vector3 GetMax(DataVariable variable) {
 		Vector3 result = new Vector3();
-		if(GetAbstractArray((VTKDataVariable)variable).IsA("vtkDataArray")) {
+		if(variable is VTKDataVariable && GetAbstractArray((VTKDataVariable)variable).IsA("vtkDataArray")) {
 			VTK.vtkDataArray da = VTK.vtkDataArray.SafeDownCast(GetAbstractArray((VTKDataVariable)variable));
 			double[] r = new double[2];
 			da.GetRange(r,0);

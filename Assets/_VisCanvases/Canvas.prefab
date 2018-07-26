@@ -318,7 +318,7 @@ MonoBehaviour:
   _cornerMaterial: {fileID: 2100000, guid: 9b18f672d1f174a4b93db7892bf59531, type: 3}
   _innerSceneTransform: {fileID: 4032091498035696}
   _style: {fileID: 11400000, guid: 3cc0b38ca5ed446bb8c24134f0d3ea64, type: 2}
-  _fitStyle: 0
+  _fitStyle: 1
   _selected: 0
   _color: {x: 1, y: 1, z: 0, w: 1}
   _cropColor: {x: 0, y: 0, z: 0, w: 0}

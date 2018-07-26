@@ -188,7 +188,7 @@ public class MyWindow : EditorWindow
             bool inputHookRight = false;
             if (module is StyleLayer && socket is StyleColormapSocket)
                 inputHookLeft = true;
-            else if (module is StyleLayer && socket is StyleVariableSocket)
+            else if (module is StyleLayer && socket is VariableSocket)
                 inputHookRight = true;
 
             EditorGUILayout.BeginHorizontal();
@@ -328,6 +328,9 @@ public class MyWindow : EditorWindow
                 if(GUILayout.Button("Select")) {
                     
                 }
+                canvas.FitStyle(GUILayout.Toggle(canvas.IsFitting(),"Fit"));
+                    
+                
                 GUILayout.FlexibleSpace();
                 if(GUILayout.Button("-",EditorStyles.miniButton,GUILayout.MaxWidth(20))) {
                     GetStyleController().RemoveCanvas(canvas);

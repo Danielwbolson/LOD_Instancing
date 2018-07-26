@@ -29,15 +29,15 @@ public class SimplePathLayer : Layer {
 
 	public void Init() {
 		_anchorVariable = CreateInstance<VariableSocket>();
-		_anchorVariable.Init();
+		//_anchorVariable.Init();
 		SetAnchorSocket(_anchorVariable);
 		_colorVariable = CreateInstance<VariableSocket>();
-		_colorVariable.Init("Color",1);
-		_colorVariable.SetAnchorVariable(_anchorVariable);
+		//_colorVariable.Init("Color",1);
+		_colorVariable.SetAnchorVariableSocket(_anchorVariable);
 
 		_opacityVariable = CreateInstance<VariableSocket>();
-		_opacityVariable.Init("Opacity",3);
-		_opacityVariable.SetAnchorVariable(_anchorVariable);
+		//_opacityVariable.Init("Opacity",3);
+		_opacityVariable.SetAnchorVariableSocket(_anchorVariable);
 		GetSockets().Add(_anchorVariable);
 		GetSockets().Add(_colorVariable);
 		GetSockets().Add(_opacityVariable);

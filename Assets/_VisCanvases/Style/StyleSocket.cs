@@ -37,7 +37,7 @@ namespace SculptingVis {
 			_source = sourceObject;
 		}
 
-		public void SetInputObject(Object inputObject) {
+		public virtual void SetInputObject(Object inputObject) {
 			_input = inputObject;
 		}
 
@@ -63,6 +63,10 @@ namespace SculptingVis {
 		
 		public virtual bool DoesAccept(StyleSocket incoming) {
 			return true;
+		}
+
+		public virtual void ClearInput() {
+			_input = null;
 		}
 	}
 }

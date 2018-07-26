@@ -36,10 +36,18 @@ namespace SculptingVis {
         [SerializeField]
         Style _style;
 
-
+        public void SetStyle(Style style) {
+            _style = style;
+        }
         [SerializeField]
-        bool _fitStyle;
+        bool _fitStyle = true;
 
+        public void FitStyle(bool shouldFit) {
+            _fitStyle = shouldFit;
+        }
+        public bool IsFitting() {
+            return _fitStyle;
+        }
         [SerializeField]
         bool _selected = false;
 
