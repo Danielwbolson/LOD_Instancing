@@ -294,7 +294,7 @@ public class SculptingVisWindow : EditorWindow
 
             if (GUILayout.Button("Load Folder"))
             {
-                string path = EditorUtility.OpenFolderPanel("Select Folder containing glyphs or colormaps", "", "");
+                string path = EditorUtility.OpenFolderPanel("Select Folder containing glyphs or colormaps", Application.streamingAssetsPath + "/Images/colormaps", "");
                 if (path.Length != 0)
                 {
                     GetStyleController().LoadVisualElements(path);
@@ -302,7 +302,7 @@ public class SculptingVisWindow : EditorWindow
             }
             if (GUILayout.Button("Load Files"))
             {
-                string path = EditorUtility.OpenFilePanel("Select Visual Element", "","");
+                string path = EditorUtility.OpenFilePanel("Select Visual Element", Application.streamingAssetsPath + "/Images/colormaps","");
                 if (path.Length != 0)
                 {
                     GetStyleController().LoadVisualElements(path);
@@ -389,7 +389,7 @@ public class SculptingVisWindow : EditorWindow
             // }
             if (GUILayout.Button("Load File"))
             {
-                string path = EditorUtility.OpenFilePanel("Select VTK file", "","");
+                string path = EditorUtility.OpenFilePanel("Select VTK file", Application.streamingAssetsPath + "/example_data/VTK/","");
                 if (path.Length != 0)
                 {
                     GetStyleController().LoadData(path);

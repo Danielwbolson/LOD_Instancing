@@ -184,11 +184,7 @@ namespace SculptingVis
         // Update is called once per frame
         void Update()
         {
-			string output = "";
-			foreach(var key in GetLinksByDestination().Keys) {
-				output += "" + key + ": " + GetLinksByDestination()[key] +", ";
-			}
-			Debug.Log(output);
+
         }
 
         public void LoadData(string path)
