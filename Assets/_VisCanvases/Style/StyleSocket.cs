@@ -12,11 +12,37 @@ namespace SculptingVis {
 		[SerializeField]
 		bool _isOutput;
 		
+		[SerializeField]
+		string _label;
 
-		public void Init(StyleModule module, bool isInput, bool isOutput) {
+		public StyleSocket Init(string label, StyleModule module, bool isInput, bool isOutput, Object sourceObject = null) {
 			_module = module;
 			_isInput = isInput;
 			_isOutput = isOutput;
+			_label = label;
+			SetSourceObject(sourceObject);
+			return this;
+		}
+
+		[SerializeField]
+		Object _source;
+
+		[SerializeField]
+		Object _input;
+
+		public StyleModule GetModule() {
+			return _module;
+		}
+		public void SetSourceObject(Object sourceObject) {
+			_source = sourceObject;
+		}
+
+		public void SetInputObject(Object inputObject) {
+			_input = inputObject;
+		}
+
+		public Object GetOutput() {
+			return _source;
 		}
 
 		public virtual string GetUniqueIdentifier() {
@@ -24,10 +50,20 @@ namespace SculptingVis {
 		}
 
 		public virtual string GetLabel() {
-			return _module.GetLabel() + " Socket";	
+			return _label;	
 		}
 
+		public bool IsOutput() {
+			return _isOutput;
+		}
+
+		public bool IsInput() {
+			return _isInput;
+		}
 		
+		public virtual bool DoesAccept(StyleSocket incoming) {
+			return true;
+		}
 	}
 }
 

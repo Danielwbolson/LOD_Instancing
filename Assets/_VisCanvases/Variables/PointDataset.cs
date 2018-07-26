@@ -100,9 +100,10 @@ public class PointDataset : Dataset {
 	protected override bool hasAnchor() {
 		return true;
 	}
-	public override void LoadDataset() {
+	public override bool LoadDataset() {
 		
 		populateVariables();
+		return true;
 	}
 	protected override bool validateVariable(DataVariable variable) {
 		return base.validateVariable(variable) &&  variable is AnchorVariable;

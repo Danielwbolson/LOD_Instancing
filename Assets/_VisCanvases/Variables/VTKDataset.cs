@@ -131,9 +131,11 @@ public class VTKDataset : Dataset {
 	public void SetDatasetPath(string path) {
 		_datasetPath = path;
 	}
-	public override void LoadDataset() {
+	public override bool LoadDataset() {
 		_dataset = DEPRECATED.DataLoader.LoadVTKDataSet(_datasetPath);
-		populateVariables();
+		if(!_dataset.IsVoid())
+			populateVariables();
+		return !_dataset.IsVoid();
 	}
 	protected override bool validateVariable(DataVariable variable) {
 		return base.validateVariable(variable) && (variable is VTKDataVariable || variable is VTKAnchorDataVariable);

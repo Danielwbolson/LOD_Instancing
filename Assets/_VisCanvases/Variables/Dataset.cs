@@ -61,7 +61,7 @@ public abstract class Dataset : ScriptableObject {
 			Debug.LogError("Data set does not contain variable.");
 		}
 	}
-	public abstract void LoadDataset();
+	public abstract bool LoadDataset();
 
 	protected virtual int queryNumberOfVariables() {
 		return 0;

@@ -74,7 +74,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1226257311448536}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4032091498035696}
@@ -317,8 +317,6 @@ MonoBehaviour:
   _cornerMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
   _cornerMaterial: {fileID: 2100000, guid: 9b18f672d1f174a4b93db7892bf59531, type: 3}
   _innerSceneTransform: {fileID: 4032091498035696}
-  _innerSceneOrigin: {x: -2.25, y: -1, z: -1.21}
-  _innerSceneScale: {x: 0.02, y: 0.02, z: 0.02}
   _style: {fileID: 11400000, guid: 3cc0b38ca5ed446bb8c24134f0d3ea64, type: 2}
   _fitStyle: 0
   _selected: 0

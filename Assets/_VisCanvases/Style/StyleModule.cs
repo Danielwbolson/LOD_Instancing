@@ -22,9 +22,7 @@ namespace SculptingVis{
 		public StyleSocket GetSocket(int i) {
 			return GetSockets()[i];
 		}
-		public void AddSocket() {
-			StyleSocket socket = ScriptableObject.CreateInstance<StyleSocket>();
-			socket.Init(this,true,true);
+		public virtual void AddSocket(StyleSocket socket) {
 			GetSockets().Add(socket);
 		}
 

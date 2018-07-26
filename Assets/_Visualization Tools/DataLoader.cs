@@ -66,8 +66,9 @@ public class DataLoader : MonoBehaviour {
 
             
         string path;
-        if(filePath[0] == '/') path = filePath;
-        else path = Application.streamingAssetsPath + "/" + filePath;
+        //if(filePath[0] == '/')
+         path = filePath;
+        //else path = Application.streamingAssetsPath + "/" + filePath;
         vtkXMLDataReader reader = IntPtr.Zero;
         if (!File.Exists(path))
         {
