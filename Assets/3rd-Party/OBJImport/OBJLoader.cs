@@ -299,13 +299,13 @@ public class OBJLoader
                             hashtable[hashEntry] = hashtable.Count;
                             uvertices.Add(vertices[vertexIndex]);
                             if (normalIndex < 0 || (normalIndex > (normals.Count - 1)))
-                            {
+                            { 
                                 unormals.Add(Vector3.zero);
                             }
                             else
                             {
                                 hasNormals = true;
-                                unormals.Add(normals[normalIndex]);
+                                unormals.Add(Vector3.Normalize(normals[normalIndex]));
                             }
                             if (uvIndex < 0 || (uvIndex > (uvs.Count - 1)))
                             {
@@ -418,10 +418,11 @@ public class OBJLoader
                 m.SetTriangles(processedIndexes[i],i);   
             }
 
-            if (!hasNormals)
-            {
-             m.RecalculateNormals();   
+
+            if (!hasNormals) {
+                m.RecalculateNormals();
             }
+            m.RecalculateTangents();
             m.RecalculateBounds();
             ;
 
@@ -430,7 +431,7 @@ public class OBJLoader
 
             Material[] processedMaterials = new Material[meshMaterialNames.Count];
             for(int i=0 ; i < meshMaterialNames.Count; i++)
-            {
+            { 
                 
                 if (materialCache == null)
                 {

@@ -3,16 +3,16 @@ guid: 02337129ce17cb1449e3f780b3466c92
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: CL_Hiaku_disk1_LOD0
-    100002: CL_Hiaku_disk1_LOD1
-    100004: CL_Hiaku_disk1_LOD2
-    100006: CL_Hiaku_disk1_LOD3
-    100008: //RootNode
-    400000: CL_Hiaku_disk1_LOD0
-    400002: CL_Hiaku_disk1_LOD1
-    400004: CL_Hiaku_disk1_LOD2
-    400006: CL_Hiaku_disk1_LOD3
-    400008: //RootNode
+    100000: //RootNode
+    100002: CL_Hiaku_disk1_LOD0
+    100004: CL_Hiaku_disk1_LOD1
+    100006: CL_Hiaku_disk1_LOD2
+    100008: CL_Hiaku_disk1_LOD3
+    400000: //RootNode
+    400002: CL_Hiaku_disk1_LOD0
+    400004: CL_Hiaku_disk1_LOD1
+    400006: CL_Hiaku_disk1_LOD2
+    400008: CL_Hiaku_disk1_LOD3
     2100000: CL_Hiaku_disk1_LOD0Mat
     2100002: CL_Hiaku_disk1_LOD1Mat
     2100004: CL_Hiaku_disk1_LOD2Mat
@@ -71,7 +71,7 @@ ModelImporter:
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
-    importLights: 1
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -88,10 +88,10 @@ ModelImporter:
     previousCalculatedGlobalScale: 1
     hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
-    normalSmoothAngle: 60
+    normalSmoothAngle: 0
     normalImportMode: 0
     tangentImportMode: 3
-    normalCalculationMode: 4
+    normalCalculationMode: 1
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

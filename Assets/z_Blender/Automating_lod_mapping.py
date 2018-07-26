@@ -73,7 +73,7 @@ if bpy.context.selected_objects != []:
 	# Smooth shading
 	mesh = lod0.data
 	for face in mesh.polygons:
-		face.use_smooth = True
+		face.use_smooth = False
 		
 	lods = [lod0]
 	

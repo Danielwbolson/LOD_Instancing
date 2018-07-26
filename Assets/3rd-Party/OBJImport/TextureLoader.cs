@@ -83,8 +83,8 @@ public class TextureLoader : MonoBehaviour {
             return null;
         string ext = Path.GetExtension(fn).ToLower();
         if (ext == ".png" || ext == ".jpg")
-        {
-            Texture2D t2d = new Texture2D(2, 2, TextureFormat.ARGB32, true, true);
+        { 
+            Texture2D t2d = new Texture2D(2, 2, TextureFormat.RGBAHalf, true, true);
             t2d.LoadImage(File.ReadAllBytes(fn));
             if (normalMap)
                 SetNormalMap(ref t2d);

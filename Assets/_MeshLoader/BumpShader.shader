@@ -49,11 +49,12 @@
             fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
 
             float4 map1 = tex2D(_MainTex, IN.uv_MainTex);
-            map1.a = map(map1.r + 0.33, 0.1, 1, 0.2, 0.81); //0.26, 0.77, 0.38, 0.85);
+            map1.a = sqrt(map1.r) * 2 - 1;
+            map1.a = map1.a * 0.5 + 0.54;
+            map1.g = sqrt(map1.g) * 2 - 1;
+            map1.g = map1.g * 0.5 + 0.54;
+            map1.b = map1.g;
             map1.r = 1;
-            float g = map(map1.g * 2 + 0.1, 0, 1, 0, 0.7); //map(map1.g, 0, 1, 0, 1); //0.22086, 0.8130, 0.3411, 0.877);
-            map1.g = g;
-            map1.b = g;
 
             // The texture with the bump map applied has:
             // g = b
@@ -61,18 +62,24 @@
             // a is not just opacity
             float4 map2 = tex2D(_BumpMap, IN.uv_BumpMap);
 
-            float3 tex = tex2D(_MainTex, IN.uv_MainTex) * 2 - 1;
-            float3 bump = UnpackNormalDXT5nm(map2);
+            float3 tex = UnpackNormal(map1);
+            float3 bump = UnpackNormal(map2);
 
+            o.Albedo = _Color.rgb;
+            float3 oldNormal = o.Normal;
             if (IN.uv_MainTex.x < _Slider) {
-                o.Normal = tex;//map1.g * 2 - 1;
+                o.Normal = tex;
             }
             else {
-                o.Normal = bump;//map2.g * 2 - 1;
+                o.Normal = bump;
             }
+            //o.Normal = float3(0, 0, 1);
+
+           // o.Normal = normalize(o.Normal);
 
             // Metallic and smoothness come from slider variables
-            o.Albedo = _Color.rgb;
+            //o.Albedo = (o.Normal.rgb); // length(o.Normal) < 0.95 ? 1 : 0;
+            //o.Normal = oldNormal;
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
             o.Alpha = _Color.a;

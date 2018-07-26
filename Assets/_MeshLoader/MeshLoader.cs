@@ -31,7 +31,6 @@ public class MeshLoader : MonoBehaviour {
         for (int i = 0; i < 3; i++) {
             string filePath = _objectFolder + "/NormalMaps/LOD" + (3 - i) + ".png";
             bumpMaps[i] = TextureLoader.LoadTexture(filePath, false);
-            bumpMaps[i] = NormalMapTools.CreateNormalmap(bumpMaps[i], 1);
 
             byte[] data = bumpMaps[i].EncodeToPNG();
             File.WriteAllBytes(Application.dataPath + "/Resources/GeneratedImages/LOD" + (3 - i) + ".png", data);
