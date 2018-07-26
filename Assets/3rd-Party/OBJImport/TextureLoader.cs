@@ -66,16 +66,16 @@ public class TextureLoader : MonoBehaviour {
 
     public static void SetNormalMap(ref Texture2D tex)
     {
-        Color[] pixels = tex.GetPixels();
+        Color32[] pixels = tex.GetPixels32();
         for(int i=0; i < pixels.Length; i++)
         {
-            Color temp = pixels[i];
+            Color32 temp = pixels[i];
             temp.r = pixels[i].g;
             temp.a = pixels[i].r;
             pixels[i] = temp;
         }
-        tex.SetPixels(pixels);
-        tex.Apply();
+        tex.SetPixels32(pixels);
+        tex.Apply(true);
     }
     public static Texture2D LoadTexture(string fn,bool normalMap = false)
     {
@@ -84,7 +84,7 @@ public class TextureLoader : MonoBehaviour {
         string ext = Path.GetExtension(fn).ToLower();
         if (ext == ".png" || ext == ".jpg")
         {
-            Texture2D t2d = new Texture2D(1, 1);
+            Texture2D t2d = new Texture2D(2, 2, TextureFormat.ARGB32, true, true);
             t2d.LoadImage(File.ReadAllBytes(fn));
             if (normalMap)
                 SetNormalMap(ref t2d);

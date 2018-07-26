@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class MeshLoader : MonoBehaviour {
@@ -20,7 +21,7 @@ public class MeshLoader : MonoBehaviour {
 
     public void LoadMesh() {
         LOD[] lodRanges = new LOD[4];
-        Texture[] bumpMaps = new Texture[3];
+        Texture2D[] bumpMaps = new Texture2D[3];
 
         float[] lodSize = new float[4] { 0.7f, 0.4f, 0.15f, 0.06f };
 
@@ -29,7 +30,11 @@ public class MeshLoader : MonoBehaviour {
 
         for (int i = 0; i < 3; i++) {
             string filePath = _objectFolder + "/NormalMaps/LOD" + (3 - i) + ".png";
-            bumpMaps[i] = TextureLoader.LoadTexture(filePath, true);
+            bumpMaps[i] = TextureLoader.LoadTexture(filePath, false);
+            bumpMaps[i] = NormalMapTools.CreateNormalmap(bumpMaps[i], 1);
+
+            byte[] data = bumpMaps[i].EncodeToPNG();
+            File.WriteAllBytes(Application.dataPath + "/Resources/GeneratedImages/LOD" + (3 - i) + ".png", data);
         }
 
         for (int i = 0; i < 4; i++) {
@@ -53,5 +58,4 @@ public class MeshLoader : MonoBehaviour {
         lodGroup.animateCrossFading = true;
         lodGroup.SetLODs(lodRanges);
     }
-    
 }

@@ -118,7 +118,7 @@ if bpy.context.selected_objects != []:
 		bpy.ops.object.editmode_toggle()
 		bpy.ops.mesh.select_all(action='SELECT')
 		bpy.ops.mesh.normals_make_consistent(inside=False)
-		bpy.ops.uv.smart_project()
+		bpy.ops.uv.smart_project(angle_limit = 30)
 		bpy.ops.object.editmode_toggle()
 		
 		img = bpy.data.images.new("Lod" + str(i), 1024, 1024, alpha=True)
