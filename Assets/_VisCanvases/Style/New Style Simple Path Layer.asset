@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9db7d1ddd25cb0049a7f917df004276e, type: 3}
+  m_Name: New Style Simple Path Layer
+  m_EditorClassIdentifier: 
+  _sockets: []
+  _anchorVariable: {fileID: 0}
+  _colorVariable: {fileID: 0}
+  _opacityVariable: {fileID: 0}
+  _colorMapInput: {fileID: 0}
+  _colorMap: {fileID: 2800000, guid: 5697c26ee2ef0c848996640f6a3d3432, type: 3}
+  _lineMaterial: {fileID: 2100000, guid: 828e42bd71679c145b63523a84ecc242, type: 2}
+  LineCount: 1000

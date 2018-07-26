@@ -8,6 +8,10 @@ namespace SculptingVis {
 		public override bool DoesAccept(StyleSocket incoming) {
 			return incoming.GetOutput() is Texture2D;
 		}
+
+		public Texture2D GetTexture() {
+			return (Texture2D)_input;
+		}
 		
 	}
 }

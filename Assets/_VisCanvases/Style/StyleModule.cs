@@ -31,6 +31,10 @@ namespace SculptingVis{
 			return "Module";
 		}
 
+		public virtual void UpdateModule() {
+			
+		}
+
 	}
 }
 

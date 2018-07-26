@@ -6,25 +6,25 @@ using System.Collections.Generic;
 using SculptingVis;
 using System.IO;
 
-public class MyWindow : EditorWindow
+public class SculptingVisWindow : EditorWindow
 {
     string myString = "Hello World";
     bool groupEnabled;
     bool myBool = true;
     float myFloat = 1.23f;
 
-    MyWindow window;
+    SculptingVisWindow window;
 
     static StyleController GetStyleController()
     {
         return (StyleController)FindObjectOfType(typeof(StyleController));
     }
     // Add menu named "My Window" to the Window menu
-    [MenuItem("Window/My Window")]
+    [MenuItem("Window/SculptingVis")]
     static void Init()
     {
         // Get existing open window or if none, make a new one:
-        MyWindow window = (MyWindow)EditorWindow.GetWindow(typeof(MyWindow));
+        SculptingVisWindow window = (SculptingVisWindow)EditorWindow.GetWindow(typeof(SculptingVisWindow));
         window.Show();
         window.scrollView = new Vector2[7];
     }
@@ -221,7 +221,7 @@ public class MyWindow : EditorWindow
                 disabled = true;
 
             EditorGUI.BeginDisabledGroup(disabled);
-
+            //GUILayout.Label(socket.GetUniqueIdentifier());
             GUILayout.Box("", socket.IsOutput() ? EditorStyles.radioButton : EditorStyles.miniButton);
             EditorGUI.EndDisabledGroup();
             if (Event.current.type == EventType.Repaint)
@@ -264,6 +264,15 @@ public class MyWindow : EditorWindow
         if (_scrollPositions == null) _scrollPositions = new Dictionary<string, Vector2>();
         if (_socketHooks == null) _socketHooks = new Dictionary<string, Rect>();
         if (_sockets == null) _sockets = new Dictionary<string, StyleSocket>();
+
+
+        if (Event.current.type == EventType.Repaint)
+        {
+            _socketHooks.Clear();
+            _sockets.Clear();
+        }
+
+
 
         //if (_socketLinks == null) _socketLinks = new List<Vector2Int>();
 
@@ -517,6 +526,10 @@ public class MyWindow : EditorWindow
 
         switch (evt.type)
         {
+            case EventType.MouseMove:
+                activeSource = null;
+                break;
+
             case EventType.MouseDown:
 
 
@@ -560,13 +573,13 @@ public class MyWindow : EditorWindow
                                 link.SetDestination(_sockets[socket]);
                                 GetStyleController().AddLink(link);
                             }
-
+                            activeSource = null;
                             break;
                         }
                     }
-                    activeSource = null;
 
                 }
+                    activeSource = null;
 
                 break;
 

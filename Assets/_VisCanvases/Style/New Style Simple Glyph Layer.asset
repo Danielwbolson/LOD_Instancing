@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61cc93817e423dc48a32613a6a35cfee, type: 3}
+  m_Name: New Style Simple Glyph Layer
+  m_EditorClassIdentifier: 
+  _sockets: []
+  _anchorVariable: {fileID: 0}
+  _colorVariable: {fileID: 0}
+  _directionVariable: {fileID: 0}
+  _opacityVariable: {fileID: 0}
+  _colorMapInput: {fileID: 0}
+  _colorMap: {fileID: 0}
+  _pointMaterial: {fileID: 0}
+  _glyphMesh: {fileID: 0}
+  _sampleAtCenter: 1
+  instanceCount: 50000

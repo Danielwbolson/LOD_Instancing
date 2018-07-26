@@ -5,7 +5,7 @@ using UnityEngine;
 namespace SculptingVis
 {
     [CreateAssetMenu()]
-    public class StyleSimplePathLayer : StyleLayer
+    public class StyleSimpleGlyphLayer : StyleLayer
     {
 
 
@@ -16,6 +16,8 @@ namespace SculptingVis
         [SerializeField]
         public VariableSocket _colorVariable;
 
+        [SerializeField]
+        public VariableSocket _directionVariable;
 
         [SerializeField]
         public VariableSocket _opacityVariable;
@@ -28,12 +30,21 @@ namespace SculptingVis
         public Texture2D _colorMap;
 
         [SerializeField]
-        public Material _lineMaterial;
+        public Material _pointMaterial;
 
         [SerializeField]
-        public int LineCount = 1000;
+        public Mesh _glyphMesh;
+
+        [SerializeField]
+        bool _sampleAtCenter = true;
+        
+   
+	[SerializeField]
+	public int instanceCount = 50000;
 
 
+        private ComputeBuffer argsBuffer;
+        private uint[] args = new uint[5] { 0, 0, 0, 0, 0 };
 
         public override bool HasBounds()
         {
@@ -46,59 +57,25 @@ namespace SculptingVis
 
         public override void DrawLayer(Canvas canvas)
         {
-            if (_anchorVariable == null || !_anchorVariable.IsAssigned()) return;
-            Datastream stream = _anchorVariable.GetInput().GetStream(null, 0, 0);
-
-
-
-            Mesh[] m = stream.GetMeshes();
-            // if(_colorVariable.IsAssigned()) {
-            // 	Texture3D tex = _colorVariable.GetInput().GetStream(null,0,0).Get3DTexture();
-            // 	_lineMaterial.SetTexture("_ColorData",tex);
-            // 	_lineMaterial.SetInt("_HasColorVariable",1);
-            // 	_lineMaterial.SetMatrix("_DataBoundsMatrixInv",Matrix4x4.TRS(_colorVariable.GetBounds().center,Quaternion.identity,_colorVariable.GetBounds().size).inverse);
-
-            // } else {
-            // 	_lineMaterial.SetInt("_HasColorVariable",0);
-
-            // }
-            _lineMaterial.SetTexture("_ColorMap", _colorMap);
-
-            Material canvasMaterial = GetCanvasMaterial(canvas, _lineMaterial);
-            _anchorVariable.Bind(canvasMaterial, 0, 0);
-            _colorVariable.Bind(canvasMaterial, 0, 0);
-            _opacityVariable.Bind(canvasMaterial, 0, 0);
-
-            if (m != null && m.Length > 0)
-            {
-                for (int i = 0; i < Mathf.Min(m.Length, LineCount); i += 1)
-                {
-                    Mesh mesh = m[i];
-                    if (mesh != null)
-                    {
-                        Graphics.DrawMesh(mesh, canvas.GetInnerSceneTransformMatrix(), canvasMaterial, 0);
-
-                    }
-                }
-            }
+           
 
         }
 
 
         public override StyleLayer CopyLayer(StyleLayer toCopy)
         {
-            if (toCopy != null && toCopy is StyleSimplePathLayer)
+            if (toCopy != null && toCopy is StyleSimpleGlyphLayer)
             {
-                _lineMaterial = ((StyleSimplePathLayer)toCopy)._lineMaterial;
-                LineCount = ((StyleSimplePathLayer)toCopy).LineCount;
-				 _colorMap = ((StyleSimplePathLayer)toCopy)._colorMap;
+                _pointMaterial = ((StyleSimpleGlyphLayer)toCopy)._pointMaterial;
+                instanceCount = ((StyleSimpleGlyphLayer)toCopy).instanceCount;
+				 _colorMap = ((StyleSimpleGlyphLayer)toCopy)._colorMap;
 
             }
 
             return Init();
         }
 
-        public StyleSimplePathLayer Init()
+        public StyleSimpleGlyphLayer Init()
         {
             _anchorVariable = CreateInstance<VariableSocket>();
             _anchorVariable.Init("Anchor",this);
@@ -131,7 +108,7 @@ namespace SculptingVis
 
         public override string GetLabel()
         {
-            return "Simple Path Layer";
+            return "Simple Glyph Layer";
         }
 
     }

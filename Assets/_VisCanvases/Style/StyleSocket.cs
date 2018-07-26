@@ -15,6 +15,13 @@ namespace SculptingVis {
 		[SerializeField]
 		string _label;
 
+		[SerializeField]
+		List<StyleLink> _links;
+
+		public List<StyleLink> GetLinks() {
+			if(_links == null) _links = new List<StyleLink>();
+			return _links;
+		}
 		public StyleSocket Init(string label, StyleModule module, bool isInput, bool isOutput, Object sourceObject = null) {
 			_module = module;
 			_isInput = isInput;
@@ -28,7 +35,7 @@ namespace SculptingVis {
 		Object _source;
 
 		[SerializeField]
-		Object _input;
+		protected Object _input;
 
 		public StyleModule GetModule() {
 			return _module;

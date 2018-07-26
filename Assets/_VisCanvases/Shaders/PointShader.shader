@@ -59,8 +59,9 @@ Shader "Unlit/PointShader"
 			{
 				float val = 0;
 
-			int pointIndex = floor(i.uv.x +0.5);
-			int cellIndex = floor(i.uv.y + 0.5);
+			int pointIndex = floor(i.uv.y +0.5);
+			int cellIndex = floor(i.uv.x + 0.5);
+			float3 dataSpace = WorldToDataSpace(i.worldPos);
 
 				if(_HasColorVariable == 1) {
 					float4 worldSpace = float4(i.worldPos,1);
@@ -71,7 +72,7 @@ Shader "Unlit/PointShader"
 					val = tex3D (_ColorData, textureSpace).x/20.0;
 				}
 
-				float3 dataVal = GetData(1,floor(i.uv.x),floor(i.uv.y),WorldToDataSpace(i.worldPos));
+				float3 dataVal = GetData(1,floor(i.uv.x +0.5),floor(i.uv.y +0.5),WorldToDataSpace(i.worldPos));
 				float3 normalizedDataVal = NormalizeData(1,dataVal);
 
 				// sample the texture
@@ -80,11 +81,11 @@ Shader "Unlit/PointShader"
 				// apply fog
 				UNITY_APPLY_FOG(i.fogCoord, col);
 
-			float3 dataSpace = WorldToDataSpace(i.worldPos);
+
 
 			float3 opacityVal = NormalizeData(3,GetData(3,cellIndex,pointIndex,dataSpace));
 			if(VariableIsAssigned(3)) {
-			
+				//col.rgb = float3(normalizedDataVal.x,normalizedDataVal.x,normalizedDataVal.x);
 				StippleTransparency(i.vertex,_ScreenParams,opacityVal.x);
 
 			}

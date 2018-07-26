@@ -85,6 +85,7 @@ namespace SculptingVis
 
 		public void RemoveLink(StyleLink link, bool removeFromIndex = false) {
 			if (link){
+				Debug.Log("Removing link: " + link.GetSource().GetUniqueIdentifier() + " -> " + link.GetDestination().GetUniqueIdentifier());
 				link.GetDestination().ClearInput();
                 GetLinks().Remove(link);
 				if(link.GetDestination())
@@ -100,8 +101,10 @@ namespace SculptingVis
 			if(socket.IsInput()) {
 				StyleLink currentLink = null;
 				if (GetLinksByDestination().ContainsKey(socket.GetUniqueIdentifier()))
-					currentLink = GetLinksByDestination()[socket.GetUniqueIdentifier()];
+					currentLink = GetLinkByDestination(socket);
 				RemoveLink(currentLink);
+				if(currentLink != null)currentLink.GetDestination().GetModule().UpdateModule();
+
 			} 
 			if(socket.IsOutput()) {
 				StyleLink currentLink = null;
@@ -114,6 +117,7 @@ namespace SculptingVis
 				GetLinksBySource()[socket.GetUniqueIdentifier()].Clear();
 
 			}
+
 
         }
         public void AddLink(StyleLink link)
@@ -128,6 +132,8 @@ namespace SculptingVis
 			GetLinksBySource()[link.GetSource().GetUniqueIdentifier()].Add(link);
 
 			link.GetDestination().SetInputObject(link.GetSource().GetOutput());
+
+			link.GetDestination().GetModule().UpdateModule();
         }
 
 
@@ -178,7 +184,11 @@ namespace SculptingVis
         // Update is called once per frame
         void Update()
         {
-
+			string output = "";
+			foreach(var key in GetLinksByDestination().Keys) {
+				output += "" + key + ": " + GetLinksByDestination()[key] +", ";
+			}
+			Debug.Log(output);
         }
 
         public void LoadData(string path)
@@ -301,7 +311,7 @@ namespace SculptingVis
 
 		public void RemoveCanvas(Canvas canvas) {
 			GetCanvases().Remove(canvas);
-			Destroy(canvas.gameObject);
+			DestroyImmediate(canvas.gameObject);
 		}
 
 		public void RemoveModule(StyleModule module) {
