@@ -31,7 +31,6 @@ public class MeshLoader : MonoBehaviour {
         for (int i = 0; i < 3; i++) {
             string filePath = _objectFolder + "/NormalMaps/LOD" + (i + 1) + ".png";
             bumpMaps[i] = TextureLoader.LoadTexture(filePath);
-            //SetNormalMap(ref bumpMaps[i]);
 
             byte[] data = bumpMaps[i].EncodeToPNG();
             File.WriteAllBytes(Application.dataPath + "/Resources/GeneratedImages/LOD" + (i + 1) + ".png", data);
@@ -56,7 +55,7 @@ public class MeshLoader : MonoBehaviour {
         lodGroup.SetLODs(lodRanges);
     }
 
-    public void SetNormalMap(ref Texture2D tex) {
+    public Texture2D SetNormalMap(Texture2D tex) {
         Color[] pixels = tex.GetPixels();
         for (int i = 0; i < pixels.Length; i++) {
             Color temp = pixels[i];
@@ -71,5 +70,6 @@ public class MeshLoader : MonoBehaviour {
         }
         tex.SetPixels(pixels);
         tex.Apply(true);
+        return tex;
     }
 }

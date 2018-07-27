@@ -48,6 +48,7 @@
             // Albedo comes from a texture tinted by color
             fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
 
+            // Converting to Normal map image
             float4 map1 = tex2D(_MainTex, IN.uv_MainTex);
             map1.a = sqrt(map1.r) * 2 - 1;
             map1.a = map1.a * 0.5 + 0.54;
@@ -72,13 +73,7 @@
             else {
                 o.Normal = bump;
             }
-            //o.Normal = float3(0, 0, 1);
 
-           // o.Normal = normalize(o.Normal);
-
-            // Metallic and smoothness come from slider variables
-            //o.Albedo = (o.Normal.rgb); // length(o.Normal) < 0.95 ? 1 : 0;
-            //o.Normal = oldNormal;
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
             o.Alpha = _Color.a;
