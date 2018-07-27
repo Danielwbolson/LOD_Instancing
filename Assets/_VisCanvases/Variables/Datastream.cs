@@ -308,6 +308,7 @@ public class Datastream : ScriptableObject {
 
         return _topologyCellInfoBuffer;
     }
+    static ComputeBuffer _emptyBuffer;
 
     public Texture3D Get3DTexture() {
         if(_3DTexture == null) {
@@ -361,6 +362,13 @@ public class Datastream : ScriptableObject {
         if(!GetVariable().IsAnchor()) material.SetVector("_VariableMin_" + slot, GetVariable().GetMin());
         if(!GetVariable().IsAnchor()) material.SetVector("_VariableMax_" + slot, GetVariable().GetMax());
         material.SetFloat("_VariableComponents_" + slot,GetNumberOfComponents());
+                
+        if(_emptyBuffer == null) {
+            _emptyBuffer = new ComputeBuffer(1,sizeof(float));
+            float[] A = {0};
+            _emptyBuffer.SetData(A);
+        }
+        material.SetBuffer("_VariableDataBuffer_" + slot,_emptyBuffer);
 
         switch(dim) {
             case 3: 

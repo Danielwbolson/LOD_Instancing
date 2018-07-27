@@ -57,38 +57,22 @@ Shader "Unlit/PointShader"
 			
 			fixed4 frag (v2f i) : SV_Target
 			{
-				float val = 0;
 
-			int pointIndex = floor(i.uv.y +0.5);
-			int cellIndex = floor(i.uv.x + 0.5);
-			float3 dataSpace = WorldToDataSpace(i.worldPos);
+				int cellIndex = floor(i.uv.x + 0.5);
+				int pointIndex = floor(i.uv.y +0.5);
 
-				if(_HasColorVariable == 1) {
-					float4 worldSpace = float4(i.worldPos,1);
-					float4 canvasSpace = mul(_CanvasInverse,worldSpace);
-					float4 innerSceneSpace = mul(_CanvasInnerSceneInverse,worldSpace);
-					float4 dataSpace = mul(_DataBoundsMatrixInv,innerSceneSpace);
-					float3 textureSpace = (dataSpace.xyz+0.5);
-					val = tex3D (_ColorData, textureSpace).x/20.0;
+				float3 dataSpace = WorldToDataSpace(i.worldPos);
+
+				fixed4 col = float4(0,0,0,1);
+				if(VariableIsAssigned(1)){
+					float3 dataVal =  NormalizeData(1,GetData(1,cellIndex,pointIndex,WorldToDataSpace(i.worldPos)));
+					col = tex2D(_ColorMap,float2(dataVal.x,0.5));
 				}
 
-				float3 dataVal = GetData(1,floor(i.uv.x +0.5),floor(i.uv.y +0.5),WorldToDataSpace(i.worldPos));
-				float3 normalizedDataVal = NormalizeData(1,dataVal);
-
-				// sample the texture
-				fixed4 col = tex2D(_ColorMap,float2(normalizedDataVal.x,0.5));
-
-				// apply fog
-				UNITY_APPLY_FOG(i.fogCoord, col);
-
-
-
-			float3 opacityVal = NormalizeData(3,GetData(3,cellIndex,pointIndex,dataSpace));
-			if(VariableIsAssigned(3)) {
-				//col.rgb = float3(normalizedDataVal.x,normalizedDataVal.x,normalizedDataVal.x);
-				StippleTransparency(i.vertex,_ScreenParams,opacityVal.x);
-
-			}
+				if(VariableIsAssigned(3)) {
+					float3 opacityVal = NormalizeData(1,GetData(1,cellIndex,pointIndex,WorldToDataSpace(i.worldPos)));
+					StippleTransparency(i.vertex,_ScreenParams,opacityVal.x);
+				}
 
 				col = MarkBounds(i.worldPos,col);
 				StippleCrop(i.worldPos,i.vertex,_ScreenParams);
