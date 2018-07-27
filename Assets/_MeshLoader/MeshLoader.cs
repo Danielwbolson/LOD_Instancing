@@ -20,35 +20,33 @@ public class MeshLoader : MonoBehaviour {
     }
 
     public void LoadMesh() {
-        LOD[] lodRanges = new LOD[4];
+        LOD[] lodRanges = new LOD[3];
         Texture2D[] bumpMaps = new Texture2D[3];
 
-        float[] lodSize = new float[4] { 0.7f, 0.4f, 0.15f, 0.06f };
+        float[] lodSize = new float[3] { 0.7f, 0.4f, 0.06f };
 
         GameObject lodObj = OBJLoader.LoadOBJFile(_objectFolder + "/" + _meshName + ".obj");
-        GameObject highResObj = OBJLoader.LoadOBJFile(_objectFolder + "/" + _meshName + "_high_res.obj");
+        //GameObject highResObj = OBJLoader.LoadOBJFile(_objectFolder + "/" + _meshName + "_high_res.obj");
 
         for (int i = 0; i < 3; i++) {
-            string filePath = _objectFolder + "/NormalMaps/LOD" + (3 - i) + ".png";
-            bumpMaps[i] = TextureLoader.LoadTexture(filePath, false);
+            string filePath = _objectFolder + "/NormalMaps/LOD" + (i + 1) + ".png";
+            bumpMaps[i] = TextureLoader.LoadTexture(filePath);
+            //SetNormalMap(ref bumpMaps[i]);
 
             byte[] data = bumpMaps[i].EncodeToPNG();
-            File.WriteAllBytes(Application.dataPath + "/Resources/GeneratedImages/LOD" + (3 - i) + ".png", data);
+            File.WriteAllBytes(Application.dataPath + "/Resources/GeneratedImages/LOD" + (i + 1) + ".png", data);
         }
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 3; i++) {
             GameObject lod = lodObj.transform.GetChild(i).gameObject;
             lod.GetComponent<MeshRenderer>().material = _mat;
-
-            if (i < 3) {
-                lod.GetComponent<MeshRenderer>().material.SetTexture("_BumpMap", bumpMaps[i]);
-            }
+            lod.GetComponent<MeshRenderer>().material.SetTexture("_BumpMap", bumpMaps[i]);
 
             Renderer[] r = new Renderer[1];
             r[0] = lod.GetComponent<MeshRenderer>();
 
-            lodRanges[4 - 1 - i].renderers = r;
-            lodRanges[4 - 1 - i].screenRelativeTransitionHeight = lodSize[4 - 1 - i];
+            lodRanges[3 - 1 - i].renderers = r;
+            lodRanges[3 - 1 - i].screenRelativeTransitionHeight = lodSize[3 - 1 - i];
         }
 
         lodObj.AddComponent<LODGroup>();
@@ -56,5 +54,22 @@ public class MeshLoader : MonoBehaviour {
         lodGroup.fadeMode = LODFadeMode.CrossFade;
         lodGroup.animateCrossFading = true;
         lodGroup.SetLODs(lodRanges);
+    }
+
+    public void SetNormalMap(ref Texture2D tex) {
+        Color[] pixels = tex.GetPixels();
+        for (int i = 0; i < pixels.Length; i++) {
+            Color temp = pixels[i];
+            temp.a = Mathf.Sqrt(temp.r) * 2 - 1;
+            temp.a = temp.a * 0.5f + 0.54f;
+            temp.g = Mathf.Sqrt(temp.g) * 2 - 1;
+            temp.g = temp.g * 0.5f + 0.54f;
+            temp.b = temp.g;
+            temp.r = 1;
+
+            pixels[i] = temp;
+        }
+        tex.SetPixels(pixels);
+        tex.Apply(true);
     }
 }

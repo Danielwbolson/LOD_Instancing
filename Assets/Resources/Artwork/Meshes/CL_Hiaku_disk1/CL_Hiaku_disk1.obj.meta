@@ -4,32 +4,26 @@ ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
-    100002: CL_Hiaku_disk1_LOD0
-    100004: CL_Hiaku_disk1_LOD1
-    100006: CL_Hiaku_disk1_LOD2
-    100008: CL_Hiaku_disk1_LOD3
+    100002: CL_Hiaku_disk1_LOD1
+    100004: CL_Hiaku_disk1_LOD2
+    100006: CL_Hiaku_disk1_LOD3
     400000: //RootNode
-    400002: CL_Hiaku_disk1_LOD0
-    400004: CL_Hiaku_disk1_LOD1
-    400006: CL_Hiaku_disk1_LOD2
-    400008: CL_Hiaku_disk1_LOD3
-    2100000: CL_Hiaku_disk1_LOD0Mat
-    2100002: CL_Hiaku_disk1_LOD1Mat
-    2100004: CL_Hiaku_disk1_LOD2Mat
-    2100006: CL_Hiaku_disk1_LOD3Mat
-    2300000: CL_Hiaku_disk1_LOD0
-    2300002: CL_Hiaku_disk1_LOD1
-    2300004: CL_Hiaku_disk1_LOD2
-    2300006: CL_Hiaku_disk1_LOD3
-    3300000: CL_Hiaku_disk1_LOD0
-    3300002: CL_Hiaku_disk1_LOD1
-    3300004: CL_Hiaku_disk1_LOD2
-    3300006: CL_Hiaku_disk1_LOD3
-    4300000: CL_Hiaku_disk1_LOD0
-    4300002: CL_Hiaku_disk1_LOD1
-    4300004: CL_Hiaku_disk1_LOD2
-    4300006: CL_Hiaku_disk1_LOD3
-    20500000: //RootNode
+    400002: CL_Hiaku_disk1_LOD1
+    400004: CL_Hiaku_disk1_LOD2
+    400006: CL_Hiaku_disk1_LOD3
+    2100000: CL_Hiaku_disk1_LOD1Mat
+    2100002: CL_Hiaku_disk1_LOD2Mat
+    2100004: CL_Hiaku_disk1_LOD3Mat
+    2300000: CL_Hiaku_disk1_LOD1
+    2300002: CL_Hiaku_disk1_LOD2
+    2300004: CL_Hiaku_disk1_LOD3
+    3300000: CL_Hiaku_disk1_LOD1
+    3300002: CL_Hiaku_disk1_LOD2
+    3300004: CL_Hiaku_disk1_LOD3
+    4300000: CL_Hiaku_disk1_LOD1
+    4300002: CL_Hiaku_disk1_LOD2
+    4300004: CL_Hiaku_disk1_LOD3
+    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 0
@@ -60,18 +54,14 @@ ModelImporter:
     clipAnimations: []
     isReadable: 1
   meshes:
-    lODScreenPercentages:
-    - 0.25
-    - 0.125
-    - 0.0625
-    - 0.01
+    lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
-    importLights: 0
+    importLights: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -88,10 +78,10 @@ ModelImporter:
     previousCalculatedGlobalScale: 1
     hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
-    normalSmoothAngle: 0
+    normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
-    normalCalculationMode: 1
+    normalCalculationMode: 4
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

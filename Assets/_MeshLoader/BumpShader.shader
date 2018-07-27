@@ -66,7 +66,6 @@
             float3 bump = UnpackNormal(map2);
 
             o.Albedo = _Color.rgb;
-            float3 oldNormal = o.Normal;
             if (IN.uv_MainTex.x < _Slider) {
                 o.Normal = tex;
             }

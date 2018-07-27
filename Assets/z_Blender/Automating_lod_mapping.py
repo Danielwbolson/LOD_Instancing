@@ -1,16 +1,11 @@
 
 # Input through command line
-# Arguments is two filepaths that are the location of the .obj and the directory we want to send it to.
-#
 # Looks like this:
 # blender --background --python mytest.py -- example args 123
 # In our case, the command line call would look more like:
-# blender --background --python Automating_lod_mapping.py -- "D:/path/to/input/file.obj" "D:/path/to/output/directory"#
-# No slash at end of input files. Spaces surrounding "--" ^^ here
-# I had to add blender to my path environment variables. The command prompt needs to be in the same directory as our .py file.
-#
-# My exact command call was as follows:
-# blender --background --python Automating_lod_mapping.py -- "D:/Daniel Olson/Downloads/CL_Hiaku_disk1.obj" "D:/Daniel Olson/Desktop"
+# blender --background --python Normal_map_bake.py -- "D:/path/to/input/obj" "D:/path/to/output"
+# No slash at end of input files
+# I had to add blender to my path environment variables. The command prompt needs to be in the same directory as our .py file
 #
 # We would need to run this program for each model in the database.
 # I have assumed that the output directory is one directory above a file which contains our meshes and maps
@@ -67,44 +62,37 @@ if bpy.context.selected_objects != []:
 	# Save data on our parent mesh
 	lod0 = bpy.context.selected_objects[0]
 	model_name = lod0.name
-	lod0.data.name = model_name + '_LOD0'
-	lod0.name = model_name + '_LOD0'
 	
-	# Smooth shading
-	mesh = lod0.data
-	for face in mesh.polygons:
-		face.use_smooth = False
+	# Scale to a unit bounding box
+	x = lod0.dimensions[0]
+	y = lod0.dimensions[1]
+	z = lod0.dimensions[2]
+	m = max(lod0.dimensions[j] for j in range(3))
+	r = 1.0 / m
+	lod0.dimensions = [x*r, y*r, z*r]
+	
+	# Set our active object
+	bpy.context.scene.objects.active = lod0
 		
+	# Move object origin to center of geometry
+	bpy.ops.object.origin_set(type = 'ORIGIN_GEOMETRY')
+		
+	# Clear location - set location to (0,0,0)
+	bpy.ops.object.location_clear()
+	
 	lods = [lod0]
 	
 	# Create other lods
 	for i in range(1, 4):
-		obj = lod0.copy()
-		obj.data = lod0.data.copy()
+		
+		print("Starting copy, will decimate mesh")
+		obj = lods[0].copy()
+		obj.data = lods[0].data.copy()
 		obj.data.name = model_name + '_LOD' + str(i)
 		obj.name = model_name + '_LOD' + str(i)
 		scene.objects.link(obj)
 		lods.append(obj)
-
-	for i in range(4):
 		
-		# Scale to a unit bounding box
-		x = lods[i].dimensions[0]
-		y = lods[i].dimensions[1]
-		z = lods[i].dimensions[2]
-		m = max(lods[i].dimensions[j] for j in range(3))
-		r = 1.0 / m
-		lods[i].dimensions = [x*r, y*r, z*r]
-		
-		if i > 0:
-			# Decimate the mesh
-			scene.objects.active = lods[i]
-			bpy.ops.object.modifier_add(type='DECIMATE')
-			bpy.context.object.modifiers["Decimate"].ratio = 1.0 / math.pow(10, i)
-			bpy.context.object.modifiers["Decimate"].use_collapse_triangulate = True
-			bpy.context.object.modifiers["Decimate"].decimate_type = 'COLLAPSE'
-			bpy.ops.object.convert(target='MESH')
-
 		# Set our active object
 		bpy.context.scene.objects.active = lods[i]
 		
@@ -114,32 +102,50 @@ if bpy.context.selected_objects != []:
 		# Clear location - set location to (0,0,0)
 		bpy.ops.object.location_clear()
 		
+		# Decimate the mesh
+		starting_vertices = len(lods[i].data.vertices)
+		goal_vertices = 100000.0 / math.pow(10, i)
+		ratio = goal_vertices / starting_vertices
+		
+		scene.objects.active = lods[i]
+		decimate_mod = lods[i].modifiers.new('Decimate', 'DECIMATE')
+		decimate_mod.use_collapse_triangulate = True
+		decimate_mod.decimate_type = 'COLLAPSE'
+		decimate_mod.ratio = ratio
+		bpy.ops.object.modifier_apply(apply_as='DATA', modifier=decimate_mod.name)
+		
+		print("Finished decimating mesh")
+		
 		# Smart uv unwrap and set image
+		print("Entering edit mode")
 		bpy.ops.object.editmode_toggle()
 		bpy.ops.mesh.select_all(action='SELECT')
 		bpy.ops.mesh.normals_make_consistent(inside=False)
-		bpy.ops.uv.smart_project(angle_limit = 30)
+		print("Starting smart projection")
+		bpy.ops.uv.smart_project(angle_limit=30)
 		bpy.ops.object.editmode_toggle()
+		print("Exited edit mode")
 		
-		img = bpy.data.images.new("Lod" + str(i), 1024, 1024, alpha=True)
+		img = bpy.data.images.new("Lod" + str(i), 2048, 2048, alpha=True)
 		
 		for uv_face in lods[i].data.uv_textures.active.data:
 			uv_face.image = img
 		
 		# Bake the normal maps from the high res model (lod0) to the rest
-		if i > 0:
-			lod0.select = True
-			bpy.data.scenes["Scene"].render.bake_type = 'NORMALS'
-			bpy.data.scenes["Scene"].render.use_bake_selected_to_active = True
-			bpy.data.scenes["Scene"].render.use_bake_clear = True
-			bpy.data.scenes["Scene"].render.bake_normal_space = 'TANGENT'
-			bpy.ops.object.bake_image()
-			lod0.select = False
+		print ("Baking normal maps")
+		lod0.select = True
+		bpy.data.scenes["Scene"].render.bake_type = 'NORMALS'
+		bpy.data.scenes["Scene"].render.use_bake_selected_to_active = True
+		bpy.data.scenes["Scene"].render.use_bake_clear = True
+		bpy.data.scenes["Scene"].render.bake_normal_space = 'TANGENT'
+		bpy.ops.object.bake_image()
+		lod0.select = False
 
-			img = bpy.data.images['Lod' + str(i)]
-			img.filepath_raw = file_path + 'LOD' + str(i) + '.png'
-			img.file_format = 'PNG'
-			img.save()
+		img = bpy.data.images['Lod' + str(i)]
+		img.filepath_raw = file_path + 'LOD' + str(i) + '.png'
+		img.file_format = 'PNG'
+		img.save()
+		print("Finished baking normal maps")
 
 # New name just for the high res obj
 lods[0].name = filename
@@ -153,10 +159,11 @@ lods[0].select = True
 bpy.ops.export_scene.obj(filepath=outputFile + '/' + filename + '/' + filename + '_high_res.obj', 
 				use_selection=True, use_materials=False)
 
-# Change back to correct name
-lods[0].name = filename + '_LOD0'
-lods[0].data.name = filename + '_LOD0'
+# Select all objects besides the highest LOD
+for obj in lods:
+	obj.select = True
+lods[0].select = False
 
 # Export our level of detail obj
 bpy.ops.export_scene.obj(filepath=outputFile + '/' + filename + '/' + filename + '.obj',
-        use_materials=False, use_blen_objects=False, group_by_object=True)
+        use_selection=True, use_materials=False, use_blen_objects=False, group_by_object=True)
