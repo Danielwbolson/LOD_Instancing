@@ -159,7 +159,7 @@ namespace SculptingVis {
             Matrix4x4[] cornerTransforms = new Matrix4x4[8];
             for (int i = 0; i < 8; i++) {
                 Vector3 extentModifier = new Vector3(i / 4 == 0 ? 1 : -1, i % 2 == 0 ? 1 : -1, (i % 4) / 2 == 0 ? 1 : -1);
-                cornerTransforms[i] = Matrix4x4.TRS(_bounds.center + Vector3.Scale(_bounds.extents, extentModifier), Quaternion.identity, new Vector3(0.1f, 0.1f, 0.1f));
+                cornerTransforms[i] = Matrix4x4.TRS(_bounds.center + Vector3.Scale(_bounds.extents, extentModifier), Quaternion.identity, new Vector3(0.01f, 0.01f, 0.01f));
                 Graphics.DrawMesh(_cornerMesh, transform.localToWorldMatrix * cornerTransforms[i], _cornerMaterial, 0);
             }
 
