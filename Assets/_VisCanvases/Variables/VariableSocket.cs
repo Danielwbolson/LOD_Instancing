@@ -70,7 +70,7 @@ namespace SculptingVis {
 				_inputVariable.GetStream(_anchorVariable == null? null : (DataVariable)_anchorVariable.GetInput(),instanceID,timestep).Bind(material,GetSlot());
 			} else {
 				material.SetInt("_VariableAssigned_" + slot, 0);
-
+				material.SetBuffer("_VariableDataBuffer_"  + slot,Datastream.EmptyBuffer());
 			}
 		}
 		public void SetAnchorVariableSocket(VariableSocket anchor) {
