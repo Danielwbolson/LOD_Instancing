@@ -14,9 +14,27 @@ public class MeshLoader : MonoBehaviour {
     [SerializeField]
     Material _mat;
 
+    [SerializeField]
+    GameObject _loadedMesh;
+
+    private bool _somethingLoaded;
+
     // Use this for initialization
     void Start () {
+        _somethingLoaded = false;
+    }
 
+    private void Update() {
+        if (_somethingLoaded) {
+            for (int i = 0; i < 20; i++) {
+                GameObject temp = Instantiate(_loadedMesh) as GameObject;
+                temp.transform.position = new Vector3(
+                    Random.Range(-10, 10),
+                    Random.Range(-10, 10),
+                    Random.Range(-10, 10));
+            }
+            _somethingLoaded = false;
+        }
     }
 
     public void LoadMesh() {
@@ -33,7 +51,13 @@ public class MeshLoader : MonoBehaviour {
             bumpMaps[i] = TextureLoader.LoadTexture(filePath);
 
             byte[] data = bumpMaps[i].EncodeToPNG();
-            File.WriteAllBytes(Application.dataPath + "/Resources/GeneratedImages/LOD" + (i + 1) + ".png", data);
+            string normalMapsFilePath = Application.dataPath + "/Resources/Generated/" + _meshName + "/NormalMaps/";
+            if (File.Exists(normalMapsFilePath)) {
+                File.WriteAllBytes(normalMapsFilePath + "/LOD" + (i + 1) + ".png", data);
+            } else {
+                Directory.CreateDirectory(normalMapsFilePath);
+                File.WriteAllBytes(normalMapsFilePath + "/LOD" + (i + 1) + ".png", data);
+            }
         }
 
         for (int i = 0; i < 3; i++) {
@@ -46,6 +70,8 @@ public class MeshLoader : MonoBehaviour {
 
             lodRanges[3 - 1 - i].renderers = r;
             lodRanges[3 - 1 - i].screenRelativeTransitionHeight = lodSize[3 - 1 - i];
+
+            SaveMesh(Application.dataPath + "/Resources/Generated/" + _meshName + "_LOD" + (4 - 1 - i) + ".obj", lod.GetComponent<MeshFilter>().mesh);
         }
 
         lodObj.AddComponent<LODGroup>();
@@ -53,23 +79,27 @@ public class MeshLoader : MonoBehaviour {
         lodGroup.fadeMode = LODFadeMode.CrossFade;
         lodGroup.animateCrossFading = true;
         lodGroup.SetLODs(lodRanges);
+
+        _loadedMesh = lodObj;
+        _somethingLoaded = true;
+
+        GameObject temp = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        temp.GetComponent<MeshFilter>().mesh = LoadMesh(Application.dataPath + "/Resources/Generated/" + _meshName + "_LOD3.obj");
+        temp.GetComponent<MeshRenderer>().material = _mat;
     }
 
-    public Texture2D SetNormalMap(Texture2D tex) {
-        Color[] pixels = tex.GetPixels();
-        for (int i = 0; i < pixels.Length; i++) {
-            Color temp = pixels[i];
-            temp.a = Mathf.Sqrt(temp.r) * 2 - 1;
-            temp.a = temp.a * 0.5f + 0.54f;
-            temp.g = Mathf.Sqrt(temp.g) * 2 - 1;
-            temp.g = temp.g * 0.5f + 0.54f;
-            temp.b = temp.g;
-            temp.r = 1;
+    public void SaveMesh(string filepath, Mesh mesh) {
+        string path = Path.Combine(Application.persistentDataPath, filepath);
+        byte[] bytes = B83.MeshTools.MeshSerializer.SerializeMesh(mesh);
+        File.WriteAllBytes(path, bytes);
+    }
 
-            pixels[i] = temp;
+    public Mesh LoadMesh(string filepath) {
+        string path = Path.Combine(Application.persistentDataPath, filepath);
+        if (File.Exists(path)) {
+            byte[] bytes = File.ReadAllBytes(path);
+            return B83.MeshTools.MeshSerializer.DeserializeMesh(bytes);
         }
-        tex.SetPixels(pixels);
-        tex.Apply(true);
-        return tex;
+        return null;
     }
 }

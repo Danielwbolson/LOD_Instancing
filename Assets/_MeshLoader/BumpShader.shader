@@ -32,48 +32,37 @@
         fixed4 _Color;
         float _Slider;
 
-
-        float map(float value, float min1, float max1, float min2, float max2)
-        {
-            // Convert the current value to a percentage
-            // 0% - min1, 100% - max1
-            float perc = (value - min1) / (max1 - min1);
-
-            // Do the same operation backwards with min2 and max2
-            return  perc * (max2 - min2) + min2;
-        }
-
-
         void surf (Input IN, inout SurfaceOutputStandard o) {
             // Albedo comes from a texture tinted by color
             fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
 
             // Converting to Normal map image
-            float4 map1 = tex2D(_MainTex, IN.uv_MainTex);
+            float4 map1 = tex2D(_BumpMap, IN.uv_BumpMap);
             map1.a = sqrt(map1.r) * 2 - 1;
             map1.a = map1.a * 0.5 + 0.54;
             map1.g = sqrt(map1.g) * 2 - 1;
             map1.g = map1.g * 0.5 + 0.54;
             map1.b = map1.g;
-            map1.r = 1;
+            map1.r = 1; 
 
             // The texture with the bump map applied has:
             // g = b
             // r = 1
             // a is not just opacity
-            float4 map2 = tex2D(_BumpMap, IN.uv_BumpMap);
+            //float4 map2 = tex2D(_BumpMap, IN.uv_BumpMap);
 
-            float3 tex = UnpackNormal(map1);
-            float3 bump = UnpackNormal(map2);
+            //float3 bump = UnpackNormal(map2);
 
-            o.Albedo = _Color.rgb;
-            if (IN.uv_MainTex.x < _Slider) {
-                o.Normal = tex;
-            }
-            else {
-                o.Normal = bump;
-            }
+            //o.Albedo = _Color.rgb;
+            //if (IN.uv_MainTex.x < _Slider) {
+            //    o.Normal = tex;
+            //}
+            //else {
+            //    o.Normal = bump;
+            //}
 
+            o.Normal = UnpackNormal(map1);
+            o.Albedo.rgb = c.rgb; //IN.uv_BumpMap;
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
             o.Alpha = _Color.a;
