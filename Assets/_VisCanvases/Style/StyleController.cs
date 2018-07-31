@@ -252,8 +252,8 @@ namespace SculptingVis
 			else {
                 VisualElement result = VisualElement.LoadFile(path);
 
-                if(result is Colormap)
-				    GetVisualElements().Add(ScriptableObject.CreateInstance<StyleColormap>().Init((Colormap)result,Path.GetFileName(path)));
+                if(result != null)
+				    GetVisualElements().Add(ScriptableObject.CreateInstance<StyleVisualElement>().Init(result));
 			}
         }
 

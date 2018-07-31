@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace SculptingVis {
-	public class VisualElement : ScriptableObject {
+	public abstract class VisualElement : ScriptableObject {
 		[SerializeField]
 		string _name;
 
@@ -16,6 +16,7 @@ namespace SculptingVis {
 		}
 
 
+
 		public static VisualElement LoadFile(string filePath) {
 			VisualElement result = null;
 			if((result = Colormap.LoadFile(filePath)) != null)
@@ -26,6 +27,10 @@ namespace SculptingVis {
 
 			return result;
 		}
+
+		public abstract Texture2D GetPreviewImage();
+
+		public abstract float GetPreviewImageAspectRatio();
 		
 	}
 }

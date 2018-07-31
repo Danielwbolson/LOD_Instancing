@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace SculptingVis {
 	[System.Serializable]
-	public class StyleColormapSocket : StyleSocket {
+	public class VisualElementColormapSocket : StyleSocket {
 		public override bool DoesAccept(StyleSocket incoming) {
 			return incoming.GetOutput() is Colormap;
 		}
 
 		public Texture2D GetTexture() {
-			return ((Colormap)_input).GetTexture();
+			return (Texture2D)_input;
 		}
 		
 	}

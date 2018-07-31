@@ -18,12 +18,13 @@ namespace SculptingVis {
 		public new static VisualElement LoadFile(string filePath) {
 			
             string extention = Path.GetExtension(filePath);
-           
+			
 			if(extention.ToUpper() == ".PNG") {
 				Colormap result = null;
 				Texture2D loadedImage = new Texture2D(1,1);
 				loadedImage.LoadImage(File.ReadAllBytes(filePath));
 				result = CreateInstance<Colormap>().Init(loadedImage);
+				result.SetName(Path.GetFileName(filePath));
 				return result;
 			}
 
@@ -43,7 +44,19 @@ namespace SculptingVis {
 
 				// Read XML file and produce a Texture2D
 			}
+			
 			return null;
 		}
+
+
+
+		public override Texture2D GetPreviewImage() {
+			return _texture;
+		}
+
+		public override float GetPreviewImageAspectRatio() {
+			return 5.0f/1.0f;
+		}
+		
 	}
 }

@@ -523,7 +523,7 @@ public class TestVariables : MonoBehaviour
         _layers.Add(l2);
         //_style.AddLayer(l2);
         VTKDataset vtkds = VTKDataset.CreateInstance<VTKDataset>();
-        vtkds.Init("example_data/VTK/local/brain.vtp", 0, 0);
+        vtkds.Init(Application.streamingAssetsPath+ "/example_data/VTK/local/brain.vtp", 0, 0);
 
         vtkds.LoadDataset();
 
@@ -541,7 +541,7 @@ public class TestVariables : MonoBehaviour
 
 
         VTKDataset vtkds2 = VTKDataset.CreateInstance<VTKDataset>();
-        vtkds2.Init("example_data/VTK/local/brain.vti", 0, 0);
+        vtkds2.Init(Application.streamingAssetsPath+ "/example_data/VTK/local/brain.vti", 0, 0);
 
         vtkds2.LoadDataset();
 

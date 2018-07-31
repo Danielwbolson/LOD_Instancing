@@ -113,6 +113,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &63461035 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1029856953337388, guid: 163a3eb8b5c9b3e45aa2660c5e0748f8,
+    type: 2}
+  m_PrefabInternal: {fileID: 2097199525}
 --- !u!1 &284786147 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1201638781289370, guid: 163a3eb8b5c9b3e45aa2660c5e0748f8,
@@ -126,6 +131,16 @@ GameObject:
 --- !u!1 &495973953 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1988932710632798, guid: 163a3eb8b5c9b3e45aa2660c5e0748f8,
+    type: 2}
+  m_PrefabInternal: {fileID: 2097199525}
+--- !u!1 &512141383 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1944997624996758, guid: 163a3eb8b5c9b3e45aa2660c5e0748f8,
+    type: 2}
+  m_PrefabInternal: {fileID: 2097199525}
+--- !u!1 &798352061 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1486830160813580, guid: 163a3eb8b5c9b3e45aa2660c5e0748f8,
     type: 2}
   m_PrefabInternal: {fileID: 2097199525}
 --- !u!1 &833265190
@@ -194,6 +209,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &833547701 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1661786186393812, guid: 163a3eb8b5c9b3e45aa2660c5e0748f8,
+    type: 2}
+  m_PrefabInternal: {fileID: 2097199525}
+--- !u!1 &914678001 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1662914902777460, guid: 163a3eb8b5c9b3e45aa2660c5e0748f8,
+    type: 2}
+  m_PrefabInternal: {fileID: 2097199525}
 --- !u!114 &966621883 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114880783388319334, guid: 163a3eb8b5c9b3e45aa2660c5e0748f8,
@@ -345,6 +370,11 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6dd0b4fa16c40a43b649847b5a4a64d, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &1545686511 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1544715258280284, guid: 163a3eb8b5c9b3e45aa2660c5e0748f8,
+    type: 2}
+  m_PrefabInternal: {fileID: 2097199525}
 --- !u!1 &1657800037 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1181548818466638, guid: 163a3eb8b5c9b3e45aa2660c5e0748f8,
@@ -809,6 +839,36 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114205334372148454, guid: 163a3eb8b5c9b3e45aa2660c5e0748f8,
+        type: 2}
+      propertyPath: actualBoundaries
+      value: 
+      objectReference: {fileID: 63461035}
+    - target: {fileID: 114205334372148454, guid: 163a3eb8b5c9b3e45aa2660c5e0748f8,
+        type: 2}
+      propertyPath: actualHeadset
+      value: 
+      objectReference: {fileID: 1545686511}
+    - target: {fileID: 114205334372148454, guid: 163a3eb8b5c9b3e45aa2660c5e0748f8,
+        type: 2}
+      propertyPath: actualLeftController
+      value: 
+      objectReference: {fileID: 798352061}
+    - target: {fileID: 114205334372148454, guid: 163a3eb8b5c9b3e45aa2660c5e0748f8,
+        type: 2}
+      propertyPath: actualRightController
+      value: 
+      objectReference: {fileID: 512141383}
+    - target: {fileID: 114205334372148454, guid: 163a3eb8b5c9b3e45aa2660c5e0748f8,
+        type: 2}
+      propertyPath: modelAliasLeftController
+      value: 
+      objectReference: {fileID: 914678001}
+    - target: {fileID: 114205334372148454, guid: 163a3eb8b5c9b3e45aa2660c5e0748f8,
+        type: 2}
+      propertyPath: modelAliasRightController
+      value: 
+      objectReference: {fileID: 833547701}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 163a3eb8b5c9b3e45aa2660c5e0748f8, type: 2}
   m_IsPrefabAsset: 0

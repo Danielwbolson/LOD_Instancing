@@ -4,13 +4,20 @@ using UnityEngine;
 
 namespace SculptingVis{
 	public class StyleVisualElement : StyleModule {
-        public StyleVisualElement Init() {
+        public StyleVisualElement Init(VisualElement visualElement) {
+			_visualElement = visualElement;
+			AddSocket(CreateInstance<StyleSocket>().Init("",this,false,true,_visualElement));
+
             return this;
         }
 
+		[SerializeField]
+		VisualElement _visualElement;
         
+		public VisualElement GetVisualElement() {return _visualElement;}
 		public override string GetLabel() {
-			return "Visual Element";
+			if(_visualElement != null && _visualElement.GetName() != "") return _visualElement.GetName();
+			return  "Visual Element";
 		}
 
 	}

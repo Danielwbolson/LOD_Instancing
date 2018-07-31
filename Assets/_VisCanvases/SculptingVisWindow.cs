@@ -121,7 +121,7 @@ public class SculptingVisWindow : EditorWindow
             // Temporary inspection to see which column it's in, and which it's going to
             if (module is StyleVisualElement)
             {
-                if (socket.GetOutput() is Colormap)
+                if (socket.GetOutput() is VisualElement)
                     labelOutputHookRight = true;
             }
             else if (module is StyleDataVariable && socket.GetOutput() is Variable)
@@ -160,13 +160,16 @@ public class SculptingVisWindow : EditorWindow
             }
         } 
 
-        if(module is StyleColormap) {
-            GUILayout.FlexibleSpace();
-            Texture t = ((StyleColormap)module).GetTexture();
+        if(module is StyleVisualElement) {
+            if(true) {
+                GUILayout.FlexibleSpace();
+                Texture t = ((StyleVisualElement)module).GetVisualElement().GetPreviewImage();
+                float aspectRatio = ((StyleVisualElement)module).GetVisualElement().GetPreviewImageAspectRatio();
+                Rect r = GUILayoutUtility.GetRect(100,100/aspectRatio);
 
-            Rect r = GUILayoutUtility.GetRect(100,20);
+                GUI.DrawTexture(r,t,ScaleMode.ScaleToFit,true,aspectRatio);
 
-            GUI.DrawTexture(r,t,ScaleMode.ScaleToFit,true,5);
+            }
 
 
         }
