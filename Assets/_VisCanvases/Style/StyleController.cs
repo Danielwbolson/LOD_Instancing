@@ -230,7 +230,6 @@ namespace SculptingVis
 
         public void LoadVisualElements(string path)
         {
-            Debug.Log("Loading " + path);
             string extention = (Path.GetExtension(path));
             if (extention == "")
             {
@@ -250,10 +249,11 @@ namespace SculptingVis
                 }
             }
 
-			else if(extention == ".png") {
-				Texture2D loadedImage = new Texture2D(1,1);
-				loadedImage.LoadImage(File.ReadAllBytes(path));
-				GetVisualElements().Add(ScriptableObject.CreateInstance<StyleColormap>().Init(loadedImage,Path.GetFileNameWithoutExtension(path)));
+			else {
+                VisualElement result = VisualElement.LoadFile(path);
+
+                if(result is Colormap)
+				    GetVisualElements().Add(ScriptableObject.CreateInstance<StyleColormap>().Init((Colormap)result,Path.GetFileName(path)));
 			}
         }
 

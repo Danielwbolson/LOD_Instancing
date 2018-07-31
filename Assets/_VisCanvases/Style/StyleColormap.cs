@@ -5,14 +5,14 @@ using UnityEngine;
 namespace SculptingVis{
 	public class StyleColormap : StyleVisualElement {
 		[SerializeField]
-		Texture2D _colorMap;
+		Colormap _colorMap;
 		[SerializeField]
 		string _name;
 
 		public override string GetLabel() {
 			return _name;
 		}
-        public StyleColormap Init(Texture2D texture,string name = "") {
+        public StyleColormap Init(Colormap texture,string name = "") {
 			_colorMap = texture;
 			_name = name;
 			AddSocket(CreateInstance<StyleSocket>().Init("",this,false,true,_colorMap));
@@ -20,7 +20,7 @@ namespace SculptingVis{
         }
 
 		public Texture2D GetTexture() {
-			return _colorMap;
+			return _colorMap.GetTexture();
 		}
 
 

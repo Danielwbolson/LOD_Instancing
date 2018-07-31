@@ -121,7 +121,7 @@ public class SculptingVisWindow : EditorWindow
             // Temporary inspection to see which column it's in, and which it's going to
             if (module is StyleVisualElement)
             {
-                if (socket.GetOutput() is Texture)
+                if (socket.GetOutput() is Colormap)
                     labelOutputHookRight = true;
             }
             else if (module is StyleDataVariable && socket.GetOutput() is Variable)

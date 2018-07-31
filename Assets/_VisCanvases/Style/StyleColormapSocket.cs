@@ -6,7 +6,7 @@ namespace SculptingVis {
 	[System.Serializable]
 	public class StyleColormapSocket : StyleSocket {
 		public override bool DoesAccept(StyleSocket incoming) {
-			return incoming.GetOutput() is Texture2D;
+			return incoming.GetOutput() is Colormap;
 		}
 
 		public Texture2D GetTexture() {
