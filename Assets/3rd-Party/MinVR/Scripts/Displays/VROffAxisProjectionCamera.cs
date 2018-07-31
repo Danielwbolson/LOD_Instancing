@@ -4,12 +4,12 @@ using System.Collections;
 namespace MinVR
 {
     /** From eye and screen positions, computes a projection matrix and a world-to-camera matrix (i.e. a view matrix) for a camera.
-	 * Important: our off-axis projection script assumes that a projection screen is a rectangle. 
-	 * 
-	 * https://en.wikibooks.org/wiki/Cg_Programming/Unity/Projection_for_Virtual_Reality
-	 * https://github.com/MinVR/MinVR/blob/master/MVRCore/source/CameraOffAxis.cpp
-	 * http://csc.lsu.edu/~kooima/articles/genperspective/ 
-	 */
+     * Important: our off-axis projection script assumes that a projection screen is a rectangle. 
+     * 
+     * https://en.wikibooks.org/wiki/Cg_Programming/Unity/Projection_for_Virtual_Reality
+     * https://github.com/MinVR/MinVR/blob/master/MVRCore/source/CameraOffAxis.cpp
+     * http://csc.lsu.edu/~kooima/articles/genperspective/ 
+     */
     [ExecuteInEditMode, RequireComponent(typeof(Camera))]
     public class VROffAxisProjectionCamera : MonoBehaviour
     {

@@ -77,7 +77,6 @@ namespace SculptingVis {
             print(isGrabbing ? "grabbing!" : "releaseing!");
         }
         public void SetMaterialProperties(Material canvasMaterial) {
-            canvasMaterial.SetColor("_Color", danielColor);
             canvasMaterial.SetVector("_Color", _color);
             canvasMaterial.SetMatrix("_CanvasInverse", transform.worldToLocalMatrix);
             canvasMaterial.SetMatrix("_CanvasInnerSceneInverse", GetInnerSceneTransformMatrix().inverse);
@@ -129,12 +128,13 @@ namespace SculptingVis {
                 _extentThreshold = 0;
             }
 
-            // Change color based on users controller
-            if (!_controllerDetect._inside) {
-                danielColor = Color.blue;
-            } else {
-                _color = Color.green;
-            }
+            //// Change color based on users controller
+            //if (!_controllerDetect._inside) {
+            //    danielColor = Color.blue;
+            //} else {
+            //    danielColor = Color.green;
+            //}
+            //_areaMaterial.SetColor("_Color", danielColor);
 
             if (_fitStyle && _style.HasBounds()) {
                 Vector3 innerScaleDims = _style.GetBounds().size;
