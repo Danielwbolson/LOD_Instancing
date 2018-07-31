@@ -126,7 +126,7 @@ if bpy.context.selected_objects != []:
 		bpy.ops.object.editmode_toggle()
 		print("Exited edit mode")
 		
-		img = bpy.data.images.new("Lod" + str(i), 2048, 2048, alpha=True)
+		img = bpy.data.images.new("Lod" + str(i-1), 2048, 2048, alpha=True)
 		
 		for uv_face in lods[i].data.uv_textures.active.data:
 			uv_face.image = img
@@ -141,8 +141,8 @@ if bpy.context.selected_objects != []:
 		bpy.ops.object.bake_image()
 		lod0.select = False
 
-		img = bpy.data.images['Lod' + str(i)]
-		img.filepath_raw = file_path + 'LOD' + str(i) + '.png'
+		img = bpy.data.images['Lod' + str(i-1)]
+		img.filepath_raw = file_path + 'LOD' + str(i-1) + '.png'
 		img.file_format = 'PNG'
 		img.save()
 		print("Finished baking normal maps")

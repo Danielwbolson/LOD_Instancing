@@ -7,7 +7,9 @@ public class MeshLoader : MonoBehaviour {
 
     [SerializeField]
     string _objectFolder;
-     
+    //D:/Daniel Olson/Desktop/CL_Hiaku_disk1
+    //C:/Users/Daniel/Desktop/Blossomp2
+
     [SerializeField]
     string _meshName;
 
@@ -43,23 +45,27 @@ public class MeshLoader : MonoBehaviour {
 
         float[] lodSize = new float[3] { 0.7f, 0.4f, 0.06f };
 
+        // Load our LOD mesh and switch the ordering of the children
         GameObject lodObj = OBJLoader.LoadOBJFile(_objectFolder + "/" + _meshName + ".obj");
+        ReverseChildren(ref lodObj);
         //GameObject highResObj = OBJLoader.LoadOBJFile(_objectFolder + "/" + _meshName + "_high_res.obj");
 
+        // Load and save our bump maps
         for (int i = 0; i < 3; i++) {
-            string filePath = _objectFolder + "/NormalMaps/LOD" + (i + 1) + ".png";
+            string filePath = _objectFolder + "/NormalMaps/LOD" + i + ".png";
             bumpMaps[i] = TextureLoader.LoadTexture(filePath);
 
             byte[] data = bumpMaps[i].EncodeToPNG();
             string normalMapsFilePath = Application.dataPath + "/Resources/Generated/" + _meshName + "/NormalMaps/";
             if (File.Exists(normalMapsFilePath)) {
-                File.WriteAllBytes(normalMapsFilePath + "/LOD" + (i + 1) + ".png", data);
+                File.WriteAllBytes(normalMapsFilePath + "/LOD" + i + ".png", data);
             } else {
                 Directory.CreateDirectory(normalMapsFilePath);
-                File.WriteAllBytes(normalMapsFilePath + "/LOD" + (i + 1) + ".png", data);
+                File.WriteAllBytes(normalMapsFilePath + "/LOD" + i + ".png", data);
             }
         }
 
+        // Set up and save our lod meshe
         for (int i = 0; i < 3; i++) {
             GameObject lod = lodObj.transform.GetChild(i).gameObject;
             lod.GetComponent<MeshRenderer>().material = _mat;
@@ -68,10 +74,10 @@ public class MeshLoader : MonoBehaviour {
             Renderer[] r = new Renderer[1];
             r[0] = lod.GetComponent<MeshRenderer>();
 
-            lodRanges[3 - 1 - i].renderers = r;
-            lodRanges[3 - 1 - i].screenRelativeTransitionHeight = lodSize[3 - 1 - i];
+            lodRanges[i].renderers = r;
+            lodRanges[i].screenRelativeTransitionHeight = lodSize[i];
 
-            SaveMesh(Application.dataPath + "/Resources/Generated/" + _meshName + "_LOD" + (4 - 1 - i) + ".obj", lod.GetComponent<MeshFilter>().mesh);
+            SaveMesh(Application.dataPath + "/Resources/Generated/" + _meshName + "/" + _meshName + "_LOD" + (i) + ".obj", lod.GetComponent<MeshFilter>().mesh);
         }
 
         lodObj.AddComponent<LODGroup>();
@@ -101,5 +107,11 @@ public class MeshLoader : MonoBehaviour {
             return B83.MeshTools.MeshSerializer.DeserializeMesh(bytes);
         }
         return null;
+    }
+
+    public void ReverseChildren(ref GameObject obj) {
+        for (int i = 1; i < obj.transform.childCount; i++) {
+            obj.transform.GetChild(0).SetSiblingIndex(obj.transform.childCount - i);
+        }
     }
 }
