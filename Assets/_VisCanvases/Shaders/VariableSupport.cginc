@@ -18,6 +18,8 @@ float _VariableMinOverride_Anchor;
 float _VariableMaxOverride_Anchor;
 StructuredBuffer<float> _VariableDataBuffer_Anchor;
 float4x4 _VariableBoundsMatrixInv_Anchor;
+float3 _VariableBoundsMin_Anchor;
+float3 _VariableBoundsMax_Anchor;
 
 int _VariableAssigned_0;
 int _VariableDomainDimensionality_0;
@@ -31,6 +33,8 @@ int _VariableArrayType_0;
 StructuredBuffer<float> _VariableDataBuffer_0;
 float3 _VariableDefaultValue_0;
 float4x4 _VariableBoundsMatrixInv_0;
+float3 _VariableBoundsMin_0;
+float3 _VariableBoundsMax_0;
 
 int _VariableAssigned_1;
 int _VariableDomainDimensionality_1;
@@ -44,6 +48,8 @@ int _VariableArrayType_1;
 StructuredBuffer<float> _VariableDataBuffer_1;
 float3 _VariableDefaultValue_1;
 float4x4 _VariableBoundsMatrixInv_1;
+float3 _VariableBoundsMin_1;
+float3 _VariableBoundsMax_1;
 
 int _VariableAssigned_2;
 int _VariableDomainDimensionality_2;
@@ -57,6 +63,8 @@ int _VariableArrayType_2;
 StructuredBuffer<float> _VariableDataBuffer_2;
 float3 _VariableDefaultValue_2;
 float4x4 _VariableBoundsMatrixInv_2;
+float3 _VariableBoundsMin_2;
+float3 _VariableBoundsMax_2;
 
 int _VariableAssigned_3;
 int _VariableDomainDimensionality_3;
@@ -70,6 +78,8 @@ int _VariableArrayType_3;
 StructuredBuffer<float> _VariableDataBuffer_3;
 float3 _VariableDefaultValue_3;
 float4x4 _VariableBoundsMatrixInv_3;
+float3 _VariableBoundsMin_3;
+float3 _VariableBoundsMax_3;
 
 int _VariableAssigned_4;
 int _VariableDomainDimensionality_4;
@@ -83,6 +93,8 @@ int _VariableArrayType_4;
 StructuredBuffer<float> _VariableDataBuffer_4;
 float3 _VariableDefaultValue_4;
 float4x4 _VariableBoundsMatrixInv_4;
+float3 _VariableBoundsMin_4;
+float3 _VariableBoundsMax_4;
 
 int _VariableAssigned_5;
 int _VariableDomainDimensionality_5;
@@ -96,6 +108,8 @@ int _VariableArrayType_5;
 StructuredBuffer<float> _VariableDataBuffer_5;
 float3 _VariableDefaultValue_5;
 float4x4 _VariableBoundsMatrixInv_5;
+float3 _VariableBoundsMin_5;
+float3 _VariableBoundsMax_5;
 
 int _VariableAssigned_6;
 int _VariableDomainDimensionality_6;
@@ -109,6 +123,8 @@ int _VariableArrayType_6;
 StructuredBuffer<float> _VariableDataBuffer_6;
 float3 _VariableDefaultValue_6;
 float4x4 _VariableBoundsMatrixInv_6;
+float3 _VariableBoundsMin_6;
+float3 _VariableBoundsMax_6;
 
 int _VariableAssigned_7;
 int _VariableDomainDimensionality_7;
@@ -122,6 +138,8 @@ int _VariableArrayType_7;
 StructuredBuffer<float> _VariableDataBuffer_7;
 float3 _VariableDefaultValue_7;
 float4x4 _VariableBoundsMatrixInv_7;
+float3 _VariableBoundsMin_7;
+float3 _VariableBoundsMax_7;
 
 int _VariableAssigned_8;
 int _VariableDomainDimensionality_8;
@@ -135,6 +153,8 @@ int _VariableArrayType_8;
 StructuredBuffer<float> _VariableDataBuffer_8;
 float3 _VariableDefaultValue_8;
 float4x4 _VariableBoundsMatrixInv_8;
+float3 _VariableBoundsMin_8;
+float3 _VariableBoundsMax_8;
 
 int _VariableAssigned_9;
 int _VariableDomainDimensionality_9;
@@ -148,6 +168,8 @@ int _VariableArrayType_9;
 StructuredBuffer<float> _VariableDataBuffer_9;
 float3 _VariableDefaultValue_9;
 float4x4 _VariableBoundsMatrixInv_9;
+float3 _VariableBoundsMin_9;
+float3 _VariableBoundsMax_9;
 
 int GetVariableArrayType(int variableSlot) {
     switch (variableSlot) {
@@ -560,6 +582,81 @@ float3 GetVariableMax(int variableSlot) {
     }
 }
 
+
+float3 GetVariableBoundsMin(int variableSlot) {
+    switch (variableSlot) {
+        case 0: 
+            return _VariableBoundsMin_0;
+            break;
+        case 1: 
+            return _VariableBoundsMin_1;
+            break;
+        case 2: 
+            return _VariableBoundsMin_2;
+            break;
+        case 3: 
+            return _VariableBoundsMin_3;
+            break;
+        case 4: 
+            return _VariableBoundsMin_4;
+            break;
+        case 5: 
+            return _VariableBoundsMin_5;
+            break;
+        case 6: 
+            return _VariableBoundsMin_6;
+            break;
+        case 7: 
+            return _VariableBoundsMin_7;
+            break;
+        case 8: 
+            return _VariableBoundsMin_8;
+            break;
+        case 9: 
+            return _VariableBoundsMin_9;
+            break;
+        default:
+            return float3(0,0,0);
+    }
+}
+
+float3 GetVariableBoundsMax(int variableSlot) {
+    switch (variableSlot) {
+        case 0: 
+            return _VariableBoundsMax_0;
+            break;
+        case 1: 
+            return _VariableBoundsMax_1;
+            break;
+        case 2: 
+            return _VariableBoundsMax_2;
+            break;
+        case 3: 
+            return _VariableBoundsMax_3;
+            break;
+        case 4: 
+            return _VariableBoundsMax_4;
+            break;
+        case 5: 
+            return _VariableBoundsMax_5;
+            break;
+        case 6: 
+            return _VariableBoundsMax_6;
+            break;
+        case 7: 
+            return _VariableBoundsMax_7;
+            break;
+        case 8: 
+            return _VariableBoundsMax_8;
+            break;
+        case 9: 
+            return _VariableBoundsMax_9;
+            break;
+        default:
+            return float3(0,0,0);
+    }
+}
+
 float3 GetNormalizedDataSpace(int variableSlot, float3 innerSceneSpace) {
     float4 normdataSpace = mul(GetVariableBoundsMatrixInv(variableSlot),innerSceneSpace);
     return normdataSpace;
@@ -570,6 +667,11 @@ float3 WorldToDataSpace(float3 worldPos) {
     float4 innerSceneSpace = mul(_CanvasInnerSceneInverse,worldSpace);
     //float4 dataSpace = mul(GetVariableBoundsMatrixInv(variableSlot),innerSceneSpace);
     return innerSceneSpace;
+}
+float3 TextureToDataSpace(int variableSlot, float3 textureSpace) {
+    float3 MIN = GetVariableBoundsMin(variableSlot);
+    float3 MAX = GetVariableBoundsMax(variableSlot);
+    return float3(map(textureSpace.x,0,1,MIN.x,MAX.x),map(textureSpace.y,0,1,MIN.y,MAX.y),map(textureSpace.z,0,1,MIN.z,MAX.z));
 }
 float3 NormalizeData(int variableSlot, float3 data) {
     float3 result;

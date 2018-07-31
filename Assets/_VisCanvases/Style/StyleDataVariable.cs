@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace SculptingVis{
 	public class StyleDataVariable : StyleModule {
+		[SerializeField]
 		Variable _variable;
 
         public StyleDataVariable Init(Variable variable) {

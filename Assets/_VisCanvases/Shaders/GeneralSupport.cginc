@@ -19,10 +19,36 @@ float map(float value, float min1, float max1, float min2, float max2)
     // Do the same operation backwards with min2 and max2
     return  perc * (max2 - min2) + min2;
 }
-float clamp(float value, float min1, float max1)
-{
-    //return value;
-    return  max(min(value,max1),min1);
+
+
+float2  intersect(float3 orig, float3 invdir, int3 sign, float3 bounds[2]) {
+	
+    float tmin, tmax, tymin, tymax, tzmin, tzmax;
+    tmin = (bounds[sign[0]].x - orig.x) * invdir.x; 
+    tmax = (bounds[1-sign[0]].x - orig.x) * invdir.x; 
+    tymin = (bounds[sign[1]].y - orig.y) * invdir.y; 
+    tymax = (bounds[1-sign[1]].y - orig.y) * invdir.y; 
+
+    //return sign;
+    if ((tmin > tymax) || (tymin > tmax)) 
+        return float2(0,0);; 
+    if (tymin > tmin) 
+        tmin = tymin; 
+    if (tymax < tmax) 
+        tmax = tymax; 
+
+    tzmin = (bounds[sign[2]].z - orig.z) * invdir.z; 
+    tzmax = (bounds[1-sign[2]].z - orig.z) * invdir.z; 
+
+    if ((tmin > tzmax) || (tzmin > tmax)) 
+        return float2(0,0); 
+    if (tzmin > tmin) 
+        tmin = tzmin; 
+    if (tzmax < tmax) 
+        tmax = tzmax; 
+
+    return float2(tmin,tmax);
 }
+
 
 #endif

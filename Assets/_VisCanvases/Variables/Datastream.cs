@@ -370,8 +370,11 @@ public class Datastream : ScriptableObject {
         material.SetMatrix("_VariableBoundsMatrixInv_" + slot,Matrix4x4.TRS(GetVariable().GetBounds().center,Quaternion.identity,GetVariable().GetBounds().size).inverse);
         if(!GetVariable().IsAnchor()) material.SetVector("_VariableMin_" + slot, GetVariable().GetMin());
         if(!GetVariable().IsAnchor()) material.SetVector("_VariableMax_" + slot, GetVariable().GetMax());
+
+        if(!GetVariable().IsAnchor()) material.SetVector("_VariableBoundsMin_" + slot, GetVariable().GetBounds().min);
+        if(!GetVariable().IsAnchor()) material.SetVector("_VariableBoundsMax_" + slot, GetVariable().GetBounds().max);
         material.SetFloat("_VariableComponents_" + slot,GetNumberOfComponents());
-                
+        
  
         material.SetBuffer("_VariableDataBuffer_" + slot,EmptyBuffer());
 
