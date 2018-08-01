@@ -61,7 +61,7 @@ namespace SculptingVis {
 		public Object GetOutput() {
 			return _source;
 		}
-		public Object GetInput() {
+		public virtual Object GetInput() {
 			return _input;
 		}
 		public virtual string GetUniqueIdentifier() {

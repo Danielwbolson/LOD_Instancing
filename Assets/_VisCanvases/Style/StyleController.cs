@@ -84,7 +84,7 @@ namespace SculptingVis
         }
 
 		public void RemoveLink(StyleLink link, bool removeFromIndex = false) {
-			if (link){
+			if (link != null){
 				Debug.Log("Removing link: " + link.GetSource().GetUniqueIdentifier() + " -> " + link.GetDestination().GetUniqueIdentifier());
 				link.GetDestination().ClearInput();
                 GetLinks().Remove(link);

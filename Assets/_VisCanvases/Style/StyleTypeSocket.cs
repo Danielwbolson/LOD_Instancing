@@ -7,6 +7,10 @@ namespace SculptingVis {
 	public class StyleTypeSocket : StyleSocket {
 
 	}
+
+		// 	public virtual Object GetInput() {
+		// 	return _input;
+		// }
 	public class StyleTypeSocket<T> : StyleTypeSocket {
 		public override bool DoesAccept(StyleSocket incoming) {
 			return incoming.GetOutput() is T;
@@ -28,6 +32,13 @@ namespace SculptingVis {
 			base.Init(label,module,true,false);
 		
 			return this;
+		}
+
+		public virtual Object GetInput() {
+			if(base.GetInput() is T)
+				return _input;
+			else 
+				return null;
 		}
 	}
 }

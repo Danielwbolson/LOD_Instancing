@@ -27,6 +27,9 @@ namespace SculptingVis
         public StyleTypeSocket<Colormap> _colorMapInput;
 
         [SerializeField]
+        public StyleTypeSocket<Glyph> _glyphInput;
+
+        [SerializeField]
         public Texture2D _colorMap;
 
         [SerializeField]
@@ -94,7 +97,10 @@ namespace SculptingVis
             AddSocket(_colorVariable);
             AddSocket(_opacityVariable);
 			_colorMapInput = (new StyleTypeSocket<Colormap> ()).Init("Color map",this);
+            _glyphInput = (new StyleTypeSocket<Glyph> ()).Init("Glyph",this);
+
 			AddSocket(_colorMapInput);
+			AddSocket(_glyphInput);
 
             return this;
 

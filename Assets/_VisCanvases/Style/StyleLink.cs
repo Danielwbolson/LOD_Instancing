@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace SculptingVis {
-	public class StyleLink : ScriptableObject {
+	public class StyleLink {
 		[SerializeField]
 		StyleSocket _source;
 		[SerializeField]

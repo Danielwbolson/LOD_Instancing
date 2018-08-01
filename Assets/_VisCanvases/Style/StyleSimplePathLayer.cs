@@ -24,8 +24,6 @@ namespace SculptingVis
         [SerializeField]
         public StyleTypeSocket<Colormap> _colorMapInput;
 
-        [SerializeField]
-        public Texture2D _colorMap;
 
         [SerializeField]
         public Material _lineMaterial;
@@ -62,7 +60,8 @@ namespace SculptingVis
             // 	_lineMaterial.SetInt("_HasColorVariable",0);
 
             // }
-            _lineMaterial.SetTexture("_ColorMap", _colorMap);
+            if(_colorMapInput.GetInput() != null )
+                _lineMaterial.SetTexture("_ColorMap", ((Colormap) _colorMapInput.GetInput()).GetTexture());
 
             Material canvasMaterial = GetCanvasMaterial(canvas, _lineMaterial);
             _anchorVariable.Bind(canvasMaterial, 0, 0);
@@ -91,7 +90,6 @@ namespace SculptingVis
             {
                 _lineMaterial = ((StyleSimplePathLayer)toCopy)._lineMaterial;
                 LineCount = ((StyleSimplePathLayer)toCopy).LineCount;
-				 _colorMap = ((StyleSimplePathLayer)toCopy)._colorMap;
 
             }
 
@@ -125,7 +123,6 @@ namespace SculptingVis
 
 		public override void UpdateModule() {
 			if(_colorMapInput.GetInput() != null && _colorMapInput.GetInput() is Colormap) {
-				_colorMap = ((Colormap)_colorMapInput.GetInput()).GetTexture();
 			}
 		}
 
