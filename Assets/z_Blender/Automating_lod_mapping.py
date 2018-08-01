@@ -36,6 +36,12 @@ argv = argv[argv.index("--") + 1:]
 inputFile = argv[0]
 outputFile = argv[1]
 
+# Delete all objects already in scene
+objs = bpy.data.objects
+for o in objs:
+  if o.type == 'MESH':
+    objs.remove(o, True)
+
 # Cache our scene
 scene = bpy.context.scene
 

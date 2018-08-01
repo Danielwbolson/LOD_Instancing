@@ -90,7 +90,7 @@ public class MeshLoader : MonoBehaviour {
         _somethingLoaded = true;
 
         GameObject temp = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        temp.GetComponent<MeshFilter>().mesh = LoadMesh(Application.dataPath + "/Resources/Generated/" + _meshName + "_LOD3.obj");
+        temp.GetComponent<MeshFilter>().mesh = LoadMesh(Application.dataPath + "/Resources/Generated/" + _meshName + "/" + _meshName + "_LOD2.obj");
         temp.GetComponent<MeshRenderer>().material = _mat;
     }
 
