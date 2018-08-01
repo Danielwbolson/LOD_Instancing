@@ -22,10 +22,20 @@ namespace SculptingVis {
 		bool _isOutput;
 		
 		[SerializeField]
+		Object _source;
+
+		[SerializeField]
+		protected Object _input;
+
+		[SerializeField]
+		protected Object _defaultInput;
+
+		[SerializeField]
 		string _label;
 
 		[SerializeField]
 		List<StyleLink> _links;
+
 
 		public List<StyleLink> GetLinks() {
 			if(_links == null) _links = new List<StyleLink>();
@@ -41,11 +51,7 @@ namespace SculptingVis {
 			return this;
 		}
 
-		[SerializeField]
-		Object _source;
 
-		[SerializeField]
-		protected Object _input;
 
 		public StyleModule GetModule() {
 			return _module;
@@ -58,11 +64,14 @@ namespace SculptingVis {
 			_input = inputObject;
 		}
 
+		public virtual void SetDefaultInputObject(Object defaultInputObject) {
+			_defaultInput = defaultInputObject;
+		}
 		public Object GetOutput() {
 			return _source;
 		}
 		public virtual Object GetInput() {
-			return _input;
+			return _input!=null? _input : _defaultInput;
 		}
 		public virtual string GetUniqueIdentifier() {
 			return InstanceID + "";

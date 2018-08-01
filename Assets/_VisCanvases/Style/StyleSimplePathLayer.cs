@@ -99,7 +99,7 @@ namespace SculptingVis
         public StyleSimplePathLayer Init()
         {
             _anchorVariable = new VariableSocket();
-            _anchorVariable.Init("Anchor",this);
+            _anchorVariable.Init("Anchor",this,0);
             //SetAnchorSocket(_anchorVariable);
             _colorVariable = new VariableSocket();
             _colorVariable.Init("Color",this,1);

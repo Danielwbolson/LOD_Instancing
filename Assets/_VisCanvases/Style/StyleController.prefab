@@ -56,11 +56,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 420cc6eebdb5769439b1aa4ea401614d, type: 2}
   - {fileID: 11400000, guid: 0e4891bc01a0441a49c489d86d0c0731, type: 2}
   - {fileID: 11400000, guid: 52d0740ac17a0e549aeb3b3f202bb947, type: 2}
+  - {fileID: 11400000, guid: 558c41a5887024b278db4353801f4d70, type: 2}
   _visualElements: []
   _layers: []
   _style: {fileID: 0}
   _variables: []
-  _links: []
   _CanvasPrefab: {fileID: 114996770596923822, guid: 9723f129ebb084465910186df35f3bd9,
     type: 2}
   _canvases: []

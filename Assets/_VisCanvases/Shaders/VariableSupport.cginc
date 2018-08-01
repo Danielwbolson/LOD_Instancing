@@ -9,17 +9,17 @@ StructuredBuffer<int2> _AnchorTopology;
 StructuredBuffer<int2> _AnchorTopologyCellInfo;
 int _SampleAtCenter;
 
-int _VariableAssigned_Anchor;
-int _VariableDomainDimensionality_Anchor;
-int _VariableComponents_Anchor;
-float3 _VariableMin_Anchor;
-float3 _VariableMax_Anchor;
-float _VariableMinOverride_Anchor;
-float _VariableMaxOverride_Anchor;
-StructuredBuffer<float> _VariableDataBuffer_Anchor;
-float4x4 _VariableBoundsMatrixInv_Anchor;
-float3 _VariableBoundsMin_Anchor;
-float3 _VariableBoundsMax_Anchor;
+// int _VariableAssigned_Anchor;
+// int _VariableDomainDimensionality_Anchor;
+// int _VariableComponents_Anchor;
+// float3 _VariableMin_Anchor;
+// float3 _VariableMax_Anchor;
+// float _VariableMinOverride_Anchor;
+// float _VariableMaxOverride_Anchor;
+// StructuredBuffer<float> _VariableDataBuffer_Anchor;
+// float4x4 _VariableBoundsMatrixInv_Anchor;
+// float3 _VariableBoundsMin_Anchor;
+// float3 _VariableBoundsMax_Anchor;
 
 int _VariableAssigned_0;
 int _VariableDomainDimensionality_0;
@@ -707,7 +707,7 @@ float GetMagnitude(int variableSlot, float3 data) {
         
 }
 float3 GetAnchorPosition(int vertexId) {
-    return float3(_VariableDataBuffer_Anchor[vertexId*3+0],_VariableDataBuffer_Anchor[vertexId*3+1],_VariableDataBuffer_Anchor[vertexId*3+2]);
+    return float3(_VariableDataBuffer_0[vertexId*3+0],_VariableDataBuffer_0[vertexId*3+1],_VariableDataBuffer_0[vertexId*3+2]);
 }
 float3 GetData(int variableSlot, int cellId, int vertexId, float3 dataPos) {
     float3 normdataPos = GetNormalizedDataSpace(variableSlot,dataPos);

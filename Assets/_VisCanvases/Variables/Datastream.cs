@@ -364,7 +364,7 @@ public class Datastream : ScriptableObject {
     }
 
     public void Bind(Material material, int bindSlot) {
-        string slot = GetVariable().IsAnchor()? "Anchor":(""+bindSlot);
+        string slot = /*GetVariable().IsAnchor()? "Anchor":*/(""+bindSlot);
         int dim = GetVariable().GetDomainDimensionality();
         material.SetInt("_VariableDomainDimensionality_" + slot,dim);
         material.SetMatrix("_VariableBoundsMatrixInv_" + slot,Matrix4x4.TRS(GetVariable().GetBounds().center,Quaternion.identity,GetVariable().GetBounds().size).inverse);

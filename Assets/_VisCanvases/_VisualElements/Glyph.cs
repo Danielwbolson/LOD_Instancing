@@ -21,7 +21,7 @@ namespace SculptingVis {
 		Mesh[] _lodMeshes;
 
 		[SerializeField]
-		Texture2D[] _bumpMaps;
+		Texture2D[] _normalMaps;
 
 
 		public int GetNumberOfLODs() {
@@ -33,6 +33,9 @@ namespace SculptingVis {
 			return _lodMeshes[level];
 		}
 
+		public Texture2D GetLODNormalMap(int level) {
+			return _normalMaps[level];
+		}
 
 		
 		public static VisualElement LoadFile(string filePath) {
@@ -48,47 +51,50 @@ namespace SculptingVis {
 				DirectoryInfo info = new DirectoryInfo(filePath);
 				FileInfo[] fileInfo = info.GetFiles();
 				DirectoryInfo[] directoryInfo = info.GetDirectories();
-				for (int f = 0; f < fileInfo.Length; f++){
-					Debug.Log(fileInfo[f].Name);
-					if(fileInfo[f].Extension.ToUpper() == ".PNG") {
+				foreach (var file in fileInfo){
+					if(file.Extension.ToUpper() == ".PNG") {
 						Texture2D loadedImage = new Texture2D(1,1);
-						loadedImage.LoadImage(File.ReadAllBytes(fileInfo[f].Name));
+						loadedImage.LoadImage(File.ReadAllBytes(file.FullName));
 						glyph._thumbnail = loadedImage;					
 					}
 
-					if(fileInfo[f].Extension.ToUpper() == ".OBJ") {
-						if(Path.GetFileNameWithoutExtension(fileInfo[f].FullName) .Contains("_LOD")) {
+					if(file.Extension.ToUpper() == ".OBJ") {
+						if(Path.GetFileNameWithoutExtension(file.FullName) .Contains("_LOD")) {
 							Debug.Log("Mesh Loading does not currently support individual LOD meshes.");
 
 						} else {
-							string objPath = fileInfo[f].FullName;
-							GameObject LODmesh = OBJLoader.LoadOBJFile(objPath);
-
-							foreach( MeshFilter mf in LODmesh.GetComponentsInChildren<MeshFilter>()) {
-								Debug.Log(mf.mesh);
-							}
-
+							string objPath = file.FullName;
+							Mesh[] meshes = OBJLoader.LoadOBJFileToMeshes(objPath);
+							glyph._lodMeshes = meshes;
 						}
 					}
-					
-
-					
 				}
 
+				glyph._normalMaps = new Texture2D[glyph._lodMeshes.Length];
+				for(int t = 0; t < glyph._normalMaps.Length;t++) {
+					glyph._normalMaps[t] = DefaultNormalMap();
+				}
+                foreach (var directory in directoryInfo)
+                {
+                    if (directory.Name.ToUpper() == "NORMALMAPS")
+                    {
+                        DirectoryInfo normalMapDir = new DirectoryInfo(directory.FullName);
+                        foreach (var file in normalMapDir.GetFiles())
+                        {
+                            if (file.Extension.ToUpper() == ".PNG" && file.Name.ToUpper().StartsWith("LOD"))
+                            {
+								string number = Path.GetFileNameWithoutExtension(file.FullName).Substring(3); 
+								int level = int.Parse(number);
 
+								Texture2D normalMap = new Texture2D(1, 1);
+								normalMap.LoadImage(File.ReadAllBytes(file.FullName));
+								glyph._normalMaps[glyph._normalMaps.Length - level - 1] = normalMap;
+							
+                            }
+                        }
+                    }
+				}
 
-
-				Debug.Log("loading a Glyph...");
-
-				// string thumbnailPath = Path.Combine(filePath,name+".png");
-
-				// string bumpMapDirectiryPath =  Path.Combine(filePath,"NormalMaps");
-
-				// if(File.Exists(thumbnailPath)) {
-				// 	Texture2D loadedImage = new Texture2D(1,1);
-				// 	loadedImage.LoadImage(File.ReadAllBytes(thumbnailPath));
-				// 	glyph._thumbnail = loadedImage;
-				// } 
 
 
 

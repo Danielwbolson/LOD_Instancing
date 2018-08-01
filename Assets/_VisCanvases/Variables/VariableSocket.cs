@@ -26,6 +26,8 @@ namespace SculptingVis {
 
 		bool _vectorRequired = false;
 		bool _scalarRequired = false;
+		bool _uniformRequired = false;
+
 		public void RequireVector() {
 			_vectorRequired = true;
 			_scalarRequired = false;
@@ -36,9 +38,16 @@ namespace SculptingVis {
 		public bool ScalarRequired() {
 			return _scalarRequired;
 		}
+		public bool UniformRequired() {
+			return _uniformRequired;
+		}
 		public void RequireScalar() {
 			_vectorRequired = false;
 			_scalarRequired = true;
+		}
+
+		public void RequireUniform() {
+			_uniformRequired = true;
 		}
 		public VariableSocket Init(string name, StyleModule module, int slot = -1) {
 			base.Init(name,module,true,false,null);
@@ -52,7 +61,7 @@ namespace SculptingVis {
 			return GetLabel();
 		}
 		public bool IsAnchor() {
-			return _slot < 0;
+			return _slot == 0;
 		}
 		public bool IsAssigned() {
 			return _inputVariable != null;
@@ -61,7 +70,7 @@ namespace SculptingVis {
 			return _inputVariable;
 		}
 		public void Bind(Material material,int instanceID, int timestep) {
-			string slot = IsAnchor()?"Anchor":(""+GetSlot());
+			string slot = /*IsAnchor()?"Anchor":*/ (""+ GetSlot());
 			material.SetVector("_VariableDefaultValue_" + slot,new Vector3(0,0,1));
 			material.SetFloat("_VariableMinOverride_"+slot,LowerBound);
 			material.SetFloat("_VariableMaxOverride_" +slot, UpperBound);

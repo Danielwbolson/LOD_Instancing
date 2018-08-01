@@ -8,6 +8,26 @@ namespace SculptingVis {
 
 	}
 
+	public class IntRange : Object {
+		public static implicit operator int(IntRange x)
+		{
+			return x.value;
+		}
+		public IntRange(int lower, int upper) {
+			lowerBound = lower;
+			upperBound = upper;
+			value = lower;
+		}
+		public IntRange(int lower, int upper, int initial) {
+			lowerBound = lower;
+			upperBound = upper;
+			value = initial;
+		}
+		public int lowerBound;
+		public int upperBound;
+		public int value;
+
+	}
 		// 	public virtual Object GetInput() {
 		// 	return _input;
 		// }
@@ -36,7 +56,7 @@ namespace SculptingVis {
 
 		public virtual Object GetInput() {
 			if(base.GetInput() is T)
-				return _input;
+				return base.GetInput();
 			else 
 				return null;
 		}

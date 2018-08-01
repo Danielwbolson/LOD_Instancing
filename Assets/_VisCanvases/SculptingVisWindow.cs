@@ -201,6 +201,9 @@ public class SculptingVisWindow : EditorWindow
                 GUILayoutUtility.GetRect(new GUIContent(""), socket.IsOutput() ? EditorStyles.radioButton : EditorStyles.miniButton);
 
             GUILayout.Label(socket.GetLabel());
+            if(socket is StyleTypeSocket<IntRange>) {
+                ((IntRange)socket.GetInput()).value = EditorGUILayout.IntSlider(((IntRange)socket.GetInput()).value,((IntRange)socket.GetInput()).lowerBound,((IntRange)socket.GetInput()).upperBound);
+            }
             GUILayout.FlexibleSpace();
             if (inputHookRight)
                 DrawSocketHook(socket, nest);
