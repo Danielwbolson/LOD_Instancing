@@ -43,10 +43,10 @@ namespace SculptingVis{
         public StyleTestLayer Init() {
 
 
-			VariableSocket anchor = CreateInstance<VariableSocket>().Init("Anchor",this,1);
+			VariableSocket anchor = new VariableSocket().Init("Anchor",this,1);
 			anchor.SetAnchorVariableSocket(null);
 			AddSocket(anchor);
-			VariableSocket vs = CreateInstance<VariableSocket>().Init("Data",this,1);
+			VariableSocket vs = new VariableSocket().Init("Data",this,1);
 			vs.RequireScalar();
 			vs.SetAnchorVariableSocket(anchor);
 			AddSocket(vs);

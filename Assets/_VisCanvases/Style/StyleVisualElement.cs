@@ -6,7 +6,7 @@ namespace SculptingVis{
 	public class StyleVisualElement : StyleModule {
         public StyleVisualElement Init(VisualElement visualElement) {
 			_visualElement = visualElement;
-			AddSocket(CreateInstance<StyleSocket>().Init("",this,false,true,_visualElement));
+			AddSocket((new StyleSocket()).Init("",this,false,true,_visualElement));
 
             return this;
         }

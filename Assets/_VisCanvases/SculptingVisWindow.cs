@@ -165,7 +165,7 @@ public class SculptingVisWindow : EditorWindow
                 GUILayout.FlexibleSpace();
                 Texture t = ((StyleVisualElement)module).GetVisualElement().GetPreviewImage();
                 float aspectRatio = ((StyleVisualElement)module).GetVisualElement().GetPreviewImageAspectRatio();
-                Rect r = GUILayoutUtility.GetRect(100,100/aspectRatio);
+                Rect r = GUILayoutUtility.GetRect(150,150/aspectRatio);
 
                 GUI.DrawTexture(r,t,ScaleMode.ScaleToFit,true,aspectRatio);
 
@@ -189,7 +189,7 @@ public class SculptingVisWindow : EditorWindow
             StyleSocket socket = module.GetSocket(socket_index);
             bool inputHookLeft = false;
             bool inputHookRight = false;
-            if (module is StyleLayer && socket is StyleColormapSocket)
+            if (module is StyleLayer && socket is StyleTypeSocket)
                 inputHookLeft = true;
             else if (module is StyleLayer && socket is VariableSocket)
                 inputHookRight = true;

@@ -24,7 +24,7 @@ namespace SculptingVis
 
 
         [SerializeField]
-        public StyleColormapSocket _colorMapInput;
+        public StyleTypeSocket<Colormap> _colorMapInput;
 
         [SerializeField]
         public Texture2D _colorMap;
@@ -77,15 +77,15 @@ namespace SculptingVis
 
         public StyleSimpleGlyphLayer Init()
         {
-            _anchorVariable = CreateInstance<VariableSocket>();
+            _anchorVariable = new VariableSocket();
             _anchorVariable.Init("Anchor",this);
             //SetAnchorSocket(_anchorVariable);
-            _colorVariable = CreateInstance<VariableSocket>();
+            _colorVariable = new VariableSocket();
             _colorVariable.Init("Color",this,1);
             _colorVariable.SetAnchorVariableSocket(_anchorVariable);
 			_colorVariable.RequireScalar();
 
-            _opacityVariable = CreateInstance<VariableSocket>();
+            _opacityVariable = new VariableSocket();
             _opacityVariable.Init("Opacity",this,3);
 	        _opacityVariable.SetAnchorVariableSocket(_anchorVariable);
 			_opacityVariable.RequireScalar();
@@ -93,7 +93,7 @@ namespace SculptingVis
             AddSocket(_anchorVariable);
             AddSocket(_colorVariable);
             AddSocket(_opacityVariable);
-			_colorMapInput = (StyleColormapSocket)CreateInstance<StyleColormapSocket>().Init("Color map",this,true,false);
+			_colorMapInput = (new StyleTypeSocket<Colormap> ()).Init("Color map",this);
 			AddSocket(_colorMapInput);
 
             return this;
@@ -101,8 +101,8 @@ namespace SculptingVis
         }
 
 		public override void UpdateModule() {
-			if(_colorMapInput.GetTexture() != null) {
-				_colorMap = (Texture2D)_colorMapInput.GetTexture();
+			if(_colorMapInput.GetInput() != null && _colorMapInput.GetInput() is Colormap) {
+				_colorMap = ((Colormap)_colorMapInput.GetInput()).GetTexture();
 			}
 		}
 

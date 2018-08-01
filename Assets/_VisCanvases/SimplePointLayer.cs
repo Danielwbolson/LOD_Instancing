@@ -48,21 +48,21 @@ public class SimplePointLayer : Layer {
 	
 	public void Init() {
 		ClearSockets();
-		_anchorVariable = CreateInstance<VariableSocket>();
+		_anchorVariable = new VariableSocket();
 		//_anchorVariable.Init();
 		SetAnchorSocket(_anchorVariable);
 
-		_colorVariable = CreateInstance<VariableSocket>();
+		_colorVariable = new VariableSocket();
 		//_colorVariable.Init("Color",1);
 		_colorVariable.RequireScalar();
 		_colorVariable.SetAnchorVariableSocket(_anchorVariable);
 
-		_directionVariable = CreateInstance<VariableSocket>();
+		_directionVariable = new VariableSocket();
 		//_directionVariable.Init("Direction",2);
 		_directionVariable.RequireVector();
 		_directionVariable.SetAnchorVariableSocket(_anchorVariable);
 
-		_opacityVariable = CreateInstance<VariableSocket>();
+		_opacityVariable = new VariableSocket();
 		//_opacityVariable.Init("Opacity",3);
 		_opacityVariable.RequireScalar();
 		_opacityVariable.SetAnchorVariableSocket(_anchorVariable);

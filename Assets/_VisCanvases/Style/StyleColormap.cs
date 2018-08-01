@@ -15,7 +15,7 @@ namespace SculptingVis{
         public StyleColormap Init(Colormap texture,string name = "") {
 			_colorMap = texture;
 			_name = name;
-			AddSocket(CreateInstance<StyleSocket>().Init("",this,false,true,_colorMap));
+			AddSocket((new StyleSocket()).Init("",this,false,true,_colorMap));
             return this;
         }
 

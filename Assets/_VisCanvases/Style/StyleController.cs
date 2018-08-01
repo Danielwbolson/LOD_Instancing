@@ -88,7 +88,7 @@ namespace SculptingVis
 				Debug.Log("Removing link: " + link.GetSource().GetUniqueIdentifier() + " -> " + link.GetDestination().GetUniqueIdentifier());
 				link.GetDestination().ClearInput();
                 GetLinks().Remove(link);
-				if(link.GetDestination())
+				if(link.GetDestination() != null)
             		GetLinksByDestination()[link.GetDestination().GetUniqueIdentifier()] = null;
 				if(removeFromIndex)
 				GetLinksBySource()[link.GetSource().GetUniqueIdentifier()].Remove(link);

@@ -93,7 +93,7 @@ namespace SculptingVis {
 				return false;	
 			if(inputVariable.GetDomainDimensionality() != 3 && inputVariable.GetAnchorVariable() != null && GetAnchorVariable() == null)
 				return false;
-			if(_anchorVariable && inputVariable.GetStream((DataVariable)_anchorVariable.GetInput()) == null) {
+			if(_anchorVariable != null && inputVariable.GetStream((DataVariable)_anchorVariable.GetInput()) == null) {
 				return false;
 			}
 			if(inputVariable.GetComponents() == 1 && VectorRequired())

@@ -9,7 +9,7 @@ namespace SculptingVis{
 
         public StyleDataVariable Init(Variable variable) {
 			_variable = variable;
-			AddSocket(CreateInstance<StyleSocket>().Init("",this,false,true,_variable));
+			AddSocket((new StyleSocket()).Init("",this,false,true,_variable));
             return this;
         }
 

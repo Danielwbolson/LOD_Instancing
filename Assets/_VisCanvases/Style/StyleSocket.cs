@@ -3,8 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace SculptingVis {
+
+	
 	[System.Serializable]
-	public class StyleSocket : ScriptableObject {
+	public class StyleSocket {
+		public System.Guid InstanceID {get; private set;}
+		// Other properties, etc.
+
+
+			
+
+
 		[SerializeField]
 		StyleModule _module;
 		[SerializeField]
@@ -23,6 +32,7 @@ namespace SculptingVis {
 			return _links;
 		}
 		public StyleSocket Init(string label, StyleModule module, bool isInput, bool isOutput, Object sourceObject = null) {
+			this.InstanceID = System.Guid.NewGuid();
 			_module = module;
 			_isInput = isInput;
 			_isOutput = isOutput;
@@ -51,9 +61,11 @@ namespace SculptingVis {
 		public Object GetOutput() {
 			return _source;
 		}
-
+		public Object GetInput() {
+			return _input;
+		}
 		public virtual string GetUniqueIdentifier() {
-			return GetInstanceID() + "";
+			return InstanceID + "";
 		}
 
 		public virtual string GetLabel() {
