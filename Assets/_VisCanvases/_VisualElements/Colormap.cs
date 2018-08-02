@@ -4,59 +4,59 @@ using UnityEngine;
 using System.IO;
 
 namespace SculptingVis {
-	public class Colormap : VisualElement {
-		[SerializeField]
-		Texture2D _texture;
+    public class Colormap : VisualElement {
+        [SerializeField]
+        Texture2D _texture;
 
-		public Texture2D GetTexture() {
-			return _texture;
-		}
-		protected Colormap Init(Texture2D texture) {
-			_texture = texture;
-			return this;
-		}
-		public new static VisualElement LoadFile(string filePath) {
-			
+        public Texture2D GetTexture() {
+            return _texture;
+        }
+        protected Colormap Init(Texture2D texture) {
+            _texture = texture;
+            return this;
+        }
+        public new static VisualElement LoadFile(string filePath) {
+            
             string extention = Path.GetExtension(filePath);
-			
-			if(extention.ToUpper() == ".PNG") {
-				Colormap result = null;
-				Texture2D loadedImage = new Texture2D(1,1);
-				loadedImage.LoadImage(File.ReadAllBytes(filePath));
-				result = CreateInstance<Colormap>().Init(loadedImage);
-				result.SetName(Path.GetFileName(filePath));
-				return result;
-			}
+            
+            if(extention.ToUpper() == ".PNG") {
+                Colormap result = null;
+                Texture2D loadedImage = new Texture2D(1,1);
+                loadedImage.LoadImage(File.ReadAllBytes(filePath));
+                result = CreateInstance<Colormap>().Init(loadedImage);
+                result.SetName(Path.GetFileName(filePath));
+                return result;
+            }
 
-			if(extention.ToUpper() == ".XML") {
-				Debug.Log("No algorithm for opening XML colormap");
-				// Read XML file and produce a Texture2D
-			}
+            if(extention.ToUpper() == ".XML") {
+                Debug.Log("No algorithm for opening XML colormap");
+                // Read XML file and produce a Texture2D
+            }
 
-			if(extention.ToUpper() == ".JSON") {
-				Debug.Log("No algorithm for opening JSON colormap");
+            if(extention.ToUpper() == ".JSON") {
+                Debug.Log("No algorithm for opening JSON colormap");
 
-				// Read XML file and produce a Texture2D
-			}
+                // Read XML file and produce a Texture2D
+            }
 
-			if(extention.ToUpper() == ".TXT") {
-				Debug.Log("No algorithm for opening plain text colormap");
+            if(extention.ToUpper() == ".TXT") {
+                Debug.Log("No algorithm for opening plain text colormap");
 
-				// Read XML file and produce a Texture2D
-			}
-			
-			return null;
-		}
+                // Read XML file and produce a Texture2D
+            }
+            
+            return null;
+        }
 
 
 
-		public override Texture2D GetPreviewImage() {
-			return _texture;
-		}
+        public override Texture2D GetPreviewImage() {
+            return _texture;
+        }
 
-		public override float GetPreviewImageAspectRatio() {
-			return 5.0f/1.0f;
-		}
-		
-	}
+        public override float GetPreviewImageAspectRatio() {
+            return 5.0f/1.0f;
+        }
+        
+    }
 }

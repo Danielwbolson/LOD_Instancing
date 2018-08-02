@@ -32,8 +32,8 @@ namespace SculptingVis
         }
 
 
-		[SerializeField] 
-		List<StyleLayer> _layerTypes;
+        [SerializeField] 
+        List<StyleLayer> _layerTypes;
 
         [SerializeField]
         List<StyleModule> _visualElements;
@@ -41,8 +41,8 @@ namespace SculptingVis
         [SerializeField]
         List<StyleModule> _layers;
 
-		[SerializeField]
-		Style _style;
+        [SerializeField]
+        Style _style;
 
 
         [SerializeField]
@@ -66,8 +66,8 @@ namespace SculptingVis
         protected  StyleLink GetLinkByDestination(StyleSocket destinationsocket)
         {
             if (_linksByDestination == null) _linksByDestination = new Dictionary<string, StyleLink>();
-			if(_linksByDestination.ContainsKey(destinationsocket.GetUniqueIdentifier()))
-				return _linksByDestination[destinationsocket.GetUniqueIdentifier()];
+            if(_linksByDestination.ContainsKey(destinationsocket.GetUniqueIdentifier()))
+                return _linksByDestination[destinationsocket.GetUniqueIdentifier()];
             return null;
         }
         protected Dictionary<string, List<StyleLink> > GetLinksBySource()
@@ -75,7 +75,7 @@ namespace SculptingVis
             if (_linksBySource == null) _linksBySource = new Dictionary<string, List<StyleLink> >();
             return _linksBySource;
         }
-		
+        
 
         public List<StyleLink> GetLinks()
         {
@@ -83,40 +83,40 @@ namespace SculptingVis
             return _links;
         }
 
-		public void RemoveLink(StyleLink link, bool removeFromIndex = false) {
-			if (link != null){
-				Debug.Log("Removing link: " + link.GetSource().GetUniqueIdentifier() + " -> " + link.GetDestination().GetUniqueIdentifier());
-				link.GetDestination().ClearInput();
+        public void RemoveLink(StyleLink link, bool removeFromIndex = false) {
+            if (link != null){
+                Debug.Log("Removing link: " + link.GetSource().GetUniqueIdentifier() + " -> " + link.GetDestination().GetUniqueIdentifier());
+                link.GetDestination().ClearInput();
                 GetLinks().Remove(link);
-				if(link.GetDestination() != null)
-            		GetLinksByDestination()[link.GetDestination().GetUniqueIdentifier()] = null;
-				if(removeFromIndex)
-				GetLinksBySource()[link.GetSource().GetUniqueIdentifier()].Remove(link);
-			
-				UpdateModuleLinks(link.GetDestination().GetModule());
-			}
-		}
+                if(link.GetDestination() != null)
+                    GetLinksByDestination()[link.GetDestination().GetUniqueIdentifier()] = null;
+                if(removeFromIndex)
+                GetLinksBySource()[link.GetSource().GetUniqueIdentifier()].Remove(link);
+            
+                UpdateModuleLinks(link.GetDestination().GetModule());
+            }
+        }
         public void ClearSocket(StyleSocket socket)
         {
-			if(socket.IsInput()) {
-				StyleLink currentLink = null;
-				if (GetLinksByDestination().ContainsKey(socket.GetUniqueIdentifier()))
-					currentLink = GetLinkByDestination(socket);
-				RemoveLink(currentLink);
-				if(currentLink != null)currentLink.GetDestination().GetModule().UpdateModule();
+            if(socket.IsInput()) {
+                StyleLink currentLink = null;
+                if (GetLinksByDestination().ContainsKey(socket.GetUniqueIdentifier()))
+                    currentLink = GetLinkByDestination(socket);
+                RemoveLink(currentLink);
+                if(currentLink != null)currentLink.GetDestination().GetModule().UpdateModule();
 
-			} 
-			if(socket.IsOutput()) {
-				StyleLink currentLink = null;
+            } 
+            if(socket.IsOutput()) {
+                StyleLink currentLink = null;
 
 
-				foreach(StyleLink link in GetLinksBySource()[socket.GetUniqueIdentifier()]) {
-					RemoveLink(link, false);
-				}
+                foreach(StyleLink link in GetLinksBySource()[socket.GetUniqueIdentifier()]) {
+                    RemoveLink(link, false);
+                }
 
-				GetLinksBySource()[socket.GetUniqueIdentifier()].Clear();
+                GetLinksBySource()[socket.GetUniqueIdentifier()].Clear();
 
-			}
+            }
 
 
         }
@@ -127,13 +127,13 @@ namespace SculptingVis
 
             GetLinks().Add(link);
             GetLinksByDestination()[link.GetDestination().GetUniqueIdentifier()] = link;
-			if(!GetLinksBySource().ContainsKey(link.GetSource().GetUniqueIdentifier()))
-				GetLinksBySource()[link.GetSource().GetUniqueIdentifier()] = new List<StyleLink>();
-			GetLinksBySource()[link.GetSource().GetUniqueIdentifier()].Add(link);
+            if(!GetLinksBySource().ContainsKey(link.GetSource().GetUniqueIdentifier()))
+                GetLinksBySource()[link.GetSource().GetUniqueIdentifier()] = new List<StyleLink>();
+            GetLinksBySource()[link.GetSource().GetUniqueIdentifier()].Add(link);
 
-			link.GetDestination().SetInputObject(link.GetSource().GetOutput());
+            link.GetDestination().SetInputObject(link.GetSource().GetOutput());
 
-			link.GetDestination().GetModule().UpdateModule();
+            link.GetDestination().GetModule().UpdateModule();
         }
 
 
@@ -144,10 +144,10 @@ namespace SculptingVis
             return _visualElements;
         }
 
-		public Style GetStyle() {
-			if(_style == null) _style = ScriptableObject.CreateInstance<Style>();
-			return _style;
-		}
+        public Style GetStyle() {
+            if(_style == null) _style = ScriptableObject.CreateInstance<Style>();
+            return _style;
+        }
 
         public List<StyleLayer> GetLayers()
         {
@@ -168,18 +168,18 @@ namespace SculptingVis
 
         }
 
-		public void UpdateModuleLinks(StyleModule module) {
-			for(int i = 0; i < module.GetNumberOfSockets(); i++) {
-				StyleSocket socket = module.GetSocket(i);
-				StyleLink link;
-				if((link = GetLinkByDestination(socket))!=null){
-					if(!link.GetDestination().DoesAccept(link.GetSource())) {
-						RemoveLink(link);
-					}
+        public void UpdateModuleLinks(StyleModule module) {
+            for(int i = 0; i < module.GetNumberOfSockets(); i++) {
+                StyleSocket socket = module.GetSocket(i);
+                StyleLink link;
+                if((link = GetLinkByDestination(socket))!=null){
+                    if(!link.GetDestination().DoesAccept(link.GetSource())) {
+                        RemoveLink(link);
+                    }
 
-				}
-			}
-		}
+                }
+            }
+        }
 
         // Update is called once per frame
         void Update()
@@ -209,23 +209,23 @@ namespace SculptingVis
                 }
             }
 
-			else if(true) {
-				// Texture2D loadedImage = new Texture2D(1,1);
-				// loadedImage.LoadImage(File.ReadAllBytes(path));
-				//GetVisualElements().Add(ScriptableObject.CreateInstance<StyleColormap>().Init(loadedImage,Path.GetFileNameWithoutExtension(path)));
-				VTKDataset vtkds = VTKDataset.CreateInstance<VTKDataset>();
-				vtkds.Init(path,0,0);
-				if(vtkds.LoadDataset()) {
-					Debug.Log("Loaded a VTK file! " + path);
-				}
+            else if(true) {
+                // Texture2D loadedImage = new Texture2D(1,1);
+                // loadedImage.LoadImage(File.ReadAllBytes(path));
+                //GetVisualElements().Add(ScriptableObject.CreateInstance<StyleColormap>().Init(loadedImage,Path.GetFileNameWithoutExtension(path)));
+                VTKDataset vtkds = VTKDataset.CreateInstance<VTKDataset>();
+                vtkds.Init(path,0,0);
+                if(vtkds.LoadDataset()) {
+                    Debug.Log("Loaded a VTK file! " + path);
+                }
 
-				for(int i = 0; i < vtkds.GetVariables().Length; i++) {
-					GetVariables().Add(ScriptableObject.CreateInstance<StyleDataVariable>().Init(vtkds.GetVariables()[i]));
-				}
-				
-				if(vtkds.GetAnchor() != null)
-					GetVariables().Add(ScriptableObject.CreateInstance<StyleDataVariable>().Init(vtkds.GetAnchor()));
-			}
+                for(int i = 0; i < vtkds.GetVariables().Length; i++) {
+                    GetVariables().Add(ScriptableObject.CreateInstance<StyleDataVariable>().Init(vtkds.GetVariables()[i]));
+                }
+                
+                if(vtkds.GetAnchor() != null)
+                    GetVariables().Add(ScriptableObject.CreateInstance<StyleDataVariable>().Init(vtkds.GetAnchor()));
+            }
         }
 
         public void LoadVisualElements(string path)
@@ -249,12 +249,12 @@ namespace SculptingVis
                 }
             }
 
-			else {
+            else {
                 VisualElement result = VisualElement.LoadFile(path);
 
                 if(result != null)
-				    GetVisualElements().Add(ScriptableObject.CreateInstance<StyleVisualElement>().Init(result));
-			}
+                    GetVisualElements().Add(ScriptableObject.CreateInstance<StyleVisualElement>().Init(result));
+            }
         }
 
         public string[] GetFileFilters()
@@ -270,63 +270,63 @@ namespace SculptingVis
         }
 
 
-		 int _selectedLayerTypeIndex = 0;
-		public void SetLayerTypeToCreate(int layerTypeIndex) {
-			_selectedLayerTypeIndex = layerTypeIndex;
-		}
-		public int GetLayerTypeToCreate() {
-			return _selectedLayerTypeIndex;
-		}
-		public string[] GetLayerTypes() {
-			string [] types =  new string[_layerTypes.Count];
-			for(int i =0; i < _layerTypes.Count;i++) {
-				types[i] = _layerTypes[i].GetLabel();
-			}
-			return types;
-		}
+         int _selectedLayerTypeIndex = 0;
+        public void SetLayerTypeToCreate(int layerTypeIndex) {
+            _selectedLayerTypeIndex = layerTypeIndex;
+        }
+        public int GetLayerTypeToCreate() {
+            return _selectedLayerTypeIndex;
+        }
+        public string[] GetLayerTypes() {
+            string [] types =  new string[_layerTypes.Count];
+            for(int i =0; i < _layerTypes.Count;i++) {
+                types[i] = _layerTypes[i].GetLabel();
+            }
+            return types;
+        }
 
-		public void CreateLayer() {
+        public void CreateLayer() {
             //_layers.Add(ScriptableObject.CreateInstance<StyleTestLayer>().Init());
-			_style.AddLayer(((StyleLayer)ScriptableObject.CreateInstance(_layerTypes[GetLayerTypeToCreate()].GetType().ToString())).CopyLayer(_layerTypes[GetLayerTypeToCreate()]));
+            _style.AddLayer(((StyleLayer)ScriptableObject.CreateInstance(_layerTypes[GetLayerTypeToCreate()].GetType().ToString())).CopyLayer(_layerTypes[GetLayerTypeToCreate()]));
 
-		}
-
-
-		[SerializeField] Canvas _CanvasPrefab;
-		[SerializeField] List<Canvas> _canvases;
-
-		public List<Canvas> GetCanvases() {
-			if(_canvases == null) _canvases = new List<Canvas>();
-			return _canvases;
-		}
-		public void AddCanvas() {
-			Canvas c = Instantiate(_CanvasPrefab);
-			c.SetStyle(_style);
-		   	GetCanvases().Add(c);
-		}
-
-		public void RemoveCanvas(Canvas canvas) {
-			GetCanvases().Remove(canvas);
-			DestroyImmediate(canvas.gameObject);
-		}
-
-		public void RemoveModule(StyleModule module) {
-			if(module is StyleVisualElement) {
-				GetVisualElements().Remove(module);
-			} else if(module is StyleLayer) {
-				GetLayers().Remove((StyleLayer)module);
-			} else if(module is StyleDataVariable) {
-				GetVariables().Remove(module);
-			}
+        }
 
 
-			for(int i = 0; i < module.GetNumberOfSockets(); i++) {
-				StyleSocket socket = module.GetSocket(i);
-				ClearSocket(socket);
-				
-			}
+        [SerializeField] Canvas _CanvasPrefab;
+        [SerializeField] List<Canvas> _canvases;
 
-		}
+        public List<Canvas> GetCanvases() {
+            if(_canvases == null) _canvases = new List<Canvas>();
+            return _canvases;
+        }
+        public void AddCanvas() {
+            Canvas c = Instantiate(_CanvasPrefab);
+            c.SetStyle(_style);
+            GetCanvases().Add(c);
+        }
+
+        public void RemoveCanvas(Canvas canvas) {
+            GetCanvases().Remove(canvas);
+            DestroyImmediate(canvas.gameObject);
+        }
+
+        public void RemoveModule(StyleModule module) {
+            if(module is StyleVisualElement) {
+                GetVisualElements().Remove(module);
+            } else if(module is StyleLayer) {
+                GetLayers().Remove((StyleLayer)module);
+            } else if(module is StyleDataVariable) {
+                GetVariables().Remove(module);
+            }
+
+
+            for(int i = 0; i < module.GetNumberOfSockets(); i++) {
+                StyleSocket socket = module.GetSocket(i);
+                ClearSocket(socket);
+                
+            }
+
+        }
 
     }
 

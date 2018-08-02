@@ -65,20 +65,20 @@ namespace SculptingVis
         public StyleGlyphPreviewLayer Init()
         {
           
-			_glyphInput = (new StyleTypeSocket<Glyph>()).Init("Glyph",this);
-			AddSocket(_glyphInput);
+            _glyphInput = (new StyleTypeSocket<Glyph>()).Init("Glyph",this);
+            AddSocket(_glyphInput);
 
-			_lodLevel = (new StyleTypeSocket<IntRange>()).Init("Glyph LOD",this);
+            _lodLevel = (new StyleTypeSocket<IntRange>()).Init("Glyph LOD",this);
             _lodLevel.SetDefaultInputObject((new IntRange(0,2)));
-			AddSocket(_lodLevel);
+            AddSocket(_lodLevel);
 
             return this;
 
         }
 
-		public override void UpdateModule() {
+        public override void UpdateModule() {
 
-		}
+        }
 
 
         public override string GetLabel()
