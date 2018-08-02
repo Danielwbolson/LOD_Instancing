@@ -79,7 +79,11 @@ namespace SculptingVis {
 							// Seth hacked todether the LoadOBJFileToMeshes function
 							// based on LoadOBJFile, just removing the Gameobject logic
 							Mesh[] meshes = OBJLoader.LoadOBJFileToMeshes(objPath);
-							glyph._lodMeshes = meshes;
+							glyph._lodMeshes = new Mesh[meshes.Length];
+							for(int i = 0; i < meshes.Length; i++) {	
+								glyph._lodMeshes[meshes.Length-1 - i] = meshes[i];
+
+							}
 						}
 					}
 				}
@@ -111,7 +115,7 @@ namespace SculptingVis {
 								// Load the normalMap in and stick it in the list in reverse order.
 								Texture2D normalMap = new Texture2D(1, 1);
 								normalMap.LoadImage(File.ReadAllBytes(file.FullName));
-								glyph._normalMaps[glyph._normalMaps.Length - level - 1] = normalMap;
+								glyph._normalMaps[level] = normalMap;
 							
                             }
                         }

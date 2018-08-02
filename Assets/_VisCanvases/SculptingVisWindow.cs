@@ -165,7 +165,7 @@ public class SculptingVisWindow : EditorWindow
                 GUILayout.FlexibleSpace();
                 Texture t = ((StyleVisualElement)module).GetVisualElement().GetPreviewImage();
                 float aspectRatio = ((StyleVisualElement)module).GetVisualElement().GetPreviewImageAspectRatio();
-                Rect r = GUILayoutUtility.GetRect(150,150/aspectRatio);
+                Rect r = GUILayoutUtility.GetRect(30*aspectRatio,30);
 
                 GUI.DrawTexture(r,t,ScaleMode.ScaleToFit,true,aspectRatio);
 

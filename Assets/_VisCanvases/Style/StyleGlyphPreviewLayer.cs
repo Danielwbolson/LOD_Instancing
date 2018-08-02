@@ -68,7 +68,7 @@ namespace SculptingVis
 			_glyphInput = (new StyleTypeSocket<Glyph>()).Init("Glyph",this);
 			AddSocket(_glyphInput);
 
-			_lodLevel = (new StyleTypeSocket<IntRange>()).Init("Glyph LOD %",this);
+			_lodLevel = (new StyleTypeSocket<IntRange>()).Init("Glyph LOD",this);
             _lodLevel.SetDefaultInputObject((new IntRange(0,2)));
 			AddSocket(_lodLevel);
 
