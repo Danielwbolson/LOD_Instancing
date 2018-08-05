@@ -146,7 +146,7 @@ public class SculptingVisWindow : EditorWindow
         } 
 
         // Draw Module Label
-        GUILayout.Label(module.GetLabel(),GUILayout.MaxWidth(200));
+        GUILayout.Label(module.GetLabel(),GUILayout.MaxWidth(90));
 
 
         // End Draw Module label
@@ -292,7 +292,7 @@ public class SculptingVisWindow : EditorWindow
         }
         //Rect workspace = GUILayoutUtility.GetRect(0,10000,0,10000);
         EditorGUILayout.BeginHorizontal();
-        EditorGUILayout.BeginVertical(GUILayout.MaxWidth(300));
+        EditorGUILayout.BeginVertical(GUILayout.MaxWidth(350));
         EditorGUILayout.BeginVertical("box");
         showVisualElementLoader = EditorGUILayout.Foldout(showVisualElementLoader, "Load Visual Elements");
         if (showVisualElementLoader)
@@ -331,7 +331,7 @@ public class SculptingVisWindow : EditorWindow
 
 
 
-        EditorGUILayout.BeginVertical(GUILayout.MaxWidth(300));
+        EditorGUILayout.BeginVertical(GUILayout.MaxWidth(350));
         EditorGUILayout.BeginVertical("box");
         showCanvasManager = EditorGUILayout.Foldout(showCanvasManager, "Manage Canvases");
         if (showCanvasManager)
@@ -379,7 +379,7 @@ public class SculptingVisWindow : EditorWindow
 
 
 
-        EditorGUILayout.BeginVertical(GUILayout.MaxWidth(300));
+        EditorGUILayout.BeginVertical(GUILayout.MaxWidth(350));
         EditorGUILayout.BeginVertical("box");
         showDataLoader = EditorGUILayout.Foldout(showDataLoader, "Load Data");
         if (showDataLoader)
