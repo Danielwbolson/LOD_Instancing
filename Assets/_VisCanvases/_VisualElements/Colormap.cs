@@ -37,7 +37,9 @@ namespace SculptingVis {
                 doc.Load(filePath);
 
                 XmlNode colormapNode = doc.DocumentElement.SelectSingleNode("/ColorMaps/ColorMap");
-                string name = colormapNode.Attributes.GetNamedItem("name").Value;
+                if(colormapNode == null)
+                    colormapNode = doc.DocumentElement.SelectSingleNode("/ColorMap");
+                string name = colormapNode.Attributes.GetNamedItem("name") != null? colormapNode.Attributes.GetNamedItem("name").Value : Path.GetFileName(filePath);
 
                 List<float> dataArray = new List<float>();
 
@@ -57,8 +59,7 @@ namespace SculptingVis {
 
                 // Create and return the image
                 Colormap result = null;
-                Texture2D image = new Texture2D(1, 1);
-                image = CreateTexture2DFromList(dataArray);
+                Texture2D image = CreateTexture2DFromList(dataArray);
                 result = CreateInstance<Colormap>().Init(image);
                 result.SetName(name);
                 return result;
@@ -66,37 +67,22 @@ namespace SculptingVis {
 
             // Read JSON file and produce a Texture2D
             if (extention.ToUpper() == ".JSON") {
-                bool atData = false;
                 List<float> dataArray = new List<float>();
                 StreamReader inStream = new StreamReader(filePath);
-
-                while (!inStream.EndOfStream) {
-                    string inLine = inStream.ReadLine();
-
-                    // If we are within the data points
-                    if (atData) {
-                        if (inLine.Contains("]")) {
-                            break;
-                        }
-
-                        // Trim and split by commas to get the data
-                        inLine.Trim();
-                        string[] noComma = inLine.Split(","[0]);
-                        float x = float.Parse(noComma[0]);
-                        dataArray.Add(x);
-                    }
-
-                    if (inLine.Contains("RGBPoints")) {
-                        atData = true;
-                    }
-                }
+                JSONObject json = JSONObject.Create(inStream.ReadToEnd());
                 inStream.Close();
+
+                var RGBPoints = json.list[0]["RGBPoints"].list;
+                for( int i = 0; i < RGBPoints.Count; i++) { 
+                    // Add our values to our list
+                    dataArray.Add(float.Parse(RGBPoints[i].ToString()));
+                }  
 
                 // Create and return the image
                 Colormap result = null;
-                Texture2D image = new Texture2D(1, 1);
-                image = CreateTexture2DFromList(dataArray);
+                Texture2D image = CreateTexture2DFromList(dataArray);
                 result = CreateInstance<Colormap>().Init(image);
+                result.SetName(json.list[0].HasField("Name") ? json.list[0]["Name"].ToString() : Path.GetFileName(filePath));
                 return result;
             }
 
@@ -124,8 +110,7 @@ namespace SculptingVis {
 
                 // Create and return the image
                 Colormap result = null;
-                Texture2D image = new Texture2D(1, 1);
-                image = CreateTexture2DFromList(dataArray, true);
+                Texture2D image = CreateTexture2DFromList(dataArray, true);
                 result = CreateInstance<Colormap>().Init(image);
                 return result;
             }
@@ -174,7 +159,7 @@ namespace SculptingVis {
             }
 
             // Create our texture and get its width
-            imageWidth = (int)(4 * (1 / minIncrement));
+            imageWidth = (int)Mathf.Min((int)(4 * (1 / minIncrement)),1024);
             Texture2D image = new Texture2D(imageWidth, 1);
 
             // Set our new pixels, generated from our data and Lerp
