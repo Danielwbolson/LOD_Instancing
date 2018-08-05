@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System.Xml;
 
 namespace SculptingVis {
     public class Colormap : VisualElement {
@@ -31,34 +32,35 @@ namespace SculptingVis {
 
             // Read XML file and produce a Texture2D
             if (extention.ToUpper() == ".XML") {
+
+                XmlDocument doc = new XmlDocument();
+                doc.Load(filePath);
+
+                XmlNode colormapNode = doc.DocumentElement.SelectSingleNode("/ColorMaps/ColorMap");
+                string name = colormapNode.Attributes.GetNamedItem("name").Value;
+
                 List<float> dataArray = new List<float>();
-                StreamReader inStream = new StreamReader(filePath);
 
-                while (!inStream.EndOfStream) {
-                    string inLine = inStream.ReadLine();
+               foreach(XmlNode pointNode in colormapNode.SelectNodes("Point")){
+                    float x = float.Parse(pointNode.Attributes.GetNamedItem("x").Value);
+                    float r = float.Parse(pointNode.Attributes.GetNamedItem("r").Value);
+                    float g = float.Parse(pointNode.Attributes.GetNamedItem("g").Value);
+                    float b = float.Parse(pointNode.Attributes.GetNamedItem("b").Value);
 
-                    if (inLine.Contains("Point")) {
-                        // Get the numbers, not any text
-                        string[] split = inLine.Split('"');
-                        float x = float.Parse(split[1]);
-                        float r = float.Parse(split[5]);
-                        float g = float.Parse(split[7]);
-                        float b = float.Parse(split[9]);
+                    // Add our values to our list
+                    dataArray.Add(x);
+                    dataArray.Add(r);
+                    dataArray.Add(g);
+                    dataArray.Add(b);
 
-                        // Add our values to our list
-                        dataArray.Add(x);
-                        dataArray.Add(r);
-                        dataArray.Add(g);
-                        dataArray.Add(b);
-                    }
-                }
-                inStream.Close();
+                }  
 
                 // Create and return the image
                 Colormap result = null;
                 Texture2D image = new Texture2D(1, 1);
                 image = CreateTexture2DFromList(dataArray);
                 result = CreateInstance<Colormap>().Init(image);
+                result.SetName(name);
                 return result;
             }
 
@@ -163,7 +165,7 @@ namespace SculptingVis {
                 // generate a decent picture
                 if (i > 0) {
                     float inc = x - dataList[i - 4];
-                    if (inc < minIncrement) {
+                    if (inc < minIncrement && inc > 0) {
                         minIncrement = inc;
                     }
                 }
