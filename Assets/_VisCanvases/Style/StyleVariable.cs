@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace SculptingVis{
-	public class StyleVariable : StyleModule {
+	public abstract class StyleVariable : StyleModule {
 		[SerializeField]
 		protected Variable _variable;
 
@@ -13,6 +13,16 @@ namespace SculptingVis{
 			return _variable + "";
 		}
 
-	}
+        public virtual StyleVariable CopyVariable(StyleVariable toCopy)
+        {
+            return this;
+        }
+
+        public virtual bool IsValid()
+        {
+            return true;
+        }
+
+    }
 }
 

@@ -30,13 +30,12 @@ namespace SculptingVis
         public StyleTypeSocket<Glyph> _glyphInput;
 
         [SerializeField]
-        public Texture2D _colorMap;
+        public StyleTypeSocket<IntRange> _lodLevel;
 
         [SerializeField]
         public Material _pointMaterial;
 
-        [SerializeField]
-        public Mesh _glyphMesh;
+
 
         [SerializeField]
         bool _sampleAtCenter = true;
@@ -58,9 +57,43 @@ namespace SculptingVis
             return _anchorVariable.GetInput().GetBounds();
         }
 
+
         public override void DrawLayer(Canvas canvas)
         {
-           
+            if (_anchorVariable == null || !_anchorVariable.IsAssigned()) return;
+            Datastream stream = _anchorVariable.GetInput().GetStream(null, 0, 0);
+
+
+
+
+            if (_colorMapInput.GetInput() != null)
+                _pointMaterial.SetTexture("_ColorMap", ((Colormap)_colorMapInput.GetInput()).GetTexture());
+
+            Material canvasMaterial = GetCanvasMaterial(canvas, _pointMaterial);
+            _anchorVariable.Bind(_pointMaterial, 0, 0);
+            _colorVariable.Bind(_pointMaterial, 0, 0);
+            _opacityVariable.Bind(_pointMaterial, 0, 0);
+
+            {
+
+
+                    if (_glyphInput.GetInput() != null)
+                    {
+                        if(argsBuffer == null) argsBuffer = new ComputeBuffer(1, args.Length * sizeof(uint), ComputeBufferType.IndirectArguments);
+
+                        Mesh instanceMesh = ((Glyph)(_glyphInput.GetInput())).GetLODMesh(((IntRange)_lodLevel.GetInput()));
+                        args[0] = (uint)instanceMesh.GetIndexCount(0);
+                        args[1] = (uint)instanceCount;
+                        args[2] = (uint)instanceMesh.GetIndexStart(0);
+                        args[3] = (uint)instanceMesh.GetBaseVertex(0);
+                        argsBuffer.SetData(args);
+
+                        //Graphics.DrawMesh(instanceMesh, canvas.GetInnerSceneTransformMatrix(), canvasMaterial, 0);
+                        Graphics.DrawMeshInstancedIndirect(instanceMesh, 0, canvasMaterial, new Bounds(new Vector3(0, 0, 0), new Vector3(300, 300, 300)),argsBuffer);
+
+                }
+
+            }
 
         }
 
@@ -71,7 +104,6 @@ namespace SculptingVis
             {
                 _pointMaterial = ((StyleSimpleGlyphLayer)toCopy)._pointMaterial;
                 instanceCount = ((StyleSimpleGlyphLayer)toCopy).instanceCount;
-				 _colorMap = ((StyleSimpleGlyphLayer)toCopy)._colorMap;
 
             }
 
@@ -81,7 +113,7 @@ namespace SculptingVis
         public StyleSimpleGlyphLayer Init()
         {
             _anchorVariable = new VariableSocket();
-            _anchorVariable.Init("Anchor",this);
+            _anchorVariable.Init("Anchor",this,0);
             //SetAnchorSocket(_anchorVariable);
             _colorVariable = new VariableSocket();
             _colorVariable.Init("Color",this,1);
@@ -102,14 +134,17 @@ namespace SculptingVis
 			AddSocket(_colorMapInput);
 			AddSocket(_glyphInput);
 
+            _lodLevel = (new StyleTypeSocket<IntRange>()).Init("Glyph LOD", this);
+            _lodLevel.SetDefaultInputObject((new IntRange(0, 2,2)));
+            AddSocket(_lodLevel);
+
+
             return this;
 
         }
 
 		public override void UpdateModule() {
-			if(_colorMapInput.GetInput() != null && _colorMapInput.GetInput() is Colormap) {
-				_colorMap = ((Colormap)_colorMapInput.GetInput()).GetTexture();
-			}
+
 		}
 
         public override string GetLabel()

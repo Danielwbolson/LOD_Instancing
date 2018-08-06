@@ -24,7 +24,7 @@ namespace SculptingVis {
 		}
 
 		public void AddVariable(StyleVariable variable) {
-			_variables.Add(variable);
+            GetVariables().Add(variable);
 		}
 	}
 }

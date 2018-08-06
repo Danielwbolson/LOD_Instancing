@@ -108,13 +108,13 @@ public class SculptingVisWindow : EditorWindow
     Vector2Int activeLink;
 
     StyleSocket activeSource = null;
-    void DrawStyleModule(StyleModule module, Rect nest)
+    void DrawStyleModule(StyleModule module, Rect nest, bool showInputs = true, bool showOutputs = true)
     {
         int socket_index = 0;
         bool labelOutputHook = false;
         bool labelOutputHookLeft = false;
         bool labelOutputHookRight = false;
-        if (module.GetNumberOfSockets() > 0 && module.GetSocket(0).IsOutput())
+        if (showOutputs && module.GetNumberOfSockets() > 0 && module.GetSocket(0).IsOutput())
         {
             labelOutputHook = true;
             StyleSocket socket = module.GetSocket(0);
@@ -124,7 +124,7 @@ public class SculptingVisWindow : EditorWindow
                 if (socket.GetOutput() is VisualElement)
                     labelOutputHookRight = true;
             }
-            else if (module is StyleDataVariable && socket.GetOutput() is Variable && socket.GetLabel() == "")
+            else if (module is StyleVariable && socket.GetLabel() == "")
                 labelOutputHookLeft = true;
 
         }
@@ -147,7 +147,7 @@ public class SculptingVisWindow : EditorWindow
         } 
 
         // Draw Module Label
-        GUILayout.Label(module.GetLabel(),GUILayout.MaxWidth(90));
+        GUILayout.Label(module.GetLabel(),GUILayout.ExpandWidth(true));
 
 
         // End Draw Module label
@@ -187,7 +187,11 @@ public class SculptingVisWindow : EditorWindow
 
         for (; socket_index < module.GetNumberOfSockets(); socket_index++)
         {
+
             StyleSocket socket = module.GetSocket(socket_index);
+            if (socket.IsInput() && !showInputs) continue;
+            if (socket.IsOutput() && !showOutputs) continue;
+
             bool inputHookLeft = false;
             bool inputHookRight = false;
             if (module is StyleLayer && socket is StyleTypeSocket)
@@ -197,7 +201,11 @@ public class SculptingVisWindow : EditorWindow
             else if(module is StyleDataVariable && socket.GetLabel() != "") {
                 inputHookRight = true;
             }
-
+            if (module is StyleCustomVariable && socket.IsInput())
+                inputHookLeft = true;
+            if (module is StyleCustomVariable && socket.IsOutput() && socket.GetLabel() != "")
+                inputHookRight = true;
+          
             EditorGUILayout.BeginHorizontal();
             if (inputHookLeft)
                 DrawSocketHook(socket, nest);
@@ -553,11 +561,55 @@ public class SculptingVisWindow : EditorWindow
                     scrollRect.position -= _scrollPositions["Variables"];
                     DrawStyleModule(GetStyleController().GetVariables()[m], scrollRect);
                 }
+
+                for (int m = 0; m < GetStyleController().GetUserVariables().Count; m++)
+                {
+                    Rect scrollRect = _columns[i];
+                    scrollRect.position -= _scrollPositions["Variables"];
+                    DrawStyleModule(GetStyleController().GetUserVariables()[m], scrollRect, false, true);
+                }
+                GUILayout.EndScrollView();
+                GUILayout.EndArea();
+
+            }
+
+
+
+            if (i == 6)
+            {
+
+                GUILayout.BeginArea(_columns[i]);
+                if (!_scrollPositions.ContainsKey("CustomVariables")) _scrollPositions["CustomVariables"] = new Vector2(0, 0);
+                _scrollPositions["CustomVariables"] = GUILayout.BeginScrollView(_scrollPositions["CustomVariables"]);
+
+
+                for (int m = 0; m < GetStyleController().GetUserVariables().Count; m++)
+                {
+                    Rect scrollRect = _columns[i];
+                    scrollRect.position -= _scrollPositions["CustomVariables"];
+                    DrawStyleModule(GetStyleController().GetUserVariables()[m], scrollRect,true,false);
+                }
+
+
+
+                EditorGUILayout.BeginHorizontal();
+
+                GUILayout.Label("Create CustomVariable: ");
+                string[] l = GetStyleController().GetCustomVariableTypes();
+                int selected = GetStyleController().GetCustomVariableTypeToCreate();
+                GetStyleController().SetCustomVariableTypeToCreate(EditorGUILayout.Popup(selected, l));
+
+                if (GUILayout.Button("+", EditorStyles.miniButton, GUILayout.MaxWidth(20)))
+                    GetStyleController().CreateCustomVariable();
+
+                EditorGUILayout.EndHorizontal();
+
                 GUILayout.EndScrollView();
                 GUILayout.EndArea();
 
             }
         }
+
         //GUILayout.EndArea();
 
 

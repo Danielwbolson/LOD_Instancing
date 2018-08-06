@@ -36,6 +36,9 @@ namespace SculptingVis
 		List<StyleLayer> _layerTypes;
 
         [SerializeField]
+        List<StyleVariable> _variableTypes;
+
+        [SerializeField]
         List<StyleModule> _visualElements;
 
         [SerializeField]
@@ -44,13 +47,12 @@ namespace SculptingVis
 		[SerializeField]
 		Style _style;
 
+        [SerializeField]
+        VariableController _userVariables;
 
         [SerializeField]
         List<StyleModule> _variables;
 
-
-        [SerializeField]
-        List<StyleModule> _customVariables;
 
         [SerializeField]
         List<StyleLink> _links;
@@ -148,18 +150,21 @@ namespace SculptingVis
         }
 
 
-        public List<StyleModule> GetCustomVariables()
-        {
-            if (_customVariables == null) _customVariables = new List<StyleModule>();
-
-            return _customVariables;
-        }
-
 
 		public Style GetStyle() {
 			if(_style == null) _style = ScriptableObject.CreateInstance<Style>();
 			return _style;
 		}
+        public VariableController GetUserVariableController()
+        {
+            if (_userVariables == null) _userVariables = ScriptableObject.CreateInstance<VariableController>();
+            return _userVariables;
+        }
+           
+        public List<StyleVariable> GetUserVariables()
+        {
+            return GetUserVariableController().GetVariables();
+        }
 
         public List<StyleLayer> GetLayers()
         {
@@ -282,7 +287,9 @@ namespace SculptingVis
         }
 
 
-		 int _selectedLayerTypeIndex = 0;
+
+
+		int _selectedLayerTypeIndex = 0;
 		public void SetLayerTypeToCreate(int layerTypeIndex) {
 			_selectedLayerTypeIndex = layerTypeIndex;
 		}
@@ -296,14 +303,42 @@ namespace SculptingVis
 			}
 			return types;
 		}
-
 		public void CreateLayer() {
             //_layers.Add(ScriptableObject.CreateInstance<StyleTestLayer>().Init());
 			_style.AddLayer(((StyleLayer)ScriptableObject.CreateInstance(_layerTypes[GetLayerTypeToCreate()].GetType().ToString())).CopyLayer(_layerTypes[GetLayerTypeToCreate()]));
 		}
 
 
-		[SerializeField] Canvas _CanvasPrefab;
+
+
+        int _selectedCustomVariableTypeIndex = 0;
+        public void SetCustomVariableTypeToCreate(int variableType)
+        {
+            _selectedCustomVariableTypeIndex = variableType;
+        }
+        public int GetCustomVariableTypeToCreate()
+        {
+            return _selectedCustomVariableTypeIndex;
+        }
+        public string[] GetCustomVariableTypes()
+        {
+            string[] variableTypes = new string[_variableTypes.Count];
+            for (int i = 0; i < _variableTypes.Count; i++)
+            {
+                variableTypes[i] = _variableTypes[i].GetLabel();
+            }
+            return variableTypes;
+        }
+        public void CreateCustomVariable()
+        {
+            //_layers.Add(ScriptableObject.CreateInstance<StyleTestLayer>().Init());
+            string type = _variableTypes[GetCustomVariableTypeToCreate()].GetType().ToString();
+            StyleVariable variable = (((StyleVariable)ScriptableObject.CreateInstance(type)).CopyVariable(_variableTypes[GetCustomVariableTypeToCreate()]));
+            GetUserVariableController().AddVariable(variable);
+        }
+
+
+        [SerializeField] Canvas _CanvasPrefab;
 		[SerializeField] List<Canvas> _canvases;
 
 		public List<Canvas> GetCanvases() {
@@ -328,7 +363,9 @@ namespace SculptingVis
 				GetLayers().Remove((StyleLayer)module);
 			} else if(module is StyleDataVariable) {
 				GetVariables().Remove(module);
-			}
+			} else if(module is StyleCustomVariable) {
+                GetUserVariables().Remove((StyleVariable)module);
+            }
 
 
 			for(int i = 0; i < module.GetNumberOfSockets(); i++) {
