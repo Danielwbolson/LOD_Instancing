@@ -59,6 +59,7 @@ public class VRStyleMananger : MonoBehaviour {
         _textLabels = new List<Button>();
         Button styleLabel = Instantiate(label, s.transform);
         styleLabel.transform.GetChild(0).GetComponent<Text>().text = "Styles";
+        Destroy(styleLabel.GetComponent<Button>());
         Vector3 pos = new Vector3(0, -40, 0);
 
         for (int i = 0; i < _layers.Count; i++) {
