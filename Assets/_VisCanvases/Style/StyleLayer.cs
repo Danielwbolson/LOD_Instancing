@@ -6,6 +6,9 @@ namespace SculptingVis
 {
     public class StyleLayer : StyleModule
     {
+        [HideInInspector]
+        public bool _toggled;
+
         public StyleLayer Init()
         {
             return this;
@@ -16,8 +19,6 @@ namespace SculptingVis
         {
             return "Layer";
         }
-
-
 
         public virtual bool HasBounds()
         {

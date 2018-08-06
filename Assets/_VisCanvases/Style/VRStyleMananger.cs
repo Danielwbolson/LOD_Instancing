@@ -9,7 +9,7 @@ public class VRStyleMananger : MonoBehaviour {
     GameObject _stylePanel;
 
     [SerializeField]
-    Text label;
+    Button label;
 
     [SerializeField]
     SculptingVis.StyleController _styleController;
@@ -20,7 +20,7 @@ public class VRStyleMananger : MonoBehaviour {
 
     [SerializeField]
     [HideInInspector]
-    List<Text> _textLabels;
+    List<Button> _textLabels;
 
     private int _layerCount = -1;
 
@@ -53,14 +53,24 @@ public class VRStyleMananger : MonoBehaviour {
         transform.GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
     }
 
+    // Refresh our shown layers
     public void RenewLayers(GameObject s) {
-        _textLabels = new List<Text>();
-        Text styleLabel = Instantiate(label, s.transform);
-        styleLabel.text = "Styles";
+        // Create our header label
+        _textLabels = new List<Button>();
+        Button styleLabel = Instantiate(label, s.transform);
+        styleLabel.transform.GetChild(0).GetComponent<Text>().text = "Styles";
         Vector3 pos = new Vector3(0, -40, 0);
-        foreach (var l in _layers) {
-            Text newlabel = Instantiate(label, s.transform);
-            newlabel.text = l.GetLabel();
+
+        for (int i = 0; i < _layers.Count; i++) {
+            // Create new layer button
+            var l = _layers[i];
+            Button newlabel = Instantiate(label, s.transform);
+
+            // Set an id for future reference
+            newlabel.GetComponent<LayerID>()._id = i;
+
+            // Set text and position
+            newlabel.transform.GetChild(0).GetComponent<Text>().text = l.GetLabel();
             newlabel.transform.localPosition += pos;
             pos += new Vector3(0, -40, 0);
             s.GetComponent<RectTransform>().offsetMin += new Vector2(0, -40);
