@@ -50,6 +50,9 @@ namespace SculptingVis
 
 
         [SerializeField]
+        List<StyleModule> _customVariables;
+
+        [SerializeField]
         List<StyleLink> _links;
 
         [SerializeField]
@@ -143,6 +146,15 @@ namespace SculptingVis
 
             return _visualElements;
         }
+
+
+        public List<StyleModule> GetCustomVariables()
+        {
+            if (_customVariables == null) _customVariables = new List<StyleModule>();
+
+            return _customVariables;
+        }
+
 
 		public Style GetStyle() {
 			if(_style == null) _style = ScriptableObject.CreateInstance<Style>();
@@ -288,7 +300,6 @@ namespace SculptingVis
 		public void CreateLayer() {
             //_layers.Add(ScriptableObject.CreateInstance<StyleTestLayer>().Init());
 			_style.AddLayer(((StyleLayer)ScriptableObject.CreateInstance(_layerTypes[GetLayerTypeToCreate()].GetType().ToString())).CopyLayer(_layerTypes[GetLayerTypeToCreate()]));
-
 		}
 
 

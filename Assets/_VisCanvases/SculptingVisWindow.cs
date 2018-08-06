@@ -124,8 +124,9 @@ public class SculptingVisWindow : EditorWindow
                 if (socket.GetOutput() is VisualElement)
                     labelOutputHookRight = true;
             }
-            else if (module is StyleDataVariable && socket.GetOutput() is Variable)
+            else if (module is StyleDataVariable && socket.GetOutput() is Variable && socket.GetLabel() == "")
                 labelOutputHookLeft = true;
+
         }
 
         GUILayout.BeginVertical("box");
@@ -193,6 +194,9 @@ public class SculptingVisWindow : EditorWindow
                 inputHookLeft = true;
             else if (module is StyleLayer && socket is VariableSocket)
                 inputHookRight = true;
+            else if(module is StyleDataVariable && socket.GetLabel() != "") {
+                inputHookRight = true;
+            }
 
             EditorGUILayout.BeginHorizontal();
             if (inputHookLeft)
@@ -246,6 +250,7 @@ public class SculptingVisWindow : EditorWindow
     bool showVisualElementLoader = false;
     bool showCanvasManager = false;
     bool showDataLoader = false;
+    bool showCustomDataSettings = false;
 
 
     public enum OPTIONS
@@ -408,6 +413,36 @@ public class SculptingVisWindow : EditorWindow
 
         columns[4] = GUILayoutUtility.GetRect(100, 300, 0, position.height);
         EditorGUILayout.EndVertical();
+
+
+
+        GUILayoutUtility.GetRect(0, 50, 0, position.height); //GUILayout.FlexibleSpace();
+
+
+
+
+        EditorGUILayout.BeginVertical(GUILayout.MaxWidth(350));
+        EditorGUILayout.BeginVertical("box");
+        showCustomDataSettings = EditorGUILayout.Foldout(showCustomDataSettings, "Custom Variable Settings");
+        if (showCustomDataSettings)
+        {
+
+            if (GUILayout.Button("Create new Point Field"))
+            {
+                string path = EditorUtility.OpenFilePanel("Select VTK file", Application.streamingAssetsPath + "/example_data/VTK/","");
+                if (path.Length != 0)
+                {
+                    GetStyleController().LoadData(path);
+                }
+            }
+
+        }
+
+        EditorGUILayout.EndVertical();
+
+        columns[6] = GUILayoutUtility.GetRect(100, 300, 0, position.height);
+        EditorGUILayout.EndVertical();
+
 
         // GUILayoutUtility.GetRect(0, 50, 0, position.height); //GUILayout.FlexibleSpace();
 
