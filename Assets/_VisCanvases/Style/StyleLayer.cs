@@ -7,7 +7,7 @@ namespace SculptingVis
     public class StyleLayer : StyleModule
     {
         [HideInInspector]
-        public bool _toggled;
+        public bool _toggled = true;
 
         public StyleLayer Init()
         {
