@@ -22,12 +22,18 @@ namespace SculptingVis {
 		[SerializeField]
 		public float UpperBound;
 
-
+		
 
 		bool _vectorRequired = false;
 		bool _scalarRequired = false;
 		bool _uniformRequired = false;
 
+
+		public override void UpdateSocket(){
+			base.UpdateSocket();
+			if(this.GetLinks().Count > 0)
+			_inputVariable = (Variable)this.GetLinks()[0].GetSource().GetOutput();
+		}
 		public void RequireVector() {
 			_vectorRequired = true;
 			_scalarRequired = false;

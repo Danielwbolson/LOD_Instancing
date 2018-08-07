@@ -32,7 +32,11 @@ namespace SculptingVis{
 		}
 
 		public virtual void UpdateModule() {
-			
+			foreach(var socket in GetSockets()) {
+				foreach(var link in socket.GetLinks()) {
+					link.UpdateLink();
+				}
+			}
 		}
 
 	}

@@ -96,6 +96,11 @@ namespace SculptingVis {
 		public virtual void ClearInput() {
 			_input = null;
 		}
+		public virtual void UpdateSocket(){
+			if(IsInput()) {
+				GetModule().UpdateModule();
+			}
+		}
 	}
 }
 

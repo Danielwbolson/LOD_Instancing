@@ -8,21 +8,23 @@ public class PointAnchorDatastreamChannel : DatastreamChannel {
 
 
 	[SerializeField]
-	public List<Vector3> _points;
+	List<Vector3> _points;
 
-    public void Init(Bounds sampleSpace, int sampleCount) {
-        Bounds b = sampleSpace;
-		List<Vector3> points = new List<Vector3>();
-		for(int i = 0; i < sampleCount; i++) {	
-			Vector3 r = new Vector3(Random.Range(b.min.x,b.max.x),Random.Range(b.min.y,b.max.y),Random.Range(b.min.z,b.max.z));
-			points.Add(r);
-		}
+    public List<Vector3> GetPoints() {
+        if(_points == null) _points = new List<Vector3>();
+        return _points;
+    }
 
-		_points = points;
+    public void SetPoints(List<Vector3> points) {
+        GetPoints().Clear();
+        GetPoints().AddRange(points);
+    }
+    public void Init() {
+       
     }
 
     public override int GetNumberOfElements() {
-        return _points.Count;
+        return GetPoints().Count;
     }
     
     public override int GetNumberOfComponents() {

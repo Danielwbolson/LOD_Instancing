@@ -68,6 +68,7 @@ namespace SculptingVis
 
             if (_colorMapInput.GetInput() != null)
                 _pointMaterial.SetTexture("_ColorMap", ((Colormap)_colorMapInput.GetInput()).GetTexture());
+            _pointMaterial.SetFloat("_glyphScale", 0.5f);
 
             Material canvasMaterial = GetCanvasMaterial(canvas, _pointMaterial);
             _anchorVariable.Bind(_pointMaterial, 0, 0);
@@ -83,7 +84,7 @@ namespace SculptingVis
 
                         Mesh instanceMesh = ((Glyph)(_glyphInput.GetInput())).GetLODMesh(((IntRange)_lodLevel.GetInput()));
                         args[0] = (uint)instanceMesh.GetIndexCount(0);
-                        args[1] = (uint)instanceCount;
+                        args[1] = (uint)stream.GetNumberOfElements();
                         args[2] = (uint)instanceMesh.GetIndexStart(0);
                         args[3] = (uint)instanceMesh.GetBaseVertex(0);
                         argsBuffer.SetData(args);
@@ -144,11 +145,15 @@ namespace SculptingVis
         }
 
 		public override void UpdateModule() {
+            base.UpdateModule();
 
 		}
 
         public override string GetLabel()
         {
+            //  if(_anchorVariable.GetInput() != null && ((Variable)_anchorVariable.GetInput())!=null)
+            // Debug.Log("Custom Output:" + ((Variable)_anchorVariable.GetInput()).GetStream(null,0,0).GetNumberOfElements());
+         
             return "Simple Glyph Layer";
         }
 

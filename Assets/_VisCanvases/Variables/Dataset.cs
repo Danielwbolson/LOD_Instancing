@@ -80,6 +80,10 @@ public abstract class Dataset : ScriptableObject {
 
 	protected abstract DatastreamChannel generateDatastreamChannel(DataVariable variable);
 
+
+	protected void updateDatastreams() {
+		
+	}
 	protected void populateVariables() {
 		if(hasAnchor()) {
 			AnchorVariable anchor = generateAnchor();
@@ -97,6 +101,9 @@ public abstract class Dataset : ScriptableObject {
 
 			Datastream stream = CreateInstance<Datastream>();
 			stream.Init(var,generateDatastreamChannel(var));
+			if(stream.GetRootChannel() is PointAnchorDatastreamChannel) {
+
+			}
             var.SetStream(stream);
 			//GetStreams().InsertDatastream(stream, var);
 

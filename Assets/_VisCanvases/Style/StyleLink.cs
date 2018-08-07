@@ -23,7 +23,12 @@ namespace SculptingVis {
 
 		public void SetDestination(StyleSocket destination) {
 			_destination = destination;
+			_destination.UpdateSocket();
 		} 
+
+		public void UpdateLink() {
+			GetDestination().UpdateSocket();
+		}
 		
 	}
 }

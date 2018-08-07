@@ -214,7 +214,10 @@ public class SculptingVisWindow : EditorWindow
 
             GUILayout.Label(socket.GetLabel());
             if(socket is StyleTypeSocket<IntRange>) {
+                int A = ((IntRange)socket.GetInput()).value;
                 ((IntRange)socket.GetInput()).value = EditorGUILayout.IntSlider(((IntRange)socket.GetInput()).value,((IntRange)socket.GetInput()).lowerBound,((IntRange)socket.GetInput()).upperBound);
+                if(A != ((IntRange)socket.GetInput()).value)
+                    socket.GetModule().UpdateModule();
             }
             GUILayout.FlexibleSpace();
             if (inputHookRight)
@@ -302,6 +305,10 @@ public class SculptingVisWindow : EditorWindow
             _socketHooks.Clear();
             _sockets.Clear();
             GetStyleController().Reset();
+        }
+        if (GUILayout.Button("Report"))
+        {
+            GetStyleController().Report();
         }
         //Rect workspace = GUILayoutUtility.GetRect(0,10000,0,10000);
         EditorGUILayout.BeginHorizontal();

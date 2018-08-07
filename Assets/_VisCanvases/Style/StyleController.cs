@@ -9,7 +9,11 @@ namespace SculptingVis
     public class StyleController : MonoBehaviour
     {
 
-
+        public void Report() {
+            // for(int i = 0; i < _links.Count; i++) {
+            //     Debug.Log("Link[" + i + "] : " + _links[i].GetSource().GetOutput().GetInstanceID()+ "->" + _links[i].GetDestination().GetInput());
+            // }
+        }
         public void Reset()
         {
             Debug.Log("Reseting");
@@ -181,8 +185,10 @@ namespace SculptingVis
         void Start()
         {
             
-
-
+            #if UNITY_EDITOR
+            QualitySettings.vSyncCount = 0;  // VSync must be disabled
+            Application.targetFrameRate = 45;
+            #endif
         }
 
 		public void UpdateModuleLinks(StyleModule module) {

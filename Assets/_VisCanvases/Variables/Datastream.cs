@@ -27,6 +27,9 @@ public class Datastream : ScriptableObject {
         }
     }
 
+    public DatastreamChannel GetRootChannel() {
+        return _rootChannel;
+    } 
     public int GetNumberOfElements() {
         return _rootChannel.GetNumberOfElements();
     }
@@ -71,7 +74,7 @@ public class Datastream : ScriptableObject {
                 
             } else if(_rootChannel is PointAnchorDatastreamChannel) {
                 List<Vector2Int> topologyCellInfo = new List<Vector2Int>();
-                topologyCellInfo.Add(new Vector2Int(0,((PointAnchorDatastreamChannel)_rootChannel)._points.Count));
+                topologyCellInfo.Add(new Vector2Int(0,((PointAnchorDatastreamChannel)_rootChannel).GetPoints().Count));
                 _topologyCellInfoArray = topologyCellInfo.ToArray();
 
             }
@@ -109,20 +112,20 @@ public class Datastream : ScriptableObject {
                 _topologyArray = topology.ToArray();
                 }
                 
-            } else if(_rootChannel is PointAnchorDatastreamChannel) {
-                
-                List<Vector2Int> topology = new List<Vector2Int>();
-
-                for(int i = 0; i < ((PointAnchorDatastreamChannel)_rootChannel)._points.Count;i++){
-                    topology.Add(new Vector2Int(0,i));        
-                }
-                _topologyArray = topology.ToArray();
-                
-            }
-
+            } 
 
         }
 
+        if(_rootChannel is PointAnchorDatastreamChannel) {
+            
+            List<Vector2Int> topology = new List<Vector2Int>();
+
+            for(int i = 0; i < ((PointAnchorDatastreamChannel)_rootChannel).GetPoints().Count;i++){
+                topology.Add(new Vector2Int(0,i));        
+            }
+            _topologyArray = topology.ToArray();
+            
+        }
         return _topologyArray;
     }
 
@@ -226,7 +229,7 @@ public class Datastream : ScriptableObject {
     ComputeBuffer _topologyBuffer;
 
     public ComputeBuffer GetComputeBuffer() {
-        if(_dataBuffer == null) {
+        if(true || _dataBuffer == null) {
 
             long numberOfElements = GetNumberOfElements();
             long numberOfComponents = GetNumberOfComponents();
@@ -276,7 +279,7 @@ public class Datastream : ScriptableObject {
                 }
             } else if(_rootChannel is PointAnchorDatastreamChannel) {
                 _dataBuffer = new ComputeBuffer((int)numberOfElements*(int)numberOfComponents,sizeof(float));
-                _dataBuffer.SetData(((PointAnchorDatastreamChannel)_rootChannel)._points.ToArray());
+                _dataBuffer.SetData(((PointAnchorDatastreamChannel)_rootChannel).GetPoints().ToArray());
             }
         }
 
@@ -286,11 +289,11 @@ public class Datastream : ScriptableObject {
     public ComputeBuffer GetTopologyBuffer() {
         if(_topologyBuffer == null) {
             if(GetVariable().IsAnchor()) {
-                _topologyBuffer = new ComputeBuffer(GetTopologyArray().Length,sizeof(int)*2);
+                _topologyBuffer = new ComputeBuffer(/*GetTopologyArray().Length*/65000,sizeof(int)*2);
                 _topologyBuffer.SetData(GetTopologyArray());
             }
         }
-
+        _topologyBuffer.SetData(GetTopologyArray());
 
         return _topologyBuffer;
     }

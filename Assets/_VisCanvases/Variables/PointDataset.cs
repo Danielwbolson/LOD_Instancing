@@ -75,7 +75,7 @@ public class PointDataset : Dataset {
 		if(variable is AnchorVariable) {
 			PointAnchorDatastreamChannel pointChannel = CreateInstance<PointAnchorDatastreamChannel>();
 
-			pointChannel.Init(_bounds, _sampleCount);
+			pointChannel.Init();
 			return pointChannel;;
 		} else {
 			return null;

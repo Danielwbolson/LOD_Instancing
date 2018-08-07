@@ -14,10 +14,12 @@
 		#pragma surface surf Standard fullforwardshadows vertex:vert
 		#pragma multi_compile_instancing
 		#pragma instancing_options procedural:setup 
+		#include "UnityCG.cginc"
 		#include "CanvasSupport.cginc"
+	
 		#ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
-
 		#include "VariableSupport.cginc"
+
 
 		#endif
 
@@ -52,13 +54,15 @@
 		void vert(inout appdata_full v, out Input o) {
 
 	        UNITY_INITIALIZE_OUTPUT(Input,o);
+			
 		#ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
 
 		int pointIndex =_AnchorTopology[unity_InstanceID].y;
 		int cellIndex =  _AnchorTopology[unity_InstanceID].x;
+
 			v.vertex.xyz *= _glyphScale;
 
-			if( _VariableAssigned_Anchor) {
+			if( VariableIsAssigned(0)) {
 				//float3 B = 
 				if( VariableIsAssigned(2)){
 					float3 T = normalize(GetData(2,cellIndex,pointIndex,float3(0,0,0)));
@@ -77,7 +81,8 @@
 					
 				}
 
-				v.vertex.xyz  += GetAnchorPosition(unity_InstanceID);
+				v.vertex.xyz  += GetAnchorPosition(pointIndex);
+				//v.vertex.x=0;
 				v.vertex = mul(_CanvasInnerScene,v.vertex);
 				v.normal = mul(_CanvasInnerScene,v.normal);
 				o.indices = float2(cellIndex, pointIndex);
@@ -89,12 +94,17 @@
 
 		void surf (Input IN, inout SurfaceOutputStandard o) {
 
+			fixed4 c = fixed4(0,1,0,1);
+			// Albedo comes from a texture tinted by color
+			o.Albedo = c.rgb;
+			// Metallic and smoothness come from slider variables
+			o.Metallic = _Metallic;
+			o.Smoothness = _Glossiness;
+			o.Alpha = c.a;
 
+			//return;
 
-
-
-
-			fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
+			 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
 
 
 		#ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
