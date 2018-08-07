@@ -9,6 +9,9 @@ public class VRStyleMananger : MonoBehaviour {
     GameObject _stylePanel;
 
     [SerializeField]
+    GameObject _canvas;
+
+    [SerializeField]
     Button label;
 
     [SerializeField]
@@ -29,7 +32,8 @@ public class VRStyleMananger : MonoBehaviour {
         _styleController = GetStyleController();
         _layers = _styleController.GetLayers();
 
-        _stylePanel = FindObjectOfType<Canvas>().transform.Find("StylePanel").gameObject;
+        _canvas = GameObject.FindGameObjectWithTag("VR_Layer_Canvas");
+        _stylePanel = _canvas.transform.Find("StylePanel").gameObject;
     }
 
     // Update is called once per frame
@@ -50,7 +54,7 @@ public class VRStyleMananger : MonoBehaviour {
             Destroy(transform.GetChild(i).gameObject);
         }
         transform.DetachChildren();
-        transform.GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
+        transform.GetComponent<RectTransform>().offsetMin = new Vector2(-100, -25);
     }
 
     // Refresh our shown layers
