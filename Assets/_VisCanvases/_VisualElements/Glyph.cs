@@ -97,18 +97,14 @@ namespace SculptingVis {
 
 				// The only sub directory we expect right now is the normal maps, 
 				// but if we have need for more we can handle them here.
-                foreach (var directory in directoryInfo)
-                {
-                    if (directory.Name.ToUpper() == "NORMALMAPS")
-                    {
-                        DirectoryInfo normalMapDir = new DirectoryInfo(directory.FullName);
+				foreach (var directory in directoryInfo) {
+					if (directory.Name.ToUpper() == "NORMALMAPS") {
+						DirectoryInfo normalMapDir = new DirectoryInfo(directory.FullName);
 
 						// For each file in the NormalMaps sub-directory...
-                        foreach (var file in normalMapDir.GetFiles())
-                        {
+						foreach (var file in normalMapDir.GetFiles()) {
 							// Expect each LOD normal map to start with "LOD" followed by an integer. 
-                            if (file.Extension.ToUpper() == ".PNG" && file.Name.ToUpper().StartsWith("LOD"))
-                            {
+							if (file.Extension.ToUpper() == ".PNG" && file.Name.ToUpper().StartsWith("LOD")) {
 								string number = Path.GetFileNameWithoutExtension(file.FullName).Substring(3); 
 								int level = int.Parse(number);
 
@@ -117,9 +113,9 @@ namespace SculptingVis {
 								normalMap.LoadImage(File.ReadAllBytes(file.FullName));
 								glyph._normalMaps[level] = normalMap;
 							
-                            }
-                        }
-                    }
+							}
+						}
+					}
 				}
 
 
