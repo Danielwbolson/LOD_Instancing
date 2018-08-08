@@ -69,6 +69,7 @@ namespace SculptingVis
             if (_colorMapInput.GetInput() != null)
                 _pointMaterial.SetTexture("_ColorMap", ((Colormap)_colorMapInput.GetInput()).GetTexture());
             _pointMaterial.SetFloat("_glyphScale", 0.5f);
+            _pointMaterial.SetTexture("_BumpMap", ((Glyph)(_glyphInput.GetInput())).GetLODNormalMap(((IntRange)_lodLevel.GetInput())));
 
             Material canvasMaterial = GetCanvasMaterial(canvas, _pointMaterial);
             _anchorVariable.Bind(_pointMaterial, 0, 0);

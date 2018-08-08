@@ -42,79 +42,83 @@ public class Datastream : ScriptableObject {
 
     Vector2Int [] _topologyArray;
     Vector2Int [] _topologyCellInfoArray;
+    bool needsRefresh = true;
 
-    public Vector2Int [] GetTopologyCellInfoArray() {
-        if(_topologyCellInfoArray == null) {
-             if(_rootChannel is VTKAnchorDatastreamChannel)  {
-                VTKAnchorDatastreamChannel vc = (VTKAnchorDatastreamChannel)_rootChannel;
-                VTK.vtkDataSet ds = vc.GetVTKDataSet();
+    public void RecalculateArrays() {
+        RecalculateToplogyArray();
+        RecalculateTopologyCellInfoArray();
+    }
+    protected void RecalculateTopologyCellInfoArray() {
+        if(_rootChannel is VTKAnchorDatastreamChannel)  {
+            VTKAnchorDatastreamChannel vc = (VTKAnchorDatastreamChannel)_rootChannel;
+            VTK.vtkDataSet ds = vc.GetVTKDataSet();
+            
+            if(_owner.GetVariableType() != DataDimensionType.Volume) {
+                VTK.vtkPolyData pd = VTK.vtkPolyData.SafeDownCast(ds);
+                int numcells = (int)VTK.vtkPolyData.SafeDownCast(ds).GetNumberOfCells();
                 
-                if(_owner.GetVariableType() != DataDimensionType.Volume) {
-                    VTK.vtkPolyData pd = VTK.vtkPolyData.SafeDownCast(ds);
-                    VTK.vtkCellArray ca = VTK.vtkPolyData.SafeDownCast(ds).GetLines();
-                    int numcells = (int)ca.GetNumberOfCells();
-
-                    List<Vector2Int> topologyCellInfo = new List<Vector2Int>();
-                    
-
-                    VTK.vtkIdList idlist =VTK.vtkIdList.New();
-                    int index = 0;
-                    for(int c = 0; c < numcells; c++) {
-                        pd.GetCellPoints(c,idlist);
-                        int idCount = (int)idlist.GetNumberOfIds();
-                        int INITIAL_INDEX = index;
-                        index += idCount;
-                        int FINAL_INDEX = index;
-                        topologyCellInfo.Add(new Vector2Int(INITIAL_INDEX,FINAL_INDEX));
-
-                    }
-
-                _topologyCellInfoArray = topologyCellInfo.ToArray();
-                }
-                
-            } else if(_rootChannel is PointAnchorDatastreamChannel) {
                 List<Vector2Int> topologyCellInfo = new List<Vector2Int>();
-                topologyCellInfo.Add(new Vector2Int(0,((PointAnchorDatastreamChannel)_rootChannel).GetPoints().Count));
-                _topologyCellInfoArray = topologyCellInfo.ToArray();
+                
 
+                VTK.vtkIdList idlist =VTK.vtkIdList.New();
+                int index = 0;
+                for(int c = 0; c < numcells; c++) {
+                    pd.GetCellPoints(c,idlist);
+                    int idCount = (int)idlist.GetNumberOfIds();
+                    int INITIAL_INDEX = index;
+                    index += idCount;
+                    int FINAL_INDEX = index;
+                    topologyCellInfo.Add(new Vector2Int(INITIAL_INDEX,FINAL_INDEX));
+
+                }
+
+            _topologyCellInfoArray = topologyCellInfo.ToArray();
             }
+            
+        } else if(_rootChannel is PointAnchorDatastreamChannel) {
+            List<Vector2Int> topologyCellInfo = new List<Vector2Int>();
+            topologyCellInfo.Add(new Vector2Int(0,((PointAnchorDatastreamChannel)_rootChannel).GetPoints().Count));
+            _topologyCellInfoArray = topologyCellInfo.ToArray();
 
+        }
 
+    }
+    public Vector2Int [] GetTopologyCellInfoArray() {
+        if(_topologyCellInfoArray == null ) {
+             RecalculateTopologyCellInfoArray();
         }
         return _topologyCellInfoArray;
     }
-    public Vector2Int [] GetTopologyArray() {
-        if(_topologyArray==null) {
-            if(_rootChannel is VTKAnchorDatastreamChannel)  {
-                VTKAnchorDatastreamChannel vc = (VTKAnchorDatastreamChannel)_rootChannel;
-                VTK.vtkDataSet ds = vc.GetVTKDataSet();
+
+    protected void RecalculateToplogyArray() {
+        if(_rootChannel is VTKAnchorDatastreamChannel)  {
+            VTKAnchorDatastreamChannel vc = (VTKAnchorDatastreamChannel)_rootChannel;
+            VTK.vtkDataSet ds = vc.GetVTKDataSet();
+            
+            if(_owner.GetVariableType() != DataDimensionType.Volume) {
+                VTK.vtkPolyData pd = VTK.vtkPolyData.SafeDownCast(ds);
+                int numcells = (int)VTK.vtkPolyData.SafeDownCast(ds).GetNumberOfCells();
+
+
+                List<Vector2Int> topology = new List<Vector2Int>();
                 
-                if(_owner.GetVariableType() != DataDimensionType.Volume) {
-                    VTK.vtkPolyData pd = VTK.vtkPolyData.SafeDownCast(ds);
-                    VTK.vtkCellArray ca = VTK.vtkPolyData.SafeDownCast(ds).GetLines();
-                    int numcells = (int)ca.GetNumberOfCells();
 
-                    List<Vector2Int> topology = new List<Vector2Int>();
-                    
-
-                    VTK.vtkIdList idlist =VTK.vtkIdList.New();
-                    double [] p = new double[3];
-                    for(int c = 0; c < numcells; c++) {
-                        pd.GetCellPoints(c,idlist);
-                    
-                        int idCount = (int)idlist.GetNumberOfIds();
-                        for(int i = 0; i < idCount; i++) {
-                            int id = (int)idlist.GetId(i);
-                            topology.Add(new Vector2Int((int)c,id));
-                        }
+                VTK.vtkIdList idlist =VTK.vtkIdList.New();
+                double [] p = new double[3];
+                for(int c = 0; c < numcells; c++) {
+                    pd.GetCellPoints(c,idlist);
+                
+                    int idCount = (int)idlist.GetNumberOfIds();
+                    for(int i = 0; i < idCount; i++) {
+                        int id = (int)idlist.GetId(i);
+                        topology.Add(new Vector2Int((int)c,id));
                     }
-
-                _topologyArray = topology.ToArray();
                 }
-                
-            } 
 
-        }
+            _topologyArray = topology.ToArray();
+            }
+            
+        } 
 
         if(_rootChannel is PointAnchorDatastreamChannel) {
             
@@ -126,6 +130,15 @@ public class Datastream : ScriptableObject {
             _topologyArray = topology.ToArray();
             
         }
+
+    }
+    public Vector2Int [] GetTopologyArray() {
+        if(_topologyArray==null) {
+           RecalculateToplogyArray();
+
+        }
+
+      
         return _topologyArray;
     }
 
@@ -278,7 +291,11 @@ public class Datastream : ScriptableObject {
 
                 }
             } else if(_rootChannel is PointAnchorDatastreamChannel) {
-                _dataBuffer = new ComputeBuffer((int)numberOfElements*(int)numberOfComponents,sizeof(float));
+                if(_dataBuffer.count < (int)numberOfElements*(int)numberOfComponents) {
+                    _dataBuffer.Release();
+                    _dataBuffer = new ComputeBuffer((int)numberOfElements*(int)numberOfComponents,sizeof(float));
+
+                }
                 _dataBuffer.SetData(((PointAnchorDatastreamChannel)_rootChannel).GetPoints().ToArray());
             }
         }
@@ -385,6 +402,7 @@ public class Datastream : ScriptableObject {
             case 3: 
                 material.SetTexture("_Variable3DTexture_" + slot,Get3DTexture());
                 break;
+            case 2:
             case 1:
             case 0:
                 material.SetInt("_VariableArrayType_" + slot,GetVariable().IsPointVariable()?1:0);

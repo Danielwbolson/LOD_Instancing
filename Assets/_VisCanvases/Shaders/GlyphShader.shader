@@ -2,6 +2,8 @@
 	Properties {
 		_Color ("Color", Color) = (1,1,1,1)
 		_MainTex ("Albedo (RGB)", 2D) = "white" {}
+		_BumpMap ("Albedo (RGB)", 2D) = "bump" {}
+
 		_Glossiness ("Smoothness", Range(0,1)) = 0.5
 		_Metallic ("Metallic", Range(0,1)) = 0.0
 	}
@@ -27,6 +29,7 @@
 		#pragma target 4.0
 
 		sampler2D _MainTex;
+		sampler2D _BumpMap;
 
 		struct Input {
 			float2 uv_MainTex;
@@ -57,7 +60,7 @@
 			
 		#ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
 
-		int pointIndex =_AnchorTopology[unity_InstanceID].y;
+		int pointIndex =unity_InstanceID;//_AnchorTopology[unity_InstanceID].y;
 		int cellIndex =  _AnchorTopology[unity_InstanceID].x;
 
 			v.vertex.xyz *= _glyphScale;
@@ -80,7 +83,7 @@
 					v.normal.xyz = mul(transform,v.normal.xyz);
 					
 				}
-
+				//v.vertex.x += pointIndex;
 				v.vertex.xyz  += GetAnchorPosition(pointIndex);
 				//v.vertex.x=0;
 				v.vertex = mul(_CanvasInnerScene,v.vertex);
@@ -94,8 +97,20 @@
 
 		void surf (Input IN, inout SurfaceOutputStandard o) {
 
+
+			// Converting to Normal map image
+            float4 map1 = tex2D(_BumpMap, IN.uv_MainTex);
+            map1.a = sqrt(map1.r) * 2 - 1;
+            map1.a = map1.a * 0.5 + 0.54;
+            map1.g = sqrt(map1.g) * 2 - 1;
+            map1.g = map1.g * 0.5 + 0.54;
+            map1.b = map1.g;
+            map1.r = 1; 
+
 			fixed4 c = fixed4(0,1,0,1);
 			// Albedo comes from a texture tinted by color
+			o.Normal = UnpackNormal(map1);
+
 			o.Albedo = c.rgb;
 			// Metallic and smoothness come from slider variables
 			o.Metallic = _Metallic;
@@ -140,7 +155,7 @@
 
 
 			o.Albedo = MarkBounds(IN.worldPos,c);
-			StippleCrop(IN.worldPos,IN.screenPos,_ScreenParams);
+			//StippleCrop(IN.worldPos,IN.screenPos,_ScreenParams);
 
 		}
 		ENDCG
