@@ -70,7 +70,6 @@ namespace SculptingVis
 
             _sourceVariableSocket = new VariableSocket();
             _sourceVariableSocket.Init("Domain", this);
-            _sourceVariableSocket.RequireScalar();
             AddSocket(_sourceVariableSocket);
 
             _sampleCount = (new StyleTypeSocket<IntRange>()).Init("Number of samples", this);

@@ -442,14 +442,14 @@ public class SculptingVisWindow : EditorWindow
         if (showCustomDataSettings)
         {
 
-            if (GUILayout.Button("Create new Point Field"))
-            {
-                string path = EditorUtility.OpenFilePanel("Select VTK file", Application.streamingAssetsPath + "/example_data/VTK/","");
-                if (path.Length != 0)
-                {
-                    GetStyleController().LoadData(path);
-                }
-            }
+            // if (GUILayout.Button("Create new Point Field"))
+            // {
+            //     string path = EditorUtility.OpenFilePanel("Select VTK file", Application.streamingAssetsPath + "/example_data/VTK/","");
+            //     if (path.Length != 0)
+            //     {
+            //         GetStyleController().LoadData(path);
+            //     }
+            // }
 
         }
 

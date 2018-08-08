@@ -23,7 +23,7 @@ namespace SculptingVis
             GetLayers().Clear();
             GetVariables().Clear();
             GetVisualElements().Clear();
-
+            GetUserVariables().Clear();
 
 
 

@@ -106,7 +106,7 @@ namespace SculptingVis {
 		public bool ValidateInputVariable(Variable inputVariable) {
 			if(inputVariable == null) 
 				return false;	
-			if(inputVariable.GetDomainDimensionality() != 3 && inputVariable.GetAnchorVariable() != null && GetAnchorVariable() == null)
+			if(inputVariable.GetDomainDimensionality() != 3 && (inputVariable.GetAnchorVariable() != null && GetAnchorVariable() != null && GetAnchorVariable() != inputVariable.GetAnchorVariable()))
 				return false;
 			if(_anchorVariable != null && inputVariable.GetStream((DataVariable)_anchorVariable.GetInput()) == null) {
 				return false;
@@ -117,7 +117,7 @@ namespace SculptingVis {
 			if(inputVariable.GetComponents() > 1 && ScalarRequired())
 				return false;
 			
-			if(inputVariable.GetDomainDimensionality() != 3 && inputVariable.GetAnchorVariable() != GetAnchorVariable())
+			if(inputVariable.GetDomainDimensionality() != 3 && inputVariable.GetAnchorVariable() != GetAnchorVariable() && GetAnchorVariable() != null)
 				return false;
 
 			return true;
