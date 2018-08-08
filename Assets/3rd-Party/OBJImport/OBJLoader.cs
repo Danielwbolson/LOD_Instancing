@@ -256,7 +256,7 @@ public class OBJLoader
                     int[] indexes = new int[cmps.Length - 1];
                     for (int i = 1; i < cmps.Length ; i++)
                     {
-                        string felement = cmps[i];
+                        string felement = cmps[cmps.Length - i];
                         int vertexIndex = -1;
                         int normalIndex = -1;
                         int uvIndex = -1;
@@ -351,7 +351,6 @@ public class OBJLoader
         {
             GameObject subObject = new GameObject(obj);
             subObject.transform.parent = parentObject.transform;
-            subObject.transform.localScale = new Vector3(-1, 1, 1);
             //Create mesh
             Mesh m = new Mesh();
             m.name = obj;
@@ -392,8 +391,15 @@ public class OBJLoader
                         }
                         else
                         {
-                            processedVertices.Add(uvertices[idx]);
-                            processedNormals.Add(unormals[idx]);
+                            // Daniel Edits
+                            Vector3 _mirroredVertex = uvertices[idx];
+                            _mirroredVertex.x *= -1;
+                            processedVertices.Add(_mirroredVertex);
+
+                            Vector3 _mirroredNormal = unormals[idx];
+                            _mirroredNormal.x *= -1;
+                            processedNormals.Add(_mirroredNormal);
+
                             processedUVs.Add(uuvs[idx]);
                             remapTable[idx] = processedVertices.Count - 1;
                             indexes[i] = remapTable[idx];
@@ -555,7 +561,7 @@ public class OBJLoader
                     int[] indexes = new int[cmps.Length - 1];
                     for (int i = 1; i < cmps.Length; i++)
                     {
-                        string felement = cmps[i];
+                        string felement = cmps[cmps.Length - i];
                         int vertexIndex = -1;
                         int normalIndex = -1;
                         int uvIndex = -1;
@@ -650,7 +656,6 @@ public class OBJLoader
         {
             //GameObject subObject = new GameObject(obj);
            // subObject.transform.parent = parentObject.transform;
-            //subObject.transform.localScale = new Vector3(-1, 1, 1);
             //Create mesh
             Mesh m = new Mesh();
             m.name = obj;
@@ -691,8 +696,15 @@ public class OBJLoader
                         }
                         else
                         {
-                            processedVertices.Add(uvertices[idx]);
-                            processedNormals.Add(unormals[idx]);
+                            // Daniel Edits
+                            Vector3 _mirroredVertex = uvertices[idx];
+                            _mirroredVertex.z *= -1;
+                            processedVertices.Add(_mirroredVertex);
+
+                            Vector3 _mirroredNormal = unormals[idx];
+                            _mirroredNormal.z *= -1;
+                            processedNormals.Add(_mirroredNormal);
+
                             processedUVs.Add(uuvs[idx]);
                             remapTable[idx] = processedVertices.Count - 1;
                             indexes[i] = remapTable[idx];
