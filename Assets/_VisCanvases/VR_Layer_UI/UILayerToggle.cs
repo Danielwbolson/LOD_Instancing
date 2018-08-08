@@ -10,8 +10,9 @@ public class UILayerToggle : MonoBehaviour {
     private SculptingVis.StyleController _sc;
     private List<SculptingVis.StyleLayer> _layers;
 
-    public void OnClick() {
-        GameObject clickedButton = EventSystem.current.currentSelectedGameObject;
+    public void OnClick(Button b) {
+        Debug.Log("Clicked");
+        GameObject clickedButton = b.gameObject;
         _buttonID = clickedButton.GetComponent<LayerID>()._id;
 
         _sc = GetStyleController();
