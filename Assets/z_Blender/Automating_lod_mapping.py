@@ -58,12 +58,14 @@ filename = bpy.context.selected_objects[0].name
 if bpy.context.selected_objects != []:
 	
 # Make a directory
-	file_path = outputFile + '/' + filename + '/NormalMaps/'
+	file_path = outputFile + "/" + filename + '.glyph/NormalMaps/'
 	dirname = os.path.dirname(bpy.data.filepath)
 	target_file = os.path.join(dirname, file_path)
 	directory = os.path.dirname(target_file)
 	if not os.path.exists(directory):
 		os.makedirs(directory)
+		
+	print(directory)
 	
 	# Save data on our parent mesh
 	lod0 = bpy.context.selected_objects[0]
@@ -153,23 +155,11 @@ if bpy.context.selected_objects != []:
 		img.save()
 		print("Finished baking normal maps")
 
-# New name just for the high res obj
-lods[0].name = filename
-lods[0].data.name = filename
-
-# Export only our selected mesh, which is our high res one
-for obj in lods:
-	obj.select = False
-lods[0].select = True
-
-bpy.ops.export_scene.obj(filepath=outputFile + '/' + filename + '/' + filename + '_high_res.obj', 
-				use_selection=True, use_materials=False)
-
 # Select all objects besides the highest LOD
 for obj in lods:
 	obj.select = True
 lods[0].select = False
 
 # Export our level of detail obj
-bpy.ops.export_scene.obj(filepath=outputFile + '/' + filename + '/' + filename + '.obj',
+bpy.ops.export_scene.obj(filepath=outputFile + '/' + filename + '.glyph/' + filename + '.obj',
         use_selection=True, use_materials=False, use_blen_objects=False, group_by_object=True)
