@@ -291,8 +291,8 @@ public class Datastream : ScriptableObject {
 
                 }
             } else if(_rootChannel is PointAnchorDatastreamChannel) {
-                if(_dataBuffer.count < (int)numberOfElements*(int)numberOfComponents) {
-                    _dataBuffer.Release();
+                if(_dataBuffer == null || _dataBuffer.count < (int)numberOfElements*(int)numberOfComponents) {
+                    if(_dataBuffer!= null)_dataBuffer.Release();
                     _dataBuffer = new ComputeBuffer((int)numberOfElements*(int)numberOfComponents,sizeof(float));
 
                 }
