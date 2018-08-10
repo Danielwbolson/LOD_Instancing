@@ -74,7 +74,7 @@ namespace SculptingVis
             AddSocket(_sourceVariableSocket);
 
             _sampleCount = (new StyleTypeSocket<Range<int>>()).Init("Number of samples", this);
-            _sampleCount.SetDefaultInputObject((new Range<int>(1, 1000)));
+            _sampleCount.SetDefaultInputObject((new Range<int>(1, 100000,1000)));
             AddSocket(_sampleCount);
 
 

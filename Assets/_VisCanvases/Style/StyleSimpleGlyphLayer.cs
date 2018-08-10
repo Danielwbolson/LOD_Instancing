@@ -22,6 +22,8 @@ namespace SculptingVis
         [SerializeField]
         public VariableSocket _opacityVariable;
 
+        [SerializeField]
+        public StyleTypeSocket<Range<float>> _opacityThresholdInput;
 
         [SerializeField]
         public StyleTypeSocket<Colormap> _colorMapInput;
@@ -32,6 +34,8 @@ namespace SculptingVis
         [SerializeField]
         public StyleTypeSocket<Range<int>> _lodLevel;
 
+        [SerializeField]
+        public StyleTypeSocket<Range<int>> _maxGlyphs;
 
         [SerializeField]
         public StyleTypeSocket<Range<float>> _glyphScaleInput;
@@ -95,6 +99,7 @@ namespace SculptingVis
             _pointMaterial.SetColor("_Color", (Objectify<Color>)_colorInput.GetInput());
             _pointMaterial.SetFloat("_OpacityMultiplier", (Range<float>)_opacityMultiplierInput.GetInput());
             _pointMaterial.SetInt("_faceCamera", (Range<bool>)_faceCameraInput.GetInput()?1:0);
+            _pointMaterial.SetFloat("_opacityThreshold", (Range<float>)_opacityThresholdInput.GetInput());
 
 
 
@@ -102,7 +107,7 @@ namespace SculptingVis
             {
 
 
-                    if (_glyphInput.GetInput() != null)
+                if (_glyphInput.GetInput() != null)
                     {
                          
 
@@ -125,7 +130,7 @@ namespace SculptingVis
                         }
 
                         args[0] = (uint)instanceMesh.GetIndexCount(0);
-                        args[1] = (uint)stream.GetNumberOfElements();
+                        args[1] = (uint)Mathf.Min((uint)stream.GetNumberOfElements(), (int)(Range<int>)_maxGlyphs.GetInput());
                         args[2] = (uint)instanceMesh.GetIndexStart(0);
                         args[3] = (uint)instanceMesh.GetBaseVertex(0);
                         argsBuffer.SetData(args);
@@ -176,6 +181,10 @@ namespace SculptingVis
 			_opacityVariable.RequireScalar();
 
 
+            _opacityThresholdInput = (new StyleTypeSocket<Range<float>>()).Init("Opacity threshold", this);
+            _opacityThresholdInput.SetDefaultInputObject((new Range<float>(0, 1, 0.5f)));
+            AddSocket(_opacityThresholdInput);
+
 
             _directionVariable = new VariableSocket();
             _directionVariable.Init("Direction",this,2);
@@ -187,7 +196,11 @@ namespace SculptingVis
             AddSocket(_opacityVariable);
             AddSocket(_directionVariable);
 
-			_colorMapInput = (new StyleTypeSocket<Colormap> ()).Init("Color map",this);
+            _maxGlyphs = (new StyleTypeSocket<Range<int>>()).Init("Max glyphs", this);
+            _maxGlyphs.SetDefaultInputObject((new Range<int>(0, 60000, 1000)));
+            AddSocket(_maxGlyphs);
+
+            _colorMapInput = (new StyleTypeSocket<Colormap> ()).Init("Color map",this);
             _glyphInput = (new StyleTypeSocket<Glyph> ()).Init("Glyph",this);
 
 			AddSocket(_colorMapInput);

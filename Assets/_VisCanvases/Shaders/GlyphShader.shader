@@ -49,6 +49,7 @@
 
 		float _glyphScale = 1;
 		float _OpacityMultiplier;
+		float _opacityThreshold;
 		sampler2D _ColorMap;
 		// Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
 		// See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
@@ -57,6 +58,36 @@
 			// put more per-instance properties here
 		UNITY_INSTANCING_BUFFER_END(Props)
 
+
+			float4x4 inverse(float4x4 input)
+		{
+#define minor(a,b,c) determinant(float3x3(input.a, input.b, input.c))
+			//determinant(float3x3(input._22_23_23, input._32_33_34, input._42_43_44))
+
+			float4x4 cofactors = float4x4(
+				minor(_22_23_24, _32_33_34, _42_43_44),
+				-minor(_21_23_24, _31_33_34, _41_43_44),
+				minor(_21_22_24, _31_32_34, _41_42_44),
+				-minor(_21_22_23, _31_32_33, _41_42_43),
+
+				-minor(_12_13_14, _32_33_34, _42_43_44),
+				minor(_11_13_14, _31_33_34, _41_43_44),
+				-minor(_11_12_14, _31_32_34, _41_42_44),
+				minor(_11_12_13, _31_32_33, _41_42_43),
+
+				minor(_12_13_14, _22_23_24, _42_43_44),
+				-minor(_11_13_14, _21_23_24, _41_43_44),
+				minor(_11_12_14, _21_22_24, _41_42_44),
+				-minor(_11_12_13, _21_22_23, _41_42_43),
+
+				-minor(_12_13_14, _22_23_24, _32_33_34),
+				minor(_11_13_14, _21_23_24, _31_33_34),
+				-minor(_11_12_14, _21_22_24, _31_32_34),
+				minor(_11_12_13, _21_22_23, _31_32_33)
+				);
+#undef minor
+			return transpose(cofactors) / determinant(input);
+		}
 		void setup () {
 
 		}
@@ -78,40 +109,45 @@
 
 				if (_faceCamera) {
 					tangent = UNITY_MATRIX_V[1];
-					normal = normalize(_WorldSpaceCameraPos- mul(_CanvasInnerScene, GetAnchorPosition(pointIndex)).xyz);
+					normal = UNITY_MATRIX_V[2]; //normalize(_WorldSpaceCameraPos- mul(_CanvasInnerScene, GetAnchorPosition(pointIndex)).xyz);
 				}
 				if( VariableIsAssigned(2)){
-					tangent = normalize(GetData(2, cellIndex, pointIndex, float3(0, 0, 0)));
+					tangent = normalize(GetData(2, cellIndex, pointIndex, GetAnchorPosition(pointIndex)));
 
 					if (_faceCamera) {
 						tangent.xyz = mul(_CanvasInnerScene, tangent.xyz);
 						tangent = normalize(tangent);
 					}
 					float3 temp = normalize(cross(tangent, normal));
-					normal= cross(tangent,temp);
+					normal= cross(tangent,-temp);
 					
 					
 				}
-				float3x3 transform;
+				float4x4 transform = float4x4(1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1);
 
-				float3 bitangent = cross(tangent,normal);
-				transform[0] = bitangent;
-				transform[1] = tangent;
-				transform[2] = normal;
+				float3 bitangent = cross(tangent,-normal);
+				transform[0].xyz = bitangent;
+				transform[1].xyz = tangent;
+				transform[2].xyz = normal;
+				transform[3].w = 1;
 				transform = transpose(transform);
 
 				if (!_faceCamera) {
 					v.vertex.xyz = mul(transform, v.vertex);
-					v.normal.xyz = mul(transform,v.normal);
+					v.normal = normalize(mul(transpose(inverse(transform)),v.normal));
+					v.tangent = normalize(mul(transpose(inverse(transform)), v.tangent));
 					v.vertex.xyz  += GetAnchorPosition(pointIndex);
 					v.vertex.xyz = mul(_CanvasInnerScene, v.vertex);
-					v.normal = mul(_CanvasInnerScene, v.normal);
+					v.normal = normalize(mul(transpose(inverse(_CanvasInnerScene)), v.normal));
+					v.tangent = normalize(mul(transpose(inverse(_CanvasInnerScene)), v.tangent));
 
 				}
 				else {
 
 					v.vertex.xyz = mul(transform, v.vertex);
-					v.normal.xyz = mul(transform,v.normal);
+					v.normal = normalize(mul(transpose(inverse(transform)), v.normal));
+					v.tangent = normalize(mul(transpose(inverse(transform)), v.tangent));
+
 					v.vertex.xyz *= length(mul(_CanvasInnerScene, float4(0, 0, 0, 1)) - mul(_CanvasInnerScene, float4(1, 0, 0, 1)));
 
 					v.vertex.xyz += mul(_CanvasInnerScene, float4(0,0,0,1)) + mul(_CanvasInnerScene, GetAnchorPosition(pointIndex));
@@ -129,6 +165,8 @@
 				//v.vertex.x=0;
 				//v.vertex.xyz +=  mul(_CanvasInnerScene, GetAnchorPosition(pointIndex));
 				//v.normal = mul(_CanvasInnerScene,v.normal);
+				//v.tangent = mul(_CanvasInnerScene, v.tangent);
+
 				o.indices = float2(cellIndex, pointIndex);
 
 			}	
@@ -182,7 +220,7 @@
 			float3 opacityVal = NormalizeData(3,GetData(3,cellIndex,pointIndex,dataSpace));
 			if(VariableIsAssigned(3)) {
 			
-				StippleTransparency(IN.screenPos,_ScreenParams,opacityVal.x);
+				StippleTransparency(IN.screenPos,_ScreenParams,opacityVal.x > _opacityThreshold);
 
 			}
 
@@ -204,7 +242,7 @@
 
 					#ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
 
-			//o.Albedo.g = VariableIsAssigned(2);
+			//o.Albedo.rgb = normalize(GetData(2, cellIndex, pointIndex, GetAnchorPosition(pointIndex)));
 			#endif
 		}
 		ENDCG
