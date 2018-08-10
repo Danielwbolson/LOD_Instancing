@@ -56,6 +56,7 @@
 			float4 _VolumeDimensions;
 			float _XSlice;
 			float _ZSlice;
+			float _OpacityMultiplier;
 
 
 
@@ -198,32 +199,37 @@
 				float4 test = float4(0,0,0,1);
                 float4 dst = 0;
                 fixed4 col = float4(0,1,0,1);
+				col.rgb = len;
 
                 //return col;
                 float percent = 0;
-
+				float traveled = 0;
 				for (float progress = 0; progress < stepCount; progress += 1) {
-					test.xyz = backCoord;
+					// test.xyz = backCoord;
+				traveled = progress  * 0.01f;
 
-					percent = progress/stepCount;
-                	uvw = frontCoord + percent * dist;
+					//percent = progress/stepCount;
+                	uvw = frontCoord + traveled * normalize(dist);
                 	float4 V = tex3D(_DataVolume0,uvw);
 					V.rgb = NormalizeData(1,GetVariable3DTextureSample(1,uvw));
 					float a = V.x;//map(V.x, _DataMin0.x, _DataMax0.x,0,1);
 
-                	if ( a < 0.001)
+                	if (traveled > len ||  a < 0.001 || (uvw.x < 0 || uvw.x > 1 || uvw.y < 0 || uvw.y > 1 || uvw.z < 0 || uvw.z > 1) )
                 		continue;
 
 					float4 T = tex2D(_ColorMap,float2(a,0.5));
-					float A = tex2D(_OpacityMap,a).r*0.01;
+					float A = tex2D(_OpacityMap,a).r*_OpacityMultiplier;
 
 					float4 src = 0;
 	        		float alpha = A;
 
 						float3 c = T.xyz;
-	        		src.a = clamp(alpha,0,1);
-	        		src.rgb = clamp(c*src.a,0,1);
-	        		dst = (1.0f - dst.a) * src + dst;
+     					src.a = clamp(alpha,0,1);
+	        			src.rgb = clamp(c*src.a,0,1);
+	        			dst = (1.0f - dst.a) * src + dst;
+					
+
+	   
 
 					
 					

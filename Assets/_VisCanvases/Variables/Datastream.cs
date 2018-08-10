@@ -242,7 +242,7 @@ public class Datastream : ScriptableObject {
     ComputeBuffer _topologyBuffer;
 
     public ComputeBuffer GetComputeBuffer() {
-        if(true || _dataBuffer == null) {
+        if( _dataBuffer == null) {
 
             long numberOfElements = GetNumberOfElements();
             long numberOfComponents = GetNumberOfComponents();

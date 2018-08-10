@@ -14,7 +14,7 @@ namespace SculptingVis
         public StyleTypeSocket<Glyph> _glyphInput;
 
         [SerializeField]
-        public StyleTypeSocket<IntRange> _lodLevel;
+        public StyleTypeSocket<Range<int>> _lodLevel;
 
         [SerializeField]
         public Material _glyphMaterial;
@@ -39,13 +39,13 @@ namespace SculptingVis
            
 
 
-            if(_glyphInput.GetInput() != null && ((Glyph)(_glyphInput.GetInput())).GetNumberOfLODs() >= ((IntRange)_lodLevel.GetInput())+1)
+            if(_glyphInput.GetInput() != null && ((Glyph)(_glyphInput.GetInput())).GetNumberOfLODs() >= ((Range<int>)_lodLevel.GetInput())+1)
             {
-                _glyphMaterial.SetTexture("_BumpMap",((Glyph)(_glyphInput.GetInput())).GetLODNormalMap(((IntRange)_lodLevel.GetInput())));
+                _glyphMaterial.SetTexture("_BumpMap",((Glyph)(_glyphInput.GetInput())).GetLODNormalMap(((Range<int>)_lodLevel.GetInput())));
 
                 Material canvasMaterial = GetCanvasMaterial(canvas, _glyphMaterial);
 
-                Graphics.DrawMesh(((Glyph)(_glyphInput.GetInput())).GetLODMesh(((IntRange)_lodLevel.GetInput())), canvas.GetInnerSceneTransformMatrix(), canvasMaterial, 0);
+                Graphics.DrawMesh(((Glyph)(_glyphInput.GetInput())).GetLODMesh(((Range<int>)_lodLevel.GetInput())), canvas.GetInnerSceneTransformMatrix(), canvasMaterial, 0);
             }
 
         }
@@ -68,8 +68,8 @@ namespace SculptingVis
 			_glyphInput = (new StyleTypeSocket<Glyph>()).Init("Glyph",this);
 			AddSocket(_glyphInput);
 
-			_lodLevel = (new StyleTypeSocket<IntRange>()).Init("Glyph LOD",this);
-            _lodLevel.SetDefaultInputObject((new IntRange(0,2)));
+			_lodLevel = (new StyleTypeSocket<Range<int>>()).Init("Glyph LOD",this);
+            _lodLevel.SetDefaultInputObject((new Range<int>(0,2)));
 			AddSocket(_lodLevel);
 
             return this;

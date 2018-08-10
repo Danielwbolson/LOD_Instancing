@@ -7,12 +7,21 @@ namespace SculptingVis {
 	public class Glyph : VisualElement {
 
 		static Texture2D _defaultNormalMap;
-		static Texture2D DefaultNormalMap() {
+		public static Texture2D DefaultNormalMap() {
 			if(_defaultNormalMap == null) {
 				_defaultNormalMap = new Texture2D(1,1);
 				_defaultNormalMap.SetPixel(0,0,new Color(0.5f,0.5f,1.0f));
 			}
 			return _defaultNormalMap;
+		}
+		static Texture2D _defaultAlphaMap;
+
+		public static Texture2D DefaulAlphaMap() {
+			if(_defaultAlphaMap == null) {
+				_defaultAlphaMap = new Texture2D(1,1);
+				_defaultAlphaMap.SetPixel(0,0,new Color(1,1,1));
+			}
+			return _defaultAlphaMap;
 		}
 		[SerializeField]
 		Texture2D _thumbnail;
@@ -23,7 +32,16 @@ namespace SculptingVis {
 		[SerializeField]
 		Texture2D[] _normalMaps;
 
+		[SerializeField]
+		Texture2D _alphaMap;
 
+
+		public Texture2D GetAlphaMap() {
+			if (_alphaMap == null) {
+				return DefaulAlphaMap();
+			}
+			return _alphaMap;
+		}
 		public int GetNumberOfLODs() {
 			if(_lodMeshes != null) return _lodMeshes.Length;
 			return 0;
@@ -90,9 +108,12 @@ namespace SculptingVis {
 
 				// Now that we know how many meshes there are, we can set up our 
 				// normal maps, and pre-populate them with a default bump map
-				glyph._normalMaps = new Texture2D[glyph._lodMeshes.Length];
-				for(int t = 0; t < glyph._normalMaps.Length;t++) {
-					glyph._normalMaps[t] = DefaultNormalMap();
+
+				if(glyph.GetNumberOfLODs() > 0){
+					glyph._normalMaps = new Texture2D[glyph.GetNumberOfLODs()];
+					for(int t = 0; t < glyph._normalMaps.Length;t++) {
+						glyph._normalMaps[t] = DefaultNormalMap();
+					}
 				}
 
 				// The only sub directory we expect right now is the normal maps, 
@@ -112,6 +133,22 @@ namespace SculptingVis {
 								Texture2D normalMap = new Texture2D(1, 1);
 								normalMap.LoadImage(File.ReadAllBytes(file.FullName));
 								glyph._normalMaps[level] = normalMap;
+							
+							}
+						}
+					}
+
+					if (directory.Name.ToUpper() == "ALPHAMAPS") {
+						DirectoryInfo alphaMapDir = new DirectoryInfo(directory.FullName);
+
+						// For each file in the AlphaMaps sub-directory...
+						foreach (var file in alphaMapDir.GetFiles()) {
+							
+							if (file.Extension.ToUpper() == ".PNG") {
+
+								Texture2D alphaMap = new Texture2D(1, 1);
+								alphaMap.LoadImage(File.ReadAllBytes(file.FullName));
+								glyph._alphaMap = alphaMap;
 							
 							}
 						}

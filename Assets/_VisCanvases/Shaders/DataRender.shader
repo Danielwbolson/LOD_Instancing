@@ -48,7 +48,7 @@
 			// MARKBOUNDS;
 			// STIPPLE_CROP;
 
-
+		
 			c = MarkBounds(IN.worldPos,c);
 			StippleCrop(IN.worldPos,IN.screenPos,_ScreenParams);
 
