@@ -75,9 +75,19 @@
 				//float3 B = 
 				float3 tangent = float3(0,1,0);
 				float3 normal = float3(0,0,1);
+
+				if (_faceCamera) {
+					tangent = UNITY_MATRIX_V[1];
+					normal = normalize(_WorldSpaceCameraPos- mul(_CanvasInnerScene, GetAnchorPosition(pointIndex)).xyz);
+				}
 				if( VariableIsAssigned(2)){
-					tangent = normalize(GetData(2,cellIndex,pointIndex,float3(0,0,0)));
-					float3 temp = normalize(cross(tangent,float3(1,0,0)));
+					tangent = normalize(GetData(2, cellIndex, pointIndex, float3(0, 0, 0)));
+
+					if (_faceCamera) {
+						tangent.xyz = mul(_CanvasInnerScene, tangent.xyz);
+						tangent = normalize(tangent);
+					}
+					float3 temp = normalize(cross(tangent, normal));
 					normal= cross(tangent,temp);
 					
 					
@@ -88,20 +98,37 @@
 				transform[0] = bitangent;
 				transform[1] = tangent;
 				transform[2] = normal;
-				//transform = transpose(transform);
+				transform = transpose(transform);
+
+				if (!_faceCamera) {
+					v.vertex.xyz = mul(transform, v.vertex);
+					v.normal.xyz = mul(transform,v.normal);
+					v.vertex.xyz  += GetAnchorPosition(pointIndex);
+					v.vertex.xyz = mul(_CanvasInnerScene, v.vertex);
+					v.normal = mul(_CanvasInnerScene, v.normal);
+
+				}
+				else {
+
+					v.vertex.xyz = mul(transform, v.vertex);
+					v.normal.xyz = mul(transform,v.normal);
+					v.vertex.xyz *= length(mul(_CanvasInnerScene, float4(0, 0, 0, 1)) - mul(_CanvasInnerScene, float4(1, 0, 0, 1)));
+
+					v.vertex.xyz += mul(_CanvasInnerScene, float4(0,0,0,1)) + mul(_CanvasInnerScene, GetAnchorPosition(pointIndex));
 
 
-				// v.vertex.xyz = mul(transform, v.vertex.xyz);
-				// v.normal.xyz = mul(transform,v.normal.xyz);
+				}
+				 //v.vertex.xyz = mul(transform, v.vertex.xyz);
+				 //v.normal.xyz = mul(transform,v.normal.xyz);
 
 				// v.vertex.x *=0.2;
 
 
 				//v.vertex.x += pointIndex;
-				v.vertex.xyz  += GetAnchorPosition(pointIndex);
+				//v.vertex.xyz  += GetAnchorPosition(pointIndex);
 				//v.vertex.x=0;
-				v.vertex = mul(_CanvasInnerScene,v.vertex);
-				v.normal = mul(_CanvasInnerScene,v.normal);
+				//v.vertex.xyz +=  mul(_CanvasInnerScene, GetAnchorPosition(pointIndex));
+				//v.normal = mul(_CanvasInnerScene,v.normal);
 				o.indices = float2(cellIndex, pointIndex);
 
 			}	
@@ -173,7 +200,7 @@
 
 			o.Albedo = MarkBounds(IN.worldPos,c);
 			StippleTransparency(IN.screenPos,_ScreenParams,o.Alpha*_OpacityMultiplier);
-			StippleCrop(IN.worldPos,IN.screenPos,_ScreenParams);
+			//StippleCrop(IN.worldPos,IN.screenPos,_ScreenParams);
 
 					#ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
 
