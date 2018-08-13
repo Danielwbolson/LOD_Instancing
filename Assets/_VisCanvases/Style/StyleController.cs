@@ -48,7 +48,7 @@ namespace SculptingVis
 		List<StyleLayer> _layerTypes;
 
         [SerializeField]
-        List<StyleSlice> _slices;
+        List<StylePlane> _slices;
 
         [SerializeField]
         List<StyleVariable> _variableTypes;
@@ -186,7 +186,7 @@ namespace SculptingVis
             return GetStyle().GetLayers();
         }
 
-        /*public List<StyleSlice> GetSlices() {
+        /*public List<StylePlane> GetSlices() {
             return GetStyle().GetSlices();
         }*/
 
