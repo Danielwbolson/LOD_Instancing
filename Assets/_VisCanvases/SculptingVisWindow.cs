@@ -213,12 +213,35 @@ public class SculptingVisWindow : EditorWindow
                 GUILayoutUtility.GetRect(new GUIContent(""), socket.IsOutput() ? EditorStyles.radioButton : EditorStyles.miniButton);
 
             GUILayout.Label(socket.GetLabel());
-            if(socket is StyleTypeSocket<IntRange>) {
-                int A = ((IntRange)socket.GetInput()).value;
-                ((IntRange)socket.GetInput()).value = EditorGUILayout.IntSlider(((IntRange)socket.GetInput()).value,((IntRange)socket.GetInput()).lowerBound,((IntRange)socket.GetInput()).upperBound);
-                if(A != ((IntRange)socket.GetInput()).value)
+            if(socket is StyleTypeSocket<Range<int>>) {
+                int A = ((Range<int>)socket.GetInput()).value;
+                ((Range<int>)socket.GetInput()).value = EditorGUILayout.IntSlider(((Range<int>)socket.GetInput()).value,((Range<int>)socket.GetInput()).lowerBound,((Range<int>)socket.GetInput()).upperBound);
+                if(A != ((Range<int>)socket.GetInput()).value)
                     socket.GetModule().UpdateModule();
             }
+
+            if(socket is StyleTypeSocket<Range<float>>) {
+                float A = ((Range<float>)socket.GetInput()).value;
+                ((Range<float>)socket.GetInput()).value = EditorGUILayout.Slider(((Range<float>)socket.GetInput()).value,((Range<float>)socket.GetInput()).lowerBound,((Range<float>)socket.GetInput()).upperBound);
+                if(A != ((Range<float>)socket.GetInput()).value)
+                    socket.GetModule().UpdateModule();
+            }
+            if(socket is StyleTypeSocket<Range<bool>>) {
+                bool A = ((Range<bool>)socket.GetInput()).value;
+                ((Range<bool>)socket.GetInput()).value = EditorGUILayout.Toggle(((Range<bool>)socket.GetInput()).value);
+                if(A != ((Range<bool>)socket.GetInput()).value)
+                    socket.GetModule().UpdateModule();
+            }
+
+            if(socket is StyleTypeSocket<Objectify<Color>>) {
+                Color A = ((Objectify<Color>)socket.GetInput()).value;
+                ((Objectify<Color>)socket.GetInput()).value = EditorGUILayout.ColorField(A);
+                if(A != ((Objectify<Color>)socket.GetInput()).value) {
+                    socket.GetModule().UpdateModule();
+                }
+            }
+
+
             GUILayout.FlexibleSpace();
             if (inputHookRight)
                 DrawSocketHook(socket, nest);
@@ -320,7 +343,7 @@ public class SculptingVisWindow : EditorWindow
 
             if (GUILayout.Button("Load Folder"))
             {
-                string path = EditorUtility.OpenFolderPanel("Select Folder containing glyphs or colormaps", Application.streamingAssetsPath + "/Images/colormaps", "");
+                string path = EditorUtility.OpenFolderPanel("Select Folder containing glyphs or colormaps", Application.streamingAssetsPath + "/", "");
                 if (path.Length != 0)
                 {
                     GetStyleController().LoadVisualElements(path);
@@ -328,7 +351,7 @@ public class SculptingVisWindow : EditorWindow
             }
             if (GUILayout.Button("Load Files"))
             {
-                string path = EditorUtility.OpenFilePanel("Select Visual Element", Application.streamingAssetsPath + "/Images/colormaps","");
+                string path = EditorUtility.OpenFilePanel("Select Visual Element", Application.streamingAssetsPath + "/","");
                 if (path.Length != 0)
                 {
                     GetStyleController().LoadVisualElements(path);

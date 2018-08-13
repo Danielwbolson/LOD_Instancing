@@ -3,7 +3,7 @@
 # Looks like this:
 # blender --background --python mytest.py -- example args 123
 # In our case, the command line call would look more like:
-# blender --background --python Normal_map_bake.py -- "D:/path/to/input/obj" "D:/path/to/output"
+# blender --background --python Automating_lod_mapping.py -- "D:/path/to/input/obj" "D:/path/to/output"
 # No slash at end of input files
 # I had to add blender to my path environment variables. The command prompt needs to be in the same directory as our .py file
 #
@@ -49,8 +49,16 @@ scene = bpy.context.scene
 origin = (0.0, 0.0, 0.0)
 scene.cursor_location = origin
 
-# Import our mesh and select all meshes (there should only be one)
-bpy.ops.import_scene.obj(filepath=inputFile)
+# Get our file extension and import our mesh and then select it (It should be the only mesh in the scene)
+f, f_ext = os.path.splitext(inputFile)
+
+if f_ext == '.obj':
+	bpy.ops.import_scene.obj(filepath=inputFile)
+elif f_ext == '.stl':
+	bpy.ops.import_mesh.stl(filepath=inputFile)
+elif f_ext == '.fbx' or f_ext == '.FBX':
+	bpy.ops.import_scene.fbx(filepath=inputFile)
+
 bpy.ops.object.select_by_type(type='MESH')
 filename = bpy.context.selected_objects[0].name
 
@@ -58,7 +66,7 @@ filename = bpy.context.selected_objects[0].name
 if bpy.context.selected_objects != []:
 	
 # Make a directory
-	file_path = outputFile + '/' + filename + '/NormalMaps/'
+	file_path = outputFile + "/" + filename + '.glyph/NormalMaps/'
 	dirname = os.path.dirname(bpy.data.filepath)
 	target_file = os.path.join(dirname, file_path)
 	directory = os.path.dirname(target_file)
@@ -75,7 +83,9 @@ if bpy.context.selected_objects != []:
 	z = lod0.dimensions[2]
 	m = max(lod0.dimensions[j] for j in range(3))
 	r = 1.0 / m
-	lod0.dimensions = [x*r, y*r, z*r]
+	
+	lod0.scale = [r, r, r]
+	bpy.ops.object.transform_apply(location = True, scale = True, rotation = True)
 	
 	# Set our active object
 	bpy.context.scene.objects.active = lod0
@@ -153,23 +163,11 @@ if bpy.context.selected_objects != []:
 		img.save()
 		print("Finished baking normal maps")
 
-# New name just for the high res obj
-lods[0].name = filename
-lods[0].data.name = filename
-
-# Export only our selected mesh, which is our high res one
-for obj in lods:
-	obj.select = False
-lods[0].select = True
-
-bpy.ops.export_scene.obj(filepath=outputFile + '/' + filename + '/' + filename + '_high_res.obj', 
-				use_selection=True, use_materials=False)
-
 # Select all objects besides the highest LOD
 for obj in lods:
 	obj.select = True
 lods[0].select = False
 
 # Export our level of detail obj
-bpy.ops.export_scene.obj(filepath=outputFile + '/' + filename + '/' + filename + '.obj',
+bpy.ops.export_scene.obj(filepath=outputFile + '/' + filename + '.glyph/' + filename + '.obj',
         use_selection=True, use_materials=False, use_blen_objects=False, group_by_object=True)

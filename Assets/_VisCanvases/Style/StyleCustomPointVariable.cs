@@ -13,7 +13,7 @@ namespace SculptingVis
             if(_sourceVariableSocket.GetInput() == null) return;
             if(_pointDataset == null) {
                 _pointDataset = PointDataset.CreateInstance<PointDataset>();
-                _pointDataset.Init(_sourceVariableSocket.GetInput(), (IntRange)_sampleCount.GetInput(), 0, 0);
+                _pointDataset.Init(_sourceVariableSocket.GetInput(), (Range<int>)_sampleCount.GetInput(), 0, 0);
                 _pointDataset.LoadDataset();
                 _variable = _pointDataset.GetAnchor();
                 _generatedVariableSocket.SetSourceObject(_variable);
@@ -24,11 +24,12 @@ namespace SculptingVis
 
             DatastreamChannel ch = stream.GetRootChannel();
             if(ch is PointAnchorDatastreamChannel) {
-                int seed = (IntRange)_sampleSeed.GetInput();
+                
+                int seed = (Range<int>)_sampleSeed.GetInput();
                 UnityEngine.Random.seed = (seed);
                 Bounds b = _sourceVariableSocket.GetInput().GetBounds();
                 List<Vector3> vs = new List<Vector3>();
-                for(int i = 0; i < (IntRange)_sampleCount.GetInput(); i++) {
+                for(int i = 0; i < (Range<int>)_sampleCount.GetInput(); i++) {
                     Vector3 v = new Vector3(UnityEngine.Random.Range(b.min.x,b.max.x),UnityEngine.Random.Range(b.min.y,b.max.y),UnityEngine.Random.Range(b.min.z,b.max.z)); 
                     vs.Add(v);
                 }
@@ -46,10 +47,10 @@ namespace SculptingVis
         public VariableSocket _sourceVariableSocket;
 
         [SerializeField]
-        public StyleTypeSocket<IntRange> _sampleSeed;
+        public StyleTypeSocket<Range<int>> _sampleSeed;
 
         [SerializeField]
-        public StyleTypeSocket<IntRange> _sampleCount;
+        public StyleTypeSocket<Range<int>> _sampleCount;
 
         [SerializeField]
         public StyleSocket _generatedVariableSocket;
@@ -72,13 +73,13 @@ namespace SculptingVis
             _sourceVariableSocket.Init("Domain", this);
             AddSocket(_sourceVariableSocket);
 
-            _sampleCount = (new StyleTypeSocket<IntRange>()).Init("Number of samples", this);
-            _sampleCount.SetDefaultInputObject((new IntRange(1, 1000)));
+            _sampleCount = (new StyleTypeSocket<Range<int>>()).Init("Number of samples", this);
+            _sampleCount.SetDefaultInputObject((new Range<int>(1, 100000,1000)));
             AddSocket(_sampleCount);
 
 
-            _sampleSeed = (new StyleTypeSocket<IntRange>()).Init("SampleSeed", this);
-            _sampleSeed.SetDefaultInputObject((new IntRange(1, 10)));
+            _sampleSeed = (new StyleTypeSocket<Range<int>>()).Init("SampleSeed", this);
+            _sampleSeed.SetDefaultInputObject((new Range<int>(1, 10)));
             AddSocket(_sampleSeed);
 
             return this;

@@ -24,6 +24,8 @@ namespace SculptingVis
         [SerializeField]
         public StyleTypeSocket<Colormap> _colorMapInput;
 
+        [SerializeField]
+        public StyleTypeSocket<Range<int>> _maxPaths;
 
         [SerializeField]
         public Material _lineMaterial;
@@ -70,7 +72,7 @@ namespace SculptingVis
 
             if (m != null && m.Length > 0)
             {
-                for (int i = 0; i < Mathf.Min(m.Length, LineCount); i += 1)
+                for (int i = 0; i < Mathf.Min(m.Length, (Range<int>)_maxPaths.GetInput()); i += 1)
                 {
                     Mesh mesh = m[i];
                     if (mesh != null)
@@ -116,6 +118,11 @@ namespace SculptingVis
             AddSocket(_opacityVariable);
 			_colorMapInput = (new StyleTypeSocket<Colormap>()).Init("Color map",this);
 			AddSocket(_colorMapInput);
+
+
+            _maxPaths = (new StyleTypeSocket<Range<int>>()).Init("Max paths", this);
+            _maxPaths.SetDefaultInputObject(new Range<int>(1, 50000, 1000));
+            AddSocket(_maxPaths);
 
             return this;
 

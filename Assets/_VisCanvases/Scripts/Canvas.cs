@@ -77,7 +77,7 @@ namespace SculptingVis {
             print(isGrabbing ? "grabbing!" : "releaseing!");
         }
         public void SetMaterialProperties(Material canvasMaterial) {
-            canvasMaterial.SetVector("_Color", _color);
+            canvasMaterial.SetVector("_CanvasColor", _color);
             canvasMaterial.SetMatrix("_CanvasInverse", transform.worldToLocalMatrix);
             canvasMaterial.SetMatrix("_CanvasInnerSceneInverse", GetInnerSceneTransformMatrix().inverse);
             canvasMaterial.SetMatrix("_CanvasInnerScene", GetInnerSceneTransformMatrix());

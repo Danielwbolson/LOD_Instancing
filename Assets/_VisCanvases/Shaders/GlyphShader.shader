@@ -8,12 +8,12 @@
 		_Metallic ("Metallic", Range(0,1)) = 0.0
 	}
 	SubShader {
-		Tags { "RenderType"="TransparentCutout" }
+		Tags { "RenderType"="TransparentCutout"}
 		LOD 200
-
+		Cull Off
 		CGPROGRAM
 		// Physically based Standard lighting model, and enable shadows on all light types
-		#pragma surface surf Standard fullforwardshadows vertex:vert
+		#pragma surface surf Standard fullforwardshadows vertex:vert addshadow
 		#pragma multi_compile_instancing
 		#pragma instancing_options procedural:setup 
 		#include "UnityCG.cginc"
@@ -29,6 +29,8 @@
 		#pragma target 4.0
 
 		sampler2D _MainTex;
+		sampler2D _AlphaTex;
+
 		sampler2D _BumpMap;
 
 		struct Input {
@@ -41,8 +43,13 @@
 		half _Glossiness;
 		half _Metallic;
 		fixed4 _Color;
+		int _useMesh;
+		int _useThumbnail;
+		int _faceCamera = 1;
 
 		float _glyphScale = 1;
+		float _OpacityMultiplier;
+		float _opacityThreshold;
 		sampler2D _ColorMap;
 		// Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
 		// See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
@@ -51,6 +58,36 @@
 			// put more per-instance properties here
 		UNITY_INSTANCING_BUFFER_END(Props)
 
+
+			float4x4 inverse(float4x4 input)
+		{
+#define minor(a,b,c) determinant(float3x3(input.a, input.b, input.c))
+			//determinant(float3x3(input._22_23_23, input._32_33_34, input._42_43_44))
+
+			float4x4 cofactors = float4x4(
+				minor(_22_23_24, _32_33_34, _42_43_44),
+				-minor(_21_23_24, _31_33_34, _41_43_44),
+				minor(_21_22_24, _31_32_34, _41_42_44),
+				-minor(_21_22_23, _31_32_33, _41_42_43),
+
+				-minor(_12_13_14, _32_33_34, _42_43_44),
+				minor(_11_13_14, _31_33_34, _41_43_44),
+				-minor(_11_12_14, _31_32_34, _41_42_44),
+				minor(_11_12_13, _31_32_33, _41_42_43),
+
+				minor(_12_13_14, _22_23_24, _42_43_44),
+				-minor(_11_13_14, _21_23_24, _41_43_44),
+				minor(_11_12_14, _21_22_24, _41_42_44),
+				-minor(_11_12_13, _21_22_23, _41_42_43),
+
+				-minor(_12_13_14, _22_23_24, _32_33_34),
+				minor(_11_13_14, _21_23_24, _31_33_34),
+				-minor(_11_12_14, _21_22_24, _31_32_34),
+				minor(_11_12_13, _21_22_23, _31_32_33)
+				);
+#undef minor
+			return transpose(cofactors) / determinant(input);
+		}
 		void setup () {
 
 		}
@@ -67,27 +104,69 @@
 
 			if( VariableIsAssigned(0)) {
 				//float3 B = 
+				float3 tangent = float3(0,1,0);
+				float3 normal = float3(0,0,1);
+
+				if (_faceCamera) {
+					tangent = UNITY_MATRIX_V[1];
+					normal = UNITY_MATRIX_V[2]; //normalize(_WorldSpaceCameraPos- mul(_CanvasInnerScene, GetAnchorPosition(pointIndex)).xyz);
+				}
 				if( VariableIsAssigned(2)){
-					float3 T = normalize(GetData(2,cellIndex,pointIndex,float3(0,0,0)));
-					float3 temp = normalize(cross(T,float3(1,0,0)));
-					float3 N = cross(T,temp);
-					float3 B = cross(T,N);
-					float3x3 transform;
-					transform[0] = B;
-					transform[1] = T;
-					transform[2] = N;
-					transform = transpose(transform);
+					tangent = normalize(GetData(2, cellIndex, pointIndex, GetAnchorPosition(pointIndex)));
 
-
-					v.vertex.xyz = mul(transform, v.vertex.xyz);
-					v.normal.xyz = mul(transform,v.normal.xyz);
+					if (_faceCamera) {
+						tangent.xyz = mul(_CanvasInnerScene, tangent.xyz);
+						tangent = normalize(tangent);
+					}
+					float3 temp = normalize(cross(tangent, normal));
+					normal= cross(tangent,-temp);
+					
 					
 				}
+				float4x4 transform = float4x4(1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1);
+
+				float3 bitangent = cross(tangent,-normal);
+				transform[0].xyz = bitangent;
+				transform[1].xyz = tangent;
+				transform[2].xyz = normal;
+				transform[3].w = 1;
+				transform = transpose(transform);
+
+				if (!_faceCamera) {
+					v.vertex.xyz = mul(transform, v.vertex);
+					v.normal = normalize(mul(transpose(inverse(transform)),v.normal));
+					v.tangent = normalize(mul(transpose(inverse(transform)), v.tangent));
+					v.vertex.xyz  += GetAnchorPosition(pointIndex);
+					v.vertex.xyz = mul(_CanvasInnerScene, v.vertex);
+					v.normal = normalize(mul(transpose(inverse(_CanvasInnerScene)), v.normal));
+					v.tangent = normalize(mul(transpose(inverse(_CanvasInnerScene)), v.tangent));
+
+				}
+				else {
+
+					v.vertex.xyz = mul(transform, v.vertex);
+					v.normal = normalize(mul(transpose(inverse(transform)), v.normal));
+					v.tangent = normalize(mul(transpose(inverse(transform)), v.tangent));
+
+					v.vertex.xyz *= length(mul(_CanvasInnerScene, float4(0, 0, 0, 1)) - mul(_CanvasInnerScene, float4(1, 0, 0, 1)));
+
+					v.vertex.xyz += mul(_CanvasInnerScene, float4(0,0,0,1)) + mul(_CanvasInnerScene, GetAnchorPosition(pointIndex));
+
+
+				}
+				 //v.vertex.xyz = mul(transform, v.vertex.xyz);
+				 //v.normal.xyz = mul(transform,v.normal.xyz);
+
+				// v.vertex.x *=0.2;
+
+
 				//v.vertex.x += pointIndex;
-				v.vertex.xyz  += GetAnchorPosition(pointIndex);
+				//v.vertex.xyz  += GetAnchorPosition(pointIndex);
 				//v.vertex.x=0;
-				v.vertex = mul(_CanvasInnerScene,v.vertex);
-				v.normal = mul(_CanvasInnerScene,v.normal);
+				//v.vertex.xyz +=  mul(_CanvasInnerScene, GetAnchorPosition(pointIndex));
+				//v.normal = mul(_CanvasInnerScene,v.normal);
+				//v.tangent = mul(_CanvasInnerScene, v.tangent);
+
 				o.indices = float2(cellIndex, pointIndex);
 
 			}	
@@ -117,10 +196,13 @@
 			o.Smoothness = _Glossiness;
 			o.Alpha = c.a;
 
+			c = _Color;
 			//return;
-
-			 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
-
+			if(_useMesh==0){
+				if(_useThumbnail ==1)
+			 		c *= tex2D (_MainTex, IN.uv_MainTex);
+				c.a = tex2D (_AlphaTex, IN.uv_MainTex);
+			}
 
 		#ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
 
@@ -133,12 +215,12 @@
 			float3 normalizedDataVal = NormalizeData(1,dataVal);
 
 			fixed4 col = tex2D(_ColorMap,float2(normalizedDataVal.x,0.5));
-			c = col;
+			c *= col;
 
 			float3 opacityVal = NormalizeData(3,GetData(3,cellIndex,pointIndex,dataSpace));
 			if(VariableIsAssigned(3)) {
 			
-				StippleTransparency(IN.screenPos,_ScreenParams,opacityVal.x);
+				StippleTransparency(IN.screenPos,_ScreenParams,opacityVal.x > _opacityThreshold);
 
 			}
 
@@ -155,10 +237,19 @@
 
 
 			o.Albedo = MarkBounds(IN.worldPos,c);
+			StippleTransparency(IN.screenPos,_ScreenParams,o.Alpha*_OpacityMultiplier);
 			//StippleCrop(IN.worldPos,IN.screenPos,_ScreenParams);
 
+					#ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
+
+			//o.Albedo.rgb = normalize(GetData(2, cellIndex, pointIndex, GetAnchorPosition(pointIndex)));
+			#endif
 		}
 		ENDCG
 	}
 	FallBack "Diffuse"
+
+
+
+	
 }
