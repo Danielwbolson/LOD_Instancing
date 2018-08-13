@@ -14,7 +14,7 @@
         //Cull Off
         CGPROGRAM
         // Physically based Standard lighting model, and enable shadows on all light types
-        #pragma surface surf Standard fullforwardshadows
+        #pragma surface surf Standard fullforwardshadows vertex:vert addshadow
 
         // Use shader model 3.0 target, to get nicer looking lighting
         #pragma target 3.0
@@ -31,6 +31,30 @@
         half _Metallic;
         fixed4 _Color;
         float _Slider;
+        int _TransformVertices;
+        int _TransformTangents;
+        int _TransformNormals;
+        float4x4 _GlyphTransform;
+        float4x4 _GlyphTransformInverse;
+
+        
+        void vert(inout appdata_full v, out Input o) {
+
+	        UNITY_INITIALIZE_OUTPUT(Input,o);
+			
+		    #ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
+
+	        #endif
+
+            if(_TransformVertices)
+                v.vertex.xyz = mul(_GlyphTransform,float4(v.vertex.xyz,1));
+            
+            if(_TransformNormals) 
+                v.normal.xyz = mul(transpose(_GlyphTransformInverse),float4(v.normal.xyz,0));
+            if(_TransformTangents)
+                v.tangent.xyz = mul(transpose(_GlyphTransformInverse),float4(v.tangent.xyz,0));
+            
+		}
 
         void surf (Input IN, inout SurfaceOutputStandard o) {
             // Albedo comes from a texture tinted by color

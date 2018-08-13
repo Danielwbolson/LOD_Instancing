@@ -33,7 +33,7 @@ Shader "Unlit/PointShader"
 			{
 				float2 uv : TEXCOORD0;
 				float2 uv3 : TEXCOORD3;
-				float3 worldPos : TEXCOORD1;
+				float3 worldPos : TEXCOORD2;
 				UNITY_FOG_COORDS(1)
 				float4 vertex : SV_POSITION;
 			};
@@ -74,9 +74,11 @@ Shader "Unlit/PointShader"
 					StippleTransparency(i.vertex,_ScreenParams,opacityVal.x);
 				}
 
+
 				col = MarkBounds(i.worldPos,col);
 				StippleCrop(i.worldPos,i.vertex,_ScreenParams);
-
+				UNITY_APPLY_FOG(i.fogCoord, col);
+				UNITY_OPAQUE_ALPHA(col.a);
 				return col;
 			}
 			ENDCG

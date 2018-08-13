@@ -95,6 +95,10 @@ namespace SculptingVis {
             boxCollider.size = _bounds.size;
         }
 
+        public void SetBounds(Vector3 extents) {
+            _bounds.extents = extents;
+        }
+
         public Matrix4x4 GetBoundsTransformMatrix() {
             Matrix4x4 boundsTransform = Matrix4x4.TRS(_bounds.center, Quaternion.identity, _bounds.size);
             return transform.localToWorldMatrix * boundsTransform;
@@ -153,8 +157,8 @@ namespace SculptingVis {
                 _innerSceneTransform.localScale = M.GetScale();
                 //_innerSceneTransform = _innerSceneTransform.inverse;
             }
-
-            Graphics.DrawMesh(_areaMesh, GetBoundsTransformMatrix(), _areaMaterial, 0);
+            if(_areaMesh && _areaMaterial)
+                Graphics.DrawMesh(_areaMesh, GetBoundsTransformMatrix(), _areaMaterial, 0);
 
             Matrix4x4[] cornerTransforms = new Matrix4x4[8];
             for (int i = 0; i < 8; i++) {

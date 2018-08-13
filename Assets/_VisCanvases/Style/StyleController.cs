@@ -5,7 +5,7 @@ using System.IO;
 
 namespace SculptingVis
 {
-    [ExecuteInEditMode]
+    // [ExecuteInEditMode]
     public class StyleController : MonoBehaviour
     {
 
@@ -24,6 +24,14 @@ namespace SculptingVis
             GetVariables().Clear();
             GetVisualElements().Clear();
             GetUserVariables().Clear();
+            while(GetCanvases().Count > 0)
+                RemoveCanvas(GetCanvases()[GetCanvases().Count-1]);
+            AddCanvas();
+            AddCanvas();
+            GetCanvases()[0].SetBounds(new Vector3(5,4,5));
+            GetCanvases()[0].gameObject.transform.SetPositionAndRotation(new Vector3(0,0,15),Quaternion.identity);
+
+
 
 
 
@@ -38,6 +46,9 @@ namespace SculptingVis
 
 		[SerializeField] 
 		List<StyleLayer> _layerTypes;
+
+        [SerializeField]
+        List<StyleSlice> _slices;
 
         [SerializeField]
         List<StyleVariable> _variableTypes;
@@ -175,6 +186,10 @@ namespace SculptingVis
             return GetStyle().GetLayers();
         }
 
+        /*public List<StyleSlice> GetSlices() {
+            return GetStyle().GetSlices();
+        }*/
+
         public List<StyleModule> GetVariables()
         {
             if (_variables == null) _variables = new List<StyleModule>();
@@ -184,7 +199,7 @@ namespace SculptingVis
         // Use this for initialization
         void Start()
         {
-            
+            Reset();
             #if UNITY_EDITOR
             QualitySettings.vSyncCount = 0;  // VSync must be disabled
             Application.targetFrameRate = 45;

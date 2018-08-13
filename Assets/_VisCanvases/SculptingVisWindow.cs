@@ -6,8 +6,7 @@ using System.Collections.Generic;
 using SculptingVis;
 using System.IO;
 
-public class SculptingVisWindow : EditorWindow
-{
+public class SculptingVisWindow : EditorWindow {
     string myString = "Hello World";
     bool groupEnabled;
     bool myBool = true;
@@ -15,22 +14,19 @@ public class SculptingVisWindow : EditorWindow
 
     SculptingVisWindow window;
 
-    static StyleController GetStyleController()
-    {
+    static StyleController GetStyleController() {
         return (StyleController)FindObjectOfType(typeof(StyleController));
     }
     // Add menu named "My Window" to the Window menu
     [MenuItem("Window/SculptingVis")]
-    static void Init()
-    {
+    static void Init() {
         // Get existing open window or if none, make a new one:
         SculptingVisWindow window = (SculptingVisWindow)EditorWindow.GetWindow(typeof(SculptingVisWindow));
         window.Show();
         window.scrollView = new Vector2[7];
     }
 
-    Vector4 CubicSolve(float x_1, float v_1, float x_2, float v_2)
-    {
+    Vector4 CubicSolve(float x_1, float v_1, float x_2, float v_2) {
         Vector4 terms = new Vector4();
         terms[0] = 2 * x_1 - 2 * x_2 + v_1 + v_2;
         terms[1] = (v_2 - v_1 - 3 * terms[0]) / 2;
@@ -39,23 +35,19 @@ public class SculptingVisWindow : EditorWindow
         return terms;
     }
 
-    float CubicEvaluate(Vector4 terms, float t)
-    {
+    float CubicEvaluate(Vector4 terms, float t) {
         Vector4 powers = new Vector4(t * t * t, t * t, t, 1);
         return Vector4.Dot(terms, powers);
     }
 
-    void DrawWire(Vector2 startPosition, Vector2 endPosition)
-    {
+    void DrawWire(Vector2 startPosition, Vector2 endPosition) {
 
     }
     Material mat;
 
-    void DrawWire(Vector2 startPosition, Vector2 startDirection, Vector2 endPosition, Vector2 endDirection)
-    {
+    void DrawWire(Vector2 startPosition, Vector2 startDirection, Vector2 endPosition, Vector2 endDirection) {
 
-        if (mat == null)
-        {
+        if (mat == null) {
             var shader = Shader.Find("Hidden/Internal-Colored");
             mat = new Material(shader);
         }
@@ -67,8 +59,7 @@ public class SculptingVisWindow : EditorWindow
         Vector4 Yterms = CubicSolve(startPosition.y, startVector.y, endPosition.y, endVector.y);
 
         int steps = 100;
-        for (int i = 0; i < steps; i += 1)
-        {
+        for (int i = 0; i < steps; i += 1) {
             float t_1 = i / (float)steps;
             float t_2 = (i + 1) / (float)steps;
 
@@ -97,8 +88,7 @@ public class SculptingVisWindow : EditorWindow
 
 
     Dictionary<string, Vector2> _scrollPositions;
-    struct SocketHook
-    {
+    struct SocketHook {
         Rect _screenLocation;
         int _instanceID;
     }
@@ -108,23 +98,19 @@ public class SculptingVisWindow : EditorWindow
     Vector2Int activeLink;
 
     StyleSocket activeSource = null;
-    void DrawStyleModule(StyleModule module, Rect nest, bool showInputs = true, bool showOutputs = true)
-    {
+    void DrawStyleModule(StyleModule module, Rect nest, bool showInputs = true, bool showOutputs = true) {
         int socket_index = 0;
         bool labelOutputHook = false;
         bool labelOutputHookLeft = false;
         bool labelOutputHookRight = false;
-        if (showOutputs && module.GetNumberOfSockets() > 0 && module.GetSocket(0).IsOutput())
-        {
+        if (showOutputs && module.GetNumberOfSockets() > 0 && module.GetSocket(0).IsOutput()) {
             labelOutputHook = true;
             StyleSocket socket = module.GetSocket(0);
             // Temporary inspection to see which column it's in, and which it's going to
-            if (module is StyleVisualElement)
-            {
+            if (module is StyleVisualElement) {
                 if (socket.GetOutput() is VisualElement)
                     labelOutputHookRight = true;
-            }
-            else if (module is StyleVariable && socket.GetLabel() == "")
+            } else if (module is StyleVariable && socket.GetLabel() == "")
                 labelOutputHookLeft = true;
 
         }
@@ -133,42 +119,41 @@ public class SculptingVisWindow : EditorWindow
         GUILayout.BeginHorizontal();
 
 
-        if (labelOutputHookLeft)
-        {
+        if (labelOutputHookLeft) {
             if (labelOutputHook) DrawSocketHook(module.GetSocket(socket_index++), nest);
 
         }
 
         if (labelOutputHookRight) {
-            
-            if(GUILayout.Button("-",EditorStyles.miniButton,GUILayout.MaxWidth(20))) {
+
+            if (GUILayout.Button("-", EditorStyles.miniButton, GUILayout.MaxWidth(20))) {
                 GetStyleController().RemoveModule(module);
             }
-        } 
+        }
 
         // Draw Module Label
-        GUILayout.Label(module.GetLabel(),GUILayout.ExpandWidth(true));
+        GUILayout.Label(module.GetLabel(), GUILayout.ExpandWidth(true));
 
 
         // End Draw Module label
-        if(!labelOutputHook) GUILayout.FlexibleSpace();
+        if (!labelOutputHook) GUILayout.FlexibleSpace();
 
         if (!labelOutputHookRight) {
-            if(labelOutputHook)            GUILayout.FlexibleSpace();
+            if (labelOutputHook) GUILayout.FlexibleSpace();
 
-            if(GUILayout.Button("-",EditorStyles.miniButton,GUILayout.MaxWidth(20))) {
+            if (GUILayout.Button("-", EditorStyles.miniButton, GUILayout.MaxWidth(20))) {
                 GetStyleController().RemoveModule(module);
             }
-        } 
+        }
 
-        if(module is StyleVisualElement) {
-            if(true) {
+        if (module is StyleVisualElement) {
+            if (true) {
                 GUILayout.FlexibleSpace();
                 Texture t = ((StyleVisualElement)module).GetVisualElement().GetPreviewImage();
                 float aspectRatio = ((StyleVisualElement)module).GetVisualElement().GetPreviewImageAspectRatio();
-                Rect r = GUILayoutUtility.GetRect(30*aspectRatio,30);
+                Rect r = GUILayoutUtility.GetRect(30 * aspectRatio, 30);
 
-                GUI.DrawTexture(r,t,ScaleMode.ScaleToFit,true,aspectRatio);
+                GUI.DrawTexture(r, t, ScaleMode.ScaleToFit, true, aspectRatio);
 
             }
 
@@ -176,8 +161,7 @@ public class SculptingVisWindow : EditorWindow
         }
 
 
-        if (labelOutputHookRight)
-        {
+        if (labelOutputHookRight) {
             if (labelOutputHook) DrawSocketHook(module.GetSocket(socket_index++), nest);
         }
 
@@ -185,8 +169,7 @@ public class SculptingVisWindow : EditorWindow
 
 
 
-        for (; socket_index < module.GetNumberOfSockets(); socket_index++)
-        {
+        for (; socket_index < module.GetNumberOfSockets(); socket_index++) {
 
             StyleSocket socket = module.GetSocket(socket_index);
             if (socket.IsInput() && !showInputs) continue;
@@ -198,14 +181,14 @@ public class SculptingVisWindow : EditorWindow
                 inputHookLeft = true;
             else if (module is StyleLayer && socket is VariableSocket)
                 inputHookRight = true;
-            else if(module is StyleDataVariable && socket.GetLabel() != "") {
+            else if (module is StyleDataVariable && socket.GetLabel() != "") {
                 inputHookRight = true;
             }
             if (module is StyleCustomVariable && socket.IsInput())
                 inputHookLeft = true;
             if (module is StyleCustomVariable && socket.IsOutput() && socket.GetLabel() != "")
                 inputHookRight = true;
-          
+
             EditorGUILayout.BeginHorizontal();
             if (inputHookLeft)
                 DrawSocketHook(socket, nest);
@@ -213,30 +196,30 @@ public class SculptingVisWindow : EditorWindow
                 GUILayoutUtility.GetRect(new GUIContent(""), socket.IsOutput() ? EditorStyles.radioButton : EditorStyles.miniButton);
 
             GUILayout.Label(socket.GetLabel());
-            if(socket is StyleTypeSocket<Range<int>>) {
+            if (socket is StyleTypeSocket<Range<int>>) {
                 int A = ((Range<int>)socket.GetInput()).value;
-                ((Range<int>)socket.GetInput()).value = EditorGUILayout.IntSlider(((Range<int>)socket.GetInput()).value,((Range<int>)socket.GetInput()).lowerBound,((Range<int>)socket.GetInput()).upperBound);
-                if(A != ((Range<int>)socket.GetInput()).value)
+                ((Range<int>)socket.GetInput()).value = EditorGUILayout.IntSlider(((Range<int>)socket.GetInput()).value, ((Range<int>)socket.GetInput()).lowerBound, ((Range<int>)socket.GetInput()).upperBound);
+                if (A != ((Range<int>)socket.GetInput()).value)
                     socket.GetModule().UpdateModule();
             }
 
-            if(socket is StyleTypeSocket<Range<float>>) {
+            if (socket is StyleTypeSocket<Range<float>>) {
                 float A = ((Range<float>)socket.GetInput()).value;
-                ((Range<float>)socket.GetInput()).value = EditorGUILayout.Slider(((Range<float>)socket.GetInput()).value,((Range<float>)socket.GetInput()).lowerBound,((Range<float>)socket.GetInput()).upperBound);
-                if(A != ((Range<float>)socket.GetInput()).value)
+                ((Range<float>)socket.GetInput()).value = EditorGUILayout.Slider(((Range<float>)socket.GetInput()).value, ((Range<float>)socket.GetInput()).lowerBound, ((Range<float>)socket.GetInput()).upperBound);
+                if (A != ((Range<float>)socket.GetInput()).value)
                     socket.GetModule().UpdateModule();
             }
-            if(socket is StyleTypeSocket<Range<bool>>) {
+            if (socket is StyleTypeSocket<Range<bool>>) {
                 bool A = ((Range<bool>)socket.GetInput()).value;
                 ((Range<bool>)socket.GetInput()).value = EditorGUILayout.Toggle(((Range<bool>)socket.GetInput()).value);
-                if(A != ((Range<bool>)socket.GetInput()).value)
+                if (A != ((Range<bool>)socket.GetInput()).value)
                     socket.GetModule().UpdateModule();
             }
 
-            if(socket is StyleTypeSocket<Objectify<Color>>) {
+            if (socket is StyleTypeSocket<Objectify<Color>>) {
                 Color A = ((Objectify<Color>)socket.GetInput()).value;
                 ((Objectify<Color>)socket.GetInput()).value = EditorGUILayout.ColorField(A);
-                if(A != ((Objectify<Color>)socket.GetInput()).value) {
+                if (A != ((Objectify<Color>)socket.GetInput()).value) {
                     socket.GetModule().UpdateModule();
                 }
             }
@@ -256,10 +239,8 @@ public class SculptingVisWindow : EditorWindow
         GUILayout.EndVertical();
     }
 
-    void DrawSocketHook(StyleSocket socket, Rect nest)
-    {
-        if (socket != null)
-        {
+    void DrawSocketHook(StyleSocket socket, Rect nest) {
+        if (socket != null) {
             bool disabled = false;
             if (activeSource != null && !socket.DoesAccept(activeSource))
                 disabled = true;
@@ -268,8 +249,7 @@ public class SculptingVisWindow : EditorWindow
             //GUILayout.Label(socket.GetUniqueIdentifier());
             GUILayout.Box("", socket.IsOutput() ? EditorStyles.radioButton : EditorStyles.miniButton);
             EditorGUI.EndDisabledGroup();
-            if (Event.current.type == EventType.Repaint)
-            {
+            if (Event.current.type == EventType.Repaint) {
                 Rect hook = GUILayoutUtility.GetLastRect();
                 hook.position += nest.position;
                 _socketHooks[socket.GetUniqueIdentifier()] = hook;
@@ -287,21 +267,23 @@ public class SculptingVisWindow : EditorWindow
     bool showCustomDataSettings = false;
 
 
-    public enum OPTIONS
-{
-    CUBE = 0,
-    SPHERE = 1,
-    PLANE = 2
-}
+    public enum OPTIONS {
+        CUBE = 0,
+        SPHERE = 1,
+        PLANE = 2
+    }
     public OPTIONS op;
 
-    void OnGUI()
-    {
-        if(GetStyleController() == null) {
+    void OnGUI() {
+        if (GetStyleController() == null) {
             GUILayout.Label("There is no StyleController object in this scene.");
             return;
         }
-            
+
+        if (!Application.isPlaying) {
+            GUILayout.Label("For the time being, please run the scene to make changes.");
+            return;
+        }
         if (_columns == null) _columns = new Rect[7];
 
 
@@ -311,8 +293,7 @@ public class SculptingVisWindow : EditorWindow
         if (_sockets == null) _sockets = new Dictionary<string, StyleSocket>();
 
 
-        if (Event.current.type == EventType.Repaint)
-        {
+        if (Event.current.type == EventType.Repaint) {
             _socketHooks.Clear();
             _sockets.Clear();
         }
@@ -323,14 +304,13 @@ public class SculptingVisWindow : EditorWindow
 
         Rect[] columns = new Rect[7];
         EditorGUILayout.BeginVertical();
-        if (GUILayout.Button("Reset"))
-        {
+        if (GUILayout.Button("Reset")) {
             _socketHooks.Clear();
             _sockets.Clear();
             GetStyleController().Reset();
+            _columns = null;
         }
-        if (GUILayout.Button("Report"))
-        {
+        if (GUILayout.Button("Report")) {
             GetStyleController().Report();
         }
         //Rect workspace = GUILayoutUtility.GetRect(0,10000,0,10000);
@@ -338,22 +318,17 @@ public class SculptingVisWindow : EditorWindow
         EditorGUILayout.BeginVertical(GUILayout.MaxWidth(350));
         EditorGUILayout.BeginVertical("box");
         showVisualElementLoader = EditorGUILayout.Foldout(showVisualElementLoader, "Load Visual Elements");
-        if (showVisualElementLoader)
-        {
+        if (showVisualElementLoader) {
 
-            if (GUILayout.Button("Load Folder"))
-            {
+            if (GUILayout.Button("Load Folder")) {
                 string path = EditorUtility.OpenFolderPanel("Select Folder containing glyphs or colormaps", Application.streamingAssetsPath + "/", "");
-                if (path.Length != 0)
-                {
+                if (path.Length != 0) {
                     GetStyleController().LoadVisualElements(path);
                 }
             }
-            if (GUILayout.Button("Load Files"))
-            {
-                string path = EditorUtility.OpenFilePanel("Select Visual Element", Application.streamingAssetsPath + "/","");
-                if (path.Length != 0)
-                {
+            if (GUILayout.Button("Load Files")) {
+                string path = EditorUtility.OpenFilePanel("Select Visual Element", Application.streamingAssetsPath + "/", "");
+                if (path.Length != 0) {
                     GetStyleController().LoadVisualElements(path);
                 }
             }
@@ -364,7 +339,7 @@ public class SculptingVisWindow : EditorWindow
         EditorGUILayout.EndVertical();
 
 
-        columns[0] = GUILayoutUtility.GetRect(new GUIContent(""),GUIStyle.none,GUILayout.ExpandHeight(true));
+        columns[0] = GUILayoutUtility.GetRect(new GUIContent(""), GUIStyle.none, GUILayout.ExpandHeight(true));
         EditorGUILayout.EndVertical();
 
         GUILayoutUtility.GetRect(0, 50, 0, position.height); //GUILayout.FlexibleSpace();
@@ -377,36 +352,34 @@ public class SculptingVisWindow : EditorWindow
         EditorGUILayout.BeginVertical(GUILayout.MaxWidth(350));
         EditorGUILayout.BeginVertical("box");
         showCanvasManager = EditorGUILayout.Foldout(showCanvasManager, "Manage Canvases");
-        if (showCanvasManager)
-        {
+        if (showCanvasManager) {
 
-            for(int c = 0; c < GetStyleController().GetCanvases().Count; c++) {
+            for (int c = 0; c < GetStyleController().GetCanvases().Count; c++) {
                 SculptingVis.Canvas canvas = GetStyleController().GetCanvases()[c];
                 GUILayout.BeginHorizontal();
-                if(GUILayout.Button("Select")) {
-                    
+                if (GUILayout.Button("Select")) {
+
                 }
-                canvas.FitStyle(GUILayout.Toggle(canvas.IsFitting(),"Fit"));
-                    
-                
+                canvas.FitStyle(GUILayout.Toggle(canvas.IsFitting(), "Fit"));
+
+
                 GUILayout.FlexibleSpace();
-                if(GUILayout.Button("-",EditorStyles.miniButton,GUILayout.MaxWidth(20))) {
+                if (GUILayout.Button("-", EditorStyles.miniButton, GUILayout.MaxWidth(20))) {
                     GetStyleController().RemoveCanvas(canvas);
                 }
                 GUILayout.EndHorizontal();
             }
-           
-            if (GUILayout.Button("Add Canvas"))
-            {
+
+            if (GUILayout.Button("Add Canvas")) {
                 GetStyleController().AddCanvas();
             }
-           
+
 
         }
 
         EditorGUILayout.EndVertical();
 
-    
+
         columns[2] = GUILayoutUtility.GetRect(100, 300, 0, position.height);
         EditorGUILayout.EndVertical();
         // if (!_scrollPositions.ContainsKey("Layers")) _scrollPositions["Layers"] = new Vector2(0, 0);
@@ -425,8 +398,7 @@ public class SculptingVisWindow : EditorWindow
         EditorGUILayout.BeginVertical(GUILayout.MaxWidth(350));
         EditorGUILayout.BeginVertical("box");
         showDataLoader = EditorGUILayout.Foldout(showDataLoader, "Load Data");
-        if (showDataLoader)
-        {
+        if (showDataLoader) {
 
             // if (GUILayout.Button("Load Folder"))
             // {
@@ -436,11 +408,9 @@ public class SculptingVisWindow : EditorWindow
             //         GetStyleController().LoadVisualElements(path);
             //     }
             // }
-            if (GUILayout.Button("Load File"))
-            {
-                string path = EditorUtility.OpenFilePanel("Select VTK file", Application.streamingAssetsPath + "/example_data/VTK/","");
-                if (path.Length != 0)
-                {
+            if (GUILayout.Button("Load File")) {
+                string path = EditorUtility.OpenFilePanel("Select VTK file", Application.streamingAssetsPath + "/example_data/VTK/", "");
+                if (path.Length != 0) {
                     GetStyleController().LoadData(path);
                 }
             }
@@ -462,8 +432,7 @@ public class SculptingVisWindow : EditorWindow
         EditorGUILayout.BeginVertical(GUILayout.MaxWidth(350));
         EditorGUILayout.BeginVertical("box");
         showCustomDataSettings = EditorGUILayout.Foldout(showCustomDataSettings, "Custom Variable Settings");
-        if (showCustomDataSettings)
-        {
+        if (showCustomDataSettings) {
 
             // if (GUILayout.Button("Create new Point Field"))
             // {
@@ -490,13 +459,11 @@ public class SculptingVisWindow : EditorWindow
 
 
         if (Event.current.type == EventType.Repaint)
-            for (int i = 0; i < 7; i++)
-            {
+            for (int i = 0; i < 7; i++) {
                 _columns[i] = columns[i];
             }
 
-        for (int i = 0; i < columns.Length; i++)
-        {
+        for (int i = 0; i < columns.Length; i++) {
 
             //columns[i] = new Rect(new Vector2(i * position.width / 7, workspace.y), new Vector2(position.width / 7, workspace.height));
         }
@@ -508,12 +475,10 @@ public class SculptingVisWindow : EditorWindow
 
 
 
-        for (int i = 0; i < _columns.Length; i++)
-        {
+        for (int i = 0; i < _columns.Length; i++) {
             if (i % 2 == 1) continue;
 
-            if (i == 0)
-            {
+            if (i == 0) {
 
 
 
@@ -527,8 +492,7 @@ public class SculptingVisWindow : EditorWindow
                 scrollView.position -= _scrollPositions["VisualElements"];
 
 
-                for (int m = 0; m < GetStyleController().GetVisualElements().Count; m++)
-                {
+                for (int m = 0; m < GetStyleController().GetVisualElements().Count; m++) {
                     // Rect scrollRect = columns[i];
                     // scrollRect.position -= _scrollPositions["VisualElements"];
                     DrawStyleModule(GetStyleController().GetVisualElements()[m], scrollView);
@@ -542,58 +506,53 @@ public class SculptingVisWindow : EditorWindow
             }
 
 
-            if (i == 2)
-            {
+            if (i == 2) {
 
                 GUILayout.BeginArea(_columns[i]);
                 if (!_scrollPositions.ContainsKey("Layers")) _scrollPositions["Layers"] = new Vector2(0, 0);
                 _scrollPositions["Layers"] = GUILayout.BeginScrollView(_scrollPositions["Layers"]);
 
 
-                for (int m = 0; m < GetStyleController().GetLayers().Count; m++)
-                {
+                for (int m = 0; m < GetStyleController().GetLayers().Count; m++) {
                     Rect scrollRect = _columns[i];
                     scrollRect.position -= _scrollPositions["Layers"];
                     DrawStyleModule(GetStyleController().GetLayers()[m], scrollRect);
                 }
 
-                
+
 
                 EditorGUILayout.BeginHorizontal();
 
                 GUILayout.Label("Create layer: ");
-                string [] l = GetStyleController().GetLayerTypes();
+                string[] l = GetStyleController().GetLayerTypes();
                 int selected = GetStyleController().GetLayerTypeToCreate();
-                GetStyleController().SetLayerTypeToCreate(EditorGUILayout.Popup(selected,l));
+                GetStyleController().SetLayerTypeToCreate(EditorGUILayout.Popup(selected, l));
 
-                if(GUILayout.Button("+",EditorStyles.miniButton, GUILayout.MaxWidth(20)))
+                if (GUILayout.Button("+", EditorStyles.miniButton, GUILayout.MaxWidth(20)))
                     GetStyleController().CreateLayer();
 
                 EditorGUILayout.EndHorizontal();
-                
+
                 GUILayout.EndScrollView();
                 GUILayout.EndArea();
 
             }
 
 
-            if (i == 4)
-            {
+            if (i == 4) {
 
                 GUILayout.BeginArea(_columns[i]);
                 if (!_scrollPositions.ContainsKey("Variables")) _scrollPositions["Variables"] = new Vector2(0, 0);
                 _scrollPositions["Variables"] = GUILayout.BeginScrollView(_scrollPositions["Variables"]);
 
 
-                for (int m = 0; m < GetStyleController().GetVariables().Count; m++)
-                {
+                for (int m = 0; m < GetStyleController().GetVariables().Count; m++) {
                     Rect scrollRect = _columns[i];
                     scrollRect.position -= _scrollPositions["Variables"];
                     DrawStyleModule(GetStyleController().GetVariables()[m], scrollRect);
                 }
 
-                for (int m = 0; m < GetStyleController().GetUserVariables().Count; m++)
-                {
+                for (int m = 0; m < GetStyleController().GetUserVariables().Count; m++) {
                     Rect scrollRect = _columns[i];
                     scrollRect.position -= _scrollPositions["Variables"];
                     DrawStyleModule(GetStyleController().GetUserVariables()[m], scrollRect, false, true);
@@ -605,19 +564,17 @@ public class SculptingVisWindow : EditorWindow
 
 
 
-            if (i == 6)
-            {
+            if (i == 6) {
 
                 GUILayout.BeginArea(_columns[i]);
                 if (!_scrollPositions.ContainsKey("CustomVariables")) _scrollPositions["CustomVariables"] = new Vector2(0, 0);
                 _scrollPositions["CustomVariables"] = GUILayout.BeginScrollView(_scrollPositions["CustomVariables"]);
 
 
-                for (int m = 0; m < GetStyleController().GetUserVariables().Count; m++)
-                {
+                for (int m = 0; m < GetStyleController().GetUserVariables().Count; m++) {
                     Rect scrollRect = _columns[i];
                     scrollRect.position -= _scrollPositions["CustomVariables"];
-                    DrawStyleModule(GetStyleController().GetUserVariables()[m], scrollRect,true,false);
+                    DrawStyleModule(GetStyleController().GetUserVariables()[m], scrollRect, true, false);
                 }
 
 
@@ -647,8 +604,7 @@ public class SculptingVisWindow : EditorWindow
         bool isDragging = false;
         Vector2 mousePos = Vector2.zero;
 
-        switch (evt.type)
-        {
+        switch (evt.type) {
             case EventType.MouseMove:
                 activeSource = null;
                 break;
@@ -656,17 +612,14 @@ public class SculptingVisWindow : EditorWindow
             case EventType.MouseDown:
 
 
-                foreach (string socket in _socketHooks.Keys)
-                {
-                    if (_socketHooks[socket].Contains(evt.mousePosition) && _sockets[socket].IsOutput())
-                    {
+                foreach (string socket in _socketHooks.Keys) {
+                    if (_socketHooks[socket].Contains(evt.mousePosition) && _sockets[socket].IsOutput()) {
                         activeSource = _sockets[socket];
                         break;
                     }
 
 
-                    if (_socketHooks[socket].Contains(evt.mousePosition) && _sockets[socket].IsInput())
-                    {
+                    if (_socketHooks[socket].Contains(evt.mousePosition) && _sockets[socket].IsInput()) {
                         GetStyleController().ClearSocket(_sockets[socket]);
                         break;
                     }
@@ -674,23 +627,18 @@ public class SculptingVisWindow : EditorWindow
 
                 break;
             case EventType.MouseDrag:
-                if (activeSource != null)
-                {
+                if (activeSource != null) {
 
                     isDragging = true;
                     mousePos = evt.mousePosition;
                 }
                 break;
             case EventType.MouseUp:
-                if (activeSource != null)
-                {
-                    foreach (string socket in _socketHooks.Keys)
-                    {
-                        if (_socketHooks[socket].Contains(evt.mousePosition))
-                        {
+                if (activeSource != null) {
+                    foreach (string socket in _socketHooks.Keys) {
+                        if (_socketHooks[socket].Contains(evt.mousePosition)) {
                             StyleSocket receiving = _sockets[socket];
-                            if (receiving.DoesAccept(activeSource))
-                            {
+                            if (receiving.DoesAccept(activeSource)) {
                                 StyleLink link = new StyleLink();
                                 link.SetSource(activeSource);
                                 link.SetDestination(_sockets[socket]);
@@ -702,7 +650,7 @@ public class SculptingVisWindow : EditorWindow
                     }
 
                 }
-                    activeSource = null;
+                activeSource = null;
 
                 break;
 
@@ -713,16 +661,14 @@ public class SculptingVisWindow : EditorWindow
         Repaint();
 
 
-        for (int i = 0; i < GetStyleController().GetLinks().Count; i++)
-        {
+        for (int i = 0; i < GetStyleController().GetLinks().Count; i++) {
             StyleLink link = GetStyleController().GetLinks()[i];
             if (_socketHooks.ContainsKey(link.GetSource().GetUniqueIdentifier()) && _socketHooks.ContainsKey(link.GetDestination().GetUniqueIdentifier()))
                 DrawWire(_socketHooks[link.GetSource().GetUniqueIdentifier()].center, Vector2.right, _socketHooks[link.GetDestination().GetUniqueIdentifier()].center, Vector2.left);
 
         }
 
-        if (activeSource != null)
-        {
+        if (activeSource != null) {
             if (_socketHooks.ContainsKey(activeSource.GetUniqueIdentifier()))
                 DrawWire(_socketHooks[activeSource.GetUniqueIdentifier()].center, Vector2.right, evt.mousePosition, Vector2.left);
 

@@ -42,7 +42,7 @@ namespace SculptingVis
         {
             if (layerMaterial == null)
             {
-                Debug.LogError("Layer Material is null");
+                Debug.LogError("Style Material is null");
                 return null;
             }
             if (_canvasMaterials == null)

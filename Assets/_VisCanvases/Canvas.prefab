@@ -312,8 +312,8 @@ MonoBehaviour:
   _bounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.5, y: 0.5, z: 0.5}
-  _areaMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-  _areaMaterial: {fileID: 2100000, guid: c80c8cc9a0cce459da0b70861acd7690, type: 2}
+  _areaMesh: {fileID: 0}
+  _areaMaterial: {fileID: 0}
   _cornerMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
   _cornerMaterial: {fileID: 2100000, guid: 9b18f672d1f174a4b93db7892bf59531, type: 3}
   _innerSceneTransform: {fileID: 4032091498035696}
