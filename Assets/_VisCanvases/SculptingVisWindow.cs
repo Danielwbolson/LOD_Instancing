@@ -263,6 +263,7 @@ public class SculptingVisWindow : EditorWindow {
     Rect[] _columns;
     bool showVisualElementLoader = false;
     bool showCanvasManager = false;
+    bool showPlaneManager = false;
     bool showDataLoader = false;
     bool showCustomDataSettings = false;
 
@@ -379,9 +380,35 @@ public class SculptingVisWindow : EditorWindow {
 
         EditorGUILayout.EndVertical();
 
+        // Daniel : Planes
+        EditorGUILayout.BeginVertical("box");
+        showPlaneManager = EditorGUILayout.Foldout(showPlaneManager, "Manage Planes");
+        if (showPlaneManager) {
+            for (int p = 0; p < GetStyleController().GetPlanes().Count; p++) {
+                SculptingVis.StylePlane plane = GetStyleController().GetPlanes()[p];
+                GUILayout.BeginHorizontal();
+                if (GUILayout.Button("Select")) {
+
+                }
+
+
+                GUILayout.FlexibleSpace();
+                if (GUILayout.Button("-", EditorStyles.miniButton, GUILayout.MaxWidth(20))) {
+                    GetStyleController().RemovePlane(plane);
+                }
+                GUILayout.EndHorizontal();
+            }
+
+            if (GUILayout.Button("Add Plane")) {
+                GetStyleController().AddPlane();
+            }
+        }
+
+        EditorGUILayout.EndVertical();
 
         columns[2] = GUILayoutUtility.GetRect(100, 300, 0, position.height);
         EditorGUILayout.EndVertical();
+
         // if (!_scrollPositions.ContainsKey("Layers")) _scrollPositions["Layers"] = new Vector2(0, 0);
         // _scrollPositions["Layers"] = EditorGUILayout.BeginScrollView(_scrollPositions["Layers"],false,true,GUILayout.MaxWidth(200));
 
@@ -391,6 +418,7 @@ public class SculptingVisWindow : EditorWindow {
         // EditorGUILayout.EndScrollView();
 
         GUILayoutUtility.GetRect(0, 50, 0, position.height); //GUILayout.FlexibleSpace();
+
 
 
 

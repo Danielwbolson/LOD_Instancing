@@ -4,6 +4,7 @@
 #include "GeneralSupport.cginc"
 #include "CanvasSupport.cginc"
 
+#if defined(SHADER_API_D3D11) || defined(SHADER_API_METAL)
 
 StructuredBuffer<int2> _AnchorTopology;
 StructuredBuffer<int2> _AnchorTopologyCellInfo;
@@ -20,6 +21,7 @@ int _SampleAtCenter;
 // float4x4 _VariableBoundsMatrixInv_Anchor;
 // float3 _VariableBoundsMin_Anchor;
 // float3 _VariableBoundsMax_Anchor;
+
 
 int _VariableAssigned_0;
 int _VariableDomainDimensionality_0;
@@ -661,13 +663,7 @@ float3 GetNormalizedDataSpace(int variableSlot, float3 innerSceneSpace) {
     float4 normdataSpace = mul(GetVariableBoundsMatrixInv(variableSlot),innerSceneSpace);
     return normdataSpace;
 }
-float3 WorldToDataSpace(float3 worldPos) {
-    float4 worldSpace = float4(worldPos,1);
-    float4 canvasSpace = mul(_CanvasInverse,worldSpace);
-    float4 innerSceneSpace = mul(_CanvasInnerSceneInverse,worldSpace);
-    //float4 dataSpace = mul(GetVariableBoundsMatrixInv(variableSlot),innerSceneSpace);
-    return innerSceneSpace;
-}
+
 float3 TextureToDataSpace(int variableSlot, float3 textureSpace) {
     float3 MIN = GetVariableBoundsMin(variableSlot);
     float3 MAX = GetVariableBoundsMax(variableSlot);
@@ -713,7 +709,7 @@ float3 GetData(int variableSlot, int cellId, int vertexId, float3 dataPos) {
     float3 normdataPos = GetNormalizedDataSpace(variableSlot,dataPos);
     if(_SampleAtCenter) {
         dataPos = GetAnchorPosition(vertexId);
-		normdataPos = GetNormalizedDataSpace(variableSlot,dataPos);
+        normdataPos = GetNormalizedDataSpace(variableSlot,dataPos);
     }
     if(VariableIsAssigned(variableSlot) == 0)
         return GetVariableDefaultValue(variableSlot);
@@ -736,4 +732,5 @@ float3 GetData(int variableSlot, int cellId, int vertexId, float3 dataPos) {
    
 }
 
+#endif
 #endif

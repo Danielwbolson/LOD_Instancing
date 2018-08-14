@@ -12,6 +12,13 @@ float3 _CanvasBoundsExtentThreshold;
 float3 _CanvasBoundsThreshold;
 float4 _CanvasCropColor;
 
+float3 WorldToDataSpace(float3 worldPos) {
+    float4 worldSpace = float4(worldPos, 1);
+    float4 canvasSpace = mul(_CanvasInverse, worldSpace);
+    float4 innerSceneSpace = mul(_CanvasInnerSceneInverse, worldSpace);
+    //float4 dataSpace = mul(GetVariableBoundsMatrixInv(variableSlot),innerSceneSpace);
+    return innerSceneSpace;
+}
 
 float OutOfBounds(float3 extents, float3 threshold, float3 position) {
     float3 oob;
