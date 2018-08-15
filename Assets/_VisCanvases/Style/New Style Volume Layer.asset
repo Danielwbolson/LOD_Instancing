@@ -12,10 +12,8 @@ MonoBehaviour:
   m_Name: New Style Volume Layer
   m_EditorClassIdentifier: 
   _sockets: []
-  _volumeVariable: {fileID: 0}
-  _colorMapInput: {fileID: 0}
-  _opacityMapInput: {fileID: 0}
-  _colorMap: {fileID: 0}
-  _opacityMap: {fileID: 0}
-  _volumeMaterial: {fileID: 2100000, guid: f4dc33c0cbd5d44898d99d994411fec8, type: 2}
+  _toggled: 1
+  _planes: []
+  _planeCount: 0
+  _layerMaterial: {fileID: 2100000, guid: 147277e5ad35ec64eacd273adf9c6a7c, type: 2}
   _volumeCubeMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}

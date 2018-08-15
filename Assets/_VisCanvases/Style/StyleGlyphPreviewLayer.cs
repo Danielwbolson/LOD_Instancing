@@ -26,9 +26,6 @@ namespace SculptingVis
         [SerializeField]
         public StyleTypeSocket<Range<bool>> _transformTangents;
 
-        [SerializeField]
-        public Material _glyphMaterial;
-
         public int LODlevel = 0;
 
 
@@ -46,23 +43,21 @@ namespace SculptingVis
 
         public override void DrawLayer(Canvas canvas)
         {
-           
-
-            _glyphMaterial.SetMatrix("_GlyphTransform",Matrix4x4.TRS(new Vector3(0,0,0),GameObject.Find("GlyphTransform").transform.rotation,GameObject.Find("GlyphTransform").transform.localScale));
-            _glyphMaterial.SetMatrix("_GlyphTransformInverse",Matrix4x4.TRS(new Vector3(0,0,0),GameObject.Find("GlyphTransform").transform.rotation,GameObject.Find("GlyphTransform").transform.localScale).inverse);
 
 
-            _glyphMaterial.SetInt("_TransformVertices",(Range<bool>)_transformVerts.GetInput()?1:0);
-            _glyphMaterial.SetInt("_TransformNormals",(Range<bool>)_transformNormals.GetInput()?1:0);
-            _glyphMaterial.SetInt("_TransformTangents",(Range<bool>)_transformTangents.GetInput()?1:0);
+            _layerMaterial.SetMatrix("_GlyphTransform",Matrix4x4.TRS(new Vector3(0,0,0),GameObject.Find("GlyphTransform").transform.rotation,GameObject.Find("GlyphTransform").transform.localScale));
+            _layerMaterial.SetMatrix("_GlyphTransformInverse",Matrix4x4.TRS(new Vector3(0,0,0),GameObject.Find("GlyphTransform").transform.rotation,GameObject.Find("GlyphTransform").transform.localScale).inverse);
 
 
+            _layerMaterial.SetInt("_TransformVertices",(Range<bool>)_transformVerts.GetInput()?1:0);
+            _layerMaterial.SetInt("_TransformNormals",(Range<bool>)_transformNormals.GetInput()?1:0);
+            _layerMaterial.SetInt("_TransformTangents",(Range<bool>)_transformTangents.GetInput()?1:0);
 
             if(_glyphInput.GetInput() != null && ((Glyph)(_glyphInput.GetInput())).GetNumberOfLODs() >= ((Range<int>)_lodLevel.GetInput())+1)
             {
-                _glyphMaterial.SetTexture("_BumpMap",((Glyph)(_glyphInput.GetInput())).GetLODNormalMap(((Range<int>)_lodLevel.GetInput())));
+                _layerMaterial.SetTexture("_BumpMap",((Glyph)(_glyphInput.GetInput())).GetLODNormalMap(((Range<int>)_lodLevel.GetInput())));
 
-                Material canvasMaterial = GetCanvasMaterial(canvas, _glyphMaterial);
+                Material canvasMaterial = GetCanvasMaterial(canvas, _layerMaterial);
 
                 Graphics.DrawMesh(((Glyph)(_glyphInput.GetInput())).GetLODMesh(((Range<int>)_lodLevel.GetInput())), canvas.GetInnerSceneTransformMatrix(), canvasMaterial, 0);
             }
@@ -74,7 +69,7 @@ namespace SculptingVis
         {
             if (toCopy != null && toCopy is StyleGlyphPreviewLayer)
             {
-                _glyphMaterial = ((StyleGlyphPreviewLayer)toCopy)._glyphMaterial;
+                _layerMaterial = ((StyleGlyphPreviewLayer)toCopy)._layerMaterial;
 
             }
 
@@ -84,35 +79,35 @@ namespace SculptingVis
         public StyleGlyphPreviewLayer Init()
         {
           
-			_glyphInput = (new StyleTypeSocket<Glyph>()).Init("Glyph",this);
-			AddSocket(_glyphInput);
+            _glyphInput = (new StyleTypeSocket<Glyph>()).Init("Glyph",this);
+            AddSocket(_glyphInput);
 
-			_lodLevel = (new StyleTypeSocket<Range<int>>()).Init("Glyph LOD",this);
+            _lodLevel = (new StyleTypeSocket<Range<int>>()).Init("Glyph LOD",this);
             _lodLevel.SetDefaultInputObject((new Range<int>(0,2)));
-			AddSocket(_lodLevel);
+            AddSocket(_lodLevel);
 
-			_transformVerts = (new StyleTypeSocket<Range<bool>>()).Init("Use GlyphTransform on verts",this);
+            _transformVerts = (new StyleTypeSocket<Range<bool>>()).Init("Use GlyphTransform on verts",this);
             _transformVerts.SetDefaultInputObject((new Range<bool>(false,true,true)));
-			AddSocket(_transformVerts);
+            AddSocket(_transformVerts);
 
 
             _transformNormals = (new StyleTypeSocket<Range<bool>>()).Init("Use GlyphTransform on norms",this);
             _transformNormals.SetDefaultInputObject((new Range<bool>(false,true,true)));
-			AddSocket(_transformNormals);
+            AddSocket(_transformNormals);
 
 
 
             _transformTangents = (new StyleTypeSocket<Range<bool>>()).Init("Use GlyphTransform on tangents",this);
             _transformTangents.SetDefaultInputObject((new Range<bool>(false,true,true)));
-			AddSocket(_transformTangents);
+            AddSocket(_transformTangents);
 
             return this;
 
         }
 
-		public override void UpdateModule() {
+        public override void UpdateModule() {
 
-		}
+        }
 
 
         public override string GetLabel()

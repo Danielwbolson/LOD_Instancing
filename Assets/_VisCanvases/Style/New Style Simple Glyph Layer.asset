@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Name: New Style Simple Glyph Layer
   m_EditorClassIdentifier: 
   _sockets: []
-  _pointMaterial: {fileID: 2100000, guid: f7ee1bab59059bd42b57063aefadc947, type: 2}
+  _toggled: 1
+  _planes: []
+  _planeCount: 0
+  _layerMaterial: {fileID: 2100000, guid: 147277e5ad35ec64eacd273adf9c6a7c, type: 2}
   _billboardMesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
   _sampleAtCenter: 1
   instanceCount: 50000

@@ -12,10 +12,8 @@ MonoBehaviour:
   m_Name: New Style Simple Path Layer
   m_EditorClassIdentifier: 
   _sockets: []
-  _anchorVariable: {fileID: 0}
-  _colorVariable: {fileID: 0}
-  _opacityVariable: {fileID: 0}
-  _colorMapInput: {fileID: 0}
-  _colorMap: {fileID: 2800000, guid: 5697c26ee2ef0c848996640f6a3d3432, type: 3}
-  _lineMaterial: {fileID: 2100000, guid: 828e42bd71679c145b63523a84ecc242, type: 2}
+  _toggled: 1
+  _planes: []
+  _planeCount: 0
+  _layerMaterial: {fileID: 2100000, guid: 147277e5ad35ec64eacd273adf9c6a7c, type: 2}
   LineCount: 1000

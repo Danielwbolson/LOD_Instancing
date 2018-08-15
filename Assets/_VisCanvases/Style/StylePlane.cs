@@ -39,16 +39,11 @@ using UnityEngine;
  */
 
 namespace SculptingVis {
+
     public class StylePlane : StyleModule {
 
         [HideInInspector]
-        public bool _toggled = true;
-
-        [HideInInspector]
-        public Vector3 _centerPos, _up, _normal;
-
-        [HideInInspector]
-        public float _width, _height;
+        public Vector3 _centerPos, _normal;
 
         public StylePlane Init() {
             return this;
@@ -56,7 +51,7 @@ namespace SculptingVis {
 
 
         public override string GetStyle() {
-            return "Layer";
+            return "Plane";
         }
 
         public virtual void DrawStyle(Canvas canvas) {

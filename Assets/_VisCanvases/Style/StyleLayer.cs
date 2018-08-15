@@ -9,6 +9,17 @@ namespace SculptingVis
         [HideInInspector]
         public bool _toggled = true;
 
+        [SerializeField]
+        protected ComputeBuffer _planeBuffer;
+        public List<StylePlane> _planes;
+
+        [SerializeField]
+        protected int _planeCount;
+
+        [SerializeField]
+        protected Material _layerMaterial;
+
+
         public StyleLayer Init()
         {
             return this;
@@ -63,6 +74,21 @@ namespace SculptingVis
             return this;
         }
 
+        public void AddPlane(StylePlane p) {
+            _planes.Add(p);
+
+            _planeBuffer = new ComputeBuffer(_planes.Count, 6 * sizeof(float));
+            _planeBuffer.SetData(_planes);
+            _layerMaterial.SetBuffer("_Planes", _planeBuffer);
+        }
+
+        public void RemovePlane(StylePlane p) {
+            _planes.Remove(p);
+
+            _planeBuffer = new ComputeBuffer(_planes.Count, 6 * sizeof(float));
+            _planeBuffer.SetData(_planes);
+            _layerMaterial.SetBuffer("_Planes", _planeBuffer);
+        }
     }
 }
 

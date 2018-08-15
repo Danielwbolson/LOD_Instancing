@@ -48,7 +48,7 @@ namespace SculptingVis
         List<StyleLayer> _layerTypes;
 
         [SerializeField]
-        List<StylePlane> _slices;
+        List<StylePlane> _planes;
 
         [SerializeField]
         List<StyleVariable> _variableTypes;
@@ -398,7 +398,6 @@ namespace SculptingVis
         }
 
         [SerializeField] StylePlane _planePrefab;
-        [SerializeField] List<StylePlane> _planes;
 
         public List<StylePlane> GetPlanes() {
             if (_planes == null) _planes = new List<StylePlane>();
@@ -408,10 +407,16 @@ namespace SculptingVis
         public void AddPlane() {
             _planes.Add((StylePlane)ScriptableObject.CreateInstance("StylePlane"));
 
+            foreach (StyleLayer l in _layers) {
+                l.AddPlane(new StylePlane());
+            }
+
         }
 
         public void RemovePlane(StylePlane p) {
-            GetPlanes().Remove(p);
+            foreach (StyleLayer l in _layers) {
+                l.RemovePlane(new StylePlane());
+            }
         }
 
     }

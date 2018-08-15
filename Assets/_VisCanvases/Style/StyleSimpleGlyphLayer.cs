@@ -55,9 +55,6 @@ namespace SculptingVis
         public StyleTypeSocket<Objectify<Color>> _colorInput;
 
         [SerializeField]
-        public Material _pointMaterial;
-
-        [SerializeField]
         public Mesh _billboardMesh;
 
 
@@ -92,14 +89,14 @@ namespace SculptingVis
 
 
             if (_colorMapInput.GetInput() != null)
-                _pointMaterial.SetTexture("_ColorMap", ((Colormap)_colorMapInput.GetInput()).GetTexture());
-            _pointMaterial.SetFloat("_glyphScale", (Range<float>)_glyphScaleInput.GetInput());
-            _pointMaterial.SetInt("_useMesh", (Range<bool>)_useMeshInput.GetInput()?1:0);
-            _pointMaterial.SetInt("_useThumbnail", (Range<bool>)_useThumbnailInput.GetInput()?1:0);
-            _pointMaterial.SetColor("_Color", (Objectify<Color>)_colorInput.GetInput());
-            _pointMaterial.SetFloat("_OpacityMultiplier", (Range<float>)_opacityMultiplierInput.GetInput());
-            _pointMaterial.SetInt("_faceCamera", (Range<bool>)_faceCameraInput.GetInput()?1:0);
-            _pointMaterial.SetFloat("_opacityThreshold", (Range<float>)_opacityThresholdInput.GetInput());
+                _layerMaterial.SetTexture("_ColorMap", ((Colormap)_colorMapInput.GetInput()).GetTexture());
+            _layerMaterial.SetFloat("_glyphScale", (Range<float>)_glyphScaleInput.GetInput());
+            _layerMaterial.SetInt("_useMesh", (Range<bool>)_useMeshInput.GetInput()?1:0);
+            _layerMaterial.SetInt("_useThumbnail", (Range<bool>)_useThumbnailInput.GetInput()?1:0);
+            _layerMaterial.SetColor("_Color", (Objectify<Color>)_colorInput.GetInput());
+            _layerMaterial.SetFloat("_OpacityMultiplier", (Range<float>)_opacityMultiplierInput.GetInput());
+            _layerMaterial.SetInt("_faceCamera", (Range<bool>)_faceCameraInput.GetInput()?1:0);
+            _layerMaterial.SetFloat("_opacityThreshold", (Range<float>)_opacityThresholdInput.GetInput());
 
 
 
@@ -116,16 +113,16 @@ namespace SculptingVis
                         Mesh instanceMesh;
                         if(((Range<bool>)_useMeshInput.GetInput()) == true) {
                             instanceMesh = ((Glyph)(_glyphInput.GetInput())).GetLODMesh(((Range<int>)_lodLevel.GetInput()));
-                            _pointMaterial.SetTexture("_BumpMap", ((Glyph)(_glyphInput.GetInput())).GetLODNormalMap(((Range<int>)_lodLevel.GetInput())));
+                        _layerMaterial.SetTexture("_BumpMap", ((Glyph)(_glyphInput.GetInput())).GetLODNormalMap(((Range<int>)_lodLevel.GetInput())));
 
                         }
                         else {
                             instanceMesh = _billboardMesh;
-                            _pointMaterial.SetTexture("_BumpMap", Glyph.DefaultNormalMap());
+                        _layerMaterial.SetTexture("_BumpMap", Glyph.DefaultNormalMap());
                             if(((Range<bool>)_useThumbnailInput.GetInput()) == true) {
-                                _pointMaterial.SetTexture("_MainTex", ((Glyph)(_glyphInput.GetInput())).GetPreviewImage());
+                            _layerMaterial.SetTexture("_MainTex", ((Glyph)(_glyphInput.GetInput())).GetPreviewImage());
                             }
-                            _pointMaterial.SetTexture("_AlphaTex", ((Glyph)(_glyphInput.GetInput())).GetAlphaMap());
+                        _layerMaterial.SetTexture("_AlphaTex", ((Glyph)(_glyphInput.GetInput())).GetAlphaMap());
 
                         }
 
@@ -136,11 +133,11 @@ namespace SculptingVis
                         argsBuffer.SetData(args);
 
 
-                        Material canvasMaterial = GetCanvasMaterial(canvas, _pointMaterial);
-                        _anchorVariable.Bind(_pointMaterial, 0, 0);
-                        _colorVariable.Bind(_pointMaterial, 0, 0);
-                        _opacityVariable.Bind(_pointMaterial, 0, 0);
-                        _directionVariable.Bind(_pointMaterial, 0, 0);
+                        Material canvasMaterial = GetCanvasMaterial(canvas, _layerMaterial);
+                        _anchorVariable.Bind(_layerMaterial, 0, 0);
+                        _colorVariable.Bind(_layerMaterial, 0, 0);
+                        _opacityVariable.Bind(_layerMaterial, 0, 0);
+                        _directionVariable.Bind(_layerMaterial, 0, 0);
 
                         //Graphics.DrawMesh(instanceMesh, canvas.GetInnerSceneTransformMatrix(), canvasMaterial, 0);
                         Graphics.DrawMeshInstancedIndirect(instanceMesh, 0, canvasMaterial, new Bounds(new Vector3(0, 0, 0), new Vector3(300, 300, 300)),argsBuffer);
@@ -156,7 +153,7 @@ namespace SculptingVis
         {
             if (toCopy != null && toCopy is StyleSimpleGlyphLayer)
             {
-                _pointMaterial = ((StyleSimpleGlyphLayer)toCopy)._pointMaterial;
+                _layerMaterial = ((StyleSimpleGlyphLayer)toCopy)._layerMaterial;
                 instanceCount = ((StyleSimpleGlyphLayer)toCopy).instanceCount;
                 _billboardMesh = ((StyleSimpleGlyphLayer)toCopy)._billboardMesh;
 

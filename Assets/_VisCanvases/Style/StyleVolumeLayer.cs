@@ -20,9 +20,6 @@ namespace SculptingVis
 
 
         [SerializeField]
-        Material _volumeMaterial;
-
-        [SerializeField]
         Mesh _volumeCubeMesh;
 
 
@@ -45,14 +42,14 @@ namespace SculptingVis
 
 
 
-            if(_colorMapInput.GetInput() != null) _volumeMaterial.SetTexture("_ColorMap", ((Colormap)_colorMapInput.GetInput()).GetTexture());
-            if(_opacityMapInput.GetInput() != null) _volumeMaterial.SetTexture("_OpacityMap", ((Colormap)_opacityMapInput.GetInput()).GetTexture());
+            if(_colorMapInput.GetInput() != null) _layerMaterial.SetTexture("_ColorMap", ((Colormap)_colorMapInput.GetInput()).GetTexture());
+            if(_opacityMapInput.GetInput() != null) _layerMaterial.SetTexture("_OpacityMap", ((Colormap)_opacityMapInput.GetInput()).GetTexture());
             Range<float> o = ((Range<float>)_opacityMultiplierInput.GetInput());
 
-                _volumeMaterial.SetFloat("_OpacityMultiplier", ((Range<float>)_opacityMultiplierInput.GetInput()));
+            _layerMaterial.SetFloat("_OpacityMultiplier", ((Range<float>)_opacityMultiplierInput.GetInput()));
 
 
-            Material canvasMaterial = GetCanvasMaterial(canvas, _volumeMaterial);
+            Material canvasMaterial = GetCanvasMaterial(canvas, _layerMaterial);
             _volumeVariable.Bind(canvasMaterial, 0, 0);
 
 
@@ -66,7 +63,7 @@ namespace SculptingVis
         {
             if (toCopy != null && toCopy is StyleVolumeLayer)
             {
-                _volumeMaterial = ((StyleVolumeLayer)toCopy)._volumeMaterial;
+                _layerMaterial = ((StyleVolumeLayer)toCopy)._layerMaterial;
 
 
                 _volumeCubeMesh = ((StyleVolumeLayer)toCopy)._volumeCubeMesh;
@@ -83,31 +80,31 @@ namespace SculptingVis
             _volumeVariable = new VariableSocket();
             _volumeVariable.Init("Volume",this,1);
             _volumeVariable.SetAnchorVariableSocket(null);
-			_volumeVariable.RequireScalar();
+            _volumeVariable.RequireScalar();
 
 
             AddSocket(_volumeVariable);
-			_colorMapInput = (new StyleTypeSocket<Colormap> ()).Init("Color map",this);
+            _colorMapInput = (new StyleTypeSocket<Colormap> ()).Init("Color map",this);
             _opacityMapInput = (new StyleTypeSocket<Colormap> ()).Init("Opacity map",this);
             _opacityMultiplierInput = (new StyleTypeSocket<Range<float>> ()).Init("Opacity multiplier",this);
             _opacityMultiplierInput.SetDefaultInputObject((new Range<float>(0, 1,1f)));
 
-			AddSocket(_colorMapInput);
-			AddSocket(_opacityMapInput);
-			AddSocket(_opacityMultiplierInput);
+            AddSocket(_colorMapInput);
+            AddSocket(_opacityMapInput);
+            AddSocket(_opacityMultiplierInput);
 
             return this;
 
         }
 
-		public override void UpdateModule() {
-			// if(_colorMapInput.GetInput() != null && _colorMapInput.GetInput() is Colormap) {
-			// 	_colorMap = ((Colormap)_colorMapInput.GetInput()).GetTexture();
-			// }
-			// if(_opacityMapInput.GetInput() != null && _opacityMapInput.GetInput() is Colormap) {
-			// 	_opacityMap = ((Colormap)_opacityMapInput.GetInput()).GetTexture();
-			// }
-		} 
+        public override void UpdateModule() {
+            // if(_colorMapInput.GetInput() != null && _colorMapInput.GetInput() is Colormap) {
+            // 	_colorMap = ((Colormap)_colorMapInput.GetInput()).GetTexture();
+            // }
+            // if(_opacityMapInput.GetInput() != null && _opacityMapInput.GetInput() is Colormap) {
+            // 	_opacityMap = ((Colormap)_opacityMapInput.GetInput()).GetTexture();
+            // }
+        } 
 
         public override string GetLabel()
         {
