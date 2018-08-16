@@ -48,7 +48,7 @@ namespace SculptingVis
         List<StyleLayer> _layerTypes;
 
         [SerializeField]
-        List<StylePlane> _planes;
+        List<Plane> _planes;
 
         [SerializeField]
         List<StyleVariable> _variableTypes;
@@ -378,44 +378,49 @@ namespace SculptingVis
         }
 
         public void RemoveModule(StyleModule module) {
-            if(module is StyleVisualElement) {
+            if (module is StyleVisualElement) {
                 GetVisualElements().Remove(module);
-            } else if(module is StyleLayer) {
+            } else if (module is StyleLayer) {
                 GetLayers().Remove((StyleLayer)module);
-            } else if(module is StyleDataVariable) {
+            } else if (module is StyleDataVariable) {
                 GetVariables().Remove(module);
-            } else if(module is StyleCustomVariable) {
+            } else if (module is StyleCustomVariable) {
                 GetUserVariables().Remove((StyleVariable)module);
             }
 
 
-            for(int i = 0; i < module.GetNumberOfSockets(); i++) {
+            for (int i = 0; i < module.GetNumberOfSockets(); i++) {
                 StyleSocket socket = module.GetSocket(i);
                 ClearSocket(socket);
-                
+
             }
 
         }
 
-        [SerializeField] StylePlane _planePrefab;
-
-        public List<StylePlane> GetPlanes() {
-            if (_planes == null) _planes = new List<StylePlane>();
+        public List<Plane> GetPlanes() {
+            if (_planes == null) _planes = new List<Plane>();
             return _planes;
         }
 
         public void AddPlane() {
-            _planes.Add((StylePlane)ScriptableObject.CreateInstance("StylePlane"));
+            Plane p = new Plane {
+                _center = new Vector3(0, 0, 0),
+                _normal = new Vector3(1, 0, 0)
+            };
 
-            foreach (StyleLayer l in _layers) {
-                l.AddPlane(new StylePlane());
+            _planes.Add(p);
+
+            foreach (StyleLayer l in _style.GetLayers()) {
+                l.AddPlane();
             }
 
         }
 
-        public void RemovePlane(StylePlane p) {
-            foreach (StyleLayer l in _layers) {
-                l.RemovePlane(new StylePlane());
+        public void RemovePlane(Plane p) {
+            _planes.Remove(p);
+
+            foreach (StyleLayer l in _style.GetLayers()) {
+                l.RemovePlane(p);
             }
         }
 

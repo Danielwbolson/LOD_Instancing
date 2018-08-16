@@ -160,6 +160,17 @@ public class SculptingVisWindow : EditorWindow {
 
         }
 
+        if (module is StyleLayer) {
+            if (GetStyleController().GetPlanes().Count != 0) {
+                List<bool> newConnections = new List<bool>();
+            for (int i = 0; i < GetStyleController().GetPlanes().Count; i++) {
+                    // Draw some sort of toggle for each plane using GUILayout.Toggle();
+                    newConnections.Add(GUILayout.Toggle(((StyleLayer)module).GetConnectedPlanes()[i], "On"));
+                }
+                ((StyleLayer)module).SetConnectedPlanes(newConnections);
+            }
+        }
+
 
         if (labelOutputHookRight) {
             if (labelOutputHook) DrawSocketHook(module.GetSocket(socket_index++), nest);
@@ -385,7 +396,7 @@ public class SculptingVisWindow : EditorWindow {
         showPlaneManager = EditorGUILayout.Foldout(showPlaneManager, "Manage Planes");
         if (showPlaneManager) {
             for (int p = 0; p < GetStyleController().GetPlanes().Count; p++) {
-                SculptingVis.StylePlane plane = GetStyleController().GetPlanes()[p];
+                SculptingVis.Plane plane = GetStyleController().GetPlanes()[p];
                 GUILayout.BeginHorizontal();
                 if (GUILayout.Button("Select")) {
 
@@ -402,6 +413,8 @@ public class SculptingVisWindow : EditorWindow {
             if (GUILayout.Button("Add Plane")) {
                 GetStyleController().AddPlane();
             }
+
+            // Show toggle boxes for each layer in the scene
         }
 
         EditorGUILayout.EndVertical();

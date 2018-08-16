@@ -82,7 +82,7 @@
                         float3 AB = B_vertPos - A_dataPos;
                         bool inFront = (dot(AB, dataNorm) > 0);
 
-                        if (!inFront) {
+                        if (inFront) {
                             discard;
                         }
                     }
