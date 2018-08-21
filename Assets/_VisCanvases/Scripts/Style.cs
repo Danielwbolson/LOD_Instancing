@@ -23,6 +23,7 @@ namespace SculptingVis {
         }
         public void AddLayer(StyleLayer layer) {
             _layers.Add(layer);
+            
         }
         public void ApplyStyle(Canvas canvas) {
 

@@ -40,27 +40,22 @@ using UnityEngine;
 
 namespace SculptingVis {
 
+    public struct Plane {
+        public Vector3 _center;
+        public Vector3 _normal;
+    }
+
     public class StylePlane : StyleModule {
 
         [HideInInspector]
-        public Vector3 _centerPos, _normal;
+        public Vector3 _center, _normal;
 
-        public StylePlane Init() {
-            return this;
+        public static implicit operator Plane(StylePlane p) {
+            Plane newP = new Plane {
+                _center = p._center,
+                _normal = p._normal
+            };
+            return newP;
         }
-
-
-        public override string GetStyle() {
-            return "Plane";
-        }
-
-        public virtual void DrawStyle(Canvas canvas) {
-
-        }
-
-        public virtual StylePlane CopySlice(StylePlane toCopy) {
-            return this;
-        }
-
     }
 }

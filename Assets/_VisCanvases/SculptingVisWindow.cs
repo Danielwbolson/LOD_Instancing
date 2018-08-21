@@ -160,18 +160,6 @@ public class SculptingVisWindow : EditorWindow {
 
         }
 
-        if (module is StyleLayer) {
-            if (GetStyleController().GetPlanes().Count != 0) {
-                List<bool> newConnections = new List<bool>();
-            for (int i = 0; i < GetStyleController().GetPlanes().Count; i++) {
-                    // Draw some sort of toggle for each plane using GUILayout.Toggle();
-                    newConnections.Add(GUILayout.Toggle(((StyleLayer)module).GetConnectedPlanes()[i], "On"));
-                }
-                ((StyleLayer)module).SetConnectedPlanes(newConnections);
-            }
-        }
-
-
         if (labelOutputHookRight) {
             if (labelOutputHook) DrawSocketHook(module.GetSocket(socket_index++), nest);
         }
@@ -396,7 +384,7 @@ public class SculptingVisWindow : EditorWindow {
         showPlaneManager = EditorGUILayout.Foldout(showPlaneManager, "Manage Planes");
         if (showPlaneManager) {
             for (int p = 0; p < GetStyleController().GetPlanes().Count; p++) {
-                SculptingVis.Plane plane = GetStyleController().GetPlanes()[p];
+                SculptingVis.StylePlane plane = GetStyleController().GetPlanes()[p];
                 GUILayout.BeginHorizontal();
                 if (GUILayout.Button("Select")) {
 
@@ -558,6 +546,17 @@ public class SculptingVisWindow : EditorWindow {
                     Rect scrollRect = _columns[i];
                     scrollRect.position -= _scrollPositions["Layers"];
                     DrawStyleModule(GetStyleController().GetLayers()[m], scrollRect);
+
+                    if (GetStyleController().GetPlanes().Count != 0) {
+                        List<bool> newConnections = new List<bool>();
+                        for (int p = 0; p < GetStyleController().GetPlanes().Count; p++) {
+                            newConnections.Add(GUILayout.Toggle(GetStyleController().GetLayers()[m].GetConnectedPlanes()[p], "On"));
+                        }
+                        GUILayout.FlexibleSpace();
+
+                        GetStyleController().GetLayers()[m].SetConnectedPlanes(newConnections);
+
+                    }
                 }
 
 

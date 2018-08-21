@@ -2,26 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SculptingVis
-{
+namespace SculptingVis {
     /*
      * Refresh planes : Have layers directly listen to stylecontroller
      * Stylecontroller will tell them about planes
      */
 
-    public struct Plane {
-        public Vector3 _center;
-        public Vector3 _normal;
-    }
-
-    public class StyleLayer : StyleModule
-    {
+    public class StyleLayer : StyleModule {
         [HideInInspector]
         public bool _toggled = true;
 
         [SerializeField]
         protected ComputeBuffer _planeBuffer;
-        public List<Plane> _planes;
+        public List<StylePlane> _planes;
+        public List<Plane> _gpuPlanes;
 
         [SerializeField]
         protected int _planeCount;
@@ -33,28 +27,23 @@ namespace SculptingVis
         protected List<bool> _connectedPlanes;
 
 
-        public StyleLayer Init()
-        {
+        public StyleLayer Init() {
             return this;
         }
 
 
-        public override string GetLabel()
-        {
+        public override string GetLabel() {
             return "Layer";
         }
 
-        public virtual bool HasBounds()
-        {
+        public virtual bool HasBounds() {
             return false;
         }
-        public virtual Bounds GetBounds()
-        {
+        public virtual Bounds GetBounds() {
             return new Bounds();
         }
 
-        public virtual void DrawLayer(Canvas canvas)
-        {
+        public virtual void DrawLayer(Canvas canvas) {
 
         }
 
@@ -62,10 +51,8 @@ namespace SculptingVis
         [SerializeField, HideInInspector]
         Dictionary<Canvas, Material> _canvasMaterials;
 
-        protected Material GetCanvasMaterial(Canvas canvas, Material layerMaterial)
-        {
-            if (layerMaterial == null)
-            {
+        protected Material GetCanvasMaterial(Canvas canvas, Material layerMaterial) {
+            if (layerMaterial == null) {
                 Debug.LogError("Style Material is null");
                 return null;
             }
@@ -89,43 +76,46 @@ namespace SculptingVis
 
         public void AddPlane() {
             if (_planes == null) {
-                _planes = new List<Plane>();
+                _planes = new List<StylePlane>();
+                _gpuPlanes = new List<Plane>();
                 _planeCount = 0;
                 _connectedPlanes = new List<bool>();
             }
 
-            Plane plane = new Plane {
+            StylePlane plane = new StylePlane {
                 _center = new Vector3(0, 0, 0),
                 _normal = new Vector3(1, 0, 0)
             };
 
             _planes.Add(plane);
+            _gpuPlanes.Add(plane);
             _connectedPlanes.Add(true);
 
             _planeCount = _planes.Count;
 
             _planeBuffer = new ComputeBuffer(_planeCount, 6 * sizeof(float));
-            _planeBuffer.SetData(_planes);
+            _planeBuffer.SetData(_gpuPlanes);
             _layerMaterial.SetBuffer("_Planes", _planeBuffer);
             _layerMaterial.SetInt("planesSize", _planeCount);
         }
 
-        public void RemovePlane(Plane p) {
+        public void RemovePlane(StylePlane p) {
             int i = _planes.IndexOf(p);
             _planes.Remove(p);
+            _gpuPlanes.Remove(p);
             _planeCount = _planes.Count;
             _connectedPlanes.Remove(_connectedPlanes[i]);
 
             if (_planeCount > 0) {
                 _planeBuffer = new ComputeBuffer(_planeCount, 6 * sizeof(float));
-                _planeBuffer.SetData(_planes);
+                _planeBuffer.SetData(_gpuPlanes);
                 _layerMaterial.SetBuffer("_Planes", _planeBuffer);
                 _layerMaterial.SetInt("planesSize", _planeCount);
             } else {
                 _layerMaterial.SetBuffer("_Planes", null);
                 _layerMaterial.SetInt("planesSize", 0);
             }
-}
+        }
 
         public List<bool> GetConnectedPlanes() {
             if (_connectedPlanes == null)
@@ -157,4 +147,3 @@ namespace SculptingVis
         }
     }
 }
-

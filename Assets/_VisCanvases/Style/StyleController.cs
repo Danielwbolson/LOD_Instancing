@@ -48,7 +48,7 @@ namespace SculptingVis
         List<StyleLayer> _layerTypes;
 
         [SerializeField]
-        List<Plane> _planes;
+        List<StylePlane> _planes;
 
         [SerializeField]
         List<StyleVariable> _variableTypes;
@@ -185,10 +185,6 @@ namespace SculptingVis
         {
             return GetStyle().GetLayers();
         }
-
-        /*public List<StylePlane> GetSlices() {
-            return GetStyle().GetSlices();
-        }*/
 
         public List<StyleModule> GetVariables()
         {
@@ -397,16 +393,18 @@ namespace SculptingVis
 
         }
 
-        public List<Plane> GetPlanes() {
-            if (_planes == null) _planes = new List<Plane>();
+        public List<StylePlane> GetPlanes() {
+            if (_planes == null) _planes = new List<StylePlane>();
             return _planes;
         }
 
         public void AddPlane() {
-            Plane p = new Plane {
+            StylePlane p = new StylePlane {
                 _center = new Vector3(0, 0, 0),
                 _normal = new Vector3(1, 0, 0)
             };
+
+            _style.AddPlane(p);
 
             _planes.Add(p);
 
@@ -416,7 +414,7 @@ namespace SculptingVis
 
         }
 
-        public void RemovePlane(Plane p) {
+        public void RemovePlane(StylePlane p) {
             _planes.Remove(p);
 
             foreach (StyleLayer l in _style.GetLayers()) {
