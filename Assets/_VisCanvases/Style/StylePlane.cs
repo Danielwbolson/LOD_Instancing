@@ -36,6 +36,20 @@ using UnityEngine;
  * FIRST STEP: 
  * Maybe a good test is to add a slice to the glyph preview layer
  * And discard all the fragments that fall on one side of it.
+ * 
+ * 
+ * CURRENT WORK (Daniel):
+ * Right now there are issues with adding a plane to the GUI in the bottom. There are too many GuiLayout features
+ * being pushed, compared to those popped. I am not sure how to fix that. There are also some design issues. Right now, 
+ * everything is convoluted. There are too many dependencies and connections between classes. A Plane should only be
+ * connected to a layer and to the style. However, we could also go the approach of making the plane a global widget, not
+ * tied to the style at all. Either way, whatever we have now needs to be redesigned.
+ * 
+ * There is also right now some confusion, at least for me, between using a StylePlane and being able to send information
+ * to the shader through the a ComputeBuffer. That requires a struct, but we have a class. So right now, we have some
+ * redundant/confusing structure in having both a StylePlane class and a Plane struct. There are a couple ways we could
+ * head towards fixes for that: Use a predefined length array in the shader, not using a computebuffer (limits dynamicism)
+ * or, if we do abstract the Plane away from the style and stylecontroller, we could find different design options there.
  */
 
 namespace SculptingVis {

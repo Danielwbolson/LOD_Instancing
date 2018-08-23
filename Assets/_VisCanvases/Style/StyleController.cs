@@ -404,7 +404,7 @@ namespace SculptingVis
                 _normal = new Vector3(1, 0, 0)
             };
 
-            _style.AddPlane(p);
+            //_style.AddPlane(p);
 
             _planes.Add(p);
 
