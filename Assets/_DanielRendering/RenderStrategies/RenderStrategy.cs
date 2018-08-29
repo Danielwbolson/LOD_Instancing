@@ -40,8 +40,8 @@ public class RenderStrategy {
 
         _objMatArray = new Material[DIFFERENTOBJECTS][];
         for (int i = 0; i < DIFFERENTOBJECTS; i++) {
-            _objMatArray[i] = new Material[4];
-            for (int j = 0; j < 4; j++) {
+            _objMatArray[i] = new Material[_objs[i].transform.childCount];
+            for (int j = 0; j < _objs[i].transform.childCount; j++) {
                 _objMatArray[i][j] = new Material(_objMat);
             }
         }
@@ -50,16 +50,16 @@ public class RenderStrategy {
         _objMeshArray = new Mesh[DIFFERENTOBJECTS][];
         for (int i = 0; i < DIFFERENTOBJECTS; i++) {
             tempArray[i] = _objs[i].GetComponentsInChildren<MeshFilter>();
-            _objMeshArray[i] = new Mesh[4];
-            for (int j = 0; j < 4; j++) {
+            _objMeshArray[i] = new Mesh[_objs[i].transform.childCount];
+            for (int j = 0; j < _objs[i].transform.childCount; j++) {
                 _objMeshArray[i][j] = tempArray[i][j].sharedMesh;
             }
         }
 
         _bumpMaps = new Texture[DIFFERENTOBJECTS][];
         for (int i = 0; i < DIFFERENTOBJECTS; i++) {
-            _bumpMaps[i] = new Texture[4];
-            for (int j = 0; j < 4; j++) {
+            _bumpMaps[i] = new Texture[_objs[i].transform.childCount];
+            for (int j = 0; j < _objs[i].transform.childCount; j++) {
                 string path = "ArtWork/Meshes/" + _objs[i].name + "/NormalMaps/LOD" + j;
                 _bumpMaps[i][j] = Resources.Load(path) as Texture;
             }

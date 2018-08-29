@@ -39,13 +39,10 @@ public class Instantiated : RenderStrategy {
                 // Set our materials for each LOD mesh
                 MeshRenderer[] _MeshArray = temp_obj.GetComponentsInChildren<MeshRenderer>();
                 Material[] _tempMatArray = new Material[_MeshArray.Length];
-                for (int k = 0; k < _tempMatArray.Length; k++) {
-                    _tempMatArray[k] = _MeshArray[k].material;
-                }
-
-                // Get and set our colors for each LOD mesh
                 Vector4[] color = new Vector4[_MeshArray.Length];
-                for (int k = 0; k < color.Length; k++) {
+                for (int k = 0; k < _MeshArray.Length; k++) {
+                    _tempMatArray[k] = new Material(_objMatArray[i][k]);
+
                     color[k] = new Vector4(
                         Mathf.Clamp(0 + k * (1f / (color.Length - 1)), 0, 1),
                         Mathf.Clamp(1 - k * (1f / (color.Length - 1)), 0, 1),
@@ -60,6 +57,7 @@ public class Instantiated : RenderStrategy {
                         _tempMatArray[k].SetTexture("_BumpMap", null);
                         _tempMatArray[k].shaderKeywords = new string[0];
                     }
+                    _MeshArray[k].material = _tempMatArray[k];
                 }
 
                 // Set our position based on what was passed in
@@ -70,7 +68,7 @@ public class Instantiated : RenderStrategy {
 
                 temp_obj.transform.localScale = new Vector3(scal.x, scal.y, scal.z);
 
-                temp_obj.transform.forward = _masterData[i][j].direction;
+                //temp_obj.transform.forward = _masterData[i][j].direction;
             }
         }
         _cachedNumObjects = TOTALOBJECTS;
@@ -86,11 +84,11 @@ public class Instantiated : RenderStrategy {
         }
 
         if (_cachedDebug != _debug) {
+            int index = 0;
             for (int i = 0; i < DIFFERENTOBJECTS; i++) {
 
-                int index = 0;
                 if (i != 0) {
-                    index += i * _masterData[i - 1].Count;
+                    index += _masterData[i - 1].Count;
                 }
 
                 for (int j = 0; j < _masterData[i].Count; j++) {
@@ -106,11 +104,11 @@ public class Instantiated : RenderStrategy {
         }
 
         if (_cachedBumpMapsEnabled != _bumpMapsEnabled) {
+            int index = 0;
             for (int i = 0; i < DIFFERENTOBJECTS; i++) {
 
-                int index = 0;
                 if (i != 0) {
-                    index += i * _masterData[i - 1].Count;
+                    index += _masterData[i - 1].Count;
                 }
 
                 for (int j = 0; j < _masterData[i].Count; j++) {
@@ -131,22 +129,22 @@ public class Instantiated : RenderStrategy {
             _cachedBumpMapsEnabled = _bumpMapsEnabled;
         }
 
-        //RotatePositions();
+        RotatePositions();
     }
 
     /*
      * Rotates our gameobjects around the vertical axis at a rate dependant on their scale
      */
     public void RotatePositions() {
+        int index = 0;
         for (int i = 0; i < DIFFERENTOBJECTS; i++) {
 
-            int index = 0;
             if (i != 0) {
-                index += i * _masterData[i - 1].Count;
+                index += _masterData[i - 1].Count;
             }
 
             for (int j = 0; j < _masterData[i].Count; j++) {
-                float rotation = _masterData[i][j].scale.magnitude * Time.deltaTime * 40;
+                float rotation = _masterData[i][j].scale.magnitude * Time.deltaTime;
                 ObjInfo temp = _masterData[i][j];
                 Vector3 rot = Quaternion.AngleAxis(rotation, Vector3.up) * temp.position;
                 temp.position = new Vector4(rot.x, rot.y, rot.z, 1);
@@ -164,5 +162,6 @@ public class Instantiated : RenderStrategy {
         foreach (GameObject g in _gameObjects) {
             GameObject.Destroy(g);
         }
+        _gameObjects.Clear();
     }
 }

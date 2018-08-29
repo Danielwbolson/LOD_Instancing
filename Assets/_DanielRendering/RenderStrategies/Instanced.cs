@@ -9,7 +9,7 @@ public class Instanced : RenderStrategy {
         public float radius;
     };
 
-    private const int LODSIZE = 4;
+    private const int LODSIZE = 3;
     private int cachedInstanceCount;
     private int cachedObjCount;
     private const float threadCount = 64.0f;
@@ -23,10 +23,10 @@ public class Instanced : RenderStrategy {
 
     private const float LOD0 = .7f;
     private const float LOD1 = .3f;
-    private const float LOD2 = .07f;
-    private const float LOD3 = .01f;
+    private const float LOD2 = .01f;
+    //private const float LOD3 = .01f;
 
-    private readonly Vector4 _LODRanges = new Vector4(LOD0, LOD1, LOD2, LOD3);
+    private readonly Vector4 _LODRanges = new Vector4(LOD0, LOD1, LOD2);
     private readonly string[] lodBuffers = new string[4] { "lod0Buffer", "lod1Buffer", "lod2Buffer", "lod3Buffer" };
 
     private Matrix4x4[] _matrixData;
@@ -271,7 +271,7 @@ public class Instanced : RenderStrategy {
         Matrix4x4 P = cam.projectionMatrix;
         Matrix4x4 _MVP = P * V * M;
 
-        //RotatePositions();
+        RotatePositions();
 
         _computeShader.SetVector("camPos", _cachedCamPosition);
         _computeShader.SetMatrix("MVP", _MVP);
@@ -321,7 +321,7 @@ public class Instanced : RenderStrategy {
                     // Set the positions of our instance based on our input List
                     float scaleMag = _masterData[i][j].scale.magnitude;
                     Vector3 newPos = Quaternion.AngleAxis(
-                        scaleMag * Time.deltaTime * 40,
+                        scaleMag * Time.deltaTime,
                         Vector3.up) * _masterData[i][j].position;
                     ObjInfo temp = _masterData[i][j];
                     temp.position = new Vector4(newPos.x, newPos.y, newPos.z, 1);

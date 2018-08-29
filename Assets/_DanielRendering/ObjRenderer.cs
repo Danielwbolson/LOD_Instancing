@@ -38,7 +38,10 @@ public class ObjRenderer : MonoBehaviour {
         _renderStrategy.SetDebug(_debug);
         _cachedInstanceRendering = _instancedRendering;
         _cachedNumMeshes = _totalNumMeshes;
-        _cachedObjs = _objs;
+
+        _cachedObjs = new GameObject[_objs.Length];
+        _cachedObjs = (GameObject[]) _objs.Clone();
+
         _cachedDebug = _debug;
         _cachedNormalMapsEnabled = _normalMapsEnabled;
     }
@@ -57,7 +60,7 @@ public class ObjRenderer : MonoBehaviour {
         }
 
         // If the user changes how many meshes or unique objects they want, create new renderings
-        if (_cachedNumMeshes != _totalNumMeshes || _cachedObjs != _objs) {
+        if (_cachedNumMeshes != _totalNumMeshes || !ArrayEquals(_objs, _cachedObjs)) {
             InitializeInfo();
 
             _renderStrategy.Destroy();
@@ -71,7 +74,9 @@ public class ObjRenderer : MonoBehaviour {
             _renderStrategy.SetNormalMapsEnabled(_normalMapsEnabled);
 
             _cachedNumMeshes = _totalNumMeshes;
-            _cachedObjs = _objs;
+
+            _cachedObjs = new GameObject[_objs.Length];
+            _cachedObjs = (GameObject[])_objs.Clone();
         }
 
         // IF the user changes whether or not they want to be using normal maps or not
@@ -103,7 +108,7 @@ public class ObjRenderer : MonoBehaviour {
                 matrixIndex = i,
                 position = new Vector4(Mathf.Sin(angle) * distance, height, Mathf.Cos(angle) * distance, 1),
                 color = new Vector4(0, 0, 0, Random.Range(0.20f, 1.0f)),
-                scale = new Vector3(4, 4, 4), //new Vector3(Random.Range(0.05f, 0.2f), Random.Range(0.05f, 0.2f), Random.Range(0.05f, 0.2f)),
+                scale = new Vector3(Random.Range(1.5f, 3.5f), Random.Range(1.5f, 3.5f), Random.Range(1.5f, 3.5f)),
                 direction = Vector3.Normalize(new Vector3(Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0, 1f)))
             };
 
@@ -138,5 +143,16 @@ public class ObjRenderer : MonoBehaviour {
         if (_instancedRendering) {
             _renderStrategy.Destroy();
         }
+    }
+
+    public static bool ArrayEquals<T>(T[] a, T[] b) {
+        if (a.Length != b.Length) return false;
+
+        EqualityComparer<T> comparer = EqualityComparer<T>.Default;
+
+        for (int i = 0; i < a.Length; i++) {
+            if (!comparer.Equals(a[i], b[i])) return false;
+        }
+        return true;
     }
 }

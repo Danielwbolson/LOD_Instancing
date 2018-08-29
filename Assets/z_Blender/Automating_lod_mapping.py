@@ -104,8 +104,8 @@ if bpy.context.selected_objects != []:
 		print("Starting copy, will decimate mesh")
 		obj = lods[0].copy()
 		obj.data = lods[0].data.copy()
-		obj.data.name = model_name + '_LOD' + str(i)
-		obj.name = model_name + '_LOD' + str(i)
+		obj.data.name = model_name + '_LOD' + str(i-1)
+		obj.name = model_name + '_LOD' + str(i-1)
 		scene.objects.link(obj)
 		lods.append(obj)
 		
@@ -122,7 +122,8 @@ if bpy.context.selected_objects != []:
 		starting_vertices = len(lods[i].data.vertices)
 		goal_vertices = 100000.0 / math.pow(10, i)
 		ratio = goal_vertices / starting_vertices
-		
+		#ratio = 1 / math.pow(10, i)
+
 		scene.objects.active = lods[i]
 		decimate_mod = lods[i].modifiers.new('Decimate', 'DECIMATE')
 		decimate_mod.use_collapse_triangulate = True
