@@ -58,7 +58,7 @@ inline void ObjectToWorldMatrix(uint id) {
 inline void CalculateCameraPlanes(inout FrustrumPlane mPlanes[5])
 {
     // Here we are using Column Major matrix
-    // We skip the far plane and assume the user always has the furthest LOD distace closer than the far plane!
+    // We skip the far plane and assume the user always has the furthest LOD distace closer than the far plane
 
     // Left clipping plane.
     mPlanes[0].normal = float4(
@@ -111,7 +111,7 @@ inline void CalculateCameraPlanes(inout FrustrumPlane mPlanes[5])
 }
 
 // Assign data to a level of detail buffer depending on its distance from the camera
-// Currently assigning color here as well
+// Currently assigning color here as well with the LODIndex
 inline void AssignLOD(uint id, float screenSize) {
     if (screenSize > LODRanges[0]) {
         dataBuffer[id].LODIndex = 0;
@@ -130,7 +130,7 @@ inline void AssignLOD(uint id, float screenSize) {
 // Using a position and a radius, check if a bounding box is inside each camera plane
 // Currently, the radius is the largest scale in any direction for the mesh
 // Therefore, the mesh will never be outside the radius and thus we will never see it
-// get culled. This will allow some meshes to be seen that technically should be culled
+// get culled. This will allow some meshes that we cannot see, that technically should be culled, not be
 // The normals are not the planes coming out from the camera, but instead the normals of the planes,
 // facing inwards towards where the camera should see
 inline bool ShouldFrustrumCull(BoundingSphere b, ObjInfo instance) {
@@ -142,6 +142,10 @@ inline bool ShouldFrustrumCull(BoundingSphere b, ObjInfo instance) {
 
     int result = 0;
 
+    
+    // Check if a specific point is seen by all frustum planes
+    // Weakness of this method is for large objects, all the extreme points of their bounds could be outside of the 
+    // frustum while you are staring straight at it, and thus it is called. Also a lot of checks
     for (int i = 0; i < 5; i++) {
         result = 0;
         // If a result is < 0, the positions is behind the plane
